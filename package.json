@@ -1,0 +1,62 @@
+{
+  "name": "mitsubachi-ui",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "rimraf dist && run-s build:*",
+    "build:ts": "tsc -p tsconfig-build.json",
+    "build:css": "node tools/copy-css.js",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "run-s \"format:* !format:prettier:check\"",
+    "format:prettier": "prettier --write '(.storybook|src|stories|tests|tools)/**/*.ts'",
+    "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
+    "format:lint": "stylelint --fix 'src/**/*.css'",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uzabase/mitsubachi-ui.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@acab/reset.css": "0.11.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@storybook/addon-essentials": "^8.5.3",
+    "@storybook/blocks": "^8.5.3",
+    "@storybook/web-components": "^8.5.3",
+    "@storybook/web-components-vite": "^8.5.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22.13.1",
+    "@vitest/browser": "^3.0.5",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-storybook": "^0.11.2",
+    "eslint-plugin-wc": "^2.2.0",
+    "globals": "^15.14.0",
+    "lit": "^3.2.1",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.50.1",
+    "prettier": "3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "rimraf": "^6.0.1",
+    "shadow-dom-testing-library": "^1.11.3",
+    "storybook": "^8.5.3",
+    "stylelint": "^16.14.1",
+    "stylelint-config-standard": "^37.0.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.23.0",
+    "vitest": "^3.0.5"
+  }
+}
