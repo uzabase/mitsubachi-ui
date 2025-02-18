@@ -58,9 +58,11 @@ export class SpButton extends HTMLElement {
   set loading(value: boolean) {
     const button = this.#buttonElement;
     this.#loading = value;
-    value
-      ? button.classList.add("loading")
-      : button.classList.remove("loading");
+    if (value) {
+      button.classList.add("loading");
+    } else {
+      button.classList.remove("loading");
+    }
     this.#buttonDisabledUpdate();
   }
 
@@ -168,4 +170,6 @@ declare global {
   }
 }
 
-customElements.get("sp-button") || customElements.define("sp-button", SpButton);
+if (!customElements.get("sp-button")) {
+  customElements.define("sp-button", SpButton);
+}
