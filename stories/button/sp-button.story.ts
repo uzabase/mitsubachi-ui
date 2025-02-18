@@ -70,10 +70,27 @@ export const Basic: Story = {
   tags: ["!dev-only"],
 };
 
+export const FullWidth: Story = {
+  render: () => html`
+    <sp-button style="width: 100%;">ダウンロード</sp-button>
+    <div style="width: 400px;">
+      <sp-button style="width: 100%;">ダウンロード</sp-button>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ボタンの幅を100%にしたい時はWeb Componentsのデフォルトのスタイルを上書きしてください。",
+      },
+    },
+  },
+};
+
 export const OverflowWrap: Story = {
   render: () => html`
     <p style="overflow-wrap: break-word;">
-      texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+      texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
     </p>
     <sp-button>text</sp-button>
     <sp-button>text</sp-button>
@@ -93,7 +110,7 @@ export const OverflowWrap: Story = {
       est laborum.</sp-button
     >
     <sp-button
-      >にほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんご</sp-button
+      >にほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんご</sp-button
     >
     <div style="display: flex; min-width: 0;">
       <div>サンプルdiv</div>

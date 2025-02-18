@@ -4,11 +4,14 @@
 
 .base {
     display: inline-block;
+    width: 100%;
+    flex-basis: 100%;
     padding-block :2px;
     border: 1px solid transparent;
     border-radius: 6px;
     position: relative;
     cursor: pointer;
+    text-align: center;
 
     &:disabled {
         cursor: not-allowed;
@@ -90,16 +93,14 @@
 }
 
 .normal.primary {
-    background-color: #282828;
-    border-color: #282828;
+    background-color: rgb(0 0 0 / 84%);
 
     .text {
         color: #fff;
     }
 
     &:hover {
-        background-color: #191919;
-        border-color: #191919;
+        background-color: rgb(0 0 0 / 90%);
     }
 
     &:active {
@@ -115,11 +116,11 @@
     }
 
     &:hover {
-        background-color: #F5F5F5;
+        background-color: rgb(0 0 0 / 4%);
     }
 
     &:active {
-        background-color: #EDEDED;
+        background-color: rgb(0 0 0 / 7%);
     }
 }
 
@@ -131,17 +132,16 @@
     }
 
     &:hover {
-        background-color: #F5F5F5;
+        background-color: rgb(0 0 0 / 4%);
     }
 
     &:active {
-        background-color: #EDEDED;
+        background-color: rgb(0 0 0 / 7%);
     }
 }
 
 .danger.primary {
     background-color: #DB351F;
-    border-color: #DB351F;
 
     .text {
         color: #fff;
@@ -149,7 +149,6 @@
 
     &:hover {
         background-color: #C92812;
-        border-color: #C92812;
     }
 
     &:active {
