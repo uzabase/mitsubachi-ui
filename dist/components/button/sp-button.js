@@ -52,9 +52,12 @@ export class SpButton extends HTMLElement {
     set loading(value) {
         const button = __classPrivateFieldGet(this, _SpButton_buttonElement, "f");
         __classPrivateFieldSet(this, _SpButton_loading, value, "f");
-        value
-            ? button.classList.add("loading")
-            : button.classList.remove("loading");
+        if (value) {
+            button.classList.add("loading");
+        }
+        else {
+            button.classList.remove("loading");
+        }
         __classPrivateFieldGet(this, _SpButton_instances, "m", _SpButton_buttonDisabledUpdate).call(this);
     }
     get disabled() {
@@ -149,4 +152,6 @@ export class SpButton extends HTMLElement {
 _SpButton_loading = new WeakMap(), _SpButton_disabled = new WeakMap(), _SpButton_type = new WeakMap(), _SpButton_variants = new WeakMap(), _SpButton_size = new WeakMap(), _SpButton_buttonElement = new WeakMap(), _SpButton_slotElement = new WeakMap(), _SpButton_instances = new WeakSet(), _SpButton_buttonDisabledUpdate = function _SpButton_buttonDisabledUpdate() {
     __classPrivateFieldGet(this, _SpButton_buttonElement, "f").disabled = this.disabled || this.loading;
 };
-customElements.get("sp-button") || customElements.define("sp-button", SpButton);
+if (!customElements.get("sp-button")) {
+    customElements.define("sp-button", SpButton);
+}
