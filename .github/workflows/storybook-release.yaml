@@ -24,6 +24,8 @@ jobs:
           git checkout main
           npm ci
           npm run build-storybook
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
