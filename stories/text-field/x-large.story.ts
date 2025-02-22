@@ -8,9 +8,26 @@ import type { SpTextFieldXLarge } from "@/components/text-field/x-large";
 
 const meta: Meta<SpTextFieldXLarge> = {
   component: 'sp-text-field-x-large',
+  args: {
+    label: 'foobar',
+  },
+  argTypes: {
+    label: {
+      control: {
+        type: 'text',
+      },
+    },
+    // error: {
+    //   control: {
+    //     type: 'text',
+    //   },
+    // },
+  },
 };
 export default meta;
 
-export const Deafult: StoryObj<SpTextFieldXLarge> = {
-  render: () => html`<sp-text-field-x-large label="foobar" error="doge"></sp-text-field-x-large>`,
+export const Default: StoryObj<SpTextFieldXLarge> = {
+  render: (args) => {
+    return html`<sp-text-field-x-large label=${args.label} error="doge"></sp-text-field-x-large>`
+  }
 };

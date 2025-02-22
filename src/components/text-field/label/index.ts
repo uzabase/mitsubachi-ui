@@ -29,8 +29,10 @@ export class SpTextFieldLabel extends HTMLElement {
     ];
 
     this.#label = document.createElement("label");
+    this.#label.classList.add('label');
+
     this.#shadow.appendChild(this.#label);
-    this.setText(this.#textContent);
+    this.text = this.#textContent;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
@@ -39,20 +41,14 @@ export class SpTextFieldLabel extends HTMLElement {
     } else if (name === "for") {
       this.#setFor(newValue);
     } else if (name === "text") {
-      this.setText(newValue);
+      this.text = newValue;
     }
   }
 
-  #setId(id: string) {
-    this.#id = id;
-    this.#label?.setAttribute("id", this.#id);
+  get text(): string | undefined {
+    return this.#textContent;
   }
-  #setFor(forVal: string) {
-    this.#for = forVal;
-    this.#label?.setAttribute("for", this.#for);
-  }
-  setText(text: string | undefined) {
-    console.log('text', text);
+  set text(text: string | undefined) {
     if(text) {
       this.#textContent = text;
     }
@@ -64,6 +60,16 @@ export class SpTextFieldLabel extends HTMLElement {
       }
     }
   }
+
+  #setId(id: string) {
+    this.#id = id;
+    this.#label?.setAttribute("id", this.#id);
+  }
+  #setFor(forVal: string) {
+    this.#for = forVal;
+    this.#label?.setAttribute("for", this.#for);
+  }
+
 }
 
 const tagName = "sp-text-field-label";

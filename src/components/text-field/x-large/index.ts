@@ -16,6 +16,24 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #labelElm?: SpTextFieldLabel;
 
+  get label(): string | undefined {
+    if(this.#labelElm) {
+      if(this.#labelElm.text === this.#label)
+        throw new Error("out of sync");
+
+      return this.#labelElm.text;
+    }
+    else
+      return this.#label;
+  }
+
+  set label(text: string) {
+    this.#label = text;
+
+    if(this.#labelElm)
+      this.#labelElm.text = text;
+  }
+
   #label?: string;
 
   #error?: string;
@@ -36,10 +54,10 @@ export class SpTextFieldXLarge extends HTMLElement {
     ];
 
     this.#labelElm = document.createElement("sp-text-field-label");
+
     this.#shadow.appendChild(this.#labelElm);
-    if (this.#label) this.#labelElm.setAttribute("text", this.#label);
     if(this.#label)
-        this.#labelElm.setText(this.#label);
+      this.label = this.#label;
 
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
     this.#shadow.appendChild(this.#inputElm);
@@ -55,14 +73,11 @@ export class SpTextFieldXLarge extends HTMLElement {
     if (name === "error") {
       this.#setError(newValue);
     } else if(name === "label") {
-      this.#setLabel(newValue)
+      this.label = newValue;
     }
   }
 
-  #setLabel(label: string) {
-      this.#label = label;
-      this.#labelElm?.setText(label);
-  } 
+
 
   #setError(error: string) {
     this.#error = error;
