@@ -4,8 +4,8 @@ import "@/components/text-field/label";
 
 import { makeStyleSheet } from "@/components/styles";
 import { type SpTextFieldErrorMessage } from "@/components/text-field/error-message";
-import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/input";
 import { type SpTextFieldLabel } from "@/components/text-field/label";
+import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/input";
 
 import styles from "./styles.css?inline";
 
