@@ -1,11 +1,12 @@
-import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { SpTextField } from "@/components/text-field/x-large";
 
-const meta: Meta<SpTextField> = {};
+import { SpTextFieldXLarge } from "@/components/text-field/x-large";
+
+const meta: Meta<SpTextFieldXLarge> = {};
 export default meta;
 
-export const FullWidth: StoryObj<SpTextField> = {
-  render: () => html`<span>doge</span>`,
+export const FullWidth: StoryObj<SpTextFieldXLarge> = {
+  render: () => html`<sp-text-field-x-large>
+  </sp-text-field-x-large>`,
 };

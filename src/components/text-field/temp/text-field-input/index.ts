@@ -1,6 +1,7 @@
-import { styles } from "@/components/text-field-input/css";
-import { LitElement, html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
+
+import { styles } from "@/components/text-field-input/css";
 
 @customElement("ub-account-text-field-input")
 export class TextFieldInput extends LitElement {
