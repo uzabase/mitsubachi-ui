@@ -2,7 +2,10 @@ import "@/components/text-field/error-message";
 
 import { makeStyleSheet } from "@/components/styles";
 import { type SpTextFieldErrorMessage } from "@/components/text-field/error-message";
+import  "@/components/text-field/x-large/input";
+import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/input";
 import styles from "@/components/text-field/error-message/styles.css?inline";
+import { SpTextFieldXLargeInput } from "./input";
 
 export class SpTextFieldXLarge extends HTMLElement {
 
@@ -11,6 +14,8 @@ export class SpTextFieldXLarge extends HTMLElement {
   readonly #shadow: ShadowRoot;
 
   #error?: string;
+
+  #inputElm?: SpTextFieldXLargeInput;
 
   #errorMessageElm?: SpTextFieldErrorMessage;
 
@@ -24,6 +29,8 @@ export class SpTextFieldXLarge extends HTMLElement {
       ...this.#shadow.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
+    this.#inputElm = document.createElement("sp-text-field-x-large-input");
+    this.#shadow.appendChild(this.#inputElm);
     this.#errorMessageElm = document.createElement("sp-text-field-error-message");
     this.#shadow.appendChild(this.#errorMessageElm);
     if(this.#error)
@@ -31,7 +38,6 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   }
   attributeChangedCallback(name: string, _: string, newValue: string) {
-    console.log('attribute');
     if (name === "error") {
       this.#setError(newValue);
     }
