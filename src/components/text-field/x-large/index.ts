@@ -12,11 +12,7 @@ import styles from "./styles.css?inline";
 export class SpTextFieldXLarge extends HTMLElement {
   static observedAttributes = ["error", "label"];
 
-  readonly #shadow: ShadowRoot;
-
-  #labelElm?: SpTextFieldLabel;
-
-  get label(): string | undefined {
+  get label(): string {
     if(this.#labelElm) {
       if(this.#labelElm.text === this.#label)
         throw new Error("out of sync");
@@ -34,13 +30,18 @@ export class SpTextFieldXLarge extends HTMLElement {
       this.#labelElm.text = text;
   }
 
-  #label?: string;
+
+  readonly #shadow: ShadowRoot;
+
+  #labelElm?: SpTextFieldLabel;
+
+  #label: string = '';
 
   #error?: string;
 
   #inputElm?: SpTextFieldXLargeInput;
 
-  #errorMessageElm?: SpTextFieldErrorMessage;
+  #errorElm?: SpTextFieldErrorMessage;
 
   constructor() {
     super();
@@ -62,11 +63,11 @@ export class SpTextFieldXLarge extends HTMLElement {
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
     this.#shadow.appendChild(this.#inputElm);
 
-    this.#errorMessageElm = document.createElement(
+    this.#errorElm = document.createElement(
       "sp-text-field-error-message",
     );
-    this.#shadow.appendChild(this.#errorMessageElm);
-    if (this.#error) this.#errorMessageElm.setAttribute("message", this.#error);
+    this.#shadow.appendChild(this.#errorElm);
+    if (this.#error) this.#errorElm.message = this.#error;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
@@ -77,11 +78,9 @@ export class SpTextFieldXLarge extends HTMLElement {
     }
   }
 
-
-
   #setError(error: string) {
     this.#error = error;
-    this.#errorMessageElm?.setAttribute("message", this.#error);
+    this.#errorElm?.setAttribute("message", this.#error);
   }
 }
 

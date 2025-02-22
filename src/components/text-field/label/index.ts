@@ -13,9 +13,9 @@ export class SpTextFieldLabel extends HTMLElement {
 
   #for?: string;
 
-  #textContent?: string;
+  #textContent: string = '';
 
-  #label?: HTMLLabelElement;
+  #labelElm?: HTMLLabelElement;
 
   constructor() {
     super();
@@ -28,10 +28,10 @@ export class SpTextFieldLabel extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    this.#label = document.createElement("label");
-    this.#label.classList.add('label');
+    this.#labelElm = document.createElement("label");
+    this.#labelElm.classList.add('label');
 
-    this.#shadow.appendChild(this.#label);
+    this.#shadow.appendChild(this.#labelElm);
     this.text = this.#textContent;
   }
 
@@ -45,29 +45,33 @@ export class SpTextFieldLabel extends HTMLElement {
     }
   }
 
-  get text(): string | undefined {
+  get text(): string {
     return this.#textContent;
   }
-  set text(text: string | undefined) {
-    if(text) {
-      this.#textContent = text;
+  set text(text: string) {
+    this.#textContent = text  ? text : '';
+
+    if (this.#labelElm) {
+      this.#labelElm.textContent = this.#textContent;
     }
-    if (this.#label) {
-      if(this.#textContent)
-        this.#label.textContent = this.#textContent;
-      else {
-        this.#label.textContent = '';
-      }
+    this.#updateClass();
+  }
+
+  #updateClass() {
+    if(this.text) {
+      this.#labelElm?.classList.remove('none');
+    } else {
+      this.#labelElm?.classList.add('none');
     }
   }
 
   #setId(id: string) {
     this.#id = id;
-    this.#label?.setAttribute("id", this.#id);
+    this.#labelElm?.setAttribute("id", this.#id);
   }
   #setFor(forVal: string) {
     this.#for = forVal;
-    this.#label?.setAttribute("for", this.#for);
+    this.#labelElm?.setAttribute("for", this.#for);
   }
 
 }

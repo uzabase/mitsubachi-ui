@@ -1,6 +1,5 @@
 :host {
     display: flex;
-    height: 21px;
     gap: 2px;
 
     >.icon {
@@ -14,4 +13,9 @@
         line-height: 21px;
         color: var(--ui-semantic-text-error);
     }
+
+    .none {
+        display: none;
+    }
+
 }

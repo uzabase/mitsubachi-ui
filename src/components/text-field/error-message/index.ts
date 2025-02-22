@@ -6,45 +6,63 @@ export class SpTextFieldErrorMessage extends HTMLElement {
 
   static observedAttributes = ["message"];
 
-  readonly #shadow: ShadowRoot;
-  #span?: HTMLSpanElement;
+  get message(): string {
+    return this.#message;
+  }
 
-  #message?: string;
+
+  #span?: HTMLSpanElement;
+  #div?: HTMLDivElement;
+
+  #message: string = '';
 
   constructor() {
     super();
-    this.#shadow = this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    this.#shadow.adoptedStyleSheets = [
-      ...this.#shadow.adoptedStyleSheets,
+    if(!this.shadowRoot)
+      return;
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
 
-    const div = document.createElement("div");
-    div.setAttribute("class", "icon");
-    div.appendChild(new SpTextFieldErrorIcon());
-    this.#shadow.appendChild(div);
+    this.#div = document.createElement("div");
+    this.#div.setAttribute("class", "icon");
+    this.#div.appendChild(new SpTextFieldErrorIcon());
+    this.shadowRoot.appendChild(this.#div);
     this.#span = document.createElement('span');
     this.#span.className = "message";
-    this.#shadow.appendChild(this.#span);
+    this.shadowRoot.appendChild(this.#span);
     if(this.#message)
         this.#span.textContent = this.#message;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
     if (name === "message") {
-      this.#setMessage(newValue);
+      this.message = newValue;
     }
   }
 
-  #setMessage(message: string) {
+  set message(message: string) {
     this.#message = message;
     if(this.#span) {
       this.#span.textContent = message;
     }
-  }  
+    this.#updateClass();
+  }
+
+  #updateClass() {
+    if(this.#message) {
+      this.#div?.classList.remove('none');
+      this.#span?.classList.remove('none');
+    } else {
+      this.#div?.classList.add('none');
+      this.#span?.classList.add('none');
+    }
+  }
 
 }
 
