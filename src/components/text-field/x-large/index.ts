@@ -1,28 +1,48 @@
-import { makeStyleSheet } from "../../../components/styles";
-import { SpTextFieldErrorIcon, } from "../error-icon";
+import "@/components/text-field/error-message";
+import { makeStyleSheet } from "@/components/styles";
+import { SpTextFieldErrorMessage } from "../error-message";
 import styles from "./styles.css?inline";
-
-const cssStyleSheet = makeStyleSheet(styles); 
-//cssStyleSheet.replaceSync(`${styles} ${resetStyle} ${foundationStyle}`);
-console.log(cssStyleSheet);
 
 export class SpTextFieldXLarge extends HTMLElement {
 
-    readonly #shadow: ShadowRoot;
+  static observedAttributes = ["error"];
+
+  readonly #shadow: ShadowRoot;
+
+  #error?: string;
+
+  #errorMessageElm?: SpTextFieldErrorMessage;
 
   constructor() {
     super();
     this.#shadow = this.attachShadow({ mode: "open" });
-  } 
+  }
 
-    connectedCallback() {
-         this.#shadow.adoptedStyleSheets = 
-        [...this.#shadow.adoptedStyleSheets];
+  connectedCallback() {
+    this.#shadow.adoptedStyleSheets = [
+      ...this.#shadow.adoptedStyleSheets,
+      makeStyleSheet(styles),
+    ];
+    console.log('fooo')
+    this.#errorMessageElm = document.createElement("sp-text-field-error-message");
+    this.#shadow.appendChild(this.#errorMessageElm);
+    if(this.#error)
+      this.#errorMessageElm.setAttribute("message", this.#error);
 
-        this.#shadow.appendChild(new SpTextFieldErrorIcon());
-
+  }
+  attributeChangedCallback(name: string, _: string, newValue: string) {
+    console.log('attribute');
+    if (name === "error") {
+      this.#setError(newValue);
     }
-} 
+  }
+
+  #setError(error: string) {
+    this.#error = error;
+    this.#errorMessageElm?.setAttribute("message", this.#error);
+  }
+
+}
 
 const tagName = "sp-text-field-x-large";
 declare global {
@@ -33,4 +53,3 @@ declare global {
 if (!customElements.get(tagName)) {
   customElements.define(tagName, SpTextFieldXLarge);
 }
-

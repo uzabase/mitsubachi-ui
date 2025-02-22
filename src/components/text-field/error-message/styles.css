@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    height: 21px;
+    gap: 2px;
+
+    >.icon {
+        display: flex;
+        align-items: center;
+    }
+
+    >.message {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: var(--ui-semantic-text-error);
+    }
+}
