@@ -1,4 +1,4 @@
-/* @import url('./color.css'); */
+@import url('./color.css');
 :host {
   --font-weight-normal: 400;
   --font-weight-bold: 700;

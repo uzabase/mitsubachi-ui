@@ -1,5 +1,4 @@
 import { makeStyleSheet } from "@/components/styles";
-import "@/components/text-field/error-icon";
 import { SpTextFieldErrorIcon } from "@/components/text-field/error-icon";
 import styles from "@/components/text-field/error-message/styles.css?inline";
 

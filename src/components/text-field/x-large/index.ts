@@ -1,7 +1,8 @@
 import "@/components/text-field/error-message";
+
 import { makeStyleSheet } from "@/components/styles";
-import { SpTextFieldErrorMessage } from "../error-message";
-import styles from "./styles.css?inline";
+import { type SpTextFieldErrorMessage } from "@/components/text-field/error-message";
+import styles from "@/components/text-field/error-message/styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
 
@@ -23,7 +24,6 @@ export class SpTextFieldXLarge extends HTMLElement {
       ...this.#shadow.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
-    console.log('fooo')
     this.#errorMessageElm = document.createElement("sp-text-field-error-message");
     this.#shadow.appendChild(this.#errorMessageElm);
     if(this.#error)
