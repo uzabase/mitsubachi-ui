@@ -1,4 +1,7 @@
-@import url('./color.css');
+@import url('./constants/color.css');
+@import url('./constants/radius.css');
+@import url('./constants/space.css');
+
 :host {
   --font-weight-normal: 400;
   --font-weight-bold: 700;

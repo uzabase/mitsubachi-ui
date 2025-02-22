@@ -1,0 +1,5 @@
+:host {
+	--border-radius-50: 12px;
+	--radius-small: 4px;
+	--radius-medium: 6px;
+}
