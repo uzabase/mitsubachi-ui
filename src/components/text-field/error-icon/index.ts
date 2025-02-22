@@ -1,4 +1,6 @@
-import { makeStyleSheet } from "@/lib";
+import { makeStyleSheet } from "@/components/styles";
+
+import styles from "./styles.css?inline";
 
 export class SpTextFieldErrorIcon extends HTMLElement {
   readonly #shadow: ShadowRoot;
@@ -11,9 +13,9 @@ export class SpTextFieldErrorIcon extends HTMLElement {
     connectedCallback() {
 
         this.#shadow.adoptedStyleSheets = 
-        [...this.#shadow.adoptedStyleSheets, makeStyleSheet()];
+        [...this.#shadow.adoptedStyleSheets, makeStyleSheet(styles)];
 
-        this.#shadow.innerHTML = ` <svg
+        this.#shadow.innerHTML = `<svg
         width="21"
         height="21"
         fill="none"
@@ -31,17 +33,6 @@ export class SpTextFieldErrorIcon extends HTMLElement {
 
     }
 
-
-	// static styles = css`
-  //   :host {
-  //     height: 21px; 
-  //   }
-  // `;
-	// protected render() {
-	// 	return html`
-
-  //   `;
-	// }
 }
 
 const tagName = "sp-text-field-error-icon";
