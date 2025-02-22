@@ -12,5 +12,5 @@ const meta: Meta<SpTextFieldXLarge> = {
 export default meta;
 
 export const Deafult: StoryObj<SpTextFieldXLarge> = {
-  render: () => html`<sp-text-field-x-large error="doge"></sp-text-field-x-large>`,
+  render: () => html`<sp-text-field-x-large label="foobar" error="doge"></sp-text-field-x-large>`,
 };

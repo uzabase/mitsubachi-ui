@@ -1,7 +1,6 @@
-
 import { makeStyleSheet } from "@/components/styles";
 
-import styles from './styles.css?inline';
+import styles from "./styles.css?inline";
 
 export class SpTextFieldXLargeInput extends HTMLElement {
   static formAssociated = true;
@@ -16,11 +15,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
 
   #name?: string;
 
-   #error: boolean = false;
-
-  // #value?: string;
-
-  // #internals: ElementInternals;
+  #error: boolean = false;
 
   constructor() {
     super();
@@ -34,77 +29,48 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-	this.#input = document.createElement("input");
-	this.#shadow.appendChild(this.#input);
-	this.#input.type = "text";
-	if(this.#placeholder)
-		this.#input.placeholder = this.#placeholder;
-	if(this.#disabled)
-		this.#input.disabled = this.#disabled;
-	this.#input.className = this.#getClass();
-	if(this.#name)
-		this.#input.name = this.#name;
-
+    this.#input = document.createElement("input");
+    this.#shadow.appendChild(this.#input);
+    this.#input.type = "text";
+    if (this.#placeholder) this.#input.placeholder = this.#placeholder;
+    if (this.#disabled) this.#input.disabled = this.#disabled;
+    this.#input.className = this.#getClass();
+    if (this.#name) this.#input.name = this.#name;
   }
+
   attributeChangedCallback(name: string, _: string, newValue: string) {
     if (name === "placeholder") {
       this.#setPlaceholder(newValue);
     } else if (name === "disabled") {
-      this.#setDisabled(newValue === 'true');
-	} else if(name === "error") {
-		this.#setError(newValue === 'true');
-	}
+      this.#setDisabled(newValue === "true");
+    } else if (name === "error") {
+      this.#setError(newValue === "true");
+    }
   }
 
   #setError(error: boolean) {
-	this.#error = error;
-	this.#input?.setAttribute('class', this.#getClass());
+    this.#error = error;
+    this.#input?.setAttribute("class", this.#getClass());
   }
 
   #setPlaceholder(placeholder: string) {
-	this.#placeholder = placeholder;
-	this.#input?.setAttribute("placeholder", this.#placeholder);
+    this.#placeholder = placeholder;
+    this.#input?.setAttribute("placeholder", this.#placeholder);
   }
   #setDisabled(disabled: boolean) {
-	if(disabled) {
-		this.#input?.setAttribute("disabled", 'true');
-	} else {
-		this.#input?.removeAttribute("disabled");
-	}
+    if (disabled) {
+      this.#input?.setAttribute("disabled", "true");
+    } else {
+      this.#input?.removeAttribute("disabled");
+    }
   }
 
-  // get value() {
-  // 	return this.#value;
-  // }
-
-  // firstUpdated() {
-  // 	const input = this.renderRoot.querySelector("input");
-  // 	if (input) {
-  // 		input.addEventListener("input", (e) => {
-  // 			this.#value = (e.target as HTMLInputElement).value;
-  // 			this.#internals.setFormValue(this.#value);
-  // 		});
-  // 	}
-  // }
-
-  // protected render() {
-  // 	return html`
-  //   <input
-  //     type="text"
-  //     placeholder=${this.placeholder === "" ? nothing : this.placeholder}
-  //     ?disabled=${this.disabled}
-  //     class=${this.#getClass()}
-  //     name=${this.name === "" ? nothing : this.name}
-  //   />
-  // `;
-  // }
-
   #getClass() {
-  	const className = "ub-account-text-field-input";
-  	if (this.#error) {
-  		return `${className} error`;
-  	}
-  	return className;
+    const className = "ub-account-text-field-input";
+    if (this.#error) {
+      return `${className} error`;
+    }
+    return className;
   }
 }
 
