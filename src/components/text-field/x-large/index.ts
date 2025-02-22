@@ -1,11 +1,12 @@
 import "@/components/text-field/error-message";
+import "@/components/text-field/x-large/input";
 
 import { makeStyleSheet } from "@/components/styles";
 import { type SpTextFieldErrorMessage } from "@/components/text-field/error-message";
-import  "@/components/text-field/x-large/input";
 import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/input";
-import styles from "@/components/text-field/error-message/styles.css?inline";
-import { SpTextFieldXLargeInput } from "./input";
+
+import styles from "./styles.css?inline";
+
 
 export class SpTextFieldXLarge extends HTMLElement {
 

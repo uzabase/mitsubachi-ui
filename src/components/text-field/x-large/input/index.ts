@@ -1,6 +1,7 @@
+
 import { makeStyleSheet } from "@/components/styles";
+
 import styles from './styles.css?inline';
-import { setCustomElementsManifest } from "@storybook/web-components";
 
 export class SpTextFieldXLargeInput extends HTMLElement {
   static formAssociated = true;
