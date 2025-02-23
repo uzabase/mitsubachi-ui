@@ -12,7 +12,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set error(isError: boolean) {
-    console.log('error', isError);
     this.#error = isError;
     if(this.#input) {
       if(this.error) {
@@ -20,9 +19,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       } else {
         this.#input.classList.remove('error');
       }
-
     }
-
   }
 
   get placeholder(): string | undefined {

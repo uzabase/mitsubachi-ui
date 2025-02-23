@@ -18,7 +18,6 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set label(text: string) {
     this.#label = text;
-
     if(this.#labelElm)
       this.#labelElm.text = text;
   }
@@ -29,7 +28,6 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set error(text: string) {
     this.#error = text;
-    console.log('error###', text); 
     if(this.#errorMessageElm)
         this.#errorMessageElm.message = this.error;
     if(this.#inputElm)
@@ -55,8 +53,6 @@ export class SpTextFieldXLarge extends HTMLElement {
       this.#inputElm.placeholder = this.#placeholder;
   }
 
-  readonly #shadow: ShadowRoot;
-
   #labelElm?: SpTextFieldLabel;
 
   #label: string = '';
@@ -73,30 +69,34 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   constructor() {
     super();
-    this.#shadow = this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    this.#shadow.adoptedStyleSheets = [
-      ...this.#shadow.adoptedStyleSheets,
+    if(!this.shadowRoot) {
+      return;
+    }
+      this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
 
+
     this.#labelElm = document.createElement("sp-text-field-label");
-    this.#shadow.appendChild(this.#labelElm);
-    this.label = this.#label;
+    this.shadowRoot.appendChild(this.#labelElm);
 
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
-    this.#shadow.appendChild(this.#inputElm);
-    this.placeholder = this.#placeholder;
-    this.disabled = this.#disabled;
-    this.error = this.#error;
+    this.shadowRoot.appendChild(this.#inputElm);
 
     this.#errorMessageElm = document.createElement(
       "sp-text-field-error-message",
     );
-    this.#shadow.appendChild(this.#errorMessageElm);
-    this.#errorMessageElm.message = this.error;
+    this.shadowRoot.appendChild(this.#errorMessageElm);
+
+    this.label = this.#label;
+    this.placeholder = this.#placeholder;
+    this.disabled = this.#disabled;
+    this.error = this.#error;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
