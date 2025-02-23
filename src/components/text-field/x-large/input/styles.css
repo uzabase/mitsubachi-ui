@@ -6,7 +6,6 @@
     border: 1px solid var(--ui-semantic-border-semi-strong);
     border-radius: var(--radius-medium);
     padding: var(--spacing-10) var(--spacing-30);
-
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -39,7 +38,7 @@
 
     &:focus-visible {
         outline: canvastext solid 3px;
-        box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #282828;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #282828;
         outline-offset: 1px;
 
         &.error {
