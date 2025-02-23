@@ -10,9 +10,9 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpTextFieldErrorMessage_instances, _SpTextFieldErrorMessage_span, _SpTextFieldErrorMessage_div, _SpTextFieldErrorMessage_textContent, _SpTextFieldErrorMessage_updateClass;
-import { makeStyleSheet } from "@/components/styles";
-import { SpTextFieldErrorIcon } from "@/components/text-field/error-icon";
-import styles from "@/components/text-field/error-message/styles.css?inline";
+import { makeStyleSheet } from "../../styles";
+import { SpTextFieldErrorIcon } from "../error-icon";
+import styles from "./styles.css?inline";
 export class SpTextFieldErrorMessage extends HTMLElement {
     get textContent() {
         return __classPrivateFieldGet(this, _SpTextFieldErrorMessage_textContent, "f");

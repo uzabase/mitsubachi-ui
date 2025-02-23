@@ -1,6 +1,6 @@
-import { makeStyleSheet } from "@/components/styles";
-import { SpTextFieldErrorIcon } from "@/components/text-field/error-icon";
-import styles from "@/components/text-field/error-message/styles.css?inline";
+import { makeStyleSheet } from "../../styles";
+import { SpTextFieldErrorIcon } from "../error-icon";
+import styles from "./styles.css?inline";
 
 export class SpTextFieldErrorMessage extends HTMLElement {
   static observedAttributes = ["textContent"];

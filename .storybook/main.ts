@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
-import path from "path";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -18,12 +17,6 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     const { mergeConfig } = await import("vite");
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@": path.resolve(__dirname, "../src"),
-      };
-    }
 
     const repo = process.env.REPOSITORY_NAME;
     const basePath = process.env.STORYBOOK_BASE_PATH;

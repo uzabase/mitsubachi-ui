@@ -1,6 +1,6 @@
-import "@/components/text-field/error-message";
-import "@/components/text-field/x-large/input";
-import "@/components/text-field/label";
+import "../error-message";
+import "./input";
+import "../label";
 export declare class SpTextFieldXLarge extends HTMLElement {
     #private;
     static observedAttributes: string[];

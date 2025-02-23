@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpTextFieldLabel_instances, _SpTextFieldLabel_for, _SpTextFieldLabel_textContent, _SpTextFieldLabel_labelElm, _SpTextFieldLabel_updateClass;
-import { makeStyleSheet } from "@/components/styles";
+import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldLabel extends HTMLElement {
     get htmlFor() {

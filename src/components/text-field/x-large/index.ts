@@ -1,11 +1,11 @@
-import "@/components/text-field/error-message";
-import "@/components/text-field/x-large/input";
-import "@/components/text-field/label";
+import "../error-message";
+import "./input";
+import "../label";
 
-import { makeStyleSheet } from "@/components/styles";
-import { type SpTextFieldErrorMessage } from "@/components/text-field/error-message";
-import { type SpTextFieldLabel } from "@/components/text-field/label";
-import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/input";
+import { makeStyleSheet } from "../../styles";
+import { type SpTextFieldErrorMessage } from "../error-message";
+import { type SpTextFieldLabel } from "../label";
+import { type SpTextFieldXLargeInput } from "./input";
 
 import styles from "./styles.css?inline";
 

@@ -1,5 +1,5 @@
-import { makeStyleSheet } from "@/components/styles";
-import styles from "@/components/text-field/error-message/styles.css?inline";
+import { makeStyleSheet } from "../../styles";
+import styles from "./styles.css?inline";
 
 export class SpTextFieldErrorIcon extends HTMLElement {
   constructor() {
