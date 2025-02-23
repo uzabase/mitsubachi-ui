@@ -7,27 +7,22 @@ export class SpTextFieldLabel extends HTMLElement {
 
   static observedAttributes = ["for", "text"];
 
-  get for(): string | undefined {
+  get htmlFor(): string {
     return this.#for;
   }
 
-  set for(value: string | undefined) {
+  set htmlFor(value: string) {
     this.#for = value;
     if(this.#labelElm) {
-      if(this.for)
-        this.#labelElm.setAttribute("for", this.for);
-      else
-        this.#labelElm.removeAttribute("for");
+      this.#labelElm.htmlFor =this.htmlFor;
     }
   }
 
-  #for?: string;
-
-  get text(): string {
+  get textContent(): string | null {
     return this.#textContent;
   }
-  set text(text: string | null) {
-    this.#textContent = text ? text : "";
+  set textContent(text: string | null) {
+    this.#textContent = text; 
 
     if (this.#labelElm) {
       this.#labelElm.textContent = this.#textContent;
@@ -35,7 +30,9 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#updateClass();
   }
 
-  #textContent: string = "";
+  #for: string = '';
+
+  #textContent: string | null = null;
 
   #labelElm?: HTMLLabelElement;
 
@@ -56,20 +53,20 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#labelElm.classList.add("label");
     this.shadowRoot.appendChild(this.#labelElm);
 
-    this.for = this.#for;
-    this.text = this.#textContent;
+    this.htmlFor = this.#for;
+    this.textContent = this.#textContent;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "for") {
-      this.for = newValue ? newValue : undefined;
+      this.htmlFor = newValue ? newValue : '';
     } else if (name === "text") {
-      this.text = newValue;
+      this.textContent = newValue;
     }
   }
 
   #updateClass() {
-    if (this.text) {
+    if (this.textContent) {
       this.#labelElm?.classList.remove("none");
     } else {
       this.#labelElm?.classList.add("none");

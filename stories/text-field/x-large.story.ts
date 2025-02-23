@@ -12,23 +12,8 @@ const meta: Meta<SpTextFieldXLarge> = {
     error: "エラーテキストが入ります。",
     placeholder: "プレースホルダー",
     disabled: false,
-  },
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-    error: {
-      control: {
-        type: "text",
-      },
-    },
-    placeholder: {
-      control: {
-        type: "text",
-      },
-    },
+    name: 'surname',
+    value: 'Yamada',
   },
 };
 export default meta;

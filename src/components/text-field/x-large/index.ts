@@ -20,7 +20,7 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set label(text: string) {
     this.#label = text;
-    if (this.#labelElm) this.#labelElm.text = text;
+    if (this.#labelElm) this.#labelElm.textContent = text;
   }
 
   get error(): string {
@@ -30,7 +30,7 @@ export class SpTextFieldXLarge extends HTMLElement {
   set error(text: string) {
     this.#error = text;
     if (this.#errorMessageElm) {
-      if (this.#disabled) this.#errorMessageElm.textContent = "";
+      if (this.#disabled) this.#errorMessageElm.textContent = null;
       else this.#errorMessageElm.textContent = this.error;
     }
     if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
@@ -56,30 +56,30 @@ export class SpTextFieldXLarge extends HTMLElement {
     if (this.#inputElm) this.#inputElm.placeholder = this.#placeholder;
   }
 
-  get name(): string | undefined {
+  get name(): string {
     return this.#name;
   }
 
-  set name(value: string | undefined | null) {
-    this.#name = value ? value : undefined;
+  set name(value: string) {
+    this.#name = value;
     if (this.#inputElm) {
         this.#inputElm.name = this.name;
     }
     if (this.#labelElm) {
-        this.#labelElm.for = this.name;
+        this.#labelElm.htmlFor = this.name;
     }
   }
 
-  get value(): string | undefined {
+  get value(): string  {
     return this.#value;
   }
 
-  set value(value: string | undefined | null) {
-    this.#value = value ? value : undefined;
+  set value(value: string ) {
+    this.#value = value;
     if (this.#inputElm) {
         this.#inputElm.value = this.value;
     }
-    this.#internals.setFormValue(this.value ? this.value : null);
+    this.#internals.setFormValue(this.value);
   }
 
   #labelElm?: SpTextFieldLabel;
@@ -96,9 +96,9 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #placeholder: string = "";
 
-  #name?: string;
+  #name: string = '';
 
-  #value?: string;
+  #value: string = '';
 
   #internals: ElementInternals;
 
@@ -150,9 +150,9 @@ export class SpTextFieldXLarge extends HTMLElement {
     } else if (name === "disabled") {
       this.disabled = newValue == null ? false : true;
     } else if (name === "name") {
-      this.name = newValue;
+      this.name = newValue ? newValue : '';
     }else if (name === "value") {
-      this.value = newValue;
+      this.value = newValue ? newValue : '';
     }
   }
 }
