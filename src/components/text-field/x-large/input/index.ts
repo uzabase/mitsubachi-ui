@@ -1,5 +1,4 @@
 import { makeStyleSheet } from "../../../styles";
-
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLargeInput extends HTMLElement {

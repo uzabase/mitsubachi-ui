@@ -6,7 +6,6 @@ import { makeStyleSheet } from "../../styles";
 import { type SpTextFieldErrorMessage } from "../error-message";
 import { type SpTextFieldLabel } from "../label";
 import { type SpTextFieldXLargeInput } from "./input";
-
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
