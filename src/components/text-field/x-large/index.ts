@@ -10,7 +10,9 @@ import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/inp
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
-  static observedAttributes = ["error", "label", "placeholder", "disabled"];
+  static observedAttributes = ["error", "label", "placeholder", "disabled", "name", 'value'];
+
+  static formAssociated = true;
 
   get label(): string {
     return this.#label;
@@ -54,6 +56,32 @@ export class SpTextFieldXLarge extends HTMLElement {
     if (this.#inputElm) this.#inputElm.placeholder = this.#placeholder;
   }
 
+  get name(): string | undefined {
+    return this.#name;
+  }
+
+  set name(value: string | undefined | null) {
+    this.#name = value ? value : undefined;
+    if (this.#inputElm) {
+        this.#inputElm.name = this.name;
+    }
+    if (this.#labelElm) {
+        this.#labelElm.for = this.name;
+    }
+  }
+
+  get value(): string | undefined {
+    return this.#value;
+  }
+
+  set value(value: string | undefined | null) {
+    this.#value = value ? value : undefined;
+    if (this.#inputElm) {
+        this.#inputElm.value = this.value;
+    }
+    this.#internals.setFormValue(this.value ? this.value : null);
+  }
+
   #labelElm?: SpTextFieldLabel;
 
   #label: string = "";
@@ -68,9 +96,16 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #placeholder: string = "";
 
+  #name?: string;
+
+  #value?: string;
+
+  #internals: ElementInternals;
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this.#internals = this.attachInternals(); 
   }
 
   connectedCallback() {
@@ -97,6 +132,12 @@ export class SpTextFieldXLarge extends HTMLElement {
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
     this.error = this.#error;
+    this.name = this.#name;
+    this.value = this.#value;
+
+    this.#inputElm.addEventListener("input", (e) => {
+      this.value = (e.target as SpTextFieldXLargeInput).value;
+    })
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -108,6 +149,10 @@ export class SpTextFieldXLarge extends HTMLElement {
       this.placeholder = newValue;
     } else if (name === "disabled") {
       this.disabled = newValue == null ? false : true;
+    } else if (name === "name") {
+      this.name = newValue;
+    }else if (name === "value") {
+      this.value = newValue;
     }
   }
 }

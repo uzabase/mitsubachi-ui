@@ -5,13 +5,35 @@ import styles from "./styles.css?inline";
 export class SpTextFieldLabel extends HTMLElement {
   static styles = makeStyleSheet(styles);
 
-  static observedAttributes = ["id", "for", "text"];
+  static observedAttributes = ["for", "text"];
 
-  readonly #shadow: ShadowRoot;
+  get for(): string | undefined {
+    return this.#for;
+  }
 
-  #id?: string;
+  set for(value: string | undefined) {
+    this.#for = value;
+    if(this.#labelElm) {
+      if(this.for)
+        this.#labelElm.setAttribute("for", this.for);
+      else
+        this.#labelElm.removeAttribute("for");
+    }
+  }
 
   #for?: string;
+
+  get text(): string {
+    return this.#textContent;
+  }
+  set text(text: string | null) {
+    this.#textContent = text ? text : "";
+
+    if (this.#labelElm) {
+      this.#labelElm.textContent = this.#textContent;
+    }
+    this.#updateClass();
+  }
 
   #textContent: string = "";
 
@@ -19,42 +41,31 @@ export class SpTextFieldLabel extends HTMLElement {
 
   constructor() {
     super();
-    this.#shadow = this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    this.#shadow.adoptedStyleSheets = [
-      ...this.#shadow.adoptedStyleSheets,
+    if(!this.shadowRoot)
+      return;
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
 
     this.#labelElm = document.createElement("label");
     this.#labelElm.classList.add("label");
+    this.shadowRoot.appendChild(this.#labelElm);
 
-    this.#shadow.appendChild(this.#labelElm);
+    this.for = this.#for;
     this.text = this.#textContent;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string) {
-    if (name === "id") {
-      this.#setId(newValue);
-    } else if (name === "for") {
-      this.#setFor(newValue);
+  attributeChangedCallback(name: string, _: string, newValue: string | null) {
+    if (name === "for") {
+      this.for = newValue ? newValue : undefined;
     } else if (name === "text") {
       this.text = newValue;
     }
-  }
-
-  get text(): string {
-    return this.#textContent;
-  }
-  set text(text: string) {
-    this.#textContent = text ? text : "";
-
-    if (this.#labelElm) {
-      this.#labelElm.textContent = this.#textContent;
-    }
-    this.#updateClass();
   }
 
   #updateClass() {
@@ -65,14 +76,6 @@ export class SpTextFieldLabel extends HTMLElement {
     }
   }
 
-  #setId(id: string) {
-    this.#id = id;
-    this.#labelElm?.setAttribute("id", this.#id);
-  }
-  #setFor(forVal: string) {
-    this.#for = forVal;
-    this.#labelElm?.setAttribute("for", this.#for);
-  }
 }
 
 const tagName = "sp-text-field-label";

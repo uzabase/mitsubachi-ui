@@ -30,7 +30,6 @@
 
     &:hover {
         border-color: var(--ui-semantic-border-semi-strong-hover);
-
     }
 
     &:focus-visible {
