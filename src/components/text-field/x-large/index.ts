@@ -30,8 +30,8 @@ export class SpTextFieldXLarge extends HTMLElement {
   set error(text: string) {
     this.#error = text;
     if (this.#errorMessageElm) {
-      if (this.#disabled) this.#errorMessageElm.message = "";
-      else this.#errorMessageElm.message = this.error;
+      if (this.#disabled) this.#errorMessageElm.textContent = "";
+      else this.#errorMessageElm.textContent = this.error;
     }
     if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
   }
@@ -44,8 +44,8 @@ export class SpTextFieldXLarge extends HTMLElement {
     this.#disabled = newValue;
     if (this.#inputElm) this.#inputElm.disabled = newValue;
     if (this.#errorMessageElm) {
-      if (this.disabled) this.#errorMessageElm.message = "";
-      else this.#errorMessageElm.message = this.error;
+      if (this.disabled) this.#errorMessageElm.textContent = "";
+      else this.#errorMessageElm.textContent = this.error;
     }
   }
 

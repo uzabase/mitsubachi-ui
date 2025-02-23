@@ -59,7 +59,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   get value(): string | undefined {
-    return this.#value ;
+    return this.#value;
   }
 
   set value(value: string | null | undefined) {

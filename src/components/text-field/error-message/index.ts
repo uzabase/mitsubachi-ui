@@ -3,16 +3,16 @@ import { SpTextFieldErrorIcon } from "@/components/text-field/error-icon";
 import styles from "@/components/text-field/error-message/styles.css?inline";
 
 export class SpTextFieldErrorMessage extends HTMLElement {
-  static observedAttributes = ["message"];
+  static observedAttributes = ["textContent"];
 
-  get message(): string {
-    return this.#message;
+  get textContent(): string | null {
+    return this.#textContent;
   }
 
-  set message(message: string) {
-    this.#message = message;
-    if (this.#span) {
-      this.#span.textContent = message;
+  set textContent(value: string | null) {
+    this.#textContent = value;
+    if(this.#span) {
+      this.#span.textContent = value;
     }
     this.#updateClass();
   }
@@ -20,7 +20,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
   #span?: HTMLSpanElement;
   #div?: HTMLDivElement;
 
-  #message: string = "";
+  #textContent: string | null = null;
 
   constructor() {
     super();
@@ -29,6 +29,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
 
   connectedCallback() {
     if (!this.shadowRoot) return;
+
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
@@ -41,17 +42,18 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.#span = document.createElement("span");
     this.#span.className = "message";
     this.shadowRoot.appendChild(this.#span);
-    if (this.#message) this.#span.textContent = this.#message;
+
+    this.textContent = this.#textContent;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
     if (name === "message") {
-      this.message = newValue;
+      this.textContent = newValue;
     }
   }
 
   #updateClass() {
-    if (this.#message) {
+    if (this.#textContent) {
       this.#div?.classList.remove("none");
       this.#span?.classList.remove("none");
     } else {
