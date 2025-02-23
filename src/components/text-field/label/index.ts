@@ -5,7 +5,7 @@ import styles from "./styles.css?inline";
 export class SpTextFieldLabel extends HTMLElement {
   static styles = makeStyleSheet(styles);
 
-  static observedAttributes = ["for", "text"];
+  static observedAttributes = ["htmlFor", "text"];
 
   get htmlFor(): string {
     return this.#for;
@@ -57,7 +57,7 @@ export class SpTextFieldLabel extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "for") {
+    if (name === "htmlFor") {
       this.htmlFor = newValue ? newValue : "";
     } else if (name === "text") {
       this.textContent = newValue;
