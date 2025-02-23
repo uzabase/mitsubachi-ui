@@ -2,15 +2,13 @@ import { makeStyleSheet } from "@/components/styles";
 import styles from "@/components/text-field/error-message/styles.css?inline";
 
 export class SpTextFieldErrorIcon extends HTMLElement {
-
   constructor() {
     super();
-     this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    if(!this.shadowRoot)
-      return;
+    if (!this.shadowRoot) return;
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),

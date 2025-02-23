@@ -37,7 +37,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     this.#disabled = value;
     if (this.#input) {
       this.#input.disabled = this.#disabled;
-    } 
+    }
     this.#updateStyle();
   }
 
@@ -68,7 +68,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     this.#input = document.createElement("input");
     this.#shadow.appendChild(this.#input);
     this.#input.type = "text";
-    this.#input.classList.add('input');
+    this.#input.classList.add("input");
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
     this.error = this.#error;
@@ -87,18 +87,17 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   #updateStyle() {
-    if(!this.#input) {
+    if (!this.#input) {
       return;
     }
-    if(this.#disabled) {
-      this.#input.classList.remove('error');
+    if (this.#disabled) {
+      this.#input.classList.remove("error");
       return;
     }
-    if(this.error) {
-      this.#input.classList.add('error');
+    if (this.error) {
+      this.#input.classList.add("error");
     }
   }
-
 }
 
 const tagName = "sp-text-field-x-large-input";

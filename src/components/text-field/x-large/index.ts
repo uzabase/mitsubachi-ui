@@ -13,13 +13,12 @@ export class SpTextFieldXLarge extends HTMLElement {
   static observedAttributes = ["error", "label", "placeholder", "disabled"];
 
   get label(): string {
-      return this.#label;
+    return this.#label;
   }
 
   set label(text: string) {
     this.#label = text;
-    if(this.#labelElm)
-      this.#labelElm.text = text;
+    if (this.#labelElm) this.#labelElm.text = text;
   }
 
   get error(): string {
@@ -28,14 +27,11 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set error(text: string) {
     this.#error = text;
-    if(this.#errorMessageElm) {
-      if(this.#disabled)
-        this.#errorMessageElm.message = '';
-      else
-        this.#errorMessageElm.message = this.error;
+    if (this.#errorMessageElm) {
+      if (this.#disabled) this.#errorMessageElm.message = "";
+      else this.#errorMessageElm.message = this.error;
     }
-    if(this.#inputElm)
-        this.#inputElm.error = this.error ? true : false;
+    if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
   }
 
   get disabled(): boolean {
@@ -44,30 +40,25 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set disabled(newValue: boolean) {
     this.#disabled = newValue;
-    if(this.#inputElm)
-      this.#inputElm.disabled = newValue;
-    if(this.#errorMessageElm) {
-      if(this.disabled)
-        this.#errorMessageElm.message = '';
-      else
-        this.#errorMessageElm.message = this.error;
+    if (this.#inputElm) this.#inputElm.disabled = newValue;
+    if (this.#errorMessageElm) {
+      if (this.disabled) this.#errorMessageElm.message = "";
+      else this.#errorMessageElm.message = this.error;
     }
   }
 
   set placeholder(newValue: string | undefined | null) {
-    if(newValue) {
+    if (newValue) {
       this.#placeholder = newValue;
-      }  else
-      this.#placeholder = '';
-    if(this.#inputElm)
-      this.#inputElm.placeholder = this.#placeholder;
+    } else this.#placeholder = "";
+    if (this.#inputElm) this.#inputElm.placeholder = this.#placeholder;
   }
 
   #labelElm?: SpTextFieldLabel;
 
-  #label: string = '';
+  #label: string = "";
 
-  #error: string = '';
+  #error: string = "";
 
   #inputElm?: SpTextFieldXLargeInput;
 
@@ -75,7 +66,7 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #disabled: boolean = false;
 
-  #placeholder: string = '';
+  #placeholder: string = "";
 
   constructor() {
     super();
@@ -83,10 +74,10 @@ export class SpTextFieldXLarge extends HTMLElement {
   }
 
   connectedCallback() {
-    if(!this.shadowRoot) {
+    if (!this.shadowRoot) {
       return;
     }
-      this.shadowRoot.adoptedStyleSheets = [
+    this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
@@ -110,16 +101,15 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "error") {
-      this.error = newValue ? newValue : '';
-    } else if(name === "label") {
-      this.label = newValue ? newValue : '';
-    } else if(name === 'placeholder') {
+      this.error = newValue ? newValue : "";
+    } else if (name === "label") {
+      this.label = newValue ? newValue : "";
+    } else if (name === "placeholder") {
       this.placeholder = newValue;
-    } else if(name === 'disabled') {
+    } else if (name === "disabled") {
       this.disabled = newValue == null ? false : true;
     }
   }
-
 }
 
 const tagName = "sp-text-field-x-large";

@@ -13,7 +13,7 @@ export class SpTextFieldLabel extends HTMLElement {
 
   #for?: string;
 
-  #textContent: string = '';
+  #textContent: string = "";
 
   #labelElm?: HTMLLabelElement;
 
@@ -29,7 +29,7 @@ export class SpTextFieldLabel extends HTMLElement {
     ];
 
     this.#labelElm = document.createElement("label");
-    this.#labelElm.classList.add('label');
+    this.#labelElm.classList.add("label");
 
     this.#shadow.appendChild(this.#labelElm);
     this.text = this.#textContent;
@@ -49,7 +49,7 @@ export class SpTextFieldLabel extends HTMLElement {
     return this.#textContent;
   }
   set text(text: string) {
-    this.#textContent = text  ? text : '';
+    this.#textContent = text ? text : "";
 
     if (this.#labelElm) {
       this.#labelElm.textContent = this.#textContent;
@@ -58,10 +58,10 @@ export class SpTextFieldLabel extends HTMLElement {
   }
 
   #updateClass() {
-    if(this.text) {
-      this.#labelElm?.classList.remove('none');
+    if (this.text) {
+      this.#labelElm?.classList.remove("none");
     } else {
-      this.#labelElm?.classList.add('none');
+      this.#labelElm?.classList.add("none");
     }
   }
 
@@ -73,7 +73,6 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#for = forVal;
     this.#labelElm?.setAttribute("for", this.#for);
   }
-
 }
 
 const tagName = "sp-text-field-label";

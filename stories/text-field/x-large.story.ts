@@ -35,11 +35,12 @@ export default meta;
 
 export const Default: StoryObj<SpTextFieldXLarge> = {
   render: ({ label, error, placeholder, disabled }) => {
-    return html`<sp-text-field-x-large 
-    placeholder=${placeholder}
-    label=${label}
-    ?disabled=${disabled}
-     error=${error}>
+    return html`<sp-text-field-x-large
+      placeholder=${placeholder}
+      label=${label}
+      ?disabled=${disabled}
+      error=${error}
+    >
     </sp-text-field-x-large>`;
   },
 };

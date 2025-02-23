@@ -3,7 +3,6 @@ import { SpTextFieldErrorIcon } from "@/components/text-field/error-icon";
 import styles from "@/components/text-field/error-message/styles.css?inline";
 
 export class SpTextFieldErrorMessage extends HTMLElement {
-
   static observedAttributes = ["message"];
 
   get message(): string {
@@ -12,7 +11,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
 
   set message(message: string) {
     this.#message = message;
-    if(this.#span) {
+    if (this.#span) {
       this.#span.textContent = message;
     }
     this.#updateClass();
@@ -21,7 +20,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
   #span?: HTMLSpanElement;
   #div?: HTMLDivElement;
 
-  #message: string = '';
+  #message: string = "";
 
   constructor() {
     super();
@@ -29,8 +28,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
   }
 
   connectedCallback() {
-    if(!this.shadowRoot)
-      return;
+    if (!this.shadowRoot) return;
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
@@ -40,11 +38,10 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.#div.setAttribute("class", "icon");
     this.#div.appendChild(new SpTextFieldErrorIcon());
     this.shadowRoot.appendChild(this.#div);
-    this.#span = document.createElement('span');
+    this.#span = document.createElement("span");
     this.#span.className = "message";
     this.shadowRoot.appendChild(this.#span);
-    if(this.#message)
-        this.#span.textContent = this.#message;
+    if (this.#message) this.#span.textContent = this.#message;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
@@ -53,17 +50,15 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     }
   }
 
-
   #updateClass() {
-    if(this.#message) {
-      this.#div?.classList.remove('none');
-      this.#span?.classList.remove('none');
+    if (this.#message) {
+      this.#div?.classList.remove("none");
+      this.#span?.classList.remove("none");
     } else {
-      this.#div?.classList.add('none');
-      this.#span?.classList.add('none');
+      this.#div?.classList.add("none");
+      this.#span?.classList.add("none");
     }
   }
-
 }
 
 declare global {
