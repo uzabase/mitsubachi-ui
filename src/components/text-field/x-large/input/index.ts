@@ -13,13 +13,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
 
   set error(isError: boolean) {
     this.#error = isError;
-    if(this.#input) {
-      if(this.error) {
-        this.#input.classList.add('error');
-      } else {
-        this.#input.classList.remove('error');
-      }
-    }
+    this.#updateStyle();
   }
 
   get placeholder(): string | undefined {
@@ -41,7 +35,10 @@ export class SpTextFieldXLargeInput extends HTMLElement {
 
   set disabled(value: boolean) {
     this.#disabled = value;
-    if (this.#input) this.#input.disabled = this.#disabled;
+    if (this.#input) {
+      this.#input.disabled = this.#disabled;
+    } 
+    this.#updateStyle();
   }
 
   readonly #shadow: ShadowRoot;
@@ -86,6 +83,19 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       this.disabled = newValue ? true : false;
     } else if (name === "error") {
       this.error = newValue ? true : false;
+    }
+  }
+
+  #updateStyle() {
+    if(!this.#input) {
+      return;
+    }
+    if(this.#disabled) {
+      this.#input.classList.remove('error');
+      return;
+    }
+    if(this.error) {
+      this.#input.classList.add('error');
     }
   }
 

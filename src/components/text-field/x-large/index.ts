@@ -10,7 +10,7 @@ import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/inp
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
-  static observedAttributes = ["error", "label", "placeholder"];
+  static observedAttributes = ["error", "label", "placeholder", "disabled"];
 
   get label(): string {
       return this.#label;
@@ -81,7 +81,6 @@ export class SpTextFieldXLarge extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-
     this.#labelElm = document.createElement("sp-text-field-label");
     this.shadowRoot.appendChild(this.#labelElm);
 
@@ -99,13 +98,15 @@ export class SpTextFieldXLarge extends HTMLElement {
     this.error = this.#error;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string) {
+  attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "error") {
-      this.error = newValue;
+      this.error = newValue ? newValue : '';
     } else if(name === "label") {
-      this.label = newValue;
+      this.label = newValue ? newValue : '';
     } else if(name === 'placeholder') {
       this.placeholder = newValue;
+    } else if(name === 'disabled') {
+      this.disabled = newValue == null ? false : true;
     }
   }
 

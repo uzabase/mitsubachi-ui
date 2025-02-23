@@ -11,6 +11,7 @@ const meta: Meta<SpTextFieldXLarge> = {
     label: "ラベル",
     error: "エラーテキストが入ります。",
     placeholder: "プレースホルダー",
+    disabled: false,
   },
   argTypes: {
     label: {
@@ -33,10 +34,12 @@ const meta: Meta<SpTextFieldXLarge> = {
 export default meta;
 
 export const Default: StoryObj<SpTextFieldXLarge> = {
-  render: ({ label, error, placeholder }) => {
+  render: ({ label, error, placeholder, disabled }) => {
     return html`<sp-text-field-x-large 
     placeholder=${placeholder}
-    label=${label} error=${error}>
+    label=${label}
+    ?disabled=${disabled}
+     error=${error}>
     </sp-text-field-x-large>`;
   },
 };
