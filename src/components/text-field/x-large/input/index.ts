@@ -3,7 +3,6 @@ import { makeStyleSheet } from "@/components/styles";
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLargeInput extends HTMLElement {
-
   static observedAttributes = ["error", "placeholder", "disabled"];
 
   static formAssociated = true;
@@ -13,8 +12,39 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set error(isError: boolean) {
+    console.log('error', isError);
     this.#error = isError;
-    this.#input?.setAttribute("class", this.#getClass());
+    if(this.#input) {
+      if(this.error) {
+        this.#input.classList.add('error');
+      } else {
+        this.#input.classList.remove('error');
+      }
+
+    }
+
+  }
+
+  get placeholder(): string | undefined {
+    if (this.#placeholder == null) return undefined;
+    return this.#placeholder;
+  }
+
+  set placeholder(value: string | undefined | null) {
+    if (value == null) {
+      this.#placeholder = undefined;
+      return;
+    }
+    this.#placeholder = value;
+
+    if (this.#placeholder)
+      this.#input?.setAttribute("placeholder", this.#placeholder);
+    else this.#input?.removeAttribute("placeholder");
+  }
+
+  set disabled(value: boolean) {
+    this.#disabled = value;
+    if (this.#input) this.#input.disabled = this.#disabled;
   }
 
   readonly #shadow: ShadowRoot;
@@ -22,31 +52,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   #input?: HTMLInputElement;
 
   #placeholder?: string | null;
-
-  get placeholder() : string | undefined {
-    if(this.#placeholder == null)
-    return undefined;
-    return this.#placeholder;
-  }
-
-  set placehoder(value: string | undefined | null) {
-    if(value == null) {
-      this.#placeholder = undefined;
-      return;
-    }
-      this.#placeholder = value;
-
-    if(this.#placeholder)
-      this.#input?.setAttribute("placeholder", this.#placeholder);
-    else
-      this.#input?.removeAttribute("placeholder");
-  }
-
-  set disabled(value: boolean) {
-    this.#disabled = value;
-    if(this.#input)
-        this.#input.disabled = this.#disabled;
-  }
 
   #disabled = false;
 
@@ -69,15 +74,17 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     this.#input = document.createElement("input");
     this.#shadow.appendChild(this.#input);
     this.#input.type = "text";
-    if (this.#placeholder) this.#input.placeholder = this.#placeholder;
-    if (this.#disabled) this.#input.disabled = this.#disabled;
-    this.#input.className = this.#getClass();
+    this.#input.classList.add('input');
+    this.placeholder = this.#placeholder;
+    this.disabled = this.#disabled;
+    this.error = this.#error;
+
     if (this.#name) this.#input.name = this.#name;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "placeholder") {
-      this.placehoder = newValue;
+      this.placeholder = newValue;
     } else if (name === "disabled") {
       this.disabled = newValue ? true : false;
     } else if (name === "error") {
@@ -85,13 +92,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     }
   }
 
-  #getClass() {
-    const className = "input";
-    if (this.#error) {
-      return `${className} error`;
-    }
-    return className;
-  }
 }
 
 const tagName = "sp-text-field-x-large-input";
