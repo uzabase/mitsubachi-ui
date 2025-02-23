@@ -1,0 +1,10 @@
+:host {
+    --spacing-10: 4px;
+    --spacing-20: 8px;
+    --spacing-30: 12px;
+    --spacing-40: 16px;
+    --spacing-50: 24px;
+    --spacing-60: 32px;
+    --spacing-70: 40px;
+    --spacing-90: 64px;
+}
