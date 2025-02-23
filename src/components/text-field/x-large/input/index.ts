@@ -3,13 +3,50 @@ import { makeStyleSheet } from "@/components/styles";
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLargeInput extends HTMLElement {
+
+  static observedAttributes = ["error", "placeholder", "disabled"];
+
   static formAssociated = true;
+
+  get error(): boolean {
+    return this.#error;
+  }
+
+  set error(isError: boolean) {
+    this.#error = isError;
+    this.#input?.setAttribute("class", this.#getClass());
+  }
 
   readonly #shadow: ShadowRoot;
 
   #input?: HTMLInputElement;
 
-  #placeholder?: string;
+  #placeholder?: string | null;
+
+  get placeholder() : string | undefined {
+    if(this.#placeholder == null)
+    return undefined;
+    return this.#placeholder;
+  }
+
+  set placehoder(value: string | undefined | null) {
+    if(value == null) {
+      this.#placeholder = undefined;
+      return;
+    }
+      this.#placeholder = value;
+
+    if(this.#placeholder)
+      this.#input?.setAttribute("placeholder", this.#placeholder);
+    else
+      this.#input?.removeAttribute("placeholder");
+  }
+
+  set disabled(value: boolean) {
+    this.#disabled = value;
+    if(this.#input)
+        this.#input.disabled = this.#disabled;
+  }
 
   #disabled = false;
 
@@ -38,35 +75,18 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     if (this.#name) this.#input.name = this.#name;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string) {
+  attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "placeholder") {
-      this.#setPlaceholder(newValue);
+      this.placehoder = newValue;
     } else if (name === "disabled") {
-      this.#setDisabled(newValue === "true");
+      this.disabled = newValue ? true : false;
     } else if (name === "error") {
-      this.#setError(newValue === "true");
-    }
-  }
-
-  #setError(error: boolean) {
-    this.#error = error;
-    this.#input?.setAttribute("class", this.#getClass());
-  }
-
-  #setPlaceholder(placeholder: string) {
-    this.#placeholder = placeholder;
-    this.#input?.setAttribute("placeholder", this.#placeholder);
-  }
-  #setDisabled(disabled: boolean) {
-    if (disabled) {
-      this.#input?.setAttribute("disabled", "true");
-    } else {
-      this.#input?.removeAttribute("disabled");
+      this.error = newValue ? true : false;
     }
   }
 
   #getClass() {
-    const className = "ub-account-text-field-input";
+    const className = "input";
     if (this.#error) {
       return `${className} error`;
     }

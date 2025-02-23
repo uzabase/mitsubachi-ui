@@ -10,16 +10,9 @@ import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/inp
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
-  static observedAttributes = ["error", "label"];
+  static observedAttributes = ["error", "label", "placeholder"];
 
   get label(): string {
-    if(this.#labelElm) {
-      if(this.#labelElm.text === this.#label)
-        throw new Error("out of sync");
-
-      return this.#labelElm.text;
-    }
-    else
       return this.#label;
   }
 
@@ -30,6 +23,34 @@ export class SpTextFieldXLarge extends HTMLElement {
       this.#labelElm.text = text;
   }
 
+  get error(): string {
+    return this.#error;
+  }
+
+  set error(text: string) {
+    this.#error = text;
+    if(this.#errorMessageElm)
+        this.#errorMessageElm.message = this.error;
+  }
+
+  get disabled(): boolean {
+    return this.#disabled;
+  }
+
+  set disabled(newValue: boolean) {
+    this.#disabled = newValue;
+    if(this.#inputElm)
+      this.#inputElm.disabled = newValue;
+  }
+
+  set placeholder(newValue: string | undefined | null) {
+    if(newValue) {
+      this.#placeholder = newValue;
+      }  else
+      this.#placeholder = '';
+    if(this.#inputElm)
+      this.#inputElm.placehoder = this.#placeholder;
+  }
 
   readonly #shadow: ShadowRoot;
 
@@ -37,11 +58,15 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #label: string = '';
 
-  #error?: string;
+  #error: string = '';
 
   #inputElm?: SpTextFieldXLargeInput;
 
-  #errorElm?: SpTextFieldErrorMessage;
+  #errorMessageElm?: SpTextFieldErrorMessage;
+
+  #disabled: boolean = false;
+
+  #placeholder: string = '';
 
   constructor() {
     super();
@@ -62,26 +87,27 @@ export class SpTextFieldXLarge extends HTMLElement {
 
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
     this.#shadow.appendChild(this.#inputElm);
+    this.placeholder = this.#placeholder;
+    this.disabled = this.#disabled;
 
-    this.#errorElm = document.createElement(
+    this.#errorMessageElm = document.createElement(
       "sp-text-field-error-message",
     );
-    this.#shadow.appendChild(this.#errorElm);
-    if (this.#error) this.#errorElm.message = this.#error;
+    this.#shadow.appendChild(this.#errorMessageElm);
+    if (this.#error) this.#errorMessageElm.message = this.#error;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
+    console.group(name, newValue)
     if (name === "error") {
-      this.#setError(newValue);
+      this.error = newValue;
     } else if(name === "label") {
       this.label = newValue;
+    } else if(name === 'placeholder') {
+      this.placeholder = newValue;
     }
   }
 
-  #setError(error: string) {
-    this.#error = error;
-    this.#errorElm?.setAttribute("message", this.#error);
-  }
 }
 
 const tagName = "sp-text-field-x-large";

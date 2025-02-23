@@ -5,17 +5,27 @@ import { html } from "lit";
 
 import type { SpTextFieldXLarge } from "@/components/text-field/x-large";
 
-
 const meta: Meta<SpTextFieldXLarge> = {
-  component: 'sp-text-field-x-large',
+  component: "sp-text-field-x-large",
   args: {
-    label: 'ラベル',
-    error: 'エラーテキストが入ります。'
+    label: "ラベル",
+    error: "エラーテキストが入ります。",
+    placeholder: "プレースホルダー",
   },
   argTypes: {
     label: {
       control: {
-        type: 'text',
+        type: "text",
+      },
+    },
+    error: {
+      control: {
+        type: "text",
+      },
+    },
+    placeholder: {
+      control: {
+        type: "text",
       },
     },
   },
@@ -23,7 +33,10 @@ const meta: Meta<SpTextFieldXLarge> = {
 export default meta;
 
 export const Default: StoryObj<SpTextFieldXLarge> = {
-  render: ({label, error}) => {
-    return html`<sp-text-field-x-large label=${label} error=${error}></sp-text-field-x-large>`
-  }
+  render: ({ label, error, placeholder }) => {
+    return html`<sp-text-field-x-large 
+    placeholder=${placeholder}
+    label=${label} error=${error}>
+    </sp-text-field-x-large>`;
+  },
 };
