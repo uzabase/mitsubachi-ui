@@ -12,8 +12,8 @@ const meta: Meta<SpTextFieldXLarge> = {
     error: "エラーテキストが入ります。",
     placeholder: "プレースホルダー",
     disabled: false,
-    name: 'surname',
-    value: 'Yamada',
+    name: "surname",
+    value: "Yamada",
   },
 };
 export default meta;

@@ -44,7 +44,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     return this.#name;
   }
 
-  set name(value: string ) {
+  set name(value: string) {
     this.#name = value;
     if (this.#input) {
       this.#input.name = this.name;
@@ -57,8 +57,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
 
   set value(value: string) {
     this.#value = value;
-    if(this.#input)
-      this.#input.value = this.value;
+    if (this.#input) this.#input.value = this.value;
 
     this.#internals.setFormValue(this.value);
   }
@@ -71,11 +70,11 @@ export class SpTextFieldXLargeInput extends HTMLElement {
 
   #disabled = false;
 
-  #name: string = '';
+  #name: string = "";
 
   #error: boolean = false;
 
-  #value: string = '';
+  #value: string = "";
 
   #internals: ElementInternals;
 
@@ -116,9 +115,9 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     } else if (name === "error") {
       this.error = newValue ? true : false;
     } else if (name === "name") {
-      this.name = newValue ? newValue : '';
+      this.name = newValue ? newValue : "";
     } else if (name === "value") {
-      this.value = newValue ? newValue : '';
+      this.value = newValue ? newValue : "";
     }
   }
 

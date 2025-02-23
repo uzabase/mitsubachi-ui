@@ -10,7 +10,14 @@ import { type SpTextFieldXLargeInput } from "@/components/text-field/x-large/inp
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
-  static observedAttributes = ["error", "label", "placeholder", "disabled", "name", 'value'];
+  static observedAttributes = [
+    "error",
+    "label",
+    "placeholder",
+    "disabled",
+    "name",
+    "value",
+  ];
 
   static formAssociated = true;
 
@@ -63,21 +70,21 @@ export class SpTextFieldXLarge extends HTMLElement {
   set name(value: string) {
     this.#name = value;
     if (this.#inputElm) {
-        this.#inputElm.name = this.name;
+      this.#inputElm.name = this.name;
     }
     if (this.#labelElm) {
-        this.#labelElm.htmlFor = this.name;
+      this.#labelElm.htmlFor = this.name;
     }
   }
 
-  get value(): string  {
+  get value(): string {
     return this.#value;
   }
 
-  set value(value: string ) {
+  set value(value: string) {
     this.#value = value;
     if (this.#inputElm) {
-        this.#inputElm.value = this.value;
+      this.#inputElm.value = this.value;
     }
     this.#internals.setFormValue(this.value);
   }
@@ -96,16 +103,16 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   #placeholder: string = "";
 
-  #name: string = '';
+  #name: string = "";
 
-  #value: string = '';
+  #value: string = "";
 
   #internals: ElementInternals;
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.#internals = this.attachInternals(); 
+    this.#internals = this.attachInternals();
   }
 
   connectedCallback() {
@@ -137,7 +144,7 @@ export class SpTextFieldXLarge extends HTMLElement {
 
     this.#inputElm.addEventListener("input", (e) => {
       this.value = (e.target as SpTextFieldXLargeInput).value;
-    })
+    });
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -150,9 +157,9 @@ export class SpTextFieldXLarge extends HTMLElement {
     } else if (name === "disabled") {
       this.disabled = newValue == null ? false : true;
     } else if (name === "name") {
-      this.name = newValue ? newValue : '';
-    }else if (name === "value") {
-      this.value = newValue ? newValue : '';
+      this.name = newValue ? newValue : "";
+    } else if (name === "value") {
+      this.value = newValue ? newValue : "";
     }
   }
 }

@@ -11,7 +11,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
 
   set textContent(value: string | null) {
     this.#textContent = value;
-    if(this.#span) {
+    if (this.#span) {
       this.#span.textContent = value;
     }
     this.#updateClass();

@@ -13,8 +13,8 @@ export class SpTextFieldLabel extends HTMLElement {
 
   set htmlFor(value: string) {
     this.#for = value;
-    if(this.#labelElm) {
-      this.#labelElm.htmlFor =this.htmlFor;
+    if (this.#labelElm) {
+      this.#labelElm.htmlFor = this.htmlFor;
     }
   }
 
@@ -22,7 +22,7 @@ export class SpTextFieldLabel extends HTMLElement {
     return this.#textContent;
   }
   set textContent(text: string | null) {
-    this.#textContent = text; 
+    this.#textContent = text;
 
     if (this.#labelElm) {
       this.#labelElm.textContent = this.#textContent;
@@ -30,7 +30,7 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#updateClass();
   }
 
-  #for: string = '';
+  #for: string = "";
 
   #textContent: string | null = null;
 
@@ -42,8 +42,7 @@ export class SpTextFieldLabel extends HTMLElement {
   }
 
   connectedCallback() {
-    if(!this.shadowRoot)
-      return;
+    if (!this.shadowRoot) return;
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
@@ -59,7 +58,7 @@ export class SpTextFieldLabel extends HTMLElement {
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "for") {
-      this.htmlFor = newValue ? newValue : '';
+      this.htmlFor = newValue ? newValue : "";
     } else if (name === "text") {
       this.textContent = newValue;
     }
@@ -72,7 +71,6 @@ export class SpTextFieldLabel extends HTMLElement {
       this.#labelElm?.classList.add("none");
     }
   }
-
 }
 
 const tagName = "sp-text-field-label";
