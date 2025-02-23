@@ -2,20 +2,21 @@ import { makeStyleSheet } from "@/components/styles";
 import styles from "@/components/text-field/error-message/styles.css?inline";
 
 export class SpTextFieldErrorIcon extends HTMLElement {
-  readonly #shadow: ShadowRoot;
 
   constructor() {
     super();
-    this.#shadow = this.attachShadow({ mode: "open" });
+     this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
-    this.#shadow.adoptedStyleSheets = [
-      ...this.#shadow.adoptedStyleSheets,
+    if(!this.shadowRoot)
+      return;
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
 
-    this.#shadow.innerHTML = `<svg
+    this.shadowRoot.innerHTML = `<svg
         width="21"
         height="21"
         fill="none"
