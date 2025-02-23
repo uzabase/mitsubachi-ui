@@ -29,8 +29,11 @@ export class SpTextFieldXLarge extends HTMLElement {
 
   set error(text: string) {
     this.#error = text;
+    console.log('error###', text); 
     if(this.#errorMessageElm)
         this.#errorMessageElm.message = this.error;
+    if(this.#inputElm)
+        this.#inputElm.error = this.error ? true : false;
   }
 
   get disabled(): boolean {
@@ -49,7 +52,7 @@ export class SpTextFieldXLarge extends HTMLElement {
       }  else
       this.#placeholder = '';
     if(this.#inputElm)
-      this.#inputElm.placehoder = this.#placeholder;
+      this.#inputElm.placeholder = this.#placeholder;
   }
 
   readonly #shadow: ShadowRoot;
@@ -80,25 +83,23 @@ export class SpTextFieldXLarge extends HTMLElement {
     ];
 
     this.#labelElm = document.createElement("sp-text-field-label");
-
     this.#shadow.appendChild(this.#labelElm);
-    if(this.#label)
-      this.label = this.#label;
+    this.label = this.#label;
 
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
     this.#shadow.appendChild(this.#inputElm);
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
+    this.error = this.#error;
 
     this.#errorMessageElm = document.createElement(
       "sp-text-field-error-message",
     );
     this.#shadow.appendChild(this.#errorMessageElm);
-    if (this.#error) this.#errorMessageElm.message = this.#error;
+    this.#errorMessageElm.message = this.error;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string) {
-    console.group(name, newValue)
     if (name === "error") {
       this.error = newValue;
     } else if(name === "label") {
