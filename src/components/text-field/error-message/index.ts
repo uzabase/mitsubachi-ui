@@ -10,6 +10,13 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     return this.#message;
   }
 
+  set message(message: string) {
+    this.#message = message;
+    if(this.#span) {
+      this.#span.textContent = message;
+    }
+    this.#updateClass();
+  }
 
   #span?: HTMLSpanElement;
   #div?: HTMLDivElement;
@@ -46,13 +53,6 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     }
   }
 
-  set message(message: string) {
-    this.#message = message;
-    if(this.#span) {
-      this.#span.textContent = message;
-    }
-    this.#updateClass();
-  }
 
   #updateClass() {
     if(this.#message) {
