@@ -31,19 +31,12 @@
     &:hover {
         border-color: var(--ui-semantic-border-semi-strong-hover);
 
-        &.error {
-            border-color: var(--ui-semantic-border-error);
-        }
     }
 
     &:focus-visible {
         outline: canvastext solid 3px;
         box-shadow: 0 0 0 2px #fff, 0 0 0 4px #282828;
         outline-offset: 1px;
-
-        &.error {
-            border-color: var(--ui-semantic-border-error);
-        }
     }
 
     &.error {

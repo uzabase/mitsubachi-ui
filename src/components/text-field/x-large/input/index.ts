@@ -69,6 +69,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     this.#shadow.appendChild(this.#input);
     this.#input.type = "text";
     this.#input.classList.add("input");
+
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
     this.error = this.#error;
@@ -96,7 +97,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     }
     if (this.error) {
       this.#input.classList.add("error");
-    }
+    } else this.#input.classList.remove("error");
   }
 }
 
