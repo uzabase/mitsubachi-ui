@@ -11,7 +11,7 @@
         font-weight: var(--font-weight-normal);
         font-size: 14px;
         line-height: 21;
-        color: var(--ui-semantic-text-error);
+        color: #c92812;
     }
 
     .none {

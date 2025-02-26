@@ -11,20 +11,20 @@
     line-height: 24;
 
     &::placeholder {
-        color: var(--ui-semantic-text-placeholder);
+        color: #0000008a;
     }
 
     &[disabled] {
         color: #000000ad;
         background-color: #0000000d;
-        border-color: var(--border-disabled);
+        border-color: #e5e5e5;
 
         &::placeholder {
             color: #00000059;
         }
 
         &:hover {
-            border-color: var(--border-disabled);
+            border-color: #e5e5e5;
         }
     }
 
