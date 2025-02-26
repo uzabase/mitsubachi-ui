@@ -2,7 +2,7 @@
 
 ## storybook
 
-[Here](https://uzabase.github.io/sp-design-components-web-components/)
+[Here](https://uzabase.github.io/mitsubachi-ui/)
 
 ## コントリビュート
 
