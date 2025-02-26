@@ -6,9 +6,9 @@
     border: 1px solid var(--ui-semantic-border-semi-strong);
     border-radius: var(--radius-medium);
     padding: var(--spacing-10) var(--spacing-30);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     font-size: 16px;
-    line-height: 24px;
+    line-height: 24;
 
     &::placeholder {
         color: var(--ui-semantic-text-placeholder);

@@ -8,9 +8,9 @@
     }
 
     >.message {
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
         font-size: 14px;
-        line-height: 21px;
+        line-height: 21;
         color: var(--ui-semantic-text-error);
     }
 
