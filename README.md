@@ -2,7 +2,7 @@
 
 ## storybook
 
-[Here](https://uzabase.github.io/mitsubachi-ui/?path=/docs)
+[Here](https://uzabase.github.io/mitsubachi-ui/)
 
 ## コントリビュート
 
