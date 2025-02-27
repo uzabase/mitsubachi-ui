@@ -1,11 +1,11 @@
-import './error-message';
+import "./error-message";
 import "./input";
 import "./label";
 
 import { makeStyleSheet } from "../styles";
 import { type SpTextFieldErrorMessage } from "./error-message";
-import { type SpTextFieldLabel } from "./label";
 import { type SpTextFieldXLargeInput } from "./input";
+import { type SpTextFieldLabel } from "./label";
 import styles from "./styles.css?inline";
 
 export class SpTextFieldXLarge extends HTMLElement {
