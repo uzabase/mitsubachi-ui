@@ -1,0 +1,11 @@
+:host {
+    .label {
+        font-weight: var(--font-weight-bold);
+        font-size: 14px;
+        line-height: 21;
+
+        &.none {
+            display: none;
+        }
+    }
+}
