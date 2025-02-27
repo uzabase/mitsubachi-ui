@@ -9,7 +9,7 @@ const meta: Meta<SpTextFieldUnit> = {
   component: "sp-text-field-x-large",
   args: {
     label: "ラベル",
-    error: "",
+    error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
     disabled: false,
     name: "surname",

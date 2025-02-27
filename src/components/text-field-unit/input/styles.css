@@ -1,7 +1,7 @@
 .input {
     width: 100%;
     box-sizing: border-box;
-    min-height: 48px;
+    height: 48px;
     background: #fff;
     border: 1px solid #b6b6b6;
     border-radius: 6px;
