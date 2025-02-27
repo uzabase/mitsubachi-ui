@@ -1,9 +1,9 @@
-import "../../src/components/text-field/x-large";
+import "../../src/components/text-field-unit";
 
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
-import type { SpTextFieldXLarge } from "../../src/components/text-field/x-large";
+import type { SpTextFieldXLarge } from "../../src/components/text-field-unit";
 
 const meta: Meta<SpTextFieldXLarge> = {
   component: "sp-text-field-x-large",
