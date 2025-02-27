@@ -4,7 +4,7 @@
     min-height: 48px;
     background: #fff;
     border: 1px solid #b6b6b6;
-    border-radius: var(--radius-medium);
+    border-radius: 6px;
     padding: var(--spacing-10) var(--spacing-30);
     font-weight: var(--font-weight-normal);
     font-size: 16px;
