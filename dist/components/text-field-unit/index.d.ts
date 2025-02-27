@@ -1,6 +1,6 @@
-import "../error-message";
+import './error-message';
 import "./input";
-import "../label";
+import "./label";
 export declare class SpTextFieldXLarge extends HTMLElement {
     #private;
     static observedAttributes: string[];

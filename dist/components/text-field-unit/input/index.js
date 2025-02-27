@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpTextFieldXLargeInput_instances, _SpTextFieldXLargeInput_shadow, _SpTextFieldXLargeInput_input, _SpTextFieldXLargeInput_placeholder, _SpTextFieldXLargeInput_disabled, _SpTextFieldXLargeInput_name, _SpTextFieldXLargeInput_error, _SpTextFieldXLargeInput_value, _SpTextFieldXLargeInput_internals, _SpTextFieldXLargeInput_updateStyle;
-import { makeStyleSheet } from "../../../styles";
+import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldXLargeInput extends HTMLElement {
     get error() {

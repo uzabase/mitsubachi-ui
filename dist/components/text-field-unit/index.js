@@ -10,10 +10,10 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpTextFieldXLarge_labelElm, _SpTextFieldXLarge_label, _SpTextFieldXLarge_error, _SpTextFieldXLarge_inputElm, _SpTextFieldXLarge_errorMessageElm, _SpTextFieldXLarge_disabled, _SpTextFieldXLarge_placeholder, _SpTextFieldXLarge_name, _SpTextFieldXLarge_value, _SpTextFieldXLarge_internals;
-import "../error-message";
+import './error-message';
 import "./input";
-import "../label";
-import { makeStyleSheet } from "../../styles";
+import "./label";
+import { makeStyleSheet } from "../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldXLarge extends HTMLElement {
     get label() {
