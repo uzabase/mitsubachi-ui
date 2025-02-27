@@ -8,7 +8,7 @@ import { type SpTextFieldXLargeInput } from "./input";
 import { type SpTextFieldLabel } from "./label";
 import styles from "./styles.css?inline";
 
-export class SpTextFieldXLarge extends HTMLElement {
+export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
     "error",
     "label",
@@ -163,12 +163,12 @@ export class SpTextFieldXLarge extends HTMLElement {
   }
 }
 
-const tagName = "sp-text-field-x-large";
+const tagName = "sp-text-field-unit";
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-x-large": SpTextFieldXLarge;
+    "sp-text-field-unit": SpTextFieldUnit;
   }
 }
 if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextFieldXLarge);
+  customElements.define(tagName, SpTextFieldUnit);
 }
