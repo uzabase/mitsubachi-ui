@@ -45,7 +45,7 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.textContent = this.#textContent;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string) {
+  attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "message") {
       this.textContent = newValue;
     }
