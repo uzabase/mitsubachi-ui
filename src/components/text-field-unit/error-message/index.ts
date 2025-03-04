@@ -3,24 +3,23 @@ import { SpTextFieldErrorIcon } from "../error-icon";
 import styles from "./styles.css?inline";
 
 export class SpTextFieldErrorMessage extends HTMLElement {
-  static observedAttributes = ["textContent"];
+  static observedAttributes = ["message"];
 
-  get textContent(): string | null {
-    return this.#textContent;
+  get message(): string {
+    return this.#span.textContent ?? "";
   }
 
-  set textContent(value: string | null) {
-    this.#textContent = value;
-    if (this.#span) {
+  set message(value: string) {
+    if(value === '') {
+      this.#span.textContent = null;
+    } else {
       this.#span.textContent = value;
     }
     this.#updateClass();
   }
 
-  #span?: HTMLSpanElement;
+  #span: HTMLSpanElement = document.createElement("span");
   #div?: HTMLDivElement;
-
-  #textContent: string | null = null;
 
   constructor() {
     super();
@@ -42,22 +41,21 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.#span.className = "message";
     this.shadowRoot.appendChild(this.#span);
 
-    this.textContent = this.#textContent;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "message") {
-      this.textContent = newValue;
+      this.message = newValue ? newValue : "";
     }
   }
 
   #updateClass() {
-    if (this.#textContent) {
+    if (this.message) {
       this.#div?.classList.remove("none");
-      this.#span?.classList.remove("none");
+      this.#span.classList.remove("none");
     } else {
       this.#div?.classList.add("none");
-      this.#span?.classList.add("none");
+      this.#span.classList.add("none");
     }
   }
 }
