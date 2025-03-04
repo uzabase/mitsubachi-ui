@@ -9,7 +9,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextFieldXLargeInput_instances, _SpTextFieldXLargeInput_shadow, _SpTextFieldXLargeInput_input, _SpTextFieldXLargeInput_placeholder, _SpTextFieldXLargeInput_disabled, _SpTextFieldXLargeInput_name, _SpTextFieldXLargeInput_error, _SpTextFieldXLargeInput_value, _SpTextFieldXLargeInput_internals, _SpTextFieldXLargeInput_updateStyle;
+var _SpTextFieldXLargeInput_instances, _SpTextFieldXLargeInput_shadow, _SpTextFieldXLargeInput_input, _SpTextFieldXLargeInput_error, _SpTextFieldXLargeInput_internals, _SpTextFieldXLargeInput_updateStyle;
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldXLargeInput extends HTMLElement {
@@ -21,48 +21,40 @@ export class SpTextFieldXLargeInput extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_instances, "m", _SpTextFieldXLargeInput_updateStyle).call(this);
     }
     get placeholder() {
-        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_placeholder, "f");
+        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").placeholder;
     }
     set placeholder(value) {
-        __classPrivateFieldSet(this, _SpTextFieldXLargeInput_placeholder, value, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f"))
-            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").placeholder = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_placeholder, "f");
+        __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").placeholder = value;
+    }
+    get disabled() {
+        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").hasAttribute("disabled");
     }
     set disabled(value) {
-        __classPrivateFieldSet(this, _SpTextFieldXLargeInput_disabled, value, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f")) {
-            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").disabled = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_disabled, "f");
-        }
+        if (value)
+            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").setAttribute("disabled", "");
+        else
+            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").removeAttribute("disabled");
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_instances, "m", _SpTextFieldXLargeInput_updateStyle).call(this);
     }
     get name() {
-        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_name, "f");
+        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").name;
     }
     set name(value) {
-        __classPrivateFieldSet(this, _SpTextFieldXLargeInput_name, value, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f")) {
-            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").name = this.name;
-        }
+        __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").name = value;
     }
     get value() {
-        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_value, "f");
+        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").value;
     }
     set value(value) {
-        __classPrivateFieldSet(this, _SpTextFieldXLargeInput_value, value, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f"))
-            __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").value = this.value;
+        __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").value = value;
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_internals, "f").setFormValue(this.value);
     }
     constructor() {
         super();
         _SpTextFieldXLargeInput_instances.add(this);
         _SpTextFieldXLargeInput_shadow.set(this, void 0);
-        _SpTextFieldXLargeInput_input.set(this, void 0);
-        _SpTextFieldXLargeInput_placeholder.set(this, "");
-        _SpTextFieldXLargeInput_disabled.set(this, false);
-        _SpTextFieldXLargeInput_name.set(this, "");
+        _SpTextFieldXLargeInput_input.set(this, document.createElement("input"));
         _SpTextFieldXLargeInput_error.set(this, false);
-        _SpTextFieldXLargeInput_value.set(this, "");
         _SpTextFieldXLargeInput_internals.set(this, void 0);
         __classPrivateFieldSet(this, _SpTextFieldXLargeInput_internals, this.attachInternals(), "f");
         __classPrivateFieldSet(this, _SpTextFieldXLargeInput_shadow, this.attachShadow({ mode: "open" }), "f");
@@ -72,7 +64,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
             ...__classPrivateFieldGet(this, _SpTextFieldXLargeInput_shadow, "f").adoptedStyleSheets,
             makeStyleSheet(styles),
         ];
-        __classPrivateFieldSet(this, _SpTextFieldXLargeInput_input, document.createElement("input"), "f");
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_shadow, "f").appendChild(__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f"));
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").type = "text";
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").classList.add("input");
@@ -80,11 +71,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
             const target = e.target;
             this.value = target.value;
         });
-        this.placeholder = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_placeholder, "f");
-        this.disabled = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_disabled, "f");
-        this.error = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_error, "f");
-        this.name = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_name, "f");
-        this.value = __classPrivateFieldGet(this, _SpTextFieldXLargeInput_value, "f");
     }
     attributeChangedCallback(name, _, newValue) {
         if (name === "placeholder") {
@@ -104,11 +90,8 @@ export class SpTextFieldXLargeInput extends HTMLElement {
         }
     }
 }
-_SpTextFieldXLargeInput_shadow = new WeakMap(), _SpTextFieldXLargeInput_input = new WeakMap(), _SpTextFieldXLargeInput_placeholder = new WeakMap(), _SpTextFieldXLargeInput_disabled = new WeakMap(), _SpTextFieldXLargeInput_name = new WeakMap(), _SpTextFieldXLargeInput_error = new WeakMap(), _SpTextFieldXLargeInput_value = new WeakMap(), _SpTextFieldXLargeInput_internals = new WeakMap(), _SpTextFieldXLargeInput_instances = new WeakSet(), _SpTextFieldXLargeInput_updateStyle = function _SpTextFieldXLargeInput_updateStyle() {
-    if (!__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f")) {
-        return;
-    }
-    if (__classPrivateFieldGet(this, _SpTextFieldXLargeInput_disabled, "f")) {
+_SpTextFieldXLargeInput_shadow = new WeakMap(), _SpTextFieldXLargeInput_input = new WeakMap(), _SpTextFieldXLargeInput_error = new WeakMap(), _SpTextFieldXLargeInput_internals = new WeakMap(), _SpTextFieldXLargeInput_instances = new WeakSet(), _SpTextFieldXLargeInput_updateStyle = function _SpTextFieldXLargeInput_updateStyle() {
+    if (this.disabled) {
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").classList.remove("error");
         return;
     }

@@ -1,8 +1,8 @@
 export declare class SpTextFieldErrorMessage extends HTMLElement {
     #private;
     static observedAttributes: string[];
-    get textContent(): string | null;
-    set textContent(value: string | null);
+    get message(): string;
+    set message(value: string);
     constructor();
     connectedCallback(): void;
     attributeChangedCallback(name: string, _: string, newValue: string | null): void;

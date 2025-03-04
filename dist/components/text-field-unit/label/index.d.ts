@@ -4,8 +4,8 @@ export declare class SpTextFieldLabel extends HTMLElement {
     static observedAttributes: string[];
     get htmlFor(): string;
     set htmlFor(value: string);
-    get textContent(): string | null;
-    set textContent(text: string | null);
+    get text(): string;
+    set text(text: string);
     constructor();
     connectedCallback(): void;
     attributeChangedCallback(name: string, _: string, newValue: string | null): void;

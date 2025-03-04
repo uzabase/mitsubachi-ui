@@ -9,7 +9,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextFieldLabel_instances, _SpTextFieldLabel_for, _SpTextFieldLabel_textContent, _SpTextFieldLabel_labelElm, _SpTextFieldLabel_updateClass;
+var _SpTextFieldLabel_instances, _SpTextFieldLabel_for, _SpTextFieldLabel_labelElm, _SpTextFieldLabel_updateClass;
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldLabel extends HTMLElement {
@@ -22,22 +22,18 @@ export class SpTextFieldLabel extends HTMLElement {
             __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").htmlFor = this.htmlFor;
         }
     }
-    get textContent() {
-        return __classPrivateFieldGet(this, _SpTextFieldLabel_textContent, "f");
+    get text() {
+        return __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent ? __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent : '';
     }
-    set textContent(text) {
-        __classPrivateFieldSet(this, _SpTextFieldLabel_textContent, text, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f")) {
-            __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent = __classPrivateFieldGet(this, _SpTextFieldLabel_textContent, "f");
-        }
+    set text(text) {
+        __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent = text;
         __classPrivateFieldGet(this, _SpTextFieldLabel_instances, "m", _SpTextFieldLabel_updateClass).call(this);
     }
     constructor() {
         super();
         _SpTextFieldLabel_instances.add(this);
         _SpTextFieldLabel_for.set(this, "");
-        _SpTextFieldLabel_textContent.set(this, null);
-        _SpTextFieldLabel_labelElm.set(this, void 0);
+        _SpTextFieldLabel_labelElm.set(this, document.createElement("label"));
         this.attachShadow({ mode: "open" });
     }
     connectedCallback() {
@@ -47,27 +43,25 @@ export class SpTextFieldLabel extends HTMLElement {
             ...this.shadowRoot.adoptedStyleSheets,
             makeStyleSheet(styles),
         ];
-        __classPrivateFieldSet(this, _SpTextFieldLabel_labelElm, document.createElement("label"), "f");
         __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").classList.add("label");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f"));
         this.htmlFor = __classPrivateFieldGet(this, _SpTextFieldLabel_for, "f");
-        this.textContent = __classPrivateFieldGet(this, _SpTextFieldLabel_textContent, "f");
     }
     attributeChangedCallback(name, _, newValue) {
         if (name === "htmlFor") {
             this.htmlFor = newValue ? newValue : "";
         }
         else if (name === "text") {
-            this.textContent = newValue;
+            this.text = newValue ? newValue : "";
         }
     }
 }
-_SpTextFieldLabel_for = new WeakMap(), _SpTextFieldLabel_textContent = new WeakMap(), _SpTextFieldLabel_labelElm = new WeakMap(), _SpTextFieldLabel_instances = new WeakSet(), _SpTextFieldLabel_updateClass = function _SpTextFieldLabel_updateClass() {
-    if (this.textContent) {
-        __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f")?.classList.remove("none");
+_SpTextFieldLabel_for = new WeakMap(), _SpTextFieldLabel_labelElm = new WeakMap(), _SpTextFieldLabel_instances = new WeakSet(), _SpTextFieldLabel_updateClass = function _SpTextFieldLabel_updateClass() {
+    if (this.text) {
+        __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").classList.remove("none");
     }
     else {
-        __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f")?.classList.add("none");
+        __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").classList.add("none");
     }
 };
 SpTextFieldLabel.styles = makeStyleSheet(styles);
