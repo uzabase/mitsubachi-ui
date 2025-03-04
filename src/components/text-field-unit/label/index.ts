@@ -21,7 +21,6 @@ export class SpTextFieldLabel extends HTMLElement {
     return this.#labelElm.textContent ? this.#labelElm.textContent : '';
   }
   set text(text: string) {
-    console.log(text);
     this.#labelElm.textContent = text;
     this.#updateClass();
   }

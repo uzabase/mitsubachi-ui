@@ -22,58 +22,43 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   get placeholder(): string {
-    return this.#placeholder;
+    return this.#input.placeholder;
   }
 
   set placeholder(value: string) {
-    this.#placeholder = value;
-
-    if (this.#input) this.#input.placeholder = this.#placeholder;
+    this.#input.placeholder = value;
   }
 
   set disabled(value: boolean) {
-    this.#disabled = value;
-    if (this.#input) {
-      this.#input.disabled = this.#disabled;
-    }
+    if(value)
+      this.#input.setAttribute("disabled", "");
+    else
+      this.#input.removeAttribute("disabled");
     this.#updateStyle();
   }
 
   get name(): string {
-    return this.#name;
+    return this.#input.name;
   }
 
   set name(value: string) {
-    this.#name = value;
-    if (this.#input) {
-      this.#input.name = this.name;
-    }
+      this.#input.name = value;
   }
 
   get value(): string {
-    return this.#value;
+    return this.#input.value;
   }
 
   set value(value: string) {
-    this.#value = value;
-    if (this.#input) this.#input.value = this.value;
-
+    this.#input.value = value;
     this.#internals.setFormValue(this.value);
   }
 
   readonly #shadow: ShadowRoot;
 
-  #input?: HTMLInputElement;
-
-  #placeholder: string = "";
-
-  #disabled = false;
-
-  #name: string = "";
+  #input = document.createElement("input");
 
   #error: boolean = false;
-
-  #value: string = "";
 
   #internals: ElementInternals;
 
@@ -89,7 +74,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    this.#input = document.createElement("input");
     this.#shadow.appendChild(this.#input);
     this.#input.type = "text";
     this.#input.classList.add("input");
@@ -98,12 +82,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       const target = e.target as HTMLInputElement;
       this.value = target.value;
     });
-
-    this.placeholder = this.#placeholder;
-    this.disabled = this.#disabled;
-    this.error = this.#error;
-    this.name = this.#name;
-    this.value = this.#value;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -120,11 +98,12 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     }
   }
 
+  #disabled(): boolean {
+    return this.#input.hasAttribute("disabled");
+  }
+
   #updateStyle() {
-    if (!this.#input) {
-      return;
-    }
-    if (this.#disabled) {
+    if (this.#disabled()) {
       this.#input.classList.remove("error");
       return;
     }
