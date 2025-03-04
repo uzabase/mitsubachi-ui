@@ -4,12 +4,12 @@ import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
+import { type SpButton } from "../../src/components/button/sp-button";
 import {
   buttonType,
   size,
-  type SpButton,
   variants,
-} from "../../src/components/button/sp-button";
+} from "../../src/components/button/ub-button";
 
 const meta = {
   component: "sp-button",
