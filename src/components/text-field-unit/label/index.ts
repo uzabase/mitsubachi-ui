@@ -17,23 +17,18 @@ export class SpTextFieldLabel extends HTMLElement {
     }
   }
 
-  get textContent(): string | null {
-    return this.#textContent;
+  get text(): string {
+    return this.#labelElm.textContent ? this.#labelElm.textContent : '';
   }
-  set textContent(text: string | null) {
-    this.#textContent = text;
-
-    if (this.#labelElm) {
-      this.#labelElm.textContent = this.#textContent;
-    }
+  set text(text: string) {
+    console.log(text);
+    this.#labelElm.textContent = text;
     this.#updateClass();
   }
 
   #for: string = "";
 
-  #textContent: string | null = null;
-
-  #labelElm?: HTMLLabelElement;
+  #labelElm: HTMLLabelElement = document.createElement("label");
 
   constructor() {
     super();
@@ -47,27 +42,25 @@ export class SpTextFieldLabel extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    this.#labelElm = document.createElement("label");
     this.#labelElm.classList.add("label");
     this.shadowRoot.appendChild(this.#labelElm);
 
     this.htmlFor = this.#for;
-    this.textContent = this.#textContent;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "htmlFor") {
       this.htmlFor = newValue ? newValue : "";
     } else if (name === "text") {
-      this.textContent = newValue;
+      this.text = newValue ? newValue : "";
     }
   }
 
   #updateClass() {
-    if (this.textContent) {
-      this.#labelElm?.classList.remove("none");
+    if (this.text) {
+      this.#labelElm.classList.remove("none");
     } else {
-      this.#labelElm?.classList.add("none");
+      this.#labelElm.classList.add("none");
     }
   }
 }

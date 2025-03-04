@@ -21,12 +21,11 @@ export class SpTextFieldUnit extends HTMLElement {
   static formAssociated = true;
 
   get text(): string {
-    return this.#text;
+    return this.#labelElm.text;
   }
 
   set text(text: string) {
-    this.#text = text;
-    if (this.#labelElm) this.#labelElm.textContent = text;
+    this.#labelElm.text = text;
   }
 
   get error(): string {
@@ -88,9 +87,7 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#internals.setFormValue(this.value);
   }
 
-  #labelElm?: SpTextFieldLabel;
-
-  #text: string = "";
+  #labelElm: SpTextFieldLabel = document.createElement('sp-text-field-label');
 
   #error: string = "";
 
@@ -123,7 +120,6 @@ export class SpTextFieldUnit extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    this.#labelElm = document.createElement("sp-text-field-label");
     this.shadowRoot.appendChild(this.#labelElm);
 
     this.#inputElm = document.createElement("sp-text-field-x-large-input");
@@ -134,7 +130,6 @@ export class SpTextFieldUnit extends HTMLElement {
     );
     this.shadowRoot.appendChild(this.#errorMessageElm);
 
-    this.text = this.#text;
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
     this.error = this.#error;
