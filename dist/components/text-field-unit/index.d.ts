@@ -1,12 +1,12 @@
-import './error-message';
+import "./error-message";
 import "./input";
 import "./label";
-export declare class SpTextFieldXLarge extends HTMLElement {
+export declare class SpTextFieldUnit extends HTMLElement {
     #private;
     static observedAttributes: string[];
     static formAssociated: boolean;
-    get label(): string;
-    set label(text: string);
+    get text(): string;
+    set text(text: string);
     get error(): string;
     set error(text: string);
     get disabled(): boolean;
@@ -22,7 +22,7 @@ export declare class SpTextFieldXLarge extends HTMLElement {
 }
 declare global {
     interface HTMLElementTagNameMap {
-        "sp-text-field-x-large": SpTextFieldXLarge;
+        "sp-text-field-unit": SpTextFieldUnit;
     }
 }
 //# sourceMappingURL=index.d.ts.map

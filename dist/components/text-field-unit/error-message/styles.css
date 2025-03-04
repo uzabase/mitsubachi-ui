@@ -1,16 +1,12 @@
 :host {
     display: flex;
     gap: 2px;
-
-    >.icon {
-        display: flex;
-        align-items: center;
-    }
+    height: 21px;
+    align-items: center;
 
     >.message {
         font-weight: var(--font-weight-normal);
         font-size: 14px;
-        line-height: 21;
         color: #c92812;
     }
 
