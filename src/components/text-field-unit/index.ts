@@ -11,7 +11,7 @@ import styles from "./styles.css?inline";
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
     "error",
-    "label",
+    "text",
     "placeholder",
     "disabled",
     "name",
@@ -20,12 +20,12 @@ export class SpTextFieldUnit extends HTMLElement {
 
   static formAssociated = true;
 
-  get label(): string {
-    return this.#label;
+  get text(): string {
+    return this.#text;
   }
 
-  set label(text: string) {
-    this.#label = text;
+  set text(text: string) {
+    this.#text = text;
     if (this.#labelElm) this.#labelElm.textContent = text;
   }
 
@@ -90,7 +90,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #labelElm?: SpTextFieldLabel;
 
-  #label: string = "";
+  #text: string = "";
 
   #error: string = "";
 
@@ -134,7 +134,7 @@ export class SpTextFieldUnit extends HTMLElement {
     );
     this.shadowRoot.appendChild(this.#errorMessageElm);
 
-    this.label = this.#label;
+    this.text = this.#text;
     this.placeholder = this.#placeholder;
     this.disabled = this.#disabled;
     this.error = this.#error;
@@ -149,8 +149,8 @@ export class SpTextFieldUnit extends HTMLElement {
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "error") {
       this.error = newValue ? newValue : "";
-    } else if (name === "label") {
-      this.label = newValue ? newValue : "";
+    } else if (name === "text") {
+      this.text = newValue ? newValue : "";
     } else if (name === "placeholder") {
       this.placeholder = newValue;
     } else if (name === "disabled") {

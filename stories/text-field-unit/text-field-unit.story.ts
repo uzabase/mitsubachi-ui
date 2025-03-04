@@ -8,7 +8,7 @@ import type { SpTextFieldUnit } from "../../src/components/text-field-unit";
 const meta: Meta<SpTextFieldUnit> = {
   component: "sp-text-field-x-large",
   args: {
-    label: "ラベル",
+    text: "ラベル",
     error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
     disabled: false,
@@ -19,10 +19,10 @@ const meta: Meta<SpTextFieldUnit> = {
 export default meta;
 
 export const Default: StoryObj<SpTextFieldUnit> = {
-  render: ({ label, error, placeholder, disabled, name, value }) => {
+  render: ({ text: label, error, placeholder, disabled, name, value }) => {
     return html`<sp-text-field-unit
       placeholder=${placeholder}
-      label=${label}
+      text=${label}
       ?disabled=${disabled}
       name=${name}
       value=${value}
