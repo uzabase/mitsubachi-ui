@@ -37,7 +37,6 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.#div.setAttribute("class", "icon");
     this.#div.appendChild(new SpTextFieldErrorIcon());
     this.shadowRoot.appendChild(this.#div);
-    this.#span = document.createElement("span");
     this.#span.className = "message";
     this.shadowRoot.appendChild(this.#span);
 

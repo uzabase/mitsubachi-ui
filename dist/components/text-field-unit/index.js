@@ -50,7 +50,7 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     set placeholder(newValue) {
         if (newValue) {
-            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").value = newValue;
+            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").placeholder = newValue;
         }
         else
             __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").placeholder = "";

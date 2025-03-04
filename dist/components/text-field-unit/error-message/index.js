@@ -44,7 +44,6 @@ export class SpTextFieldErrorMessage extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldErrorMessage_div, "f").setAttribute("class", "icon");
         __classPrivateFieldGet(this, _SpTextFieldErrorMessage_div, "f").appendChild(new SpTextFieldErrorIcon());
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorMessage_div, "f"));
-        __classPrivateFieldSet(this, _SpTextFieldErrorMessage_span, document.createElement("span"), "f");
         __classPrivateFieldGet(this, _SpTextFieldErrorMessage_span, "f").className = "message";
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorMessage_span, "f"));
     }

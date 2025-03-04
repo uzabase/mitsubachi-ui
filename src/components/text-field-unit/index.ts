@@ -55,7 +55,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set placeholder(newValue: string | undefined | null) {
     if (newValue) {
-      this.#inputElm.value = newValue;
+      this.#inputElm.placeholder = newValue;
     } else this.#inputElm.placeholder = "";
   }
 
