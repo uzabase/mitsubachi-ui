@@ -29,6 +29,10 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     this.#input.placeholder = value;
   }
 
+  get disabled(): boolean {
+    return this.#input.hasAttribute("disabled");
+  }
+
   set disabled(value: boolean) {
     if(value)
       this.#input.setAttribute("disabled", "");
@@ -98,12 +102,8 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     }
   }
 
-  #disabled(): boolean {
-    return this.#input.hasAttribute("disabled");
-  }
-
   #updateStyle() {
-    if (this.#disabled()) {
+    if (this.disabled) {
       this.#input.classList.remove("error");
       return;
     }

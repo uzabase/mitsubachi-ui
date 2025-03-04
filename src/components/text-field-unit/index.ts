@@ -35,19 +35,18 @@ export class SpTextFieldUnit extends HTMLElement {
   set error(text: string) {
     this.#error = text;
     if (this.#errorMessageElm) {
-      if (this.#disabled) this.#errorMessageElm.message = '';
+      if (this.disabled) this.#errorMessageElm.message = '';
       else this.#errorMessageElm.message = this.error;
     }
     if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
   }
 
   get disabled(): boolean {
-    return this.#disabled;
+    return this.#inputElm.disabled;
   }
 
   set disabled(newValue: boolean) {
-    this.#disabled = newValue;
-    if (this.#inputElm) this.#inputElm.disabled = newValue;
+     this.#inputElm.disabled = newValue;
     if (this.#errorMessageElm) {
       if (this.disabled) this.#errorMessageElm.message = "";
       else this.#errorMessageElm.message = this.error;
@@ -56,34 +55,27 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set placeholder(newValue: string | undefined | null) {
     if (newValue) {
-      this.#placeholder = newValue;
-    } else this.#placeholder = "";
-    if (this.#inputElm) this.#inputElm.placeholder = this.#placeholder;
+      this.#inputElm.value = newValue;
+    } else this.#inputElm.placeholder = "";
   }
 
   get name(): string {
-    return this.#name;
+    return this.#inputElm.name;
   }
 
   set name(value: string) {
-    this.#name = value;
-    if (this.#inputElm) {
-      this.#inputElm.name = this.name;
-    }
+    this.#inputElm.name = value;
     if (this.#labelElm) {
       this.#labelElm.htmlFor = this.name;
     }
   }
 
   get value(): string {
-    return this.#value;
+    return this.#inputElm.value;
   }
 
   set value(value: string) {
-    this.#value = value;
-    if (this.#inputElm) {
-      this.#inputElm.value = this.value;
-    }
+    this.#inputElm.value = value;
     this.#internals.setFormValue(this.value);
   }
 
@@ -91,17 +83,9 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #error: string = "";
 
-  #inputElm?: SpTextFieldXLargeInput;
+  #inputElm: SpTextFieldXLargeInput = document.createElement("sp-text-field-x-large-input");
 
   #errorMessageElm?: SpTextFieldErrorMessage;
-
-  #disabled: boolean = false;
-
-  #placeholder: string = "";
-
-  #name: string = "";
-
-  #value: string = "";
 
   #internals: ElementInternals;
 
@@ -122,7 +106,6 @@ export class SpTextFieldUnit extends HTMLElement {
 
     this.shadowRoot.appendChild(this.#labelElm);
 
-    this.#inputElm = document.createElement("sp-text-field-x-large-input");
     this.shadowRoot.appendChild(this.#inputElm);
 
     this.#errorMessageElm = document.createElement(
@@ -130,11 +113,7 @@ export class SpTextFieldUnit extends HTMLElement {
     );
     this.shadowRoot.appendChild(this.#errorMessageElm);
 
-    this.placeholder = this.#placeholder;
-    this.disabled = this.#disabled;
     this.error = this.#error;
-    this.name = this.#name;
-    this.value = this.#value;
 
     this.#inputElm.addEventListener("input", (e) => {
       this.value = (e.target as SpTextFieldXLargeInput).value;
