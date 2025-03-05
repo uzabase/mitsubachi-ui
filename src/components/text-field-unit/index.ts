@@ -15,6 +15,7 @@ export class SpTextFieldUnit extends HTMLElement {
     "placeholder",
     "disabled",
     "name",
+    "type",
     "value",
   ];
 
@@ -35,7 +36,7 @@ export class SpTextFieldUnit extends HTMLElement {
   set error(text: string) {
     this.#error = text;
     if (this.#errorTextElm) {
-      if (this.disabled) this.#errorTextElm.text = '';
+      if (this.disabled) this.#errorTextElm.text = "";
       else this.#errorTextElm.text = this.error;
     }
     if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
@@ -46,7 +47,7 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 
   set disabled(newValue: boolean) {
-     this.#inputElm.disabled = newValue;
+    this.#inputElm.disabled = newValue;
     if (this.#errorTextElm) {
       if (this.disabled) this.#errorTextElm.text = "";
       else this.#errorTextElm.text = this.error;
@@ -79,11 +80,20 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#internals.setFormValue(this.value);
   }
 
-  #labelElm: SpTextFieldLabel = document.createElement('sp-text-field-label');
+  get type(): string {
+    return this.#inputElm.type;
+  }
+  set type(newValue: string) {
+    this.#inputElm.type = newValue;
+  }
+
+  #labelElm: SpTextFieldLabel = document.createElement("sp-text-field-label");
 
   #error: string = "";
 
-  #inputElm: SpTextFieldXLargeInput = document.createElement("sp-text-field-x-large-input");
+  #inputElm: SpTextFieldXLargeInput = document.createElement(
+    "sp-text-field-x-large-input",
+  );
 
   #errorTextElm?: SpTextFieldErrorText;
 
@@ -108,9 +118,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
     this.shadowRoot.appendChild(this.#inputElm);
 
-    this.#errorTextElm = document.createElement(
-      "sp-text-field-error-text",
-    );
+    this.#errorTextElm = document.createElement("sp-text-field-error-text");
     this.shadowRoot.appendChild(this.#errorTextElm);
 
     this.error = this.#error;
@@ -133,6 +141,8 @@ export class SpTextFieldUnit extends HTMLElement {
       this.name = newValue ? newValue : "";
     } else if (name === "value") {
       this.value = newValue ? newValue : "";
+    } else if (name == "type") {
+      this.#inputElm.type = newValue ? newValue : "";
     }
   }
 }

@@ -10,7 +10,7 @@ export class SpTextFieldErrorText extends HTMLElement {
   }
 
   set text(value: string) {
-    if(value === '') {
+    if (value === "") {
       this.#span.textContent = null;
     } else {
       this.#span.textContent = value;

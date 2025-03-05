@@ -8,12 +8,21 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     "disabled",
     "name",
     "value",
+    "type",
   ];
 
   static formAssociated = true;
 
   get error(): boolean {
     return this.#error;
+  }
+
+  get type(): string {
+    return this.#input.type;
+  }
+
+  set type(newType: string) {
+    this.#input.type = newType;
   }
 
   set error(isError: boolean) {
@@ -34,10 +43,8 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set disabled(value: boolean) {
-    if(value)
-      this.#input.setAttribute("disabled", "");
-    else
-      this.#input.removeAttribute("disabled");
+    if (value) this.#input.setAttribute("disabled", "");
+    else this.#input.removeAttribute("disabled");
     this.#updateStyle();
   }
 
@@ -46,7 +53,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set name(value: string) {
-      this.#input.name = value;
+    this.#input.name = value;
   }
 
   get value(): string {
@@ -79,7 +86,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     ];
 
     this.#shadow.appendChild(this.#input);
-    this.#input.type = "text";
     this.#input.classList.add("input");
 
     this.#input.addEventListener("input", (e) => {
@@ -99,6 +105,8 @@ export class SpTextFieldXLargeInput extends HTMLElement {
       this.name = newValue ? newValue : "";
     } else if (name === "value") {
       this.value = newValue ? newValue : "";
+    } else if (name === "type") {
+      this.type = newValue ? newValue : "";
     }
   }
 

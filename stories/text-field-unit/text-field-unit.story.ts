@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
 import type { SpTextFieldUnit } from "../../src/components/text-field-unit";
+import { variants } from "../../src/components/button/ub-button";
 
 const meta: Meta<SpTextFieldUnit> = {
   component: "sp-text-field-x-large",
@@ -14,19 +15,27 @@ const meta: Meta<SpTextFieldUnit> = {
     disabled: false,
     name: "surname",
     value: "Yamada",
+    type: "text",
+  },
+  argTypes: {
+    type: {
+      options: ["text", "password"],
+      control: { type: "select" },
+    },
   },
 };
 export default meta;
 
 export const Default: StoryObj<SpTextFieldUnit> = {
-  render: ({ text: label, error, placeholder, disabled, name, value }) => {
+  render: ({ text, type, error, placeholder, disabled, name, value }) => {
     return html`<sp-text-field-unit
       placeholder=${placeholder}
-      text=${label}
+      text=${text}
       ?disabled=${disabled}
       name=${name}
       value=${value}
       error=${error}
+      type=${type}
     >
     </sp-text-field-unit>`;
   },
