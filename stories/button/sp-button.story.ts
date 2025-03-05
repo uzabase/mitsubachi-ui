@@ -2,7 +2,7 @@ import "../../src/components/button/sp-button";
 
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 
 import { type SpButton } from "../../src/components/button/sp-button";
 import {
@@ -28,6 +28,12 @@ const meta = {
     onclick: {
       action: "onclick",
     },
+    name: {type: "string"},
+    value: {type: "string"},
+    type: {
+      control: {type: "select"},
+      options: [undefined, "submit", "reset", "button"],
+    }
   },
   args: {
     slot: "ダウンロード",
@@ -37,6 +43,9 @@ const meta = {
     loading: false,
     disabled: false,
     onclick: action("onclick"),
+    name: undefined,
+    value: undefined,
+    type: undefined,
   },
   render: (args) => html`
     <sp-button
@@ -46,6 +55,9 @@ const meta = {
       ?loading=${args.loading}
       ?disabled=${args.disabled}
       @click=${args.onclick}
+      name=${args.name || nothing}
+      type=${args.type || nothing}
+      value=${args.value || nothing}
     >
       ${args.slot}
     </sp-button>
