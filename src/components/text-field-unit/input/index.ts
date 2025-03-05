@@ -34,10 +34,8 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set disabled(value: boolean) {
-    if(value)
-      this.#input.setAttribute("disabled", "");
-    else
-      this.#input.removeAttribute("disabled");
+    if (value) this.#input.setAttribute("disabled", "");
+    else this.#input.removeAttribute("disabled");
     this.#updateStyle();
   }
 
@@ -46,7 +44,7 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   }
 
   set name(value: string) {
-      this.#input.name = value;
+    this.#input.name = value;
   }
 
   get value(): string {
