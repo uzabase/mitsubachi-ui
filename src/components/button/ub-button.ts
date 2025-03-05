@@ -2,8 +2,8 @@ import resetStyle from "@acab/reset.css?inline";
 
 import foundationStyle from "../foundation.css?inline";
 
-export const buttonType = ["normal", "danger"] as const;
-type ButtonType = (typeof buttonType)[number];
+// export const buttonType = ["normal", "danger"] as const;
+// type ButtonType = (typeof buttonType)[number];
 
 export const variants = ["primary", "secondary", "tertiary"] as const;
 type variants = (typeof variants)[number];
@@ -11,14 +11,14 @@ type variants = (typeof variants)[number];
 export const size = ["medium", "large", "xLarge"] as const;
 type Size = (typeof size)[number];
 
-function isValidType(value: string): ButtonType {
-  if (buttonType.some((type) => type === value)) {
-    return value as ButtonType;
-  } else {
-    console.warn(`${value}は無効なtype属性です。`);
-    return buttonType[0];
-  }
-}
+// function isValidType(value: string): ButtonType {
+//   if (buttonType.some((type) => type === value)) {
+//     return value as ButtonType;
+//   } else {
+//     console.warn(`${value}は無効なtype属性です。`);
+//     return buttonType[0];
+//   }
+// }
 
 function isValidvariants(value: string): variants {
   if (variants.some((variants) => variants === value)) {
@@ -44,7 +44,7 @@ styles.replaceSync(`${resetStyle} ${foundationStyle}`);
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
   #disabled: boolean = false;
-  #type: ButtonType = buttonType[0];
+  // #type: ButtonType = buttonType[0];
   #variants: variants = variants[0];
   #size: Size = size[0];
 
@@ -73,13 +73,27 @@ export class UbButton extends HTMLElement {
     this.#buttonDisabledUpdate();
   }
 
-  set type(value: string) {
-    const button = this.#buttonElement;
-    const newValue: ButtonType = isValidType(value);
+  // set type(value: string) {
+  //   const button = this.#buttonElement;
+  //   const newValue: ButtonType = isValidType(value);
 
-    button.classList.remove(this.#type);
-    button.classList.add(newValue);
-    this.#type = newValue;
+  //   button.classList.remove(this.#type);
+  //   button.classList.add(newValue);
+  //   this.#type = newValue;
+  // }
+
+  get danger(): boolean {
+    return this.#buttonElement.classList.contains('danger');
+  }
+
+  set danger(value: boolean) {
+    if(value) {
+      this.#buttonElement.classList.remove('normal');
+      this.#buttonElement.classList.add('danger');
+    } else {
+      this.#buttonElement.classList.remove('danger');
+      this.#buttonElement.classList.add('normal');
+    }
   }
 
   get variants() {
@@ -104,11 +118,13 @@ export class UbButton extends HTMLElement {
     };
     button.classList.remove(typeClassList[this.#size]);
     button.classList.add(typeClassList[newValue]);
+    if(this.danger)
+        this.danger = true;
     this.#size = newValue;
   }
 
   static get observedAttributes() {
-    return ["loading", "disabled", "type", "variants", "size"];
+    return ["loading", "disabled", "variants", "size", "danger"];
   }
 
   constructor() {
@@ -119,7 +135,7 @@ export class UbButton extends HTMLElement {
 
     this.loading = false;
     this.disabled = false;
-    this.type = buttonType[0];
+    // this.type = buttonType[0];
     this.variants = variants[0];
     this.size = size[0];
   }
@@ -129,6 +145,11 @@ export class UbButton extends HTMLElement {
     this.#slotElement.classList.add("text");
     this.#buttonElement.appendChild(this.#slotElement);
     this.shadowRoot?.appendChild(this.#buttonElement);
+
+    if(this.danger)
+      this.danger = true;
+    else
+      this.danger = false;
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -140,9 +161,12 @@ export class UbButton extends HTMLElement {
       case "disabled":
         this.disabled = newValue === "true" || newValue === "";
         break;
-      case "type":
-        this.type = newValue;
+      case "danger":
+        this.danger = newValue !== null;
         break;
+      // case "type":
+      //   this.type = newValue;
+      //   break;
       case "variants":
         this.variants = newValue;
         break;
