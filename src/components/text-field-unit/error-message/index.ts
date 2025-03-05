@@ -34,12 +34,11 @@ export class SpTextFieldErrorMessage extends HTMLElement {
       makeStyleSheet(styles),
     ];
     this.#div = document.createElement("div");
-    this.#div.setAttribute("class", "icon");
-    this.#div.appendChild(new SpTextFieldErrorIcon());
+    this.#div.setAttribute("class", "container");
     this.shadowRoot.appendChild(this.#div);
+    this.#div.appendChild(new SpTextFieldErrorIcon());
     this.#span.className = "message";
-    this.shadowRoot.appendChild(this.#span);
-
+    this.#div.appendChild(this.#span);
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -51,10 +50,8 @@ export class SpTextFieldErrorMessage extends HTMLElement {
   #updateClass() {
     if (this.message) {
       this.#div?.classList.remove("none");
-      this.#span.classList.remove("none");
     } else {
       this.#div?.classList.add("none");
-      this.#span.classList.add("none");
     }
   }
 }
