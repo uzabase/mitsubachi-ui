@@ -9,8 +9,8 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextFieldUnit_labelElm, _SpTextFieldUnit_error, _SpTextFieldUnit_inputElm, _SpTextFieldUnit_errorMessageElm, _SpTextFieldUnit_internals;
-import "./error-message";
+var _SpTextFieldUnit_labelElm, _SpTextFieldUnit_error, _SpTextFieldUnit_inputElm, _SpTextFieldUnit_errorTextElm, _SpTextFieldUnit_internals;
+import "./error-text";
 import "./input";
 import "./label";
 import { makeStyleSheet } from "../styles";
@@ -27,11 +27,11 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     set error(text) {
         __classPrivateFieldSet(this, _SpTextFieldUnit_error, text, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f")) {
+        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f")) {
             if (this.disabled)
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f").message = '';
+                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = '';
             else
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f").message = this.error;
+                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = this.error;
         }
         if (__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"))
             __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").error = this.error ? true : false;
@@ -41,11 +41,11 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     set disabled(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").disabled = newValue;
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f")) {
+        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f")) {
             if (this.disabled)
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f").message = "";
+                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = "";
             else
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f").message = this.error;
+                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = this.error;
         }
     }
     set placeholder(newValue) {
@@ -76,7 +76,7 @@ export class SpTextFieldUnit extends HTMLElement {
         _SpTextFieldUnit_labelElm.set(this, document.createElement('sp-text-field-label'));
         _SpTextFieldUnit_error.set(this, "");
         _SpTextFieldUnit_inputElm.set(this, document.createElement("sp-text-field-x-large-input"));
-        _SpTextFieldUnit_errorMessageElm.set(this, void 0);
+        _SpTextFieldUnit_errorTextElm.set(this, void 0);
         _SpTextFieldUnit_internals.set(this, void 0);
         this.attachShadow({ mode: "open" });
         __classPrivateFieldSet(this, _SpTextFieldUnit_internals, this.attachInternals(), "f");
@@ -91,8 +91,8 @@ export class SpTextFieldUnit extends HTMLElement {
         ];
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f"));
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"));
-        __classPrivateFieldSet(this, _SpTextFieldUnit_errorMessageElm, document.createElement("sp-text-field-error-message"), "f");
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_errorMessageElm, "f"));
+        __classPrivateFieldSet(this, _SpTextFieldUnit_errorTextElm, document.createElement("sp-text-field-error-text"), "f");
+        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f"));
         this.error = __classPrivateFieldGet(this, _SpTextFieldUnit_error, "f");
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").addEventListener("input", (e) => {
             this.value = e.target.value;
@@ -119,7 +119,7 @@ export class SpTextFieldUnit extends HTMLElement {
         }
     }
 }
-_SpTextFieldUnit_labelElm = new WeakMap(), _SpTextFieldUnit_error = new WeakMap(), _SpTextFieldUnit_inputElm = new WeakMap(), _SpTextFieldUnit_errorMessageElm = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap();
+_SpTextFieldUnit_labelElm = new WeakMap(), _SpTextFieldUnit_error = new WeakMap(), _SpTextFieldUnit_inputElm = new WeakMap(), _SpTextFieldUnit_errorTextElm = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap();
 SpTextFieldUnit.observedAttributes = [
     "error",
     "text",

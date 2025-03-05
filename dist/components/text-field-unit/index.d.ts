@@ -1,4 +1,4 @@
-import "./error-message";
+import "./error-text";
 import "./input";
 import "./label";
 export declare class SpTextFieldUnit extends HTMLElement {
