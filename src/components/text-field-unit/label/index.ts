@@ -4,18 +4,7 @@ import styles from "./styles.css?inline";
 export class SpTextFieldLabel extends HTMLElement {
   static styles = makeStyleSheet(styles);
 
-  static observedAttributes = ["htmlFor", "text"];
-
-  get htmlFor(): string {
-    return this.#for;
-  }
-
-  set htmlFor(value: string) {
-    this.#for = value;
-    if (this.#labelElm) {
-      this.#labelElm.htmlFor = this.htmlFor;
-    }
-  }
+  static observedAttributes = ["text"];
 
   get text(): string {
     return this.#labelElm.textContent ? this.#labelElm.textContent : "";
@@ -25,9 +14,7 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#updateClass();
   }
 
-  #for: string = "";
-
-  #labelElm: HTMLLabelElement = document.createElement("label");
+  #labelElm =  document.createElement("span");
 
   constructor() {
     super();
@@ -44,13 +31,10 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#labelElm.classList.add("label");
     this.shadowRoot.appendChild(this.#labelElm);
 
-    this.htmlFor = this.#for;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "htmlFor") {
-      this.htmlFor = newValue ? newValue : "";
-    } else if (name === "text") {
+    if (name === "text") {
       this.text = newValue ? newValue : "";
     }
   }

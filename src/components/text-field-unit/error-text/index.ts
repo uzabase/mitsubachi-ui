@@ -34,8 +34,10 @@ export class SpTextFieldErrorText extends HTMLElement {
       makeStyleSheet(styles),
     ];
     this.#div = document.createElement("div");
+    this.#div.setAttribute("role", "error");
     this.#div.setAttribute("class", "container");
     this.shadowRoot.appendChild(this.#div);
+
     this.#div.appendChild(new SpTextFieldErrorIcon());
     this.#span.className = "text";
     this.#div.appendChild(this.#span);

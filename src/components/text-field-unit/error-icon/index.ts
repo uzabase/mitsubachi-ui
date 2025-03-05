@@ -15,6 +15,7 @@ export class SpTextFieldErrorIcon extends HTMLElement {
     ];
 
     this.shadowRoot.innerHTML = `<svg
+        aria-hidden="true"
         width="21"
         height="21"
         fill="none"

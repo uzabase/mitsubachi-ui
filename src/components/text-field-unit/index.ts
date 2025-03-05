@@ -6,7 +6,6 @@ import { makeStyleSheet } from "../styles";
 import { type SpTextFieldErrorText } from "./error-text";
 import { type SpTextFieldXLargeInput } from "./input";
 import { type SpTextFieldLabel } from "./label";
-import styles from "./styles.css?inline";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
@@ -66,9 +65,6 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set name(value: string) {
     this.#inputElm.name = value;
-    if (this.#labelElm) {
-      this.#labelElm.htmlFor = this.name;
-    }
   }
 
   get value(): string {
@@ -111,15 +107,15 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(styles),
+      makeStyleSheet(),
     ];
-
-    this.shadowRoot.appendChild(this.#labelElm);
-
-    this.shadowRoot.appendChild(this.#inputElm);
+    const fieldSet = document.createElement('fieldset')
+    this.shadowRoot.appendChild(fieldSet)
+    fieldSet.appendChild(this.#labelElm);
+    fieldSet.appendChild(this.#inputElm);
 
     this.#errorTextElm = document.createElement("sp-text-field-error-text");
-    this.shadowRoot.appendChild(this.#errorTextElm);
+    fieldSet.appendChild(this.#errorTextElm);
 
     this.error = this.#error;
 
