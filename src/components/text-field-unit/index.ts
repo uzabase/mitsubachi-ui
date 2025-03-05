@@ -1,9 +1,9 @@
-import "./error-message";
+import "./error-text";
 import "./input";
 import "./label";
 
 import { makeStyleSheet } from "../styles";
-import { type SpTextFieldErrorMessage } from "./error-message";
+import { type SpTextFieldErrorText } from "./error-text";
 import { type SpTextFieldXLargeInput } from "./input";
 import { type SpTextFieldLabel } from "./label";
 import styles from "./styles.css?inline";
@@ -34,9 +34,9 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set error(text: string) {
     this.#error = text;
-    if (this.#errorMessageElm) {
-      if (this.disabled) this.#errorMessageElm.message = '';
-      else this.#errorMessageElm.message = this.error;
+    if (this.#errorTextElm) {
+      if (this.disabled) this.#errorTextElm.text = '';
+      else this.#errorTextElm.text = this.error;
     }
     if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
   }
@@ -47,9 +47,9 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set disabled(newValue: boolean) {
      this.#inputElm.disabled = newValue;
-    if (this.#errorMessageElm) {
-      if (this.disabled) this.#errorMessageElm.message = "";
-      else this.#errorMessageElm.message = this.error;
+    if (this.#errorTextElm) {
+      if (this.disabled) this.#errorTextElm.text = "";
+      else this.#errorTextElm.text = this.error;
     }
   }
 
@@ -85,7 +85,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #inputElm: SpTextFieldXLargeInput = document.createElement("sp-text-field-x-large-input");
 
-  #errorMessageElm?: SpTextFieldErrorMessage;
+  #errorTextElm?: SpTextFieldErrorText;
 
   #internals: ElementInternals;
 
@@ -108,10 +108,10 @@ export class SpTextFieldUnit extends HTMLElement {
 
     this.shadowRoot.appendChild(this.#inputElm);
 
-    this.#errorMessageElm = document.createElement(
-      "sp-text-field-error-message",
+    this.#errorTextElm = document.createElement(
+      "sp-text-field-error-text",
     );
-    this.shadowRoot.appendChild(this.#errorMessageElm);
+    this.shadowRoot.appendChild(this.#errorTextElm);
 
     this.error = this.#error;
 

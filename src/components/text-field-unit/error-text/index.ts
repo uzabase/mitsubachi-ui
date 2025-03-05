@@ -2,14 +2,14 @@ import { makeStyleSheet } from "../../styles";
 import { SpTextFieldErrorIcon } from "../error-icon";
 import styles from "./styles.css?inline";
 
-export class SpTextFieldErrorMessage extends HTMLElement {
-  static observedAttributes = ["message"];
+export class SpTextFieldErrorText extends HTMLElement {
+  static observedAttributes = ["text"];
 
-  get message(): string {
+  get text(): string {
     return this.#span.textContent ?? "";
   }
 
-  set message(value: string) {
+  set text(value: string) {
     if(value === '') {
       this.#span.textContent = null;
     } else {
@@ -37,18 +37,18 @@ export class SpTextFieldErrorMessage extends HTMLElement {
     this.#div.setAttribute("class", "container");
     this.shadowRoot.appendChild(this.#div);
     this.#div.appendChild(new SpTextFieldErrorIcon());
-    this.#span.className = "message";
+    this.#span.className = "text";
     this.#div.appendChild(this.#span);
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "message") {
-      this.message = newValue ? newValue : "";
+    if (name === "text") {
+      this.text = newValue ? newValue : "";
     }
   }
 
   #updateClass() {
-    if (this.message) {
+    if (this.text) {
       this.#div?.classList.remove("none");
     } else {
       this.#div?.classList.add("none");
@@ -58,11 +58,11 @@ export class SpTextFieldErrorMessage extends HTMLElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-error-message": SpTextFieldErrorMessage;
+    "sp-text-field-error-text": SpTextFieldErrorText;
   }
 }
 
-const tagName = "sp-text-field-error-message";
+const tagName = "sp-text-field-error-text";
 if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextFieldErrorMessage);
+  customElements.define(tagName, SpTextFieldErrorText);
 }
