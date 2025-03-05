@@ -1,3 +1,4 @@
 node_modules
 .idea
 storybook-static
+tests/__screenshots__

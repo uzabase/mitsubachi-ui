@@ -109,8 +109,8 @@ export class SpTextFieldUnit extends HTMLElement {
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(),
     ];
-    const fieldSet = document.createElement('fieldset')
-    this.shadowRoot.appendChild(fieldSet)
+    const fieldSet = document.createElement("fieldset");
+    this.shadowRoot.appendChild(fieldSet);
     fieldSet.appendChild(this.#labelElm);
     fieldSet.appendChild(this.#inputElm);
 

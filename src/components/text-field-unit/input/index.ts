@@ -113,12 +113,12 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   #updateStyle() {
     if (this.disabled) {
       this.#input.classList.remove("error");
-      this.#input.removeAttribute('aria-invalid');
+      this.#input.removeAttribute("aria-invalid");
       return;
     }
     if (this.error) {
       this.#input.classList.add("error");
-      this.#input.setAttribute('aria-invalid', '');
+      this.#input.setAttribute("aria-invalid", "");
     } else this.#input.classList.remove("error");
   }
 }

@@ -14,7 +14,7 @@ export class SpTextFieldLabel extends HTMLElement {
     this.#updateClass();
   }
 
-  #labelElm =  document.createElement("span");
+  #labelElm = document.createElement("span");
 
   constructor() {
     super();
@@ -30,7 +30,6 @@ export class SpTextFieldLabel extends HTMLElement {
 
     this.#labelElm.classList.add("label");
     this.shadowRoot.appendChild(this.#labelElm);
-
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
