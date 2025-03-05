@@ -1,10 +1,10 @@
 import "./error-text";
-import "./input";
+import "./text-field";
 import "./label";
 
 import { makeStyleSheet } from "../styles";
 import { type SpTextFieldErrorText } from "./error-text";
-import { type SpTextFieldXLargeInput } from "./input";
+import { type SpTextField } from "./text-field";
 import { type SpTextFieldLabel } from "./label";
 
 export class SpTextFieldUnit extends HTMLElement {
@@ -87,8 +87,8 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #error: string = "";
 
-  #inputElm: SpTextFieldXLargeInput = document.createElement(
-    "sp-text-field-x-large-input",
+  #inputElm: SpTextField = document.createElement(
+    "sp-text-field",
   );
 
   #errorTextElm?: SpTextFieldErrorText;
@@ -120,7 +120,7 @@ export class SpTextFieldUnit extends HTMLElement {
     this.error = this.#error;
 
     this.#inputElm.addEventListener("input", (e) => {
-      this.value = (e.target as SpTextFieldXLargeInput).value;
+      this.value = (e.target as SpTextField).value;
     });
   }
 

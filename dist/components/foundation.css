@@ -1,0 +1,39 @@
+
+:host {
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  &, * {
+    font-family: Arial, YakuHanJPs, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans JP", sans-serif;
+    font-weight: var(--font-weight-normal);
+    overflow-wrap: anywhere;
+    line-break: strict;
+  }
+
+  :lang(ja) {
+    --font-weight-normal: 300;
+    --font-weight-bold: 600;
+  }
+
+  :lang(en) {
+    --font-weight-normal: 300;
+    --font-weight-bold: 600;
+  }
+
+  :lang(zh) {
+    font-family: Arial, YakuHanJPs, 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', "Microsoft JhengHei", sans-serif;
+  }
+
+}
+
+:where(:focus-visible) {
+  outline: inherit;
+}
+
+fieldset {
+  border: none;
+}
+
+button {
+  box-sizing: border-box;
+}

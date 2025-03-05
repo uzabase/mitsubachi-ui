@@ -7,7 +7,7 @@ function setUp(element: string) {
   document.body.innerHTML = element;
   const sut = document.querySelector("sp-text-field-unit");
   const input = sut?.shadowRoot
-    ?.querySelector("sp-text-field-x-large-input")
+    ?.querySelector("sp-text-field")
     ?.shadowRoot?.querySelector("input");
   if (!sut) {
     throw new Error("Not found: sp-text-field-unit");
