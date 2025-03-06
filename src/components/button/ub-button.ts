@@ -90,7 +90,6 @@ export class UbButton extends HTMLElement {
     this.#updateDanger();
   }
 
-
   get variants() {
     return this.#variants;
   }
