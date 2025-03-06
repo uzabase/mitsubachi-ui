@@ -4,8 +4,8 @@ import "./label";
 
 import { makeStyleSheet } from "../styles";
 import { type SpTextFieldErrorText } from "./error-text";
-import { type SpTextField } from "./text-field";
 import { type SpTextFieldLabel } from "./label";
+import { type SpTextField } from "./text-field";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
@@ -87,9 +87,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #error: string = "";
 
-  #inputElm: SpTextField = document.createElement(
-    "sp-text-field",
-  );
+  #inputElm: SpTextField = document.createElement("sp-text-field");
 
   #errorTextElm?: SpTextFieldErrorText;
 
