@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
 import type { SpTextFieldUnit } from "../../src/components/text-field-unit";
-import { variants } from "../../src/components/button/ub-button";
 
 const meta: Meta<SpTextFieldUnit> = {
   component: "sp-text-field-x-large",
