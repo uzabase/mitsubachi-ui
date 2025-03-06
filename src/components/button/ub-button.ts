@@ -59,7 +59,7 @@ export class UbButton extends HTMLElement {
     this.#disabled = value;
     this.#buttonDisabledUpdate();
   }
-
+  // button.typeの型に合わせるために型エイリアスを使っていません
   get type(): "submit" | "reset" | "button" {
     return this.#buttonElement.type;
   }
@@ -82,18 +82,14 @@ export class UbButton extends HTMLElement {
     this.#buttonElement.value = newValue;
   }
   get danger(): boolean {
-    return this.#buttonElement.classList.contains("danger");
+    return this.#danger;
   }
 
   set danger(value: boolean) {
-    if (value) {
-      this.#buttonElement.classList.remove("normal");
-      this.#buttonElement.classList.add("danger");
-    } else {
-      this.#buttonElement.classList.remove("danger");
-      this.#buttonElement.classList.add("normal");
-    }
+    this.#danger = value;
+    this.#updateDanger();
   }
+
 
   get variants() {
     return this.#variants;
@@ -134,6 +130,8 @@ export class UbButton extends HTMLElement {
     ];
   }
 
+  #danger: boolean = false;
+
   constructor() {
     super();
 
@@ -151,14 +149,13 @@ export class UbButton extends HTMLElement {
     this.#slotElement.classList.add("text");
     this.#buttonElement.appendChild(this.#slotElement);
     this.shadowRoot?.appendChild(this.#buttonElement);
-
-    if (this.danger) this.danger = true;
-    else this.danger = false;
+    this.#updateDanger();
   }
 
   attributeChangedCallback(
     name: string,
     oldValue: string,
+    //storybookで、argTypesで{type: "string" }を使い、空文字を入力するとnewValueの実引数がnullになりました
     newValue: string | null,
   ) {
     if (oldValue === newValue) return;
@@ -170,6 +167,7 @@ export class UbButton extends HTMLElement {
         this.disabled = newValue === "true" || newValue === "";
         break;
       case "danger":
+        // 真偽値の判定を、<input>のdisabled属性のような非カスタムタグの真偽値属性に合わせます。
         this.danger = newValue !== null;
         break;
       case "type":
@@ -199,6 +197,16 @@ export class UbButton extends HTMLElement {
 
   #isValudButtonType(value: string | null): value is buttonType {
     return ["reset", "submit", "button"].some((type) => type === value);
+  }
+
+  #updateDanger() {
+    if (this.danger) {
+      this.#buttonElement.classList.remove("normal");
+      this.#buttonElement.classList.add("danger");
+    } else {
+      this.#buttonElement.classList.remove("danger");
+      this.#buttonElement.classList.add("normal");
+    }
   }
 }
 type buttonType = "reset" | "submit" | "button";
