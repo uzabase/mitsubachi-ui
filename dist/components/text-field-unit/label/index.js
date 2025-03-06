@@ -23,7 +23,7 @@ export class SpTextFieldLabel extends HTMLElement {
         }
     }
     get text() {
-        return __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent ? __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent : '';
+        return __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent ? __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent : "";
     }
     set text(text) {
         __classPrivateFieldGet(this, _SpTextFieldLabel_labelElm, "f").textContent = text;

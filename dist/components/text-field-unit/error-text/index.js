@@ -18,7 +18,7 @@ export class SpTextFieldErrorText extends HTMLElement {
         return __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent ?? "";
     }
     set text(value) {
-        if (value === '') {
+        if (value === "") {
             __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent = null;
         }
         else {

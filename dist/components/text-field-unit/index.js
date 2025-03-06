@@ -29,7 +29,7 @@ export class SpTextFieldUnit extends HTMLElement {
         __classPrivateFieldSet(this, _SpTextFieldUnit_error, text, "f");
         if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f")) {
             if (this.disabled)
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = '';
+                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = "";
             else
                 __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = this.error;
         }
@@ -73,7 +73,7 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     constructor() {
         super();
-        _SpTextFieldUnit_labelElm.set(this, document.createElement('sp-text-field-label'));
+        _SpTextFieldUnit_labelElm.set(this, document.createElement("sp-text-field-label"));
         _SpTextFieldUnit_error.set(this, "");
         _SpTextFieldUnit_inputElm.set(this, document.createElement("sp-text-field-x-large-input"));
         _SpTextFieldUnit_errorTextElm.set(this, void 0);
