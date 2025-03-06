@@ -87,9 +87,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #error: string = "";
 
-  #inputElm: SpTextField = document.createElement(
-    "sp-text-field",
-  );
+  #inputElm: SpTextField = document.createElement("sp-text-field");
 
   #errorTextElm?: SpTextFieldErrorText;
 

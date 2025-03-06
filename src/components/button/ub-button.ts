@@ -29,8 +29,6 @@ function isValidSize(value: string): Size {
 const styles = new CSSStyleSheet();
 styles.replaceSync(`${resetStyle} ${foundationStyle}`);
 
-
-
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
   #disabled: boolean = false;
@@ -62,38 +60,38 @@ export class UbButton extends HTMLElement {
     this.#buttonDisabledUpdate();
   }
 
-  get type(): 'submit' | 'reset' | 'button' {
+  get type(): "submit" | "reset" | "button" {
     return this.#buttonElement.type;
   }
 
-  set type(value: 'submit' | 'reset' | 'button') {
-      this.#buttonElement.type = value;
+  set type(value: "submit" | "reset" | "button") {
+    this.#buttonElement.type = value;
   }
 
   get name(): string {
     return this.#buttonElement.name;
   }
   set name(value: string) {
-      this.#buttonElement.name = value;
+    this.#buttonElement.name = value;
   }
 
   get value(): string {
     return this.#buttonElement.value;
   }
   set value(newValue: string) {
-      this.#buttonElement.value = newValue;
+    this.#buttonElement.value = newValue;
   }
   get danger(): boolean {
-    return this.#buttonElement.classList.contains('danger');
+    return this.#buttonElement.classList.contains("danger");
   }
 
   set danger(value: boolean) {
-    if(value) {
-      this.#buttonElement.classList.remove('normal');
-      this.#buttonElement.classList.add('danger');
+    if (value) {
+      this.#buttonElement.classList.remove("normal");
+      this.#buttonElement.classList.add("danger");
     } else {
-      this.#buttonElement.classList.remove('danger');
-      this.#buttonElement.classList.add('normal');
+      this.#buttonElement.classList.remove("danger");
+      this.#buttonElement.classList.add("normal");
     }
   }
 
@@ -119,13 +117,21 @@ export class UbButton extends HTMLElement {
     };
     button.classList.remove(typeClassList[this.#size]);
     button.classList.add(typeClassList[newValue]);
-    if(this.danger)
-        this.danger = true;
+    if (this.danger) this.danger = true;
     this.#size = newValue;
   }
 
   static get observedAttributes() {
-    return ["loading", "disabled", "variants", "size", "danger", 'value', 'name', 'type'];
+    return [
+      "loading",
+      "disabled",
+      "variants",
+      "size",
+      "danger",
+      "value",
+      "name",
+      "type",
+    ];
   }
 
   constructor() {
@@ -146,13 +152,15 @@ export class UbButton extends HTMLElement {
     this.#buttonElement.appendChild(this.#slotElement);
     this.shadowRoot?.appendChild(this.#buttonElement);
 
-    if(this.danger)
-      this.danger = true;
-    else
-      this.danger = false;
+    if (this.danger) this.danger = true;
+    else this.danger = false;
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string | null) {
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string | null,
+  ) {
     if (oldValue === newValue) return;
     switch (name) {
       case "loading":
@@ -165,25 +173,19 @@ export class UbButton extends HTMLElement {
         this.danger = newValue !== null;
         break;
       case "type":
-        if(this.#isValudButtonType(newValue))
-          this.type = newValue;
-        else
-          this.#buttonElement.removeAttribute('type');
+        if (this.#isValudButtonType(newValue)) this.type = newValue;
+        else this.#buttonElement.removeAttribute("type");
         break;
       case "name":
-        if(newValue === null)
-            this.#buttonElement.removeAttribute('name');
-        else
-          this.name = newValue;
+        if (newValue === null) this.#buttonElement.removeAttribute("name");
+        else this.name = newValue;
         break;
       case "value":
-        if(newValue === null)
-            this.#buttonElement.removeAttribute('value');
-        else
-          this.value = newValue;
+        if (newValue === null) this.#buttonElement.removeAttribute("value");
+        else this.value = newValue;
         break;
       case "variants":
-        this.variants = newValue === null ? '' : newValue;
+        this.variants = newValue === null ? "" : newValue;
         break;
       case "size":
         this.size = newValue === null ? "" : newValue;
@@ -198,9 +200,8 @@ export class UbButton extends HTMLElement {
   #isValudButtonType(value: string | null): value is buttonType {
     return ["reset", "submit", "button"].some((type) => type === value);
   }
-
 }
-type buttonType = 'reset' | 'submit' | 'button';
+type buttonType = "reset" | "submit" | "button";
 
 declare global {
   interface HTMLElementTagNameMap {
