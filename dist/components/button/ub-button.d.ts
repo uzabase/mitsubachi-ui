@@ -6,8 +6,8 @@ export declare class UbButton extends HTMLElement {
     set loading(value: boolean);
     get disabled(): boolean;
     set disabled(value: boolean);
-    get type(): 'submit' | 'reset' | 'button';
-    set type(value: 'submit' | 'reset' | 'button');
+    get type(): "submit" | "reset" | "button";
+    set type(value: "submit" | "reset" | "button");
     get name(): string;
     set name(value: string);
     get value(): string;
