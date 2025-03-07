@@ -14,19 +14,27 @@ const meta: Meta<SpTextFieldUnit> = {
     disabled: false,
     name: "surname",
     value: "Yamada",
+    type: "text",
+  },
+  argTypes: {
+    type: {
+      options: ["text", "password"],
+      control: { type: "select" },
+    },
   },
 };
 export default meta;
 
 export const Default: StoryObj<SpTextFieldUnit> = {
-  render: ({ text: label, error, placeholder, disabled, name, value }) => {
+  render: ({ text, type, error, placeholder, disabled, name, value }) => {
     return html`<sp-text-field-unit
       placeholder=${placeholder}
-      text=${label}
+      text=${text}
       ?disabled=${disabled}
       name=${name}
       value=${value}
       error=${error}
+      type=${type}
     >
     </sp-text-field-unit>`;
   },

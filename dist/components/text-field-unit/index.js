@@ -71,6 +71,12 @@ export class SpTextFieldUnit extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").value = value;
         __classPrivateFieldGet(this, _SpTextFieldUnit_internals, "f").setFormValue(this.value);
     }
+    get type() {
+        return __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").type;
+    }
+    set type(newValue) {
+        __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").type = newValue;
+    }
     constructor() {
         super();
         _SpTextFieldUnit_labelElm.set(this, document.createElement("sp-text-field-label"));
@@ -117,6 +123,9 @@ export class SpTextFieldUnit extends HTMLElement {
         else if (name === "value") {
             this.value = newValue ? newValue : "";
         }
+        else if (name == "type") {
+            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").type = newValue ? newValue : "";
+        }
     }
 }
 _SpTextFieldUnit_labelElm = new WeakMap(), _SpTextFieldUnit_error = new WeakMap(), _SpTextFieldUnit_inputElm = new WeakMap(), _SpTextFieldUnit_errorTextElm = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap();
@@ -126,6 +135,7 @@ SpTextFieldUnit.observedAttributes = [
     "placeholder",
     "disabled",
     "name",
+    "type",
     "value",
 ];
 SpTextFieldUnit.formAssociated = true;

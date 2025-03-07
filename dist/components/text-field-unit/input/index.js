@@ -16,6 +16,12 @@ export class SpTextFieldXLargeInput extends HTMLElement {
     get error() {
         return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_error, "f");
     }
+    get type() {
+        return __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").type;
+    }
+    set type(newType) {
+        __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").type = newType;
+    }
     set error(isError) {
         __classPrivateFieldSet(this, _SpTextFieldXLargeInput_error, isError, "f");
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_instances, "m", _SpTextFieldXLargeInput_updateStyle).call(this);
@@ -65,7 +71,6 @@ export class SpTextFieldXLargeInput extends HTMLElement {
             makeStyleSheet(styles),
         ];
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_shadow, "f").appendChild(__classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f"));
-        __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").type = "text";
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").classList.add("input");
         __classPrivateFieldGet(this, _SpTextFieldXLargeInput_input, "f").addEventListener("input", (e) => {
             const target = e.target;
@@ -88,6 +93,9 @@ export class SpTextFieldXLargeInput extends HTMLElement {
         else if (name === "value") {
             this.value = newValue ? newValue : "";
         }
+        else if (name === "type") {
+            this.type = newValue ? newValue : "";
+        }
     }
 }
 _SpTextFieldXLargeInput_shadow = new WeakMap(), _SpTextFieldXLargeInput_input = new WeakMap(), _SpTextFieldXLargeInput_error = new WeakMap(), _SpTextFieldXLargeInput_internals = new WeakMap(), _SpTextFieldXLargeInput_instances = new WeakSet(), _SpTextFieldXLargeInput_updateStyle = function _SpTextFieldXLargeInput_updateStyle() {
@@ -107,6 +115,7 @@ SpTextFieldXLargeInput.observedAttributes = [
     "disabled",
     "name",
     "value",
+    "type",
 ];
 SpTextFieldXLargeInput.formAssociated = true;
 const tagName = "sp-text-field-x-large-input";

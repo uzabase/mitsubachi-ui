@@ -15,6 +15,7 @@ export class SpTextFieldUnit extends HTMLElement {
     "placeholder",
     "disabled",
     "name",
+    "type",
     "value",
   ];
 
@@ -79,6 +80,13 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#internals.setFormValue(this.value);
   }
 
+  get type(): string {
+    return this.#inputElm.type;
+  }
+  set type(newValue: string) {
+    this.#inputElm.type = newValue;
+  }
+
   #labelElm: SpTextFieldLabel = document.createElement("sp-text-field-label");
 
   #error: string = "";
@@ -133,6 +141,8 @@ export class SpTextFieldUnit extends HTMLElement {
       this.name = newValue ? newValue : "";
     } else if (name === "value") {
       this.value = newValue ? newValue : "";
+    } else if (name == "type") {
+      this.#inputElm.type = newValue ? newValue : "";
     }
   }
 }

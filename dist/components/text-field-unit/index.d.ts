@@ -16,6 +16,8 @@ export declare class SpTextFieldUnit extends HTMLElement {
     set name(value: string);
     get value(): string;
     set value(value: string);
+    get type(): string;
+    set type(newValue: string);
     constructor();
     connectedCallback(): void;
     attributeChangedCallback(name: string, _: string, newValue: string | null): void;

@@ -3,6 +3,8 @@ export declare class SpTextFieldXLargeInput extends HTMLElement {
     static observedAttributes: string[];
     static formAssociated: boolean;
     get error(): boolean;
+    get type(): string;
+    set type(newType: string);
     set error(isError: boolean);
     get placeholder(): string;
     set placeholder(value: string);
