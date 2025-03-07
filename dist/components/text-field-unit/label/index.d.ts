@@ -2,8 +2,6 @@ export declare class SpTextFieldLabel extends HTMLElement {
     #private;
     static styles: CSSStyleSheet;
     static observedAttributes: string[];
-    get htmlFor(): string;
-    set htmlFor(value: string);
     get text(): string;
     set text(text: string);
     constructor();

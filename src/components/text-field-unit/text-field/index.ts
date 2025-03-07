@@ -1,7 +1,7 @@
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 
-export class SpTextFieldXLargeInput extends HTMLElement {
+export class SpTextField extends HTMLElement {
   static observedAttributes = [
     "error",
     "placeholder",
@@ -113,20 +113,22 @@ export class SpTextFieldXLargeInput extends HTMLElement {
   #updateStyle() {
     if (this.disabled) {
       this.#input.classList.remove("error");
+      this.#input.removeAttribute("aria-invalid");
       return;
     }
     if (this.error) {
       this.#input.classList.add("error");
+      this.#input.setAttribute("aria-invalid", "");
     } else this.#input.classList.remove("error");
   }
 }
 
-const tagName = "sp-text-field-x-large-input";
+const tagName = "sp-text-field";
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-x-large-input": SpTextFieldXLargeInput;
+    "sp-text-field": SpTextField;
   }
 }
 if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextFieldXLargeInput);
+  customElements.define(tagName, SpTextField);
 }

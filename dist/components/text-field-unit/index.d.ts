@@ -1,5 +1,5 @@
 import "./error-text";
-import "./input";
+import "./text-field";
 import "./label";
 export declare class SpTextFieldUnit extends HTMLElement {
     #private;

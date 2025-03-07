@@ -1,4 +1,4 @@
-export declare class SpTextFieldXLargeInput extends HTMLElement {
+export declare class SpTextField extends HTMLElement {
     #private;
     static observedAttributes: string[];
     static formAssociated: boolean;
@@ -20,7 +20,7 @@ export declare class SpTextFieldXLargeInput extends HTMLElement {
 }
 declare global {
     interface HTMLElementTagNameMap {
-        "sp-text-field-x-large-input": SpTextFieldXLargeInput;
+        "sp-text-field": SpTextField;
     }
 }
 //# sourceMappingURL=index.d.ts.map

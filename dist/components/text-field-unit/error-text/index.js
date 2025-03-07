@@ -41,6 +41,7 @@ export class SpTextFieldErrorText extends HTMLElement {
             makeStyleSheet(styles),
         ];
         __classPrivateFieldSet(this, _SpTextFieldErrorText_div, document.createElement("div"), "f");
+        __classPrivateFieldGet(this, _SpTextFieldErrorText_div, "f").setAttribute("role", "error");
         __classPrivateFieldGet(this, _SpTextFieldErrorText_div, "f").setAttribute("class", "container");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorText_div, "f"));
         __classPrivateFieldGet(this, _SpTextFieldErrorText_div, "f").appendChild(new SpTextFieldErrorIcon());

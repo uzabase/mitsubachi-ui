@@ -11,10 +11,9 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 };
 var _SpTextFieldUnit_labelElm, _SpTextFieldUnit_error, _SpTextFieldUnit_inputElm, _SpTextFieldUnit_errorTextElm, _SpTextFieldUnit_internals;
 import "./error-text";
-import "./input";
+import "./text-field";
 import "./label";
 import { makeStyleSheet } from "../styles";
-import styles from "./styles.css?inline";
 export class SpTextFieldUnit extends HTMLElement {
     get text() {
         return __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").text;
@@ -60,9 +59,6 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     set name(value) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").name = value;
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f")) {
-            __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").htmlFor = this.name;
-        }
     }
     get value() {
         return __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").value;
@@ -81,7 +77,7 @@ export class SpTextFieldUnit extends HTMLElement {
         super();
         _SpTextFieldUnit_labelElm.set(this, document.createElement("sp-text-field-label"));
         _SpTextFieldUnit_error.set(this, "");
-        _SpTextFieldUnit_inputElm.set(this, document.createElement("sp-text-field-x-large-input"));
+        _SpTextFieldUnit_inputElm.set(this, document.createElement("sp-text-field"));
         _SpTextFieldUnit_errorTextElm.set(this, void 0);
         _SpTextFieldUnit_internals.set(this, void 0);
         this.attachShadow({ mode: "open" });
@@ -93,12 +89,14 @@ export class SpTextFieldUnit extends HTMLElement {
         }
         this.shadowRoot.adoptedStyleSheets = [
             ...this.shadowRoot.adoptedStyleSheets,
-            makeStyleSheet(styles),
+            makeStyleSheet(),
         ];
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f"));
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"));
+        const fieldSet = document.createElement("fieldset");
+        this.shadowRoot.appendChild(fieldSet);
+        fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f"));
+        fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"));
         __classPrivateFieldSet(this, _SpTextFieldUnit_errorTextElm, document.createElement("sp-text-field-error-text"), "f");
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f"));
+        fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f"));
         this.error = __classPrivateFieldGet(this, _SpTextFieldUnit_error, "f");
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").addEventListener("input", (e) => {
             this.value = e.target.value;
