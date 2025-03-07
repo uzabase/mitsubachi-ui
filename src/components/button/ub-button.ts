@@ -59,14 +59,6 @@ export class UbButton extends HTMLElement {
     this.#disabled = value;
     this.#buttonDisabledUpdate();
   }
-  // button.typeの型に合わせるために型エイリアスを使っていません
-  get type(): "submit" | "reset" | "button" {
-    return this.#buttonElement.type;
-  }
-
-  set type(value: "submit" | "reset" | "button") {
-    this.#buttonElement.type = value;
-  }
 
   get name(): string {
     return this.#buttonElement.name;
@@ -160,18 +152,14 @@ export class UbButton extends HTMLElement {
     if (oldValue === newValue) return;
     switch (name) {
       case "loading":
-        this.loading = newValue === "true" || newValue === "";
+        this.loading = newValue !== null;
         break;
       case "disabled":
-        this.disabled = newValue === "true" || newValue === "";
+        this.disabled = newValue !== null;
         break;
       case "danger":
         // 真偽値の判定を、<input>のdisabled属性のような非カスタムタグの真偽値属性に合わせます。
         this.danger = newValue !== null;
-        break;
-      case "type":
-        if (this.#isValudButtonType(newValue)) this.type = newValue;
-        else this.#buttonElement.removeAttribute("type");
         break;
       case "name":
         if (newValue === null) this.#buttonElement.removeAttribute("name");
@@ -194,10 +182,6 @@ export class UbButton extends HTMLElement {
     this.#buttonElement.disabled = this.disabled || this.loading;
   }
 
-  #isValudButtonType(value: string | null): value is buttonType {
-    return ["reset", "submit", "button"].some((type) => type === value);
-  }
-
   #updateDanger() {
     if (this.danger) {
       this.#buttonElement.classList.remove("normal");
@@ -208,7 +192,6 @@ export class UbButton extends HTMLElement {
     }
   }
 }
-type buttonType = "reset" | "submit" | "button";
 
 declare global {
   interface HTMLElementTagNameMap {

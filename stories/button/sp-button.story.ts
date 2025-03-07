@@ -27,10 +27,6 @@ const meta = {
     },
     name: { type: "string" },
     value: { type: "string" },
-    type: {
-      control: { type: "select" },
-      options: [undefined, "submit", "reset", "button"],
-    },
   },
   args: {
     slot: "ダウンロード",
@@ -42,7 +38,6 @@ const meta = {
     onclick: action("onclick"),
     name: undefined,
     value: undefined,
-    type: undefined,
   },
   render: (args) => html`
     <sp-button
@@ -53,7 +48,6 @@ const meta = {
       ?disabled=${args.disabled}
       @click=${args.onclick}
       name=${args.name || nothing}
-      type=${args.type || nothing}
       value=${args.value || nothing}
     >
       ${args.slot}
