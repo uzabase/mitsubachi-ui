@@ -21,7 +21,6 @@ export class SpTextFieldErrorText extends HTMLElement {
         return __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent ?? "";
     }
     set text(value) {
-        console.log('text', value);
         if (value === "") {
             __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent = null;
         }
@@ -54,6 +53,7 @@ export class SpTextFieldErrorText extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").appendChild(icon);
         __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").className = "text";
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f"));
+        __classPrivateFieldGet(this, _SpTextFieldErrorText_instances, "m", _SpTextFieldErrorText_updateClass).call(this);
         __classPrivateFieldSet(this, _SpTextFieldErrorText_initalized, true, "f");
     }
     attributeChangedCallback(name, _, newValue) {

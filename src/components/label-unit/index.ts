@@ -52,7 +52,7 @@ export class SpLabelUnit extends HTMLElement {
   }
 
   isEmpty(): boolean {
-    return this.text === "" && this.supporttext === ""; 
+    return this.text === "" && this.supporttext === "";
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {

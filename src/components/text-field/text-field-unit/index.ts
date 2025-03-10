@@ -106,7 +106,7 @@ export class SpTextFieldUnit extends HTMLElement {
     const fieldSet = document.createElement("fieldset");
     this.shadowRoot.appendChild(fieldSet);
     fieldSet.appendChild(this.#labelElm);
-    this.#labelElm.classList.add('label');
+    this.#labelElm.classList.add("label");
     fieldSet.appendChild(this.#inputElm);
 
     this.#initialized = true;
@@ -132,12 +132,11 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 
   #updateStyle() {
-    if(this.#labelElm.isEmpty()) {
+    if (this.#labelElm.isEmpty()) {
       this.#labelElm.classList.add("none");
     } else {
       this.#labelElm.classList.remove("none");
     }
-
   }
 }
 
