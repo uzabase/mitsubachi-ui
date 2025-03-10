@@ -32,4 +32,3 @@ const tagName = "sp-icon-error-fill";
 if (!customElements.get(tagName)) {
   customElements.define(tagName, SpIconErrorFill);
 }
-

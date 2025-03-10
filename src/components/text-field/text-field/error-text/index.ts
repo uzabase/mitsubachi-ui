@@ -3,7 +3,7 @@ import { makeStyleSheet } from "../../../styles";
 import styles from "./styles.css?inline";
 
 /**
- * 
+ *
  */
 export class SpTextFieldErrorText extends HTMLElement {
   static observedAttributes = ["text"];
@@ -43,7 +43,7 @@ export class SpTextFieldErrorText extends HTMLElement {
     this.#container.setAttribute("class", "container");
     this.shadowRoot.appendChild(this.#container);
 
-    const icon =new SpIconErrorFill();
+    const icon = new SpIconErrorFill();
     icon.classList.add("icon");
     this.#container.appendChild(icon);
 
