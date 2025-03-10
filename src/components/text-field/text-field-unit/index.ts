@@ -1,11 +1,11 @@
 import "./error-text";
-import "./text-field";
+import "../text-field";
 import "./label";
 
 import { makeStyleSheet } from "../../styles";
+import { type SpTextField } from "../text-field";
 import { type SpTextFieldErrorText } from "./error-text";
 import { type SpTextFieldLabel } from "./label";
-import { type SpTextField } from "./text-field";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
