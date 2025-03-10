@@ -1,0 +1,10 @@
+:host {
+
+    .label {
+        margin-bottom: 8px;
+
+        &.none {
+            display: none;
+        }
+    }
+}

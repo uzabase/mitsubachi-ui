@@ -9,50 +9,33 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextFieldUnit_labelElm, _SpTextFieldUnit_error, _SpTextFieldUnit_inputElm, _SpTextFieldUnit_errorTextElm, _SpTextFieldUnit_internals;
-import "./error-text";
-import "./text-field";
-import "./label";
-import { makeStyleSheet } from "../styles";
+var _SpTextFieldUnit_instances, _SpTextFieldUnit_labelElm, _SpTextFieldUnit_inputElm, _SpTextFieldUnit_internals, _SpTextFieldUnit_initialized, _SpTextFieldUnit_updateStyle;
+import "../text-field";
+import "../../label-unit";
+import { makeStyleSheet } from "../../styles";
+import styles from "./styles.css?inline";
 export class SpTextFieldUnit extends HTMLElement {
     get text() {
         return __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").text;
     }
     set text(text) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").text = text;
+        __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateStyle).call(this);
     }
     get error() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_error, "f");
+        return __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").error;
     }
     set error(text) {
-        __classPrivateFieldSet(this, _SpTextFieldUnit_error, text, "f");
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f")) {
-            if (this.disabled)
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = "";
-            else
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = this.error;
-        }
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"))
-            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").error = this.error ? true : false;
+        __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").error = text;
     }
     get disabled() {
         return __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").disabled;
     }
     set disabled(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").disabled = newValue;
-        if (__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f")) {
-            if (this.disabled)
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = "";
-            else
-                __classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f").text = this.error;
-        }
     }
     set placeholder(newValue) {
-        if (newValue) {
-            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").placeholder = newValue;
-        }
-        else
-            __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").placeholder = "";
+        __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").placeholder = newValue;
     }
     get name() {
         return __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").name;
@@ -73,34 +56,36 @@ export class SpTextFieldUnit extends HTMLElement {
     set type(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").type = newValue;
     }
+    get supporttext() {
+        return __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").supporttext;
+    }
+    set supporttext(value) {
+        __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").supporttext = value;
+        __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateStyle).call(this);
+    }
     constructor() {
         super();
-        _SpTextFieldUnit_labelElm.set(this, document.createElement("sp-text-field-label"));
-        _SpTextFieldUnit_error.set(this, "");
+        _SpTextFieldUnit_instances.add(this);
+        _SpTextFieldUnit_labelElm.set(this, document.createElement("sp-label-unit"));
         _SpTextFieldUnit_inputElm.set(this, document.createElement("sp-text-field"));
-        _SpTextFieldUnit_errorTextElm.set(this, void 0);
         _SpTextFieldUnit_internals.set(this, void 0);
+        _SpTextFieldUnit_initialized.set(this, false);
         this.attachShadow({ mode: "open" });
         __classPrivateFieldSet(this, _SpTextFieldUnit_internals, this.attachInternals(), "f");
     }
     connectedCallback() {
-        if (!this.shadowRoot) {
+        if (!this.shadowRoot || __classPrivateFieldGet(this, _SpTextFieldUnit_initialized, "f"))
             return;
-        }
         this.shadowRoot.adoptedStyleSheets = [
             ...this.shadowRoot.adoptedStyleSheets,
-            makeStyleSheet(),
+            makeStyleSheet(styles),
         ];
         const fieldSet = document.createElement("fieldset");
         this.shadowRoot.appendChild(fieldSet);
         fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f"));
+        __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").classList.add('label');
         fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f"));
-        __classPrivateFieldSet(this, _SpTextFieldUnit_errorTextElm, document.createElement("sp-text-field-error-text"), "f");
-        fieldSet.appendChild(__classPrivateFieldGet(this, _SpTextFieldUnit_errorTextElm, "f"));
-        this.error = __classPrivateFieldGet(this, _SpTextFieldUnit_error, "f");
-        __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").addEventListener("input", (e) => {
-            this.value = e.target.value;
-        });
+        __classPrivateFieldSet(this, _SpTextFieldUnit_initialized, true, "f");
     }
     attributeChangedCallback(name, _, newValue) {
         if (name === "error") {
@@ -110,10 +95,10 @@ export class SpTextFieldUnit extends HTMLElement {
             this.text = newValue ? newValue : "";
         }
         else if (name === "placeholder") {
-            this.placeholder = newValue;
+            this.placeholder = newValue ? newValue : "";
         }
         else if (name === "disabled") {
-            this.disabled = newValue == null ? false : true;
+            this.disabled = newValue !== null;
         }
         else if (name === "name") {
             this.name = newValue ? newValue : "";
@@ -124,13 +109,23 @@ export class SpTextFieldUnit extends HTMLElement {
         else if (name == "type") {
             __classPrivateFieldGet(this, _SpTextFieldUnit_inputElm, "f").type = newValue ? newValue : "";
         }
+        else if (name == "supporttext")
+            this.supporttext = newValue ? newValue : "";
     }
 }
-_SpTextFieldUnit_labelElm = new WeakMap(), _SpTextFieldUnit_error = new WeakMap(), _SpTextFieldUnit_inputElm = new WeakMap(), _SpTextFieldUnit_errorTextElm = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap();
+_SpTextFieldUnit_labelElm = new WeakMap(), _SpTextFieldUnit_inputElm = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap(), _SpTextFieldUnit_initialized = new WeakMap(), _SpTextFieldUnit_instances = new WeakSet(), _SpTextFieldUnit_updateStyle = function _SpTextFieldUnit_updateStyle() {
+    if (__classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").isEmpty()) {
+        __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").classList.add("none");
+    }
+    else {
+        __classPrivateFieldGet(this, _SpTextFieldUnit_labelElm, "f").classList.remove("none");
+    }
+};
 SpTextFieldUnit.observedAttributes = [
     "error",
     "text",
     "placeholder",
+    "supporttext",
     "disabled",
     "name",
     "type",

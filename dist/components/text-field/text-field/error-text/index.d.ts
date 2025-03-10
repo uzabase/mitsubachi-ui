@@ -1,3 +1,6 @@
+/**
+ *
+ */
 export declare class SpTextFieldErrorText extends HTMLElement {
     #private;
     static observedAttributes: string[];
