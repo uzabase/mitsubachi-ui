@@ -1,4 +1,4 @@
-import { makeStyleSheet } from "../../styles";
+import { makeStyleSheet } from "../../../styles";
 import styles from "./styles.css?inline";
 
 export class SpTextFieldLabel extends HTMLElement {

@@ -1,4 +1,4 @@
-import { makeStyleSheet } from "../../styles";
+import { makeStyleSheet } from "../../../styles";
 import { SpTextFieldErrorIcon } from "../error-icon";
 import styles from "./styles.css?inline";
 
