@@ -51,6 +51,10 @@ export class SpLabelUnit extends HTMLElement {
     this.#initialized = true;
   }
 
+  isEmpty(): boolean {
+    return this.text === "" && this.supporttext === ""; 
+  }
+
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "text") {
       this.text = newValue ? newValue : "";

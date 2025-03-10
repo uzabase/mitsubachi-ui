@@ -4,13 +4,14 @@ import "../../label-unit";
 import { type SpLabelUnit } from "../../label-unit";
 import { makeStyleSheet } from "../../styles";
 import { type SpTextField } from "../text-field";
+import styles from "./styles.css?inline";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
     "error",
     "text",
     "placeholder",
-    "supporttet",
+    "supporttext",
     "disabled",
     "name",
     "type",
@@ -25,6 +26,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set text(text: string) {
     this.#labelElm.text = text;
+    this.#updateStyle();
   }
 
   get error(): string {
@@ -77,6 +79,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set supporttext(value: string) {
     this.#labelElm.supporttext = value;
+    this.#updateStyle();
   }
 
   #labelElm: SpLabelUnit = document.createElement("sp-label-unit");
@@ -98,11 +101,12 @@ export class SpTextFieldUnit extends HTMLElement {
 
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(),
+      makeStyleSheet(styles),
     ];
     const fieldSet = document.createElement("fieldset");
     this.shadowRoot.appendChild(fieldSet);
     fieldSet.appendChild(this.#labelElm);
+    this.#labelElm.classList.add('label');
     fieldSet.appendChild(this.#inputElm);
 
     this.#initialized = true;
@@ -125,6 +129,15 @@ export class SpTextFieldUnit extends HTMLElement {
       this.#inputElm.type = newValue ? newValue : "";
     } else if (name == "supporttext")
       this.supporttext = newValue ? newValue : "";
+  }
+
+  #updateStyle() {
+    if(this.#labelElm.isEmpty()) {
+      this.#labelElm.classList.add("none");
+    } else {
+      this.#labelElm.classList.remove("none");
+    }
+
   }
 }
 
