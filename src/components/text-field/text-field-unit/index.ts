@@ -1,11 +1,11 @@
 import "./error-text";
 import "../text-field";
-import "./label";
+import "../../label-unit";
 
+import { type SpLabelUnit } from "../../label-unit";
 import { makeStyleSheet } from "../../styles";
 import { type SpTextField } from "../text-field";
 import { type SpTextFieldErrorText } from "./error-text";
-import { type SpTextFieldLabel } from "./label";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
@@ -83,7 +83,7 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#inputElm.type = newValue;
   }
 
-  #labelElm: SpTextFieldLabel = document.createElement("sp-text-field-label");
+  #labelElm: SpLabelUnit = document.createElement("sp-label-unit");
 
   #error: string = "";
 
