@@ -21,74 +21,79 @@ export class SpTextFieldUnit extends HTMLElement {
   static formAssociated = true;
 
   get text(): string {
-    return this.#labelElm.text;
+    return this.#label.text;
   }
 
   set text(text: string) {
-    this.#labelElm.text = text;
+    this.#label.text = text;
     this.#updateStyle();
   }
 
   get error(): string {
-    return this.#inputElm.error;
+    return this.#input.error;
   }
 
   set error(text: string) {
-    this.#inputElm.error = text;
+    this.#input.error = text;
   }
 
   get disabled(): boolean {
-    return this.#inputElm.disabled;
+    return this.#input.disabled;
   }
 
   set disabled(newValue: boolean) {
-    this.#inputElm.disabled = newValue;
+    this.#input.disabled = newValue;
   }
 
   set placeholder(newValue: string) {
-    this.#inputElm.placeholder = newValue;
+    this.#input.placeholder = newValue;
   }
 
   get name(): string {
-    return this.#inputElm.name;
+    return this.#input.name;
   }
 
   set name(value: string) {
-    this.#inputElm.name = value;
+    this.#input.name = value;
   }
 
   get value(): string {
-    return this.#inputElm.value;
+    return this.#input.value;
   }
 
   set value(value: string) {
-    this.#inputElm.value = value;
+    this.#input.value = value;
     this.#internals.setFormValue(this.value);
   }
 
   get type(): string {
-    return this.#inputElm.type;
+    return this.#input.type;
   }
   set type(newValue: string) {
-    this.#inputElm.type = newValue;
+    this.#input.type = newValue;
   }
 
   get supporttext() {
-    return this.#labelElm.supporttext;
+    return this.#label.supporttext;
   }
 
   set supporttext(value: string) {
-    this.#labelElm.supporttext = value;
+    this.#label.supporttext = value;
     this.#updateStyle();
   }
 
-  #labelElm: SpLabelUnit = document.createElement("sp-label-unit");
+  #label: SpLabelUnit = document.createElement("sp-label-unit");
 
-  #inputElm: SpTextField = document.createElement("sp-text-field");
+  #input: SpTextField = document.createElement("sp-text-field");
 
   #internals: ElementInternals;
 
   #initialized = false;
+
+  #inputHandler = (e: Event) => {
+    const target = e.target as SpTextField;
+    this.value = target.value;
+  };
 
   constructor() {
     super();
@@ -97,6 +102,8 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 
   connectedCallback() {
+    this.#input.addEventListener("input", this.#inputHandler);
+
     if (!this.shadowRoot || this.#initialized) return;
 
     this.shadowRoot.adoptedStyleSheets = [
@@ -105,11 +112,15 @@ export class SpTextFieldUnit extends HTMLElement {
     ];
     const fieldSet = document.createElement("fieldset");
     this.shadowRoot.appendChild(fieldSet);
-    fieldSet.appendChild(this.#labelElm);
-    this.#labelElm.classList.add("label");
-    fieldSet.appendChild(this.#inputElm);
+    fieldSet.appendChild(this.#label);
+    this.#label.classList.add("label");
+    fieldSet.appendChild(this.#input);
 
     this.#initialized = true;
+  }
+
+  disconnectedCallback() {
+    this.#input.removeEventListener("input", this.#inputHandler);
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -126,16 +137,16 @@ export class SpTextFieldUnit extends HTMLElement {
     } else if (name === "value") {
       this.value = newValue ? newValue : "";
     } else if (name == "type") {
-      this.#inputElm.type = newValue ? newValue : "";
+      this.#input.type = newValue ? newValue : "";
     } else if (name == "supporttext")
       this.supporttext = newValue ? newValue : "";
   }
 
   #updateStyle() {
-    if (this.#labelElm.isEmpty()) {
-      this.#labelElm.classList.add("none");
+    if (this.#label.isEmpty()) {
+      this.#label.classList.add("none");
     } else {
-      this.#labelElm.classList.remove("none");
+      this.#label.classList.remove("none");
     }
   }
 }
