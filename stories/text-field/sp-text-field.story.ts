@@ -24,7 +24,7 @@ const meta: Meta<SpTextField> = {
 export default meta;
 
 export const Default: StoryObj<SpTextField> = {
-  render: ({  type, error, placeholder, disabled, name, value }) => {
+  render: ({ type, error, placeholder, disabled, name, value }) => {
     return html`<sp-text-field
       placeholder=${placeholder}
       ?disabled=${disabled}

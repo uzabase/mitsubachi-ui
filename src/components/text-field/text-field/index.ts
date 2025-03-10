@@ -27,10 +27,8 @@ export class SpTextField extends HTMLElement {
 
   set error(text: string) {
     this.#error = text;
-    if(this.disabled)
-      this.#errorText.text = '';
-    else
-      this.#errorText.text = this.error;
+    if (this.disabled) this.#errorText.text = "";
+    else this.#errorText.text = this.error;
 
     this.#updateStyle();
   }
@@ -51,10 +49,8 @@ export class SpTextField extends HTMLElement {
     if (value) this.#input.setAttribute("disabled", "");
     else this.#input.removeAttribute("disabled");
 
-    if(this.disabled)
-      this.#errorText.text = "";
-    else
-      this.#errorText.text = this.error;
+    if (this.disabled) this.#errorText.text = "";
+    else this.#errorText.text = this.error;
 
     this.#updateStyle();
   }
@@ -86,7 +82,7 @@ export class SpTextField extends HTMLElement {
 
   #initialized = false;
 
-  #error: string = '';
+  #error: string = "";
 
   #inputHandler = (e: Event) => {
     const target = e.target as HTMLInputElement;

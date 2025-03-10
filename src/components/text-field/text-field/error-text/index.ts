@@ -44,7 +44,7 @@ export class SpTextFieldErrorText extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    console.log('errortext', name, newValue);
+    console.log("errortext", name, newValue);
 
     if (name === "text") {
       this.text = newValue ? newValue : "";
