@@ -21,6 +21,7 @@ export declare class SpTextFieldUnit extends HTMLElement {
     set supporttext(value: string);
     constructor();
     connectedCallback(): void;
+    disconnectedCallback(): void;
     attributeChangedCallback(name: string, _: string, newValue: string | null): void;
 }
 declare global {
