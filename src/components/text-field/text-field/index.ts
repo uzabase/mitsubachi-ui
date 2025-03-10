@@ -72,8 +72,6 @@ export class SpTextField extends HTMLElement {
     this.#internals.setFormValue(this.value);
   }
 
-  readonly #shadow: ShadowRoot;
-
   #input = document.createElement("input");
 
   #errorText = document.createElement("sp-text-field-error-text");
@@ -92,23 +90,23 @@ export class SpTextField extends HTMLElement {
   constructor() {
     super();
     this.#internals = this.attachInternals();
-    this.#shadow = this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
     this.#input.addEventListener("input", this.#inputHandler);
 
-    if (this.#initialized) return;
+    if (!this.shadowRoot|| this.#initialized) return;
 
-    this.#shadow.adoptedStyleSheets = [
-      ...this.#shadow.adoptedStyleSheets,
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
 
-    this.#shadow.appendChild(this.#input);
+    this.shadowRoot.appendChild(this.#input);
     this.#input.classList.add("input");
 
-    this.#shadow.appendChild(this.#errorText);
+    this.shadowRoot.appendChild(this.#errorText);
 
     this.#initialized = true;
   }
