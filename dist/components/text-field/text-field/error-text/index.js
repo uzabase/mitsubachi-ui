@@ -21,6 +21,7 @@ export class SpTextFieldErrorText extends HTMLElement {
         return __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent ?? "";
     }
     set text(value) {
+        console.log('text', value);
         if (value === "") {
             __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent = null;
         }

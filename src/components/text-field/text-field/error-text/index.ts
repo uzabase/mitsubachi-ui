@@ -13,6 +13,7 @@ export class SpTextFieldErrorText extends HTMLElement {
   }
 
   set text(value: string) {
+    console.log('text', value);
     if (value === "") {
       this.#span.textContent = null;
     } else {
