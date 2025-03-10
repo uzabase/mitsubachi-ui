@@ -6,7 +6,6 @@ import { html } from "lit";
 import type { SpTextFieldUnit } from "../../src/components/text-field-unit";
 
 const meta: Meta<SpTextFieldUnit> = {
-  component: "sp-text-field-x-large",
   args: {
     text: "ラベル",
     error: "エラーテキストが入ります",
