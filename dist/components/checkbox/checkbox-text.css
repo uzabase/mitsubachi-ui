@@ -1,0 +1,48 @@
+:host {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.base {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  column-gap: 2px;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.checkmark:has(.input:focus-visible)::before {
+  box-shadow: 0 0 0 2px #FFF, 0 0 0 4px #191919;
+}
+
+.base:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.text-wrap {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding-block-start: 1.5px;
+}
+
+.text {
+  color: rgb(0 0 0 / 84%);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.base:has(.input:disabled) .text {
+  color: rgb(0 0 0 / 35%);
+}
+
+.base:hover .checkmark:has(:not(.input:disabled))::before {
+  border-color: rgb(0 0 0 / 54%);
+}
+
+.base:hover .checkmark:has(:is(.input:checked, .input:indeterminate)):has(:not(.input:disabled))::before{
+  background-color: #2666BF;
+  border-color: #2666BF;
+}
