@@ -13,10 +13,6 @@ export class SpTextField extends HTMLElement {
 
   static formAssociated = true;
 
-  get error(): boolean {
-    return this.#error;
-  }
-
   get type(): string {
     return this.#input.type;
   }
@@ -25,8 +21,12 @@ export class SpTextField extends HTMLElement {
     this.#input.type = newType;
   }
 
-  set error(isError: boolean) {
-    this.#error = isError;
+  get error(): string {
+    return this.#errorText.text;
+  }
+
+  set error(text: string) {
+    this.#errorText.text = text;
     this.#updateStyle();
   }
 
@@ -69,9 +69,16 @@ export class SpTextField extends HTMLElement {
 
   #input = document.createElement("input");
 
-  #error: boolean = false;
+  #errorText = document.createElement("sp-text-field-error-text");
 
   #internals: ElementInternals;
+
+  #initialized = false;
+
+  #inputHandler = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    this.value = target.value;
+  };
 
   constructor() {
     super();
@@ -80,6 +87,10 @@ export class SpTextField extends HTMLElement {
   }
 
   connectedCallback() {
+    this.#input.addEventListener("input", this.#inputHandler);
+
+    if (this.#initialized) return;
+
     this.#shadow.adoptedStyleSheets = [
       ...this.#shadow.adoptedStyleSheets,
       makeStyleSheet(styles),
@@ -88,10 +99,9 @@ export class SpTextField extends HTMLElement {
     this.#shadow.appendChild(this.#input);
     this.#input.classList.add("input");
 
-    this.#input.addEventListener("input", (e) => {
-      const target = e.target as HTMLInputElement;
-      this.value = target.value;
-    });
+    this.#shadow.appendChild(this.#errorText);
+
+    this.#initialized = true;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -100,7 +110,7 @@ export class SpTextField extends HTMLElement {
     } else if (name === "disabled") {
       this.disabled = newValue ? true : false;
     } else if (name === "error") {
-      this.error = newValue ? true : false;
+      this.error = newValue ? newValue : "";
     } else if (name === "name") {
       this.name = newValue ? newValue : "";
     } else if (name === "value") {
@@ -108,6 +118,9 @@ export class SpTextField extends HTMLElement {
     } else if (name === "type") {
       this.type = newValue ? newValue : "";
     }
+  }
+  disconnectedCallback() {
+    this.#input.removeEventListener("input", this.#inputHandler);
   }
 
   #updateStyle() {
