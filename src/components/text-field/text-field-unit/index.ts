@@ -71,6 +71,14 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#inputElm.type = newValue;
   }
 
+  get supporttext() {
+    return this.#labelElm.supporttext;
+  }
+
+  set supporttext(value: string) {
+    this.#labelElm.supporttext = value;
+  }
+
   #labelElm: SpLabelUnit = document.createElement("sp-label-unit");
 
   #inputElm: SpTextField = document.createElement("sp-text-field");
@@ -115,7 +123,8 @@ export class SpTextFieldUnit extends HTMLElement {
       this.value = newValue ? newValue : "";
     } else if (name == "type") {
       this.#inputElm.type = newValue ? newValue : "";
-    }
+    } else if (name == "supporttext")
+      this.supporttext = newValue ? newValue : "";
   }
 }
 
