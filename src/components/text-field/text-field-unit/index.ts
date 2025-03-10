@@ -1,17 +1,16 @@
-import "../text-field/error-text";
 import "../text-field";
 import "../../label-unit";
 
 import { type SpLabelUnit } from "../../label-unit";
 import { makeStyleSheet } from "../../styles";
 import { type SpTextField } from "../text-field";
-import { type SpTextFieldErrorText } from "./error-text";
 
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
     "error",
     "text",
     "placeholder",
+    "supporttet",
     "disabled",
     "name",
     "type",
@@ -29,16 +28,11 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 
   get error(): string {
-    return this.#error;
+    return this.#inputElm.error;
   }
 
   set error(text: string) {
-    this.#error = text;
-    if (this.#errorTextElm) {
-      if (this.disabled) this.#errorTextElm.text = "";
-      else this.#errorTextElm.text = this.error;
-    }
-    if (this.#inputElm) this.#inputElm.error = this.error ? true : false;
+    this.#inputElm.error = text;
   }
 
   get disabled(): boolean {
@@ -47,16 +41,10 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set disabled(newValue: boolean) {
     this.#inputElm.disabled = newValue;
-    if (this.#errorTextElm) {
-      if (this.disabled) this.#errorTextElm.text = "";
-      else this.#errorTextElm.text = this.error;
-    }
   }
 
-  set placeholder(newValue: string | undefined | null) {
-    if (newValue) {
-      this.#inputElm.placeholder = newValue;
-    } else this.#inputElm.placeholder = "";
+  set placeholder(newValue: string) {
+    this.#inputElm.placeholder = newValue;
   }
 
   get name(): string {
@@ -85,13 +73,11 @@ export class SpTextFieldUnit extends HTMLElement {
 
   #labelElm: SpLabelUnit = document.createElement("sp-label-unit");
 
-  #error: string = "";
-
   #inputElm: SpTextField = document.createElement("sp-text-field");
 
-  #errorTextElm?: SpTextFieldErrorText;
-
   #internals: ElementInternals;
+
+  #initialized = false;
 
   constructor() {
     super();
@@ -100,9 +86,8 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) {
-      return;
-    }
+    if (!this.shadowRoot || this.#initialized) return;
+
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(),
@@ -112,14 +97,7 @@ export class SpTextFieldUnit extends HTMLElement {
     fieldSet.appendChild(this.#labelElm);
     fieldSet.appendChild(this.#inputElm);
 
-    this.#errorTextElm = document.createElement("sp-text-field-error-text");
-    fieldSet.appendChild(this.#errorTextElm);
-
-    this.error = this.#error;
-
-    this.#inputElm.addEventListener("input", (e) => {
-      this.value = (e.target as SpTextField).value;
-    });
+    this.#initialized = true;
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -128,9 +106,9 @@ export class SpTextFieldUnit extends HTMLElement {
     } else if (name === "text") {
       this.text = newValue ? newValue : "";
     } else if (name === "placeholder") {
-      this.placeholder = newValue;
+      this.placeholder = newValue ? newValue : "";
     } else if (name === "disabled") {
-      this.disabled = newValue == null ? false : true;
+      this.disabled = newValue !== null;
     } else if (name === "name") {
       this.name = newValue ? newValue : "";
     } else if (name === "value") {

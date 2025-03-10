@@ -96,7 +96,7 @@ export class SpTextField extends HTMLElement {
   connectedCallback() {
     this.#input.addEventListener("input", this.#inputHandler);
 
-    if (!this.shadowRoot|| this.#initialized) return;
+    if (!this.shadowRoot || this.#initialized) return;
 
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
