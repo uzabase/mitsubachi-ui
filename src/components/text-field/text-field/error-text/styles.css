@@ -6,15 +6,20 @@
         padding-top: 8px;
 
         >.text {
-            height: 21px;
             font-weight: var(--font-weight-normal);
             font-size: 14px;
             color: #c92812;
         }
 
+        .icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        &.none {
+            display: none;
+        }
+
     }
 
-    .none {
-        display: none;
-    }
 }
