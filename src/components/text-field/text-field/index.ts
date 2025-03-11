@@ -84,11 +84,6 @@ export class SpTextField extends HTMLElement {
 
   #error: string = "";
 
-  #inputHandler = (e: Event) => {
-    const target = e.target as HTMLInputElement;
-    this.value = target.value;
-  };
-
   constructor() {
     super();
     this.#internals = this.attachInternals();
@@ -96,14 +91,23 @@ export class SpTextField extends HTMLElement {
   }
 
   connectedCallback() {
-    this.#input.addEventListener("input", this.#inputHandler);
-
+    // MDNは、constructorよりもconnectedCallbackを推奨しています。
+    // WHATWGは、特にリソースの取得やレンダリングを、できるだけconstructorではなくconnectedCallbackで実装するように推奨しています。
+    // 同時に、connectedCallbackは複数呼ばれるため、2回以上呼ばてはいけない処理にはガードを設けることを推奨しています。
+    // https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks
+    // https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
     if (!this.shadowRoot || this.#initialized) return;
 
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
+    // 当web componentの外にイベントハンドラをつけないので、disconnectedCallbackで解除していないです
+    // https://open-wc.org/guides/knowledge/events/#on-elements-outside-of-your-element
+    this.#input.addEventListener("input", (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      this.value = target.value;
+    });
 
     this.shadowRoot.appendChild(this.#input);
     this.#input.classList.add("input");
@@ -127,9 +131,6 @@ export class SpTextField extends HTMLElement {
     } else if (name === "type") {
       this.type = newValue ? newValue : "";
     }
-  }
-  disconnectedCallback() {
-    this.#input.removeEventListener("input", this.#inputHandler);
   }
 
   #updateStyle() {

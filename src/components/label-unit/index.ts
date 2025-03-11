@@ -34,10 +34,8 @@ export class SpLabelUnit extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.shadowRoot) return;
-    if (this.#initialized) {
-      return;
-    }
+    if (!this.shadowRoot || this.#initialized) return;
+
     this.shadowRoot.adoptedStyleSheets = [
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
@@ -51,6 +49,9 @@ export class SpLabelUnit extends HTMLElement {
     this.#initialized = true;
   }
 
+  /**
+   * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
+   */
   isEmpty(): boolean {
     return this.text === "" && this.supporttext === "";
   }
