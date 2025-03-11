@@ -9,7 +9,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpLabelUnit_instances, _SpLabelUnit_text_get, _SpLabelUnit_supporttext_get, _SpLabelUnit_label, _SpLabelUnit_support, _SpLabelUnit_initialized, _SpLabelUnit_updateClass;
+var _SpLabelUnit_instances, _SpLabelUnit_text_get, _SpLabelUnit_supportText_get, _SpLabelUnit_label, _SpLabelUnit_support, _SpLabelUnit_initialized, _SpLabelUnit_updateClass;
 import { makeStyleSheet } from "../styles";
 import styles from "./styles.css?inline";
 export class SpLabelUnit extends HTMLElement {
@@ -17,7 +17,7 @@ export class SpLabelUnit extends HTMLElement {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent = text;
         __classPrivateFieldGet(this, _SpLabelUnit_instances, "m", _SpLabelUnit_updateClass).call(this);
     }
-    set supporttext(value) {
+    set supportText(value) {
         __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent = value;
         __classPrivateFieldGet(this, _SpLabelUnit_instances, "m", _SpLabelUnit_updateClass).call(this);
     }
@@ -46,20 +46,20 @@ export class SpLabelUnit extends HTMLElement {
      * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
      */
     isEmpty() {
-        return __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_text_get) === "" && __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supporttext_get) === "";
+        return __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_text_get) === "" && __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supportText_get) === "";
     }
     attributeChangedCallback(name, _, newValue) {
         if (name === "text") {
             this.text = newValue ? newValue : "";
         }
-        else if (name === "supporttext") {
-            this.supporttext = newValue ? newValue : "";
+        else if (name === "support-text") {
+            this.supportText = newValue ? newValue : "";
         }
     }
 }
 _SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLabelUnit_initialized = new WeakMap(), _SpLabelUnit_instances = new WeakSet(), _SpLabelUnit_text_get = function _SpLabelUnit_text_get() {
     return __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent : "";
-}, _SpLabelUnit_supporttext_get = function _SpLabelUnit_supporttext_get() {
+}, _SpLabelUnit_supportText_get = function _SpLabelUnit_supportText_get() {
     return __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent : "";
 }, _SpLabelUnit_updateClass = function _SpLabelUnit_updateClass() {
     if (__classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_text_get)) {
@@ -68,7 +68,7 @@ _SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLab
     else {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").classList.add("none");
     }
-    if (__classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supporttext_get)) {
+    if (__classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supportText_get)) {
         __classPrivateFieldGet(this, _SpLabelUnit_support, "f").classList.remove("none");
     }
     else {
@@ -76,7 +76,7 @@ _SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLab
     }
 };
 SpLabelUnit.styles = makeStyleSheet(styles);
-SpLabelUnit.observedAttributes = ["text", "supporttext"];
+SpLabelUnit.observedAttributes = ["text", "support-text"];
 const tagName = "sp-label-unit";
 if (!customElements.get(tagName)) {
     customElements.define(tagName, SpLabelUnit);

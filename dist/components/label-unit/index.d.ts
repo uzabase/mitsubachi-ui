@@ -3,7 +3,7 @@ export declare class SpLabelUnit extends HTMLElement {
     static styles: CSSStyleSheet;
     static observedAttributes: string[];
     set text(text: string);
-    set supporttext(value: string);
+    set supportText(value: string);
     constructor();
     connectedCallback(): void;
     /**
