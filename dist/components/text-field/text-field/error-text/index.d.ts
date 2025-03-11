@@ -4,7 +4,6 @@
 export declare class SpTextFieldErrorText extends HTMLElement {
     #private;
     static observedAttributes: string[];
-    get text(): string;
     set text(value: string);
     constructor();
     connectedCallback(): void;

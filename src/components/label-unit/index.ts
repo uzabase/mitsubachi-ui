@@ -6,15 +6,16 @@ export class SpLabelUnit extends HTMLElement {
 
   static observedAttributes = ["text", "supporttext"];
 
-  get text(): string {
+  get #text(): string {
     return this.#label.textContent ? this.#label.textContent : "";
   }
+
   set text(text: string) {
     this.#label.textContent = text;
     this.#updateClass();
   }
 
-  get supporttext(): string {
+  get #supporttext(): string {
     return this.#support.textContent ? this.#support.textContent : "";
   }
 
@@ -53,7 +54,7 @@ export class SpLabelUnit extends HTMLElement {
    * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
    */
   isEmpty(): boolean {
-    return this.text === "" && this.supporttext === "";
+    return this.#text === "" && this.#supporttext === "";
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
@@ -65,12 +66,12 @@ export class SpLabelUnit extends HTMLElement {
   }
 
   #updateClass() {
-    if (this.text) {
+    if (this.#text) {
       this.#label.classList.remove("none");
     } else {
       this.#label.classList.add("none");
     }
-    if (this.supporttext) {
+    if (this.#supporttext) {
       this.#support.classList.remove("none");
     } else {
       this.#support.classList.add("none");

@@ -8,7 +8,7 @@ import styles from "./styles.css?inline";
 export class SpTextFieldErrorText extends HTMLElement {
   static observedAttributes = ["text"];
 
-  get text(): string {
+  get #text(): string {
     return this.#span.textContent ?? "";
   }
 
@@ -61,7 +61,7 @@ export class SpTextFieldErrorText extends HTMLElement {
   }
 
   #updateClass() {
-    if (this.text) {
+    if (this.#text) {
       this.#container?.classList.remove("none");
     } else {
       this.#container?.classList.add("none");

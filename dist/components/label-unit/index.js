@@ -9,19 +9,13 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpLabelUnit_instances, _SpLabelUnit_label, _SpLabelUnit_support, _SpLabelUnit_initialized, _SpLabelUnit_updateClass;
+var _SpLabelUnit_instances, _SpLabelUnit_text_get, _SpLabelUnit_supporttext_get, _SpLabelUnit_label, _SpLabelUnit_support, _SpLabelUnit_initialized, _SpLabelUnit_updateClass;
 import { makeStyleSheet } from "../styles";
 import styles from "./styles.css?inline";
 export class SpLabelUnit extends HTMLElement {
-    get text() {
-        return __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent : "";
-    }
     set text(text) {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent = text;
         __classPrivateFieldGet(this, _SpLabelUnit_instances, "m", _SpLabelUnit_updateClass).call(this);
-    }
-    get supporttext() {
-        return __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent : "";
     }
     set supporttext(value) {
         __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent = value;
@@ -36,11 +30,8 @@ export class SpLabelUnit extends HTMLElement {
         this.attachShadow({ mode: "open" });
     }
     connectedCallback() {
-        if (!this.shadowRoot)
+        if (!this.shadowRoot || __classPrivateFieldGet(this, _SpLabelUnit_initialized, "f"))
             return;
-        if (__classPrivateFieldGet(this, _SpLabelUnit_initialized, "f")) {
-            return;
-        }
         this.shadowRoot.adoptedStyleSheets = [
             ...this.shadowRoot.adoptedStyleSheets,
             makeStyleSheet(styles),
@@ -51,8 +42,11 @@ export class SpLabelUnit extends HTMLElement {
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpLabelUnit_support, "f"));
         __classPrivateFieldSet(this, _SpLabelUnit_initialized, true, "f");
     }
+    /**
+     * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
+     */
     isEmpty() {
-        return this.text === "" && this.supporttext === "";
+        return __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_text_get) === "" && __classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supporttext_get) === "";
     }
     attributeChangedCallback(name, _, newValue) {
         if (name === "text") {
@@ -63,14 +57,18 @@ export class SpLabelUnit extends HTMLElement {
         }
     }
 }
-_SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLabelUnit_initialized = new WeakMap(), _SpLabelUnit_instances = new WeakSet(), _SpLabelUnit_updateClass = function _SpLabelUnit_updateClass() {
-    if (this.text) {
+_SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLabelUnit_initialized = new WeakMap(), _SpLabelUnit_instances = new WeakSet(), _SpLabelUnit_text_get = function _SpLabelUnit_text_get() {
+    return __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent : "";
+}, _SpLabelUnit_supporttext_get = function _SpLabelUnit_supporttext_get() {
+    return __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent ? __classPrivateFieldGet(this, _SpLabelUnit_support, "f").textContent : "";
+}, _SpLabelUnit_updateClass = function _SpLabelUnit_updateClass() {
+    if (__classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_text_get)) {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").classList.remove("none");
     }
     else {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").classList.add("none");
     }
-    if (this.supporttext) {
+    if (__classPrivateFieldGet(this, _SpLabelUnit_instances, "a", _SpLabelUnit_supporttext_get)) {
         __classPrivateFieldGet(this, _SpLabelUnit_support, "f").classList.remove("none");
     }
     else {

@@ -9,50 +9,35 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextField_instances, _SpTextField_input, _SpTextField_errorText, _SpTextField_internals, _SpTextField_initialized, _SpTextField_error, _SpTextField_inputHandler, _SpTextField_updateStyle;
+var _SpTextField_instances, _SpTextField_disabled_get, _SpTextField_input, _SpTextField_errorText, _SpTextField_internals, _SpTextField_initialized, _SpTextField_error, _SpTextField_updateStyle;
 import "./error-text";
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextField extends HTMLElement {
-    get type() {
-        return __classPrivateFieldGet(this, _SpTextField_input, "f").type;
-    }
     set type(newType) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").type = newType;
     }
-    get error() {
-        return __classPrivateFieldGet(this, _SpTextField_error, "f");
-    }
     set error(text) {
         __classPrivateFieldSet(this, _SpTextField_error, text, "f");
-        if (this.disabled)
+        if (__classPrivateFieldGet(this, _SpTextField_instances, "a", _SpTextField_disabled_get))
             __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = "";
         else
-            __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = this.error;
+            __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = __classPrivateFieldGet(this, _SpTextField_error, "f");
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateStyle).call(this);
-    }
-    get placeholder() {
-        return __classPrivateFieldGet(this, _SpTextField_input, "f").placeholder;
     }
     set placeholder(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").placeholder = value;
-    }
-    get disabled() {
-        return __classPrivateFieldGet(this, _SpTextField_input, "f").hasAttribute("disabled");
     }
     set disabled(value) {
         if (value)
             __classPrivateFieldGet(this, _SpTextField_input, "f").setAttribute("disabled", "");
         else
             __classPrivateFieldGet(this, _SpTextField_input, "f").removeAttribute("disabled");
-        if (this.disabled)
+        if (__classPrivateFieldGet(this, _SpTextField_instances, "a", _SpTextField_disabled_get))
             __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = "";
         else
-            __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = this.error;
+            __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = __classPrivateFieldGet(this, _SpTextField_error, "f");
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateStyle).call(this);
-    }
-    get name() {
-        return __classPrivateFieldGet(this, _SpTextField_input, "f").name;
     }
     set name(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").name = value;
@@ -72,21 +57,27 @@ export class SpTextField extends HTMLElement {
         _SpTextField_internals.set(this, void 0);
         _SpTextField_initialized.set(this, false);
         _SpTextField_error.set(this, "");
-        _SpTextField_inputHandler.set(this, (e) => {
-            const target = e.target;
-            this.value = target.value;
-        });
         __classPrivateFieldSet(this, _SpTextField_internals, this.attachInternals(), "f");
         this.attachShadow({ mode: "open" });
     }
     connectedCallback() {
-        __classPrivateFieldGet(this, _SpTextField_input, "f").addEventListener("input", __classPrivateFieldGet(this, _SpTextField_inputHandler, "f"));
+        // MDNは、constructorよりもconnectedCallbackを推奨しています。
+        // WHATWGは、特にリソースの取得やレンダリングを、できるだけconstructorではなくconnectedCallbackで実装するように推奨しています。
+        // 同時に、connectedCallbackは複数呼ばれるため、2回以上呼ばてはいけない処理にはガードを設けることを推奨しています。
+        // https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks
+        // https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
         if (!this.shadowRoot || __classPrivateFieldGet(this, _SpTextField_initialized, "f"))
             return;
         this.shadowRoot.adoptedStyleSheets = [
             ...this.shadowRoot.adoptedStyleSheets,
             makeStyleSheet(styles),
         ];
+        // 当web componentの外にイベントハンドラをつけないので、disconnectedCallbackで解除していないです
+        // https://open-wc.org/guides/knowledge/events/#on-elements-outside-of-your-element
+        __classPrivateFieldGet(this, _SpTextField_input, "f").addEventListener("input", (e) => {
+            const target = e.target;
+            this.value = target.value;
+        });
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_input, "f"));
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.add("input");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_errorText, "f"));
@@ -112,17 +103,16 @@ export class SpTextField extends HTMLElement {
             this.type = newValue ? newValue : "";
         }
     }
-    disconnectedCallback() {
-        __classPrivateFieldGet(this, _SpTextField_input, "f").removeEventListener("input", __classPrivateFieldGet(this, _SpTextField_inputHandler, "f"));
-    }
 }
-_SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpTextField_internals = new WeakMap(), _SpTextField_initialized = new WeakMap(), _SpTextField_error = new WeakMap(), _SpTextField_inputHandler = new WeakMap(), _SpTextField_instances = new WeakSet(), _SpTextField_updateStyle = function _SpTextField_updateStyle() {
-    if (this.disabled) {
+_SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpTextField_internals = new WeakMap(), _SpTextField_initialized = new WeakMap(), _SpTextField_error = new WeakMap(), _SpTextField_instances = new WeakSet(), _SpTextField_disabled_get = function _SpTextField_disabled_get() {
+    return __classPrivateFieldGet(this, _SpTextField_input, "f").hasAttribute("disabled");
+}, _SpTextField_updateStyle = function _SpTextField_updateStyle() {
+    if (__classPrivateFieldGet(this, _SpTextField_instances, "a", _SpTextField_disabled_get)) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.remove("error");
         __classPrivateFieldGet(this, _SpTextField_input, "f").removeAttribute("aria-invalid");
         return;
     }
-    if (this.error) {
+    if (__classPrivateFieldGet(this, _SpTextField_error, "f")) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.add("error");
         __classPrivateFieldGet(this, _SpTextField_input, "f").setAttribute("aria-invalid", "");
     }

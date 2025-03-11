@@ -2,12 +2,13 @@ export declare class SpLabelUnit extends HTMLElement {
     #private;
     static styles: CSSStyleSheet;
     static observedAttributes: string[];
-    get text(): string;
     set text(text: string);
-    get supporttext(): string;
     set supporttext(value: string);
     constructor();
     connectedCallback(): void;
+    /**
+     * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
+     */
     isEmpty(): boolean;
     attributeChangedCallback(name: string, _: string, newValue: string | null): void;
 }

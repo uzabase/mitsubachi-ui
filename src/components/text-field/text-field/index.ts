@@ -15,35 +15,23 @@ export class SpTextField extends HTMLElement {
 
   static formAssociated = true;
 
-  get type(): string {
-    return this.#input.type;
-  }
-
   set type(newType: string) {
     this.#input.type = newType;
   }
 
-  get error(): string {
-    return this.#error;
-  }
-
   set error(text: string) {
     this.#error = text;
-    if (this.disabled) this.#errorText.text = "";
-    else this.#errorText.text = this.error;
+    if (this.#disabled) this.#errorText.text = "";
+    else this.#errorText.text = this.#error;
 
     this.#updateStyle();
-  }
-
-  get placeholder(): string {
-    return this.#input.placeholder;
   }
 
   set placeholder(value: string) {
     this.#input.placeholder = value;
   }
 
-  get disabled(): boolean {
+  get #disabled(): boolean {
     return this.#input.hasAttribute("disabled");
   }
 
@@ -51,14 +39,10 @@ export class SpTextField extends HTMLElement {
     if (value) this.#input.setAttribute("disabled", "");
     else this.#input.removeAttribute("disabled");
 
-    if (this.disabled) this.#errorText.text = "";
-    else this.#errorText.text = this.error;
+    if (this.#disabled) this.#errorText.text = "";
+    else this.#errorText.text = this.#error;
 
     this.#updateStyle();
-  }
-
-  get name(): string {
-    return this.#input.name;
   }
 
   set name(value: string) {
@@ -134,12 +118,12 @@ export class SpTextField extends HTMLElement {
   }
 
   #updateStyle() {
-    if (this.disabled) {
+    if (this.#disabled) {
       this.#input.classList.remove("error");
       this.#input.removeAttribute("aria-invalid");
       return;
     }
-    if (this.error) {
+    if (this.#error) {
       this.#input.classList.add("error");
       this.#input.setAttribute("aria-invalid", "");
     } else this.#input.classList.remove("error");

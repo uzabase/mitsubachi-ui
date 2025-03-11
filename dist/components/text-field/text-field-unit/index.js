@@ -15,30 +15,18 @@ import "../../label-unit";
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextFieldUnit extends HTMLElement {
-    get text() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_label, "f").text;
-    }
     set text(text) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_label, "f").text = text;
         __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateStyle).call(this);
     }
-    get error() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").error;
-    }
     set error(text) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").error = text;
-    }
-    get disabled() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").disabled;
     }
     set disabled(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").disabled = newValue;
     }
     set placeholder(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").placeholder = newValue;
-    }
-    get name() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").name;
     }
     set name(value) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").name = value;
@@ -50,14 +38,8 @@ export class SpTextFieldUnit extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").value = value;
         __classPrivateFieldGet(this, _SpTextFieldUnit_internals, "f").setFormValue(this.value);
     }
-    get type() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").type;
-    }
     set type(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").type = newValue;
-    }
-    get supporttext() {
-        return __classPrivateFieldGet(this, _SpTextFieldUnit_label, "f").supporttext;
     }
     set supporttext(value) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_label, "f").supporttext = value;

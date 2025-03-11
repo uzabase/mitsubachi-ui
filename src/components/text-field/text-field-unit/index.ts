@@ -20,25 +20,13 @@ export class SpTextFieldUnit extends HTMLElement {
 
   static formAssociated = true;
 
-  get text(): string {
-    return this.#label.text;
-  }
-
   set text(text: string) {
     this.#label.text = text;
     this.#updateStyle();
   }
 
-  get error(): string {
-    return this.#input.error;
-  }
-
   set error(text: string) {
     this.#input.error = text;
-  }
-
-  get disabled(): boolean {
-    return this.#input.disabled;
   }
 
   set disabled(newValue: boolean) {
@@ -47,10 +35,6 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set placeholder(newValue: string) {
     this.#input.placeholder = newValue;
-  }
-
-  get name(): string {
-    return this.#input.name;
   }
 
   set name(value: string) {
@@ -66,15 +50,8 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#internals.setFormValue(this.value);
   }
 
-  get type(): string {
-    return this.#input.type;
-  }
   set type(newValue: string) {
     this.#input.type = newValue;
-  }
-
-  get supporttext() {
-    return this.#label.supporttext;
   }
 
   set supporttext(value: string) {

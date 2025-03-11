@@ -9,7 +9,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextFieldErrorText_instances, _SpTextFieldErrorText_span, _SpTextFieldErrorText_container, _SpTextFieldErrorText_initalized, _SpTextFieldErrorText_updateClass;
+var _SpTextFieldErrorText_instances, _SpTextFieldErrorText_text_get, _SpTextFieldErrorText_span, _SpTextFieldErrorText_container, _SpTextFieldErrorText_initalized, _SpTextFieldErrorText_updateClass;
 import { SpIconErrorFill } from "../../../icon/error-fill";
 import { makeStyleSheet } from "../../../styles";
 import styles from "./styles.css?inline";
@@ -17,9 +17,6 @@ import styles from "./styles.css?inline";
  *
  */
 export class SpTextFieldErrorText extends HTMLElement {
-    get text() {
-        return __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent ?? "";
-    }
     set text(value) {
         if (value === "") {
             __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent = null;
@@ -62,8 +59,10 @@ export class SpTextFieldErrorText extends HTMLElement {
         }
     }
 }
-_SpTextFieldErrorText_span = new WeakMap(), _SpTextFieldErrorText_container = new WeakMap(), _SpTextFieldErrorText_initalized = new WeakMap(), _SpTextFieldErrorText_instances = new WeakSet(), _SpTextFieldErrorText_updateClass = function _SpTextFieldErrorText_updateClass() {
-    if (this.text) {
+_SpTextFieldErrorText_span = new WeakMap(), _SpTextFieldErrorText_container = new WeakMap(), _SpTextFieldErrorText_initalized = new WeakMap(), _SpTextFieldErrorText_instances = new WeakSet(), _SpTextFieldErrorText_text_get = function _SpTextFieldErrorText_text_get() {
+    return __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").textContent ?? "";
+}, _SpTextFieldErrorText_updateClass = function _SpTextFieldErrorText_updateClass() {
+    if (__classPrivateFieldGet(this, _SpTextFieldErrorText_instances, "a", _SpTextFieldErrorText_text_get)) {
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f")?.classList.remove("none");
     }
     else {
