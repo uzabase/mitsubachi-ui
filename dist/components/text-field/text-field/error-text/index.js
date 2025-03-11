@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpTextFieldErrorText_instances, _SpTextFieldErrorText_text_get, _SpTextFieldErrorText_span, _SpTextFieldErrorText_container, _SpTextFieldErrorText_initalized, _SpTextFieldErrorText_updateClass;
-import { SpIconErrorFill } from "../../../icon/error-fill";
+import { SpIcon } from "../../../icon";
 import { makeStyleSheet } from "../../../styles";
 import styles from "./styles.css?inline";
 /**
@@ -45,7 +45,8 @@ export class SpTextFieldErrorText extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").setAttribute("role", "error");
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").setAttribute("class", "container");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f"));
-        const icon = new SpIconErrorFill();
+        const icon = new SpIcon();
+        icon.type = 'error-fill';
         icon.classList.add("icon");
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").appendChild(icon);
         __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").className = "text";

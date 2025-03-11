@@ -115,7 +115,7 @@ SpTextFieldUnit.observedAttributes = [
     "error",
     "text",
     "placeholder",
-    "supporttext",
+    "support-text",
     "disabled",
     "name",
     "type",
