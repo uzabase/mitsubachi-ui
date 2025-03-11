@@ -12,7 +12,7 @@ export declare class SpTextFieldUnit extends HTMLElement {
     get value(): string;
     set value(value: string);
     set type(newValue: string);
-    set supporttext(value: string);
+    set supportText(value: string);
     constructor();
     connectedCallback(): void;
     disconnectedCallback(): void;
