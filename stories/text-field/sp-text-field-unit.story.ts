@@ -10,7 +10,7 @@ const meta: Meta<SpTextFieldUnit> = {
     text: "ラベル",
     error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
-    supporttext: "サポートテキスト",
+    supportText: "サポートテキスト",
     disabled: false,
     name: "surname",
     value: "Yamada",
@@ -30,7 +30,7 @@ export const Default: StoryObj<SpTextFieldUnit> = {
     text,
     type,
     error,
-    supporttext,
+    supportText,
     placeholder,
     disabled,
     name,
@@ -41,7 +41,7 @@ export const Default: StoryObj<SpTextFieldUnit> = {
       text=${text}
       ?disabled=${disabled}
       name=${name}
-      supporttext=${supporttext}
+      support-text=${supportText}
       value=${value}
       error=${error}
       type=${type}

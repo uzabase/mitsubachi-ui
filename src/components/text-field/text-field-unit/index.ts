@@ -54,8 +54,8 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#input.type = newValue;
   }
 
-  set supporttext(value: string) {
-    this.#label.supporttext = value;
+  set supportText(value: string) {
+    this.#label.supportText = value;
     this.#updateStyle();
   }
 
@@ -115,8 +115,8 @@ export class SpTextFieldUnit extends HTMLElement {
       this.value = newValue ? newValue : "";
     } else if (name == "type") {
       this.#input.type = newValue ? newValue : "";
-    } else if (name == "supporttext")
-      this.supporttext = newValue ? newValue : "";
+    } else if (name == "support-text")
+      this.supportText = newValue ? newValue : "";
   }
 
   #updateStyle() {
