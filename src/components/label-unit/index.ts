@@ -4,7 +4,7 @@ import styles from "./styles.css?inline";
 export class SpLabelUnit extends HTMLElement {
   static styles = makeStyleSheet(styles);
 
-  static observedAttributes = ["text", "supporttext"];
+  static observedAttributes = ["text", "support-text"];
 
   get #text(): string {
     return this.#label.textContent ? this.#label.textContent : "";
@@ -15,11 +15,11 @@ export class SpLabelUnit extends HTMLElement {
     this.#updateClass();
   }
 
-  get #supporttext(): string {
+  get #supportText(): string {
     return this.#support.textContent ? this.#support.textContent : "";
   }
 
-  set supporttext(value: string) {
+  set supportText(value: string) {
     this.#support.textContent = value;
     this.#updateClass();
   }
@@ -54,14 +54,14 @@ export class SpLabelUnit extends HTMLElement {
    * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
    */
   isEmpty(): boolean {
-    return this.#text === "" && this.#supporttext === "";
+    return this.#text === "" && this.#supportText === "";
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
     if (name === "text") {
       this.text = newValue ? newValue : "";
-    } else if (name === "supporttext") {
-      this.supporttext = newValue ? newValue : "";
+    } else if (name === "support-text") {
+      this.supportText = newValue ? newValue : "";
     }
   }
 
@@ -71,7 +71,7 @@ export class SpLabelUnit extends HTMLElement {
     } else {
       this.#label.classList.add("none");
     }
-    if (this.#supporttext) {
+    if (this.#supportText) {
       this.#support.classList.remove("none");
     } else {
       this.#support.classList.add("none");

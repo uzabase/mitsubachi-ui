@@ -12,8 +12,8 @@ describe("sp-label-unit", () => {
     expect(a.element().textContent).toBe("ラベル");
   });
 
-  test("空文字でないsupporttext属性の値は表示される", async () => {
-    document.body.innerHTML = `<sp-label-unit supporttext="サポート" text="ラベル"></sp-label-unit>`;
+  test("空文字でないsupport-text属性の値は表示される", async () => {
+    document.body.innerHTML = `<sp-label-unit support-text="サポート" text="ラベル"></sp-label-unit>`;
 
     const a = page.getByText("サポート");
 

@@ -8,14 +8,14 @@ import type { SpLabelUnit } from "../../src/components/label-unit";
 const meta: Meta<SpLabelUnit> = {
   args: {
     text: "ラベル",
-    supporttext: "サポートテキスト",
+    supportText: "サポートテキスト",
   },
 };
 export default meta;
 
 export const Default: StoryObj<SpLabelUnit> = {
-  render: ({ text, supporttext }) => {
-    return html`<sp-label-unit text=${text} supporttext=${supporttext}>
+  render: ({ text, supportText }) => {
+    return html`<sp-label-unit text=${text} support-text=${supportText}>
     </sp-label-unit>`;
   },
 };
