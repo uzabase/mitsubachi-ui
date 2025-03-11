@@ -44,7 +44,7 @@ export class SpTextFieldErrorText extends HTMLElement {
     this.shadowRoot.appendChild(this.#container);
 
     const icon = new SpIcon();
-    icon.type = 'error-fill';
+    icon.type = "error-fill";
     icon.classList.add("icon");
     this.#container.appendChild(icon);
 
