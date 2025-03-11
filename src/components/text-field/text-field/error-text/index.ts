@@ -1,4 +1,4 @@
-import { SpIconErrorFill } from "../../../icon/error-fill";
+import { SpIcon } from "../../../icon";
 import { makeStyleSheet } from "../../../styles";
 import styles from "./styles.css?inline";
 
@@ -43,7 +43,8 @@ export class SpTextFieldErrorText extends HTMLElement {
     this.#container.setAttribute("class", "container");
     this.shadowRoot.appendChild(this.#container);
 
-    const icon = new SpIconErrorFill();
+    const icon = new SpIcon();
+    icon.type = 'error-fill';
     icon.classList.add("icon");
     this.#container.appendChild(icon);
 

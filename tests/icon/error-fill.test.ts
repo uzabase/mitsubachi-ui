@@ -1,12 +1,12 @@
-import "../../src/components/icon/error-fill";
+import "../../src/components/icon";
 
 import { describe, expect, test } from "vitest";
 
-describe("sp-icon-error-fill", () => {
+describe("sp-icon", () => {
   test("ツールがエラーアイコンを読み上げてはいけない", async () => {
-    document.body.innerHTML = "<sp-icon-error-fill></sp-icon-error-fill>";
+    document.body.innerHTML = "<sp-icon></sp-icon>";
     const icon = document
-      .querySelector("sp-icon-error-fill")
+      .querySelector("sp-icon")
       ?.shadowRoot?.querySelector("svg");
 
     const actual = icon?.getAttribute("aria-hidden");
