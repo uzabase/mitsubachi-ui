@@ -25,6 +25,18 @@ export class SpTextField extends HTMLElement {
             __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = __classPrivateFieldGet(this, _SpTextField_error, "f");
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateStyle).call(this);
     }
+    set autocomplete(value) {
+        if (value) {
+            __classPrivateFieldGet(this, _SpTextField_input, "f").autocomplete = value;
+        }
+        else {
+            __classPrivateFieldGet(this, _SpTextField_input, "f").removeAttribute("autocomplete");
+            this.removeAttribute("autocomplete");
+        }
+    }
+    get autocomplete() {
+        return __classPrivateFieldGet(this, _SpTextField_input, "f").autocomplete;
+    }
     set placeholder(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").placeholder = value;
     }
@@ -102,6 +114,9 @@ export class SpTextField extends HTMLElement {
         else if (name === "type") {
             this.type = newValue ? newValue : "";
         }
+        else if (name === "autocomplete") {
+            this.autocomplete = newValue;
+        }
     }
 }
 _SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpTextField_internals = new WeakMap(), _SpTextField_initialized = new WeakMap(), _SpTextField_error = new WeakMap(), _SpTextField_instances = new WeakSet(), _SpTextField_disabled_get = function _SpTextField_disabled_get() {
@@ -122,6 +137,7 @@ _SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpT
 SpTextField.observedAttributes = [
     "error",
     "placeholder",
+    "autocomplete",
     "disabled",
     "name",
     "value",

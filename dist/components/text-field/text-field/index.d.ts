@@ -5,6 +5,8 @@ export declare class SpTextField extends HTMLElement {
     static formAssociated: boolean;
     set type(newType: string);
     set error(text: string);
+    set autocomplete(value: AutoFill);
+    get autocomplete(): AutoFill;
     set placeholder(value: string);
     set disabled(value: boolean);
     set name(value: string);

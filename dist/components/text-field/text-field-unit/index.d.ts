@@ -11,6 +11,8 @@ export declare class SpTextFieldUnit extends HTMLElement {
     set name(value: string);
     get value(): string;
     set value(value: string);
+    get autocomplete(): string;
+    set autocomplete(value: AutoFill);
     set type(newValue: string);
     set supportText(value: string);
     constructor();

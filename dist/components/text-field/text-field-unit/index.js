@@ -38,6 +38,12 @@ export class SpTextFieldUnit extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").value = value;
         __classPrivateFieldGet(this, _SpTextFieldUnit_internals, "f").setFormValue(this.value);
     }
+    get autocomplete() {
+        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").autocomplete;
+    }
+    set autocomplete(value) {
+        __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").autocomplete = value;
+    }
     set type(newValue) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").type = newValue;
     }
@@ -101,6 +107,11 @@ export class SpTextFieldUnit extends HTMLElement {
         }
         else if (name == "support-text")
             this.supportText = newValue ? newValue : "";
+        else if (name == "autocomplete") {
+            if (newValue === null)
+                this.removeAttribute("autocomplete");
+            this.autocomplete = (newValue ? newValue : '');
+        }
     }
 }
 _SpTextFieldUnit_label = new WeakMap(), _SpTextFieldUnit_input = new WeakMap(), _SpTextFieldUnit_internals = new WeakMap(), _SpTextFieldUnit_initialized = new WeakMap(), _SpTextFieldUnit_inputHandler = new WeakMap(), _SpTextFieldUnit_instances = new WeakSet(), _SpTextFieldUnit_updateStyle = function _SpTextFieldUnit_updateStyle() {
@@ -120,6 +131,7 @@ SpTextFieldUnit.observedAttributes = [
     "name",
     "type",
     "value",
+    'autocomplete',
 ];
 SpTextFieldUnit.formAssociated = true;
 const tagName = "sp-text-field-unit";
