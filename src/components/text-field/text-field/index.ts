@@ -7,6 +7,7 @@ export class SpTextField extends HTMLElement {
   static observedAttributes = [
     "error",
     "placeholder",
+    "autocomplete",
     "disabled",
     "name",
     "value",
@@ -26,6 +27,19 @@ export class SpTextField extends HTMLElement {
 
     this.#updateStyle();
   }
+
+  set autocomplete(value: AutoFill) {
+    if(value) {
+      this.#input.autocomplete = value;
+    } else {
+      this.#input.removeAttribute("autocomplete");
+      this.removeAttribute("autocomplete");
+    }
+  }
+
+  get autocomplete(): AutoFill {
+    return this.#input.autocomplete;
+  } 
 
   set placeholder(value: string) {
     this.#input.placeholder = value;
@@ -102,6 +116,7 @@ export class SpTextField extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
+
     if (name === "placeholder") {
       this.placeholder = newValue ? newValue : "";
     } else if (name === "disabled") {
@@ -114,6 +129,8 @@ export class SpTextField extends HTMLElement {
       this.value = newValue ? newValue : "";
     } else if (name === "type") {
       this.type = newValue ? newValue : "";
+    } else if (name === "autocomplete") {
+      this.autocomplete = newValue as AutoFill;
     }
   }
 
