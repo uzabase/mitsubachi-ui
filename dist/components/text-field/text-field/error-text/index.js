@@ -46,7 +46,7 @@ export class SpTextFieldErrorText extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").setAttribute("class", "container");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f"));
         const icon = new SpIcon();
-        icon.type = 'error-fill';
+        icon.type = "error-fill";
         icon.classList.add("icon");
         __classPrivateFieldGet(this, _SpTextFieldErrorText_container, "f").appendChild(icon);
         __classPrivateFieldGet(this, _SpTextFieldErrorText_span, "f").className = "text";
