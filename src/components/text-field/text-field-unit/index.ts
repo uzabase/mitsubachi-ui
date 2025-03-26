@@ -16,6 +16,7 @@ export class SpTextFieldUnit extends HTMLElement {
     "name",
     "type",
     "value",
+    'autocomplete',
   ];
 
   static formAssociated = true;
@@ -48,6 +49,14 @@ export class SpTextFieldUnit extends HTMLElement {
   set value(value: string) {
     this.#input.value = value;
     this.#internals.setFormValue(this.value);
+  }
+
+  get autocomplete(): string {
+    return this.#input.autocomplete;
+  }
+
+  set autocomplete(value: AutoFill) {
+    this.#input.autocomplete = value;
   }
 
   set type(newValue: string) {
@@ -117,6 +126,11 @@ export class SpTextFieldUnit extends HTMLElement {
       this.#input.type = newValue ? newValue : "";
     } else if (name == "support-text")
       this.supportText = newValue ? newValue : "";
+    else if (name == "autocomplete") {
+      if(newValue === null)
+        this.removeAttribute("autocomplete");
+      this.autocomplete = (newValue ? newValue : '') as AutoFill;
+    }
   }
 
   #updateStyle() {
