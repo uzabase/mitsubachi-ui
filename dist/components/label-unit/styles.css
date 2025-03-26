@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    .label {
+        font-weight: 700;
+        font-size: 14px;
+        color: #000000D6;
+
+        &.none {
+            display: none;
+        }
+    }
+
+    .support {
+        font-weight: 400;
+        font-size: 12px;
+        color: #0000008A;
+        &.none {
+            display: none;
+        }
+    }
+}
