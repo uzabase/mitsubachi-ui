@@ -16,10 +16,12 @@ export class SpTextFieldUnit extends HTMLElement {
     "name",
     "type",
     "value",
-    "autocomplete",
+    'autocomplete'
   ];
 
   static formAssociated = true;
+
+  
 
   set text(text: string) {
     this.#label.text = text;
@@ -49,10 +51,6 @@ export class SpTextFieldUnit extends HTMLElement {
   set value(value: string) {
     this.#input.value = value;
     this.#internals.setFormValue(this.value);
-  }
-
-  set autocomplete(value: AutoFill) {
-    this.#input.autocomplete = value;
   }
 
   set type(newValue: string) {
@@ -105,34 +103,26 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#input.removeEventListener("input", this.#inputHandler);
   }
 
-  attributeChangedCallback(
-    name:
-      | "error"
-      | "text"
-      | "value"
-      | "name"
-      | "placeholder"
-      | "type"
-      | "support-text"
-      | "value"
-      | "autocomplete",
-    newValue: string | null,
-  ) {
-    // プロパティとhtmlタグの属性を同期する
-    if (newValue === null && this.hasAttribute(name)) {
+  attributeChangedCallback(name: 'error' | 'text' |'placeholder' | 
+    'disabled' | 'name' | 'value' | 'type' | 'support-text' | 
+    'autocomplete', _: string, newValue: string | null) {
+    if(newValue === null && this.getAttribute(name) !== null) {
       this.removeAttribute(name);
       return;
-    }
-    newValue = newValue ?? "";
-    if (this.getAttribute(name) !== newValue) {
+    } 
+    newValue = newValue ? newValue : "";
+    if(this.getAttribute(name) !== newValue) {
       this.setAttribute(name, newValue);
       return;
     }
-    if (name == "support-text") {
+    if(name === 'disabled') {
+      this.disabled = newValue ? true : false;
+      return;
+    } else if(name === 'support-text') {
       this.supportText = newValue;
       return;
-    } else if (name == "autocomplete") {
-      this.autocomplete = newValue as AutoFill;
+    } else if(name === 'autocomplete') {
+      this.#input.autocomplete = newValue as AutoFill;
       return;
     }
     this[name] = newValue;
