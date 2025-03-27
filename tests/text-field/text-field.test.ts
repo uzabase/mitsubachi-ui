@@ -28,6 +28,6 @@ describe("sp-text-field", () => {
 
     const input = sut?.shadowRoot?.querySelector("input");
 
-    expect(input?.getAttribute('autocomplete')).toBe('on');
+    expect(input?.getAttribute("autocomplete")).toBe("on");
   });
 });

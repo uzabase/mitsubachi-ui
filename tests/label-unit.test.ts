@@ -19,8 +19,4 @@ describe("sp-label-unit", () => {
 
     expect(a.element().textContent).toBe("サポート");
   });
-
-
 });
-
-

@@ -62,8 +62,7 @@ export class SpTextField extends HTMLElement {
 
   set name(value: string) {
     this.#input.name = value;
-    if(!value)
-      this.#input.removeAttribute("name");
+    if (!value) this.#input.removeAttribute("name");
     this.#updateAttribute("name", value);
   }
 
