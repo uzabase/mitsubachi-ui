@@ -29,7 +29,7 @@ export class SpTextField extends HTMLElement {
   }
 
   set autocomplete(value: AutoFill) {
-    if(value) {
+    if (value) {
       this.#input.autocomplete = value;
     } else {
       this.#input.removeAttribute("autocomplete");
@@ -39,7 +39,7 @@ export class SpTextField extends HTMLElement {
 
   get autocomplete(): AutoFill {
     return this.#input.autocomplete;
-  } 
+  }
 
   set placeholder(value: string) {
     this.#input.placeholder = value;
@@ -116,7 +116,6 @@ export class SpTextField extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
-
     if (name === "placeholder") {
       this.placeholder = newValue ? newValue : "";
     } else if (name === "disabled") {

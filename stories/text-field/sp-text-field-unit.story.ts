@@ -23,8 +23,8 @@ const meta: Meta<SpTextFieldUnit> = {
       control: { type: "select" },
     },
     autocomplete: {
-      type: 'string',
-    }
+      type: "string",
+    },
   },
 };
 export default meta;
@@ -49,7 +49,7 @@ export const Default: StoryObj<SpTextFieldUnit> = {
       support-text=${supportText}
       value=${value}
       error=${error}
-      autocomplete=${autocomplete || nothing} 
+      autocomplete=${autocomplete || nothing}
       type=${type}
     >
     </sp-text-field-unit>`;

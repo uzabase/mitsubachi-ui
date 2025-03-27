@@ -22,13 +22,21 @@ const meta: Meta<SpTextField> = {
     },
     autocomplete: {
       type: "string",
-    }
+    },
   },
 };
 export default meta;
 
 export const Default: StoryObj<SpTextField> = {
-  render: ({ type, error, placeholder, disabled, name, value, autocomplete }) => {
+  render: ({
+    type,
+    error,
+    placeholder,
+    disabled,
+    name,
+    value,
+    autocomplete,
+  }) => {
     return html`<sp-text-field
       placeholder=${placeholder || nothing}
       ?disabled=${disabled}
@@ -36,7 +44,7 @@ export const Default: StoryObj<SpTextField> = {
       value=${value}
       error=${error}
       type=${type}
-      autocomplete=${autocomplete || nothing }
+      autocomplete=${autocomplete || nothing}
     >
     </sp-text-field>`;
   },

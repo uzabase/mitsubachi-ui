@@ -16,7 +16,7 @@ export class SpTextFieldUnit extends HTMLElement {
     "name",
     "type",
     "value",
-    'autocomplete',
+    "autocomplete",
   ];
 
   static formAssociated = true;
@@ -49,10 +49,6 @@ export class SpTextFieldUnit extends HTMLElement {
   set value(value: string) {
     this.#input.value = value;
     this.#internals.setFormValue(this.value);
-  }
-
-  get autocomplete(): string {
-    return this.#input.autocomplete;
   }
 
   set autocomplete(value: AutoFill) {
@@ -109,28 +105,37 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#input.removeEventListener("input", this.#inputHandler);
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "error") {
-      this.error = newValue ? newValue : "";
-    } else if (name === "text") {
-      this.text = newValue ? newValue : "";
-    } else if (name === "placeholder") {
-      this.placeholder = newValue ? newValue : "";
-    } else if (name === "disabled") {
-      this.disabled = newValue !== null;
-    } else if (name === "name") {
-      this.name = newValue ? newValue : "";
-    } else if (name === "value") {
-      this.value = newValue ? newValue : "";
-    } else if (name == "type") {
-      this.#input.type = newValue ? newValue : "";
-    } else if (name == "support-text")
-      this.supportText = newValue ? newValue : "";
-    else if (name == "autocomplete") {
-      if(newValue === null)
-        this.removeAttribute("autocomplete");
-      this.autocomplete = (newValue ? newValue : '') as AutoFill;
+  attributeChangedCallback(
+    name:
+      | "error"
+      | "text"
+      | "value"
+      | "name"
+      | "placeholder"
+      | "type"
+      | "support-text"
+      | "value"
+      | "autocomplete",
+    newValue: string | null,
+  ) {
+    // プロパティとhtmlタグの属性を同期する
+    if (newValue === null && this.hasAttribute(name)) {
+      this.removeAttribute(name);
+      return;
     }
+    newValue = newValue ?? "";
+    if (this.getAttribute(name) !== newValue) {
+      this.setAttribute(name, newValue);
+      return;
+    }
+    if (name == "support-text") {
+      this.supportText = newValue;
+      return;
+    } else if (name == "autocomplete") {
+      this.autocomplete = newValue as AutoFill;
+      return;
+    }
+    this[name] = newValue;
   }
 
   #updateStyle() {
