@@ -69,6 +69,10 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#updateAttribute("support-text", value);
   }
 
+  get autocomplete(): AutoFill {
+    return this.#input.autocomplete;
+  }
+
   #label: SpLabelUnit = document.createElement("sp-label-unit");
 
   #input: SpTextField = document.createElement("sp-text-field");
