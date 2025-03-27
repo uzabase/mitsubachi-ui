@@ -11,14 +11,12 @@ export declare class SpTextFieldUnit extends HTMLElement {
     set name(value: string);
     get value(): string;
     set value(value: string);
-    get autocomplete(): string;
-    set autocomplete(value: AutoFill);
     set type(newValue: string);
     set supportText(value: string);
     constructor();
     connectedCallback(): void;
     disconnectedCallback(): void;
-    attributeChangedCallback(name: string, _: string, newValue: string | null): void;
+    attributeChangedCallback(name: "error" | "text" | "placeholder" | "disabled" | "name" | "value" | "type" | "support-text" | "autocomplete", oldValue: string | null, newValue: string | null): void;
 }
 declare global {
     interface HTMLElementTagNameMap {
