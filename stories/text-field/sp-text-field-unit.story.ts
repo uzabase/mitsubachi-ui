@@ -15,7 +15,7 @@ const meta: Meta<SpTextFieldUnit> = {
     name: "surname",
     value: "Yamada",
     type: "text",
-    autocomplete: '',
+    autocomplete: "",
   },
   argTypes: {
     type: {
