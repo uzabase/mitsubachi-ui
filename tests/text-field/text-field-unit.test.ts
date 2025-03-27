@@ -1,6 +1,7 @@
 import "../../src/components/text-field/text-field-unit";
+
 import { page } from "@vitest/browser/context";
-import { describe, expect, test, beforeEach } from "vitest";
+import { describe, expect, test } from "vitest";
 
 describe("sp-text-field", () => {
   test("入力すると、valueが更新される。", async () => {
