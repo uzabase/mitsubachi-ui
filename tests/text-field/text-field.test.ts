@@ -21,4 +21,13 @@ describe("sp-text-field", () => {
 
     expect(input?.hasAttribute("aria-invalid")).toBe(true);
   });
+
+  test("autocomplete属性を指定できる", async () => {
+    document.body.innerHTML = `<sp-text-field autocomplete="on"></sp-text-field>`;
+    const sut = document.querySelector("sp-text-field");
+
+    const input = sut?.shadowRoot?.querySelector("input");
+
+    expect(input?.getAttribute('autocomplete')).toBe('on');
+  });
 });
