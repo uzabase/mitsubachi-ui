@@ -13,6 +13,7 @@ export declare class SpTextFieldUnit extends HTMLElement {
     set value(value: string);
     set type(newValue: string);
     set supportText(value: string);
+    get autocomplete(): AutoFill;
     constructor();
     connectedCallback(): void;
     disconnectedCallback(): void;

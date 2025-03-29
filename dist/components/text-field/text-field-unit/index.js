@@ -56,6 +56,9 @@ export class SpTextFieldUnit extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateStyle).call(this);
         __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateAttribute).call(this, "support-text", value);
     }
+    get autocomplete() {
+        return __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").autocomplete;
+    }
     constructor() {
         super();
         _SpTextFieldUnit_instances.add(this);
