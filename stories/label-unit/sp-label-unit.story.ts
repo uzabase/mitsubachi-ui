@@ -10,6 +10,7 @@ const meta: Meta<SpLabelUnit> = {
     text: "ラベル",
     supportText: "サポートテキスト",
   },
+  tags: ["!dev-only"],
 };
 export default meta;
 

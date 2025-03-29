@@ -26,6 +26,7 @@ const meta: Meta<SpTextFieldUnit> = {
       type: "string",
     },
   },
+  tags: ["!dev-only"],
 };
 export default meta;
 
