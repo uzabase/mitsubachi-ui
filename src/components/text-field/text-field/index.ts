@@ -7,6 +7,7 @@ export class SpTextField extends HTMLElement {
   static observedAttributes = [
     "error",
     "placeholder",
+    "autocomplete",
     "disabled",
     "name",
     "value",
@@ -17,18 +18,29 @@ export class SpTextField extends HTMLElement {
 
   set type(newType: string) {
     this.#input.type = newType;
+    this.#updateAttribute("type", newType);
   }
 
   set error(text: string) {
     this.#error = text;
     if (this.#disabled) this.#errorText.text = "";
     else this.#errorText.text = this.#error;
-
     this.#updateStyle();
+    this.#updateAttribute("error", text);
+  }
+
+  set autocomplete(value: AutoFill) {
+    this.#input.autocomplete = value;
+    this.#updateAttribute("autocomplete", value);
+  }
+
+  get autocomplete(): AutoFill {
+    return this.#input.autocomplete;
   }
 
   set placeholder(value: string) {
     this.#input.placeholder = value;
+    this.#updateAttribute("placeholder", value);
   }
 
   get #disabled(): boolean {
@@ -43,10 +55,15 @@ export class SpTextField extends HTMLElement {
     else this.#errorText.text = this.#error;
 
     this.#updateStyle();
+
+    if (value) this.setAttribute("disabled", "");
+    else this.removeAttribute("disabled");
   }
 
   set name(value: string) {
     this.#input.name = value;
+    if (!value) this.#input.removeAttribute("name");
+    this.#updateAttribute("name", value);
   }
 
   get value(): string {
@@ -56,6 +73,7 @@ export class SpTextField extends HTMLElement {
   set value(value: string) {
     this.#input.value = value;
     this.#internals.setFormValue(this.value);
+    this.#updateAttribute("value", value);
   }
 
   #input = document.createElement("input");
@@ -101,20 +119,29 @@ export class SpTextField extends HTMLElement {
     this.#initialized = true;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "placeholder") {
-      this.placeholder = newValue ? newValue : "";
-    } else if (name === "disabled") {
+  attributeChangedCallback(
+    name:
+      | "placeholder"
+      | "disabled"
+      | "error"
+      | "name"
+      | "value"
+      | "type"
+      | "autocomplete",
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (oldValue === newValue) return;
+
+    if (name === "disabled") {
       this.disabled = newValue !== null;
-    } else if (name === "error") {
-      this.error = newValue ? newValue : "";
-    } else if (name === "name") {
-      this.name = newValue ? newValue : "";
-    } else if (name === "value") {
-      this.value = newValue ? newValue : "";
-    } else if (name === "type") {
-      this.type = newValue ? newValue : "";
+      return;
     }
+    if (name === "autocomplete") {
+      this.autocomplete = newValue as AutoFill;
+      return;
+    }
+    this[name] = newValue ? newValue : "";
   }
 
   #updateStyle() {
@@ -127,6 +154,11 @@ export class SpTextField extends HTMLElement {
       this.#input.classList.add("error");
       this.#input.setAttribute("aria-invalid", "");
     } else this.#input.classList.remove("error");
+  }
+
+  #updateAttribute(name: string, value: string) {
+    if (value) this.setAttribute(name, value);
+    else this.removeAttribute(name);
   }
 }
 

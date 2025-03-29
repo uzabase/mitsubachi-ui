@@ -5,6 +5,8 @@ export declare class SpTextField extends HTMLElement {
     static formAssociated: boolean;
     set type(newType: string);
     set error(text: string);
+    set autocomplete(value: AutoFill);
+    get autocomplete(): AutoFill;
     set placeholder(value: string);
     set disabled(value: boolean);
     set name(value: string);
@@ -12,7 +14,7 @@ export declare class SpTextField extends HTMLElement {
     set value(value: string);
     constructor();
     connectedCallback(): void;
-    attributeChangedCallback(name: string, _: string, newValue: string | null): void;
+    attributeChangedCallback(name: "placeholder" | "disabled" | "error" | "name" | "value" | "type" | "autocomplete", oldValue: string | null, newValue: string | null): void;
 }
 declare global {
     interface HTMLElementTagNameMap {

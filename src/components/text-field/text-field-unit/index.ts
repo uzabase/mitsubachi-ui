@@ -16,6 +16,7 @@ export class SpTextFieldUnit extends HTMLElement {
     "name",
     "type",
     "value",
+    "autocomplete",
   ];
 
   static formAssociated = true;
@@ -23,22 +24,28 @@ export class SpTextFieldUnit extends HTMLElement {
   set text(text: string) {
     this.#label.text = text;
     this.#updateStyle();
+    this.#updateAttribute("text", text);
   }
 
   set error(text: string) {
     this.#input.error = text;
+    this.#updateAttribute("error", text);
   }
 
   set disabled(newValue: boolean) {
     this.#input.disabled = newValue;
+    if (newValue) this.setAttribute("disabled", "");
+    else this.removeAttribute("disabled");
   }
 
   set placeholder(newValue: string) {
     this.#input.placeholder = newValue;
+    this.#updateAttribute("placeholder", newValue);
   }
 
   set name(value: string) {
     this.#input.name = value;
+    this.#updateAttribute("name", value);
   }
 
   get value(): string {
@@ -48,15 +55,22 @@ export class SpTextFieldUnit extends HTMLElement {
   set value(value: string) {
     this.#input.value = value;
     this.#internals.setFormValue(this.value);
+    this.#updateAttribute("value", value);
   }
 
   set type(newValue: string) {
     this.#input.type = newValue;
+    this.#updateAttribute("type", newValue);
   }
 
   set supportText(value: string) {
     this.#label.supportText = value;
     this.#updateStyle();
+    this.#updateAttribute("support-text", value);
+  }
+
+  get autocomplete(): AutoFill {
+    return this.#input.autocomplete;
   }
 
   #label: SpLabelUnit = document.createElement("sp-label-unit");
@@ -100,23 +114,35 @@ export class SpTextFieldUnit extends HTMLElement {
     this.#input.removeEventListener("input", this.#inputHandler);
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "error") {
-      this.error = newValue ? newValue : "";
-    } else if (name === "text") {
-      this.text = newValue ? newValue : "";
-    } else if (name === "placeholder") {
-      this.placeholder = newValue ? newValue : "";
-    } else if (name === "disabled") {
-      this.disabled = newValue !== null;
-    } else if (name === "name") {
-      this.name = newValue ? newValue : "";
-    } else if (name === "value") {
-      this.value = newValue ? newValue : "";
-    } else if (name == "type") {
-      this.#input.type = newValue ? newValue : "";
-    } else if (name == "support-text")
-      this.supportText = newValue ? newValue : "";
+  attributeChangedCallback(
+    name:
+      | "error"
+      | "text"
+      | "placeholder"
+      | "disabled"
+      | "name"
+      | "value"
+      | "type"
+      | "support-text"
+      | "autocomplete",
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (oldValue === newValue) return;
+
+    newValue = newValue ?? "";
+
+    if (name === "disabled") {
+      this.disabled = newValue ? true : false;
+      return;
+    } else if (name === "support-text") {
+      this.supportText = newValue;
+      return;
+    } else if (name === "autocomplete") {
+      this.#input.autocomplete = newValue as AutoFill;
+      return;
+    }
+    this[name] = newValue;
   }
 
   #updateStyle() {
@@ -125,6 +151,10 @@ export class SpTextFieldUnit extends HTMLElement {
     } else {
       this.#label.classList.remove("none");
     }
+  }
+  #updateAttribute(name: string, value: string) {
+    if (value) this.setAttribute(name, value);
+    else this.removeAttribute(name);
   }
 }
 

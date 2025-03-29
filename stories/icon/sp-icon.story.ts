@@ -15,6 +15,7 @@ const meta: Meta<SpIcon> = {
       control: { type: "select" },
     },
   },
+  tags: ["!dev-only"],
 };
 export default meta;
 

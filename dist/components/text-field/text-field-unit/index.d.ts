@@ -16,7 +16,7 @@ export declare class SpTextFieldUnit extends HTMLElement {
     constructor();
     connectedCallback(): void;
     disconnectedCallback(): void;
-    attributeChangedCallback(name: string, _: string, newValue: string | null): void;
+    attributeChangedCallback(name: "error" | "text" | "placeholder" | "disabled" | "name" | "value" | "type" | "support-text" | "autocomplete", oldValue: string | null, newValue: string | null): void;
 }
 declare global {
     interface HTMLElementTagNameMap {

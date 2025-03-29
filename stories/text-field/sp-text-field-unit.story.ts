@@ -1,7 +1,7 @@
 import "../../src/components/text-field/text-field-unit";
 
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 
 import type { SpTextFieldUnit } from "../../src/components/text-field/text-field-unit";
 
@@ -15,13 +15,18 @@ const meta: Meta<SpTextFieldUnit> = {
     name: "surname",
     value: "Yamada",
     type: "text",
+    autocomplete: "",
   },
   argTypes: {
     type: {
       options: ["text", "password"],
       control: { type: "select" },
     },
+    autocomplete: {
+      type: "string",
+    },
   },
+  tags: ["!dev-only"],
 };
 export default meta;
 
@@ -35,6 +40,7 @@ export const Default: StoryObj<SpTextFieldUnit> = {
     disabled,
     name,
     value,
+    autocomplete,
   }) => {
     return html`<sp-text-field-unit
       placeholder=${placeholder}
@@ -44,6 +50,7 @@ export const Default: StoryObj<SpTextFieldUnit> = {
       support-text=${supportText}
       value=${value}
       error=${error}
+      autocomplete=${autocomplete || nothing}
       type=${type}
     >
     </sp-text-field-unit>`;

@@ -18,4 +18,14 @@ describe("sp-text-field", () => {
       "new-text",
     );
   });
+
+  test(`autocomplete属性を指定できる`, async () => {
+    document.body.innerHTML = `<sp-text-field-unit autocomplete="foobar"></sp-text-field-unit>`;
+
+    const input = document
+      .querySelector("sp-text-field-unit")
+      ?.shadowRoot?.querySelector("sp-text-field");
+
+    expect(input?.getAttribute("autocomplete")).eq("foobar");
+  });
 });

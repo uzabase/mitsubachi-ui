@@ -9,13 +9,14 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpTextField_instances, _SpTextField_disabled_get, _SpTextField_input, _SpTextField_errorText, _SpTextField_internals, _SpTextField_initialized, _SpTextField_error, _SpTextField_updateStyle;
+var _SpTextField_instances, _SpTextField_disabled_get, _SpTextField_input, _SpTextField_errorText, _SpTextField_internals, _SpTextField_initialized, _SpTextField_error, _SpTextField_updateStyle, _SpTextField_updateAttribute;
 import "./error-text";
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 export class SpTextField extends HTMLElement {
     set type(newType) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").type = newType;
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "type", newType);
     }
     set error(text) {
         __classPrivateFieldSet(this, _SpTextField_error, text, "f");
@@ -24,9 +25,18 @@ export class SpTextField extends HTMLElement {
         else
             __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = __classPrivateFieldGet(this, _SpTextField_error, "f");
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateStyle).call(this);
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "error", text);
+    }
+    set autocomplete(value) {
+        __classPrivateFieldGet(this, _SpTextField_input, "f").autocomplete = value;
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "autocomplete", value);
+    }
+    get autocomplete() {
+        return __classPrivateFieldGet(this, _SpTextField_input, "f").autocomplete;
     }
     set placeholder(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").placeholder = value;
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "placeholder", value);
     }
     set disabled(value) {
         if (value)
@@ -38,9 +48,16 @@ export class SpTextField extends HTMLElement {
         else
             __classPrivateFieldGet(this, _SpTextField_errorText, "f").text = __classPrivateFieldGet(this, _SpTextField_error, "f");
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateStyle).call(this);
+        if (value)
+            this.setAttribute("disabled", "");
+        else
+            this.removeAttribute("disabled");
     }
     set name(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").name = value;
+        if (!value)
+            __classPrivateFieldGet(this, _SpTextField_input, "f").removeAttribute("name");
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "name", value);
     }
     get value() {
         return __classPrivateFieldGet(this, _SpTextField_input, "f").value;
@@ -48,6 +65,7 @@ export class SpTextField extends HTMLElement {
     set value(value) {
         __classPrivateFieldGet(this, _SpTextField_input, "f").value = value;
         __classPrivateFieldGet(this, _SpTextField_internals, "f").setFormValue(this.value);
+        __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "value", value);
     }
     constructor() {
         super();
@@ -83,25 +101,18 @@ export class SpTextField extends HTMLElement {
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_errorText, "f"));
         __classPrivateFieldSet(this, _SpTextField_initialized, true, "f");
     }
-    attributeChangedCallback(name, _, newValue) {
-        if (name === "placeholder") {
-            this.placeholder = newValue ? newValue : "";
-        }
-        else if (name === "disabled") {
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue)
+            return;
+        if (name === "disabled") {
             this.disabled = newValue !== null;
+            return;
         }
-        else if (name === "error") {
-            this.error = newValue ? newValue : "";
+        if (name === "autocomplete") {
+            this.autocomplete = newValue;
+            return;
         }
-        else if (name === "name") {
-            this.name = newValue ? newValue : "";
-        }
-        else if (name === "value") {
-            this.value = newValue ? newValue : "";
-        }
-        else if (name === "type") {
-            this.type = newValue ? newValue : "";
-        }
+        this[name] = newValue ? newValue : "";
     }
 }
 _SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpTextField_internals = new WeakMap(), _SpTextField_initialized = new WeakMap(), _SpTextField_error = new WeakMap(), _SpTextField_instances = new WeakSet(), _SpTextField_disabled_get = function _SpTextField_disabled_get() {
@@ -118,10 +129,16 @@ _SpTextField_input = new WeakMap(), _SpTextField_errorText = new WeakMap(), _SpT
     }
     else
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.remove("error");
+}, _SpTextField_updateAttribute = function _SpTextField_updateAttribute(name, value) {
+    if (value)
+        this.setAttribute(name, value);
+    else
+        this.removeAttribute(name);
 };
 SpTextField.observedAttributes = [
     "error",
     "placeholder",
+    "autocomplete",
     "disabled",
     "name",
     "value",
