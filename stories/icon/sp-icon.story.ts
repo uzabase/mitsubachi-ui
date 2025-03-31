@@ -7,11 +7,11 @@ import type { SpIcon } from "../../src/components/icon";
 
 const meta: Meta<SpIcon> = {
   args: {
-    type: "error-fill",
+    type: "information-circle",
   },
   argTypes: {
     type: {
-      options: ["error-fill"],
+      options: ["information-circle", "error-fill"],
       control: { type: "select" },
     },
   },
