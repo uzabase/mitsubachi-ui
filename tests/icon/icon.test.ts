@@ -20,7 +20,6 @@ describe("sp-icon", () => {
       .querySelector("sp-icon")
       ?.shadowRoot?.querySelector("svg");
 
-      expect(icon).toBeDefined();
-    
+    expect(icon).toBeDefined();
   });
 });
