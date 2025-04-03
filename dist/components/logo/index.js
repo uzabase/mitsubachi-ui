@@ -9,55 +9,47 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _SpIcon_initialized, _SpIcon_iconMap;
-import { errorFill, informationCircle, person } from "./icons";
-export class SpIcon extends HTMLElement {
+var _SpLogo_initialized;
+import { cn, en, jp } from "./logo";
+export class SpLogo extends HTMLElement {
     constructor() {
         super();
-        _SpIcon_initialized.set(this, false);
-        _SpIcon_iconMap.set(this, new Map());
+        _SpLogo_initialized.set(this, false);
         this.attachShadow({ mode: "open" });
     }
-    set type(newValue) {
+    connectedCallback() {
+        if (!this.shadowRoot || __classPrivateFieldGet(this, _SpLogo_initialized, "f"))
+            return;
+        this.shadowRoot.innerHTML = jp;
+        __classPrivateFieldSet(this, _SpLogo_initialized, true, "f");
+    }
+    set language(value) {
         if (this.shadowRoot) {
-            const icon = __classPrivateFieldGet(this, _SpIcon_iconMap, "f").get(newValue);
-            if (icon) {
-                this.shadowRoot.innerHTML = icon;
-            }
+            if (value == "jp")
+                this.shadowRoot.innerHTML = jp;
+            else if (value == "en")
+                this.shadowRoot.innerHTML = en;
+            else if (value == "cn")
+                this.shadowRoot.innerHTML = cn;
             else
                 this.shadowRoot.innerHTML = "";
         }
-        if (newValue)
-            this.setAttribute("type", newValue);
+        if (value)
+            this.setAttribute("language", value);
         else
-            this.removeAttribute("type");
-    }
-    connectedCallback() {
-        if (!this.shadowRoot || __classPrivateFieldGet(this, _SpIcon_initialized, "f"))
-            return;
-        this.shadowRoot.innerHTML = errorFill;
-        for (const { attr, def } of [
-            { attr: "error-fill", def: errorFill },
-            { attr: "information-circle", def: informationCircle },
-            { attr: "person", def: person },
-        ]) {
-            __classPrivateFieldGet(this, _SpIcon_iconMap, "f").set(attr, def);
-        }
-        this.type = this.getAttribute("type") ?? "";
-        __classPrivateFieldSet(this, _SpIcon_initialized, true, "f");
+            this.removeAttribute("language");
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)
             return;
-        newValue = newValue ?? "";
-        if (name === "type") {
-            this.type = newValue;
+        if (name === "language") {
+            this.language = newValue ?? "";
         }
     }
 }
-_SpIcon_initialized = new WeakMap(), _SpIcon_iconMap = new WeakMap();
-SpIcon.observedAttributes = ["type"];
-const tagName = "sp-icon";
+_SpLogo_initialized = new WeakMap();
+SpLogo.observedAttributes = ["language"];
+const tagName = "sp-logo";
 if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpIcon);
+    customElements.define(tagName, SpLogo);
 }
