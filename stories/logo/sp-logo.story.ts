@@ -21,6 +21,6 @@ export default meta;
 
 export const Default: StoryObj<SpLogo> = {
   render: ({ language }) => {
-    return html`<sp-logo language=${language}></sp-language>`;
+    return html`<sp-logo style="height: 32px; display: flex;" language=${language}></sp-language>`;
   },
 };

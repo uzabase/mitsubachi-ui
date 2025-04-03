@@ -1,4 +1,4 @@
-import { jp, cn, en } from "./logo";
+import { cn, en, jp } from "./logo";
 
 export class SpLogo extends HTMLElement {
   static observedAttributes = ["language"];
