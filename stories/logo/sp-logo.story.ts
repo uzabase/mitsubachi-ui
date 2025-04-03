@@ -7,11 +7,11 @@ import type { SpLogo } from "../../src/components/logo";
 
 const meta: Meta<SpLogo> = {
   args: {
-    language: "ja",
+    language: "jp",
   },
   argTypes: {
     language: {
-      options: ["ja", "en", "cn"],
+      options: ["jp", "en", "cn"],
       control: { type: "select" },
     },
   },
