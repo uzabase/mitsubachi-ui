@@ -14,12 +14,14 @@ describe("sp-icon", () => {
     expect(actual).toBe("true");
   });
 
-  test("information-circleを指定できる", async () => {
-    document.body.innerHTML = `<sp-icon type="information-circle"></sp-icon>`;
-    const icon = document
-      .querySelector("sp-icon")
-      ?.shadowRoot?.querySelector("svg");
+  test("typeで指定したアイコンが表示される", async () => {
+    for (const name of ["error-fill", "information-circle", "person"]) {
+      document.body.innerHTML = `<sp-icon type="${name}"></sp-icon>`;
+      const icon = document
+        .querySelector("sp-icon")
+        ?.shadowRoot?.querySelector("svg");
 
-    expect(icon).toBeDefined();
+      expect(icon).toBeDefined();
+    }
   });
 });

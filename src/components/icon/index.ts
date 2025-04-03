@@ -1,5 +1,5 @@
 import { makeStyleSheet } from "../styles";
-import { errorFill, informationCircle } from "./icons";
+import { errorFill, informationCircle, person } from "./icons";
 import styles from "./styles.css?inline";
 
 export class SpIcon extends HTMLElement {
@@ -38,6 +38,7 @@ export class SpIcon extends HTMLElement {
     for (const { attr, def } of [
       { attr: "error-fill", def: errorFill },
       { attr: "information-circle", def: informationCircle },
+      { attr: "person", def: person },
     ]) {
       this.#iconMap.set(attr, def);
     }
