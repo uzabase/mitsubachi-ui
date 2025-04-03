@@ -10,9 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
-import { makeStyleSheet } from "../styles";
 import { errorFill, informationCircle } from "./icons";
-import styles from "./styles.css?inline";
 export class SpIcon extends HTMLElement {
     constructor() {
         super();
@@ -37,10 +35,6 @@ export class SpIcon extends HTMLElement {
     connectedCallback() {
         if (!this.shadowRoot || __classPrivateFieldGet(this, _SpIcon_initialized, "f"))
             return;
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            makeStyleSheet(styles),
-        ];
         this.shadowRoot.innerHTML = errorFill;
         for (const { attr, def } of [
             { attr: "error-fill", def: errorFill },
