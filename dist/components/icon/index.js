@@ -11,7 +11,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
 import { makeStyleSheet } from "../styles";
-import { errorFill } from "./icons";
+import { errorFill, informationCircle } from "./icons";
 import styles from "./styles.css?inline";
 export class SpIcon extends HTMLElement {
     constructor() {
@@ -29,6 +29,10 @@ export class SpIcon extends HTMLElement {
             else
                 this.shadowRoot.innerHTML = "";
         }
+        if (newValue)
+            this.setAttribute("type", newValue);
+        else
+            this.removeAttribute("type");
     }
     connectedCallback() {
         if (!this.shadowRoot || __classPrivateFieldGet(this, _SpIcon_initialized, "f"))
@@ -38,16 +42,26 @@ export class SpIcon extends HTMLElement {
             makeStyleSheet(styles),
         ];
         this.shadowRoot.innerHTML = errorFill;
-        __classPrivateFieldGet(this, _SpIcon_iconMap, "f").set("error-fill", errorFill);
+        for (const { attr, def } of [
+            { attr: "error-fill", def: errorFill },
+            { attr: "information-circle", def: informationCircle },
+        ]) {
+            __classPrivateFieldGet(this, _SpIcon_iconMap, "f").set(attr, def);
+        }
+        this.type = this.getAttribute("type") ?? "";
         __classPrivateFieldSet(this, _SpIcon_initialized, true, "f");
     }
-    attributeChangedCallback(name, _, newValue) {
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue)
+            return;
+        newValue = newValue ?? "";
         if (name === "type") {
-            this.type = newValue ? newValue : "";
+            this.type = newValue;
         }
     }
 }
 _SpIcon_initialized = new WeakMap(), _SpIcon_iconMap = new WeakMap();
+SpIcon.observedAttributes = ["type"];
 const tagName = "sp-icon";
 if (!customElements.get(tagName)) {
     customElements.define(tagName, SpIcon);

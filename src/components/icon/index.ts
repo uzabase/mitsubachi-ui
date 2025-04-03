@@ -1,8 +1,10 @@
 import { makeStyleSheet } from "../styles";
-import { errorFill } from "./icons";
+import { errorFill, informationCircle } from "./icons";
 import styles from "./styles.css?inline";
 
 export class SpIcon extends HTMLElement {
+  static observedAttributes = ["type"];
+
   #initialized = false;
 
   #iconMap: Map<string, string> = new Map();
@@ -20,6 +22,8 @@ export class SpIcon extends HTMLElement {
         this.shadowRoot.innerHTML = icon;
       } else this.shadowRoot.innerHTML = "";
     }
+    if (newValue) this.setAttribute("type", newValue);
+    else this.removeAttribute("type");
   }
 
   connectedCallback() {
@@ -31,14 +35,25 @@ export class SpIcon extends HTMLElement {
     ];
 
     this.shadowRoot.innerHTML = errorFill;
-    this.#iconMap.set("error-fill", errorFill);
-
+    for (const { attr, def } of [
+      { attr: "error-fill", def: errorFill },
+      { attr: "information-circle", def: informationCircle },
+    ]) {
+      this.#iconMap.set(attr, def);
+    }
+    this.type = this.getAttribute("type") ?? "";
     this.#initialized = true;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (oldValue === newValue) return;
+    newValue = newValue ?? "";
     if (name === "type") {
-      this.type = newValue ? newValue : "";
+      this.type = newValue;
     }
   }
 }
