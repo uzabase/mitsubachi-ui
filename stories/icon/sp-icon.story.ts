@@ -21,6 +21,9 @@ export default meta;
 
 export const Default: StoryObj<SpIcon> = {
   render: ({ type }) => {
-    return html`<sp-icon type=${type}></sp-icon>`;
+    return html`<sp-icon
+      style="display: inline-block; width: 24px; height: 24px;"
+      type=${type}
+    ></sp-icon>`;
   },
 };

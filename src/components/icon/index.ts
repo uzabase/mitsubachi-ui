@@ -1,6 +1,4 @@
-import { makeStyleSheet } from "../styles";
 import { errorFill, informationCircle, person } from "./icons";
-import styles from "./styles.css?inline";
 
 export class SpIcon extends HTMLElement {
   static observedAttributes = ["type"];
@@ -28,11 +26,6 @@ export class SpIcon extends HTMLElement {
 
   connectedCallback() {
     if (!this.shadowRoot || this.#initialized) return;
-
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(styles),
-    ];
 
     this.shadowRoot.innerHTML = errorFill;
     for (const { attr, def } of [
