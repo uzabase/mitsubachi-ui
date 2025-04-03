@@ -1,4 +1,4 @@
-import { errorFill, informationCircle } from "./icons";
+import { errorFill, informationCircle, person } from "./icons";
 
 export class SpIcon extends HTMLElement {
   static observedAttributes = ["type"];
@@ -9,7 +9,6 @@ export class SpIcon extends HTMLElement {
 
   constructor() {
     super();
-
     this.attachShadow({ mode: "open" });
   }
 
@@ -31,6 +30,7 @@ export class SpIcon extends HTMLElement {
     for (const { attr, def } of [
       { attr: "error-fill", def: errorFill },
       { attr: "information-circle", def: informationCircle },
+      { attr: "person", def: person },
     ]) {
       this.#iconMap.set(attr, def);
     }

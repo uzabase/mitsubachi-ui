@@ -11,7 +11,7 @@ const meta: Meta<SpIcon> = {
   },
   argTypes: {
     type: {
-      options: ["information-circle", "error-fill"],
+      options: ["information-circle", "error-fill", "person"],
       control: { type: "select" },
     },
   },
