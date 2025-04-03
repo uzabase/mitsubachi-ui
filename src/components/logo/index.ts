@@ -1,6 +1,6 @@
-import { jp } from "./logo";
+import { jp, cn, en } from "./logo";
 
-export class Logo extends HTMLElement {
+export class SpLogo extends HTMLElement {
   static observedAttributes = ["language"];
 
   #initialized = false;
@@ -18,7 +18,10 @@ export class Logo extends HTMLElement {
 
   set language(value: string) {
     if (this.shadowRoot) {
-      this.shadowRoot.innerHTML = jp;
+      if (value == "jp") this.shadowRoot.innerHTML = jp;
+      else if (value == "en") this.shadowRoot.innerHTML = en;
+      else if (value == "cn") this.shadowRoot.innerHTML = cn;
+      else this.shadowRoot.innerHTML = "";
     }
     if (value) this.setAttribute("language", value);
     else this.removeAttribute("language");
@@ -39,11 +42,11 @@ export class Logo extends HTMLElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-icon": SpIcon;
+    "sp-logo": SpLogo;
   }
 }
 
-const tagName = "sp-icon";
+const tagName = "sp-logo";
 if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpIcon);
+  customElements.define(tagName, SpLogo);
 }
