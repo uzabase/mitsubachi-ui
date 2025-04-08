@@ -71,12 +71,22 @@ export class SpTextField extends HTMLElement {
   }
 
   set value(value: string) {
+    const oldValue = this.value;
     console.log('prev', this.#input.name, this.#input.value, this.value, value);
     this.#input.value = value;
     console.log('called', this.#input.name, this.#input.value, this.value, value);
     this.#internals.setFormValue(this.value);
-
     this.#updateAttribute("value", value);
+
+    if (oldValue !== this.value) {
+      this.dispatchEvent(
+        new Event("input", {
+          bubbles: true,
+          composed: true,
+        }),
+      );
+    }
+
   }
 
   #input = document.createElement("input");

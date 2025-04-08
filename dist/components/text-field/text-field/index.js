@@ -63,11 +63,18 @@ export class SpTextField extends HTMLElement {
         return __classPrivateFieldGet(this, _SpTextField_input, "f").value;
     }
     set value(value) {
+        const oldValue = this.value;
         console.log('prev', __classPrivateFieldGet(this, _SpTextField_input, "f").name, __classPrivateFieldGet(this, _SpTextField_input, "f").value, this.value, value);
         __classPrivateFieldGet(this, _SpTextField_input, "f").value = value;
         console.log('called', __classPrivateFieldGet(this, _SpTextField_input, "f").name, __classPrivateFieldGet(this, _SpTextField_input, "f").value, this.value, value);
         __classPrivateFieldGet(this, _SpTextField_internals, "f").setFormValue(this.value);
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "value", value);
+        if (oldValue !== this.value) {
+            this.dispatchEvent(new Event("input", {
+                bubbles: true,
+                composed: true,
+            }));
+        }
     }
     constructor() {
         super();
