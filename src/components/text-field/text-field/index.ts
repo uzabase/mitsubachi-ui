@@ -78,14 +78,12 @@ export class SpTextField extends HTMLElement {
     this.#internals.setFormValue(this.value);
     this.#updateAttribute("value", value);
 
-    if (oldValue !== this.value) {
       this.dispatchEvent(
         new Event("input", {
           bubbles: true,
           composed: true,
         }),
       );
-    }
 
   }
 
@@ -122,6 +120,8 @@ export class SpTextField extends HTMLElement {
     this.#input.addEventListener("input", (e: Event) => {
       const target = e.target as HTMLInputElement;
       this.value = target.value;
+
+      console.log('sp-textfield: event', e);
     });
 
     this.shadowRoot.appendChild(this.#input);
