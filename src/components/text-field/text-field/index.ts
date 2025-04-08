@@ -125,6 +125,7 @@ export class SpTextField extends HTMLElement {
 
       console.log('sp-textfield: event', e);
       if(!e.composed) {
+        console.log('dispatchEvent');
         this.dispatchEvent(new Event('intput', { bubbles: true, composed: true }));
       }
     });
