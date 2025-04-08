@@ -78,12 +78,14 @@ export class SpTextField extends HTMLElement {
     this.#internals.setFormValue(this.value);
     this.#updateAttribute("value", value);
 
-      this.dispatchEvent(
-        new Event("input", {
-          bubbles: true,
-          composed: true,
-        }),
-      );
+
+
+      // this.dispatchEvent(
+      //   new Event("input", {
+      //     bubbles: true,
+      //     composed: true,
+      //   }),
+      // );
 
   }
 
