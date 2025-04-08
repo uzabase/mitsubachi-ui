@@ -68,6 +68,7 @@ export class SpTextFieldUnit extends HTMLElement {
         _SpTextFieldUnit_internals.set(this, void 0);
         _SpTextFieldUnit_initialized.set(this, false);
         _SpTextFieldUnit_inputHandler.set(this, (e) => {
+            console.log('sp-text-event-field-unit', e);
             const target = e.target;
             this.value = target.value;
         });

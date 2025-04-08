@@ -71,7 +71,7 @@ export class SpTextField extends HTMLElement {
   }
 
   set value(value: string) {
-    const oldValue = this.value;
+    //const oldValue = this.value;
     console.log('prev', this.#input.name, this.#input.value, this.value, value);
     this.#input.value = value;
     console.log('called', this.#input.name, this.#input.value, this.value, value);
