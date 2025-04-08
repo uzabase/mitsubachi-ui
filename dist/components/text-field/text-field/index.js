@@ -104,6 +104,7 @@ export class SpTextField extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextField_input, "f").addEventListener("input", (e) => {
             const target = e.target;
             this.value = target.value;
+            console.log('sp-textfield: event', e);
         });
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_input, "f"));
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.add("input");
