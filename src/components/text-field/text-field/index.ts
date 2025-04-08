@@ -71,8 +71,11 @@ export class SpTextField extends HTMLElement {
   }
 
   set value(value: string) {
+
     this.#input.value = value;
+    console.log('called', this.#input.value, this.value);
     this.#internals.setFormValue(this.value);
+
     this.#updateAttribute("value", value);
   }
 
