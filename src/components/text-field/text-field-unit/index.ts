@@ -54,6 +54,7 @@ export class SpTextFieldUnit extends HTMLElement {
 
   set value(value: string) {
     this.#input.value = value;
+    console.log('sp-textfieldunit', this.#input.name, value, this.value)
     this.#internals.setFormValue(this.value);
     this.#updateAttribute("value", value);
   }

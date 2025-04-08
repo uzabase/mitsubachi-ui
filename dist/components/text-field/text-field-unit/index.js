@@ -44,6 +44,7 @@ export class SpTextFieldUnit extends HTMLElement {
     }
     set value(value) {
         __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").value = value;
+        console.log('sp-textfieldunit', __classPrivateFieldGet(this, _SpTextFieldUnit_input, "f").name, value, this.value);
         __classPrivateFieldGet(this, _SpTextFieldUnit_internals, "f").setFormValue(this.value);
         __classPrivateFieldGet(this, _SpTextFieldUnit_instances, "m", _SpTextFieldUnit_updateAttribute).call(this, "value", value);
     }
