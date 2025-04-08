@@ -105,6 +105,9 @@ export class SpTextField extends HTMLElement {
             const target = e.target;
             this.value = target.value;
             console.log('sp-textfield: event', e);
+            if (!e.composed) {
+                this.dispatchEvent(new Event('intput', { bubbles: true, composed: true }));
+            }
         });
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_input, "f"));
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.add("input");
