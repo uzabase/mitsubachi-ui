@@ -71,22 +71,9 @@ export class SpTextField extends HTMLElement {
   }
 
   set value(value: string) {
-    //const oldValue = this.value;
-    console.log('prev', this.#input.name, this.#input.value, this.value, value);
     this.#input.value = value;
-    console.log('called', this.#input.name, this.#input.value, this.value, value);
     this.#internals.setFormValue(this.value);
     this.#updateAttribute("value", value);
-
-
-
-      // this.dispatchEvent(
-      //   new Event("input", {
-      //     bubbles: true,
-      //     composed: true,
-      //   }),
-      // );
-
   }
 
   #input = document.createElement("input");
@@ -123,10 +110,13 @@ export class SpTextField extends HTMLElement {
       const target = e.target as HTMLInputElement;
       this.value = target.value;
 
-      console.log('sp-textfield: event', e);
-      if(!e.composed) {
-        console.log('dispatchEvent');
-        this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+      // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+      // 自動入力されたパスワードがformで送信されないことがありました。
+      // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
+      if (!e.composed) {
+        this.dispatchEvent(
+          new Event("input", { bubbles: true, composed: true }),
+        );
       }
     });
 

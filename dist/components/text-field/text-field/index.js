@@ -63,18 +63,9 @@ export class SpTextField extends HTMLElement {
         return __classPrivateFieldGet(this, _SpTextField_input, "f").value;
     }
     set value(value) {
-        //const oldValue = this.value;
-        console.log('prev', __classPrivateFieldGet(this, _SpTextField_input, "f").name, __classPrivateFieldGet(this, _SpTextField_input, "f").value, this.value, value);
         __classPrivateFieldGet(this, _SpTextField_input, "f").value = value;
-        console.log('called', __classPrivateFieldGet(this, _SpTextField_input, "f").name, __classPrivateFieldGet(this, _SpTextField_input, "f").value, this.value, value);
         __classPrivateFieldGet(this, _SpTextField_internals, "f").setFormValue(this.value);
         __classPrivateFieldGet(this, _SpTextField_instances, "m", _SpTextField_updateAttribute).call(this, "value", value);
-        // this.dispatchEvent(
-        //   new Event("input", {
-        //     bubbles: true,
-        //     composed: true,
-        //   }),
-        // );
     }
     constructor() {
         super();
@@ -104,10 +95,11 @@ export class SpTextField extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextField_input, "f").addEventListener("input", (e) => {
             const target = e.target;
             this.value = target.value;
-            console.log('sp-textfield: event', e);
+            // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+            // 自動入力されたパスワードがformで送信されないことがありました。
+            // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
             if (!e.composed) {
-                console.log('dispatchEvent');
-                this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+                this.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
             }
         });
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_input, "f"));
