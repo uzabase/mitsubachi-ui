@@ -109,6 +109,15 @@ export class SpTextField extends HTMLElement {
     this.#input.addEventListener("input", (e: Event) => {
       const target = e.target as HTMLInputElement;
       this.value = target.value;
+
+      // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+      // 自動入力されたパスワードがformで送信されないことがありました。
+      // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
+      if (!e.composed) {
+        this.dispatchEvent(
+          new Event("input", { bubbles: true, composed: true }),
+        );
+      }
     });
 
     this.shadowRoot.appendChild(this.#input);
