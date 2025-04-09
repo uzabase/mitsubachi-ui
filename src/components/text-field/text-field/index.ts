@@ -114,9 +114,7 @@ export class SpTextField extends HTMLElement {
       // 自動入力されたパスワードがformで送信されないことがありました。
       // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
       if (!e.composed) {
-        this.dispatchEvent(
-          new InputEvent("input", {...e, composed: true}),
-        );
+        this.dispatchEvent(new InputEvent("input", { ...e, composed: true }));
       }
     });
 
