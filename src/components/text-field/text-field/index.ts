@@ -115,7 +115,7 @@ export class SpTextField extends HTMLElement {
       // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
       if (!e.composed) {
         this.dispatchEvent(
-          new Event("input", { bubbles: true, composed: true }),
+          new InputEvent("input", {...e, composed: true}),
         );
       }
     });
