@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui",
-  "version": "0.8.4-beta.0",
+  "version": "0.8.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
