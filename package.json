@@ -16,7 +16,8 @@
     "format:prettier": "prettier --write '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
-    "test": "vitest"
+    "test": "vitest",
+    "mcp": "node --experimental-strip-types ./mcp/index.ts"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@modelcontextprotocol/sdk": "^1.9.0",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
     "@storybook/web-components": "^8.6.12",
@@ -55,8 +57,10 @@
     "storybook": "^8.6.12",
     "stylelint": "^16.15.0",
     "stylelint-config-standard": "^37.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.26.1",
-    "vitest": "^3.0.8"
+    "vitest": "^3.0.8",
+    "zod": "^3.24.2"
   }
 }
