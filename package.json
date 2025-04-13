@@ -30,7 +30,7 @@
     "url": "git+https://github.com/uzabase/mitsubachi-ui.git"
   },
   "files": [
-    "dist"
+    "dist", "tools"
   ],
   "license": "ISC",
   "dependencies": {
