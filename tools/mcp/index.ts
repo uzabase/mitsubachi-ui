@@ -6,8 +6,19 @@
 import custom from './custom-elements.json' with { type: 'json' };
 
 
+function loadDoc(manifest: any) {
+  const modules = manifest['modules'];
+  for (const module of modules) {
+    const declarations = module['declarations'];
+    const customElements = declarations.filter((d: any) => d.customElement)
+    for(const customElement of customElements) {
+      console.log(customElement);
+    }
+  }
+}
+
 export async function main() {
-  console.log(custom);
+  console.log(loadDoc(custom));
   // const text = (await readFile(path.join(__dirname, "custom-elements.json"), "utf-8")).toString();
   // const manifestObject = JSON.parse(text);
 
