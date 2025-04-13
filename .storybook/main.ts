@@ -7,18 +7,14 @@ const config: StorybookConfig = {
     "../stories/**/*.mdx",
     "../stories/**/*.story.@(js|jsx|mjs|ts|tsx)",
   ],
-
   addons: ["@storybook/addon-essentials"],
-
   framework: {
     name: "@storybook/web-components-vite",
     options: {},
   },
-
   tags: {
     "dev-only": { excludeFromSidebar: isProduction },
   },
-
   async viteFinal(config) {
     const { mergeConfig } = await import("vite");
 
@@ -30,9 +26,5 @@ const config: StorybookConfig = {
       base,
     });
   },
-
-  docs: {
-    autodocs: true
-  }
 };
 export default config;
