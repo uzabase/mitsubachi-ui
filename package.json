@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "mcp": "node tools/mcp/bin.js"
+    "mitsubachi-ui-mcp": "node ./tools/mcp/bin.js"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
