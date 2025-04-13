@@ -3,14 +3,13 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const server = new McpServer({
-  name: "weather",
+  name: "mitsubachi-mcp",
   version: "1.0.0",
   capabilities: {
     resources: {},
     tools: {},
   },
 });
-
 server.tool(
   "mitsubachi-ui-web-components",
   "mitsubachi-uiのWeb componentタグの情報を提供します。",
