@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import {loadDefaultManifest, Manifest } from "./manifest";
+import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 // import { z } from "zod";
-
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -16,12 +15,13 @@ function buildMcpServer(): McpServer {
   });
 }
 
-export function makeWebComponentContent(manifest: Manifest):{type: 'text', text: string} [] {
+export function makeWebComponentContent(
+  manifest: Manifest,
+): { type: "text"; text: string }[] {
+  const res: { type: "text"; text: string }[] = [];
 
-  const res:{type: 'text', text: string}[] =  []
-
-  for(const [tagName, summary] of Object.entries(manifest.summaries())) {
-    res.push({type: "text", text: `カスタム要素 <${tagName}> ${summary}`});
+  for (const [tagName, summary] of Object.entries(manifest.summaries())) {
+    res.push({ type: "text", text: `カスタム要素 <${tagName}> ${summary}` });
   }
   return res;
 }
@@ -42,7 +42,7 @@ function defineTools(server: McpServer, manifest: Manifest) {
 
 export async function main() {
   const server = buildMcpServer();
-  const manifest = loadDefaultManifest(); 
+  const manifest = loadDefaultManifest();
   defineTools(server, manifest);
 
   const transport = new StdioServerTransport();

@@ -51,6 +51,6 @@ declare global {
   }
 }
 
-if (!customElements.get('sp-logo')) {
-  customElements.define('sp-logo', SpLogo);
+if (!customElements.get("sp-logo")) {
+  customElements.define("sp-logo", SpLogo);
 }

@@ -1,7 +1,7 @@
-import custom from './custom-elements.json' with { type: 'json' };
+import custom from "./custom-elements.json" with { type: "json" };
 
 export interface Manifest {
-     summaries():{ [key: string]: string };   
+  summaries(): { [key: string]: string };
 }
 
 class ManifestJson implements Manifest {
@@ -14,15 +14,15 @@ class ManifestJson implements Manifest {
   summaries(): { [key: string]: string } {
     const elements = this.customElements;
     let res: { [key: string]: string } = {};
-    for(const element of elements) {
-        if(element.summary && element.tagName.startsWith("sp-")) {
-            res[element.tagName] = element.summary;
-        }
+    for (const element of elements) {
+      if (element.summary && element.tagName.startsWith("sp-")) {
+        res[element.tagName] = element.summary;
+      }
     }
     return res;
   }
 
-  private get customElements(): {tagName: string, summary?: string}[] {
+  private get customElements(): { tagName: string; summary?: string }[] {
     const results = [];
     for (const module of this.modules) {
       const declarations = module["declarations"];
@@ -40,12 +40,12 @@ class ManifestJson implements Manifest {
 }
 
 function loadManifest(manifestJson: any): Manifest {
-    return new ManifestJson(manifestJson);
+  return new ManifestJson(manifestJson);
 }
 
 /**
- * 
+ *
  */
 export function loadDefaultManifest(): Manifest {
-    return loadManifest(custom);
+  return loadManifest(custom);
 }
