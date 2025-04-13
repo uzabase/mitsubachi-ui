@@ -7,7 +7,7 @@ describe("カスタム要素の概要を提供する", async () => {
   test("説明文にはカスタム要素の名前がある", async () => {
     const actual = makeWebComponentContent(loadDefaultManifest());
 
-    const tags = new Set(["sp-icon", "sp-logo"]);
+    const tags = new Set(["sp-icon", "sp-logo", 'sp-text-field-unit']);
 
     for (const element of actual) {
       const tag = element.text.match(/カスタム要素 <(.+)>/)![1];

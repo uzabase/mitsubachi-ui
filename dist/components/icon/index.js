@@ -65,6 +65,6 @@ export class SpIcon extends HTMLElement {
 }
 _SpIcon_initialized = new WeakMap(), _SpIcon_iconMap = new WeakMap();
 SpIcon.observedAttributes = ["type"];
-if (!customElements.get('sp-icon')) {
-    customElements.define('sp-icon', SpIcon);
+if (!customElements.get("sp-icon")) {
+    customElements.define("sp-icon", SpIcon);
 }

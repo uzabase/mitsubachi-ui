@@ -165,12 +165,11 @@ export class SpTextFieldUnit extends HTMLElement {
   }
 }
 
-const tagName = "sp-text-field-unit";
 declare global {
   interface HTMLElementTagNameMap {
     "sp-text-field-unit": SpTextFieldUnit;
   }
 }
-if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextFieldUnit);
+if (!customElements.get('sp-text-field-unit')) {
+  customElements.define('sp-text-field-unit', SpTextFieldUnit);
 }
