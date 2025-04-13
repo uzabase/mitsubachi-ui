@@ -1,9 +1,9 @@
-#!/usr/bin/env -S node --experimental-strip-types
 
 // import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 // import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 // import { z } from "zod";
 import { exec } from "node:child_process";
+import '@custom-elements-manifest/analyzer';
 import * as util from "node:util";
 import {  readFile, mkdir } from "node:fs/promises";
 import * as path from "node:path";
