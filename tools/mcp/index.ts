@@ -4,6 +4,7 @@
 // import { z } from "zod";
 import { exec } from "node:child_process";
 import '@custom-elements-manifest/analyzer';
+import custom from './custom-elements.json' with { type: 'json' };
 import * as util from "node:util";
 import {  readFile, mkdir } from "node:fs/promises";
 import * as path from "node:path";
@@ -11,13 +12,11 @@ import * as path from "node:path";
 const __dirname = import.meta.dirname;
 
 export async function main() {
+  console.log(custom);
+  // const text = (await readFile(path.join(__dirname, "custom-elements.json"), "utf-8")).toString();
+  // const manifestObject = JSON.parse(text);
 
-  const text = (await readFile(path.join(__dirname, "custom-elements.json"), "utf-8")).toString();
-  const manifestObject = JSON.parse(text);
-
-  console.log(manifestObject);
 }
-
 main().catch((error) => {
   console.log(error);
 });
