@@ -2,14 +2,8 @@
 // import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 // import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 // import { z } from "zod";
-import { exec } from "node:child_process";
-import '@custom-elements-manifest/analyzer';
 import custom from './custom-elements.json' with { type: 'json' };
-import * as util from "node:util";
-import {  readFile, mkdir } from "node:fs/promises";
-import * as path from "node:path";
 
-const __dirname = import.meta.dirname;
 
 export async function main() {
   console.log(custom);
