@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 
 import { loadDefaultManifest } from "../../tools/mcp/manifest";
 import { makeWebComponentContent } from "../../tools/mcp/tool";
+import { z } from "zod";
 
 describe("カスタム要素の概要を提供する", async () => {
   test("説明文にはカスタム要素の名前がある", async () => {
@@ -24,4 +25,8 @@ describe("カスタム要素の概要を提供する", async () => {
       );
     }
   });
+
+
 });
+
+
