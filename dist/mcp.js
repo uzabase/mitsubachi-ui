@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// tools/mcp/index.ts
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+
 // tools/mcp/custom-elements.json
 var custom_elements_default = {
   schemaVersion: "1.0.0",
@@ -863,16 +866,8 @@ var custom_elements_default = {
             name: "HTMLElement"
           },
           summary: "\u30B9\u30D4\u30FC\u30C0\u306E\u30ED\u30B4\u3067\u3059\u3002",
-          tagName: "tagName",
+          tagName: "sp-logo",
           customElement: true
-        },
-        {
-          kind: "variable",
-          name: "tagName",
-          type: {
-            text: "string"
-          },
-          default: '"sp-logo"'
         }
       ],
       exports: [
@@ -886,7 +881,7 @@ var custom_elements_default = {
         },
         {
           kind: "custom-element-definition",
-          name: "tagName",
+          name: "sp-logo",
           declaration: {
             name: "SpLogo",
             module: "src/components/logo/index.ts"
@@ -1437,23 +1432,88 @@ var custom_elements_default = {
   ]
 };
 
-// tools/mcp/index.ts
-function loadDoc(manifest) {
-  const modules = manifest["modules"];
-  for (const module of modules) {
-    const declarations = module["declarations"];
-    const customElements = declarations.filter((d) => d.customElement);
-    for (const customElement of customElements) {
-      console.log(customElement);
-    }
+// tools/mcp/manifest.ts
+var ManifestJson = class {
+  constructor(raw) {
+    this.raw = raw;
   }
+  summaries() {
+    const elements = this.customElements;
+    let res = {};
+    for (const element of elements) {
+      if (element.summary && element.tagName.startsWith("sp-")) {
+        res[element.tagName] = element.summary;
+      }
+    }
+    return res;
+  }
+  get customElements() {
+    const results = [];
+    for (const module of this.modules) {
+      const declarations = module["declarations"];
+      const customElements = declarations.filter((d) => d.customElement);
+      for (const customElement of customElements) {
+        results.push(customElement);
+      }
+    }
+    return results;
+  }
+  get modules() {
+    return this.raw["modules"];
+  }
+};
+function loadManifest(manifestJson) {
+  return new ManifestJson(manifestJson);
+}
+function loadDefaultManifest() {
+  return loadManifest(custom_elements_default);
+}
+
+// tools/mcp/index.ts
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+function buildMcpServer() {
+  return new McpServer({
+    name: "mitsubachi-mcp",
+    version: "1.0.0",
+    capabilities: {
+      resources: {},
+      tools: {}
+    }
+  });
+}
+function makeWebComponentContent(manifest) {
+  const res = [];
+  for (const [tagName, summary] of Object.entries(manifest.summaries())) {
+    res.push({ type: "text", text: `\u30AB\u30B9\u30BF\u30E0\u8981\u7D20 <${tagName}> ${summary}` });
+  }
+  return res;
+}
+function defineTools(server, manifest) {
+  const content = makeWebComponentContent(manifest);
+  server.tool(
+    "mitsubachi-ui-web-components",
+    "mitsubachi-ui\u306E\u30AB\u30B9\u30BF\u30E0\u8981\u7D20\u306E\u4E00\u89A7\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002",
+    {},
+    async () => {
+      return {
+        content
+      };
+    }
+  );
 }
 async function main() {
-  console.log(loadDoc(custom_elements_default));
+  const server = buildMcpServer();
+  const manifest = loadDefaultManifest();
+  defineTools(server, manifest);
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("Weather MCP Server running on stdio");
 }
 main().catch((error) => {
-  console.log(error);
+  console.error(error);
+  throw error;
 });
 export {
-  main
+  main,
+  makeWebComponentContent
 };

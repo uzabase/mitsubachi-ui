@@ -860,16 +860,8 @@
             "name": "HTMLElement"
           },
           "summary": "スピーダのロゴです。",
-          "tagName": "tagName",
+          "tagName": "sp-logo",
           "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "tagName",
-          "type": {
-            "text": "string"
-          },
-          "default": "\"sp-logo\""
         }
       ],
       "exports": [
@@ -883,7 +875,7 @@
         },
         {
           "kind": "custom-element-definition",
-          "name": "tagName",
+          "name": "sp-logo",
           "declaration": {
             "name": "SpLogo",
             "module": "src/components/logo/index.ts"

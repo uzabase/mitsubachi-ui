@@ -54,7 +54,6 @@ export class SpLogo extends HTMLElement {
 }
 _SpLogo_initialized = new WeakMap();
 SpLogo.observedAttributes = ["language"];
-const tagName = "sp-logo";
-if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpLogo);
+if (!customElements.get('sp-logo')) {
+    customElements.define('sp-logo', SpLogo);
 }

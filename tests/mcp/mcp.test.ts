@@ -1,15 +1,24 @@
-import * as path from "node:path";
-
 import { describe, expect, test } from "vitest";
+import { makeWebComponentContent } from "../../tools/mcp";
+import { loadDefaultManifest } from "../../tools/mcp/manifest";
 
-import { readManifest } from "../../tools/mcp/manifest";
+describe("カスタム要素の概要を提供する", async () => {
 
-describe("wip", () => {
+  test("説明文にはカスタム要素の名前がある", async () => {
+    const actual = makeWebComponentContent(loadDefaultManifest());
 
-  test("temp", async () => {
+    const tags = new Set(["sp-icon", "sp-logo"]);
 
-    const text = await readManifest(path.join(__dirname, "custom-elements.json"));
-    console.log(text);
+    for(const element of actual) {
+      const tag = element.text.match(/カスタム要素 <(.+)>/)![1];
+      expect(tags.has(tag), `${tag}は未知タグです。custom-elements.jsonが古いかもしれません。`).toBe(true);
+      tags.delete(tag);
+    }
+
+    if(tags.size > 0) {
+      throw new Error(`説明に含まれないカスタム要素がありました。${Array.from(tags).join(",")}`);
+    }
+    
   });
 
 });

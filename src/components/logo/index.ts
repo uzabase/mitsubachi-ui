@@ -51,7 +51,6 @@ declare global {
   }
 }
 
-const tagName = "sp-logo";
-if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpLogo);
+if (!customElements.get('sp-logo')) {
+  customElements.define('sp-logo', SpLogo);
 }

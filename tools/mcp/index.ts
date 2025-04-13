@@ -1,30 +1,57 @@
 #!/usr/bin/env node
-
-// import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-// import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import {loadDefaultManifest, Manifest } from "./manifest";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 // import { z } from "zod";
-import custom from './custom-elements.json' with { type: 'json' };
 
 
-function loadDoc(manifest: any) {
-  const modules = manifest['modules'];
-  for (const module of modules) {
-    const declarations = module['declarations'];
-    const customElements = declarations.filter((d: any) => d.customElement)
-    for(const customElement of customElements) {
-      console.log(customElement);
-    }
+function buildMcpServer(): McpServer {
+  return new McpServer({
+    name: "mitsubachi-mcp",
+    version: "1.0.0",
+    capabilities: {
+      resources: {},
+      tools: {},
+    },
+  });
+}
+
+export function makeWebComponentContent(manifest: Manifest):{type: 'text', text: string} [] {
+
+  const res:{type: 'text', text: string}[] =  []
+
+  for(const [tagName, summary] of Object.entries(manifest.summaries())) {
+    res.push({type: "text", text: `カスタム要素 <${tagName}> ${summary}`});
   }
+  return res;
+}
+
+function defineTools(server: McpServer, manifest: Manifest) {
+  const content = makeWebComponentContent(manifest);
+  server.tool(
+    "mitsubachi-ui-web-components",
+    "mitsubachi-uiのカスタム要素の一覧を提供します。",
+    {},
+    async () => {
+      return {
+        content,
+      };
+    },
+  );
 }
 
 export async function main() {
-  console.log(loadDoc(custom));
-  // const text = (await readFile(path.join(__dirname, "custom-elements.json"), "utf-8")).toString();
-  // const manifestObject = JSON.parse(text);
+  const server = buildMcpServer();
+  const manifest = loadDefaultManifest(); 
+  defineTools(server, manifest);
 
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("Weather MCP Server running on stdio");
 }
 main().catch((error) => {
-  console.log(error);
+  console.error(error);
+  throw error;
 });
 
 /*
@@ -122,16 +149,5 @@ server.tool(
     };
   },
 );
-
-async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("Weather MCP Server running on stdio");
-}
-
-main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
-});
 
 */
