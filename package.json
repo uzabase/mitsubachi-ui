@@ -18,7 +18,7 @@
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
     "test": "vitest",
-    "mcp": "node --experimental-strip-types ./mcp/index.ts"
+    "mcp": "node --experimental-strip-types ./tools/index.ts"
   },
   "repository": {
     "type": "git",
