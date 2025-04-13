@@ -1,3 +1,6 @@
+/**
+ * @attr {"jp"|"en"|"cn"} language - The language of the logo. It can be "jp", "en", or "cn".
+ */
 export declare class SpLogo extends HTMLElement {
     #private;
     static observedAttributes: string[];

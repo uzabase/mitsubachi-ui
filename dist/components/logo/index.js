@@ -11,6 +11,9 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 };
 var _SpLogo_initialized;
 import { cn, en, jp } from "./logo";
+/**
+ * @attr {"jp"|"en"|"cn"} language - The language of the logo. It can be "jp", "en", or "cn".
+ */
 export class SpLogo extends HTMLElement {
     constructor() {
         super();
