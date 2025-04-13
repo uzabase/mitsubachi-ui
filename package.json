@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "mcp": "tools/mcp/index.js"
+    "mcp": "tools/mcp/bin.js"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
