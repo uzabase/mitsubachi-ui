@@ -588,129 +588,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/label-unit/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "#text",
-              "privacy": "private",
-              "type": {
-                "text": "string"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "#supportText",
-              "privacy": "private",
-              "type": {
-                "text": "string"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "field",
-              "name": "#label",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#support",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              },
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            },
-            {
-              "kind": "method",
-              "name": "#updateClass",
-              "privacy": "private"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "text"
-            },
-            {
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "tagName",
-          "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "tagName",
-          "type": {
-            "text": "string"
-          },
-          "default": "\"sp-label-unit\""
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "tagName",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/logo/index.ts",
       "declarations": [
         {
@@ -948,6 +825,322 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/label-unit/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "#text",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "#supportText",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "supportText"
+            },
+            {
+              "kind": "field",
+              "name": "#label",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#support",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            },
+            {
+              "kind": "method",
+              "name": "#updateClass",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text"
+            },
+            {
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "tagName",
+          "customElement": true
+        },
+        {
+          "kind": "variable",
+          "name": "tagName",
+          "type": {
+            "text": "string"
+          },
+          "default": "\"sp-label-unit\""
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "tagName",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "type"
+            },
+            {
+              "kind": "field",
+              "name": "error"
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "#disabled",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#input",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#errorText",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#error",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "#updateStyle",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#updateAttribute",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "name",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "error"
+            },
+            {
+              "name": "placeholder"
+            },
+            {
+              "name": "autocomplete"
+            },
+            {
+              "name": "disabled"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "value"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "tagName",
+          "customElement": true
+        },
+        {
+          "kind": "variable",
+          "name": "tagName",
+          "type": {
+            "text": "string"
+          },
+          "default": "\"sp-text-field\""
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "tagName",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/index.ts",
       "declarations": [
         {
@@ -1145,199 +1338,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpTextField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "type"
-            },
-            {
-              "kind": "field",
-              "name": "error"
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder"
-            },
-            {
-              "kind": "field",
-              "name": "#disabled",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#input",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#errorText",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#internals",
-              "privacy": "private",
-              "type": {
-                "text": "ElementInternals"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "#error",
-              "privacy": "private",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "method",
-              "name": "#updateStyle",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#updateAttribute",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "name",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "error"
-            },
-            {
-              "name": "placeholder"
-            },
-            {
-              "name": "autocomplete"
-            },
-            {
-              "name": "disabled"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "value"
-            },
-            {
-              "name": "type"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "tagName",
-          "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "tagName",
-          "type": {
-            "text": "string"
-          },
-          "default": "\"sp-text-field\""
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpTextField",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "tagName",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },

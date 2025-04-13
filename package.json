@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "mitsubachi-ui-mcp": "node ./tools/mcp/bin.js"
+    "mitsubachi-ui-mcp": "node ./dist/mcp.js"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -14,7 +14,7 @@
     "build": "rimraf dist && run-s build:*",
     "build:ts": "tsc -p tsconfig-build.json",
     "build:custom-elements-manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
-    "build:mcp": "esbuild --bundle --format=esm --platform=node tools/mcp/index.ts --packages=external  --outfile=tools/mcp/bin.js",
+    "build:mcp": "esbuild --bundle --format=esm --platform=node tools/mcp/index.ts --packages=external  --outfile=dist/mcp.js",
     "build:css": "node tools/copy-css.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -22,15 +22,14 @@
     "format:prettier": "prettier --write '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
-    "test": "vitest",
-    "mcp": "node --experimental-strip-types ./tools/index.ts"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uzabase/mitsubachi-ui.git"
   },
   "files": [
-    "dist", "tools"
+    "dist"
   ],
   "license": "ISC",
   "dependencies": {
