@@ -11,6 +11,12 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
 import { errorFill, informationCircle, person } from "./icons";
+/**
+ * @summary アイコンです。
+ *
+ * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。
+ *
+ */
 export class SpIcon extends HTMLElement {
     constructor() {
         super();

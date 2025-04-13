@@ -1,5 +1,5 @@
-const { readdir, stat, cp } = require("fs/promises");
-const { join } = require("path");
+import { readdir, stat, cp } from "fs/promises";
+import { join } from  "node:path";
 
 async function readDirRecursively(dir) {
     const files = await readdir(dir);

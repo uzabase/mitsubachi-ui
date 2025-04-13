@@ -1,5 +1,12 @@
 import "../text-field";
 import "../../label-unit";
+/**
+ * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
+ *
+ * @attr {string} text - テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。
+ *
+ * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
+ */
 export declare class SpTextFieldUnit extends HTMLElement {
     #private;
     static observedAttributes: string[];

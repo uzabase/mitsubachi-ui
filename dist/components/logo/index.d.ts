@@ -1,5 +1,7 @@
 /**
- * @attr {"jp"|"en"|"cn"} language - The language of the logo. It can be "jp", "en", or "cn".
+ * @summary スピーダのロゴです。
+ *
+ * @attr {string} language - スピーダのロゴにある社名の言語を定義します。language=jpであれば日本語, language=enであれば英語, cnであれば簡体字です。
  */
 export declare class SpLogo extends HTMLElement {
     #private;

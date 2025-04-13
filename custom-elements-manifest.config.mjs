@@ -1,4 +1,4 @@
 export default {
-    globs: ['src/**', 'dist/**/*'],
-    outdir: './dist',
+    globs: ['src/**'],
+    outdir: './tools/mcp',
 }
