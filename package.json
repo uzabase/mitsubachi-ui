@@ -3,6 +3,7 @@
   "version": "0.8.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",

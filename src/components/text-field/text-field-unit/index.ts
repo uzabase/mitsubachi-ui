@@ -6,6 +6,13 @@ import { makeStyleSheet } from "../../styles";
 import { type SpTextField } from "../text-field";
 import styles from "./styles.css?inline";
 
+/**
+ * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
+ *
+ * @attr {string} text - テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。
+ * 
+ * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
+ */
 export class SpTextFieldUnit extends HTMLElement {
   static observedAttributes = [
     "error",

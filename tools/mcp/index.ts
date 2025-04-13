@@ -1,7 +1,37 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+// import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+// import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+// import { z } from "zod";
+import { exec } from "node:child_process";
+import * as util from "node:util";
+import {  readFile, mkdir } from "node:fs/promises";
+import * as path from "node:path";
 
+const __dirname = import.meta.dirname;
+
+export async function main() {
+  // 親ルートに置けない
+  const baseDir = path.join(__dirname, "..", "..");
+  await mkdir(path.join(baseDir, "tmp"));
+
+  await util.promisify(exec)(
+    `npx custom-elements-manifest analyze --outdir tmp --globs src/**/*`,
+    {
+      cwd: baseDir,
+    },
+  );
+  const manifestObject = JSON.parse(
+    (
+      await readFile(path.join(baseDir, "tmp", "custom-elements.json"))
+    ).toString(),
+  );
+  console.log(manifestObject);
+}
+
+main().catch((error) => {
+  console.log(error);
+});
+
+/*
 const server = new McpServer({
   name: "mitsubachi-mcp",
   version: "1.0.0",
@@ -107,3 +137,5 @@ main().catch((error) => {
   console.error("Fatal error in main():", error);
   process.exit(1);
 });
+
+*/
