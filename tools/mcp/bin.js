@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // tools/mcp/index.ts
 import "@custom-elements-manifest/analyzer";
 
