@@ -2,6 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { makeWebComponentContent } from "./tool";
 // import { z } from "zod";
 
 function buildMcpServer(): McpServer {
@@ -13,17 +14,6 @@ function buildMcpServer(): McpServer {
       tools: {},
     },
   });
-}
-
-export function makeWebComponentContent(
-  manifest: Manifest,
-): { type: "text"; text: string }[] {
-  const res: { type: "text"; text: string }[] = [];
-
-  for (const [tagName, summary] of Object.entries(manifest.summaries())) {
-    res.push({ type: "text", text: `カスタム要素 <${tagName}> ${summary}` });
-  }
-  return res;
 }
 
 function defineTools(server: McpServer, manifest: Manifest) {

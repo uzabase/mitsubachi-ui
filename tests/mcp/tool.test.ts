@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 
-import { makeWebComponentContent } from "../../tools/mcp";
 import { loadDefaultManifest } from "../../tools/mcp/manifest";
+import { makeWebComponentContent } from "../../tools/mcp/tool";
 
 describe("カスタム要素の概要を提供する", async () => {
   test("説明文にはカスタム要素の名前がある", async () => {
