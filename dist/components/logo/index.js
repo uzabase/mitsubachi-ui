@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpLogo_initialized;
-import { cn, en, jp } from "./logo";
+import { en, ja, zh } from "./logo";
 export class SpLogo extends HTMLElement {
     constructor() {
         super();
@@ -20,17 +20,17 @@ export class SpLogo extends HTMLElement {
     connectedCallback() {
         if (!this.shadowRoot || __classPrivateFieldGet(this, _SpLogo_initialized, "f"))
             return;
-        this.shadowRoot.innerHTML = jp;
+        this.shadowRoot.innerHTML = ja;
         __classPrivateFieldSet(this, _SpLogo_initialized, true, "f");
     }
     set language(value) {
         if (this.shadowRoot) {
-            if (value == "jp")
-                this.shadowRoot.innerHTML = jp;
+            if (value == "ja")
+                this.shadowRoot.innerHTML = ja;
             else if (value == "en")
                 this.shadowRoot.innerHTML = en;
-            else if (value == "cn")
-                this.shadowRoot.innerHTML = cn;
+            else if (value == "zh")
+                this.shadowRoot.innerHTML = zh;
             else
                 this.shadowRoot.innerHTML = "";
         }
