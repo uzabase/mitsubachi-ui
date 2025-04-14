@@ -1,7 +1,18 @@
 import custom from "./custom-elements.json" with { type: "json" };
 
 export interface Manifest {
-  summaries(): { [key: string]: string };
+  get summaries(): { [key: string]: string };
+}
+
+interface Attribute {
+  name: string;
+  description?: string;
+}
+
+interface CustomElement {
+  tagName: string;
+  summary?: string;
+  attributes: Attribute[];
 }
 
 class ManifestJson implements Manifest {
@@ -11,22 +22,30 @@ class ManifestJson implements Manifest {
     this.raw = raw;
   }
 
-  summaries(): { [key: string]: string } {
+  get summaries(): { [key: string]: string } {
     const elements = this.customElements;
     let res: { [key: string]: string } = {};
     for (const element of elements) {
-      if (element.summary && element.tagName.startsWith("sp-")) {
+      if(element.summary) {
         res[element.tagName] = element.summary;
       }
     }
     return res;
   }
 
-  private get customElements(): { tagName: string; summary?: string }[] {
+  findAttributes(tagName: string): Attribute[] | undefined {
+    for(const customElement of this.customElements) {
+      if(customElement.tagName === tagName) {
+        return customElement.attributes;
+      }
+    }
+  }
+
+  private get customElements(): CustomElement[] {
     const results = [];
     for (const module of this.modules) {
       const declarations = module["declarations"];
-      const customElements = declarations.filter((d: any) => d.customElement);
+      const customElements = declarations.filter((d: any) => d.customElement && d.tagName.startsWith("sp-"));
       for (const customElement of customElements) {
         results.push(customElement);
       }
