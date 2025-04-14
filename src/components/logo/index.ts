@@ -1,4 +1,4 @@
-import { cn, en, jp } from "./logo";
+import { en, ja, zh } from "./logo";
 
 export class SpLogo extends HTMLElement {
   static observedAttributes = ["language"];
@@ -12,15 +12,15 @@ export class SpLogo extends HTMLElement {
 
   connectedCallback() {
     if (!this.shadowRoot || this.#initialized) return;
-    this.shadowRoot.innerHTML = jp;
+    this.shadowRoot.innerHTML = ja;
     this.#initialized = true;
   }
 
   set language(value: string) {
     if (this.shadowRoot) {
-      if (value == "jp") this.shadowRoot.innerHTML = jp;
+      if (value == "ja") this.shadowRoot.innerHTML = ja;
       else if (value == "en") this.shadowRoot.innerHTML = en;
-      else if (value == "cn") this.shadowRoot.innerHTML = cn;
+      else if (value == "zh") this.shadowRoot.innerHTML = zh;
       else this.shadowRoot.innerHTML = "";
     }
     if (value) this.setAttribute("language", value);
