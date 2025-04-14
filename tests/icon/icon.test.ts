@@ -15,7 +15,12 @@ describe("sp-icon", () => {
   });
 
   test("typeで指定したアイコンが表示される", async () => {
-    for (const name of ["error-fill", "information-circle", "person"]) {
+    for (const name of [
+      "error-fill",
+      "information-circle",
+      "person",
+      "check-circle-fill",
+    ]) {
       document.body.innerHTML = `<sp-icon type="${name}"></sp-icon>`;
       const icon = document
         .querySelector("sp-icon")
