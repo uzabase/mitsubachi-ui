@@ -91,6 +91,257 @@ var custom_elements_default = {
     },
     {
       kind: "javascript-module",
+      path: "src/components/icon/icons.ts",
+      declarations: [
+        {
+          kind: "variable",
+          name: "errorFill",
+          default: '`<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.99 7.55L16.45 3.01C16.12 2.68 15.68 2.5 15.21 2.5H8.79C8.32 2.5 7.88 2.68 7.55 3.01L3.01 7.55C2.68 7.88 2.5 8.33 2.5 8.79V15.21C2.5 15.67 2.69 16.12 3.01 16.45L7.55 20.99C7.88 21.32 8.32 21.5 8.79 21.5H15.21C15.68 21.5 16.12 21.32 16.45 20.99L20.99 16.45C21.32 16.12 21.5 15.67 21.5 15.21V8.79C21.5 8.33 21.31 7.88 20.99 7.55Z" fill="#DB351F"/><path d="M13.06 11.99L16.28 8.77002C16.57 8.48002 16.57 8.00002 16.28 7.71002C15.99 7.42002 15.51 7.42002 15.22 7.71002L12 10.93L8.78 7.71002C8.49 7.42002 8.01 7.42002 7.72 7.71002C7.43 8.00002 7.43 8.48002 7.72 8.77002L10.94 11.99L7.72 15.21C7.43 15.5 7.43 15.98 7.72 16.27C7.87 16.42 8.06 16.49 8.25 16.49C8.44 16.49 8.63 16.42 8.78 16.27L12 13.05L15.22 16.27C15.37 16.42 15.56 16.49 15.75 16.49C15.94 16.49 16.13 16.42 16.28 16.27C16.57 15.98 16.57 15.5 16.28 15.21L13.06 11.99Z" fill="white"/></svg>`'
+        },
+        {
+          kind: "variable",
+          name: "informationCircle",
+          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12 20.5C7.31 20.5 3.5 16.69 3.5 12C3.5 7.31 7.31 3.5 12 3.5C16.69 3.5 20.5 7.31 20.5 12C20.5 16.69 16.69 20.5 12 20.5ZM12 10.75C11.59 10.75 11.25 11.09 11.25 11.5V16.5C11.25 16.91 11.59 17.25 12 17.25C12.41 17.25 12.75 16.91 12.75 16.5V11.5C12.75 11.09 12.41 10.75 12 10.75ZM13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8Z" fill="currentColor" fill-opacity="0.84"/></svg>`'
+        },
+        {
+          kind: "variable",
+          name: "person",
+          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.79 10.98C9.58893 10.98 7.80805 9.19 7.80805 6.99C7.80805 4.79 9.59893 3 11.79 3C13.9811 3 15.772 4.79 15.772 6.99C15.772 9.19 13.9811 10.98 11.79 10.98ZM11.79 4.5C10.4193 4.5 9.30879 5.62 9.30879 6.99C9.30879 8.36 10.4193 9.48 11.79 9.48C13.1607 9.48 14.2712 8.36 14.2712 6.99C14.2712 5.62 13.1607 4.5 11.79 4.5ZM17.9331 21H5.58695C4.94663 21 4.34633 20.72 3.94613 20.22C3.56595 19.75 3.41587 19.14 3.54594 18.55C4.36634 14.82 7.81805 12.12 11.75 12.12C15.6819 12.12 19.1437 14.82 19.9541 18.55C20.0841 19.14 19.9341 19.75 19.5539 20.22C19.1537 20.71 18.5634 21 17.9131 21H17.9331ZM11.76 13.62C8.5184 13.62 5.687 15.83 5.01666 18.87C4.97664 19.06 5.06669 19.21 5.11671 19.28C5.22677 19.42 5.39685 19.5 5.58695 19.5H17.9331C18.1232 19.5 18.2932 19.42 18.4033 19.28C18.4633 19.21 18.5434 19.07 18.5033 18.87C17.833 15.83 15.0016 13.62 11.76 13.62Z" fill="currentColor" fill-opacity="0.84"/></svg>`'
+        },
+        {
+          kind: "variable",
+          name: "checkCircleFill",
+          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1090_197)"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2Z" fill="#12A35B"/><path d="M10.8281 15.2598C10.6481 15.2598 10.4581 15.1898 10.3181 15.0598L7.23808 12.2098C6.93808 11.9298 6.91808 11.4498 7.19808 11.1498C7.47808 10.8498 7.95808 10.8298 8.25808 11.1098L10.8281 13.4898L15.7381 8.93978C16.0381 8.65978 16.5181 8.67978 16.7981 8.97978C17.0781 9.27978 17.0581 9.75978 16.7581 10.0398L11.3381 15.0598C11.1981 15.1898 11.0081 15.2598 10.8281 15.2598Z" fill="white"/></g><defs><clipPath id="clip0_1090_197"><rect width="20" height="20" fill="white" transform="translate(2 2)"/></clipPath></defs></svg>`'
+        }
+      ],
+      exports: [
+        {
+          kind: "js",
+          name: "errorFill",
+          declaration: {
+            name: "errorFill",
+            module: "src/components/icon/icons.ts"
+          }
+        },
+        {
+          kind: "js",
+          name: "informationCircle",
+          declaration: {
+            name: "informationCircle",
+            module: "src/components/icon/icons.ts"
+          }
+        },
+        {
+          kind: "js",
+          name: "person",
+          declaration: {
+            name: "person",
+            module: "src/components/icon/icons.ts"
+          }
+        },
+        {
+          kind: "js",
+          name: "checkCircleFill",
+          declaration: {
+            name: "checkCircleFill",
+            module: "src/components/icon/icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      kind: "javascript-module",
+      path: "src/components/icon/index.ts",
+      declarations: [
+        {
+          kind: "class",
+          description: "\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002",
+          name: "SpIcon",
+          members: [
+            {
+              kind: "field",
+              name: "#initialized",
+              privacy: "private",
+              type: {
+                text: "boolean"
+              },
+              default: "false"
+            },
+            {
+              kind: "field",
+              name: "#iconMap",
+              privacy: "private",
+              type: {
+                text: "Map<string, string>"
+              },
+              default: "new Map()"
+            },
+            {
+              kind: "field",
+              name: "type"
+            }
+          ],
+          attributes: [
+            {
+              name: "type",
+              type: {
+                text: "string"
+              },
+              description: "icon\u306E\u753B\u50CF\u3092\u5B9A\u7FA9\u3057\u307E\u3059\u3002error-fill\u306F\u8D64\u3044\u30D0\u30C4\u5370\u3002information-circle\u306F\u9006\u5411\u304D\u306E!\u30DE\u30FC\u30AF\u3002person\u306F\u80A9\u3088\u308A\u4E0A\u306E\u4EBA\u306E\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002"
+            }
+          ],
+          superclass: {
+            name: "HTMLElement"
+          },
+          summary: "\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002",
+          tagName: "sp-icon",
+          customElement: true
+        }
+      ],
+      exports: [
+        {
+          kind: "js",
+          name: "SpIcon",
+          declaration: {
+            name: "SpIcon",
+            module: "src/components/icon/index.ts"
+          }
+        },
+        {
+          kind: "custom-element-definition",
+          name: "sp-icon",
+          declaration: {
+            name: "SpIcon",
+            module: "src/components/icon/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      kind: "javascript-module",
+      path: "src/components/label-unit/index.ts",
+      declarations: [
+        {
+          kind: "class",
+          description: "",
+          name: "SpLabelUnit",
+          members: [
+            {
+              kind: "field",
+              name: "styles",
+              static: true
+            },
+            {
+              kind: "field",
+              name: "#text",
+              privacy: "private",
+              type: {
+                text: "string"
+              },
+              readonly: true
+            },
+            {
+              kind: "field",
+              name: "text"
+            },
+            {
+              kind: "field",
+              name: "#supportText",
+              privacy: "private",
+              type: {
+                text: "string"
+              },
+              readonly: true
+            },
+            {
+              kind: "field",
+              name: "supportText"
+            },
+            {
+              kind: "field",
+              name: "#label",
+              privacy: "private"
+            },
+            {
+              kind: "field",
+              name: "#support",
+              privacy: "private"
+            },
+            {
+              kind: "field",
+              name: "#initialized",
+              privacy: "private",
+              type: {
+                text: "boolean"
+              },
+              default: "false"
+            },
+            {
+              kind: "method",
+              name: "isEmpty",
+              return: {
+                type: {
+                  text: "boolean"
+                }
+              },
+              description: "\u30C6\u30AD\u30B9\u30C8\u3082\u30B5\u30DD\u30FC\u30C8\u30C6\u30AD\u30B9\u30C8\u3082\u7A7A\u306E\u3068\u304D\u3001\u304B\u3064\u305D\u306E\u3068\u304D\u306B\u9650\u308A\u3001\u771F\u3092\u8FD4\u3059\u3002"
+            },
+            {
+              kind: "method",
+              name: "#updateClass",
+              privacy: "private"
+            }
+          ],
+          attributes: [
+            {
+              name: "text"
+            },
+            {
+              name: "support-text"
+            }
+          ],
+          superclass: {
+            name: "HTMLElement"
+          },
+          tagName: "tagName",
+          customElement: true
+        },
+        {
+          kind: "variable",
+          name: "tagName",
+          type: {
+            text: "string"
+          },
+          default: '"sp-label-unit"'
+        }
+      ],
+      exports: [
+        {
+          kind: "js",
+          name: "SpLabelUnit",
+          declaration: {
+            name: "SpLabelUnit",
+            module: "src/components/label-unit/index.ts"
+          }
+        },
+        {
+          kind: "custom-element-definition",
+          name: "tagName",
+          declaration: {
+            name: "SpLabelUnit",
+            module: "src/components/label-unit/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      kind: "javascript-module",
+      path: "src/components/label-unit/styles.css",
+      declarations: [],
+      exports: []
+    },
+    {
+      kind: "javascript-module",
       path: "src/components/button/button.css",
       declarations: [],
       exports: []
@@ -594,129 +845,6 @@ var custom_elements_default = {
     },
     {
       kind: "javascript-module",
-      path: "src/components/label-unit/index.ts",
-      declarations: [
-        {
-          kind: "class",
-          description: "",
-          name: "SpLabelUnit",
-          members: [
-            {
-              kind: "field",
-              name: "styles",
-              static: true
-            },
-            {
-              kind: "field",
-              name: "#text",
-              privacy: "private",
-              type: {
-                text: "string"
-              },
-              readonly: true
-            },
-            {
-              kind: "field",
-              name: "text"
-            },
-            {
-              kind: "field",
-              name: "#supportText",
-              privacy: "private",
-              type: {
-                text: "string"
-              },
-              readonly: true
-            },
-            {
-              kind: "field",
-              name: "supportText"
-            },
-            {
-              kind: "field",
-              name: "#label",
-              privacy: "private"
-            },
-            {
-              kind: "field",
-              name: "#support",
-              privacy: "private"
-            },
-            {
-              kind: "field",
-              name: "#initialized",
-              privacy: "private",
-              type: {
-                text: "boolean"
-              },
-              default: "false"
-            },
-            {
-              kind: "method",
-              name: "isEmpty",
-              return: {
-                type: {
-                  text: "boolean"
-                }
-              },
-              description: "\u30C6\u30AD\u30B9\u30C8\u3082\u30B5\u30DD\u30FC\u30C8\u30C6\u30AD\u30B9\u30C8\u3082\u7A7A\u306E\u3068\u304D\u3001\u304B\u3064\u305D\u306E\u3068\u304D\u306B\u9650\u308A\u3001\u771F\u3092\u8FD4\u3059\u3002"
-            },
-            {
-              kind: "method",
-              name: "#updateClass",
-              privacy: "private"
-            }
-          ],
-          attributes: [
-            {
-              name: "text"
-            },
-            {
-              name: "support-text"
-            }
-          ],
-          superclass: {
-            name: "HTMLElement"
-          },
-          tagName: "tagName",
-          customElement: true
-        },
-        {
-          kind: "variable",
-          name: "tagName",
-          type: {
-            text: "string"
-          },
-          default: '"sp-label-unit"'
-        }
-      ],
-      exports: [
-        {
-          kind: "js",
-          name: "SpLabelUnit",
-          declaration: {
-            name: "SpLabelUnit",
-            module: "src/components/label-unit/index.ts"
-          }
-        },
-        {
-          kind: "custom-element-definition",
-          name: "tagName",
-          declaration: {
-            name: "SpLabelUnit",
-            module: "src/components/label-unit/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      kind: "javascript-module",
-      path: "src/components/label-unit/styles.css",
-      declarations: [],
-      exports: []
-    },
-    {
-      kind: "javascript-module",
       path: "src/components/logo/index.ts",
       declarations: [
         {
@@ -817,134 +945,6 @@ var custom_elements_default = {
           declaration: {
             name: "zh",
             module: "src/components/logo/logo.ts"
-          }
-        }
-      ]
-    },
-    {
-      kind: "javascript-module",
-      path: "src/components/icon/icons.ts",
-      declarations: [
-        {
-          kind: "variable",
-          name: "errorFill",
-          default: '`<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.99 7.55L16.45 3.01C16.12 2.68 15.68 2.5 15.21 2.5H8.79C8.32 2.5 7.88 2.68 7.55 3.01L3.01 7.55C2.68 7.88 2.5 8.33 2.5 8.79V15.21C2.5 15.67 2.69 16.12 3.01 16.45L7.55 20.99C7.88 21.32 8.32 21.5 8.79 21.5H15.21C15.68 21.5 16.12 21.32 16.45 20.99L20.99 16.45C21.32 16.12 21.5 15.67 21.5 15.21V8.79C21.5 8.33 21.31 7.88 20.99 7.55Z" fill="#DB351F"/><path d="M13.06 11.99L16.28 8.77002C16.57 8.48002 16.57 8.00002 16.28 7.71002C15.99 7.42002 15.51 7.42002 15.22 7.71002L12 10.93L8.78 7.71002C8.49 7.42002 8.01 7.42002 7.72 7.71002C7.43 8.00002 7.43 8.48002 7.72 8.77002L10.94 11.99L7.72 15.21C7.43 15.5 7.43 15.98 7.72 16.27C7.87 16.42 8.06 16.49 8.25 16.49C8.44 16.49 8.63 16.42 8.78 16.27L12 13.05L15.22 16.27C15.37 16.42 15.56 16.49 15.75 16.49C15.94 16.49 16.13 16.42 16.28 16.27C16.57 15.98 16.57 15.5 16.28 15.21L13.06 11.99Z" fill="white"/></svg>`'
-        },
-        {
-          kind: "variable",
-          name: "informationCircle",
-          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12 20.5C7.31 20.5 3.5 16.69 3.5 12C3.5 7.31 7.31 3.5 12 3.5C16.69 3.5 20.5 7.31 20.5 12C20.5 16.69 16.69 20.5 12 20.5ZM12 10.75C11.59 10.75 11.25 11.09 11.25 11.5V16.5C11.25 16.91 11.59 17.25 12 17.25C12.41 17.25 12.75 16.91 12.75 16.5V11.5C12.75 11.09 12.41 10.75 12 10.75ZM13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8Z" fill="currentColor" fill-opacity="0.84"/></svg>`'
-        },
-        {
-          kind: "variable",
-          name: "person",
-          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.79 10.98C9.58893 10.98 7.80805 9.19 7.80805 6.99C7.80805 4.79 9.59893 3 11.79 3C13.9811 3 15.772 4.79 15.772 6.99C15.772 9.19 13.9811 10.98 11.79 10.98ZM11.79 4.5C10.4193 4.5 9.30879 5.62 9.30879 6.99C9.30879 8.36 10.4193 9.48 11.79 9.48C13.1607 9.48 14.2712 8.36 14.2712 6.99C14.2712 5.62 13.1607 4.5 11.79 4.5ZM17.9331 21H5.58695C4.94663 21 4.34633 20.72 3.94613 20.22C3.56595 19.75 3.41587 19.14 3.54594 18.55C4.36634 14.82 7.81805 12.12 11.75 12.12C15.6819 12.12 19.1437 14.82 19.9541 18.55C20.0841 19.14 19.9341 19.75 19.5539 20.22C19.1537 20.71 18.5634 21 17.9131 21H17.9331ZM11.76 13.62C8.5184 13.62 5.687 15.83 5.01666 18.87C4.97664 19.06 5.06669 19.21 5.11671 19.28C5.22677 19.42 5.39685 19.5 5.58695 19.5H17.9331C18.1232 19.5 18.2932 19.42 18.4033 19.28C18.4633 19.21 18.5434 19.07 18.5033 18.87C17.833 15.83 15.0016 13.62 11.76 13.62Z" fill="currentColor" fill-opacity="0.84"/></svg>`'
-        },
-        {
-          kind: "variable",
-          name: "checkCircleFill",
-          default: '`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1090_197)"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2Z" fill="#12A35B"/><path d="M10.8281 15.2598C10.6481 15.2598 10.4581 15.1898 10.3181 15.0598L7.23808 12.2098C6.93808 11.9298 6.91808 11.4498 7.19808 11.1498C7.47808 10.8498 7.95808 10.8298 8.25808 11.1098L10.8281 13.4898L15.7381 8.93978C16.0381 8.65978 16.5181 8.67978 16.7981 8.97978C17.0781 9.27978 17.0581 9.75978 16.7581 10.0398L11.3381 15.0598C11.1981 15.1898 11.0081 15.2598 10.8281 15.2598Z" fill="white"/></g><defs><clipPath id="clip0_1090_197"><rect width="20" height="20" fill="white" transform="translate(2 2)"/></clipPath></defs></svg>`'
-        }
-      ],
-      exports: [
-        {
-          kind: "js",
-          name: "errorFill",
-          declaration: {
-            name: "errorFill",
-            module: "src/components/icon/icons.ts"
-          }
-        },
-        {
-          kind: "js",
-          name: "informationCircle",
-          declaration: {
-            name: "informationCircle",
-            module: "src/components/icon/icons.ts"
-          }
-        },
-        {
-          kind: "js",
-          name: "person",
-          declaration: {
-            name: "person",
-            module: "src/components/icon/icons.ts"
-          }
-        },
-        {
-          kind: "js",
-          name: "checkCircleFill",
-          declaration: {
-            name: "checkCircleFill",
-            module: "src/components/icon/icons.ts"
-          }
-        }
-      ]
-    },
-    {
-      kind: "javascript-module",
-      path: "src/components/icon/index.ts",
-      declarations: [
-        {
-          kind: "class",
-          description: "\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002",
-          name: "SpIcon",
-          members: [
-            {
-              kind: "field",
-              name: "#initialized",
-              privacy: "private",
-              type: {
-                text: "boolean"
-              },
-              default: "false"
-            },
-            {
-              kind: "field",
-              name: "#iconMap",
-              privacy: "private",
-              type: {
-                text: "Map<string, string>"
-              },
-              default: "new Map()"
-            },
-            {
-              kind: "field",
-              name: "type"
-            }
-          ],
-          attributes: [
-            {
-              name: "type",
-              type: {
-                text: "string"
-              },
-              description: "icon\u306E\u753B\u50CF\u3092\u5B9A\u7FA9\u3057\u307E\u3059\u3002error-fill\u306F\u8D64\u3044\u30D0\u30C4\u5370\u3002information-circle\u306F\u9006\u5411\u304D\u306E!\u30DE\u30FC\u30AF\u3002person\u306F\u80A9\u3088\u308A\u4E0A\u306E\u4EBA\u306E\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002"
-            }
-          ],
-          superclass: {
-            name: "HTMLElement"
-          },
-          summary: "\u30A2\u30A4\u30B3\u30F3\u3067\u3059\u3002",
-          tagName: "sp-icon",
-          customElement: true
-        }
-      ],
-      exports: [
-        {
-          kind: "js",
-          name: "SpIcon",
-          declaration: {
-            name: "SpIcon",
-            module: "src/components/icon/index.ts"
-          }
-        },
-        {
-          kind: "custom-element-definition",
-          name: "sp-icon",
-          declaration: {
-            name: "SpIcon",
-            module: "src/components/icon/index.ts"
           }
         }
       ]
@@ -1438,27 +1438,48 @@ var custom_elements_default = {
 };
 
 // tools/mcp/manifest.ts
+var CustomElementJson = class {
+  constructor(raw) {
+    this.raw = raw;
+  }
+  get tagName() {
+    return this.raw.tagName;
+  }
+  get summary() {
+    return this.raw.summary;
+  }
+  describe(attribute) {
+    for (let { name, description } of this.raw.attributes) {
+      if (name === attribute) {
+        return description;
+      }
+    }
+  }
+};
 var ManifestJson = class {
   constructor(raw) {
     this.raw = raw;
   }
-  summaries() {
+  get summaries() {
     const elements = this.customElements;
     let res = {};
-    for (const element of elements) {
-      if (element.summary && element.tagName.startsWith("sp-")) {
-        res[element.tagName] = element.summary;
+    for (const [_, v] of Object.entries(elements)) {
+      if (v.summary) {
+        res[v.tagName] = v.summary;
       }
     }
     return res;
   }
   get customElements() {
-    const results = [];
+    const results = {};
     for (const module of this.modules) {
       const declarations = module["declarations"];
-      const customElements = declarations.filter((d) => d.customElement);
+      const customElements = declarations.filter(
+        (d) => d.customElement && d.tagName.startsWith("sp-")
+      );
       for (const customElement of customElements) {
-        results.push(customElement);
+        const c = new CustomElementJson(customElement);
+        results[c.tagName] = c;
       }
     }
     return results;
@@ -1480,13 +1501,42 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 // tools/mcp/tool.ts
 function makeWebComponentContent(manifest) {
   const res = [];
-  for (const [tagName, summary] of Object.entries(manifest.summaries())) {
+  for (const [tagName, summary] of Object.entries(manifest.summaries)) {
     res.push({ type: "text", text: `\u30AB\u30B9\u30BF\u30E0\u8981\u7D20 <${tagName}> ${summary}` });
   }
   return res;
 }
 
+// tools/mcp/sp-logo.ts
+import { z } from "zod";
+
+// tools/mcp/schema.ts
+function describe(schema, customElement) {
+  for (const [attributeName, value] of Object.entries(schema)) {
+    if (!schema[attributeName].description) {
+      const description = customElement.describe(attributeName);
+      if (description) {
+        schema[attributeName] = value.describe(description);
+      }
+    }
+  }
+}
+
+// tools/mcp/sp-logo.ts
+import { html, nothing } from "lit";
+function getSpLogoDefinition(customElement) {
+  const input = { language: z.enum(["ja", "en", "zh"]) };
+  describe(input, customElement);
+  return [
+    input,
+    ({ language }) => {
+      return html`<sp-logo language=${language || nothing}></sp-logo>`;
+    }
+  ];
+}
+
 // tools/mcp/index.ts
+import { render as render2 } from "lit";
 function buildMcpServer() {
   return new McpServer({
     name: "mitsubachi-mcp",
@@ -1509,6 +1559,28 @@ function defineTools(server, manifest) {
       };
     }
   );
+  for (const { tag, body } of [{ tag: "sp-logo", body: getSpLogoDefinition }]) {
+    const customElement = manifest.customElements[tag];
+    if (customElement) {
+      const [input, builder] = body(customElement);
+      server.tool(
+        `mitsubachi-${tag}`,
+        customElement.summary ?? `<${tag}>\u3092\u751F\u6210\u3057\u307E\u3059\u3002`,
+        input,
+        async (shape) => {
+          const built = builder(shape);
+          const h = new HTMLBodyElement();
+          render2(built, h);
+          return {
+            content: [{
+              type: "text",
+              text: h.innerHTML
+            }]
+          };
+        }
+      );
+    }
+  }
 }
 async function main() {
   const server = buildMcpServer();
@@ -1516,7 +1588,7 @@ async function main() {
   defineTools(server, manifest);
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Weather MCP Server running on stdio");
+  console.error("mitsubachi-ui MCP Server running on stdio");
 }
 main().catch((error) => {
   console.error(error);

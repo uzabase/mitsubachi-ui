@@ -4,6 +4,7 @@ import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { makeWebComponentContent } from "./tool";
 import {  getSpLogoDefinition } from "./sp-logo";
+import { render } from "lit";
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -37,11 +38,13 @@ function defineTools(server: McpServer, manifest: Manifest) {
         `mitsubachi-${tag}`, 
         customElement.summary ?? `<${tag}>を生成します。`,
         input, async (shape) => {
-          const built = await builder(shape) + '';
+          const built = builder(shape);
+          const h= new HTMLBodyElement();
+          render(built, h);
           return {
             content: [{
               type: "text",
-              text: built,
+              text: h.innerHTML,
             }],
           };
         });

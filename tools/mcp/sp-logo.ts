@@ -1,19 +1,19 @@
 import { z, ZodRawShape } from "zod";
 import { CustomElement } from "./manifest";
 import { describe } from "./schema";
-import { html, TemplateResult } from "lit";
+import { html, nothing, TemplateResult, render } from "lit";
 
 export function getSpLogoDefinition(
   customElement: CustomElement,
-): [ZodRawShape, (shape: ZodRawShape) => Promise<TemplateResult>] {
-  const input = { language: z.enum(["ja", "en", "ch"]) };
+): [ZodRawShape, (shape: ZodRawShape) => TemplateResult] {
+  const input = { language: z.enum(["ja", "en", "zh"]) };
 
   describe(input, customElement);
 
   return [
     input,
-    async ({ language }) => {
-      return html`<sp-logo language="${language}"></sp-logo>`;
+    ({ language }) => {
+      return html`<sp-logo language=${language|| nothing }></sp-logo>`;
     },
   ];
 }
