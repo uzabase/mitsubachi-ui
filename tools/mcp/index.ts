@@ -3,7 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { makeWebComponentContent } from "./tool";
-// import { z } from "zod";
+import {  getSpLogoDefinition } from "./sp-logo";
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -28,6 +28,26 @@ function defineTools(server: McpServer, manifest: Manifest) {
       };
     },
   );
+  for(const {tag, body} of [{tag: 'sp-logo', body: getSpLogoDefinition}]) {
+    const customElement = manifest.customElements[tag];
+    if(customElement) {
+
+      const [input, builder] = body(customElement);
+      server.tool(
+        `mitsubachi-${tag}`, 
+        customElement.summary ?? `<${tag}>を生成します。`,
+        input, async (shape) => {
+          const built = await builder(shape) + '';
+          return {
+            content: [{
+              type: "text",
+              text: built,
+            }],
+          };
+        });
+    }
+  }
+  
 }
 
 export async function main() {
@@ -37,7 +57,7 @@ export async function main() {
 
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Weather MCP Server running on stdio");
+  console.error("mitsubachi-ui MCP Server running on stdio");
 }
 main().catch((error) => {
   console.error(error);
