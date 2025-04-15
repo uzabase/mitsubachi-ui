@@ -33,12 +33,12 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "0.11.0"
+    "@acab/reset.css": "0.11.0",
+    "@modelcontextprotocol/sdk": "^1.9.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",
     "@eslint/js": "^9.22.0",
-    "@modelcontextprotocol/sdk": "^1.9.0",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
     "@storybook/web-components": "^8.6.12",
