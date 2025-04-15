@@ -3,6 +3,9 @@
   "version": "0.10.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "./dist/custom-elements.json": "./dist/custom-elements.json"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
