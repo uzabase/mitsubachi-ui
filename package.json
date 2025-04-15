@@ -3,19 +3,14 @@
   "version": "0.10.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
-  "bin": {
-    "mitsubachi-ui-mcp": "./dist/mcp.js"
-  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "rimraf dist && run-s build:*",
     "build:ts": "tsc -p tsconfig-build.json",
-    "build:custom-elements-manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
-    "build:mcp": "esbuild --bundle --format=esm --platform=node tools/mcp/index.ts --packages=external  --outfile=dist/mcp.js",
     "build:css": "node tools/copy-css.js",
+    "build:custom-elements-manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "run-s \"format:* !format:prettier:check\"",
@@ -33,8 +28,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "0.11.0",
-    "@modelcontextprotocol/sdk": "^1.9.0"
+    "@acab/reset.css": "0.11.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",
@@ -46,7 +40,6 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22.13.10",
     "@vitest/browser": "^3.0.8",
-    "esbuild": "^0.25.2",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
@@ -64,10 +57,8 @@
     "storybook": "^8.6.12",
     "stylelint": "^16.15.0",
     "stylelint-config-standard": "^37.0.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.26.1",
-    "vitest": "^3.0.8",
-    "zod": "^3.24.2"
+    "vitest": "^3.0.8"
   }
 }
