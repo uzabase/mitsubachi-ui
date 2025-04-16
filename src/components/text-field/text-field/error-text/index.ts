@@ -76,7 +76,6 @@ declare global {
   }
 }
 
-const tagName = "sp-text-field-error-text";
-if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextFieldErrorText);
+if (!customElements.get("sp-text-field-error-text")) {
+  customElements.define("sp-text-field-error-text", SpTextFieldErrorText);
 }

@@ -1,6 +1,16 @@
 import { makeStyleSheet } from "../styles";
 import styles from "./styles.css?inline";
 
+/**
+ * ラベルです。
+ * 
+ * @summary ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。
+ * 
+ * @attr {string} text - ラベルのテキストです。文字の色は黒です。
+ * 
+ * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
+ * 
+ */
 export class SpLabelUnit extends HTMLElement {
   static styles = makeStyleSheet(styles);
 
@@ -84,7 +94,6 @@ declare global {
     "sp-label-unit": SpLabelUnit;
   }
 }
-const tagName = "sp-label-unit";
-if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpLabelUnit);
+if (!customElements.get("sp-label-unit")) {
+  customElements.define("sp-label-unit", SpLabelUnit);
 }
