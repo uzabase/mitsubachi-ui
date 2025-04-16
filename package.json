@@ -16,7 +16,8 @@
     "format:prettier": "prettier --write '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
-    "test": "vitest"
+    "test": "vitest",
+    "tailwind:watch": "npx @tailwindcss/cli -i ./src/components/tailwind-input.css -o ./src/components/tailwind-output.css --watch"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "0.11.0"
+    "@acab/reset.css": "0.11.0",
+    "@tailwindcss/cli": "^4.1.3",
+    "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
