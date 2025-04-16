@@ -12,6 +12,16 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 var _SpLabelUnit_instances, _SpLabelUnit_text_get, _SpLabelUnit_supportText_get, _SpLabelUnit_label, _SpLabelUnit_support, _SpLabelUnit_initialized, _SpLabelUnit_updateClass;
 import { makeStyleSheet } from "../styles";
 import styles from "./styles.css?inline";
+/**
+ * ラベルです。
+ *
+ * @summary ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。
+ *
+ * @attr {string} text - ラベルのテキストです。文字の色は黒です。
+ *
+ * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
+ *
+ */
 export class SpLabelUnit extends HTMLElement {
     set text(text) {
         __classPrivateFieldGet(this, _SpLabelUnit_label, "f").textContent = text;
@@ -77,7 +87,6 @@ _SpLabelUnit_label = new WeakMap(), _SpLabelUnit_support = new WeakMap(), _SpLab
 };
 SpLabelUnit.styles = makeStyleSheet(styles);
 SpLabelUnit.observedAttributes = ["text", "support-text"];
-const tagName = "sp-label-unit";
-if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpLabelUnit);
+if (!customElements.get("sp-label-unit")) {
+    customElements.define("sp-label-unit", SpLabelUnit);
 }

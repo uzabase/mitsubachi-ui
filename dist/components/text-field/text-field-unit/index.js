@@ -142,6 +142,6 @@ SpTextFieldUnit.observedAttributes = [
     "autocomplete",
 ];
 SpTextFieldUnit.formAssociated = true;
-if (!customElements.get('sp-text-field-unit')) {
-    customElements.define('sp-text-field-unit', SpTextFieldUnit);
+if (!customElements.get("sp-text-field-unit")) {
+    customElements.define("sp-text-field-unit", SpTextFieldUnit);
 }
