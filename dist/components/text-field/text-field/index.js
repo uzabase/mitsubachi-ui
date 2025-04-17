@@ -95,6 +95,12 @@ export class SpTextField extends HTMLElement {
         __classPrivateFieldGet(this, _SpTextField_input, "f").addEventListener("input", (e) => {
             const target = e.target;
             this.value = target.value;
+            // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+            // 自動入力されたパスワードがformで送信されないことがありました。
+            // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
+            if (!e.composed) {
+                this.dispatchEvent(new InputEvent("input", { ...e, composed: true }));
+            }
         });
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _SpTextField_input, "f"));
         __classPrivateFieldGet(this, _SpTextField_input, "f").classList.add("input");

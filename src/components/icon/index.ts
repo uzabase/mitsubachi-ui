@@ -1,4 +1,4 @@
-import { errorFill, informationCircle, person } from "./icons";
+import { checkCircleFill, errorFill, informationCircle, person } from "./icons";
 
 export class SpIcon extends HTMLElement {
   static observedAttributes = ["type"];
@@ -31,6 +31,7 @@ export class SpIcon extends HTMLElement {
       { attr: "error-fill", def: errorFill },
       { attr: "information-circle", def: informationCircle },
       { attr: "person", def: person },
+      { attr: "check-circle-fill", def: checkCircleFill },
     ]) {
       this.#iconMap.set(attr, def);
     }

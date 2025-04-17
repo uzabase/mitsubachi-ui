@@ -87,14 +87,14 @@ export class UbButton extends HTMLElement {
   get variants() {
     return this.#variants;
   }
-  // set variants(value: string) {
-  //   const button = this.#buttonElement;
-  //   const newValue: variants = isValidvariants(value);
-  //
-  //   button.classList.remove(this.#variants);
-  //   button.classList.add(newValue);
-  //   this.#variants = newValue;
-  // }
+  set variants(value: string) {
+    const button = this.#buttonElement;
+    const newValue: variants = isValidvariants(value);
+
+    button.classList.remove(this.#variants);
+    button.classList.add(newValue);
+    this.#variants = newValue;
+  }
 
   set size(value: string) {
     const button = this.#buttonElement;
@@ -133,14 +133,14 @@ export class UbButton extends HTMLElement {
 
     this.loading = false;
     this.disabled = false;
-    // this.variants = variants[0];
+    this.variants = variants[0];
     this.size = size[0];
   }
 
   connectedCallback() {
     this.#buttonElement.classList.add("bg-blue-500","text-white","font-bold","py-2","hover:bg-blue-700");
      this.#slotElement.classList.add("brand-blue");
-    // this.#slotElement.classList.add("text-white");
+    this.#slotElement.classList.add("text-white");
     this.#buttonElement.appendChild(this.#slotElement);
     this.shadowRoot?.appendChild(this.#buttonElement);
     this.#updateDanger();
@@ -172,9 +172,9 @@ export class UbButton extends HTMLElement {
         if (newValue === null) this.#buttonElement.removeAttribute("value");
         else this.value = newValue;
         break;
-      // case "variants":
-      //   this.variants = newValue === null ? "" : newValue;
-      //   break;
+      case "variants":
+        this.variants = newValue === null ? "" : newValue;
+        break;
       case "size":
         this.size = newValue === null ? "" : newValue;
         break;
