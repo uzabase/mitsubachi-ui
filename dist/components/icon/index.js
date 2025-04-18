@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
-import { checkCircle, checkCircleFill, errorFill, informationCircle, person } from "./icons";
+import { checkCircle, checkCircleFill, errorFill, informationCircle, person, } from "./icons";
 export class SpIcon extends HTMLElement {
     constructor() {
         super();
