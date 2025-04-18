@@ -1,4 +1,10 @@
-import { checkCircle, checkCircleFill, errorFill, informationCircle, person } from "./icons";
+import {
+  checkCircle,
+  checkCircleFill,
+  errorFill,
+  informationCircle,
+  person,
+} from "./icons";
 
 export class SpIcon extends HTMLElement {
   static observedAttributes = ["type"];
