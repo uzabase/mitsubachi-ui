@@ -3,13 +3,13 @@ import styles from "./styles.css?inline";
 
 /**
  * ラベルです。
- * 
+ *
  * @summary ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。
- * 
+ *
  * @attr {string} text - ラベルのテキストです。文字の色は黒です。
- * 
+ *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
- * 
+ *
  */
 export class SpLabelUnit extends HTMLElement {
   static styles = makeStyleSheet(styles);
