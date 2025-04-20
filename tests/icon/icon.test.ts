@@ -20,6 +20,7 @@ describe("sp-icon", () => {
       "information-circle",
       "person",
       "check-circle-fill",
+      "check-circle",
     ]) {
       document.body.innerHTML = `<sp-icon type="${name}"></sp-icon>`;
       const icon = document

@@ -1,4 +1,10 @@
-import { checkCircleFill, errorFill, informationCircle, person } from "./icons";
+import {
+  checkCircle,
+  checkCircleFill,
+  errorFill,
+  informationCircle,
+  person,
+} from "./icons";
 
 /**
  * アイコンです。
@@ -40,6 +46,7 @@ export class SpIcon extends HTMLElement {
       { attr: "information-circle", def: informationCircle },
       { attr: "person", def: person },
       { attr: "check-circle-fill", def: checkCircleFill },
+      { attr: "check-circle", def: checkCircle },
     ]) {
       this.#iconMap.set(attr, def);
     }

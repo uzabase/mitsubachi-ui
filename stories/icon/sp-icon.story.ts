@@ -16,6 +16,7 @@ const meta: Meta<SpIcon> = {
         "error-fill",
         "person",
         "check-circle-fill",
+        "check-circle",
       ],
       control: { type: "select" },
     },
