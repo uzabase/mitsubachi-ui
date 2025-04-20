@@ -1,4 +1,7 @@
 import { UbButton } from "./ub-button";
+/**
+ * @summary ボタンです。
+ */
 export declare class SpButton extends UbButton {
     constructor();
 }

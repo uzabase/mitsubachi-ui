@@ -116,6 +116,7 @@
             "name": "UbButton",
             "module": "/dist/components/button/ub-button"
           },
+          "summary": "ボタンです。",
           "tagName": "sp-button",
           "customElement": true,
           "attributes": [
@@ -527,7 +528,7 @@
               "type": {
                 "text": "string"
               },
-              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。",
+              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。",
               "name": "type"
             }
           ],
@@ -747,98 +748,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpTextField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "type"
-            },
-            {
-              "kind": "field",
-              "name": "error"
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete"
-            },
-            {
-              "kind": "field",
-              "name": "placeholder"
-            },
-            {
-              "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "tagName",
-          "customElement": true
-        },
-        {
-          "kind": "variable",
-          "name": "tagName",
-          "type": {
-            "text": "string"
-          },
-          "default": "\"sp-text-field\""
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpTextField",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "dist/components/text-field/text-field/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "tagName",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "dist/components/text-field/text-field/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/components/text-field/text-field-unit/index.d.ts.map",
       "declarations": [],
       "exports": []
@@ -936,6 +845,98 @@
     {
       "kind": "javascript-module",
       "path": "dist/components/text-field/text-field-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/text-field/text-field/index.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/text-field/text-field/index.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "type"
+            },
+            {
+              "kind": "field",
+              "name": "error"
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete"
+            },
+            {
+              "kind": "field",
+              "name": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "tagName",
+          "customElement": true
+        },
+        {
+          "kind": "variable",
+          "name": "tagName",
+          "type": {
+            "text": "string"
+          },
+          "default": "\"sp-text-field\""
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "dist/components/text-field/text-field/index.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "tagName",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "dist/components/text-field/text-field/index.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },
