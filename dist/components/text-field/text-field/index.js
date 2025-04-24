@@ -151,7 +151,6 @@ SpTextField.observedAttributes = [
     "type",
 ];
 SpTextField.formAssociated = true;
-const tagName = "sp-text-field";
-if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpTextField);
+if (!customElements.get("sp-text-field")) {
+    customElements.define("sp-text-field", SpTextField);
 }

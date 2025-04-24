@@ -71,7 +71,6 @@ _SpTextFieldErrorText_span = new WeakMap(), _SpTextFieldErrorText_container = ne
     }
 };
 SpTextFieldErrorText.observedAttributes = ["text"];
-const tagName = "sp-text-field-error-text";
-if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpTextFieldErrorText);
+if (!customElements.get("sp-text-field-error-text")) {
+    customElements.define("sp-text-field-error-text", SpTextFieldErrorText);
 }

@@ -169,12 +169,11 @@ export class SpTextField extends HTMLElement {
   }
 }
 
-const tagName = "sp-text-field";
 declare global {
   interface HTMLElementTagNameMap {
     "sp-text-field": SpTextField;
   }
 }
-if (!customElements.get(tagName)) {
-  customElements.define(tagName, SpTextField);
+if (!customElements.get("sp-text-field")) {
+  customElements.define("sp-text-field", SpTextField);
 }

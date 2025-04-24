@@ -11,6 +11,11 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 };
 var _SpLogo_initialized;
 import { en, ja, zh } from "./logo";
+/**
+ * @summary スピーダのロゴです。
+ *
+ * @attr {string} language - スピーダのロゴにある社名の言語を定義します。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
+ */
 export class SpLogo extends HTMLElement {
     constructor() {
         super();
@@ -49,7 +54,6 @@ export class SpLogo extends HTMLElement {
 }
 _SpLogo_initialized = new WeakMap();
 SpLogo.observedAttributes = ["language"];
-const tagName = "sp-logo";
-if (!customElements.get(tagName)) {
-    customElements.define(tagName, SpLogo);
+if (!customElements.get("sp-logo")) {
+    customElements.define("sp-logo", SpLogo);
 }

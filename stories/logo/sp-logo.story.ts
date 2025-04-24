@@ -6,6 +6,7 @@ import { html } from "lit";
 import type { SpLogo } from "../../src/components/logo";
 
 const meta: Meta<SpLogo> = {
+  component: "sp-logo",
   args: {
     language: "ja",
   },
