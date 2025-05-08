@@ -9,10 +9,15 @@ const meta: Meta<SpLogo> = {
   component: "sp-logo",
   args: {
     language: "ja",
+    brand: "uzabase",
   },
   argTypes: {
     language: {
       options: ["ja", "en", "zh"],
+      control: { type: "select" },
+    },
+    brand: {
+      options: ["uzabase", "speeda"],
       control: { type: "select" },
     },
   },
@@ -21,7 +26,7 @@ const meta: Meta<SpLogo> = {
 export default meta;
 
 export const Default: StoryObj<SpLogo> = {
-  render: ({ language }) => {
-    return html`<sp-logo style="height: 32px; display: flex;" language=${language}></sp-language>`;
+  render: ({ language, brand }) => {
+    return html`<sp-logo style="height: 32px; display: flex;" language=${language} brand=${brand}></sp-language>`;
   },
 };
