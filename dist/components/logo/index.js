@@ -1,59 +1,55 @@
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var _SpLogo_initialized;
-import { en, ja, zh } from "./logo";
+import { speedaEn, speedaJa, speedaZh } from "./speeda";
+import { uzabase } from "./uzabase";
 /**
  * @summary スピーダのロゴです。
  *
- * @attr {string} language - スピーダのロゴにある社名の言語を定義します。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
+ * @attr {string} brand - uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。
+ *
+ * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
 export class SpLogo extends HTMLElement {
     constructor() {
         super();
-        _SpLogo_initialized.set(this, false);
         this.attachShadow({ mode: "open" });
     }
-    connectedCallback() {
-        if (!this.shadowRoot || __classPrivateFieldGet(this, _SpLogo_initialized, "f"))
-            return;
-        this.shadowRoot.innerHTML = ja;
-        __classPrivateFieldSet(this, _SpLogo_initialized, true, "f");
+    get language() {
+        return this.getAttribute("language");
     }
-    set language(value) {
-        if (this.shadowRoot) {
-            if (value == "ja")
-                this.shadowRoot.innerHTML = ja;
-            else if (value == "en")
-                this.shadowRoot.innerHTML = en;
-            else if (value == "zh")
-                this.shadowRoot.innerHTML = zh;
-            else
-                this.shadowRoot.innerHTML = "";
-        }
-        if (value)
-            this.setAttribute("language", value);
-        else
-            this.removeAttribute("language");
+    get brand() {
+        return this.getAttribute("brand");
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue === newValue)
+        // attributeChangeCallbackですべての属性の値を都度確認している理由は
+        // たとえば、brand属性がuzabaseのときはlanugageの属性の変更を無視する必要があるためです。
+        // mitubachi-uiを使うコードが<sp-logo brand="uzabase">から<sp-logo brand="speeda" language="ja">に変更したときに
+        // atrributedChangedCallback("language", null, "ja")とatrributedChangedCallback("brand", null, "speeda")のうち
+        // どちらが先に呼ばれるかわからないため、両方の属性の値を都度に確認しています。
+        // brand=uzabaseのときは、language, line, sub-brandの属性は無関係なので、
+        // 実装と仕様だけを考えるならuzabaseとスピーダのロゴのWebComponentを分けたほうが良さそうだけど、同じなのはFalconとの後方互換性が理由？
+        if (!this.shadowRoot || oldValue === newValue)
             return;
-        if (name === "language") {
-            this.language = newValue ?? "";
+        if (newValue) {
+            this.setAttribute(name, newValue);
+        }
+        else {
+            this.removeAttribute(name);
+        }
+        if (this.brand == "uzabase") {
+            this.shadowRoot.innerHTML = uzabase;
+            return;
+        }
+        else if (this.brand == "speeda") {
+            if (this.language == "en")
+                this.shadowRoot.innerHTML = speedaEn;
+            else if (this.language == "zh")
+                this.shadowRoot.innerHTML = speedaZh;
+            else
+                this.shadowRoot.innerHTML = speedaJa;
+            return;
         }
     }
 }
-_SpLogo_initialized = new WeakMap();
-SpLogo.observedAttributes = ["language"];
+SpLogo.observedAttributes = ["language", "brand"];
 if (!customElements.get("sp-logo")) {
     customElements.define("sp-logo", SpLogo);
 }

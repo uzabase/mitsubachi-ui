@@ -1,46 +1,55 @@
-import { en, ja, zh } from "./logo";
+import { speedaEn, speedaJa, speedaZh } from "./speeda";
+import { uzabase } from "./uzabase";
 
 /**
  * @summary スピーダのロゴです。
  *
- * @attr {string} language - スピーダのロゴにある社名の言語を定義します。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
+ * @attr {string} brand - uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。
+ *
+ * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
 export class SpLogo extends HTMLElement {
-  static observedAttributes = ["language"];
-
-  #initialized = false;
+  static observedAttributes = ["language", "brand"];
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
-    if (!this.shadowRoot || this.#initialized) return;
-    this.shadowRoot.innerHTML = ja;
-    this.#initialized = true;
+  get language(): string | null {
+    return this.getAttribute("language");
   }
 
-  set language(value: string) {
-    if (this.shadowRoot) {
-      if (value == "ja") this.shadowRoot.innerHTML = ja;
-      else if (value == "en") this.shadowRoot.innerHTML = en;
-      else if (value == "zh") this.shadowRoot.innerHTML = zh;
-      else this.shadowRoot.innerHTML = "";
-    }
-    if (value) this.setAttribute("language", value);
-    else this.removeAttribute("language");
+  get brand(): string | null {
+    return this.getAttribute("brand");
   }
-
   attributeChangedCallback(
     name: string,
     oldValue: string | null,
     newValue: string | null,
   ) {
-    if (oldValue === newValue) return;
+    // attributeChangeCallbackですべての属性の値を都度確認している理由は
+    // たとえば、brand属性がuzabaseのときはlanugageの属性の変更を無視する必要があるためです。
+    // mitubachi-uiを使うコードが<sp-logo brand="uzabase">から<sp-logo brand="speeda" language="ja">に変更したときに
+    // atrributedChangedCallback("language", null, "ja")とatrributedChangedCallback("brand", null, "speeda")のうち
+    // どちらが先に呼ばれるかわからないため、両方の属性の値を都度に確認しています。
+    // brand=uzabaseのときは、language, line, sub-brandの属性は無関係なので、
+    // 実装と仕様だけを考えるならuzabaseとスピーダのロゴのWebComponentを分けたほうが良さそうだけど、同じなのはFalconとの後方互換性が理由？
+    if (!this.shadowRoot || oldValue === newValue) return;
 
-    if (name === "language") {
-      this.language = newValue ?? "";
+    if (newValue) {
+      this.setAttribute(name, newValue);
+    } else {
+      this.removeAttribute(name);
+    }
+    if (this.brand == "uzabase") {
+      this.shadowRoot.innerHTML = uzabase;
+      return;
+    } else if (this.brand == "speeda") {
+      if (this.language == "en") this.shadowRoot.innerHTML = speedaEn;
+      else if (this.language == "zh") this.shadowRoot.innerHTML = speedaZh;
+      else this.shadowRoot.innerHTML = speedaJa;
+      return;
     }
   }
 }
