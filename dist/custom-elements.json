@@ -561,6 +561,84 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "supportText"
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/components/logo/index.d.ts.map",
       "declarations": [],
       "exports": []
@@ -707,84 +785,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-label-unit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
