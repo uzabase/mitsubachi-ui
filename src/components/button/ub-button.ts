@@ -2,23 +2,11 @@ import resetStyle from "@acab/reset.css?inline";
 
 import foundationStyle from "../foundation.css?inline";
 
-export const buttonType = ["normal", "danger"] as const;
-type ButtonType = (typeof buttonType)[number];
-
 export const variants = ["primary", "secondary", "tertiary"] as const;
 type variants = (typeof variants)[number];
 
 export const size = ["medium", "large", "xLarge"] as const;
 type Size = (typeof size)[number];
-
-function isValidType(value: string): ButtonType {
-  if (buttonType.some((type) => type === value)) {
-    return value as ButtonType;
-  } else {
-    console.warn(`${value}は無効なtype属性です。`);
-    return buttonType[0];
-  }
-}
 
 function isValidvariants(value: string): variants {
   if (variants.some((variants) => variants === value)) {
@@ -44,7 +32,6 @@ styles.replaceSync(`${resetStyle} ${foundationStyle}`);
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
   #disabled: boolean = false;
-  #type: ButtonType = buttonType[0];
   #variants: variants = variants[0];
   #size: Size = size[0];
 
@@ -73,13 +60,26 @@ export class UbButton extends HTMLElement {
     this.#buttonDisabledUpdate();
   }
 
-  set type(value: string) {
-    const button = this.#buttonElement;
-    const newValue: ButtonType = isValidType(value);
+  get name(): string {
+    return this.#buttonElement.name;
+  }
+  set name(value: string) {
+    this.#buttonElement.name = value;
+  }
 
-    button.classList.remove(this.#type);
-    button.classList.add(newValue);
-    this.#type = newValue;
+  get value(): string {
+    return this.#buttonElement.value;
+  }
+  set value(newValue: string) {
+    this.#buttonElement.value = newValue;
+  }
+  get danger(): boolean {
+    return this.#danger;
+  }
+
+  set danger(value: boolean) {
+    this.#danger = value;
+    this.#updateDanger();
   }
 
   get variants() {
@@ -104,12 +104,24 @@ export class UbButton extends HTMLElement {
     };
     button.classList.remove(typeClassList[this.#size]);
     button.classList.add(typeClassList[newValue]);
+    if (this.danger) this.danger = true;
     this.#size = newValue;
   }
 
   static get observedAttributes() {
-    return ["loading", "disabled", "type", "variants", "size"];
+    return [
+      "loading",
+      "disabled",
+      "variants",
+      "size",
+      "danger",
+      "value",
+      "name",
+      "type",
+    ];
   }
+
+  #danger: boolean = false;
 
   constructor() {
     super();
@@ -119,7 +131,6 @@ export class UbButton extends HTMLElement {
 
     this.loading = false;
     this.disabled = false;
-    this.type = buttonType[0];
     this.variants = variants[0];
     this.size = size[0];
   }
@@ -129,31 +140,56 @@ export class UbButton extends HTMLElement {
     this.#slotElement.classList.add("text");
     this.#buttonElement.appendChild(this.#slotElement);
     this.shadowRoot?.appendChild(this.#buttonElement);
+    this.#updateDanger();
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    //storybookで、argTypesで{type: "string" }を使い、空文字を入力するとnewValueの実引数がnullになりました
+    newValue: string | null,
+  ) {
     if (oldValue === newValue) return;
     switch (name) {
       case "loading":
-        this.loading = newValue === "true" || newValue === "";
+        this.loading = newValue !== null;
         break;
       case "disabled":
-        this.disabled = newValue === "true" || newValue === "";
+        this.disabled = newValue !== null;
         break;
-      case "type":
-        this.type = newValue;
+      case "danger":
+        // 真偽値の判定を、<input>のdisabled属性のような非カスタムタグの真偽値属性に合わせます。
+        this.danger = newValue !== null;
+        break;
+      case "name":
+        if (newValue === null) this.#buttonElement.removeAttribute("name");
+        else this.name = newValue;
+        break;
+      case "value":
+        if (newValue === null) this.#buttonElement.removeAttribute("value");
+        else this.value = newValue;
         break;
       case "variants":
-        this.variants = newValue;
+        this.variants = newValue === null ? "" : newValue;
         break;
       case "size":
-        this.size = newValue;
+        this.size = newValue === null ? "" : newValue;
         break;
     }
   }
 
   #buttonDisabledUpdate() {
     this.#buttonElement.disabled = this.disabled || this.loading;
+  }
+
+  #updateDanger() {
+    if (this.danger) {
+      this.#buttonElement.classList.remove("normal");
+      this.#buttonElement.classList.add("danger");
+    } else {
+      this.#buttonElement.classList.remove("danger");
+      this.#buttonElement.classList.add("normal");
+    }
   }
 }
 

@@ -5,6 +5,9 @@ import { UbButton } from "./ub-button";
 const styles = new CSSStyleSheet();
 styles.replaceSync(`${foundationStyle} ${buttonStyle}`);
 
+/**
+ * @summary ボタンです。
+ */
 export class SpButton extends UbButton {
   constructor() {
     super();

@@ -9,21 +9,11 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _UbButton_instances, _UbButton_loading, _UbButton_disabled, _UbButton_type, _UbButton_variants, _UbButton_size, _UbButton_buttonElement, _UbButton_slotElement, _UbButton_buttonDisabledUpdate;
+var _UbButton_instances, _UbButton_loading, _UbButton_disabled, _UbButton_variants, _UbButton_size, _UbButton_buttonElement, _UbButton_slotElement, _UbButton_danger, _UbButton_buttonDisabledUpdate, _UbButton_updateDanger;
 import resetStyle from "@acab/reset.css?inline";
 import foundationStyle from "../foundation.css?inline";
-export const buttonType = ["normal", "danger"];
 export const variants = ["primary", "secondary", "tertiary"];
 export const size = ["medium", "large", "xLarge"];
-function isValidType(value) {
-    if (buttonType.some((type) => type === value)) {
-        return value;
-    }
-    else {
-        console.warn(`${value}は無効なtype属性です。`);
-        return buttonType[0];
-    }
-}
 function isValidvariants(value) {
     if (variants.some((variants) => variants === value)) {
         return value;
@@ -66,12 +56,24 @@ export class UbButton extends HTMLElement {
         __classPrivateFieldSet(this, _UbButton_disabled, value, "f");
         __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
-    set type(value) {
-        const button = __classPrivateFieldGet(this, _UbButton_buttonElement, "f");
-        const newValue = isValidType(value);
-        button.classList.remove(__classPrivateFieldGet(this, _UbButton_type, "f"));
-        button.classList.add(newValue);
-        __classPrivateFieldSet(this, _UbButton_type, newValue, "f");
+    get name() {
+        return __classPrivateFieldGet(this, _UbButton_buttonElement, "f").name;
+    }
+    set name(value) {
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").name = value;
+    }
+    get value() {
+        return __classPrivateFieldGet(this, _UbButton_buttonElement, "f").value;
+    }
+    set value(newValue) {
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").value = newValue;
+    }
+    get danger() {
+        return __classPrivateFieldGet(this, _UbButton_danger, "f");
+    }
+    set danger(value) {
+        __classPrivateFieldSet(this, _UbButton_danger, value, "f");
+        __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_updateDanger).call(this);
     }
     get variants() {
         return __classPrivateFieldGet(this, _UbButton_variants, "f");
@@ -93,26 +95,36 @@ export class UbButton extends HTMLElement {
         };
         button.classList.remove(typeClassList[__classPrivateFieldGet(this, _UbButton_size, "f")]);
         button.classList.add(typeClassList[newValue]);
+        if (this.danger)
+            this.danger = true;
         __classPrivateFieldSet(this, _UbButton_size, newValue, "f");
     }
     static get observedAttributes() {
-        return ["loading", "disabled", "type", "variants", "size"];
+        return [
+            "loading",
+            "disabled",
+            "variants",
+            "size",
+            "danger",
+            "value",
+            "name",
+            "type",
+        ];
     }
     constructor() {
         super();
         _UbButton_instances.add(this);
         _UbButton_loading.set(this, false);
         _UbButton_disabled.set(this, false);
-        _UbButton_type.set(this, buttonType[0]);
         _UbButton_variants.set(this, variants[0]);
         _UbButton_size.set(this, size[0]);
         _UbButton_buttonElement.set(this, document.createElement("button"));
         _UbButton_slotElement.set(this, document.createElement("slot"));
+        _UbButton_danger.set(this, false);
         const shadowRoot = this.attachShadow({ mode: "open" });
         shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
         this.loading = false;
         this.disabled = false;
-        this.type = buttonType[0];
         this.variants = variants[0];
         this.size = size[0];
     }
@@ -121,31 +133,56 @@ export class UbButton extends HTMLElement {
         __classPrivateFieldGet(this, _UbButton_slotElement, "f").classList.add("text");
         __classPrivateFieldGet(this, _UbButton_buttonElement, "f").appendChild(__classPrivateFieldGet(this, _UbButton_slotElement, "f"));
         this.shadowRoot?.appendChild(__classPrivateFieldGet(this, _UbButton_buttonElement, "f"));
+        __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_updateDanger).call(this);
     }
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(name, oldValue, 
+    //storybookで、argTypesで{type: "string" }を使い、空文字を入力するとnewValueの実引数がnullになりました
+    newValue) {
         if (oldValue === newValue)
             return;
         switch (name) {
             case "loading":
-                this.loading = newValue === "true" || newValue === "";
+                this.loading = newValue !== null;
                 break;
             case "disabled":
-                this.disabled = newValue === "true" || newValue === "";
+                this.disabled = newValue !== null;
                 break;
-            case "type":
-                this.type = newValue;
+            case "danger":
+                // 真偽値の判定を、<input>のdisabled属性のような非カスタムタグの真偽値属性に合わせます。
+                this.danger = newValue !== null;
+                break;
+            case "name":
+                if (newValue === null)
+                    __classPrivateFieldGet(this, _UbButton_buttonElement, "f").removeAttribute("name");
+                else
+                    this.name = newValue;
+                break;
+            case "value":
+                if (newValue === null)
+                    __classPrivateFieldGet(this, _UbButton_buttonElement, "f").removeAttribute("value");
+                else
+                    this.value = newValue;
                 break;
             case "variants":
-                this.variants = newValue;
+                this.variants = newValue === null ? "" : newValue;
                 break;
             case "size":
-                this.size = newValue;
+                this.size = newValue === null ? "" : newValue;
                 break;
         }
     }
 }
-_UbButton_loading = new WeakMap(), _UbButton_disabled = new WeakMap(), _UbButton_type = new WeakMap(), _UbButton_variants = new WeakMap(), _UbButton_size = new WeakMap(), _UbButton_buttonElement = new WeakMap(), _UbButton_slotElement = new WeakMap(), _UbButton_instances = new WeakSet(), _UbButton_buttonDisabledUpdate = function _UbButton_buttonDisabledUpdate() {
+_UbButton_loading = new WeakMap(), _UbButton_disabled = new WeakMap(), _UbButton_variants = new WeakMap(), _UbButton_size = new WeakMap(), _UbButton_buttonElement = new WeakMap(), _UbButton_slotElement = new WeakMap(), _UbButton_danger = new WeakMap(), _UbButton_instances = new WeakSet(), _UbButton_buttonDisabledUpdate = function _UbButton_buttonDisabledUpdate() {
     __classPrivateFieldGet(this, _UbButton_buttonElement, "f").disabled = this.disabled || this.loading;
+}, _UbButton_updateDanger = function _UbButton_updateDanger() {
+    if (this.danger) {
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").classList.remove("normal");
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").classList.add("danger");
+    }
+    else {
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").classList.remove("danger");
+        __classPrivateFieldGet(this, _UbButton_buttonElement, "f").classList.add("normal");
+    }
 };
 if (!customElements.get("ub-button")) {
     customElements.define("ub-button", UbButton);
