@@ -1,7 +1,10 @@
 import {
   checkCircle,
   checkCircleFill,
+  chevronDown,
+  chevronDownSmall,
   errorFill,
+  globe,
   informationCircle,
   person,
 } from "./icons";
@@ -47,6 +50,9 @@ export class SpIcon extends HTMLElement {
       { attr: "person", def: person },
       { attr: "check-circle-fill", def: checkCircleFill },
       { attr: "check-circle", def: checkCircle },
+      { attr: "chevron-down", def: chevronDown },
+      { attr: "chevron-down-small", def: chevronDownSmall },
+      { attr: "globe", def: globe },
     ]) {
       this.#iconMap.set(attr, def);
     }
@@ -60,9 +66,9 @@ export class SpIcon extends HTMLElement {
     newValue: string | null,
   ) {
     if (oldValue === newValue) return;
-    newValue = newValue ?? "";
+    const iconType = newValue ?? "";
     if (name === "type") {
-      this.type = newValue;
+      this.type = iconType;
     }
   }
 }
