@@ -1,5 +1,4 @@
 import "../../src/components/checkbox/sp-checkbox";
-import "yakuhanjp/dist/css/yakuhanjp_s.css";
 
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/web-components";
