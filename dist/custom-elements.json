@@ -472,7 +472,7 @@
         {
           "kind": "variable",
           "name": "chevronDownSmall",
-          "default": "`<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.01 15.1536C11.8298 15.1536 11.6597 15.0935 11.5095 14.9634L6.25436 10.3188C5.94406 10.0486 5.91403 9.56809 6.1843 9.25779C6.45456 8.94749 6.93503 8.91746 7.24534 9.18772L12 13.3918L16.7547 9.18772C17.065 8.91746 17.5354 8.93748 17.8157 9.25779C18.086 9.56809 18.0559 10.0386 17.7456 10.3188L12.4905 14.9634C12.3503 15.0935 12.1702 15.1536 11.99 15.1536H12.01Z\" fill=\"currentColor\" fill-opacity=\"0.84\"/></svg>`"
+          "default": "`<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.01 15.1536C11.8298 15.1536 11.6597 15.0935 11.5095 14.9634L6.25436 10.3188C5.94406 10.0486 5.91403 9.56809 6.1843 9.25779C6.45456 8.94749 6.93503 8.91746 7.24534 9.18772L12 13.3918L16.7547 9.18772C17.065 8.91746 17.5354 8.93748 17.8157 9.25779C18.086 9.56809 18.0559 10.0386 17.7456 10.3188L12.4905 14.9634C12.3503 15.0935 12.1702 15.1536 11.99 15.1536H12.01Z\" fill=\"currentColor\" fill-opacity=\"0.84\"/></svg>`"
         }
       ],
       "exports": [
@@ -597,84 +597,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-label-unit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -824,6 +746,84 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "supportText"
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
     },
     {
       "kind": "javascript-module",
