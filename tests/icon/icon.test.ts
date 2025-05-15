@@ -21,6 +21,9 @@ describe("sp-icon", () => {
       "person",
       "check-circle-fill",
       "check-circle",
+      "chevron-down",
+      "chevron-down-small",
+      "globe",
     ]) {
       document.body.innerHTML = `<sp-icon type="${name}"></sp-icon>`;
       const icon = document
