@@ -119,6 +119,12 @@ section {
     display: block;
 }
 
+/* テキスト系要素に文章の折り返し指定 */
+body, p, span, div, li, td, th {
+    overflow-wrap: anywhere;
+    line-break: strict;
+}
+
 /* 基本的なbody要素のデフォルト設定 */
 body {
     line-height: 1;
@@ -128,8 +134,7 @@ body {
 }
 
 /* リスト要素のスタイルを削除 */
-ol,
-ul {
+li {
     list-style: none;
 }
 
@@ -162,6 +167,7 @@ a {
 /* Form elements reset */
 button {
     all: unset;
+    box-sizing: border-box;
 }
 
 button, label, select, summary, [role='button'], [role='option'] {
@@ -243,7 +249,7 @@ textarea {
 }
 
 :focus-visible {
-    outline: thin dotted;
+   outline: inherit;
 }
 
 /* 画像の最大幅を親要素に合わせる */
