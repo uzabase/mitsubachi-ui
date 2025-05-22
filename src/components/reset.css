@@ -120,7 +120,7 @@ section {
 }
 
 /* テキスト系要素に文章の折り返し指定 */
-body, p, span, div, li, td, th {
+body, article, p, span, div, li, td, th, dt, dd, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: anywhere;
     line-break: strict;
 }
