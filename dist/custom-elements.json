@@ -473,6 +473,11 @@
           "kind": "variable",
           "name": "chevronDownSmall",
           "default": "`<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.01 15.1536C11.8298 15.1536 11.6597 15.0935 11.5095 14.9634L6.25436 10.3188C5.94406 10.0486 5.91403 9.56809 6.1843 9.25779C6.45456 8.94749 6.93503 8.91746 7.24534 9.18772L12 13.3918L16.7547 9.18772C17.065 8.91746 17.5354 8.93748 17.8157 9.25779C18.086 9.56809 18.0559 10.0386 17.7456 10.3188L12.4905 14.9634C12.3503 15.0935 12.1702 15.1536 11.99 15.1536H12.01Z\" fill=\"currentColor\" fill-opacity=\"0.84\"/></svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "checkSmall",
+          "default": "`<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M10.557 15.637C10.377 15.637 10.197 15.567 10.047 15.437L6.24703 11.957C5.93703 11.677 5.91703 11.207 6.19703 10.897C6.47703 10.597 6.94703 10.567 7.25703 10.847L10.547 13.867L16.747 8.19703C17.057 7.91703 17.527 7.93703 17.807 8.24703C18.087 8.55703 18.067 9.02703 17.757 9.30703L11.057 15.447C10.917 15.577 10.727 15.647 10.547 15.647L10.557 15.637Z\" fill=\"currentColor\" fill-opacity=\"0.84\"/></svg>`"
         }
       ],
       "exports": [
@@ -537,6 +542,14 @@
           "name": "chevronDownSmall",
           "declaration": {
             "name": "chevronDownSmall",
+            "module": "dist/components/icon/icons.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "checkSmall",
+          "declaration": {
+            "name": "checkSmall",
             "module": "dist/components/icon/icons.js"
           }
         }

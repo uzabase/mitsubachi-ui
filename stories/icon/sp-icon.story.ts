@@ -17,6 +17,7 @@ const meta: Meta<SpIcon> = {
         "person",
         "check-circle-fill",
         "check-circle",
+        "check-small",
         "chevron-down",
         "chevron-down-small",
         "globe",
