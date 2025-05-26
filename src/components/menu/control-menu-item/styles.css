@@ -1,15 +1,36 @@
 :host {
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 12px 4px 16px;
+    .item {
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 12px 4px 16px;
+        box-sizing: border-box;
+        max-height: 32px;
 
-    .icon {
-        display: block;
-        ;
-        width: 24px;
-        height: 24px;
+        &:hover {
+            background-color: #F8F8F8;
+        }
+        &:active {
+            background-color: #0000000D;
+        }
+        &:focus {
+            border: 2px solid #191919;
+            box-sizing: border-box;
+            padding: 2px 10px 2px 14px;
+        }
+
+        .text {
+            color: #000000D6;
+        }
+
+        .icon {
+            display: block;
+            ;
+            width: 24px;
+            height: 24px;
+        }
     }
+
 
 }

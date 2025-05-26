@@ -41,12 +41,18 @@ export class SpControlMenuItem extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    this.shadowRoot.appendChild(this.textElement);
+    const option = document.createElement('option');
+    option.setAttribute("tabindex", "0");
+    option.classList.add("item");
+    this.shadowRoot.appendChild(option);
+
+    this.textElement.classList.add("text");
+
+    option.appendChild(this.textElement);
     const icon = document.createElement("sp-icon");
     icon.classList.add("icon");
     icon.setAttribute("type", "check-small");
-    this.shadowRoot.appendChild(icon);
-    // this.shadowRoot.appendChild(div);
+    option.appendChild(icon);
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {
