@@ -14,7 +14,7 @@ export default meta;
 
 export const Default: StoryObj<SpControlMenu> = {
   render: () => {
-    return html`<sp-control-menu style="width: 300px;">
+    return html`<sp-control-menu>
       <sp-control-menu-item text="日本語"></sp-control-menu-item>
       <sp-control-menu-item
         text="English"
