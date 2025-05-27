@@ -1,5 +1,5 @@
 import { makeStyleSheet } from "../../styles";
-import styles from './styles.css?inline';
+import styles from "./styles.css?inline";
 
 export class SpControlMenu extends HTMLElement {
   static observedAttributes = [];
@@ -12,7 +12,6 @@ export class SpControlMenu extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-
   connectedCallback() {
     if (!this.shadowRoot || this.initialized) return;
     this.shadowRoot.adoptedStyleSheets = [
@@ -21,9 +20,8 @@ export class SpControlMenu extends HTMLElement {
     ];
 
     this.shadowRoot.innerHTML = `
-      <div class="menu"><slot></slot></div>
+      <slot></slot>
     `;
-
 
     this.initialized = true;
   }

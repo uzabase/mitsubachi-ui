@@ -18,10 +18,10 @@ export default meta;
 export const Default: StoryObj<SpControlMenuItem> = {
   render: ({ text, selected, disabled }) => {
     return html`<sp-control-menu-item
-    text=${text}
-    tabindex="0"
-    ?selected=${selected}
-    ?disabled=${disabled} 
+      text=${text}
+      tabindex="0"
+      ?selected=${selected}
+      ?disabled=${disabled}
     >
     </sp-control-menu-item>`;
   },
