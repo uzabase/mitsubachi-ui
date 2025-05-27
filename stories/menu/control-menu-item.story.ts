@@ -1,7 +1,7 @@
 import "../../src/components/menu/control-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html,} from "lit";
+import { html } from "lit";
 
 import type { SpControlMenuItem } from "../../src/components/menu/control-menu-item";
 

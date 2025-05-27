@@ -4,7 +4,7 @@ import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 
 export class SpControlMenuItem extends HTMLElement {
-  static observedAttributes = ['text'];
+  static observedAttributes = ["text"];
 
   get text(): null | string {
     return this.textElement.textContent;
@@ -44,15 +44,16 @@ export class SpControlMenuItem extends HTMLElement {
     this.initialized = true;
   }
 
-  attributeChangedCallback(name: string, _: string | null, newValue: string | null) {
+  attributeChangedCallback(
+    name: string,
+    _: string | null,
+    newValue: string | null,
+  ) {
     if (name === "text") {
-      if(newValue)
-        this.textElement.textContent = newValue;
-      else
-        this.textElement.textContent = null;
+      if (newValue) this.textElement.textContent = newValue;
+      else this.textElement.textContent = null;
     }
   }
-
 }
 
 declare global {
