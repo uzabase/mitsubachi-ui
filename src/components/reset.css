@@ -241,7 +241,8 @@ textarea {
 
 /* フォーカス状態の視覚的表示を保持 */
 :focus {
-    outline: thin dotted;
+    outline: auto;
+    outline-offset: 2px;
 }
 
 :focus:not(:focus-visible) {
@@ -249,7 +250,8 @@ textarea {
 }
 
 :focus-visible {
-   outline: inherit;
+    outline: auto;
+    outline-offset: 2px;
 }
 
 /* 画像の最大幅を親要素に合わせる */
