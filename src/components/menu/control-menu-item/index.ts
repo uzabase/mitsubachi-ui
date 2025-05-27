@@ -4,33 +4,21 @@ import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
 
 export class SpControlMenuItem extends HTMLElement {
-  static observedAttributes = ["selected", "text"];
+  static observedAttributes = ['text'];
 
   get text(): null | string {
     return this.textElement.textContent;
   }
 
-  set text(value: string) {
-    if (value) {
-      this.textElement.textContent = value;
-    } else {
-        this.textElement.textContent = null;
-    }
+  get selected(): boolean {
+    return this.hasAttribute("selected");
   }
 
-  private isDisabled = false;
-
-  set disabled(value: boolean) {
-    this.isDisabled = value; 
+  get disabled(): boolean {
+    return this.hasAttribute("disabled");
   }
 
   private textElement = document.createElement("span");
-
-  private isSelected = false;
-
-  set selected(value: boolean) {
-    this.isSelected = value;
-  }
 
   constructor() {
     super();
@@ -46,11 +34,6 @@ export class SpControlMenuItem extends HTMLElement {
       ...this.shadowRoot.adoptedStyleSheets,
       makeStyleSheet(styles),
     ];
-
-    //const item = document.createElement('div');
-    //item.classList.add("item");
-    //this.shadowRoot.appendChild(item);
-
     this.textElement.classList.add("text");
     this.shadowRoot.appendChild(this.textElement);
 
@@ -58,16 +41,18 @@ export class SpControlMenuItem extends HTMLElement {
     icon.classList.add("icon");
     icon.setAttribute("type", "check-small");
     this.shadowRoot.appendChild(icon);
+    this.initialized = true;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
+  attributeChangedCallback(name: string, _: string | null, newValue: string | null) {
     if (name === "text") {
-      this.text = newValue ?? '';
-      return;
-    } else if (name === "selected") {
-        this.isSelected = newValue ? true : false;
+      if(newValue)
+        this.textElement.textContent = newValue;
+      else
+        this.textElement.textContent = null;
     }
   }
+
 }
 
 declare global {
