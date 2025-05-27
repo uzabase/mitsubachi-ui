@@ -23,6 +23,6 @@ export const Default: StoryObj<SpControlMenuItem> = {
     ?selected=${selected}
     ?disabled=${disabled} 
     >
-    </sp-text-field-unit>`;
+    </sp-control-menu-item>`;
   },
 };
