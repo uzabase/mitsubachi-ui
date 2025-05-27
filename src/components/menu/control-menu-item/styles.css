@@ -5,7 +5,8 @@
     justify-content: space-between;
     padding: 4px 12px 4px 16px;
     box-sizing: border-box;
-    max-height: 32px;
+    min-height: 32px;
+    
 
 
     /* &:hover {
@@ -24,11 +25,11 @@
         color: #000000D6;
     } */
 
+        color: #000000D6;
     .icon {
-        display: hidden;
+        display: none;
         width: 24px;
         height: 24px;
-        color: #000000D6;
     }
 
     /* :hover{
@@ -42,6 +43,9 @@
 }
 :host([selected]) {
     background-color: #F0F6FF;
+    .icon {
+        display: block;
+    }
 }
 
 :host([selected]:hover) {
@@ -54,9 +58,7 @@
 :host([disabled]) {
     background-color: transparent;
 
-    .text {
         color: #00000059;
-    }
 }
 :host([disabled]:hover) {
     background-color: transparent;
