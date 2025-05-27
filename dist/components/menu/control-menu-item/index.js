@@ -1,6 +1,15 @@
 import "../../icon";
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
+/**
+ * @summary メニューの項目を表すコンポーネントです。
+ *
+ * @attr {text} text - 項目のテキスト
+ *
+ * @attr {boolean} selected - 項目が選択されていることを示します。属性があるときはチェックマークが表示されます。
+ *
+ * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
+ */
 export class SpControlMenuItem extends HTMLElement {
     get text() {
         return this.textElement.textContent;

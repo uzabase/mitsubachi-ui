@@ -1,5 +1,8 @@
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";
+/**
+ * @summary ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。
+ */
 export class SpControlMenu extends HTMLElement {
     constructor() {
         super();
