@@ -18,6 +18,12 @@ export class SpControlMenuItem extends HTMLElement {
     }
   }
 
+  private isDisabled = false;
+
+  set disabled(value: boolean) {
+    this.isDisabled = value; 
+  }
+
   private textElement = document.createElement("span");
 
   private isSelected = false;
@@ -41,18 +47,17 @@ export class SpControlMenuItem extends HTMLElement {
       makeStyleSheet(styles),
     ];
 
-    const option = document.createElement('option');
-    option.setAttribute("tabindex", "0");
-    option.classList.add("item");
-    this.shadowRoot.appendChild(option);
+    //const item = document.createElement('div');
+    //item.classList.add("item");
+    //this.shadowRoot.appendChild(item);
 
     this.textElement.classList.add("text");
+    this.shadowRoot.appendChild(this.textElement);
 
-    option.appendChild(this.textElement);
     const icon = document.createElement("sp-icon");
     icon.classList.add("icon");
     icon.setAttribute("type", "check-small");
-    option.appendChild(icon);
+    this.shadowRoot.appendChild(icon);
   }
 
   attributeChangedCallback(name: string, _: string, newValue: string | null) {

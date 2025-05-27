@@ -7,18 +7,21 @@ import type { SpControlMenuItem } from "../../src/components/menu/control-menu-i
 
 const meta: Meta<SpControlMenuItem> = {
   args: {
-    text: "ラベル",
+    text: "Text",
     selected: false,
+    disabled: false,
   },
   tags: ["!dev-only"],
 };
 export default meta;
 
 export const Default: StoryObj<SpControlMenuItem> = {
-  render: ({ text, selected }) => {
+  render: ({ text, selected, disabled }) => {
     return html`<sp-control-menu-item
     text=${text}
-    selected=${selected}
+    tabindex="0"
+    ?selected=${selected}
+    ?disabled=${disabled} 
     >
     </sp-text-field-unit>`;
   },

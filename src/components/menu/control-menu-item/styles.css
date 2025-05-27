@@ -1,36 +1,99 @@
 :host {
-    .item {
-        display: flex;
-        font-size: 14px;
-        align-items: center;
-        justify-content: space-between;
-        padding: 4px 12px 4px 16px;
-        box-sizing: border-box;
-        max-height: 32px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 12px 4px 16px;
+    box-sizing: border-box;
+    max-height: 32px;
 
-        &:hover {
+
+    /* &:hover {
             background-color: #F8F8F8;
         }
         &:active {
             background-color: #0000000D;
-        }
-        &:focus {
+        } */
+    /* &:focus {
             border: 2px solid #191919;
             box-sizing: border-box;
             padding: 2px 10px 2px 14px;
-        }
+        } */
 
-        .text {
-            color: #000000D6;
-        }
+    /* .text {
+        color: #000000D6;
+    } */
 
-        .icon {
-            display: block;
-            ;
-            width: 24px;
-            height: 24px;
-        }
+    .icon {
+        display: hidden;
+        width: 24px;
+        height: 24px;
+        color: #000000D6;
     }
 
+    /* :hover{
+        background-color: red;
+
+        .text {
+            color: pink;
+        }
+    }; */
 
 }
+:host([selected]) {
+    background-color: #F0F6FF;
+}
+
+:host([selected]:hover) {
+    background-color: #E3EFFF;
+}
+
+:host([selected]:active) {
+    background-color: #D4E6FF;
+}
+:host([disabled]) {
+    background-color: transparent;
+
+    .text {
+        color: #00000059;
+    }
+}
+:host([disabled]:hover) {
+    background-color: transparent;
+}
+
+:host([disabled]:active) {
+    background-color: transparent;
+}
+
+:host([disabled]:focus) {
+    border: none;
+    padding: 4px 12px 4px 16px;
+}
+
+:host(:hover) {
+    background-color: #F8F8F8;
+}
+
+:host(:active) {
+    background-color: #0000000D;
+}
+
+:host(:focus) {
+    border: 2px solid #191919;
+    box-sizing: border-box;
+    padding: 2px 10px 2px 14px;
+    outline: none;
+}
+
+/* :host(:focus) {
+  outline: 2px solid pink;
+  box-shadow: 0 0 4px pink;
+
+  .text {
+    color: yellow;
+  }
+}
+
+
+ */
