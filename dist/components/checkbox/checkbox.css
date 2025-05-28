@@ -8,6 +8,12 @@
 
 .base:hover .checkmark:has(:not(.input:disabled))::before {
   border-color: rgb(0 0 0 / 54%);
+  outline: 4px solid rgb(0 0 0 / 4%);
+}
+
+.base:active .checkmark:has(:not(.input:disabled))::before,
+.base:hover:active .checkmark:has(:not(.input:disabled))::before {
+  outline: 4px solid rgb(0 0 0 / 7%);
 }
 
 .base:hover .checkmark:has(:is(.input:checked, .input:indeterminate)):has(:not(.input:disabled))::before{

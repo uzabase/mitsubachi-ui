@@ -600,6 +600,514 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/components/checkbox/checkbox-text.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/checkbox.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/checkmark.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/sp-checkbox-text.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/sp-checkbox-text.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckboxText",
+          "superclass": {
+            "name": "UbCheckboxText",
+            "module": "/dist/components/checkbox/ub-checkbox-text"
+          },
+          "tagName": "sp-checkbox-text",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "value",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "name": "name",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "name": "checked",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "name": "text",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[...shadowRoot.adoptedStyleSheets, styles]",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "inheritedFrom": {
+                "name": "UbCheckboxText",
+                "module": "dist/components/checkbox/ub-checkbox-text.js"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "dist/components/checkbox/sp-checkbox-text.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox-text",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "dist/components/checkbox/sp-checkbox-text.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/sp-checkbox.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/sp-checkbox.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckbox",
+          "superclass": {
+            "name": "UbCheckbox",
+            "module": "/dist/components/checkbox/ub-checkbox"
+          },
+          "tagName": "sp-checkbox",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "value",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "name": "name",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "name": "checked",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[...shadowRoot.adoptedStyleSheets, styles]",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "inheritedFrom": {
+                "name": "UbCheckbox",
+                "module": "dist/components/checkbox/ub-checkbox.js"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "dist/components/checkbox/sp-checkbox.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "dist/components/checkbox/sp-checkbox.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/ub-checkbox-text.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/ub-checkbox-text.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "UbCheckboxText",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "name"
+            },
+            {
+              "kind": "field",
+              "name": "checked"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate"
+            },
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback"
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[...shadowRoot.adoptedStyleSheets, styles]"
+            },
+            {
+              "kind": "field",
+              "name": "internals"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "checked"
+            },
+            {
+              "name": "indeterminate"
+            },
+            {
+              "name": "disabled"
+            },
+            {
+              "name": "text"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UbCheckboxText",
+          "declaration": {
+            "name": "UbCheckboxText",
+            "module": "dist/components/checkbox/ub-checkbox-text.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/ub-checkbox.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/checkbox/ub-checkbox.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "UbCheckbox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "name"
+            },
+            {
+              "kind": "field",
+              "name": "checked"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate"
+            },
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback"
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[...shadowRoot.adoptedStyleSheets, styles]"
+            },
+            {
+              "kind": "field",
+              "name": "internals"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "checked"
+            },
+            {
+              "name": "indeterminate"
+            },
+            {
+              "name": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UbCheckbox",
+          "declaration": {
+            "name": "UbCheckbox",
+            "module": "dist/components/checkbox/ub-checkbox.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/components/label-unit/index.d.ts.map",
       "declarations": [],
       "exports": []
