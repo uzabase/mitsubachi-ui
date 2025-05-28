@@ -10,13 +10,13 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
-import { checkCircle, checkCircleFill, errorFill, informationCircle, person, } from "./icons";
+import { checkCircle, checkCircleFill, chevronDown, chevronDownSmall, errorFill, globe, informationCircle, person, } from "./icons";
 /**
  * アイコンです。
  *
  * @summary アイコンです。
  *
- * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。
+ * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  *
  */
 export class SpIcon extends HTMLElement {
@@ -50,6 +50,9 @@ export class SpIcon extends HTMLElement {
             { attr: "person", def: person },
             { attr: "check-circle-fill", def: checkCircleFill },
             { attr: "check-circle", def: checkCircle },
+            { attr: "chevron-down", def: chevronDown },
+            { attr: "chevron-down-small", def: chevronDownSmall },
+            { attr: "globe", def: globe },
         ]) {
             __classPrivateFieldGet(this, _SpIcon_iconMap, "f").set(attr, def);
         }
@@ -59,9 +62,9 @@ export class SpIcon extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)
             return;
-        newValue = newValue ?? "";
+        const iconType = newValue ?? "";
         if (name === "type") {
-            this.type = newValue;
+            this.type = iconType;
         }
     }
 }
