@@ -629,84 +629,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-label-unit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/components/checkbox/checkbox-text.css",
       "declarations": [],
       "exports": []
@@ -1215,6 +1137,84 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/index.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "supportText"
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "dist/components/label-unit/index.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/components/logo/index.d.ts.map",
       "declarations": [],
       "exports": []
@@ -1364,6 +1364,63 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/components/menu/control-menu/index.d.ts.map",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/menu/control-menu/index.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "members": [
+            {
+              "kind": "field",
+              "name": "initialized",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
+          "tagName": "sp-control-menu",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "dist/components/menu/control-menu/index.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "dist/components/menu/control-menu/index.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/menu/control-menu/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/components/menu/control-menu-item/index.d.ts.map",
       "declarations": [],
       "exports": []
@@ -1458,63 +1515,6 @@
     {
       "kind": "javascript-module",
       "path": "dist/components/menu/control-menu-item/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/menu/control-menu/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/menu/control-menu/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "members": [
-            {
-              "kind": "field",
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
-          "tagName": "sp-control-menu",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "dist/components/menu/control-menu/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "dist/components/menu/control-menu/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
