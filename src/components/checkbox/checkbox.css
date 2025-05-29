@@ -1,0 +1,22 @@
+:host {
+  display: inline-block;
+}
+
+.checkmark:has(.input:focus-visible)::before {
+  box-shadow: 0 0 0 2px #FFF, 0 0 0 4px #191919;
+}
+
+.base:hover .checkmark:has(:not(.input:disabled))::before {
+  border-color: rgb(0 0 0 / 54%);
+  outline: 4px solid rgb(0 0 0 / 4%);
+}
+
+.base:active .checkmark:has(:not(.input:disabled))::before,
+.base:hover:active .checkmark:has(:not(.input:disabled))::before {
+  outline: 4px solid rgb(0 0 0 / 7%);
+}
+
+.base:hover .checkmark:has(:is(.input:checked, .input:indeterminate)):has(:not(.input:disabled))::before{
+  background-color: #2666BF;
+  border-color: #2666BF;
+}
