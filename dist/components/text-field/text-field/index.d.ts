@@ -1,4 +1,3 @@
-import "./error-text";
 export declare class SpTextField extends HTMLElement {
     #private;
     static observedAttributes: string[];

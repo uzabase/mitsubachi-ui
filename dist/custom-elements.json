@@ -4,13 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "dist/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/index.js",
+      "path": "src/index.ts",
       "declarations": [],
       "exports": [
         {
@@ -57,26 +51,23 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/foundation.css",
+      "path": "src/components/foundation.css",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/styles.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/styles.js",
+      "path": "src/components/styles.ts",
       "declarations": [
         {
           "kind": "function",
           "name": "makeStyleSheet",
           "parameters": [
             {
-              "name": "styles"
+              "name": "styles",
+              "type": {
+                "text": "string[]"
+              }
             }
           ]
         }
@@ -87,26 +78,20 @@
           "name": "makeStyleSheet",
           "declaration": {
             "name": "makeStyleSheet",
-            "module": "dist/components/styles.js"
+            "module": "src/components/styles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/button/button.css",
+      "path": "src/components/button/button.css",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/button/sp-button.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/button/sp-button.js",
+      "path": "src/components/button/sp-button.ts",
       "declarations": [
         {
           "kind": "class",
@@ -114,7 +99,7 @@
           "name": "SpButton",
           "superclass": {
             "name": "UbButton",
-            "module": "/dist/components/button/ub-button"
+            "module": "/src/components/button/ub-button"
           },
           "summary": "ボタンです。",
           "tagName": "sp-button",
@@ -124,60 +109,130 @@
               "name": "loading",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "disabled",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "variants",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "size",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "danger",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "value",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "name",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "name": "type",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             }
           ],
           "members": [
+            {
+              "kind": "field",
+              "name": "#loading",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#disabled",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#variants",
+              "privacy": "private",
+              "type": {
+                "text": "variants"
+              },
+              "default": "variants[0]",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#size",
+              "privacy": "private",
+              "type": {
+                "text": "Size"
+              },
+              "default": "size[0]",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#buttonElement",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#slotElement",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
             {
               "kind": "field",
               "name": "loading",
@@ -187,7 +242,7 @@
               "default": "false",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
@@ -199,31 +254,40 @@
               "default": "false",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "kind": "field",
               "name": "name",
+              "type": {
+                "text": "string"
+              },
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "kind": "field",
               "name": "value",
+              "type": {
+                "text": "string"
+              },
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
               "kind": "field",
               "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
@@ -232,7 +296,7 @@
               "default": "variants[0]",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
@@ -241,7 +305,38 @@
               "default": "size[0]",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#danger",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#buttonDisabledUpdate",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#updateDanger",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "UbButton",
+                "module": "src/components/button/ub-button.ts"
               }
             },
             {
@@ -253,7 +348,7 @@
               "default": "[...shadowRoot.adoptedStyleSheets, styles]",
               "inheritedFrom": {
                 "name": "UbButton",
-                "module": "dist/components/button/ub-button.js"
+                "module": "src/components/button/ub-button.ts"
               }
             }
           ]
@@ -265,7 +360,7 @@
           "name": "SpButton",
           "declaration": {
             "name": "SpButton",
-            "module": "dist/components/button/sp-button.js"
+            "module": "src/components/button/sp-button.ts"
           }
         },
         {
@@ -273,26 +368,20 @@
           "name": "sp-button",
           "declaration": {
             "name": "SpButton",
-            "module": "dist/components/button/sp-button.js"
+            "module": "src/components/button/sp-button.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/button/ub-button.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/button/ub-button.js",
+      "path": "src/components/button/ub-button.ts",
       "declarations": [
         {
           "kind": "variable",
           "name": "variants",
           "type": {
-            "text": "array"
+            "text": "[\"primary\", \"secondary\", \"tertiary\"]"
           },
           "default": "[\"primary\", \"secondary\", \"tertiary\"]"
         },
@@ -300,7 +389,7 @@
           "kind": "variable",
           "name": "size",
           "type": {
-            "text": "array"
+            "text": "[\"medium\", \"large\", \"xLarge\"]"
           },
           "default": "[\"medium\", \"large\", \"xLarge\"]"
         },
@@ -309,6 +398,52 @@
           "description": "",
           "name": "UbButton",
           "members": [
+            {
+              "kind": "field",
+              "name": "#loading",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#disabled",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#variants",
+              "privacy": "private",
+              "type": {
+                "text": "variants"
+              },
+              "default": "variants[0]"
+            },
+            {
+              "kind": "field",
+              "name": "#size",
+              "privacy": "private",
+              "type": {
+                "text": "Size"
+              },
+              "default": "size[0]"
+            },
+            {
+              "kind": "field",
+              "name": "#buttonElement",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#slotElement",
+              "privacy": "private"
+            },
             {
               "kind": "field",
               "name": "loading",
@@ -327,15 +462,24 @@
             },
             {
               "kind": "field",
-              "name": "name"
+              "name": "name",
+              "type": {
+                "text": "string"
+              }
             },
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
             },
             {
               "kind": "field",
-              "name": "danger"
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              }
             },
             {
               "kind": "field",
@@ -346,6 +490,25 @@
               "kind": "field",
               "name": "size",
               "default": "size[0]"
+            },
+            {
+              "kind": "field",
+              "name": "#danger",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "#buttonDisabledUpdate",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#updateDanger",
+              "privacy": "private"
             },
             {
               "kind": "field",
@@ -395,7 +558,7 @@
           "name": "variants",
           "declaration": {
             "name": "variants",
-            "module": "dist/components/button/ub-button.js"
+            "module": "src/components/button/ub-button.ts"
           }
         },
         {
@@ -403,7 +566,7 @@
           "name": "size",
           "declaration": {
             "name": "size",
-            "module": "dist/components/button/ub-button.js"
+            "module": "src/components/button/ub-button.ts"
           }
         },
         {
@@ -411,7 +574,7 @@
           "name": "UbButton",
           "declaration": {
             "name": "UbButton",
-            "module": "dist/components/button/ub-button.js"
+            "module": "src/components/button/ub-button.ts"
           }
         },
         {
@@ -419,20 +582,14 @@
           "name": "ub-button",
           "declaration": {
             "name": "UbButton",
-            "module": "dist/components/button/ub-button.js"
+            "module": "src/components/button/ub-button.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/icon/icons.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/icon/icons.js",
+      "path": "src/components/icon/icons.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -481,7 +638,7 @@
           "name": "errorFill",
           "declaration": {
             "name": "errorFill",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -489,7 +646,7 @@
           "name": "informationCircle",
           "declaration": {
             "name": "informationCircle",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -497,7 +654,7 @@
           "name": "person",
           "declaration": {
             "name": "person",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -505,7 +662,7 @@
           "name": "checkCircleFill",
           "declaration": {
             "name": "checkCircleFill",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -513,7 +670,7 @@
           "name": "checkCircle",
           "declaration": {
             "name": "checkCircle",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -521,7 +678,7 @@
           "name": "chevronDown",
           "declaration": {
             "name": "chevronDown",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -529,7 +686,7 @@
           "name": "globe",
           "declaration": {
             "name": "globe",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         },
         {
@@ -537,20 +694,14 @@
           "name": "chevronDownSmall",
           "declaration": {
             "name": "chevronDownSmall",
-            "module": "dist/components/icon/icons.js"
+            "module": "src/components/icon/icons.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/icon/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/icon/index.js",
+      "path": "src/components/icon/index.ts",
       "declarations": [
         {
           "kind": "class",
@@ -559,16 +710,34 @@
           "members": [
             {
               "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#iconMap",
+              "privacy": "private",
+              "type": {
+                "text": "Map<string, string>"
+              },
+              "default": "new Map()"
+            },
+            {
+              "kind": "field",
               "name": "type"
             }
           ],
           "attributes": [
             {
+              "name": "type",
               "type": {
                 "text": "string"
               },
-              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。",
-              "name": "type"
+              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。"
             }
           ],
           "superclass": {
@@ -585,7 +754,7 @@
           "name": "SpIcon",
           "declaration": {
             "name": "SpIcon",
-            "module": "dist/components/icon/index.js"
+            "module": "src/components/icon/index.ts"
           }
         },
         {
@@ -593,98 +762,14 @@
           "name": "sp-icon",
           "declaration": {
             "name": "SpIcon",
-            "module": "dist/components/icon/index.js"
+            "module": "src/components/icon/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/index.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-label-unit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "dist/components/label-unit/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/logo/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/logo/index.js",
+      "path": "src/components/logo/index.ts",
       "declarations": [
         {
           "kind": "class",
@@ -694,28 +779,34 @@
             {
               "kind": "field",
               "name": "language",
+              "type": {
+                "text": "string | null"
+              },
               "readonly": true
             },
             {
               "kind": "field",
               "name": "brand",
+              "type": {
+                "text": "string | null"
+              },
               "readonly": true
             }
           ],
           "attributes": [
             {
+              "name": "language",
               "type": {
                 "text": "string"
               },
-              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。",
-              "name": "brand"
+              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。"
             },
             {
+              "name": "brand",
               "type": {
                 "text": "string"
               },
-              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。",
-              "name": "language"
+              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。"
             }
           ],
           "superclass": {
@@ -732,7 +823,7 @@
           "name": "SpLogo",
           "declaration": {
             "name": "SpLogo",
-            "module": "dist/components/logo/index.js"
+            "module": "src/components/logo/index.ts"
           }
         },
         {
@@ -740,20 +831,14 @@
           "name": "sp-logo",
           "declaration": {
             "name": "SpLogo",
-            "module": "dist/components/logo/index.js"
+            "module": "src/components/logo/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/logo/speeda.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/logo/speeda.js",
+      "path": "src/components/logo/speeda.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -777,7 +862,7 @@
           "name": "speedaJa",
           "declaration": {
             "name": "speedaJa",
-            "module": "dist/components/logo/speeda.js"
+            "module": "src/components/logo/speeda.ts"
           }
         },
         {
@@ -785,7 +870,7 @@
           "name": "speedaEn",
           "declaration": {
             "name": "speedaEn",
-            "module": "dist/components/logo/speeda.js"
+            "module": "src/components/logo/speeda.ts"
           }
         },
         {
@@ -793,20 +878,14 @@
           "name": "speedaZh",
           "declaration": {
             "name": "speedaZh",
-            "module": "dist/components/logo/speeda.js"
+            "module": "src/components/logo/speeda.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/logo/uzabase.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/logo/uzabase.js",
+      "path": "src/components/logo/uzabase.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -820,26 +899,153 @@
           "name": "uzabase",
           "declaration": {
             "name": "uzabase",
-            "module": "dist/components/logo/uzabase.js"
+            "module": "src/components/logo/uzabase.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/index.d.ts.map",
+      "path": "src/components/label-unit/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "#text",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "#supportText",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "supportText"
+            },
+            {
+              "kind": "field",
+              "name": "#label",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#support",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            },
+            {
+              "kind": "method",
+              "name": "#updateClass",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。"
+            },
+            {
+              "name": "support-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/index.js",
+      "path": "src/components/text-field/text-field/index.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
           "name": "SpTextField",
           "members": [
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
             {
               "kind": "field",
               "name": "type"
@@ -850,11 +1056,23 @@
             },
             {
               "kind": "field",
-              "name": "autocomplete"
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              }
             },
             {
               "kind": "field",
               "name": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "#disabled",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
             },
             {
               "kind": "field",
@@ -866,7 +1084,70 @@
             },
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#input",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#errorText",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#error",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "#updateStyle",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#updateAttribute",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "name",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
             }
           ],
           "events": [
@@ -875,6 +1156,29 @@
               "type": {
                 "text": "InputEvent"
               }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "error"
+            },
+            {
+              "name": "placeholder"
+            },
+            {
+              "name": "autocomplete"
+            },
+            {
+              "name": "disabled"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "value"
+            },
+            {
+              "name": "type"
             }
           ],
           "superclass": {
@@ -890,7 +1194,7 @@
           "name": "SpTextField",
           "declaration": {
             "name": "SpTextField",
-            "module": "dist/components/text-field/text-field/index.js"
+            "module": "src/components/text-field/text-field/index.ts"
           }
         },
         {
@@ -898,32 +1202,35 @@
           "name": "sp-text-field",
           "declaration": {
             "name": "SpTextField",
-            "module": "dist/components/text-field/text-field/index.js"
+            "module": "src/components/text-field/text-field/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/styles.css",
+      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field-unit/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field-unit/index.js",
+      "path": "src/components/text-field/text-field-unit/index.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
           "name": "SpTextFieldUnit",
           "members": [
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
             {
               "kind": "field",
               "name": "text"
@@ -946,7 +1253,10 @@
             },
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
             },
             {
               "kind": "field",
@@ -959,23 +1269,109 @@
             {
               "kind": "field",
               "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
               "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "#label",
+              "privacy": "private",
+              "type": {
+                "text": "SpLabelUnit"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#input",
+              "privacy": "private",
+              "type": {
+                "text": "SpTextField"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#initialized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#inputHandler",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#updateStyle",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#updateAttribute",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "name",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
             }
           ],
           "attributes": [
             {
-              "type": {
-                "text": "string"
-              },
-              "description": "テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。",
-              "name": "text"
+              "name": "error"
             },
             {
+              "name": "text",
               "type": {
                 "text": "string"
               },
-              "description": "テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。",
-              "name": "support-text"
+              "description": "テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。"
+            },
+            {
+              "name": "placeholder"
+            },
+            {
+              "name": "support-text",
+              "type": {
+                "text": "string"
+              },
+              "description": "テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。"
+            },
+            {
+              "name": "disabled"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "value"
+            },
+            {
+              "name": "autocomplete"
             }
           ],
           "superclass": {
@@ -992,7 +1388,7 @@
           "name": "SpTextFieldUnit",
           "declaration": {
             "name": "SpTextFieldUnit",
-            "module": "dist/components/text-field/text-field-unit/index.js"
+            "module": "src/components/text-field/text-field-unit/index.ts"
           }
         },
         {
@@ -1000,26 +1396,20 @@
           "name": "sp-text-field-unit",
           "declaration": {
             "name": "SpTextFieldUnit",
-            "module": "dist/components/text-field/text-field-unit/index.js"
+            "module": "src/components/text-field/text-field-unit/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field-unit/styles.css",
+      "path": "src/components/text-field/text-field-unit/styles.css",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/error-text/index.d.ts.map",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/error-text/index.js",
+      "path": "src/components/text-field/text-field/error-text/index.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1028,6 +1418,50 @@
           "members": [
             {
               "kind": "field",
+              "name": "#text",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "text"
+            },
+            {
+              "kind": "field",
+              "name": "#span",
+              "privacy": "private",
+              "type": {
+                "text": "HTMLSpanElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#container",
+              "privacy": "private",
+              "type": {
+                "text": "HTMLDivElement | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#initalized",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "#updateClass",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
               "name": "text"
             }
           ],
@@ -1044,7 +1478,7 @@
           "name": "SpTextFieldErrorText",
           "declaration": {
             "name": "SpTextFieldErrorText",
-            "module": "dist/components/text-field/text-field/error-text/index.js"
+            "module": "src/components/text-field/text-field/error-text/index.ts"
           }
         },
         {
@@ -1052,14 +1486,14 @@
           "name": "sp-text-field-error-text",
           "declaration": {
             "name": "SpTextFieldErrorText",
-            "module": "dist/components/text-field/text-field/error-text/index.js"
+            "module": "src/components/text-field/text-field/error-text/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "dist/components/text-field/text-field/error-text/styles.css",
+      "path": "src/components/text-field/text-field/error-text/styles.css",
       "declarations": [],
       "exports": []
     }

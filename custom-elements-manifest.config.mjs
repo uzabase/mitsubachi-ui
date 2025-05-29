@@ -1,4 +1,4 @@
 export default {
-    globs: ['dist/**'],
+    globs: ['src/**'],
     outdir: './dist',
 }

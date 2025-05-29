@@ -1,5 +1,3 @@
-import "../text-field";
-import "../../label-unit";
 /**
  * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
  *

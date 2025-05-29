@@ -1,4 +1,4 @@
-import { UbButton } from "./ub-button";
+import { UbButton } from './ub-button';
 /**
  * @summary ボタンです。
  */
