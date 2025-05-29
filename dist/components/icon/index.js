@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _SpIcon_initialized, _SpIcon_iconMap;
-import { checkCircle, checkCircleFill, chevronDown, chevronDownSmall, errorFill, globe, informationCircle, person, } from "./icons";
+import { checkCircle, checkCircleFill, checkSmall, chevronDown, chevronDownSmall, errorFill, globe, informationCircle, person, } from "./icons";
 /**
  * アイコンです。
  *
@@ -49,6 +49,7 @@ export class SpIcon extends HTMLElement {
             { attr: "information-circle", def: informationCircle },
             { attr: "person", def: person },
             { attr: "check-circle-fill", def: checkCircleFill },
+            { attr: "check-small", def: checkSmall },
             { attr: "check-circle", def: checkCircle },
             { attr: "chevron-down", def: chevronDown },
             { attr: "chevron-down-small", def: chevronDownSmall },
