@@ -1,6 +1,7 @@
 import {
   checkCircle,
   checkCircleFill,
+  checkSmall,
   chevronDown,
   chevronDownSmall,
   errorFill,
@@ -49,6 +50,7 @@ export class SpIcon extends HTMLElement {
       { attr: "information-circle", def: informationCircle },
       { attr: "person", def: person },
       { attr: "check-circle-fill", def: checkCircleFill },
+      { attr: "check-small", def: checkSmall },
       { attr: "check-circle", def: checkCircle },
       { attr: "chevron-down", def: chevronDown },
       { attr: "chevron-down-small", def: chevronDownSmall },

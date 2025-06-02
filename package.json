@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui",
-  "version": "0.14.0",
+  "version": "0.17.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -64,6 +64,7 @@
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^3.0.8"
+    "vitest": "^3.0.8",
+    "yakuhanjp": "^4.1.1"
   }
 }

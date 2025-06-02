@@ -21,6 +21,7 @@ describe("sp-icon", () => {
       "person",
       "check-circle-fill",
       "check-circle",
+      "check-small",
       "chevron-down",
       "chevron-down-small",
       "globe",
