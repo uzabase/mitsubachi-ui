@@ -301,7 +301,7 @@ const _1 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/s
 u1.observedAttributes = ["language", "brand"];
 let i1 = u1;
 customElements.get("sp-logo") || customElements.define("sp-logo", i1);
-const N1 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 1px 2px #0000004a;box-shadow:0 5px 9px 2px #00000021}", f1 = class f1 extends HTMLElement {
+const N1 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 1px 2px #0000004a;box-shadow:0 5px 9px 2px #00000021;background-color:#fff}", f1 = class f1 extends HTMLElement {
   constructor() {
     super(), this.initialized = !1, this.attachShadow({ mode: "open" });
   }
