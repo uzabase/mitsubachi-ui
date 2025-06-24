@@ -1,8 +1,3 @@
-import resetStyle from "@acab/reset.css?inline";
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(resetStyle);
-
 export class UbCheckbox extends HTMLElement {
   #inputElement = document.createElement("input");
 
@@ -53,8 +48,7 @@ export class UbCheckbox extends HTMLElement {
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+    this.attachShadow({ mode: "open" });
 
     this.internals = this.attachInternals();
   }

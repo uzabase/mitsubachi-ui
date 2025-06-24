@@ -1,7 +1,3 @@
-import resetStyle from "@acab/reset.css?inline";
-
-import foundationStyle from "../foundation.css?inline";
-
 export const variants = ["primary", "secondary", "tertiary"] as const;
 type variants = (typeof variants)[number];
 
@@ -25,9 +21,6 @@ function isValidSize(value: string): Size {
     return size[0];
   }
 }
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(`${resetStyle} ${foundationStyle}`);
 
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
@@ -126,9 +119,7 @@ export class UbButton extends HTMLElement {
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
-
+    this.attachShadow({ mode: "open" });
     this.loading = false;
     this.disabled = false;
     this.variants = variants[0];
