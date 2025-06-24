@@ -1,10 +1,7 @@
-import foundationStyle from "../foundation.css?inline";
+import { makeStyleSheet } from "../styles";
 import checkboxTextStyle from "./checkbox-text.css?inline";
 import checkmarkStyle from "./checkmark.css?inline";
 import { UbCheckboxText } from "./ub-checkbox-text";
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(`${foundationStyle} ${checkmarkStyle} ${checkboxTextStyle}`);
 
 export class SpCheckboxText extends UbCheckboxText {
   constructor() {
@@ -13,7 +10,7 @@ export class SpCheckboxText extends UbCheckboxText {
     if (this.shadowRoot) {
       this.shadowRoot.adoptedStyleSheets = [
         ...this.shadowRoot.adoptedStyleSheets,
-        styles,
+        makeStyleSheet(checkmarkStyle, checkboxTextStyle),
       ];
     }
   }
