@@ -9,6 +9,7 @@
     cursor: pointer;
     color: #000000D6;
     column-gap: 8px;
+
     .icon {
         display: none;
         width: 24px;
@@ -19,6 +20,7 @@
 
 :host([selected]) {
     background-color: #F0F6FF;
+
     .icon {
         display: block;
     }
