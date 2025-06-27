@@ -24,6 +24,7 @@ const meta: Meta = {
     disabled: false,
     onchange: action("onchange"),
   },
+  tags: ["!dev-only"],
 };
 export default meta;
 
