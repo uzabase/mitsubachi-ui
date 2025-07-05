@@ -1,9 +1,6 @@
-import foundationStyle from "../foundation.css?inline";
+import { makeStyleSheet } from "../styles";
 import buttonStyle from "./button.css?inline";
 import { UbButton } from "./ub-button";
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(`${foundationStyle} ${buttonStyle}`);
 
 /**
  * @summary ボタンです。
@@ -14,8 +11,8 @@ export class SpButton extends UbButton {
 
     if (this.shadowRoot) {
       this.shadowRoot.adoptedStyleSheets = [
-        ...this.shadowRoot!.adoptedStyleSheets,
-        styles,
+        ...this.shadowRoot.adoptedStyleSheets,
+        makeStyleSheet(buttonStyle),
       ];
     }
   }
