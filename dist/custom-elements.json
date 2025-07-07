@@ -354,18 +354,6 @@
                 "name": "UbButton",
                 "module": "src/components/button/ub-button.ts"
               }
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
             }
           ]
         }
@@ -525,14 +513,6 @@
               "kind": "method",
               "name": "#updateDanger",
               "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]"
             }
           ],
           "attributes": [
@@ -787,18 +767,6 @@
                 "name": "UbCheckboxText",
                 "module": "src/components/checkbox/ub-checkbox-text.ts"
               }
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
             }
           ],
           "events": [
@@ -976,18 +944,6 @@
                 "name": "UbCheckbox",
                 "module": "src/components/checkbox/ub-checkbox.ts"
               }
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
             }
           ],
           "events": [
@@ -1091,14 +1047,6 @@
               "kind": "method",
               "name": "#handleOnChange",
               "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]"
             }
           ],
           "events": [
@@ -1205,14 +1153,6 @@
               "kind": "method",
               "name": "#handleOnChange",
               "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[...shadowRoot.adoptedStyleSheets, styles]"
             }
           ],
           "events": [
