@@ -1705,6 +1705,110 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/menu/control-menu-item/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenuItem",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "null | string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "textElement",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "initialized",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "text"
+              },
+              "description": "項目のテキスト"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "項目が選択されていることを示します。属性があるときはチェックマークが表示されます。",
+              "name": "selected"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "項目が無効であることを示します。属性があれば、灰色で項目が表示されます。",
+              "name": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "summary": "メニューの項目を表すコンポーネントです。",
+          "tagName": "sp-control-menu-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpControlMenuItem",
+          "declaration": {
+            "name": "SpControlMenuItem",
+            "module": "src/components/menu/control-menu-item/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu-item",
+          "declaration": {
+            "name": "SpControlMenuItem",
+            "module": "src/components/menu/control-menu-item/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu-item/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/text-field/text-field/index.ts",
       "declarations": [
         {
@@ -1885,110 +1989,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu-item/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenuItem",
-          "members": [
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "null | string"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "textElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "text",
-              "type": {
-                "text": "text"
-              },
-              "description": "項目のテキスト"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "項目が選択されていることを示します。属性があるときはチェックマークが表示されます。",
-              "name": "selected"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "項目が無効であることを示します。属性があれば、灰色で項目が表示されます。",
-              "name": "disabled"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "summary": "メニューの項目を表すコンポーネントです。",
-          "tagName": "sp-control-menu-item",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpControlMenuItem",
-          "declaration": {
-            "name": "SpControlMenuItem",
-            "module": "src/components/menu/control-menu-item/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu-item",
-          "declaration": {
-            "name": "SpControlMenuItem",
-            "module": "src/components/menu/control-menu-item/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu-item/styles.css",
       "declarations": [],
       "exports": []
     },
