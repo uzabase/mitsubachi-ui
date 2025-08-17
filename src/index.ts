@@ -1,7 +1,17 @@
 export { SpButton } from "./components/button/sp-button";
+export { SpButtonLit } from "./components/button/sp-button-lit";
 export { SpIcon } from "./components/icon";
+export { SpIconLit } from "./components/icon/sp-icon-lit";
 export { SpLabelUnit } from "./components/label-unit";
+export { SpLabelUnitLit } from "./components/label-unit/sp-label-unit-lit";
 export { SpLogo } from "./components/logo";
+export { SpLogoLit } from "./components/logo/sp-logo-lit";
 export { SpControlMenu } from "./components/menu/control-menu";
+export { SpControlMenuLit } from "./components/menu/control-menu/sp-control-menu-lit";
 export { SpControlMenuItem } from "./components/menu/control-menu-item";
+export { SpControlMenuItemLit } from "./components/menu/control-menu-item/sp-control-menu-item-lit";
+export { SpCheckboxLit } from "./components/checkbox/sp-checkbox-lit";
 export { SpTextFieldUnit } from "./components/text-field/text-field-unit";
+export { SpTextFieldLit } from "./components/text-field/text-field/sp-text-field-lit";
+export { SpTextFieldErrorTextLit } from "./components/text-field/text-field/sp-text-field-error-text-lit";
+export { SpTextFieldUnitLit } from "./components/text-field/text-field-unit/sp-text-field-unit-lit";
