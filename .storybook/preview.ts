@@ -1,6 +1,7 @@
 import "yakuhanjp/dist/css/yakuhanjp_s.css";
 
-import type { Preview } from "@storybook/web-components";
+import type { Preview } from "@storybook/web-components-vite";
+import dedent from "dedent";
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +11,13 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    docs: {
+      source: {
+        transform: (src: string) => {
+          return dedent(src);
+        },
       },
     },
   },

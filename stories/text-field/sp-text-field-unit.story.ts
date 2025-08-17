@@ -1,6 +1,6 @@
 import "../../src/components/text-field/text-field-unit";
 
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 
 import type { SpTextFieldUnit } from "../../src/components/text-field/text-field-unit";

@@ -1,8 +1,8 @@
 import "../../src/components/button/sp-button";
 
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
+import { action } from "storybook/actions";
 
 import { type SpButton } from "../../src/components/button/sp-button";
 import { size, variants } from "../../src/components/button/ub-button";
