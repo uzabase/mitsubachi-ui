@@ -21,8 +21,8 @@ import {
  *
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
-@customElement("sp-icon-lit")
-export class SpIconLit extends LitElement {
+@customElement("sp-icon")
+export class SpIcon extends LitElement {
   @property({ type: String, reflect: true })
   type = "";
 
@@ -49,6 +49,6 @@ export class SpIconLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-icon-lit": SpIconLit;
+    "sp-icon": SpIcon;
   }
 }

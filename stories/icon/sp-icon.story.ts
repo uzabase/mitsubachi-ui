@@ -1,11 +1,11 @@
-import "../../src/components/icon";
+import "../../src/components/icon/sp-icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { SpIcon } from "../../src/components/icon";
+import { type SpIcon } from "../../src/components/icon/sp-icon";
 
-const meta: Meta<SpIcon> = {
+const meta = {
   args: {
     type: "information-circle",
   },
@@ -26,14 +26,16 @@ const meta: Meta<SpIcon> = {
     },
   },
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpIcon>;
 
-export const Default: StoryObj<SpIcon> = {
+export default meta;
+type Story = StoryObj<SpIcon>;
+
+export const Default: Story = {
   render: ({ type }) => {
-    return html`<sp-icon
+    return html`<sp-icon-lit
       style="display: inline-block; width: 24px; height: 24px;"
       type=${type}
-    ></sp-icon>`;
+    ></sp-icon-lit>`;
   },
 };

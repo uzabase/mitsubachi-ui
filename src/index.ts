@@ -1,7 +1,6 @@
 export { SpButton } from "./components/button/sp-button";
 export { SpButtonLit } from "./components/button/sp-button-lit";
-export { SpIcon } from "./components/icon";
-export { SpIconLit } from "./components/icon/sp-icon-lit";
+export { SpIcon } from "./components/icon/sp-icon";
 export { SpLabelUnit } from "./components/label-unit";
 export { SpLabelUnitLit } from "./components/label-unit/sp-label-unit-lit";
 export { SpLogo } from "./components/logo";
