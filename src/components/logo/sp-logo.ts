@@ -12,8 +12,8 @@ import { uzabase } from "./uzabase";
  *
  * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
-@customElement("sp-logo-lit")
-export class SpLogoLit extends LitElement {
+@customElement("sp-logo")
+export class SpLogo extends LitElement {
   @property({ type: String, reflect: true })
   language = "";
 
@@ -42,6 +42,6 @@ export class SpLogoLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-logo-lit": SpLogoLit;
+    "sp-logo": SpLogo;
   }
 }
