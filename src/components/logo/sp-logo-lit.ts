@@ -1,11 +1,12 @@
-import { html, LitElement, unsafeHTML } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { speedaEn, speedaJa, speedaZh } from "./speeda";
 import { uzabase } from "./uzabase";
 
 /**
- * @summary Litで実装されたロゴです。
+ * @summary スピーダのロゴです。
  *
  * @attr {string} brand - uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。
  *
@@ -14,12 +15,12 @@ import { uzabase } from "./uzabase";
 @customElement("sp-logo-lit")
 export class SpLogoLit extends LitElement {
   @property({ type: String, reflect: true })
-  brand = "";
-
-  @property({ type: String, reflect: true })
   language = "";
 
-  private get logoContent() {
+  @property({ type: String, reflect: true })
+  brand = "";
+
+  #getLogoContent() {
     if (this.brand === "uzabase") {
       return uzabase;
     } else if (this.brand === "speeda") {
@@ -27,11 +28,11 @@ export class SpLogoLit extends LitElement {
       else if (this.language === "zh") return speedaZh;
       else return speedaJa;
     }
-    return "";
+    return undefined;
   }
 
   render() {
-    const logo = this.logoContent;
+    const logo = this.#getLogoContent();
     if (logo) {
       return html`${unsafeHTML(logo)}`;
     }
