@@ -1,5 +1,6 @@
-import { html, LitElement, unsafeHTML } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import {
   checkCircle,
@@ -16,16 +17,16 @@ import {
 /**
  * アイコンです。
  *
- * @summary Litで実装されたアイコンです。
+ * @summary アイコンです。
  *
- * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
+ * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
 @customElement("sp-icon-lit")
 export class SpIconLit extends LitElement {
   @property({ type: String, reflect: true })
   type = "";
 
-  private iconMap = new Map<string, string>([
+  #iconMap = new Map<string, string>([
     ["error-fill", errorFill],
     ["information-circle", informationCircle],
     ["person", person],
@@ -38,7 +39,7 @@ export class SpIconLit extends LitElement {
   ]);
 
   render() {
-    const icon = this.iconMap.get(this.type);
+    const icon = this.#iconMap.get(this.type);
     if (icon) {
       return html`${unsafeHTML(icon)}`;
     }
