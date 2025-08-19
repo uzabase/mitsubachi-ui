@@ -2,6 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { makeStyles } from "../styles";
 import { speedaEn, speedaJa, speedaZh } from "./speeda";
 import { uzabase } from "./uzabase";
 
@@ -14,6 +15,8 @@ import { uzabase } from "./uzabase";
  */
 @customElement("sp-logo")
 export class SpLogo extends LitElement {
+  static styles = makeStyles();
+
   @property({ type: String, reflect: true })
   language = "";
 

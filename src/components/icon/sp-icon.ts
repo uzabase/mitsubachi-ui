@@ -2,6 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { makeStyles } from "../styles";
 import {
   checkCircle,
   checkCircleFill,
@@ -23,6 +24,8 @@ import {
  */
 @customElement("sp-icon")
 export class SpIcon extends LitElement {
+  static styles = makeStyles();
+
   @property({ type: String, reflect: true })
   type = "";
 
