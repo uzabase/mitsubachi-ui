@@ -1,4 +1,4 @@
-import "../../icon";
+import "../../icon/sp-icon";
 
 import { makeStyleSheet } from "../../styles";
 import styles from "./styles.css?inline";

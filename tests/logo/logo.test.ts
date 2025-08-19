@@ -1,4 +1,4 @@
-import "../../src/components/logo";
+import "../../src/components/logo/sp-logo";
 
 import { describe, expect, test } from "vitest";
 
