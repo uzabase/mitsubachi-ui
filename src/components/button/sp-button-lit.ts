@@ -1,7 +1,8 @@
-import { html, LitElement } from "lit";
+import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import { spButtonLitStyles } from "./sp-button-lit-styles";
+import { makeStyles } from "../styles";
+import buttonStyle from "./button.css?inline";
 
 export const variants = ["primary", "secondary", "tertiary"] as const;
 type Variants = (typeof variants)[number];
@@ -28,11 +29,13 @@ function isValidSize(value: string): Size {
 }
 
 /**
- * @summary Litで実装されたボタンです。
+ * @summary 実装されたボタンです。
  */
 @customElement("sp-button-lit")
 export class SpButtonLit extends LitElement {
-  static styles = spButtonLitStyles;
+  static styles = makeStyles(css`
+    ${unsafeCSS(buttonStyle)}
+  `);
 
   @property({ type: Boolean, reflect: true })
   loading = false;
@@ -89,9 +92,7 @@ export class SpButtonLit extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
-        <span class="text">
-          <slot></slot>
-        </span>
+        <slot class="text"></slot>
       </button>
     `;
   }

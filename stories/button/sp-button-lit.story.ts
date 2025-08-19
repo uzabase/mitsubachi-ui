@@ -52,65 +52,233 @@ const meta = {
       ${args.slot}
     </sp-button-lit>
   `,
-} satisfies Meta<Partial<SpButtonLit> & { slot: string; onclick: () => void }>;
+} satisfies Meta<SpButtonLit>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<SpButtonLit>;
 
-export const Primary: Story = {};
-
-export const Secondary: Story = {
+export const Basic: Story = {
   args: {
-    variants: "secondary",
+    danger: undefined,
+    variants: undefined,
+    size: undefined,
+    loading: undefined,
+    disabled: undefined,
+  },
+  tags: ["!dev-only"],
+};
+
+export const FullWidth: Story = {
+  render: () => html`
+    <sp-button-lit style="width: 100%;">ダウンロード</sp-button>
+    <div style="width: 400px;">
+      <sp-button-lit style="width: 100%;">ダウンロード</sp-button>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ボタンの幅を100%にしたい時はWeb Componentsのデフォルトのスタイルを上書きしてください。",
+      },
+    },
   },
 };
 
-export const Tertiary: Story = {
-  args: {
-    variants: "tertiary",
+export const OverflowWrap: Story = {
+  render: () => html`
+    <p style="overflow-wrap: break-word;">
+      texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+    </p>
+    <sp-button>text</sp-button>
+    <sp-button>text</sp-button>
+    <sp-button
+      >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
+    >
+    <sp-button
+      >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
+    >
+    <sp-button
+      >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.</sp-button
+    >
+    <sp-button
+      >にほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんご</sp-button
+    >
+    <div style="display: flex; min-width: 0;">
+      <div>サンプルdiv</div>
+      <sp-button
+        >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
+      >
+    </div>
+    <div style="display: flex; min-width: 0;">
+      <div>サンプルdiv</div>
+      <sp-button
+        >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
+      >
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: "文字の折り返しを確認する",
+      },
+    },
   },
 };
 
-export const Large: Story = {
-  args: {
-    size: "large",
-  },
-};
+export const ALL: Story = {
+  render: () => html`
+    <div
+      style="display:flex; flex-direction:column; gap:24px; align-items: flex-start;"
+    >
+      <!-- ノーマルタイプ -->
+      <table>
+        <caption>
+          タイプ: ノーマル
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            <th>プライマリ</th>
+            <th>セカンダリ</th>
+            <th>ターシャリ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>デフォルト</th>
+            <td>
+              <sp-button-lit variants="primary">ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="secondary">ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="tertiary">ボタン</sp-button>
+            </td>
+          </tr>
+          <tr>
+            <th>無効</th>
+            <td>
+              <sp-button-lit variants="primary" disabled>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="secondary" disabled>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="tertiary" disabled>ボタン</sp-button>
+            </td>
+          </tr>
+          <tr>
+            <th>読み込み中</th>
+            <td>
+              <sp-button-lit variants="primary" loading>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="secondary" loading>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit variants="tertiary" loading>ボタン</sp-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-export const XLarge: Story = {
-  args: {
-    size: "xLarge",
-  },
-};
+      <!-- デンジャータイプ -->
+      <table>
+        <caption>
+          タイプ: デンジャー
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            <th>プライマリ</th>
+            <th>セカンダリ</th>
+            <th>ターシャリ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>デフォルト</th>
+            <td>
+              <sp-button-lit danger variants="primary">ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="secondary">ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="tertiary">ボタン</sp-button>
+            </td>
+          </tr>
+          <tr>
+            <th>無効</th>
+            <td>
+              <sp-button-lit danger variants="primary" disabled>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="secondary" disabled>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="tertiary" disabled>ボタン</sp-button>
+            </td>
+          </tr>
+          <tr>
+            <th>読み込み中</th>
+            <td>
+              <sp-button-lit danger variants="primary" loading>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="secondary" loading>ボタン</sp-button>
+            </td>
+            <td>
+              <sp-button-lit danger variants="tertiary" loading>ボタン</sp-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-export const Loading: Story = {
-  args: {
-    loading: true,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    danger: true,
-  },
-};
-
-export const DangerSecondary: Story = {
-  args: {
-    danger: true,
-    variants: "secondary",
-  },
-};
-
-export const DangerTertiary: Story = {
-  args: {
-    danger: true,
-    variants: "tertiary",
+      <!-- サイズバリエーション -->
+      <table>
+        <caption>
+          サイズバリエーション
+        </caption>
+        <thead>
+          <tr>
+            <th></th>
+            <th>medium</th>
+            <th>large</th>
+            <th>xLarge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ノーマル</td>
+            <td><sp-button-lit size="medium">ボタン</sp-button></td>
+            <td><sp-button-lit size="large">ボタン</sp-button></td>
+            <td><sp-button-lit size="xLarge">ボタン</sp-button></td>
+          </tr>
+          <tr>
+            <td>デンジャー</td>
+            <td><sp-button-lit danger size="medium">ボタン</sp-button></td>
+            <td><sp-button-lit danger size="large">ボタン</sp-button></td>
+            <td><sp-button-lit danger size="xLarge">ボタン</sp-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "sp-buttonコンポーネントの全パターンを一覧表示します。タイプ、バリアント、状態、サイズなど、利用可能な全ての組み合わせを確認できます。",
+      },
+    },
   },
 };
