@@ -2,20 +2,20 @@ import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
-import checkboxStyle from "./checkbox.css?inline";
+import checkboxTextStyle from "./checkbox-text.css?inline";
 import checkmarkStyle from "./checkmark.css?inline";
 
 /**
- * @summary チェックボックスです。
+ * @summary テキスト付きチェックボックスです。
  */
-@customElement("sp-checkbox-lit")
-export class SpCheckboxLit extends LitElement {
+@customElement("sp-checkbox-text-lit")
+export class SpCheckboxTextLit extends LitElement {
   static styles = makeStyles(
     css`
       ${unsafeCSS(checkmarkStyle)}
     `,
     css`
-      ${unsafeCSS(checkboxStyle)}
+      ${unsafeCSS(checkboxTextStyle)}
     `,
   );
 
@@ -35,6 +35,9 @@ export class SpCheckboxLit extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
+
+  @property({ type: String, reflect: true })
+  text = "";
 
   private internals: ElementInternals;
 
@@ -83,6 +86,7 @@ export class SpCheckboxLit extends LitElement {
             @change=${this.handleChange}
           />
         </span>
+        <span class="text">${this.text}</span>
       </label>
     `;
   }
@@ -90,6 +94,6 @@ export class SpCheckboxLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-checkbox-lit": SpCheckboxLit;
+    "sp-checkbox-text-lit": SpCheckboxTextLit;
   }
 }

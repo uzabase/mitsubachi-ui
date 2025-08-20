@@ -9,140 +9,127 @@ import { type SpCheckboxLit } from "../../src/components/checkbox/sp-checkbox-li
 const meta = {
   component: "sp-checkbox-lit",
   argTypes: {
-    slot: { type: "string" },
+    value: { type: "string" },
+    name: { type: "string" },
     checked: { type: "boolean" },
     indeterminate: { type: "boolean" },
     disabled: { type: "boolean" },
-    value: { type: "string" },
-    name: { type: "string" },
     onchange: {
       action: "change",
     },
-    oninput: {
-      action: "input",
-    },
   },
   args: {
-    slot: "チェックボックス",
     checked: false,
     indeterminate: false,
     disabled: false,
-    value: "checkbox-value",
-    name: "checkbox-name",
-    onchange: action("change"),
-    oninput: action("input"),
+    onchange: action("onchange"),
   },
-  render: (args) => html`
-    <sp-checkbox-lit
+  tags: ["!dev-only"],
+} satisfies Meta<SpCheckboxLit>;
+
+export default meta;
+type Story = StoryObj<SpCheckboxLit>;
+
+export const Basic: Story = {
+  args: {
+    checked: undefined,
+    indeterminate: undefined,
+    disabled: undefined,
+  },
+};
+
+export const Property: Story = {
+  args: {
+    value: "sp-checkbox-value",
+    name: "sp-checkbox-name",
+  },
+};
+
+export const Attribute: Story = {
+  args: {
+    value: "sp-checkbox-value",
+    name: "sp-checkbox-name",
+  },
+  render: (args) =>
+    html`<sp-checkbox-lit
+      value=${args.value}
+      name=${args.name}
+      checked=${args.checked}
+      indeterminate=${args.indeterminate}
+      disabled=${args.disabled}
+      @change=${args.onchange}
+    ></sp-checkbox-lit>`,
+};
+
+export const AttributeHTML: Story = {
+  args: {
+    value: "sp-checkbox-value",
+    name: "sp-checkbox-name",
+  },
+  render: (args) =>
+    html`<sp-checkbox-lit
+      value=${args.value}
+      name=${args.name}
       ?checked=${args.checked}
       ?indeterminate=${args.indeterminate}
       ?disabled=${args.disabled}
-      value=${args.value}
-      name=${args.name}
       @change=${args.onchange}
-      @input=${args.oninput}
-    >
-      ${args.slot}
-    </sp-checkbox-lit>
-  `,
-} satisfies Meta<
-  Partial<SpCheckboxLit> & {
-    slot: string;
-    onchange: () => void;
-    oninput: () => void;
-  }
->;
+    ></sp-checkbox-lit>`,
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {};
-
-export const Checked: Story = {
+export const Form: Story = {
   args: {
-    checked: true,
+    value: "sp-checkbox-value",
+    name: "sp-checkbox-name",
   },
-};
-
-export const Indeterminate: Story = {
-  args: {
-    indeterminate: true,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-};
-
-export const DisabledChecked: Story = {
-  args: {
-    checked: true,
-    disabled: true,
-  },
-};
-
-export const WithoutLabel: Story = {
-  args: {
-    slot: "",
-  },
-};
-
-export const LongLabel: Story = {
-  args: {
-    slot: "これは非常に長いラベルテキストの例です。長いテキストがチェックボックスと一緒にどのように表示されるかを確認できます。",
-  },
-};
-
-export const MultipleCheckboxes: Story = {
-  render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <sp-checkbox-lit value="option1">オプション 1</sp-checkbox-lit>
-      <sp-checkbox-lit value="option2" checked
-        >オプション 2（チェック済み）</sp-checkbox-lit
-      >
-      <sp-checkbox-lit value="option3" indeterminate
-        >オプション 3（部分選択）</sp-checkbox-lit
-      >
-      <sp-checkbox-lit value="option4" disabled
-        >オプション 4（無効）</sp-checkbox-lit
-      >
-      <sp-checkbox-lit value="option5" checked disabled
-        >オプション 5（チェック済み・無効）</sp-checkbox-lit
-      >
-    </div>
-  `,
-};
-
-export const FormExample: Story = {
-  render: () => html`
-    <form
-      style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;"
-    >
-      <fieldset
-        style="border: 1px solid #ccc; padding: 16px; border-radius: 4px;"
-      >
-        <legend>趣味を選択してください</legend>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <sp-checkbox-lit name="hobbies" value="reading">読書</sp-checkbox-lit>
-          <sp-checkbox-lit name="hobbies" value="music">音楽</sp-checkbox-lit>
-          <sp-checkbox-lit name="hobbies" value="sports"
-            >スポーツ</sp-checkbox-lit
-          >
-          <sp-checkbox-lit name="hobbies" value="cooking">料理</sp-checkbox-lit>
-          <sp-checkbox-lit name="hobbies" value="travel">旅行</sp-checkbox-lit>
-        </div>
-      </fieldset>
-
-      <fieldset
-        style="border: 1px solid #ccc; padding: 16px; border-radius: 4px;"
-      >
-        <legend>利用規約</legend>
-        <sp-checkbox-lit name="terms" value="accepted">
-          利用規約に同意します
-        </sp-checkbox-lit>
-      </fieldset>
+  render: (args) => html`
+    <form>
+      <input type="checkbox" name=${args.name} value="primitive1" />
+      <input type="checkbox" name=${args.name} value="primitive2" />
+      <sp-checkbox-lit
+        .value=${args.value}
+        .name=${args.name}
+        .checked=${args.checked}
+        .indeterminate=${args.indeterminate}
+        .disabled=${args.disabled}
+        @change=${args.onchange}
+      ></sp-checkbox-lit>
+      <input type="reset" />
+      <input type="submit" />
     </form>
+  `,
+};
+
+export const ALL: Story = {
+  render: () => html`
+    <table>
+      <thead>
+        <tr>
+          <td></td>
+          <th>default</th>
+          <th>checked</th>
+          <th>indeterminate</th>
+          <th>checked && indeterminate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td><sp-checkbox-lit></sp-checkbox-lit></td>
+          <td><sp-checkbox-lit checked></sp-checkbox-lit></td>
+          <td><sp-checkbox-lit indeterminate></sp-checkbox-lit></td>
+          <td><sp-checkbox-lit checked indeterminate></sp-checkbox-lit></td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><sp-checkbox-lit disabled></sp-checkbox-lit></td>
+          <td><sp-checkbox-lit checked disabled></sp-checkbox-lit></td>
+          <td><sp-checkbox-lit indeterminate disabled></sp-checkbox-lit></td>
+          <td>
+            <sp-checkbox-lit checked indeterminate disabled></sp-checkbox-lit>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   `,
 };
