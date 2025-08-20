@@ -2,21 +2,11 @@ import "../../src/components/icon/sp-icon";
 
 import { describe, expect, test } from "vitest";
 
-import type { SpIcon } from "../../src/components/icon/sp-icon";
-
-function getSpIcon() {
-  return document.querySelector("sp-icon") as SpIcon;
-}
-
-async function waitForLitComponent() {
-  const element = getSpIcon();
-  await element.updateComplete;
-}
-
 describe("sp-icon", () => {
   test("ツールがエラーアイコンを読み上げてはいけない", async () => {
     document.body.innerHTML = `<sp-icon type="error-fill"></sp-icon>`;
-    await waitForLitComponent();
+    await customElements.whenDefined("sp-icon");
+
     const icon = document
       .querySelector("sp-icon")
       ?.shadowRoot?.querySelector("svg");

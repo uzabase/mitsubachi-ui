@@ -5,7 +5,6 @@ import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
 import { type SpButton } from "../../src/components/button/sp-button";
-import { size, variants } from "../../src/components/button/ub-button";
 
 const meta = {
   component: "sp-button",
@@ -14,11 +13,11 @@ const meta = {
     danger: { type: "boolean" },
     variants: {
       control: { type: "select" },
-      options: variants,
+      options: ["primary", "secondary", "tertiary"],
     },
     size: {
       control: { type: "select" },
-      options: size,
+      options: ["medium", "large", "xLarge"],
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },

@@ -1,5 +1,4 @@
 export { SpButton } from "./components/button/sp-button";
-export { SpButtonLit } from "./components/button/sp-button-lit";
 export { SpCheckboxLit } from "./components/checkbox/sp-checkbox-lit";
 export { SpIcon } from "./components/icon/sp-icon";
 export { SpLabelUnit } from "./components/label-unit";

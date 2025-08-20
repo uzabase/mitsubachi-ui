@@ -1,20 +1,100 @@
-import { makeStyleSheet } from "../styles";
+import { css, html, LitElement, unsafeCSS } from "lit";
+import { customElement, property } from "lit/decorators.js";
+
+import { makeStyles } from "../styles";
 import buttonStyle from "./button.css?inline";
-import { UbButton } from "./ub-button";
+
+export const variants = ["primary", "secondary", "tertiary"] as const;
+type Variants = (typeof variants)[number];
+
+export const size = ["medium", "large", "xLarge"] as const;
+type Size = (typeof size)[number];
+
+function isValidVariants(value: string): Variants {
+  if (variants.some((variant) => variant === value)) {
+    return value as Variants;
+  } else {
+    console.warn(`${value}は無効なvariants属性です。`);
+    return variants[0];
+  }
+}
+
+function isValidSize(value: string): Size {
+  if (size.some((s) => s === value)) {
+    return value as Size;
+  } else {
+    console.warn(`${value}は無効なsize属性です。`);
+    return size[0];
+  }
+}
 
 /**
- * @summary ボタンです。
+ * @summary 実装されたボタンです。
  */
-export class SpButton extends UbButton {
-  constructor() {
-    super();
+@customElement("sp-button")
+export class SpButton extends LitElement {
+  static styles = makeStyles(css`
+    ${unsafeCSS(buttonStyle)}
+  `);
 
-    if (this.shadowRoot) {
-      this.shadowRoot.adoptedStyleSheets = [
-        ...this.shadowRoot.adoptedStyleSheets,
-        makeStyleSheet(buttonStyle),
-      ];
-    }
+  @property({ type: Boolean, reflect: true })
+  loading = false;
+
+  @property({ type: Boolean, reflect: true })
+  disabled = false;
+
+  @property({ type: Boolean, reflect: true })
+  danger = false;
+
+  @property({ type: String })
+  variants: Variants = "primary";
+
+  @property({ type: String })
+  size: Size = "medium";
+
+  @property({ type: String })
+  name = "";
+
+  @property({ type: String })
+  value = "";
+
+  @property({ type: String })
+  type = "button";
+
+  private get buttonClasses() {
+    const sizeClassMap = {
+      medium: "medium",
+      large: "large",
+      xLarge: "x-large",
+    };
+
+    return [
+      "base",
+      this.danger ? "danger" : "normal",
+      isValidVariants(this.variants),
+      sizeClassMap[isValidSize(this.size)],
+      this.loading ? "loading" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
+
+  private get isDisabled() {
+    return this.disabled || this.loading;
+  }
+
+  render() {
+    return html`
+      <button
+        class="${this.buttonClasses}"
+        ?disabled="${this.isDisabled}"
+        name="${this.name}"
+        value="${this.value}"
+        type="${this.type}"
+      >
+        <slot class="text"></slot>
+      </button>
+    `;
   }
 }
 
@@ -22,8 +102,4 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-button": SpButton;
   }
-}
-
-if (!customElements.get("sp-button")) {
-  customElements.define("sp-button", SpButton);
 }
