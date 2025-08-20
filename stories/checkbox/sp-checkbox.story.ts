@@ -4,7 +4,9 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-const meta: Meta = {
+import { type SpCheckbox } from "../../src/components/checkbox/sp-checkbox";
+
+const meta = {
   component: "sp-checkbox",
   argTypes: {
     value: { type: "string" },
@@ -23,10 +25,10 @@ const meta: Meta = {
     onchange: action("onchange"),
   },
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpCheckbox>;
 
-type Story = StoryObj;
+export default meta;
+type Story = StoryObj<SpCheckbox>;
 
 export const Basic: Story = {
   args: {
