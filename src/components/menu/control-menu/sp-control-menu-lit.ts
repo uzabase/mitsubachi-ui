@@ -1,14 +1,15 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
-import { spControlMenuLitStyles } from "./sp-control-menu-lit-styles";
+import { makeStyleSheet } from "../../styles";
+import spControlMenuLitStyle from "./styles.css?inline";
 
 /**
- * @summary Litで実装されたドロップダウンメニューのコンポーネントです。<sp-control-menu-lit><sp-control-menu-item-lit><sp-control-menu-item-lit></sp-control-menu-lit>のように使います。
+ * @summary ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。
  */
 @customElement("sp-control-menu-lit")
 export class SpControlMenuLit extends LitElement {
-  static styles = spControlMenuLitStyles;
+  static styles = makeStyleSheet(spControlMenuLitStyle);
 
   render() {
     return html`<slot></slot>`;

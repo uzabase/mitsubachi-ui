@@ -1,12 +1,13 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import { spControlMenuItemLitStyles } from "./sp-control-menu-item-lit-styles";
+import { makeStyleSheet } from "../../styles";
+import spControlMenuItemLitStyle from "./styles.css?inline";
 
 /**
- * @summary Litで実装されたメニューの項目を表すコンポーネントです。
+ * @summary メニューの項目を表すコンポーネントです。
  *
- * @attr {string} text - 項目のテキスト
+ * @attr {text} text - 項目のテキスト
  *
  * @attr {boolean} selected - 項目が選択されていることを示します。属性があるときはチェックマークが表示されます。
  *
@@ -14,7 +15,7 @@ import { spControlMenuItemLitStyles } from "./sp-control-menu-item-lit-styles";
  */
 @customElement("sp-control-menu-item-lit")
 export class SpControlMenuItemLit extends LitElement {
-  static styles = spControlMenuItemLitStyles;
+  static styles = makeStyleSheet(spControlMenuItemLitStyle);
 
   @property({ type: String, reflect: true })
   text = "";
@@ -25,31 +26,10 @@ export class SpControlMenuItemLit extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
-  private handleClick(event: Event) {
-    if (this.disabled) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
-
-    this.dispatchEvent(
-      new CustomEvent("menu-item-click", {
-        detail: {
-          text: this.text,
-          selected: this.selected,
-        },
-        bubbles: true,
-        composed: true,
-      }),
-    );
-  }
-
   render() {
     return html`
       <span class="text">${this.text}</span>
-      <sp-icon-lit class="icon" type="check-small"></sp-icon-lit>
-      <slot></slot>
-      <div @click=${this.handleClick}></div>
+      <sp-icon class="icon" type="check-small"></sp-icon>
     `;
   }
 }
