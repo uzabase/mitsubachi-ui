@@ -1,71 +1,21 @@
-import { html, LitElement } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+import "./error-text/sp-text-field-error-text-lit";
 
-import { spTextFieldLitStyles } from "./sp-text-field-lit-styles";
+import { css, html, LitElement, unsafeCSS } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
-type AutoFill =
-  | "off"
-  | "on"
-  | "name"
-  | "honorific-prefix"
-  | "given-name"
-  | "additional-name"
-  | "family-name"
-  | "honorific-suffix"
-  | "nickname"
-  | "email"
-  | "username"
-  | "new-password"
-  | "current-password"
-  | "one-time-code"
-  | "organization-title"
-  | "organization"
-  | "street-address"
-  | "address-line1"
-  | "address-line2"
-  | "address-line3"
-  | "address-level4"
-  | "address-level3"
-  | "address-level2"
-  | "address-level1"
-  | "country"
-  | "country-name"
-  | "postal-code"
-  | "cc-name"
-  | "cc-given-name"
-  | "cc-additional-name"
-  | "cc-family-name"
-  | "cc-number"
-  | "cc-exp"
-  | "cc-exp-month"
-  | "cc-exp-year"
-  | "cc-csc"
-  | "cc-type"
-  | "transaction-currency"
-  | "transaction-amount"
-  | "language"
-  | "bday"
-  | "bday-day"
-  | "bday-month"
-  | "bday-year"
-  | "sex"
-  | "tel"
-  | "tel-country-code"
-  | "tel-national"
-  | "tel-area-code"
-  | "tel-local"
-  | "tel-extension"
-  | "impp"
-  | "url"
-  | "photo"
-  | "webauthn";
+import { makeStyles } from "../../styles";
+import textFieldStyle from "./styles.css?inline";
 
 /**
- * @summary Litで実装されたテキストフィールドです。
+ * @summary テキストフィールドです。
  */
 @customElement("sp-text-field-lit")
 export class SpTextFieldLit extends LitElement {
-  static styles = spTextFieldLitStyles;
+  static styles = makeStyles(css`
+    ${unsafeCSS(textFieldStyle)}
+  `);
+
   static formAssociated = true;
 
   @property({ type: String, reflect: true })
@@ -89,9 +39,6 @@ export class SpTextFieldLit extends LitElement {
   @property({ type: String, reflect: true })
   type = "text";
 
-  @query(".input")
-  private inputElement!: HTMLInputElement;
-
   private internals: ElementInternals;
 
   constructor() {
@@ -102,43 +49,30 @@ export class SpTextFieldLit extends LitElement {
   protected updated(changedProperties: Map<string, unknown>) {
     super.updated(changedProperties);
 
-    if (this.inputElement) {
-      // sync properties with input element
-      this.inputElement.type = this.type;
-      this.inputElement.placeholder = this.placeholder;
-      this.inputElement.autocomplete = this.autocomplete;
-      this.inputElement.disabled = this.disabled;
-      this.inputElement.name = this.name;
-      this.inputElement.value = this.value;
-
-      // update form value
+    if (changedProperties.has("value")) {
       this.internals.setFormValue(this.value);
     }
   }
 
-  private get inputClasses() {
-    const classes = ["input"];
-    if (this.error && !this.disabled) {
-      classes.push("error");
-    }
-    return classes.join(" ");
+  #inputClasses() {
+    return classMap({
+      input: true,
+      error: this.error && !this.disabled,
+    });
   }
 
-  private get errorText() {
-    return this.disabled ? "" : this.error;
-  }
-
-  private handleInput(event: Event) {
-    const target = event.target as HTMLInputElement;
+  #handleInput(e: Event) {
+    const target = e.target as HTMLInputElement;
     this.value = target.value;
 
-    // dispatch custom input event with composed: true for password managers
-    if (!event.composed) {
+    // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+    // 自動入力されたパスワードがformで送信されないことがありました。
+    // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
+    if (!e.composed) {
       this.dispatchEvent(
         new InputEvent("input", {
-          bubbles: true,
+          ...e,
           composed: true,
-          data: (event as InputEvent).data,
         }),
       );
     }
@@ -147,7 +81,7 @@ export class SpTextFieldLit extends LitElement {
   render() {
     return html`
       <input
-        class="${this.inputClasses}"
+        class="${this.#inputClasses()}"
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
@@ -155,10 +89,10 @@ export class SpTextFieldLit extends LitElement {
         name="${this.name}"
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
-        @input="${this.handleInput}"
+        @input="${this.#handleInput}"
       />
       <sp-text-field-error-text-lit
-        text="${this.errorText}"
+        text="${this.disabled ? "" : this.error}"
       ></sp-text-field-error-text-lit>
     `;
   }

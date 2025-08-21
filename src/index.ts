@@ -8,7 +8,7 @@ export { SpControlMenu } from "./components/menu/control-menu";
 export { SpControlMenuLit } from "./components/menu/control-menu/sp-control-menu-lit";
 export { SpControlMenuItem } from "./components/menu/control-menu-item";
 export { SpControlMenuItemLit } from "./components/menu/control-menu-item/sp-control-menu-item-lit";
-export { SpTextFieldErrorTextLit } from "./components/text-field/text-field/sp-text-field-error-text-lit";
+export { SpTextFieldErrorTextLit } from "./components/text-field/text-field/error-text/sp-text-field-error-text-lit";
 export { SpTextFieldLit } from "./components/text-field/text-field/sp-text-field-lit";
 export { SpTextFieldUnit } from "./components/text-field/text-field-unit";
 export { SpTextFieldUnitLit } from "./components/text-field/text-field-unit/sp-text-field-unit-lit";
