@@ -1,3 +1,5 @@
+import "../../icon/sp-icon";
+
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
