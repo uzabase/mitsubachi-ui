@@ -1,12 +1,14 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
-import { spLabelUnitLitStyles } from "./sp-label-unit-lit-styles";
+import { makeStyleSheet } from "../styles";
+import spLabelUnitLitStyle from "./styles.css?inline";
 
 /**
  * ラベルです。
  *
- * @summary Litで実装されたラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。
+ * @summary ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。
  *
  * @attr {string} text - ラベルのテキストです。文字の色は黒です。
  *
@@ -14,7 +16,7 @@ import { spLabelUnitLitStyles } from "./sp-label-unit-lit-styles";
  */
 @customElement("sp-label-unit-lit")
 export class SpLabelUnitLit extends LitElement {
-  static styles = spLabelUnitLitStyles;
+  static styles = makeStyleSheet(spLabelUnitLitStyle);
 
   @property({ type: String, reflect: true })
   text = "";
@@ -29,18 +31,24 @@ export class SpLabelUnitLit extends LitElement {
     return this.text === "" && this.supportText === "";
   }
 
-  private get labelClasses() {
-    return this.text ? "label" : "label none";
+  #labelClasses() {
+    return classMap({
+      label: true,
+      none: !this.text,
+    });
   }
 
-  private get supportClasses() {
-    return this.supportText ? "support" : "support none";
+  #supportClasses() {
+    return classMap({
+      support: true,
+      none: !this.supportText,
+    });
   }
 
   render() {
     return html`
-      <span class="${this.labelClasses}">${this.text}</span>
-      <span class="${this.supportClasses}">${this.supportText}</span>
+      <span class=${this.#labelClasses()}>${this.text}</span>
+      <span class=${this.#supportClasses()}>${this.supportText}</span>
     `;
   }
 }
