@@ -13,8 +13,8 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  *
  * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
  */
-@customElement("sp-control-menu-item-lit")
-export class SpControlMenuItemLit extends LitElement {
+@customElement("sp-control-menu-item")
+export class SpControlMenuItem extends LitElement {
   static styles = makeStyleSheet(spControlMenuItemLitStyle);
 
   @property({ type: String, reflect: true })
@@ -36,6 +36,6 @@ export class SpControlMenuItemLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-control-menu-item-lit": SpControlMenuItemLit;
+    "sp-control-menu-item": SpControlMenuItem;
   }
 }

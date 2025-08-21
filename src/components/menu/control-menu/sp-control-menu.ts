@@ -7,8 +7,8 @@ import spControlMenuLitStyle from "./styles.css?inline";
 /**
  * @summary ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。
  */
-@customElement("sp-control-menu-lit")
-export class SpControlMenuLit extends LitElement {
+@customElement("sp-control-menu")
+export class SpControlMenu extends LitElement {
   static styles = makeStyleSheet(spControlMenuLitStyle);
 
   render() {
@@ -18,6 +18,6 @@ export class SpControlMenuLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-control-menu-lit": SpControlMenuLit;
+    "sp-control-menu": SpControlMenu;
   }
 }
