@@ -14,8 +14,8 @@ import spLabelUnitLitStyle from "./styles.css?inline";
  *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
  */
-@customElement("sp-label-unit-lit")
-export class SpLabelUnitLit extends LitElement {
+@customElement("sp-label-unit")
+export class SpLabelUnit extends LitElement {
   static styles = makeStyleSheet(spLabelUnitLitStyle);
 
   @property({ type: String, reflect: true })
@@ -55,6 +55,6 @@ export class SpLabelUnitLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-label-unit-lit": SpLabelUnitLit;
+    "sp-label-unit": SpLabelUnit;
   }
 }
