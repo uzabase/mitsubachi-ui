@@ -1,4 +1,4 @@
-import "./error-text/sp-text-field-error-text-lit";
+import "./error-text/sp-text-field-error-text";
 
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
@@ -10,8 +10,8 @@ import textFieldStyle from "./styles.css?inline";
 /**
  * @summary テキストフィールドです。
  */
-@customElement("sp-text-field-lit")
-export class SpTextFieldLit extends LitElement {
+@customElement("sp-text-field")
+export class SpTextField extends LitElement {
   static styles = makeStyles(css`
     ${unsafeCSS(textFieldStyle)}
   `);
@@ -91,15 +91,15 @@ export class SpTextFieldLit extends LitElement {
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
         @input="${this.#handleInput}"
       />
-      <sp-text-field-error-text-lit
+      <sp-text-field-error-text
         text="${this.disabled ? "" : this.error}"
-      ></sp-text-field-error-text-lit>
+      ></sp-text-field-error-text>
     `;
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-lit": SpTextFieldLit;
+    "sp-text-field": SpTextField;
   }
 }

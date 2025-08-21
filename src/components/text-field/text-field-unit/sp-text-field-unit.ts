@@ -1,12 +1,12 @@
 import "../../label-unit/sp-label-unit";
-import "../../text-field/text-field/sp-text-field-lit";
+import "../../text-field/text-field/sp-text-field";
 
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
-import type { SpTextFieldLit } from "../text-field/sp-text-field-lit";
+import type { SpTextField } from "../text-field/sp-text-field";
 import textFieldUnitStyle from "./styles.css?inline";
 
 /**
@@ -16,8 +16,8 @@ import textFieldUnitStyle from "./styles.css?inline";
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-@customElement("sp-text-field-unit-lit")
-export class SpTextFieldUnitLit extends LitElement {
+@customElement("sp-text-field-unit")
+export class SpTextFieldUnit extends LitElement {
   static styles = makeStyles(css`
     ${unsafeCSS(textFieldUnitStyle)}
   `);
@@ -74,7 +74,7 @@ export class SpTextFieldUnitLit extends LitElement {
   }
 
   #handleInput(e: Event) {
-    const target = e.target as SpTextFieldLit;
+    const target = e.target as SpTextField;
     this.value = target.value;
   }
 
@@ -86,7 +86,7 @@ export class SpTextFieldUnitLit extends LitElement {
           text="${this.text}"
           support-text="${this.supportText}"
         ></sp-label-unit>
-        <sp-text-field-lit
+        <sp-text-field
           error="${this.error}"
           placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
@@ -95,7 +95,7 @@ export class SpTextFieldUnitLit extends LitElement {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           @input="${this.#handleInput}"
-        ></sp-text-field-lit>
+        ></sp-text-field>
       </fieldset>
     `;
   }
@@ -103,6 +103,6 @@ export class SpTextFieldUnitLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-unit-lit": SpTextFieldUnitLit;
+    "sp-text-field-unit": SpTextFieldUnit;
   }
 }

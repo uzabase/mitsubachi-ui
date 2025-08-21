@@ -1,3 +1,5 @@
+import "../../../icon/sp-icon";
+
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
@@ -8,8 +10,8 @@ import textFieldErrorTextStyle from "./styles.css?inline";
 /**
  * @summary テキストフィールドのエラーテキストコンポーネントです。
  */
-@customElement("sp-text-field-error-text-lit")
-export class SpTextFieldErrorTextLit extends LitElement {
+@customElement("sp-text-field-error-text")
+export class SpTextFieldErrorText extends LitElement {
   static styles = makeStyles(css`
     ${unsafeCSS(textFieldErrorTextStyle)}
   `);
@@ -36,6 +38,6 @@ export class SpTextFieldErrorTextLit extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-text-field-error-text-lit": SpTextFieldErrorTextLit;
+    "sp-text-field-error-text": SpTextFieldErrorText;
   }
 }
