@@ -1,67 +1,16 @@
-import { html, LitElement } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+import "../../label-unit/sp-label-unit";
+import "../../text-field/text-field/sp-text-field-lit";
 
-import { spTextFieldUnitLitStyles } from "./sp-text-field-unit-lit-styles";
+import { css, html, LitElement, unsafeCSS } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
-type AutoFill =
-  | "off"
-  | "on"
-  | "name"
-  | "honorific-prefix"
-  | "given-name"
-  | "additional-name"
-  | "family-name"
-  | "honorific-suffix"
-  | "nickname"
-  | "email"
-  | "username"
-  | "new-password"
-  | "current-password"
-  | "one-time-code"
-  | "organization-title"
-  | "organization"
-  | "street-address"
-  | "address-line1"
-  | "address-line2"
-  | "address-line3"
-  | "address-level4"
-  | "address-level3"
-  | "address-level2"
-  | "address-level1"
-  | "country"
-  | "country-name"
-  | "postal-code"
-  | "cc-name"
-  | "cc-given-name"
-  | "cc-additional-name"
-  | "cc-family-name"
-  | "cc-number"
-  | "cc-exp"
-  | "cc-exp-month"
-  | "cc-exp-year"
-  | "cc-csc"
-  | "cc-type"
-  | "transaction-currency"
-  | "transaction-amount"
-  | "language"
-  | "bday"
-  | "bday-day"
-  | "bday-month"
-  | "bday-year"
-  | "sex"
-  | "tel"
-  | "tel-country-code"
-  | "tel-national"
-  | "tel-area-code"
-  | "tel-local"
-  | "tel-extension"
-  | "impp"
-  | "url"
-  | "photo"
-  | "webauthn";
+import { makeStyles } from "../../styles";
+import type { SpTextFieldLit } from "../text-field/sp-text-field-lit";
+import textFieldUnitStyle from "./styles.css?inline";
 
 /**
- * @summary Litで実装されたinputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
+ * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
  *
  * @attr {string} text - テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。
  *
@@ -69,7 +18,10 @@ type AutoFill =
  */
 @customElement("sp-text-field-unit-lit")
 export class SpTextFieldUnitLit extends LitElement {
-  static styles = spTextFieldUnitLitStyles;
+  static styles = makeStyles(css`
+    ${unsafeCSS(textFieldUnitStyle)}
+  `);
+
   static formAssociated = true;
 
   @property({ type: String, reflect: true })
@@ -99,12 +51,6 @@ export class SpTextFieldUnitLit extends LitElement {
   @property({ type: String, reflect: true })
   autocomplete: AutoFill = "off";
 
-  @query("sp-label-unit-lit")
-  private labelElement!: HTMLElement & { isEmpty(): boolean };
-
-  @query("sp-text-field-lit")
-  private inputElement!: HTMLElement & { value: string };
-
   private internals: ElementInternals;
 
   constructor() {
@@ -115,39 +61,31 @@ export class SpTextFieldUnitLit extends LitElement {
   protected updated(changedProperties: Map<string, unknown>) {
     super.updated(changedProperties);
 
-    // update form value when value changes
     if (changedProperties.has("value")) {
       this.internals.setFormValue(this.value);
     }
   }
 
-  private get labelClasses() {
-    const isEmpty = !this.text && !this.supportText;
-    return isEmpty ? "label none" : "label";
+  #labelClasses() {
+    return classMap({
+      label: true,
+      none: !this.text && !this.supportText,
+    });
   }
 
-  private handleInput(event: Event) {
-    const target = event.target as HTMLElement & { value: string };
+  #handleInput(e: Event) {
+    const target = e.target as SpTextFieldLit;
     this.value = target.value;
-
-    // forward the input event
-    this.dispatchEvent(
-      new InputEvent("input", {
-        bubbles: true,
-        composed: true,
-        data: (event as InputEvent).data,
-      }),
-    );
   }
 
   render() {
     return html`
       <fieldset>
-        <sp-label-unit-lit
-          class="${this.labelClasses}"
+        <sp-label-unit
+          class="${this.#labelClasses()}"
           text="${this.text}"
           support-text="${this.supportText}"
-        ></sp-label-unit-lit>
+        ></sp-label-unit>
         <sp-text-field-lit
           error="${this.error}"
           placeholder="${this.placeholder}"
@@ -156,7 +94,7 @@ export class SpTextFieldUnitLit extends LitElement {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          @input="${this.handleInput}"
+          @input="${this.#handleInput}"
         ></sp-text-field-lit>
       </fieldset>
     `;
