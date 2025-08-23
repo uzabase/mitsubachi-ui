@@ -1,4 +1,4 @@
-import "../../src/components/menu/control-menu-item/sp-control-menu-item";
+import "../../src/components/menu/control-menu-item";
 
 import { page } from "@vitest/browser/context";
 import { describe, expect, test } from "vitest";

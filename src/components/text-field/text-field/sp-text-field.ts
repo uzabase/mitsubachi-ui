@@ -1,4 +1,4 @@
-import "./error-text/sp-text-field-error-text";
+import "./error-text";
 
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";

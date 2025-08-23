@@ -1,4 +1,4 @@
-import "../../src/components/text-field/text-field-unit/sp-text-field-unit";
+import "../../src/components/text-field/text-field-unit";
 
 import { page } from "@vitest/browser/context";
 import { describe, expect, test } from "vitest";

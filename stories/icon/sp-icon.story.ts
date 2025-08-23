@@ -1,9 +1,9 @@
-import "../../src/components/icon/sp-icon";
+import "../../src/components/icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type SpIcon } from "../../src/components/icon/sp-icon";
+import { type SpIcon } from "../../src/components/icon";
 
 const meta = {
   args: {

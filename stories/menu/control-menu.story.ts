@@ -1,10 +1,10 @@
-import "../../src/components/menu/control-menu/sp-control-menu";
-import "../../src/components/menu/control-menu-item/sp-control-menu-item";
+import "../../src/components/menu/control-menu";
+import "../../src/components/menu/control-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { SpControlMenu } from "../../src/components/menu/control-menu/sp-control-menu";
+import type { SpControlMenu } from "../../src/components/menu/control-menu";
 
 const meta = {
   component: "sp-control-menu",
@@ -25,10 +25,7 @@ export const Default: Story = {
           selected
           tabindex="0"
         ></sp-control-menu-item>
-        <sp-control-menu-item
-          text="中文"
-          disabled
-        ></sp-control-menu-item>
+        <sp-control-menu-item text="中文" disabled></sp-control-menu-item>
       </sp-control-menu>
     `;
   },

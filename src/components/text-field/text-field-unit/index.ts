@@ -1,5 +1,5 @@
-import "../../label-unit/sp-label-unit";
-import "../../text-field/text-field/sp-text-field";
+import "../../label-unit";
+import "../text-field/sp-text-field";
 
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";

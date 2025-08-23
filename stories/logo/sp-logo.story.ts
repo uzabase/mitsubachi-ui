@@ -1,9 +1,9 @@
-import "../../src/components/logo/sp-logo";
+import "../../src/components/logo";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type SpLogo } from "../../src/components/logo/sp-logo";
+import { type SpLogo } from "../../src/components/logo";
 
 const meta = {
   component: "sp-logo",

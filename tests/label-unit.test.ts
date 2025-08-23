@@ -1,4 +1,4 @@
-import "../src/components/label-unit/sp-label-unit";
+import "../src/components/label-unit";
 
 import { page } from "@vitest/browser/context";
 import { describe, expect, test } from "vitest";

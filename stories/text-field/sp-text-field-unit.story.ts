@@ -1,9 +1,9 @@
-import "../../src/components/text-field/text-field-unit/sp-text-field-unit";
+import "../../src/components/text-field/text-field-unit";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 
-import type { SpTextFieldUnit } from "../../src/components/text-field/text-field-unit/sp-text-field-unit";
+import type { SpTextFieldUnit } from "../../src/components/text-field/text-field-unit";
 
 const meta = {
   component: "sp-text-field-unit",
