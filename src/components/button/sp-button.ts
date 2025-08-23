@@ -1,5 +1,5 @@
 import { html, LitElement, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
@@ -31,7 +31,6 @@ function isValidSize(value: string): Size {
 /**
  * @summary ボタンです。
  */
-@customElement("sp-button")
 export class SpButton extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
@@ -100,4 +99,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-button": SpButton;
   }
+}
+
+if (!customElements.get("sp-button")) {
+  customElements.define("sp-button", SpButton);
 }

@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
@@ -22,7 +22,6 @@ import {
  *
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
-@customElement("sp-icon")
 export class SpIcon extends LitElement {
   static styles = makeStyles();
 
@@ -54,4 +53,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-icon": SpIcon;
   }
+}
+
+if (!customElements.get("sp-icon")) {
+  customElements.define("sp-icon", SpIcon);
 }

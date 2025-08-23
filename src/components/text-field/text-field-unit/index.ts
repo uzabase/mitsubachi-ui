@@ -2,7 +2,7 @@ import "../../label-unit";
 import "../text-field";
 
 import { html, LitElement, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
@@ -16,7 +16,6 @@ import textFieldUnitStyle from "./styles.css?inline";
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-@customElement("sp-text-field-unit")
 export class SpTextFieldUnit extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
 
@@ -103,4 +102,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-text-field-unit": SpTextFieldUnit;
   }
+}
+
+if (!customElements.get("sp-text-field-unit")) {
+  customElements.define("sp-text-field-unit", SpTextFieldUnit);
 }

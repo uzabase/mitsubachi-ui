@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
@@ -13,7 +13,6 @@ import { uzabase } from "./uzabase";
  *
  * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
-@customElement("sp-logo")
 export class SpLogo extends LitElement {
   static styles = makeStyles();
 
@@ -47,4 +46,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-logo": SpLogo;
   }
+}
+
+if (!customElements.get("sp-logo")) {
+  customElements.define("sp-logo", SpLogo);
 }

@@ -1,5 +1,5 @@
 import { html, LitElement, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../styles";
@@ -14,7 +14,6 @@ import style from "./styles.css?inline";
  *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
  */
-@customElement("sp-label-unit")
 export class SpLabelUnit extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
@@ -57,4 +56,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-label-unit": SpLabelUnit;
   }
+}
+
+if (!customElements.get("sp-label-unit")) {
+  customElements.define("sp-label-unit", SpLabelUnit);
 }

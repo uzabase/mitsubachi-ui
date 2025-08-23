@@ -1,7 +1,7 @@
 import "./error-text";
 
 import { html, LitElement, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
@@ -10,7 +10,6 @@ import textFieldStyle from "./styles.css?inline";
 /**
  * @summary テキストフィールドです。
  */
-@customElement("sp-text-field")
 export class SpTextField extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldStyle));
 
@@ -100,4 +99,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-text-field": SpTextField;
   }
+}
+
+if (!customElements.get("sp-text-field")) {
+  customElements.define("sp-text-field", SpTextField);
 }

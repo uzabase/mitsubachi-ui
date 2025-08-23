@@ -1,7 +1,7 @@
 import "../../icon";
 
 import { html, LitElement, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../../styles";
 import spControlMenuItemLitStyle from "./styles.css?inline";
@@ -15,7 +15,6 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  *
  * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
  */
-@customElement("sp-control-menu-item")
 export class SpControlMenuItem extends LitElement {
   static styles = makeStyles(unsafeCSS(spControlMenuItemLitStyle));
 
@@ -40,4 +39,8 @@ declare global {
   interface HTMLElementTagNameMap {
     "sp-control-menu-item": SpControlMenuItem;
   }
+}
+
+if (!customElements.get("sp-control-menu-item")) {
+  customElements.define("sp-control-menu-item", SpControlMenuItem);
 }
