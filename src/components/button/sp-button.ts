@@ -29,7 +29,7 @@ function isValidSize(value: string): Size {
 }
 
 /**
- * @summary 実装されたボタンです。
+ * @summary ボタンです。
  */
 @customElement("sp-button")
 export class SpButton extends LitElement {
