@@ -1,7 +1,7 @@
 import "../../label-unit";
 import "../text-field";
 
-import { css, html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -18,9 +18,7 @@ import textFieldUnitStyle from "./styles.css?inline";
  */
 @customElement("sp-text-field-unit")
 export class SpTextFieldUnit extends LitElement {
-  static styles = makeStyles(css`
-    ${unsafeCSS(textFieldUnitStyle)}
-  `);
+  static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
 
   static formAssociated = true;
 

@@ -1,4 +1,4 @@
-import { css, html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
@@ -11,12 +11,8 @@ import checkmarkStyle from "./checkmark.css?inline";
 @customElement("sp-checkbox-text")
 export class SpCheckboxText extends LitElement {
   static styles = makeStyles(
-    css`
-      ${unsafeCSS(checkmarkStyle)}
-    `,
-    css`
-      ${unsafeCSS(checkboxTextStyle)}
-    `,
+    unsafeCSS(checkmarkStyle),
+    unsafeCSS(checkboxTextStyle),
   );
 
   static formAssociated = true;

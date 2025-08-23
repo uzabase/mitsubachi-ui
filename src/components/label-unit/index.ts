@@ -1,9 +1,9 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
-import { makeStyleSheet } from "../styles";
-import spLabelUnitLitStyle from "./styles.css?inline";
+import { makeStyles } from "../styles";
+import style from "./styles.css?inline";
 
 /**
  * ラベルです。
@@ -16,7 +16,7 @@ import spLabelUnitLitStyle from "./styles.css?inline";
  */
 @customElement("sp-label-unit")
 export class SpLabelUnit extends LitElement {
-  static styles = makeStyleSheet(spLabelUnitLitStyle);
+  static styles = makeStyles(unsafeCSS(style));
 
   @property({ type: String, reflect: true })
   text = "";

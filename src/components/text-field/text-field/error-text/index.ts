@@ -1,6 +1,6 @@
 import "../../../icon";
 
-import { css, html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -12,9 +12,7 @@ import textFieldErrorTextStyle from "./styles.css?inline";
  */
 @customElement("sp-text-field-error-text")
 export class SpTextFieldErrorText extends LitElement {
-  static styles = makeStyles(css`
-    ${unsafeCSS(textFieldErrorTextStyle)}
-  `);
+  static styles = makeStyles(unsafeCSS(textFieldErrorTextStyle));
 
   @property({ type: String, reflect: true })
   text = "";

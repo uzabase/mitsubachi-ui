@@ -1,8 +1,8 @@
-import { css, html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
-import buttonStyle from "./button.css?inline";
+import style from "./button.css?inline";
 
 export const variants = ["primary", "secondary", "tertiary"] as const;
 type Variants = (typeof variants)[number];
@@ -33,9 +33,7 @@ function isValidSize(value: string): Size {
  */
 @customElement("sp-button")
 export class SpButton extends LitElement {
-  static styles = makeStyles(css`
-    ${unsafeCSS(buttonStyle)}
-  `);
+  static styles = makeStyles(unsafeCSS(style));
 
   @property({ type: Boolean, reflect: true })
   loading = false;

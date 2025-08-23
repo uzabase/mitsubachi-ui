@@ -1,9 +1,9 @@
 import "../../icon";
 
-import { html, LitElement } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import { makeStyleSheet } from "../../styles";
+import { makeStyles } from "../../styles";
 import spControlMenuItemLitStyle from "./styles.css?inline";
 
 /**
@@ -17,7 +17,7 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  */
 @customElement("sp-control-menu-item")
 export class SpControlMenuItem extends LitElement {
-  static styles = makeStyleSheet(spControlMenuItemLitStyle);
+  static styles = makeStyles(unsafeCSS(spControlMenuItemLitStyle));
 
   @property({ type: String, reflect: true })
   text = "";

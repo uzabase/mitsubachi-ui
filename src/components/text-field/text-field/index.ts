@@ -1,6 +1,6 @@
 import "./error-text";
 
-import { css, html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -12,9 +12,7 @@ import textFieldStyle from "./styles.css?inline";
  */
 @customElement("sp-text-field")
 export class SpTextField extends LitElement {
-  static styles = makeStyles(css`
-    ${unsafeCSS(textFieldStyle)}
-  `);
+  static styles = makeStyles(unsafeCSS(textFieldStyle));
 
   static formAssociated = true;
 

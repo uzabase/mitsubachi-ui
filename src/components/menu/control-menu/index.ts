@@ -1,7 +1,7 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { customElement } from "lit/decorators.js";
 
-import { makeStyleSheet } from "../../styles";
+import { makeStyles } from "../../styles";
 import spControlMenuLitStyle from "./styles.css?inline";
 
 /**
@@ -9,7 +9,7 @@ import spControlMenuLitStyle from "./styles.css?inline";
  */
 @customElement("sp-control-menu")
 export class SpControlMenu extends LitElement {
-  static styles = makeStyleSheet(spControlMenuLitStyle);
+  static styles = makeStyles(unsafeCSS(spControlMenuLitStyle));
 
   render() {
     return html`<slot></slot>`;
