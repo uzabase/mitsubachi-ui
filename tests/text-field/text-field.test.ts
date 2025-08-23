@@ -1,4 +1,4 @@
-import "../../src/components/text-field/text-field/sp-text-field";
+import "../../src/components/text-field/text-field";
 
 import { describe, expect, test } from "vitest";
 

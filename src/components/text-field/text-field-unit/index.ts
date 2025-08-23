@@ -1,12 +1,12 @@
 import "../../label-unit";
-import "../text-field/sp-text-field";
+import "../text-field";
 
 import { css, html, LitElement, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
-import type { SpTextField } from "../text-field/sp-text-field";
+import type { SpTextField } from "../text-field";
 import textFieldUnitStyle from "./styles.css?inline";
 
 /**
