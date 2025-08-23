@@ -33,9 +33,9 @@ type Story = StoryObj<SpIcon>;
 
 export const Default: Story = {
   render: ({ type }) => {
-    return html`<sp-icon-lit
+    return html`<sp-icon
       style="display: inline-block; width: 24px; height: 24px;"
       type=${type}
-    ></sp-icon-lit>`;
+    ></sp-icon>`;
   },
 };
