@@ -1,10 +1,13 @@
-import "../text-field";
 import "../../label-unit";
+import "../text-field";
 
-import { type SpLabelUnit } from "../../label-unit";
-import { makeStyleSheet } from "../../styles";
-import { type SpTextField } from "../text-field";
-import styles from "./styles.css?inline";
+import { html, LitElement, unsafeCSS } from "lit";
+import { property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
+
+import { makeStyles } from "../../styles";
+import type { SpTextField } from "../text-field";
+import textFieldUnitStyle from "./styles.css?inline";
 
 /**
  * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
@@ -13,155 +16,85 @@ import styles from "./styles.css?inline";
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-export class SpTextFieldUnit extends HTMLElement {
-  static observedAttributes = [
-    "error",
-    "text",
-    "placeholder",
-    "support-text",
-    "disabled",
-    "name",
-    "type",
-    "value",
-    "autocomplete",
-  ];
+export class SpTextFieldUnit extends LitElement {
+  static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
 
   static formAssociated = true;
 
-  set text(text: string) {
-    this.#label.text = text;
-    this.#updateStyle();
-    this.#updateAttribute("text", text);
-  }
+  @property({ type: String, reflect: true })
+  text = "";
 
-  set error(text: string) {
-    this.#input.error = text;
-    this.#updateAttribute("error", text);
-  }
+  @property({ type: String, reflect: true })
+  error = "";
 
-  set disabled(newValue: boolean) {
-    this.#input.disabled = newValue;
-    if (newValue) this.setAttribute("disabled", "");
-    else this.removeAttribute("disabled");
-  }
+  @property({ type: String, reflect: true })
+  placeholder = "";
 
-  set placeholder(newValue: string) {
-    this.#input.placeholder = newValue;
-    this.#updateAttribute("placeholder", newValue);
-  }
+  @property({ type: String, attribute: "support-text", reflect: true })
+  supportText = "";
 
-  set name(value: string) {
-    this.#input.name = value;
-    this.#updateAttribute("name", value);
-  }
+  @property({ type: Boolean, reflect: true })
+  disabled = false;
 
-  get value(): string {
-    return this.#input.value;
-  }
+  @property({ type: String, reflect: true })
+  name = "";
 
-  set value(value: string) {
-    this.#input.value = value;
-    this.#internals.setFormValue(this.value);
-    this.#updateAttribute("value", value);
-  }
+  @property({ type: String, reflect: true })
+  value = "";
 
-  set type(newValue: string) {
-    this.#input.type = newValue;
-    this.#updateAttribute("type", newValue);
-  }
+  @property({ type: String, reflect: true })
+  type = "text";
 
-  set supportText(value: string) {
-    this.#label.supportText = value;
-    this.#updateStyle();
-    this.#updateAttribute("support-text", value);
-  }
+  @property({ type: String, reflect: true })
+  autocomplete: AutoFill = "off";
 
-  get autocomplete(): AutoFill {
-    return this.#input.autocomplete;
-  }
-
-  #label: SpLabelUnit = document.createElement("sp-label-unit");
-
-  #input: SpTextField = document.createElement("sp-text-field");
-
-  #internals: ElementInternals;
-
-  #initialized = false;
-
-  #inputHandler = (e: Event) => {
-    const target = e.target as SpTextField;
-    this.value = target.value;
-  };
+  private internals: ElementInternals;
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
-    this.#internals = this.attachInternals();
+    this.internals = this.attachInternals();
   }
 
-  connectedCallback() {
-    this.#input.addEventListener("input", this.#inputHandler);
+  protected updated(changedProperties: Map<string, unknown>) {
+    super.updated(changedProperties);
 
-    if (!this.shadowRoot || this.#initialized) return;
-
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(styles),
-    ];
-    const fieldSet = document.createElement("fieldset");
-    this.shadowRoot.appendChild(fieldSet);
-    fieldSet.appendChild(this.#label);
-    this.#label.classList.add("label");
-    fieldSet.appendChild(this.#input);
-
-    this.#initialized = true;
-  }
-
-  disconnectedCallback() {
-    this.#input.removeEventListener("input", this.#inputHandler);
-  }
-
-  attributeChangedCallback(
-    name:
-      | "error"
-      | "text"
-      | "placeholder"
-      | "disabled"
-      | "name"
-      | "value"
-      | "type"
-      | "support-text"
-      | "autocomplete",
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (oldValue === newValue) return;
-
-    newValue = newValue ?? "";
-
-    if (name === "disabled") {
-      this.disabled = newValue ? true : false;
-      return;
-    } else if (name === "support-text") {
-      this.supportText = newValue;
-      return;
-    } else if (name === "autocomplete") {
-      this.#input.autocomplete = newValue as AutoFill;
-      return;
-    }
-    this[name] = newValue;
-  }
-
-  #updateStyle() {
-    if (this.#label.isEmpty()) {
-      this.#label.classList.add("none");
-    } else {
-      this.#label.classList.remove("none");
+    if (changedProperties.has("value")) {
+      this.internals.setFormValue(this.value);
     }
   }
-  #updateAttribute(name: string, value: string) {
-    if (value) this.setAttribute(name, value);
-    else this.removeAttribute(name);
+
+  #labelClasses() {
+    return classMap({
+      label: true,
+      none: !this.text && !this.supportText,
+    });
+  }
+
+  #handleInput(e: Event) {
+    const target = e.target as SpTextField;
+    this.value = target.value;
+  }
+
+  render() {
+    return html`
+      <fieldset>
+        <sp-label-unit
+          class="${this.#labelClasses()}"
+          text="${this.text}"
+          support-text="${this.supportText}"
+        ></sp-label-unit>
+        <sp-text-field
+          error="${this.error}"
+          placeholder="${this.placeholder}"
+          ?disabled="${this.disabled}"
+          name="${this.name}"
+          .value="${this.value}"
+          type="${this.type}"
+          autocomplete="${this.autocomplete}"
+          @input="${this.#handleInput}"
+        ></sp-text-field>
+      </fieldset>
+    `;
   }
 }
 
@@ -170,6 +103,7 @@ declare global {
     "sp-text-field-unit": SpTextFieldUnit;
   }
 }
+
 if (!customElements.get("sp-text-field-unit")) {
   customElements.define("sp-text-field-unit", SpTextFieldUnit);
 }

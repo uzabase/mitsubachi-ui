@@ -1,171 +1,97 @@
 import "./error-text";
 
-import { makeStyleSheet } from "../../styles";
-import styles from "./styles.css?inline";
+import { html, LitElement, unsafeCSS } from "lit";
+import { property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
-export class SpTextField extends HTMLElement {
-  static observedAttributes = [
-    "error",
-    "placeholder",
-    "autocomplete",
-    "disabled",
-    "name",
-    "value",
-    "type",
-  ];
+import { makeStyles } from "../../styles";
+import textFieldStyle from "./styles.css?inline";
+
+/**
+ * @summary テキストフィールドです。
+ */
+export class SpTextField extends LitElement {
+  static styles = makeStyles(unsafeCSS(textFieldStyle));
 
   static formAssociated = true;
 
-  set type(newType: string) {
-    this.#input.type = newType;
-    this.#updateAttribute("type", newType);
-  }
+  @property({ type: String, reflect: true })
+  error = "";
 
-  set error(text: string) {
-    this.#error = text;
-    if (this.#disabled) this.#errorText.text = "";
-    else this.#errorText.text = this.#error;
-    this.#updateStyle();
-    this.#updateAttribute("error", text);
-  }
+  @property({ type: String, reflect: true })
+  placeholder = "";
 
-  set autocomplete(value: AutoFill) {
-    this.#input.autocomplete = value;
-    this.#updateAttribute("autocomplete", value);
-  }
+  @property({ type: String, reflect: true })
+  autocomplete: AutoFill = "off";
 
-  get autocomplete(): AutoFill {
-    return this.#input.autocomplete;
-  }
+  @property({ type: Boolean, reflect: true })
+  disabled = false;
 
-  set placeholder(value: string) {
-    this.#input.placeholder = value;
-    this.#updateAttribute("placeholder", value);
-  }
+  @property({ type: String, reflect: true })
+  name = "";
 
-  get #disabled(): boolean {
-    return this.#input.hasAttribute("disabled");
-  }
+  @property({ type: String, reflect: true })
+  value = "";
 
-  set disabled(value: boolean) {
-    if (value) this.#input.setAttribute("disabled", "");
-    else this.#input.removeAttribute("disabled");
+  @property({ type: String, reflect: true })
+  type = "text";
 
-    if (this.#disabled) this.#errorText.text = "";
-    else this.#errorText.text = this.#error;
-
-    this.#updateStyle();
-
-    if (value) this.setAttribute("disabled", "");
-    else this.removeAttribute("disabled");
-  }
-
-  set name(value: string) {
-    this.#input.name = value;
-    if (!value) this.#input.removeAttribute("name");
-    this.#updateAttribute("name", value);
-  }
-
-  get value(): string {
-    return this.#input.value;
-  }
-
-  set value(value: string) {
-    this.#input.value = value;
-    this.#internals.setFormValue(this.value);
-    this.#updateAttribute("value", value);
-  }
-
-  #input = document.createElement("input");
-
-  #errorText = document.createElement("sp-text-field-error-text");
-
-  #internals: ElementInternals;
-
-  #initialized = false;
-
-  #error: string = "";
+  private internals: ElementInternals;
 
   constructor() {
     super();
-    this.#internals = this.attachInternals();
-    this.attachShadow({ mode: "open" });
+    this.internals = this.attachInternals();
   }
 
-  connectedCallback() {
-    // MDNは、constructorよりもconnectedCallbackを推奨しています。
-    // WHATWGは、特にリソースの取得やレンダリングを、できるだけconstructorではなくconnectedCallbackで実装するように推奨しています。
-    // 同時に、connectedCallbackは複数呼ばれるため、2回以上呼ばてはいけない処理にはガードを設けることを推奨しています。
-    // https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks
-    // https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
-    if (!this.shadowRoot || this.#initialized) return;
+  protected updated(changedProperties: Map<string, unknown>) {
+    super.updated(changedProperties);
 
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(styles),
-    ];
-    // 当web componentの外にイベントハンドラをつけないので、disconnectedCallbackで解除していないです
-    // https://open-wc.org/guides/knowledge/events/#on-elements-outside-of-your-element
-    this.#input.addEventListener("input", (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      this.value = target.value;
+    if (changedProperties.has("value")) {
+      this.internals.setFormValue(this.value);
+    }
+  }
 
-      // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
-      // 自動入力されたパスワードがformで送信されないことがありました。
-      // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
-      if (!e.composed) {
-        this.dispatchEvent(new InputEvent("input", { ...e, composed: true }));
-      }
+  #inputClasses() {
+    return classMap({
+      input: true,
+      error: this.error && !this.disabled,
     });
-
-    this.shadowRoot.appendChild(this.#input);
-    this.#input.classList.add("input");
-
-    this.shadowRoot.appendChild(this.#errorText);
-
-    this.#initialized = true;
   }
 
-  attributeChangedCallback(
-    name:
-      | "placeholder"
-      | "disabled"
-      | "error"
-      | "name"
-      | "value"
-      | "type"
-      | "autocomplete",
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (oldValue === newValue) return;
+  #handleInput(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.value = target.value;
 
-    if (name === "disabled") {
-      this.disabled = newValue !== null;
-      return;
+    // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+    // 自動入力されたパスワードがformで送信されないことがありました。
+    // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
+    if (!e.composed) {
+      this.dispatchEvent(
+        new InputEvent("input", {
+          ...e,
+          composed: true,
+        }),
+      );
     }
-    if (name === "autocomplete") {
-      this.autocomplete = newValue as AutoFill;
-      return;
-    }
-    this[name] = newValue ? newValue : "";
   }
 
-  #updateStyle() {
-    if (this.#disabled) {
-      this.#input.classList.remove("error");
-      this.#input.removeAttribute("aria-invalid");
-      return;
-    }
-    if (this.#error) {
-      this.#input.classList.add("error");
-      this.#input.setAttribute("aria-invalid", "");
-    } else this.#input.classList.remove("error");
-  }
-
-  #updateAttribute(name: string, value: string) {
-    if (value) this.setAttribute(name, value);
-    else this.removeAttribute(name);
+  render() {
+    return html`
+      <input
+        class="${this.#inputClasses()}"
+        type="${this.type}"
+        placeholder="${this.placeholder}"
+        autocomplete="${this.autocomplete}"
+        ?disabled="${this.disabled}"
+        name="${this.name}"
+        .value="${this.value}"
+        aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
+        @input="${this.#handleInput}"
+      />
+      <sp-text-field-error-text
+        text="${this.disabled ? "" : this.error}"
+      ></sp-text-field-error-text>
+    `;
   }
 }
 
@@ -174,6 +100,7 @@ declare global {
     "sp-text-field": SpTextField;
   }
 }
+
 if (!customElements.get("sp-text-field")) {
   customElements.define("sp-text-field", SpTextField);
 }

@@ -3,9 +3,9 @@ import "../../src/components/logo";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { SpLogo } from "../../src/components/logo";
+import { type SpLogo } from "../../src/components/logo";
 
-const meta: Meta<SpLogo> = {
+const meta = {
   component: "sp-logo",
   args: {
     language: "ja",
@@ -22,11 +22,17 @@ const meta: Meta<SpLogo> = {
     },
   },
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpLogo>;
 
-export const Default: StoryObj<SpLogo> = {
+export default meta;
+type Story = StoryObj<SpLogo>;
+
+export const Default: Story = {
   render: ({ language, brand }) => {
-    return html`<sp-logo style="height: 32px; display: flex;" language=${language} brand=${brand}></sp-language>`;
+    return html`<sp-logo
+      style="height: 32px; display: flex;"
+      language=${language}
+      brand=${brand}
+    ></sp-logo>`;
   },
 };

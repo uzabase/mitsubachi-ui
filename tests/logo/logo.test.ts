@@ -5,6 +5,7 @@ import { describe, expect, test } from "vitest";
 describe("sp-logo", () => {
   test("brandがuzabaseのとき当社のロゴが表示される", async () => {
     document.body.innerHTML = `<sp-logo brand="uzabase"></sp-logo>`;
+    await customElements.whenDefined("sp-logo");
     const logo = document
       .querySelector("sp-logo")
       ?.shadowRoot?.querySelector("svg");
@@ -12,6 +13,7 @@ describe("sp-logo", () => {
   });
   test("brandがspeeda, language=jaのときスピーダの英語のロゴが表示される", async () => {
     document.body.innerHTML = `<sp-logo brand="speeda" language="en"></sp-logo>`;
+    await customElements.whenDefined("sp-logo");
     const logo = document
       .querySelector("sp-logo")
       ?.shadowRoot?.querySelector("svg");
@@ -19,6 +21,7 @@ describe("sp-logo", () => {
   });
   test("brandがspeeda, language=jaのときスピーダの日本語のロゴが表示される", async () => {
     document.body.innerHTML = `<sp-logo brand="speeda" language="ja"></sp-logo>`;
+    await customElements.whenDefined("sp-logo");
     const logo = document
       .querySelector("sp-logo")
       ?.shadowRoot?.querySelector("svg");
@@ -26,6 +29,7 @@ describe("sp-logo", () => {
   });
   test("brandがspeeda, language=zhのときスピーダの中国語のロゴが表示される", async () => {
     document.body.innerHTML = `<sp-logo brand="speeda" language="zh"></sp-logo>`;
+    await customElements.whenDefined("sp-logo");
     const logo = document
       .querySelector("sp-logo")
       ?.shadowRoot?.querySelector("svg");

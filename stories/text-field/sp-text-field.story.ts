@@ -1,11 +1,24 @@
-import "../../src/components/text-field/text-field-unit";
+import "../../src/components/text-field/text-field";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 
 import type { SpTextField } from "../../src/components/text-field/text-field";
 
-const meta: Meta<SpTextField> = {
+const meta = {
+  component: "sp-text-field",
+  argTypes: {
+    error: { type: "string" },
+    placeholder: { type: "string" },
+    disabled: { type: "boolean" },
+    name: { type: "string" },
+    value: { type: "string" },
+    type: {
+      options: ["text", "password"],
+      control: { type: "select" },
+    },
+    autocomplete: { type: "string" },
+  },
   args: {
     error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
@@ -15,20 +28,13 @@ const meta: Meta<SpTextField> = {
     type: "text",
     autocomplete: undefined,
   },
-  argTypes: {
-    type: {
-      options: ["text", "password"],
-      control: { type: "select" },
-    },
-    autocomplete: {
-      type: "string",
-    },
-  },
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpTextField>;
 
-export const Default: StoryObj<SpTextField> = {
+export default meta;
+type Story = StoryObj<SpTextField>;
+
+export const Default: Story = {
   render: ({
     type,
     error,

@@ -6,6 +6,8 @@ import { describe, expect, test } from "vitest";
 describe("sp-control-menu-item", async () => {
   test("text属性の値が表示される", async () => {
     document.body.innerHTML = `<sp-control-menu-item text="Test Item"></sp-control-menu-item>`;
+    await customElements.whenDefined("sp-icon");
+    await customElements.whenDefined("sp-control-menu-item");
 
     const found = page.getByText("Test Item");
 
@@ -14,6 +16,8 @@ describe("sp-control-menu-item", async () => {
 
   test("selected属性があるときはcheckマークが表示される。", async () => {
     document.body.innerHTML = `<sp-control-menu-item selected text="Test Item"></sp-control-menu-item>`;
+    await customElements.whenDefined("sp-icon");
+    await customElements.whenDefined("sp-control-menu-item");
 
     const found = document
       .querySelector("sp-control-menu-item")

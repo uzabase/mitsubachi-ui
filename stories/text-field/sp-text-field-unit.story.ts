@@ -5,7 +5,22 @@ import { html, nothing } from "lit";
 
 import type { SpTextFieldUnit } from "../../src/components/text-field/text-field-unit";
 
-const meta: Meta<SpTextFieldUnit> = {
+const meta = {
+  component: "sp-text-field-unit",
+  argTypes: {
+    text: { type: "string" },
+    error: { type: "string" },
+    placeholder: { type: "string" },
+    supportText: { type: "string" },
+    disabled: { type: "boolean" },
+    name: { type: "string" },
+    value: { type: "string" },
+    type: {
+      options: ["text", "password"],
+      control: { type: "select" },
+    },
+    autocomplete: { type: "string" },
+  },
   args: {
     text: "ラベル",
     error: "エラーテキストが入ります",
@@ -17,20 +32,13 @@ const meta: Meta<SpTextFieldUnit> = {
     type: "text",
     autocomplete: "",
   },
-  argTypes: {
-    type: {
-      options: ["text", "password"],
-      control: { type: "select" },
-    },
-    autocomplete: {
-      type: "string",
-    },
-  },
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpTextFieldUnit>;
 
-export const Default: StoryObj<SpTextFieldUnit> = {
+export default meta;
+type Story = StoryObj<SpTextFieldUnit>;
+
+export const Default: Story = {
   render: ({
     text,
     type,

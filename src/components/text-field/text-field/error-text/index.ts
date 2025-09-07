@@ -1,72 +1,35 @@
-import { SpIcon } from "../../../icon";
-import { makeStyleSheet } from "../../../styles";
-import styles from "./styles.css?inline";
+import "../../../icon";
+
+import { html, LitElement, unsafeCSS } from "lit";
+import { property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
+
+import { makeStyles } from "../../../styles";
+import textFieldErrorTextStyle from "./styles.css?inline";
 
 /**
- *
+ * @summary テキストフィールドのエラーテキストコンポーネントです。
  */
-export class SpTextFieldErrorText extends HTMLElement {
-  static observedAttributes = ["text"];
+export class SpTextFieldErrorText extends LitElement {
+  static styles = makeStyles(unsafeCSS(textFieldErrorTextStyle));
 
-  get #text(): string {
-    return this.#span.textContent ?? "";
+  @property({ type: String, reflect: true })
+  text = "";
+
+  #containerClasses() {
+    return classMap({
+      container: true,
+      none: !this.text,
+    });
   }
 
-  set text(value: string) {
-    if (value === "") {
-      this.#span.textContent = null;
-    } else {
-      this.#span.textContent = value;
-    }
-    this.#updateClass();
-  }
-
-  #span: HTMLSpanElement = document.createElement("span");
-  #container?: HTMLDivElement;
-
-  #initalized = false;
-
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-  }
-
-  connectedCallback() {
-    if (!this.shadowRoot || this.#initalized) return;
-
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      makeStyleSheet(styles),
-    ];
-    this.#container = document.createElement("div");
-    this.#container.setAttribute("role", "error");
-    this.#container.setAttribute("class", "container");
-    this.shadowRoot.appendChild(this.#container);
-
-    const icon = new SpIcon();
-    icon.type = "error-fill";
-    icon.classList.add("icon");
-    this.#container.appendChild(icon);
-
-    this.#span.className = "text";
-    this.#container.appendChild(this.#span);
-
-    this.#updateClass();
-    this.#initalized = true;
-  }
-
-  attributeChangedCallback(name: string, _: string, newValue: string | null) {
-    if (name === "text") {
-      this.text = newValue ? newValue : "";
-    }
-  }
-
-  #updateClass() {
-    if (this.#text) {
-      this.#container?.classList.remove("none");
-    } else {
-      this.#container?.classList.add("none");
-    }
+  render() {
+    return html`
+      <div class="${this.#containerClasses()}" role="error">
+        <sp-icon class="icon" type="error-fill"></sp-icon>
+        <span class="text">${this.text}</span>
+      </div>
+    `;
   }
 }
 

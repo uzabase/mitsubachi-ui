@@ -5,6 +5,8 @@ import { describe, expect, test } from "vitest";
 describe("sp-icon", () => {
   test("ツールがエラーアイコンを読み上げてはいけない", async () => {
     document.body.innerHTML = `<sp-icon type="error-fill"></sp-icon>`;
+    await customElements.whenDefined("sp-icon");
+
     const icon = document
       .querySelector("sp-icon")
       ?.shadowRoot?.querySelector("svg");

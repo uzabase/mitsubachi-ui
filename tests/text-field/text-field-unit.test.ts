@@ -6,6 +6,8 @@ import { describe, expect, test } from "vitest";
 describe("sp-text-field", () => {
   test("入力すると、valueが更新される。", async () => {
     document.body.innerHTML = `<sp-text-field-unit placeholder="placeholder"></sp-text-field-unit>`;
+    await customElements.whenDefined("sp-text-field");
+    await customElements.whenDefined("sp-text-field-unit");
 
     const input = document
       .querySelector("sp-text-field-unit")
@@ -21,6 +23,8 @@ describe("sp-text-field", () => {
 
   test(`autocomplete属性を指定できる`, async () => {
     document.body.innerHTML = `<sp-text-field-unit autocomplete="foobar"></sp-text-field-unit>`;
+    await customElements.whenDefined("sp-text-field");
+    await customElements.whenDefined("sp-text-field-unit");
 
     const input = document
       .querySelector("sp-text-field-unit")

@@ -6,22 +6,27 @@ import { html } from "lit";
 
 import type { SpControlMenu } from "../../src/components/menu/control-menu";
 
-const meta: Meta<SpControlMenu> = {
+const meta = {
+  component: "sp-control-menu",
   args: {},
   tags: ["!dev-only"],
-};
-export default meta;
+} satisfies Meta<SpControlMenu>;
 
-export const Default: StoryObj<SpControlMenu> = {
+export default meta;
+type Story = StoryObj<SpControlMenu>;
+
+export const Default: Story = {
   render: () => {
-    return html`<sp-control-menu>
-      <sp-control-menu-item text="日本語"></sp-control-menu-item>
-      <sp-control-menu-item
-        text="English"
-        selected
-        tabindex="0"
-      ></sp-control-menu-item>
-      <sp-control-menu-item text="中文" disabled></sp-control-menu-item>
-    </sp-control-menu>`;
+    return html`
+      <sp-control-menu>
+        <sp-control-menu-item text="日本語"></sp-control-menu-item>
+        <sp-control-menu-item
+          text="English"
+          selected
+          tabindex="0"
+        ></sp-control-menu-item>
+        <sp-control-menu-item text="中文" disabled></sp-control-menu-item>
+      </sp-control-menu>
+    `;
   },
 };

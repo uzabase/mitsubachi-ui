@@ -16,6 +16,7 @@ describe("sp-button", () => {
   describe("テキストのslot", () => {
     test("slotに文字列を渡すと、ボタンにその文字列が表示される", async () => {
       document.body.innerHTML = "<sp-button>ダウンロード</sp-button>";
+      await customElements.whenDefined("sp-button");
 
       const button = getSpButton();
 
@@ -27,6 +28,7 @@ describe("sp-button", () => {
     const expected = "name";
     // arrange
     document.body.innerHTML = `<sp-button name='${expected}'>ダウンロード</sp-button>`;
+    await customElements.whenDefined("sp-button");
     // act
     const actual = getButton()?.getAttribute("name");
     // assert
@@ -37,6 +39,7 @@ describe("sp-button", () => {
     const expected = "atai";
     // arrange
     document.body.innerHTML = `<sp-button value='${expected}'>ダウンロード</sp-button>`;
+    await customElements.whenDefined("sp-button");
     // act
     const actual = getButton()?.getAttribute("value");
     // assert
