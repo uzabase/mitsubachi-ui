@@ -1,13 +1,12 @@
+import { LitElement } from 'lit';
 /**
- *
+ * @summary テキストフィールドのエラーテキストコンポーネントです。
  */
-export declare class SpTextFieldErrorText extends HTMLElement {
+export declare class SpTextFieldErrorText extends LitElement {
     #private;
-    static observedAttributes: string[];
-    set text(value: string);
-    constructor();
-    connectedCallback(): void;
-    attributeChangedCallback(name: string, _: string, newValue: string | null): void;
+    static styles: import('lit').CSSResult[];
+    text: string;
+    render(): import('lit-html').TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

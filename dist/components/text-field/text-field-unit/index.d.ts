@@ -1,3 +1,4 @@
+import { LitElement } from 'lit';
 /**
  * @summary inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。
  *
@@ -5,24 +6,23 @@
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-export declare class SpTextFieldUnit extends HTMLElement {
+export declare class SpTextFieldUnit extends LitElement {
     #private;
-    static observedAttributes: string[];
+    static styles: import('lit').CSSResult[];
     static formAssociated: boolean;
-    set text(text: string);
-    set error(text: string);
-    set disabled(newValue: boolean);
-    set placeholder(newValue: string);
-    set name(value: string);
-    get value(): string;
-    set value(value: string);
-    set type(newValue: string);
-    set supportText(value: string);
-    get autocomplete(): AutoFill;
+    text: string;
+    error: string;
+    placeholder: string;
+    supportText: string;
+    disabled: boolean;
+    name: string;
+    value: string;
+    type: string;
+    autocomplete: AutoFill;
+    private internals;
     constructor();
-    connectedCallback(): void;
-    disconnectedCallback(): void;
-    attributeChangedCallback(name: "error" | "text" | "placeholder" | "disabled" | "name" | "value" | "type" | "support-text" | "autocomplete", oldValue: string | null, newValue: string | null): void;
+    protected updated(changedProperties: Map<string, unknown>): void;
+    render(): import('lit-html').TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

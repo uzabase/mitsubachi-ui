@@ -77,12 +77,17 @@
       "declarations": [
         {
           "kind": "function",
-          "name": "makeStyleSheet",
+          "name": "makeStyles",
+          "return": {
+            "type": {
+              "text": "CSSResult[]"
+            }
+          },
           "parameters": [
             {
               "name": "styles",
               "type": {
-                "text": "string[]"
+                "text": "CSSResult[]"
               }
             }
           ]
@@ -91,9 +96,9 @@
       "exports": [
         {
           "kind": "js",
-          "name": "makeStyleSheet",
+          "name": "makeStyles",
           "declaration": {
-            "name": "makeStyleSheet",
+            "name": "makeStyles",
             "module": "src/components/styles.ts"
           }
         }
@@ -108,278 +113,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/button/sp-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpButton",
-          "superclass": {
-            "name": "UbButton",
-            "module": "/src/components/button/ub-button"
-          },
-          "summary": "ボタンです。",
-          "tagName": "sp-button",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "loading",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "variants",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "size",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "danger",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "value",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "name",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "name": "type",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "#loading",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#disabled",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#variants",
-              "privacy": "private",
-              "type": {
-                "text": "variants"
-              },
-              "default": "variants[0]",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#size",
-              "privacy": "private",
-              "type": {
-                "text": "Size"
-              },
-              "default": "size[0]",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#buttonElement",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#slotElement",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "danger",
-              "type": {
-                "text": "boolean"
-              },
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "variants",
-              "default": "variants[0]",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "default": "size[0]",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#danger",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#buttonDisabledUpdate",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#updateDanger",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbButton",
-                "module": "src/components/button/ub-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpButton",
-          "declaration": {
-            "name": "SpButton",
-            "module": "src/components/button/sp-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-button",
-          "declaration": {
-            "name": "SpButton",
-            "module": "src/components/button/sp-button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button/ub-button.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -400,53 +133,12 @@
         {
           "kind": "class",
           "description": "",
-          "name": "UbButton",
+          "name": "SpButton",
           "members": [
             {
               "kind": "field",
-              "name": "#loading",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "#disabled",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "#variants",
-              "privacy": "private",
-              "type": {
-                "text": "variants"
-              },
-              "default": "variants[0]"
-            },
-            {
-              "kind": "field",
-              "name": "#size",
-              "privacy": "private",
-              "type": {
-                "text": "Size"
-              },
-              "default": "size[0]"
-            },
-            {
-              "kind": "field",
-              "name": "#buttonElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#slotElement",
-              "privacy": "private"
+              "name": "styles",
+              "static": true
             },
             {
               "kind": "field",
@@ -466,85 +158,75 @@
             },
             {
               "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
               "name": "danger",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "variants",
-              "default": "variants[0]"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "default": "size[0]"
-            },
-            {
-              "kind": "field",
-              "name": "#danger",
-              "privacy": "private",
               "type": {
                 "text": "boolean"
               },
               "default": "false"
             },
             {
-              "kind": "method",
-              "name": "#buttonDisabledUpdate",
-              "privacy": "private"
+              "kind": "field",
+              "name": "variants",
+              "type": {
+                "text": "Variants"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"button\""
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "private",
+              "readonly": true
             },
             {
               "kind": "method",
-              "name": "#updateDanger",
-              "privacy": "private"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "loading"
-            },
-            {
-              "name": "disabled"
-            },
-            {
-              "name": "variants"
-            },
-            {
-              "name": "size"
-            },
-            {
-              "name": "danger"
-            },
-            {
-              "name": "value"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "type"
+              "name": "render"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
-          "tagName": "ub-button",
+          "summary": "ボタンです。",
+          "tagName": "sp-button",
           "customElement": true
         }
       ],
@@ -554,7 +236,7 @@
           "name": "variants",
           "declaration": {
             "name": "variants",
-            "module": "src/components/button/ub-button.ts"
+            "module": "src/components/button/sp-button.ts"
           }
         },
         {
@@ -562,637 +244,23 @@
           "name": "size",
           "declaration": {
             "name": "size",
-            "module": "src/components/button/ub-button.ts"
+            "module": "src/components/button/sp-button.ts"
           }
         },
         {
           "kind": "js",
-          "name": "UbButton",
+          "name": "SpButton",
           "declaration": {
-            "name": "UbButton",
-            "module": "src/components/button/ub-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "ub-button",
-          "declaration": {
-            "name": "UbButton",
-            "module": "src/components/button/ub-button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox-text.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkmark.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/sp-checkbox-text.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpCheckboxText",
-          "superclass": {
-            "name": "UbCheckboxText",
-            "module": "/src/components/checkbox/ub-checkbox-text"
-          },
-          "tagName": "sp-checkbox-text",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "value",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "name": "name",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "name": "checked",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "name": "text",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputElement",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#textElement",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleOnChange",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "UbCheckboxText",
-                "module": "src/components/checkbox/ub-checkbox-text.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpCheckboxText",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/sp-checkbox-text.ts"
+            "name": "SpButton",
+            "module": "src/components/button/sp-button.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-checkbox-text",
+          "name": "sp-button",
           "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/sp-checkbox-text.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/sp-checkbox.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpCheckbox",
-          "superclass": {
-            "name": "UbCheckbox",
-            "module": "/src/components/checkbox/ub-checkbox"
-          },
-          "tagName": "sp-checkbox",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "value",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "name": "name",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "name": "checked",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputElement",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "protected",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleOnChange",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "UbCheckbox",
-                "module": "src/components/checkbox/ub-checkbox.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpCheckbox",
-          "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/sp-checkbox.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-checkbox",
-          "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/sp-checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/ub-checkbox-text.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "UbCheckboxText",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#textElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "value"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "checked"
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate"
-            },
-            {
-              "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "protected"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback"
-            },
-            {
-              "kind": "method",
-              "name": "#handleOnChange",
-              "privacy": "private"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "value"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "checked"
-            },
-            {
-              "name": "indeterminate"
-            },
-            {
-              "name": "disabled"
-            },
-            {
-              "name": "text"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "UbCheckboxText",
-          "declaration": {
-            "name": "UbCheckboxText",
-            "module": "src/components/checkbox/ub-checkbox-text.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/ub-checkbox.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "UbCheckbox",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "value"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "checked"
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate"
-            },
-            {
-              "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "protected"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback"
-            },
-            {
-              "kind": "method",
-              "name": "#handleOnChange",
-              "privacy": "private"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "value"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "checked"
-            },
-            {
-              "name": "indeterminate"
-            },
-            {
-              "name": "disabled"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "UbCheckbox",
-          "declaration": {
-            "name": "UbCheckbox",
-            "module": "src/components/checkbox/ub-checkbox.ts"
+            "name": "SpButton",
+            "module": "src/components/button/sp-button.ts"
           }
         }
       ]
@@ -1333,38 +401,40 @@
           "members": [
             {
               "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
               "type": {
-                "text": "boolean"
+                "text": "string"
               },
-              "default": "false"
+              "default": "\"\""
             },
             {
               "kind": "field",
               "name": "#iconMap",
               "privacy": "private",
-              "type": {
-                "text": "Map<string, string>"
-              },
-              "default": "new Map()"
+              "default": "new Map<string, string>([ [\"error-fill\", errorFill], [\"information-circle\", informationCircle], [\"person\", person], [\"check-circle-fill\", checkCircleFill], [\"check-small\", checkSmall], [\"check-circle\", checkCircle], [\"chevron-down\", chevronDown], [\"chevron-down-small\", chevronDownSmall], [\"globe\", globe], ])"
             },
             {
-              "kind": "field",
-              "name": "type"
+              "kind": "method",
+              "name": "render"
             }
           ],
           "attributes": [
             {
-              "name": "type",
               "type": {
                 "text": "string"
               },
-              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。"
+              "description": "iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。",
+              "name": "type"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "アイコンです。",
           "tagName": "sp-icon",
@@ -1392,6 +462,308 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox-text.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkmark.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/sp-checkbox-text.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckboxText",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキスト付きチェックボックスです。",
+          "tagName": "sp-checkbox-text",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/sp-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox-text",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/sp-checkbox-text.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/sp-checkbox.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckbox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "チェックボックスです。",
+          "tagName": "sp-checkbox",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/sp-checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/sp-checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/label-unit/index.ts",
       "declarations": [
         {
@@ -1406,48 +778,19 @@
             },
             {
               "kind": "field",
-              "name": "#text",
-              "privacy": "private",
+              "name": "text",
               "type": {
                 "text": "string"
               },
-              "readonly": true
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "#supportText",
-              "privacy": "private",
+              "name": "supportText",
               "type": {
                 "text": "string"
               },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "field",
-              "name": "#label",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#support",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
+              "default": "\"\""
             },
             {
               "kind": "method",
@@ -1461,28 +804,38 @@
             },
             {
               "kind": "method",
-              "name": "#updateClass",
+              "name": "#labelClasses",
               "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#supportClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "attributes": [
             {
-              "name": "text",
               "type": {
                 "text": "string"
               },
-              "description": "ラベルのテキストです。文字の色は黒です。"
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
             },
             {
-              "name": "support-text",
               "type": {
                 "text": "string"
               },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。"
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
           "tagName": "sp-label-unit",
@@ -1525,39 +878,54 @@
           "members": [
             {
               "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
               "name": "language",
               "type": {
-                "text": "string | null"
+                "text": "string"
               },
-              "readonly": true
+              "default": "\"\""
             },
             {
               "kind": "field",
               "name": "brand",
               "type": {
-                "text": "string | null"
+                "text": "string"
               },
-              "readonly": true
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "#getLogoContent",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "attributes": [
             {
-              "name": "language",
               "type": {
                 "text": "string"
               },
-              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。"
+              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。",
+              "name": "brand"
             },
             {
-              "name": "brand",
               "type": {
                 "text": "string"
               },
-              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。"
+              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。",
+              "name": "language"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "スピーダのロゴです。",
           "tagName": "sp-logo",
@@ -1662,16 +1030,17 @@
           "members": [
             {
               "kind": "field",
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
           "tagName": "sp-control-menu",
@@ -1714,11 +1083,16 @@
           "members": [
             {
               "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
               "name": "text",
               "type": {
-                "text": "null | string"
+                "text": "string"
               },
-              "readonly": true
+              "default": "\"\""
             },
             {
               "kind": "field",
@@ -1726,7 +1100,7 @@
               "type": {
                 "text": "boolean"
               },
-              "readonly": true
+              "default": "false"
             },
             {
               "kind": "field",
@@ -1734,30 +1108,20 @@
               "type": {
                 "text": "boolean"
               },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "textElement",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "initialized",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
               "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "attributes": [
             {
-              "name": "text",
               "type": {
                 "text": "text"
               },
-              "description": "項目のテキスト"
+              "description": "項目のテキスト",
+              "name": "text"
             },
             {
               "type": {
@@ -1775,7 +1139,8 @@
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "メニューの項目を表すコンポーネントです。",
           "tagName": "sp-control-menu-item",
@@ -1818,6 +1183,11 @@
           "members": [
             {
               "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
               "name": "formAssociated",
               "type": {
                 "text": "boolean"
@@ -1827,69 +1197,31 @@
             },
             {
               "kind": "field",
-              "name": "type"
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "error"
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
             },
             {
               "kind": "field",
               "name": "autocomplete",
               "type": {
                 "text": "AutoFill"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder"
-            },
-            {
-              "kind": "field",
-              "name": "#disabled",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
               },
-              "readonly": true
+              "default": "\"off\""
             },
             {
               "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#input",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#errorText",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#internals",
-              "privacy": "private",
-              "type": {
-                "text": "ElementInternals"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
+              "name": "disabled",
               "type": {
                 "text": "boolean"
               },
@@ -1897,36 +1229,70 @@
             },
             {
               "kind": "field",
-              "name": "#error",
-              "privacy": "private",
+              "name": "name",
               "type": {
                 "text": "string"
               },
               "default": "\"\""
             },
             {
-              "kind": "method",
-              "name": "#updateStyle",
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
               "privacy": "private"
             },
             {
               "kind": "method",
-              "name": "#updateAttribute",
-              "privacy": "private",
+              "name": "updated",
+              "privacy": "protected",
               "parameters": [
                 {
-                  "name": "name",
+                  "name": "changedProperties",
                   "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
+                    "text": "Map<string, unknown>"
                   }
                 }
               ]
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "events": [
@@ -1937,32 +1303,11 @@
               }
             }
           ],
-          "attributes": [
-            {
-              "name": "error"
-            },
-            {
-              "name": "placeholder"
-            },
-            {
-              "name": "autocomplete"
-            },
-            {
-              "name": "disabled"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "value"
-            },
-            {
-              "name": "type"
-            }
-          ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
+          "summary": "テキストフィールドです。",
           "tagName": "sp-text-field",
           "customElement": true
         }
@@ -2003,6 +1348,11 @@
           "members": [
             {
               "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
               "name": "formAssociated",
               "type": {
                 "text": "boolean"
@@ -2012,75 +1362,39 @@
             },
             {
               "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "error"
-            },
-            {
-              "kind": "field",
-              "name": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "placeholder"
-            },
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
+              "name": "text",
               "type": {
                 "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type"
-            },
-            {
-              "kind": "field",
-              "name": "supportText"
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
               },
-              "readonly": true
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "#label",
-              "privacy": "private",
+              "name": "error",
               "type": {
-                "text": "SpLabelUnit"
-              }
+                "text": "string"
+              },
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "#input",
-              "privacy": "private",
+              "name": "placeholder",
               "type": {
-                "text": "SpTextField"
-              }
+                "text": "string"
+              },
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "#internals",
-              "privacy": "private",
+              "name": "supportText",
               "type": {
-                "text": "ElementInternals"
-              }
+                "text": "string"
+              },
+              "default": "\"\""
             },
             {
               "kind": "field",
-              "name": "#initialized",
-              "privacy": "private",
+              "name": "disabled",
               "type": {
                 "text": "boolean"
               },
@@ -2088,73 +1402,99 @@
             },
             {
               "kind": "field",
-              "name": "#inputHandler",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
               "privacy": "private"
             },
             {
               "kind": "method",
-              "name": "#updateStyle",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#updateAttribute",
-              "privacy": "private",
+              "name": "updated",
+              "privacy": "protected",
               "parameters": [
                 {
-                  "name": "name",
+                  "name": "changedProperties",
                   "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
+                    "text": "Map<string, unknown>"
                   }
                 }
               ]
+            },
+            {
+              "kind": "method",
+              "name": "#labelClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
             }
           ],
           "attributes": [
             {
-              "name": "error"
-            },
-            {
-              "name": "text",
               "type": {
                 "text": "string"
               },
-              "description": "テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。"
+              "description": "テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。",
+              "name": "text"
             },
             {
-              "name": "placeholder"
-            },
-            {
-              "name": "support-text",
               "type": {
                 "text": "string"
               },
-              "description": "テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。"
-            },
-            {
-              "name": "disabled"
-            },
-            {
-              "name": "name"
-            },
-            {
-              "name": "type"
-            },
-            {
-              "name": "value"
-            },
-            {
-              "name": "autocomplete"
+              "description": "テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。",
+              "name": "support-text"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
           "summary": "inputタグに相当するテキストフィールドです。テキストフィールドを説明するラベルがあります。",
           "tagName": "sp-text-field-unit",
@@ -2197,56 +1537,32 @@
           "members": [
             {
               "kind": "field",
-              "name": "#text",
-              "privacy": "private",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "text",
               "type": {
                 "text": "string"
               },
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "text"
-            },
-            {
-              "kind": "field",
-              "name": "#span",
-              "privacy": "private",
-              "type": {
-                "text": "HTMLSpanElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#container",
-              "privacy": "private",
-              "type": {
-                "text": "HTMLDivElement | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#initalized",
-              "privacy": "private",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
+              "default": "\"\""
             },
             {
               "kind": "method",
-              "name": "#updateClass",
+              "name": "#containerClasses",
               "privacy": "private"
-            }
-          ],
-          "attributes": [
+            },
             {
-              "name": "text"
+              "kind": "method",
+              "name": "render"
             }
           ],
           "superclass": {
-            "name": "HTMLElement"
+            "name": "LitElement",
+            "package": "lit"
           },
+          "summary": "テキストフィールドのエラーテキストコンポーネントです。",
           "tagName": "sp-text-field-error-text",
           "customElement": true
         }
