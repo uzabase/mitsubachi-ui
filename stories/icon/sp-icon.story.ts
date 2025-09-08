@@ -50,7 +50,10 @@ type Story = StoryObj<SpIcon>;
 
 export const Default: Story = {
   render: ({ type }) => {
-    return html`<sp-icon type=${type}></sp-icon>`;
+    return html`<sp-icon
+      style="display: inline-block; width: 24px; height: 24px;"
+      type=${type}
+    ></sp-icon>`;
   },
 };
 
@@ -65,7 +68,10 @@ export const AllIcons: Story = {
             <div
               style="display: flex; flex-direction: column; align-items: center;"
             >
-              <sp-icon style="margin-bottom: 8px;" type=${iconType}></sp-icon>
+              <sp-icon
+                style="margin-bottom: 8px; width: 24px; height: 24px;"
+                type=${iconType}
+              ></sp-icon>
               <div
                 style="font-size: 12px; text-align: center; word-break: break-all;"
               >
