@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -20,7 +20,10 @@
     "format:prettier": "prettier --write '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
-    "test": "vitest"
+    "test": "vitest",
+    "release:patch": "npm version patch && git push && git push --tags",
+    "release:minor": "npm version minor && git push && git push --tags",
+    "release:major": "npm version major && git push && git push --tags"
   },
   "repository": {
     "type": "git",
