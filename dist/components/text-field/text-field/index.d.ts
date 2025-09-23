@@ -1,19 +1,22 @@
-export declare class SpTextField extends HTMLElement {
+import { LitElement } from 'lit';
+/**
+ * @summary テキストフィールドです。
+ */
+export declare class SpTextField extends LitElement {
     #private;
-    static observedAttributes: string[];
+    static styles: import('lit').CSSResult[];
     static formAssociated: boolean;
-    set type(newType: string);
-    set error(text: string);
-    set autocomplete(value: AutoFill);
-    get autocomplete(): AutoFill;
-    set placeholder(value: string);
-    set disabled(value: boolean);
-    set name(value: string);
-    get value(): string;
-    set value(value: string);
+    error: string;
+    placeholder: string;
+    autocomplete: AutoFill;
+    disabled: boolean;
+    name: string;
+    value: string;
+    type: string;
+    private internals;
     constructor();
-    connectedCallback(): void;
-    attributeChangedCallback(name: "placeholder" | "disabled" | "error" | "name" | "value" | "type" | "autocomplete", oldValue: string | null, newValue: string | null): void;
+    protected updated(changedProperties: Map<string, unknown>): void;
+    render(): import('lit-html').TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

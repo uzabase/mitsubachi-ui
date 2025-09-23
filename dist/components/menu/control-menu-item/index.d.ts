@@ -1,3 +1,4 @@
+import { LitElement } from 'lit';
 /**
  * @summary メニューの項目を表すコンポーネントです。
  *
@@ -7,16 +8,12 @@
  *
  * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
  */
-export declare class SpControlMenuItem extends HTMLElement {
-    static observedAttributes: string[];
-    get text(): null | string;
-    get selected(): boolean;
-    get disabled(): boolean;
-    private textElement;
-    constructor();
-    private initialized;
-    connectedCallback(): void;
-    attributeChangedCallback(name: string, _: string | null, newValue: string | null): void;
+export declare class SpControlMenuItem extends LitElement {
+    static styles: import('lit').CSSResult[];
+    text: string;
+    selected: boolean;
+    disabled: boolean;
+    render(): import('lit-html').TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

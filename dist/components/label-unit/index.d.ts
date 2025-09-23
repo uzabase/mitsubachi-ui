@@ -1,3 +1,4 @@
+import { LitElement } from 'lit';
 /**
  * ラベルです。
  *
@@ -6,21 +7,17 @@
  * @attr {string} text - ラベルのテキストです。文字の色は黒です。
  *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
- *
  */
-export declare class SpLabelUnit extends HTMLElement {
+export declare class SpLabelUnit extends LitElement {
     #private;
-    static styles: CSSStyleSheet;
-    static observedAttributes: string[];
-    set text(text: string);
-    set supportText(value: string);
-    constructor();
-    connectedCallback(): void;
+    static styles: import('lit').CSSResult[];
+    text: string;
+    supportText: string;
     /**
      * テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。
      */
     isEmpty(): boolean;
-    attributeChangedCallback(name: string, _: string, newValue: string | null): void;
+    render(): import('lit-html').TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {
