@@ -4,15 +4,30 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
 import {
+  app,
+  bell,
   checkCircle,
   checkCircleFill,
   checkSmall,
   chevronDown,
   chevronDownSmall,
+  chevronRightSmall,
+  chevronUpSmall,
+  crossSmall,
+  download,
+  draghandle,
   errorFill,
+  exit,
+  gear,
   globe,
   informationCircle,
+  lockFill,
+  menu,
+  moreVertical,
+  openInNew,
   person,
+  questionCircle,
+  search,
 } from "./icons";
 
 /**
@@ -29,15 +44,30 @@ export class SpIcon extends LitElement {
   type = "";
 
   #iconMap = new Map<string, string>([
-    ["error-fill", errorFill],
-    ["information-circle", informationCircle],
-    ["person", person],
+    ["app", app],
+    ["bell", bell],
+    ["check-circle", checkCircle],
     ["check-circle-fill", checkCircleFill],
     ["check-small", checkSmall],
-    ["check-circle", checkCircle],
     ["chevron-down", chevronDown],
     ["chevron-down-small", chevronDownSmall],
+    ["chevron-right-small", chevronRightSmall],
+    ["chevron-up-small", chevronUpSmall],
+    ["cross-small", crossSmall],
+    ["download", download],
+    ["draghandle", draghandle],
+    ["error-fill", errorFill],
+    ["exit", exit],
+    ["gear", gear],
     ["globe", globe],
+    ["information-circle", informationCircle],
+    ["lock-fill", lockFill],
+    ["menu", menu],
+    ["more-vertical", moreVertical],
+    ["open-in-new", openInNew],
+    ["person", person],
+    ["question-circle", questionCircle],
+    ["search", search],
   ]);
 
   render() {
