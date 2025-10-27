@@ -18,8 +18,8 @@
 }
 
 .checkmark:has(:is(.input:checked, .input:indeterminate))::before {
-  background-color: #2f73d4;
-  border-color: #2f73d4;
+  background-color: #3f69f2;
+  border-color: #3f69f2;
 }
 
 .checkmark:has(.input:checked)::before {
