@@ -8,26 +8,26 @@
 }
 
 .checkmark::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 16px;
   height: 16px;
   background: #fff 50% 50% no-repeat;
-  border: 1px solid rgb(0 0 0 / 29%);
+  border: 1.5px solid rgb(0 0 0 / 29%);
   border-radius: 2px;
 }
 
 .checkmark:has(:is(.input:checked, .input:indeterminate))::before {
-  background-color: #2F73D4;
-  border-color: #2F73D4;
+  background-color: #3f69f2;
+  border-color: #3f69f2;
 }
 
 .checkmark:has(.input:checked)::before {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTAuNDk0IDMuMjU2YS44NzUuODc1IDAgMCAxIDAgMS4yMzhMNS44MjcgOS4xNmEuODc1Ljg3NSAwIDAgMS0xLjIzNyAwTDIuMjU2IDYuODI3QS44NzUuODc1IDAgMSAxIDMuNDk0IDUuNTlsMS43MTQgMS43MTQgNC4wNDgtNC4wNDhhLjg3NS44NzUgMCAwIDEgMS4yMzggMCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIuNDE0MSA2LjIwNzAzTDYuNzA3MDMgMTEuOTE0MUwzIDguMjA3MDNMNC40MTQwNiA2Ljc5Mjk3TDYuNzA3MDMgOS4wODU5NEwxMSA0Ljc5Mjk3TDEyLjQxNDEgNi4yMDcwM1oiIGZpbGw9IndoaXRlIi8+PC9zdmc+");
 }
 
 .checkmark:has(.input:indeterminate)::before {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIyIiBmaWxsPSJub25lIj48cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZiIgcng9IjEiLz48L3N2Zz4=");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgN1Y5SDRWN0gxMloiIGZpbGw9IndoaXRlIi8+PC9zdmc+");
 }
 
 .checkmark:has(.input:disabled) {
@@ -35,7 +35,7 @@
 }
 
 .checkmark:has(:is(.input:disabled))::before {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   border-color: rgb(0 0 0 / 5%);
 }
 
