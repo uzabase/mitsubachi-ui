@@ -1,0 +1,130 @@
+:host {
+  display: inline-block;
+}
+
+.base {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.radio {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  padding-block: 4px;
+  padding-inline: 4px;
+}
+
+.radio::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: #ffffff 50% 50% no-repeat;
+  border: 1px solid #cbcbcb;
+  border-radius: 50%;
+}
+
+:host([disabled]) .radio::before {
+  border: 1px solid rgb(0 0 0 / 7%);
+}
+
+.radio:has(.input:checked)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #3f69f2;
+  border-radius: 50%;
+}
+
+:host([disabled]) .radio:has(.input:checked)::after {
+  background-color: rgb(0 0 0 / 5%);
+}
+
+.radio:has(.input:focus-visible)::before {
+  outline: auto;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 3px #e2e5f5;
+}
+
+.radio:has(.input:checked)::before {
+  background-color: #ffffff;
+  border-color: #3f69f2;
+  border-width: 1.5px;
+}
+
+:host([disabled]) .radio:has(.input:checked)::before {
+  border-color: rgb(0 0 0 / 7%);
+}
+
+:host(:not([disabled])) .base:hover .radio::before {
+  border-color: rgb(0 0 0 / 29%);
+  outline: 4px solid rgb(0 0 0 / 4%);
+}
+
+.base:hover .radio:has(.input:checked)::before {
+  border-color: #315ce8;
+}
+
+:host([disabled]) .base:hover .radio:has(.input:checked)::before {
+  border-color: rgb(0 0 0 / 7%);
+}
+
+.base:hover .radio:has(.input:checked)::after {
+  background-color: #315ce8;
+}
+
+:host([disabled]) .base:hover .radio:has(.input:checked)::after {
+  background-color: rgb(0 0 0 / 5%);
+}
+
+:host(:not([disabled])) .base:active .radio::before,
+:host(:not([disabled])) .base:hover:active .radio::before {
+  border-color: 4px solid rgb(0 0 0 / 29%);
+  outline: 4px solid rgb(0 0 0 / 7%);
+}
+
+.base:active .radio:has(.input:checked)::before {
+  border-color: #214dde;
+}
+
+.base:active .radio:has(.input:checked)::after {
+  background-color: #214dde;
+}
+
+.text {
+  color: var(--color-semantic-text-regular);
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  padding-block: 3px;
+  padding-inline: 4px;
+}
+
+:host([disabled]) .text {
+  color: rgb(0 0 0 / 35%);
+}
+
+.input,
+.radio,
+.text {
+  cursor: pointer;
+}
+
+:host([disabled]) :is(.input, .radio, .text) {
+  cursor: not-allowed;
+}
