@@ -21,6 +21,11 @@ export class SpRadioButtonText extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
+  constructor() {
+    super();
+    this.setAttribute("role", "radio");
+  }
+
   render() {
     return html`
       <div class="base">
