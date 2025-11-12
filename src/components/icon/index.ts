@@ -1,34 +1,13 @@
 import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
-import {
-  app,
-  bell,
-  checkCircle,
-  checkCircleFill,
-  checkSmall,
-  chevronDown,
-  chevronDownSmall,
-  chevronRightSmall,
-  chevronUpSmall,
-  crossSmall,
-  download,
-  draghandle,
-  errorFill,
-  exit,
-  gear,
-  globe,
-  informationCircle,
-  lockFill,
-  menu,
-  moreVertical,
-  openInNew,
-  person,
-  questionCircle,
-  search,
-} from "./icons";
+import { iconPaths, type IconType, iconTypes } from "./icons";
+
+function isIconType(type: string): type is IconType {
+  return (iconTypes as readonly string[]).includes(type);
+}
 
 /**
  * アイコンです。
@@ -43,37 +22,11 @@ export class SpIcon extends LitElement {
   @property({ type: String, reflect: true })
   type = "";
 
-  #iconMap = new Map<string, string>([
-    ["app", app],
-    ["bell", bell],
-    ["check-circle", checkCircle],
-    ["check-circle-fill", checkCircleFill],
-    ["check-small", checkSmall],
-    ["chevron-down", chevronDown],
-    ["chevron-down-small", chevronDownSmall],
-    ["chevron-right-small", chevronRightSmall],
-    ["chevron-up-small", chevronUpSmall],
-    ["cross-small", crossSmall],
-    ["download", download],
-    ["draghandle", draghandle],
-    ["error-fill", errorFill],
-    ["exit", exit],
-    ["gear", gear],
-    ["globe", globe],
-    ["information-circle", informationCircle],
-    ["lock-fill", lockFill],
-    ["menu", menu],
-    ["more-vertical", moreVertical],
-    ["open-in-new", openInNew],
-    ["person", person],
-    ["question-circle", questionCircle],
-    ["search", search],
-  ]);
-
   render() {
-    const icon = this.#iconMap.get(this.type);
-    if (icon) {
-      return html`${unsafeHTML(icon)}`;
+    if (isIconType(this.type)) {
+      return html`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        ${unsafeSVG(iconPaths[this.type])}
+      </svg>`;
     }
     return html``;
   }

@@ -4,41 +4,15 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
 import { type SpIcon } from "../../src/components/icon";
-
-const allIconTypes = [
-  "app",
-  "bell",
-  "check-circle",
-  "check-circle-fill",
-  "check-small",
-  "chevron-down",
-  "chevron-down-small",
-  "chevron-right-small",
-  "chevron-up-small",
-  "cross-small",
-  "download",
-  "draghandle",
-  "error-fill",
-  "exit",
-  "gear",
-  "globe",
-  "information-circle",
-  "lock-fill",
-  "menu",
-  "more-vertical",
-  "open-in-new",
-  "person",
-  "question-circle",
-  "search",
-];
+import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
   args: {
-    type: "information-circle",
+    type: iconTypes[0],
   },
   argTypes: {
     type: {
-      options: allIconTypes,
+      options: iconTypes,
       control: { type: "select" },
     },
   },
@@ -63,7 +37,7 @@ export const AllIcons: Story = {
       <div
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 24px; padding: 16px;"
       >
-        ${allIconTypes.map(
+        ${iconTypes.map(
           (iconType) => html`
             <div
               style="display: flex; flex-direction: column; align-items: center;"
