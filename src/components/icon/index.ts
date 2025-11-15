@@ -24,7 +24,11 @@ export class SpIcon extends LitElement {
 
   render() {
     if (isIconType(this.type)) {
-      return html`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      return html`<svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
         ${unsafeSVG(iconPaths[this.type])}
       </svg>`;
     }
