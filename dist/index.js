@@ -3,11 +3,6 @@ var w1 = (i) => {
 };
 var a1 = (i, t, e) => t.has(i) || w1("Cannot " + e);
 var A1 = (i, t, e) => (a1(i, t, "read from private field"), e ? e.call(i) : t.get(i)), M = (i, t, e) => t.has(i) ? w1("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(i) : t.set(i, e), L1 = (i, t, e, r) => (a1(i, t, "write to private field"), r ? r.call(i, e) : t.set(i, e), e), v = (i, t, e) => (a1(i, t, "access private method"), e);
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const Y = globalThis, d1 = Y.ShadowRoot && (Y.ShadyCSS === void 0 || Y.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, p1 = Symbol(), M1 = /* @__PURE__ */ new WeakMap();
 let j1 = class {
   constructor(t, e, r) {
@@ -45,11 +40,6 @@ const y = (i) => new j1(typeof i == "string" ? i : i + "", void 0, p1), E1 = (i,
   for (const r of t.cssRules) e += r.cssText;
   return y(e);
 })(i) : i;
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const { is: at, defineProperty: lt, getOwnPropertyDescriptor: ht, getOwnPropertyNames: ct, getOwnPropertySymbols: dt, getPrototypeOf: pt } = Object, o1 = globalThis, S1 = o1.trustedTypes, Ct = S1 ? S1.emptyScript : "", ut = o1.reactiveElementPolyfillSupport, B = (i, t) => i, G = { toAttribute(i, t) {
   switch (t) {
     case Boolean:
@@ -262,11 +252,6 @@ let k = class extends HTMLElement {
   }
 };
 k.elementStyles = [], k.shadowRootOptions = { mode: "open" }, k[B("elementProperties")] = /* @__PURE__ */ new Map(), k[B("finalized")] = /* @__PURE__ */ new Map(), ut?.({ ReactiveElement: k }), (o1.reactiveElementVersions ??= []).push("2.1.1");
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const u1 = globalThis, Q = u1.trustedTypes, k1 = Q ? Q.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, R1 = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, D1 = "?" + w, ft = `<${D1}>`, S = document, j = () => S.createComment(""), R = (i) => i === null || typeof i != "object" && typeof i != "function", f1 = Array.isArray, gt = (i) => f1(i) || typeof i?.[Symbol.iterator] == "function", l1 = `[ 	
 \f\r]`, N = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, P1 = /-->/g, z1 = />/g, E = RegExp(`>|${l1}(?:([^\\s"'>=/]+)(${l1}*=${l1}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), O1 = /'/g, T1 = /"/g, I1 = /^(?:script|style|textarea|title)$/i, mt = (i) => (t, ...e) => ({ _$litType$: i, strings: t, values: e }), g = mt(1), A = Symbol.for("lit-noChange"), d = Symbol.for("lit-nothing"), U1 = /* @__PURE__ */ new WeakMap(), V = S.createTreeWalker(S, 129);
@@ -492,11 +477,6 @@ const wt = (i, t, e) => {
   }
   return s._$AI(i), s;
 };
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const g1 = globalThis;
 let u = class extends k {
   constructor() {
@@ -524,11 +504,6 @@ u._$litElement$ = !0, u.finalized = !0, g1.litElementHydrateSupport?.({ LitEleme
 const At = g1.litElementPolyfillSupport;
 At?.({ LitElement: u });
 (g1.litElementVersions ??= []).push("4.2.1");
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const Lt = { attribute: !0, type: String, converter: G, reflect: !1, hasChanged: C1 }, Mt = (i = Lt, t, e) => {
   const { kind: r, metadata: s } = e;
   let o = globalThis.litPropertyMetadata.get(s);
@@ -640,11 +615,6 @@ L([
   l({ type: String })
 ], m.prototype, "type");
 customElements.get("sp-button") || customElements.define("sp-button", m);
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const W1 = { ATTRIBUTE: 1, CHILD: 2 }, J1 = (i) => (...t) => ({ _$litDirective$: i, values: t });
 class F1 {
   constructor(t) {
@@ -662,11 +632,6 @@ class F1 {
     return this.render(...e);
   }
 }
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 let h1 = class extends F1 {
   constructor(t) {
     if (super(t), this.it = d, t.type !== W1.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
@@ -715,11 +680,6 @@ qt([
   l({ type: String, reflect: !0 })
 ], X.prototype, "type");
 customElements.get("sp-icon") || customElements.define("sp-icon", X);
-/**
- * @license
- * Copyright 2018 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
 const I = J1(class extends F1 {
   constructor(i) {
     if (super(i), i.type !== W1.ATTRIBUTE || i.name !== "class" || i.strings?.length > 2) throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
