@@ -1,7 +1,7 @@
 import "../../src/components/menu/control-menu-item";
 
-import { page } from "@vitest/browser/context";
 import { describe, expect, test } from "vitest";
+import { page } from "vitest/browser";
 
 describe("sp-control-menu-item", async () => {
   test("text属性の値が表示される", async () => {
