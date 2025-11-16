@@ -1,0 +1,53 @@
+:host {
+  --size-medium: 12.5px;
+  --size-large: 15px;
+  --size-x-large: 17.5px;
+  --size-2x-large: 20px;
+  --size-3x-large: 40px;
+
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.loading {
+  position: relative;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+.loading sp-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.size-medium {
+  width: var(--size-medium);
+  height: var(--size-medium);
+}
+
+.size-large {
+  width: var(--size-large);
+  height: var(--size-large);
+}
+
+.size-x-large {
+  width: var(--size-x-large);
+  height: var(--size-x-large);
+}
+
+.size-2x-large {
+  width: var(--size-2x-large);
+  height: var(--size-2x-large);
+}
+
+.size-3x-large {
+  width: var(--size-3x-large);
+  height: var(--size-3x-large);
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
