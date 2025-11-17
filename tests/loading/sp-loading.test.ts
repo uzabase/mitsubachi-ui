@@ -35,7 +35,7 @@ describe("sp-loading", () => {
     });
   });
 
-  describe("サイズ属性", () => {
+  describe("size属性", () => {
     test.each([
       ["medium", "size-medium"],
       ["large", "size-large"],
