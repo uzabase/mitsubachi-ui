@@ -21,7 +21,7 @@ type Size = (typeof size)[number];
 export class SpLoading extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   ai = false;
 
   @property({ type: String })
@@ -36,13 +36,7 @@ export class SpLoading extends LitElement {
       "3xLarge": "size-3x-large",
     };
 
-    return [
-      "loading",
-      this.ai ? "variant-ai" : "variant-normal",
-      sizeClassMap[this.size],
-    ]
-      .filter(Boolean)
-      .join(" ");
+    return ["loading", sizeClassMap[this.size]].filter(Boolean).join(" ");
   }
 
   private get iconType() {
