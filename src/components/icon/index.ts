@@ -1,8 +1,9 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
+import iconStyle from "./icon.css?inline";
 import { iconPaths, type IconType, iconTypes } from "./icons";
 
 function isIconType(type: string): type is IconType {
@@ -17,7 +18,7 @@ function isIconType(type: string): type is IconType {
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
 export class SpIcon extends LitElement {
-  static styles = makeStyles();
+  static styles = makeStyles(unsafeCSS(iconStyle));
 
   @property({ type: String, reflect: true })
   type = "";
@@ -25,6 +26,7 @@ export class SpIcon extends LitElement {
   render() {
     if (isIconType(this.type)) {
       return html`<svg
+        class="icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         ?aria-hidden=${this.type === "error-fill"}
