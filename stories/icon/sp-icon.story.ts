@@ -4,24 +4,15 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
 import { type SpIcon } from "../../src/components/icon";
+import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
   args: {
-    type: "information-circle",
+    type: iconTypes[0],
   },
   argTypes: {
     type: {
-      options: [
-        "information-circle",
-        "error-fill",
-        "person",
-        "check-circle-fill",
-        "check-circle",
-        "check-small",
-        "chevron-down",
-        "chevron-down-small",
-        "globe",
-      ],
+      options: iconTypes,
       control: { type: "select" },
     },
   },
@@ -37,5 +28,30 @@ export const Default: Story = {
       style="display: inline-block; width: 24px; height: 24px;"
       type=${type}
     ></sp-icon>`;
+  },
+};
+
+export const AllIcons: Story = {
+  render: () => {
+    return html`
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 24px; padding: 16px;"
+      >
+        ${iconTypes.map(
+          (iconType) => html`
+            <div
+              style="display: flex; flex-direction: column; align-items: center;"
+            >
+              <sp-icon style="margin-bottom: 8px;" type=${iconType}></sp-icon>
+              <div
+                style="font-size: 12px; text-align: center; word-break: break-all;"
+              >
+                ${iconType}
+              </div>
+            </div>
+          `,
+        )}
+      </div>
+    `;
   },
 };
