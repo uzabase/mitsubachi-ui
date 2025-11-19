@@ -1,7 +1,7 @@
 import "../src/components/label-unit";
 
-import { page } from "@vitest/browser/context";
 import { describe, expect, test } from "vitest";
+import { page } from "vitest/browser";
 
 describe("sp-label-unit", () => {
   test("空文字でないtext属性の値は表示される", async () => {
