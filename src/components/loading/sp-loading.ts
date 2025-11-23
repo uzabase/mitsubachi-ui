@@ -36,19 +36,17 @@ export class SpLoading extends LitElement {
       "3xLarge": "size-3x-large",
     };
 
-    return ["loading", sizeClassMap[this.size]].filter(Boolean).join(" ");
-  }
-
-  private get iconType() {
-    return this.ai ? "loading-ai" : "loading-normal";
+    return [
+      "loading",
+      this.ai ? "variant-ai" : "variant-normal",
+      sizeClassMap[this.size],
+    ]
+      .filter(Boolean)
+      .join(" ");
   }
 
   render() {
-    return html`
-      <span class="${this.loadingClasses}" role="status">
-        <sp-icon type="${this.iconType}"></sp-icon>
-      </span>
-    `;
+    return html` <span class="${this.loadingClasses}" role="status"></span> `;
   }
 }
 

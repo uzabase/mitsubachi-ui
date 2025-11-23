@@ -8,8 +8,8 @@ function getSpLoading(): SpLoading {
   return document.querySelector("sp-loading") as SpLoading;
 }
 
-function getSpIcon(): Element | null | undefined {
-  return getSpLoading().shadowRoot?.querySelector("sp-icon");
+function getInternalElement(): Element | null | undefined {
+  return getSpLoading().shadowRoot?.querySelector("span");
 }
 
 describe("sp-loading", () => {
@@ -22,16 +22,16 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const spIcon = getSpIcon();
-      expect(spIcon?.getAttribute("type")).toBe("loading-normal");
+      const element = getInternalElement();
+      expect(element?.classList.contains("variant-normal")).toBe(true);
     });
 
     test("ai属性を指定した場合、aiタイプのloadingアイコンが表示される", async () => {
       document.body.innerHTML = "<sp-loading ai></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const spIcon = getSpIcon();
-      expect(spIcon?.getAttribute("type")).toBe("loading-ai");
+      const element = getInternalElement();
+      expect(element?.classList.contains("variant-ai")).toBe(true);
     });
   });
 
@@ -48,10 +48,9 @@ describe("sp-loading", () => {
         document.body.innerHTML = `<sp-loading size="${size}"></sp-loading>`;
         await customElements.whenDefined("sp-loading");
 
-        const spLoading = getSpLoading();
-        const span = spLoading.shadowRoot?.querySelector("span");
+        const element = getInternalElement();
 
-        expect(span?.classList.contains(expectedClass)).toBe(true);
+        expect(element?.classList.contains(expectedClass)).toBe(true);
       },
     );
 
@@ -59,8 +58,8 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const spLoading = getSpLoading();
-      expect(spLoading.size).toBe("medium");
+      const element = getInternalElement();
+      expect(element?.classList.contains("size-medium")).toBe(true);
     });
   });
 
@@ -69,10 +68,8 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const spLoading = getSpLoading();
-      const span = spLoading.shadowRoot?.querySelector("span");
-
-      expect(span?.getAttribute("role")).toBe("status");
+      const element = getInternalElement();
+      expect(element?.getAttribute("role")).toBe("status");
     });
   });
 });

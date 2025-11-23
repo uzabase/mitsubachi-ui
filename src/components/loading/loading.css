@@ -4,47 +4,54 @@
   --size-x-large: 17.5px;
   --size-2x-large: 20px;
   --size-3x-large: 40px;
+  --border-size-ratio: 1/10;
+  --ui-semantic-object-regular-default: rgb(0 0 0 / 84%);
+  --neutral-neutral-20-alpha: rgb(0 0 0 / 7%);
+  --background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;
+  --background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;
 
-  display: inline-block;
+  display: inline-flex;
   flex-shrink: 0;
 }
 
-.loading {
-  position: relative;
-  display: inline-block;
-  animation: spin 1s linear infinite;
-}
-
-.loading sp-icon {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .size-medium {
-  width: var(--size-medium);
-  height: var(--size-medium);
+  --size: var(--size-medium);
 }
 
 .size-large {
-  width: var(--size-large);
-  height: var(--size-large);
+  --size: var(--size-large);
 }
 
 .size-x-large {
-  width: var(--size-x-large);
-  height: var(--size-x-large);
+  --size: var(--size-x-large);
 }
 
 .size-2x-large {
-  width: var(--size-2x-large);
-  height: var(--size-2x-large);
+  --size: var(--size-2x-large);
 }
 
 .size-3x-large {
-  width: var(--size-3x-large);
-  height: var(--size-3x-large);
+  --size: var(--size-3x-large);
 }
+
+.loading {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  border: calc(var(--size) * var(--border-size-ratio)) solid transparent;
+}
+
+.variant-ai {
+  background: var(--background-ai);
+}
+
+.variant-normal {
+  background: var(--background-normal);
+}
+
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
