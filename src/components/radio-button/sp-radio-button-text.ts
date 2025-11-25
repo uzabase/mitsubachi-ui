@@ -9,6 +9,11 @@ export class SpRadioButtonText extends LitElement {
 
   static formAssociated = true;
 
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
   @property({ type: String, reflect: true })
   value = "";
 
