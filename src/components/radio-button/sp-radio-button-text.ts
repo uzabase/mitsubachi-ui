@@ -1,11 +1,11 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
-import radioButtonTextStyle from "./radio-button-text.css?inline";
+import styles from "./radio-button-text.styles";
 
 export class SpRadioButtonText extends LitElement {
-  static styles = makeStyles(unsafeCSS(radioButtonTextStyle));
+  static styles = makeStyles(styles);
 
   static formAssociated = true;
 
