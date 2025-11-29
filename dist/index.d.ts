@@ -1,6 +1,7 @@
 export { SpButton } from './components/button/sp-button';
 export { SpIcon } from './components/icon';
 export { SpLabelUnit } from './components/label-unit';
+export { SpLoading } from './components/loading/sp-loading';
 export { SpLogo } from './components/logo';
 export { SpControlMenu } from './components/menu/control-menu';
 export { SpControlMenuItem } from './components/menu/control-menu-item';
