@@ -29,7 +29,7 @@ export class SpIcon extends LitElement {
         class="icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
-        ?aria-hidden=${this.type === "error-fill"}
+        aria-hidden="true"
       >
         ${unsafeSVG(iconPaths[this.type])}
       </svg>`;
