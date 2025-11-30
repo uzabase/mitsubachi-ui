@@ -1,41 +1,64 @@
 import "../../src/components/radio-button/sp-radio-button-text";
 
+import { screen } from "shadow-dom-testing-library";
 import { describe, expect, test } from "vitest";
 
 import type { SpRadioButtonText } from "../../src/components/radio-button/sp-radio-button-text";
 
+function getSpRadioButton() {
+  return document.querySelector("sp-radio-button-text") as SpRadioButtonText;
+}
+
+function getInput() {
+  return screen.getByShadowRole("radio") as HTMLInputElement;
+}
+
+function getRadioDecoration() {
+  const spRadioButton = getSpRadioButton();
+  const radioDecoration = spRadioButton.shadowRoot!.querySelector(".radio");
+  if (!radioDecoration) {
+    throw new Error("Radio decoration not found");
+  }
+  return radioDecoration as HTMLSpanElement;
+}
+
+function getTextById(id: string) {
+  const spRadioButton = getSpRadioButton();
+  const textElement = spRadioButton.shadowRoot!.getElementById(id);
+  if (!textElement) {
+    throw new Error("Text element not found");
+  }
+  return textElement as HTMLSpanElement;
+}
+
 describe("sp-radio-button-text", () => {
-  const getSpRadioButton = () =>
-    document.querySelector("sp-radio-button-text") as SpRadioButtonText & {
-      value: string;
-      name: string;
-      checked: boolean;
-      disabled: boolean;
-    };
-
-  const getInput = () =>
-    getSpRadioButton().shadowRoot?.querySelector("input") as HTMLInputElement;
-
   describe("value属性", () => {
     test("value属性を設定すると、inputのvalue属性にも反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text value="option1"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().value).toBe("option1");
+
+      const input = getInput();
+      expect(input.value).toBe("option1");
     });
 
     test("value属性を更新すると、inputのvalue属性にも反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text value="option1"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.setAttribute("value", "option2");
-      await sut.updateComplete;
-      expect(getInput().value).toBe("option2");
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.setAttribute("value", "option2");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.value).toBe("option2");
     });
 
     test("value属性を設定しない場合、inputのvalue属性は空文字になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().value).toBe("");
+
+      const input = getInput();
+      expect(input.value).toBe("");
     });
   });
 
@@ -43,22 +66,29 @@ describe("sp-radio-button-text", () => {
     test("name属性を設定すると、inputのname属性にも反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text name="group1"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().name).toBe("group1");
+
+      const input = getInput();
+      expect(input.name).toBe("group1");
     });
 
     test("name属性を更新すると、inputのname属性にも反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text name="group1"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.setAttribute("name", "group2");
-      await sut.updateComplete;
-      expect(getInput().name).toBe("group2");
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.setAttribute("name", "group2");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.name).toBe("group2");
     });
 
     test("name属性を設定しない場合、inputのname属性は空文字になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().name).toBe("");
+
+      const input = getInput();
+      expect(input.name).toBe("");
     });
   });
 
@@ -66,37 +96,49 @@ describe("sp-radio-button-text", () => {
     test("checked属性にtrueを設定すると、inputがチェックされた状態になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text checked="true"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().checked).toBe(true);
+
+      const input = getInput();
+      expect(input.checked).toBe(true);
     });
 
     test("checked属性に空文字列を設定すると、inputがチェックされた状態になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text checked></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().checked).toBe(true);
+
+      const input = getInput();
+      expect(input.checked).toBe(true);
     });
 
     test("checked属性を削除すると、inputがチェックされていない状態になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text checked></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.removeAttribute("checked");
-      await sut.updateComplete;
-      expect(getInput().checked).toBe(false);
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.removeAttribute("checked");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.checked).toBe(false);
     });
 
     test("checked属性を更新（削除）すると、inputには更新後の状態が反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text checked="true"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.removeAttribute("checked");
-      await sut.updateComplete;
-      expect(getInput().checked).toBe(false);
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.removeAttribute("checked");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.checked).toBe(false);
     });
 
     test("checked属性を設定しない場合、inputがチェックされていない状態になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().checked).toBe(false);
+
+      const input = getInput();
+      expect(input.checked).toBe(false);
     });
   });
 
@@ -104,44 +146,58 @@ describe("sp-radio-button-text", () => {
     test("disabled属性にtrueを設定すると、inputが無効になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text disabled="true"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().disabled).toBe(true);
+
+      const input = getInput();
+      expect(input.disabled).toBe(true);
     });
 
     test("disabled属性に空文字列を設定すると、inputが無効になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text disabled></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().disabled).toBe(true);
+
+      const input = getInput();
+      expect(input.disabled).toBe(true);
     });
 
     test("disabled属性を削除すると、inputが有効になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text disabled></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.removeAttribute("disabled");
-      await sut.updateComplete;
-      expect(getInput().disabled).toBe(false);
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.removeAttribute("disabled");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.disabled).toBe(false);
     });
 
     test("disabled属性を更新（削除）すると、inputには更新後の状態が反映される", async () => {
       document.body.innerHTML = `<sp-radio-button-text disabled="true"></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      const sut = getSpRadioButton();
-      sut.removeAttribute("disabled");
-      await sut.updateComplete;
-      expect(getInput().disabled).toBe(false);
+
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.removeAttribute("disabled");
+      await spRadioButton.updateComplete;
+
+      const input = getInput();
+      expect(input.disabled).toBe(false);
     });
 
     test("disabled属性を設定しない場合、inputが有効になる", async () => {
       document.body.innerHTML = `<sp-radio-button-text></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
-      expect(getInput().disabled).toBe(false);
+
+      const input = getInput();
+      expect(input.disabled).toBe(false);
     });
   });
 
   test("slotに渡したテキストが表示される", async () => {
     document.body.innerHTML = `<sp-radio-button-text>Radio Label</sp-radio-button-text>`;
     await customElements.whenDefined("sp-radio-button-text");
-    expect(getSpRadioButton().textContent?.trim()).toBe("Radio Label");
+
+    const spRadioButton = getSpRadioButton();
+    expect(spRadioButton.textContent!.trim()).toBe("Radio Label");
   });
 
   describe("アクセシビリティ", () => {
@@ -149,12 +205,8 @@ describe("sp-radio-button-text", () => {
       document.body.innerHTML = `<sp-radio-button-text>Accessible Label</sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
 
-      const sut = getSpRadioButton();
-      const shadowRoot = sut.shadowRoot;
-      const input = shadowRoot?.querySelector("input");
-
-      const labelledById = input?.getAttribute("aria-labelledby");
-      const textElement = shadowRoot?.getElementById(labelledById!);
+      const labelledById = getInput().getAttribute("aria-labelledby");
+      const textElement = getTextById(labelledById!);
 
       expect(textElement).toBeTruthy();
     });
@@ -163,24 +215,18 @@ describe("sp-radio-button-text", () => {
       document.body.innerHTML = `<sp-radio-button-text>Hidden Text</sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
 
-      const sut = getSpRadioButton();
-      const shadowRoot = sut.shadowRoot;
-      const input = shadowRoot?.querySelector("input");
+      const labelledById = getInput().getAttribute("aria-labelledby");
+      const textElement = getTextById(labelledById!);
 
-      const labelledById = input?.getAttribute("aria-labelledby");
-      const textElement = shadowRoot?.getElementById(labelledById!);
-
-      expect(textElement?.getAttribute("aria-hidden")).toBe("true");
+      expect(textElement.getAttribute("aria-hidden")).toBe("true");
     });
 
     test("ラジオボタンの装飾用の要素はスクリーンリーダーで読み上げられない", async () => {
       document.body.innerHTML = `<sp-radio-button-text></sp-radio-button-text>`;
       await customElements.whenDefined("sp-radio-button-text");
 
-      const radioDecoration =
-        getSpRadioButton().shadowRoot?.querySelector(".radio");
-
-      expect(radioDecoration?.getAttribute("aria-hidden")).toBe("true");
+      const radioDecoration = getRadioDecoration();
+      expect(radioDecoration.getAttribute("aria-hidden")).toBe("true");
     });
   });
 
@@ -206,14 +252,14 @@ describe("sp-radio-button-text", () => {
       `;
       await customElements.whenDefined("sp-radio-button-text");
 
-      const sut = getSpRadioButton();
-      sut.checked = true;
-      expect(sut.checked).toBe(true);
+      const spRadioButton = getSpRadioButton();
+      spRadioButton.checked = true;
+      expect(spRadioButton.checked).toBe(true);
 
-      const form = document.querySelector("form");
-      form!.reset();
+      const form = document.querySelector("form") as HTMLFormElement;
+      form.reset();
 
-      expect(sut.checked).toBe(false);
+      expect(spRadioButton.checked).toBe(false);
     });
   });
 });
