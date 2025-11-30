@@ -7,8 +7,6 @@ import styles from "./radio-button-text.styles";
 export class SpRadioButtonText extends LitElement {
   static styles = makeStyles(styles);
 
-  static formAssociated = true;
-
   @property({ type: String, reflect: true })
   value = "";
 
@@ -22,6 +20,25 @@ export class SpRadioButtonText extends LitElement {
   disabled = false;
 
   #uniqueId = `radio-${Math.random().toString(36).slice(2)}`;
+
+  static formAssociated = true;
+  #internals: ElementInternals;
+
+  constructor() {
+    super();
+    this.#internals = this.attachInternals();
+  }
+
+  protected updated(changedProperties: Map<string, unknown>) {
+    super.updated(changedProperties);
+    if (changedProperties.has("checked")) {
+      this.#internals.setFormValue(this.checked ? this.value : null);
+    }
+  }
+
+  formResetCallback() {
+    this.checked = this.hasAttribute("checked");
+  }
 
   render() {
     return html`
