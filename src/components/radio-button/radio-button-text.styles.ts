@@ -24,6 +24,7 @@ export default css`
     display: inline-flex;
     align-items: flex-start;
     justify-content: flex-start;
+    position: relative;
   }
 
   .input {
@@ -34,6 +35,7 @@ export default css`
     width: 100%;
     height: 100%;
     cursor: pointer;
+    z-index: 1;
   }
 
   .radio {
@@ -65,7 +67,7 @@ export default css`
     cursor: pointer;
   }
 
-  .radio:has(.input:checked)::after {
+  .input:checked + .radio::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -77,7 +79,7 @@ export default css`
     border-radius: 50%;
   }
 
-  .radio:has(.input:checked)::before {
+  .input:checked + .radio::before {
     background-color: var(--color-semantic-surface-regular-default);
     border-color: var(--color-semantic-border-checked-default);
     border-width: 1.5px;
@@ -95,11 +97,11 @@ export default css`
     cursor: not-allowed;
   }
 
-  :host([disabled]) .radio:has(.input:checked)::after {
+  :host([disabled]) .input:checked + .radio::after {
     background-color: var(--color-semantic-surface-disabled);
   }
 
-  :host(:not([disabled])) .radio:has(.input:focus-visible)::before {
+  :host(:not([disabled])) .input:focus-visible + .radio::before {
     outline: none;
     box-shadow:
       0 0 0 2px var(--color-semantic-surface-regular-default),
@@ -110,11 +112,11 @@ export default css`
     outline: 3px solid var(--color-semantic-surface-button-secondary-hover);
   }
 
-  :host(:not([disabled])) .base:hover .radio:has(.input:checked)::before {
+  :host(:not([disabled])) .base:hover .input:checked + .radio::before {
     border-color: var(--color-semantic-border-checked-hover);
   }
 
-  :host(:not([disabled])) .base:hover .radio:has(.input:checked)::after {
+  :host(:not([disabled])) .base:hover .input:checked + .radio::after {
     background-color: var(--color-semantic-surface-checked-hover);
   }
 
@@ -122,11 +124,11 @@ export default css`
     outline: 3px solid var(--color-semantic-surface-button-secondary-active);
   }
 
-  :host(:not([disabled])) .base:active .radio:has(.input:checked)::before {
+  :host(:not([disabled])) .base:active .input:checked + .radio::before {
     border-color: var(--color-semantic-border-checked-active);
   }
 
-  :host(:not([disabled])) .base:active .radio:has(.input:checked)::after {
+  :host(:not([disabled])) .base:active .input:checked + .radio::after {
     background-color: var(--color-semantic-surface-checked-active);
   }
 `;

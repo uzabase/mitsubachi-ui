@@ -9,11 +9,6 @@ export class SpRadioButtonText extends LitElement {
 
   static formAssociated = true;
 
-  static shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
-    delegatesFocus: true,
-  };
-
   @property({ type: String, reflect: true })
   value = "";
 
@@ -26,28 +21,24 @@ export class SpRadioButtonText extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
-  constructor() {
-    super();
-    this.setAttribute("role", "radio");
-  }
+  #uniqueId = `radio-${Math.random().toString(36).slice(2)}`;
 
   render() {
     return html`
       <div class="base">
-        <span class="radio">
-          <input
-            type="radio"
-            class="input"
-            id="radio-button-text"
-            .value=${this.value}
-            .name=${this.name}
-            .checked=${this.checked}
-            .disabled=${this.disabled}
-          />
-        </span>
-        <label for="radio-button-text" class="text">
+        <input
+          type="radio"
+          class="input"
+          aria-labelledby="${this.#uniqueId}"
+          .value=${this.value}
+          .name=${this.name}
+          .checked=${this.checked}
+          .disabled=${this.disabled}
+        />
+        <span class="radio" aria-hidden="true"></span>
+        <span class="text" id="${this.#uniqueId}" aria-hidden="true">
           <slot></slot>
-        </label>
+        </span>
       </div>
     `;
   }
