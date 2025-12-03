@@ -1,19 +1,14 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
-import {
-  checkCircle,
-  checkCircleFill,
-  checkSmall,
-  chevronDown,
-  chevronDownSmall,
-  errorFill,
-  globe,
-  informationCircle,
-  person,
-} from "./icons";
+import iconStyle from "./icon.css?inline";
+import { iconPaths, type IconType, iconTypes } from "./icons";
+
+function isIconType(type: string): type is IconType {
+  return (iconTypes as readonly string[]).includes(type);
+}
 
 /**
  * アイコンです。
@@ -23,27 +18,21 @@ import {
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
 export class SpIcon extends LitElement {
-  static styles = makeStyles();
+  static styles = makeStyles(unsafeCSS(iconStyle));
 
   @property({ type: String, reflect: true })
   type = "";
 
-  #iconMap = new Map<string, string>([
-    ["error-fill", errorFill],
-    ["information-circle", informationCircle],
-    ["person", person],
-    ["check-circle-fill", checkCircleFill],
-    ["check-small", checkSmall],
-    ["check-circle", checkCircle],
-    ["chevron-down", chevronDown],
-    ["chevron-down-small", chevronDownSmall],
-    ["globe", globe],
-  ]);
-
   render() {
-    const icon = this.#iconMap.get(this.type);
-    if (icon) {
-      return html`${unsafeHTML(icon)}`;
+    if (isIconType(this.type)) {
+      return html`<svg
+        class="icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        ${unsafeSVG(iconPaths[this.type])}
+      </svg>`;
     }
     return html``;
   }

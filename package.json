@@ -21,6 +21,7 @@
     "format:prettier:check": "prettier --check '(.storybook|src|stories|tests|tools)/**/*.ts'",
     "format:lint": "stylelint --fix 'src/**/*.css'",
     "test": "vitest",
+    "fetch-figma-icons": "tsx tools/fetch-figma-icons.ts",
     "release:patch": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
     "release:major": "npm version major && git push && git push --tags"
@@ -62,6 +63,7 @@
     "storybook": "^10.0.7",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.2",
