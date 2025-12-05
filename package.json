@@ -22,6 +22,7 @@
     "format:lint": "stylelint --fix 'src/**/*.css'",
     "test": "vitest",
     "fetch-figma-icons": "tsx tools/fetch-figma-icons.ts",
+    "fetch-figma-logos": "tsx tools/fetch-figma-logos.ts",
     "release:patch": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
     "release:major": "npm version major && git push && git push --tags"
