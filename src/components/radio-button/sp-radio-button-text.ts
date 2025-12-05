@@ -42,7 +42,7 @@ export class SpRadioButtonText extends LitElement {
 
   render() {
     return html`
-      <div class="base">
+      <label class="base">
         <input
           type="radio"
           class="input"
@@ -56,7 +56,7 @@ export class SpRadioButtonText extends LitElement {
         <span class="text" id="${this.#uniqueId}" aria-hidden="true">
           <slot></slot>
         </span>
-      </div>
+      </label>
     `;
   }
 }
