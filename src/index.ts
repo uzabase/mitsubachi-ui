@@ -1,4 +1,5 @@
 export { SpButton } from "./components/button/sp-button";
+export { SpFloatingButton } from "./components/floating-button/sp-floating-button";
 export { SpIcon } from "./components/icon";
 export { SpLabelUnit } from "./components/label-unit";
 export { SpLoading } from "./components/loading/sp-loading";
