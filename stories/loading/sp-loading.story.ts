@@ -13,7 +13,7 @@ const SIZE_OPTIONS = [
 
 const meta: Meta = {
   component: "sp-loading",
-  tags: ["!dev-only"], 
+  tags: ["!dev-only"],
 };
 
 export default meta;
