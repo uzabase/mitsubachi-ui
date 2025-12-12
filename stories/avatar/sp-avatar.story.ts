@@ -41,10 +41,9 @@ const meta = {
       description: "アバターのサイズ",
       table: {
         type: {
-          summary:
-            '\"small\" | \"medium\" | \"large\" | \"x-large\" | \"2x-large\"',
+          summary: '"small" | "medium" | "large" | "x-large" | "2x-large"',
         },
-        defaultValue: { summary: '\"medium\"' },
+        defaultValue: { summary: '"medium"' },
       },
     },
     onclick: {
@@ -54,7 +53,8 @@ const meta = {
     color: {
       control: { type: "select" },
       options: [0, 1, 2, 3, 4, 5, 6, 7],
-      description: "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
+      description:
+        "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
       table: {
         type: { summary: "number" },
         defaultValue: { summary: "0" },
@@ -62,7 +62,8 @@ const meta = {
     },
     inactive: {
       control: { type: "boolean" },
-      description: "休止状態・停止状態を表す（削除されたアカウントなど）。グレースケール + 透明度で視覚的に表現。",
+      description:
+        "休止状態・停止状態を表す（削除されたアカウントなど）。グレースケール + 透明度で視覚的に表現。",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -108,10 +109,11 @@ export const Basic: Story = {
 export const AboutInitials: Story = {
   render: () => html`
     <div style="padding: 16px; line-height: 1.6;">
-      イニシャル表示機能の詳細については、<a 
-        href="?path=/docs/avatar-sp-avatar-withinitials--docs" 
+      イニシャル表示機能の詳細については、<a
+        href="?path=/docs/avatar-sp-avatar-withinitials--docs"
         style="color: #1976d2; text-decoration: none; font-weight: 500;"
-      >WithInitialsストーリー</a>で確認できます。
+        >WithInitialsストーリー</a
+      >で確認できます。
     </div>
   `,
   parameters: {
@@ -139,8 +141,7 @@ export const WithIcon: Story = {
     interactions: { disable: true },
     docs: {
       description: {
-        story:
-          "画像もイニシャルもない場合、アイコン（person）が表示されます。",
+        story: "画像もイニシャルもない場合、アイコン（person）が表示されます。",
       },
     },
   },
@@ -149,12 +150,17 @@ export const WithIcon: Story = {
 export const Inactive: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 32px;">
-      
       <div>
-        <div style="margin-bottom: 12px; font-weight: bold; font-size: 16px;">Inactive状態</div>
+        <div style="margin-bottom: 12px; font-weight: bold; font-size: 16px;">
+          Inactive状態
+        </div>
         <div style="display: flex; gap: 16px; align-items: center;">
           <div style="text-align: center;">
-            <sp-avatar src="https://i.pravatar.cc/150?img=3" alt="削除されたユーザー" inactive></sp-avatar>
+            <sp-avatar
+              src="https://i.pravatar.cc/150?img=3"
+              alt="削除されたユーザー"
+              inactive
+            ></sp-avatar>
             <div style="margin-top: 8px; font-size: 12px;">画像</div>
           </div>
           <div style="text-align: center;">
@@ -185,11 +191,31 @@ export const Sizes: Story = {
       <div>
         <div style="margin-bottom: 8px; font-weight: bold;">画像</div>
         <div style="display: flex; gap: 16px; align-items: center;">
-          <sp-avatar size="small" src="https://i.pravatar.cc/150?img=2" alt="ユーザー"></sp-avatar>
-          <sp-avatar size="medium" src="https://i.pravatar.cc/150?img=2" alt="ユーザー"></sp-avatar>
-          <sp-avatar size="large" src="https://i.pravatar.cc/150?img=2" alt="ユーザー"></sp-avatar>
-          <sp-avatar size="x-large" src="https://i.pravatar.cc/150?img=2" alt="ユーザー"></sp-avatar>
-          <sp-avatar size="2x-large" src="https://i.pravatar.cc/150?img=2" alt="ユーザー"></sp-avatar>
+          <sp-avatar
+            size="small"
+            src="https://i.pravatar.cc/150?img=2"
+            alt="ユーザー"
+          ></sp-avatar>
+          <sp-avatar
+            size="medium"
+            src="https://i.pravatar.cc/150?img=2"
+            alt="ユーザー"
+          ></sp-avatar>
+          <sp-avatar
+            size="large"
+            src="https://i.pravatar.cc/150?img=2"
+            alt="ユーザー"
+          ></sp-avatar>
+          <sp-avatar
+            size="x-large"
+            src="https://i.pravatar.cc/150?img=2"
+            alt="ユーザー"
+          ></sp-avatar>
+          <sp-avatar
+            size="2x-large"
+            src="https://i.pravatar.cc/150?img=2"
+            alt="ユーザー"
+          ></sp-avatar>
         </div>
       </div>
       <div>
@@ -230,10 +256,9 @@ export const Sizes: Story = {
 export const FallbackBehavior: Story = {
   render: () => html`
     <div style="display: flex; gap: 16px; align-items: center;">
-      <sp-avatar
-        src="https://invalid-url.example.com/image.jpg"
-        color="6"
-      >JY</sp-avatar>
+      <sp-avatar src="https://invalid-url.example.com/image.jpg" color="6"
+        >JY</sp-avatar
+      >
       <sp-avatar src="" color="7">CI</sp-avatar>
       <sp-avatar color="1">KW</sp-avatar>
     </div>
@@ -424,7 +449,7 @@ export const ALL: Story = {
             <td>4文字→2文字</td>
           </tr>
           <tr>
-            <td>"  hs  "</td>
+            <td>" hs "</td>
             <td><sp-avatar color="3">HS</sp-avatar></td>
             <td>"HS"</td>
             <td>空白除去</td>

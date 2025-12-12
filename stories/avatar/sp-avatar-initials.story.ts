@@ -43,8 +43,7 @@ const meta = {
       description: "アバターのサイズ",
       table: {
         type: {
-          summary:
-            '"small" | "medium" | "large" | "x-large" | "2x-large"',
+          summary: '"small" | "medium" | "large" | "x-large" | "2x-large"',
         },
         defaultValue: { summary: '"medium"' },
       },
@@ -56,7 +55,8 @@ const meta = {
     color: {
       control: { type: "select" },
       options: [0, 1, 2, 3, 4, 5, 6, 7],
-      description: "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
+      description:
+        "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
       table: {
         type: { summary: "number" },
         defaultValue: { summary: "0" },
@@ -64,7 +64,8 @@ const meta = {
     },
     inactive: {
       control: { type: "boolean" },
-      description: "休止状態・停止状態を表す（削除されたアカウントなど）。グレースケール + 透明度で視覚的に表現。",
+      description:
+        "休止状態・停止状態を表す（削除されたアカウントなど）。グレースケール + 透明度で視覚的に表現。",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -135,20 +136,28 @@ export const Basic: Story = {
 
 export const LowerCaseToUpperCase: Story = {
   render: () => html`
-    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+    <div
+      style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
+    >
       <div style="text-align: center;">
         <sp-avatar initials="ta" color="1"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "ta"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "ta"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="ab" color="2"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "ab"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "ab"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="xy" color="3"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "xy"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "xy"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "XY"</div>
       </div>
     </div>
@@ -164,20 +173,28 @@ export const LowerCaseToUpperCase: Story = {
 
 export const TwoCharacterLimit: Story = {
   render: () => html`
-    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+    <div
+      style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
+    >
       <div style="text-align: center;">
         <sp-avatar initials="TARO" color="1"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "TARO"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "TARO"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="HANAKO" color="2"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "HANAKO"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "HANAKO"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "HA"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="ABC" color="3"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "ABC"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "ABC"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
     </div>
@@ -193,20 +210,28 @@ export const TwoCharacterLimit: Story = {
 
 export const WhitespaceRemoval: Story = {
   render: () => html`
-    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+    <div
+      style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
+    >
       <div style="text-align: center;">
         <sp-avatar initials="  hs  " color="1"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "  hs  "</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: " hs "
+        </div>
         <div style="font-size: 14px; color: #666;">→ "HS"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials=" ab " color="2"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: " ab "</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: " ab "
+        </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="   ta   " color="3"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "   ta   "</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: " ta "
+        </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
     </div>
@@ -222,20 +247,28 @@ export const WhitespaceRemoval: Story = {
 
 export const SingleCharacter: Story = {
   render: () => html`
-    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+    <div
+      style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
+    >
       <div style="text-align: center;">
         <sp-avatar initials="A" color="1"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "A"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "A"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "A"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="b" color="2"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "b"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "b"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "B"</div>
       </div>
       <div style="text-align: center;">
         <sp-avatar initials="Z" color="3"></sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">入力: "Z"</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          入力: "Z"
+        </div>
         <div style="font-size: 14px; color: #666;">→ "Z"</div>
       </div>
     </div>
@@ -251,38 +284,56 @@ export const SingleCharacter: Story = {
 
 export const ColorVariations: Story = {
   render: () => html`
-    <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+    <div
+      style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
+    >
       <div style="text-align: center;">
         <sp-avatar color="0">DE</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">デフォルト</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          デフォルト
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="1">C1</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー1</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー1
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="2">C2</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー2</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー2
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="3">C3</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー3</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー3
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="4">C4</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー4</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー4
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="5">C5</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー5</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー5
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="6">C6</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー6</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー6
+        </div>
       </div>
       <div style="text-align: center;">
         <sp-avatar color="7">C7</sp-avatar>
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">カラー7</div>
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
+          カラー7
+        </div>
       </div>
     </div>
   `,

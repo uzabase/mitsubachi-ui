@@ -1,17 +1,12 @@
+import "../icon/index";
+
 import { html, LitElement, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import style from "./avatar.css?inline";
-import "../icon/index";
 
-const size = [
-  "small",
-  "medium",
-  "large",
-  "x-large",
-  "2x-large",
-] as const;
+const size = ["small", "medium", "large", "x-large", "2x-large"] as const;
 
 export type AvatarSize = (typeof size)[number];
 
