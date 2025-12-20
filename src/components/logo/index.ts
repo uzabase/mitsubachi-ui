@@ -3,8 +3,7 @@ import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
-import { speedaEn, speedaJa, speedaZh } from "./speeda";
-import { uzabase } from "./uzabase";
+import { resolveLogo } from "./logos";
 
 /**
  * @summary スピーダのロゴです。
@@ -22,21 +21,29 @@ export class SpLogo extends LitElement {
   @property({ type: String, reflect: true })
   brand = "";
 
-  #getLogoContent() {
-    if (this.brand === "uzabase") {
-      return uzabase;
-    } else if (this.brand === "speeda") {
-      if (this.language === "en") return speedaEn;
-      else if (this.language === "zh") return speedaZh;
-      else return speedaJa;
-    }
-    return undefined;
+  @property({ attribute: "sub-brand", type: String, reflect: true })
+  subBrand = "";
+
+  @property({ type: Boolean, reflect: true })
+  inverse = false;
+
+  @property({ type: Boolean, reflect: true })
+  symbol = false;
+
+  #getSvg(): string | undefined {
+    return resolveLogo({
+      brand: this.brand,
+      subBrand: this.subBrand,
+      inverse: this.inverse,
+      symbol: this.symbol,
+      language: this.language,
+    });
   }
 
   render() {
-    const logo = this.#getLogoContent();
-    if (logo) {
-      return html`${unsafeHTML(logo)}`;
+    const svg = this.#getSvg();
+    if (svg) {
+      return html`${unsafeHTML(svg)}`;
     }
     return html``;
   }

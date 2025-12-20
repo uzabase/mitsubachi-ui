@@ -13,23 +13,13 @@ if (!process.env.FIGMA_DESIGN_FILE_KEY) {
 const TOKEN = process.env.FIGMA_TOKEN;
 const FIGMA_FILE_KEY = process.env.FIGMA_DESIGN_FILE_KEY;
 
-type FigmaResponseComponent = {
-  [id: string]: {
-    key: string;
-    name: string;
-    description: string;
-    remote: boolean;
-    documentationLinks: any[];
-  };
-};
 type FigmaResponseImages = {
   [id: string]: string;
 };
 
-type Icon = {
-  id: string;
+type Logo = {
   name: string;
-  path: string;
+  svg: string;
 };
 
 const writeFile = promisify(fs.writeFile);
@@ -53,83 +43,137 @@ async function fetchFigma(
   return response.json();
 }
 
-async function fetchImageAndExtractPath(url: string): Promise<string> {
-  const response: any = await fetch(url).then((response) => response.text());
-  const match = /<svg.*?>([\s\S]*?)<\/svg>/.exec(response);
-  if (!match) {
-    throw new Error("SVGが見つかりません");
-  }
-  return match[1].replace(/\sfill=".*"/, "").replace(/\n|\r/g, "");
+async function fetchSvg(url: string): Promise<string> {
+  const response = await fetch(url).then((r) => r.text());
+  return response.replace(/\n|\r/g, "");
 }
 
-async function writeIcons(icons: Icon[]) {
+const parseVariantProperties = (name: string): Record<string, string> => {
+  const props: Record<string, string> = {};
+
+  name.split(",").forEach((segment) => {
+    const [key, value] = segment.split("=").map((s) => s.trim());
+    if (key && value) {
+      props[key] = value;
+    }
+  });
+
+  return props;
+};
+
+function toCamelCase(str: string): string {
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+}
+
+type LogoVariant = {
+  rawName: string;
+  props: Record<string, string>;
+  svg: string;
+};
+
+async function writeLogos(logos: LogoVariant[]) {
+  const allKeys = new Set<string>();
+  logos.forEach((l) => Object.keys(l.props).forEach((k) => allKeys.add(k)));
+  const sortedKeys = Array.from(allKeys).sort();
+
+  const logosContent = logos
+    .map((logo) => {
+      const key = Object.entries(logo.props)
+        .map(([k, v]) => `${toCamelCase(k)}:${v}`)
+        .sort()
+        .join("|");
+      const escapedSvg = logo.svg.replace(/'/g, "\\'");
+      return `  '${key}': '${escapedSvg}',`;
+    })
+    .join("\n");
+
+  const keyBuilderLogic = sortedKeys
+    .map((rawKey, index) => {
+      const camelKey = toCamelCase(rawKey);
+      const separator = index === sortedKeys.length - 1 ? "" : "|";
+      const accessor = `input.${camelKey}`;
+      return `    \`${camelKey}:\${${accessor} ?? 'null'}${separator}\``;
+    })
+    .join(" +\n");
+
+  const fileContent = `// Auto-generated. DO NOT EDIT.
+
+const LOGO_MAP: Record<string, string> = {
+${logosContent}
+};
+
+export const resolveLogo = (input: Record<string, unknown>): string | undefined => {
+  const key = 
+${keyBuilderLogic};
+
+  return LOGO_MAP[key] ?? undefined;
+};
+`;
+
   await writeFile(
-    path.resolve(__dirname, "../src/components/icon/icons.ts"),
-    "// Do not edit directly\n// Generated on " +
-      new Date().toUTCString() +
-      "\n\n" +
-      "export const iconTypes = [\n" +
-      icons.map((value) => '  "' + value.name + '",').join("\n") +
-      "\n" +
-      "] as const;\n\n" +
-      "export type IconType = (typeof iconTypes)[number];\n\n" +
-      "export const iconPaths = {\n" +
-      icons
-        .map((value) => "  '" + value.name + "': '" + value.path + "',")
-        .join("\n") +
-      "\n" +
-      "} satisfies {[key in IconType]: string};\n",
+    path.resolve(__dirname, "../src/components/logo/logos.ts"),
+    fileContent,
   );
+  console.log("Successfully generated logos.ts");
 }
 
 async function main() {
-  const a = await fetchFigma("files", FIGMA_FILE_KEY);
-  console.log({ a: a });
+  const nodes = await fetch(
+    `https://api.figma.com/v1/files/${FIGMA_FILE_KEY}/component_sets`,
+    {
+      headers: {
+        "X-FIGMA-TOKEN": TOKEN,
+      },
+    },
+  ).then((response) => response.json());
 
-  return;
+  const logo = await fetch(
+    `https://api.figma.com/v1/component_sets/${nodes.meta.component_sets[0].key}`,
+    {
+      headers: {
+        "X-FIGMA-TOKEN": TOKEN,
+      },
+    },
+  ).then((response) => response.json());
 
-  const components: FigmaResponseComponent[] = await fetchFigma(
-    "files",
-    FIGMA_FILE_KEY,
-  ).then((response) => response.components);
-  // console.log({ components });
+  const logoNode = await fetch(
+    `https://api.figma.com/v1/files/${FIGMA_FILE_KEY}/nodes?ids=${logo.meta.node_id}`,
+    {
+      headers: {
+        "X-FIGMA-TOKEN": TOKEN,
+      },
+    },
+  ).then((response) => response.json());
 
-  let icons: Icon[] = [];
-  const ids: string[] = [];
-
-  Object.entries(components).map(([key, value]) => {
-    const name = String(value.name);
-    const isPublishedIcon = /^icon\/(?!\*dummy$).*/.test(name);
-    if (isPublishedIcon) {
-      ids.push(key);
-      icons.push({
-        id: key,
-        name: name.split("/")[1],
-        path: "",
-      });
-    }
-  });
+  const logoComponents = logoNode.nodes["1:13"].components;
 
   const images: FigmaResponseImages[] = await fetchFigma(
     "images",
     FIGMA_FILE_KEY,
-    "ids=" + ids.join() + "&format=svg",
+    "ids=" + Object.keys(logoComponents).join(",") + "&format=svg",
   ).then((response) => response.images);
-  console.log({ images });
+
+  const logos: Logo[] = [];
 
   await Promise.all(
     Object.entries(images).map(async ([key, value]) => {
-      const path = await fetchImageAndExtractPath(String(value)); // TODO:型がよくわからん
-      const icon = icons.find((icon) => icon.id === key);
-      if (icon) {
-        icon.path = path;
-      }
+      const svg = await fetchSvg(String(value));
+      logos.push({
+        name: logoComponents[key].name,
+        svg,
+      });
     }),
   );
 
-  icons.sort((a, b) => (a.name > b.name ? 1 : -1));
+  logos.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  await writeIcons(icons);
+  await writeLogos(
+    logos.map((logo) => ({
+      rawName: logo.name,
+      props: parseVariantProperties(logo.name),
+      svg: logo.svg,
+    })),
+  );
 
   console.log("DONE");
 }
