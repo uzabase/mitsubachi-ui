@@ -62,13 +62,6 @@ export const Default: Story = {
 
 const allPropsCombinations = [
   {
-    brand: "speeda",
-    subBrand: "ai-agent",
-    language: "en",
-    inverse: false,
-    symbol: true,
-  },
-  {
     brand: "uzabase",
     subBrand: "null",
     language: "en",
@@ -78,13 +71,6 @@ const allPropsCombinations = [
   {
     brand: "speeda",
     subBrand: "null",
-    language: "zh",
-    inverse: false,
-    symbol: false,
-  },
-  {
-    brand: "speeda",
-    subBrand: "null",
     language: "en",
     inverse: false,
     symbol: false,
@@ -98,21 +84,14 @@ const allPropsCombinations = [
   },
   {
     brand: "speeda",
-    subBrand: "sales-insights",
-    language: "ja",
+    subBrand: "ai-agent",
+    language: "en",
     inverse: false,
     symbol: true,
   },
   {
     brand: "speeda",
-    subBrand: "customer-analytics",
-    language: "ja",
-    inverse: false,
-    symbol: true,
-  },
-  {
-    brand: "speeda",
-    subBrand: "innovation-insights",
+    subBrand: "expert-research",
     language: "ja",
     inverse: false,
     symbol: true,
@@ -126,18 +105,31 @@ const allPropsCombinations = [
   },
   {
     brand: "speeda",
-    subBrand: "expert-research",
+    subBrand: "innovation-insights",
     language: "ja",
     inverse: false,
     symbol: true,
   },
-  // inverse: true
   {
     brand: "speeda",
-    subBrand: "ai-agent",
-    language: "en",
-    inverse: true,
+    subBrand: "customer-analytics",
+    language: "ja",
+    inverse: false,
     symbol: true,
+  },
+  {
+    brand: "speeda",
+    subBrand: "sales-insights",
+    language: "ja",
+    inverse: false,
+    symbol: true,
+  },
+  {
+    brand: "speeda",
+    subBrand: "null",
+    language: "zh",
+    inverse: false,
+    symbol: false,
   },
   {
     brand: "uzabase",
@@ -149,13 +141,6 @@ const allPropsCombinations = [
   {
     brand: "speeda",
     subBrand: "null",
-    language: "zh",
-    inverse: true,
-    symbol: false,
-  },
-  {
-    brand: "speeda",
-    subBrand: "null",
     language: "en",
     inverse: true,
     symbol: false,
@@ -169,21 +154,14 @@ const allPropsCombinations = [
   },
   {
     brand: "speeda",
-    subBrand: "sales-insights",
-    language: "ja",
+    subBrand: "ai-agent",
+    language: "en",
     inverse: true,
     symbol: true,
   },
   {
     brand: "speeda",
-    subBrand: "customer-analytics",
-    language: "ja",
-    inverse: true,
-    symbol: true,
-  },
-  {
-    brand: "speeda",
-    subBrand: "innovation-insights",
+    subBrand: "expert-research",
     language: "ja",
     inverse: true,
     symbol: true,
@@ -197,10 +175,31 @@ const allPropsCombinations = [
   },
   {
     brand: "speeda",
-    subBrand: "expert-research",
+    subBrand: "innovation-insights",
     language: "ja",
     inverse: true,
     symbol: true,
+  },
+  {
+    brand: "speeda",
+    subBrand: "customer-analytics",
+    language: "ja",
+    inverse: true,
+    symbol: true,
+  },
+  {
+    brand: "speeda",
+    subBrand: "sales-insights",
+    language: "ja",
+    inverse: true,
+    symbol: true,
+  },
+  {
+    brand: "speeda",
+    subBrand: "null",
+    language: "zh",
+    inverse: true,
+    symbol: false,
   },
 ];
 
@@ -273,7 +272,7 @@ export const All: Story = {
         >
           <thead>
             <tr>
-              <th style="${headerStyle}">Logo</th>
+              <th style="${headerStyle}">logo</th>
               <th style="${headerStyle}">brand</th>
               <th style="${headerStyle}">sub-brand</th>
               <th style="${headerStyle}">language</th>
