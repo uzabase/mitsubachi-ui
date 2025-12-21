@@ -73,7 +73,7 @@ const generateLogoMapEntries = (logos: LogoVariant[]): string => {
         .sort()
         .join("|");
       const escapedSvg = logo.svg.replace(/'/g, "\\'");
-      return { key, entry: `  '${key}': '${escapedSvg}',` };
+      return { key, entry: `  "${key}":\n    '${escapedSvg}',` };
     })
     .sort((a, b) => a.key.localeCompare(b.key))
     .map(({ entry }) => entry)
@@ -86,7 +86,7 @@ const generateKeyBuilder = (propKeys: string[]): string => {
     .map((rawKey, i, arr) => {
       const camelKey = toCamelCase(rawKey);
       const sep = i === arr.length - 1 ? "" : "|";
-      return `    \`${camelKey}:\${input.${camelKey} ?? 'null'}${sep}\``;
+      return `    \`${camelKey}:\${input.${camelKey} ?? "null"}${sep}\``;
     })
     .join(" +\n");
 };
@@ -100,7 +100,9 @@ const LOGO_MAP: Record<string, string> = {
 ${generateLogoMapEntries(logos)}
 };
 
-export const resolveLogo = (input: Record<string, unknown>): string | undefined => {
+export const resolveLogo = (
+  input: Record<string, unknown>,
+): string | undefined => {
   const key =
 ${generateKeyBuilder(allKeys)};
 
