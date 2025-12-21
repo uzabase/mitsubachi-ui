@@ -2,11 +2,10 @@ import * as fs from "fs/promises";
 import * as path from "path";
 
 const TOKEN = process.env.FIGMA_TOKEN;
-const FIGMA_FILE_KEY = process.env.FIGMA_DESIGN_FILE_KEY;
+const FILE_KEY = process.env.FIGMA_LOGO_FILE_KEY;
 
 if (!TOKEN) throw new Error("FIGMA_TOKENが設定されていません");
-if (!FIGMA_FILE_KEY)
-  throw new Error("FIGMA_DESIGN_FILE_KEYが設定されていません");
+if (!FILE_KEY) throw new Error("FIGMA_LOGO_FILE_KEYが設定されていません");
 
 const figmaFetch = async (endpoint: string): Promise<any> => {
   const response = await fetch(`https://api.figma.com/v1/${endpoint}`, {
@@ -18,14 +17,13 @@ const figmaFetch = async (endpoint: string): Promise<any> => {
   return response.json();
 };
 
-const fetchComponentSets = () =>
-  figmaFetch(`files/${FIGMA_FILE_KEY}/component_sets`);
+const fetchComponentSets = () => figmaFetch(`files/${FILE_KEY}/component_sets`);
 
 const fetchNodes = (nodeIds: string) =>
-  figmaFetch(`files/${FIGMA_FILE_KEY}/nodes?ids=${nodeIds}`);
+  figmaFetch(`files/${FILE_KEY}/nodes?ids=${nodeIds}`);
 
 const fetchSvgUrls = (ids: string[]) =>
-  figmaFetch(`images/${FIGMA_FILE_KEY}?ids=${ids.join(",")}&format=svg`);
+  figmaFetch(`images/${FILE_KEY}?ids=${ids.join(",")}&format=svg`);
 
 const fetchSvgContent = async (url: string): Promise<string> => {
   const response = await fetch(url);
