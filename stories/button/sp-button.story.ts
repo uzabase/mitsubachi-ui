@@ -110,6 +110,9 @@ export const Icon: Story = {
       <div style="display: flex; gap: 16px;">
         <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
       </div>
+      <div style="display: flex; gap: 16px;">
+        <sp-button icon-type="arrow-down" loading>ダウンロード</sp-button>
+      </div>
     </div>
   `,
   parameters: {

@@ -1,3 +1,5 @@
+import "../loading/sp-loading";
+
 import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -89,8 +91,21 @@ export class SpButton extends LitElement {
       .join(" ");
   }
 
+  private get loadingSize() {
+    const sizeAttributeMap = {
+      medium: "large",
+      large: "xLarge",
+      xLarge: "2xLarge",
+    };
+    return sizeAttributeMap[isValidSize(this.size)];
+  }
+
   private get isDisabled() {
     return this.disabled || this.loading;
+  }
+
+  private renderLoading() {
+    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
   }
 
   private get showIcon() {
@@ -110,6 +125,7 @@ export class SpButton extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
+        ${this.loading ? this.renderLoading() : nothing}
         ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
