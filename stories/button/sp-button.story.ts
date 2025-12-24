@@ -50,7 +50,7 @@ const meta = {
       @click=${args.onclick}
       name=${args.name || nothing}
       value=${args.value || nothing}
-      iconType=${args.iconType || nothing}
+      icon-type=${args.iconType || nothing}
     >
       ${args.slot}
     </sp-button>
@@ -92,23 +92,23 @@ export const Icon: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <div style="display: flex; gap: 16px;">
-        <sp-button iconType="arrow-down" size="medium">ダウンロード</sp-button>
-        <sp-button iconType="arrow-down" size="large">ダウンロード</sp-button>
-        <sp-button iconType="arrow-down" size="xLarge">ダウンロード</sp-button>
+        <sp-button icon-type="arrow-down" size="medium">ダウンロード</sp-button>
+        <sp-button icon-type="arrow-down" size="large">ダウンロード</sp-button>
+        <sp-button icon-type="arrow-down" size="xLarge">ダウンロード</sp-button>
       </div>
       <div style="display: flex; gap: 16px;">
-        <sp-button iconType="arrow-down" variant="primary"
+        <sp-button icon-type="arrow-down" variant="primary"
           >ダウンロード</sp-button
         >
-        <sp-button iconType="arrow-down" variant="secondary"
+        <sp-button icon-type="arrow-down" variant="secondary"
           >ダウンロード</sp-button
         >
-        <sp-button iconType="arrow-down" variant="tertiary"
+        <sp-button icon-type="arrow-down" variant="tertiary"
           >ダウンロード</sp-button
         >
       </div>
       <div style="display: flex; gap: 16px;">
-        <sp-button iconType="arrow-down" danger>ダウンロード</sp-button>
+        <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
       </div>
     </div>
   `,
@@ -116,7 +116,7 @@ export const Icon: Story = {
     docs: {
       description: {
         story:
-          "アイコンを表示する時はiconType属性にアイコンの種類を指定してください。sp-iconコンポーネントのtype属性と同じ値を指定できます。",
+          "アイコンを表示する時はicon-type属性にアイコンの種類を指定してください。sp-iconコンポーネントのtype属性と同じ値を指定できます。",
       },
     },
   },

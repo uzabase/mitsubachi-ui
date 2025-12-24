@@ -1,4 +1,4 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
 import { isIconType } from "../icon";
@@ -33,7 +33,7 @@ function isValidIconType(value: string): boolean {
   if (isIconType(value)) {
     return true;
   } else {
-    console.warn(`${value}は無効なiconType属性です。`);
+    console.warn(`${value}は無効なicon-type属性です。`);
     return false;
   }
 }
@@ -68,7 +68,7 @@ export class SpButton extends LitElement {
   @property({ type: String })
   type = "button";
 
-  @property({ type: String })
+  @property({ type: String, attribute: "icon-type" })
   iconType = "";
 
   private get buttonClasses() {
@@ -110,7 +110,7 @@ export class SpButton extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
-        ${this.showIcon && this.renderIcon()}
+        ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
     `;
