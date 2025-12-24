@@ -5,16 +5,16 @@ import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
 export const variants = ["primary", "secondary", "tertiary"] as const;
-type Variants = (typeof variants)[number];
+type Variant = (typeof variants)[number];
 
 export const size = ["medium", "large", "xLarge"] as const;
 type Size = (typeof size)[number];
 
-function isValidVariants(value: string): Variants {
+function isValidVariant(value: string): Variant {
   if (variants.some((variant) => variant === value)) {
-    return value as Variants;
+    return value as Variant;
   } else {
-    console.warn(`${value}は無効なvariants属性です。`);
+    console.warn(`${value}は無効なvariant属性です。`);
     return variants[0];
   }
 }
@@ -44,7 +44,7 @@ export class SpButton extends LitElement {
   danger = false;
 
   @property({ type: String })
-  variants: Variants = "primary";
+  variant: Variant = "primary";
 
   @property({ type: String })
   size: Size = "medium";
@@ -68,7 +68,7 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      isValidVariants(this.variants),
+      isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]

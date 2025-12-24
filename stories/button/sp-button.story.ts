@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     slot: { type: "string" },
     danger: { type: "boolean" },
-    variants: {
+    variant: {
       control: { type: "select" },
       options: ["primary", "secondary", "tertiary"],
     },
@@ -30,7 +30,7 @@ const meta = {
   args: {
     slot: "ダウンロード",
     danger: false,
-    variants: "primary",
+    variant: "primary",
     size: "medium",
     loading: false,
     disabled: false,
@@ -41,7 +41,7 @@ const meta = {
   render: (args) => html`
     <sp-button
       ?danger=${args.danger}
-      variants=${args.variants}
+      variant=${args.variant}
       size=${args.size}
       ?loading=${args.loading}
       ?disabled=${args.disabled}
@@ -60,7 +60,7 @@ type Story = StoryObj<SpButton>;
 export const Basic: Story = {
   args: {
     danger: undefined,
-    variants: undefined,
+    variant: undefined,
     size: undefined,
     loading: undefined,
     disabled: undefined,
@@ -154,37 +154,37 @@ export const ALL: Story = {
           <tr>
             <th>デフォルト</th>
             <td>
-              <sp-button variants="primary">ボタン</sp-button>
+              <sp-button variant="primary">ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="secondary">ボタン</sp-button>
+              <sp-button variant="secondary">ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="tertiary">ボタン</sp-button>
+              <sp-button variant="tertiary">ボタン</sp-button>
             </td>
           </tr>
           <tr>
             <th>無効</th>
             <td>
-              <sp-button variants="primary" disabled>ボタン</sp-button>
+              <sp-button variant="primary" disabled>ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="secondary" disabled>ボタン</sp-button>
+              <sp-button variant="secondary" disabled>ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="tertiary" disabled>ボタン</sp-button>
+              <sp-button variant="tertiary" disabled>ボタン</sp-button>
             </td>
           </tr>
           <tr>
             <th>読み込み中</th>
             <td>
-              <sp-button variants="primary" loading>ボタン</sp-button>
+              <sp-button variant="primary" loading>ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="secondary" loading>ボタン</sp-button>
+              <sp-button variant="secondary" loading>ボタン</sp-button>
             </td>
             <td>
-              <sp-button variants="tertiary" loading>ボタン</sp-button>
+              <sp-button variant="tertiary" loading>ボタン</sp-button>
             </td>
           </tr>
         </tbody>
@@ -207,37 +207,37 @@ export const ALL: Story = {
           <tr>
             <th>デフォルト</th>
             <td>
-              <sp-button danger variants="primary">ボタン</sp-button>
+              <sp-button danger variant="primary">ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="secondary">ボタン</sp-button>
+              <sp-button danger variant="secondary">ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="tertiary">ボタン</sp-button>
+              <sp-button danger variant="tertiary">ボタン</sp-button>
             </td>
           </tr>
           <tr>
             <th>無効</th>
             <td>
-              <sp-button danger variants="primary" disabled>ボタン</sp-button>
+              <sp-button danger variant="primary" disabled>ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="secondary" disabled>ボタン</sp-button>
+              <sp-button danger variant="secondary" disabled>ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="tertiary" disabled>ボタン</sp-button>
+              <sp-button danger variant="tertiary" disabled>ボタン</sp-button>
             </td>
           </tr>
           <tr>
             <th>読み込み中</th>
             <td>
-              <sp-button danger variants="primary" loading>ボタン</sp-button>
+              <sp-button danger variant="primary" loading>ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="secondary" loading>ボタン</sp-button>
+              <sp-button danger variant="secondary" loading>ボタン</sp-button>
             </td>
             <td>
-              <sp-button danger variants="tertiary" loading>ボタン</sp-button>
+              <sp-button danger variant="tertiary" loading>ボタン</sp-button>
             </td>
           </tr>
         </tbody>
