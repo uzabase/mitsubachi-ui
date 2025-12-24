@@ -1,6 +1,7 @@
 import { html, LitElement, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
@@ -25,6 +26,15 @@ function isValidSize(value: string): Size {
   } else {
     console.warn(`${value}は無効なsize属性です。`);
     return size[0];
+  }
+}
+
+function isValidIconType(value: string): boolean {
+  if (isIconType(value)) {
+    return true;
+  } else {
+    console.warn(`${value}は無効なiconType属性です。`);
+    return false;
   }
 }
 
@@ -58,6 +68,9 @@ export class SpButton extends LitElement {
   @property({ type: String })
   type = "button";
 
+  @property({ type: String })
+  iconType = "";
+
   private get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
@@ -80,6 +93,14 @@ export class SpButton extends LitElement {
     return this.disabled || this.loading;
   }
 
+  private get showIcon() {
+    return this.iconType && isValidIconType(this.iconType);
+  }
+
+  private renderIcon() {
+    return html`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
+  }
+
   render() {
     return html`
       <button
@@ -89,6 +110,7 @@ export class SpButton extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
+        ${this.showIcon && this.renderIcon()}
         <slot class="text"></slot>
       </button>
     `;

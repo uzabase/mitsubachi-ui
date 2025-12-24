@@ -26,6 +26,7 @@ const meta = {
     },
     name: { type: "string" },
     value: { type: "string" },
+    iconType: { type: "string" },
   },
   args: {
     slot: "ダウンロード",
@@ -37,6 +38,7 @@ const meta = {
     onclick: action("onclick"),
     name: undefined,
     value: undefined,
+    iconType: undefined,
   },
   render: (args) => html`
     <sp-button
@@ -48,6 +50,7 @@ const meta = {
       @click=${args.onclick}
       name=${args.name || nothing}
       value=${args.value || nothing}
+      iconType=${args.iconType || nothing}
     >
       ${args.slot}
     </sp-button>
@@ -80,6 +83,40 @@ export const FullWidth: Story = {
       description: {
         story:
           "ボタンの幅を100%にしたい時はWeb Componentsのデフォルトのスタイルを上書きしてください。",
+      },
+    },
+  },
+};
+
+export const Icon: Story = {
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; gap: 16px;">
+        <sp-button iconType="arrow-down" size="medium">ダウンロード</sp-button>
+        <sp-button iconType="arrow-down" size="large">ダウンロード</sp-button>
+        <sp-button iconType="arrow-down" size="xLarge">ダウンロード</sp-button>
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <sp-button iconType="arrow-down" variant="primary"
+          >ダウンロード</sp-button
+        >
+        <sp-button iconType="arrow-down" variant="secondary"
+          >ダウンロード</sp-button
+        >
+        <sp-button iconType="arrow-down" variant="tertiary"
+          >ダウンロード</sp-button
+        >
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <sp-button iconType="arrow-down" danger>ダウンロード</sp-button>
+      </div>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "アイコンを表示する時はiconType属性にアイコンの種類を指定してください。sp-iconコンポーネントのtype属性と同じ値を指定できます。",
       },
     },
   },

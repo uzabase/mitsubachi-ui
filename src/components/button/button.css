@@ -3,7 +3,10 @@
 }
 
 .base {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
     width: 100%;
     flex-basis: 100%;
     padding-block :2px;
@@ -11,7 +14,6 @@
     border-radius: 9999px;
     position: relative;
     cursor: pointer;
-    text-align: center;
 
     &:disabled {
         cursor: not-allowed;
@@ -32,10 +34,7 @@
 
     min-height: 32px;
     padding-inline: 12px;
-
-    .text {
-        font-size: 12px;
-    }
+    font-size: 12px;
 }
 
 .large {
@@ -43,10 +42,7 @@
 
     min-height: 40px;
     padding-inline: 16px;
-
-    .text {
-        font-size: 14px;
-    }
+    font-size: 14px;
 }
 
 .x-large {
@@ -54,10 +50,11 @@
 
     min-height: 48px;
     padding-inline: 16px;
+    font-size: 16px;
+}
 
-    .text{
-        font-size: 16px;
-    }
+.icon {
+    fill: currentcolor;
 }
 
 .loading {
@@ -94,10 +91,7 @@
 
 .normal.primary {
     background-color: rgb(0 0 0 / 84%);
-
-    .text {
-        color: #fff;
-    }
+    color: #fff;
 
     &:hover {
         background-color: rgb(0 0 0 / 90%);
@@ -110,10 +104,7 @@
 
 .normal.secondary {
     border-color: rgb(0 0 0 / 84%);
-
-    .text {
-        color: rgb(0 0 0 / 84%);
-    }
+    color: rgb(0 0 0 / 84%);
 
     &:hover {
         background-color: rgb(0 0 0 / 4%);
@@ -126,10 +117,7 @@
 
 .normal.tertiary {
     border-color: rgb(0 0 0 / 29%);
-
-    .text {
-        color: rgb(0 0 0 / 84%);
-    }
+    color: rgb(0 0 0 / 84%);
 
     &:hover {
         background-color: rgb(0 0 0 / 4%);
@@ -142,10 +130,7 @@
 
 .danger.primary {
     background-color: #DB351F;
-
-    .text {
-        color: #fff;
-    }
+    color: #fff;
 
     &:hover {
         background-color: #C92812;
@@ -158,10 +143,7 @@
 
 .danger.secondary {
     border-color: #DB351F;
-
-    .text {
-        color: #C92812;
-    }
+    color: #C92812;
 
     &:hover {
         background-color: #FFF4F2;
@@ -174,10 +156,7 @@
 
 .danger.tertiary {
     border-color: #DB351F;
-
-    .text {
-        color: #C92812;
-    }
+    color: #C92812;
 
     &:hover {
         background-color: #FFF4F2;
@@ -202,10 +181,7 @@
     &:disabled {
         background-color: rgb(0 0 0 / 5%);
         border-color: transparent;
-
-        .text {
-            color: rgb(0 0 0 / 35%);
-        }
+        color: rgb(0 0 0 / 35%);
 
         &:hover {
             background-color: rgb(0 0 0 / 5%);
@@ -218,10 +194,7 @@
     &:disabled {
         background-color: transparent;
         border-color: rgb(0 0 0 / 10%);
-
-        .text {
-            color: rgb(0 0 0 / 35%);
-        }
+        color: rgb(0 0 0 / 35%);
 
         &:hover {
             background-color: transparent;
