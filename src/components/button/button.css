@@ -8,7 +8,7 @@
     flex-basis: 100%;
     padding-block :2px;
     border: 1px solid transparent;
-    border-radius: 6px;
+    border-radius: 9999px;
     position: relative;
     cursor: pointer;
     text-align: center;
