@@ -652,7 +652,7 @@ const P2 = L1(X);
 class l1 extends X {
 }
 l1.directiveName = "unsafeSVG", l1.resultType = 2;
-const O2 = L1(l1), T2 = ".icon{width:1.28em;height:1.28em}", U2 = [
+const O2 = L1(l1), T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:100%;height:100%}", U2 = [
   "app",
   "arrow-down",
   "arrow-down-small",
