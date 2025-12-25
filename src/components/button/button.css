@@ -2,6 +2,92 @@
     display: inline-block;
 }
 
+.normal {
+    &.primary {
+        --border-color: transparent;
+        --background-color: rgb(0 0 0 / 84%);
+        --background-color-hover: rgb(0 0 0 / 90%);
+        --background-color-active: #000;
+        --color: #FFF;
+    }
+
+    &.secondary {
+        --border-color: rgb(0 0 0 / 84%);
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+    }
+
+    &.tertiary {
+        --border-color: rgb(0 0 0 / 29%);
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+    }
+
+    &.ghost {
+        --border-color: transparent;
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+    }
+}
+
+.danger {
+    &.primary {
+        --border-color: transparent;
+        --background-color: #DB351F;
+        --background-color-hover: #C92812;
+        --background-color-active: #B02412;
+        --color: #fff;
+    }
+
+    &.secondary {
+        --border-color: #DB351F;
+        --background-color: transparent;
+        --background-color-hover: #FFF4F2;
+        --background-color-active: #FFEDEB;
+        --color: #C92812;
+    }
+
+    &.tertiary {
+        --border-color: #DB351F;
+        --background-color: transparent;
+        --background-color-hover: #FFF4F2;
+        --background-color-active: #FFEDEB;
+        --color: #C92812;
+    }
+
+    &.ghost {
+        --border-color: transparent;
+        --background-color: transparent;
+        --background-color-hover: #FFF4F2;
+        --background-color-active: #FFEDEB;
+        --color: #C92812;
+    }
+}
+
+.primary {
+    --border-color-disabled: transparent;
+    --background-color-disabled: rgb(0 0 0 / 5%);
+    --color-disabled: rgb(0 0 0 / 35%);
+}
+
+:is(.secondary, .tertiary) {
+    --border-color-disabled: rgb(0 0 0 / 10%);
+    --background-color-disabled: transparent;
+    --color-disabled: rgb(0 0 0 / 35%);
+}
+
+.ghost {
+    --border-color-disabled: transparent;
+    --background-color-disabled: transparent;
+    --color-disabled: rgb(0 0 0 / 35%);
+}
+
 .base {
     display: inline-flex;
     justify-content: center;
@@ -9,24 +95,41 @@
     gap: 4px;
     width: 100%;
     flex-basis: 100%;
-    padding-block :2px;
-    border: 1px solid transparent;
+    padding-block: 2px;
+    border: 1px solid var(--border-color);
     border-radius: 9999px;
+    background-color: var(--background-color);
+    color: var(--color);
     position: relative;
     cursor: pointer;
-
-    &:disabled {
-        cursor: not-allowed;
-    }
 
     &:focus-visible {
         box-shadow: 0 0 0 2px #FFF, 0 0 0 4px #191919;
     }
-}
 
-.text {
-    line-height: 1.5;
-    letter-spacing: 0.02em;
+    &:hover {
+        background-color: var(--background-color-hover);
+    }
+
+    &:active {
+        background-color: var(--background-color-active);
+    }
+
+    &:disabled {
+        border-color: var(--border-color-disabled);
+        background-color: var(--background-color-disabled);
+        color: var(--color-disabled);
+        cursor: not-allowed;
+
+        &:hover {
+            border-color: var(--border-color-disabled);
+            background-color: var(--background-color-disabled);
+        }
+
+        &.loading {
+            color: rgb(0 0 0 / 84%);
+        }
+    }
 }
 
 .medium {
@@ -51,167 +154,11 @@
     fill: currentcolor;
 }
 
-.normal.primary {
-    background-color: rgb(0 0 0 / 84%);
-    color: #fff;
+.text {
+    line-height: 1.5;
+    letter-spacing: 0.02em;
 
-    &:hover {
-        background-color: rgb(0 0 0 / 90%);
-    }
-
-    &:active {
-        background-color: #000;
-    }
-}
-
-.normal.secondary {
-    border-color: rgb(0 0 0 / 84%);
-    color: rgb(0 0 0 / 84%);
-
-    &:hover {
-        background-color: rgb(0 0 0 / 4%);
-    }
-
-    &:active {
-        background-color: rgb(0 0 0 / 7%);
-    }
-}
-
-.normal.tertiary {
-    border-color: rgb(0 0 0 / 29%);
-    color: rgb(0 0 0 / 84%);
-
-    &:hover {
-        background-color: rgb(0 0 0 / 4%);
-    }
-
-    &:active {
-        background-color: rgb(0 0 0 / 7%);
-    }
-}
-
-.normal.ghost {
-    border: none;
-    color: rgb(0 0 0 / 84%);
-
-    &:hover {
-        background-color: rgb(0 0 0 / 4%);
-    }
-
-    &:active {
-        background-color: rgb(0 0 0 / 7%);
-    }
-}
-
-.danger.primary {
-    background-color: #DB351F;
-    color: #fff;
-
-    &:hover {
-        background-color: #C92812;
-    }
-
-    &:active {
-        background-color: #B02412;
-    }
-}
-
-.danger.secondary {
-    border-color: #DB351F;
-    color: #C92812;
-
-    &:hover {
-        background-color: #FFF4F2;
-    }
-
-    &:active {
-        background-color: #FFEDEB;
-    }
-}
-
-.danger.tertiary {
-    border-color: #DB351F;
-    color: #C92812;
-
-    &:hover {
-        background-color: #FFF4F2;
-    }
-
-    &:active {
-        background-color: #FFEDEB;
-    }
-}
-
-.danger.ghost {
-    border: none;
-    color: #C92812;
-
-    &:hover {
-        background-color: #FFF4F2;
-    }
-
-    &:active {
-        background-color: #FFEDEB;
-    }
-}
-
-:is(.normal, .danger).secondary {
-    .text {
+    &:is(.primary *, .secondary *) {
         font-weight: var(--font-weight-bold);
     }
 }
-
-:is(.normal, .danger).primary  {
-    .text {
-        font-weight: var(--font-weight-bold);
-    }
-
-    &:disabled {
-        background-color: rgb(0 0 0 / 5%);
-        border-color: transparent;
-        color: rgb(0 0 0 / 35%);
-
-        &.loading {
-            color: rgb(0 0 0 / 84%);
-        }
-
-        &:hover {
-            background-color: rgb(0 0 0 / 5%);
-            border-color: transparent;
-        }
-    }
-}
-
-:is(.normal, .danger):is(.secondary, .tertiary) {
-    &:disabled {
-        background-color: transparent;
-        border-color: rgb(0 0 0 / 10%);
-        color: rgb(0 0 0 / 35%);
-
-        &.loading {
-            color: rgb(0 0 0 / 84%);
-        }
-
-        &:hover {
-            background-color: transparent;
-            border-color: rgb(0 0 0 / 10%);
-        }
-    }
-}
-
-:is(.normal, .danger).ghost {
-    &:disabled {
-        background-color: transparent;
-        color: rgb(0 0 0 / 35%);
-
-        &.loading {
-            color: rgb(0 0 0 / 84%);
-        }
-
-        &:hover {
-            background-color: transparent;
-        }
-    }
-}
-
-
