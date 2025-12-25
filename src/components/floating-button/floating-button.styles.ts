@@ -2,6 +2,7 @@ import { css } from "lit";
 
 export default css`
   :host {
+    display: inline-block;
     --color-primary-red-90: #f72a48;
   }
 
@@ -13,6 +14,7 @@ export default css`
     width: 56px;
     height: 56px;
     border-radius: 50%;
+    box-shadow: 0 0 6px 2px #f72a481a;
   }
 
   .base::before {
@@ -31,7 +33,7 @@ export default css`
       rgb(42, 42, 247) 100%
     );
     z-index: 0;
-    transition: transform 0.6s ease-in-out;
+    transition: transform 0s;
   }
 
   .base::after {
@@ -44,16 +46,8 @@ export default css`
   }
 
   .base:hover::before {
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    transform: rotate(1turn);
+    transition: transform 0.6s ease-in-out;
   }
 
   .icon {
