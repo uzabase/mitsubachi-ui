@@ -139,7 +139,9 @@ export const OverflowWrap: Story = {
     <div style="display: flex; flex-direction: column; gap: 32px;">
       <!-- 通常の短いテキスト -->
       <div>
-        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">通常のテキスト</h3>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          通常のテキスト
+        </h3>
         <sp-button>保存</sp-button>
       </div>
 
@@ -159,7 +161,8 @@ export const OverflowWrap: Story = {
           スペース区切りの長い英文（幅制限: 400px）
         </h3>
         <sp-button>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+          Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua
         </sp-button>
       </div>
 
@@ -337,7 +340,9 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button variant="${variant}" size="${size}">ボタン</sp-button>
+                      <sp-button variant="${variant}" size="${size}"
+                        >ボタン</sp-button
+                      >
                     </td>`,
                 )}
               </tr>`,
@@ -349,7 +354,9 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button danger variant="${variant}" size="${size}">ボタン</sp-button>
+                      <sp-button danger variant="${variant}" size="${size}"
+                        >ボタン</sp-button
+                      >
                     </td>`,
                 )}
               </tr>`,
@@ -433,7 +440,12 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" danger variant="${variant}" disabled>
+                  <sp-button
+                    icon-type="download"
+                    danger
+                    variant="${variant}"
+                    disabled
+                  >
                     ダウンロード
                   </sp-button>
                 </td>`,
@@ -444,7 +456,12 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" danger variant="${variant}" loading>
+                  <sp-button
+                    icon-type="download"
+                    danger
+                    variant="${variant}"
+                    loading
+                  >
                     ダウンロード
                   </sp-button>
                 </td>`,
@@ -472,7 +489,11 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button icon-type="download" variant="${variant}" size="${size}">
+                      <sp-button
+                        icon-type="download"
+                        variant="${variant}"
+                        size="${size}"
+                      >
                         ダウンロード
                       </sp-button>
                     </td>`,
@@ -486,7 +507,12 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button icon-type="download" danger variant="${variant}" size="${size}">
+                      <sp-button
+                        icon-type="download"
+                        danger
+                        variant="${variant}"
+                        size="${size}"
+                      >
                         ダウンロード
                       </sp-button>
                     </td>`,
