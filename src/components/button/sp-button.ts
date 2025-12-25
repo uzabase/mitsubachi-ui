@@ -10,8 +10,8 @@ import style from "./button.css?inline";
 export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
 type Variant = (typeof variants)[number];
 
-export const size = ["medium", "large", "xLarge"] as const;
-type Size = (typeof size)[number];
+export const sizes = ["medium", "large", "xLarge"] as const;
+type Size = (typeof sizes)[number];
 
 function isValidVariant(value: string): Variant {
   if (variants.some((variant) => variant === value)) {
@@ -23,11 +23,11 @@ function isValidVariant(value: string): Variant {
 }
 
 function isValidSize(value: string): Size {
-  if (size.some((s) => s === value)) {
+  if (sizes.some((s) => s === value)) {
     return value as Size;
   } else {
     console.warn(`${value}は無効なsize属性です。`);
-    return size[0];
+    return sizes[0];
   }
 }
 

@@ -4,7 +4,11 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
-import { type SpButton, variants } from "../../src/components/button/sp-button";
+import {
+  sizes,
+  type SpButton,
+  variants,
+} from "../../src/components/button/sp-button";
 
 const meta = {
   component: "sp-button",
@@ -17,7 +21,7 @@ const meta = {
     },
     size: {
       control: { type: "select" },
-      options: ["medium", "large", "xLarge"],
+      options: sizes,
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
@@ -92,9 +96,12 @@ export const Icon: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <div style="display: flex; gap: 16px;">
-        <sp-button icon-type="arrow-down" size="medium">ダウンロード</sp-button>
-        <sp-button icon-type="arrow-down" size="large">ダウンロード</sp-button>
-        <sp-button icon-type="arrow-down" size="xLarge">ダウンロード</sp-button>
+        ${sizes.map(
+          (size) =>
+            html`<sp-button icon-type="arrow-down" size="${size}"
+              >ダウンロード</sp-button
+            >`,
+        )}
       </div>
       <div style="display: flex; gap: 16px;">
         ${variants.map(
@@ -271,23 +278,25 @@ export const ALL: Story = {
         <thead>
           <tr>
             <th></th>
-            <th>medium</th>
-            <th>large</th>
-            <th>xLarge</th>
+            ${sizes.map((size) => html`<th>${size}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>ノーマル</td>
-            <td><sp-button size="medium">ボタン</sp-button></td>
-            <td><sp-button size="large">ボタン</sp-button></td>
-            <td><sp-button size="xLarge">ボタン</sp-button></td>
+            ${sizes.map(
+              (size) =>
+                html`<td><sp-button size="${size}">ボタン</sp-button></td>`,
+            )}
           </tr>
           <tr>
             <td>デンジャー</td>
-            <td><sp-button danger size="medium">ボタン</sp-button></td>
-            <td><sp-button danger size="large">ボタン</sp-button></td>
-            <td><sp-button danger size="xLarge">ボタン</sp-button></td>
+            ${sizes.map(
+              (size) =>
+                html`<td>
+                  <sp-button danger size="${size}">ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
         </tbody>
       </table>
