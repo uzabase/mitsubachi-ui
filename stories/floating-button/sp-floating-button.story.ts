@@ -5,12 +5,23 @@ import { html } from "lit";
 
 const meta: Meta = {
   component: "sp-floating-button",
+  args: {
+    loading: false,
+  },
+  argTypes: {
+    loading: { type: "boolean" },
+  },
+  render: (args) =>
+    html`<sp-floating-button ?loading=${args.loading}></sp-floating-button>`,
 };
 
 export default meta;
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: () => html`<sp-floating-button></sp-floating-button>`,
-  tags: ["!dev-only"],
+export const Default: Story = {};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
 };

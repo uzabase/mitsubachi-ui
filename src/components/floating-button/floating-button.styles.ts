@@ -70,4 +70,12 @@ export default css`
     font-size: 25px;
     fill: var(--color-primary-red-90);
   }
+
+  .loading {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    font-size: 25px;
+    fill: var(--color-primary-red-90);
+  }
 `;
