@@ -7,7 +7,7 @@ import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
-export const variants = ["primary", "secondary", "tertiary"] as const;
+export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
 type Variant = (typeof variants)[number];
 
 export const size = ["medium", "large", "xLarge"] as const;

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
-import { type SpButton } from "../../src/components/button/sp-button";
+import { type SpButton, variants } from "../../src/components/button/sp-button";
 
 const meta = {
   component: "sp-button",
@@ -13,7 +13,7 @@ const meta = {
     danger: { type: "boolean" },
     variant: {
       control: { type: "select" },
-      options: ["primary", "secondary", "tertiary"],
+      options: variants,
     },
     size: {
       control: { type: "select" },
@@ -97,15 +97,13 @@ export const Icon: Story = {
         <sp-button icon-type="arrow-down" size="xLarge">ダウンロード</sp-button>
       </div>
       <div style="display: flex; gap: 16px;">
-        <sp-button icon-type="arrow-down" variant="primary"
-          >ダウンロード</sp-button
-        >
-        <sp-button icon-type="arrow-down" variant="secondary"
-          >ダウンロード</sp-button
-        >
-        <sp-button icon-type="arrow-down" variant="tertiary"
-          >ダウンロード</sp-button
-        >
+        ${variants.map(
+          (variant) => html`
+            <sp-button icon-type="arrow-down" variant="${variant}">
+              ダウンロード
+            </sp-button>
+          `,
+        )}
       </div>
       <div style="display: flex; gap: 16px;">
         <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
@@ -185,47 +183,36 @@ export const ALL: Story = {
         <thead>
           <tr>
             <th>状態</th>
-            <th>プライマリ</th>
-            <th>セカンダリ</th>
-            <th>ターシャリ</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>デフォルト</th>
-            <td>
-              <sp-button variant="primary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="secondary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="tertiary">ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}">ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>無効</th>
-            <td>
-              <sp-button variant="primary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="secondary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="tertiary" disabled>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}" disabled>ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>読み込み中</th>
-            <td>
-              <sp-button variant="primary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="secondary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variant="tertiary" loading>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}" loading>ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
         </tbody>
       </table>
@@ -238,47 +225,40 @@ export const ALL: Story = {
         <thead>
           <tr>
             <th>状態</th>
-            <th>プライマリ</th>
-            <th>セカンダリ</th>
-            <th>ターシャリ</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>デフォルト</th>
-            <td>
-              <sp-button danger variant="primary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="secondary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="tertiary">ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}">ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>無効</th>
-            <td>
-              <sp-button danger variant="primary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="secondary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="tertiary" disabled>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}" disabled
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>読み込み中</th>
-            <td>
-              <sp-button danger variant="primary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="secondary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variant="tertiary" loading>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}" loading
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
           </tr>
         </tbody>
       </table>
