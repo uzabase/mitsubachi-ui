@@ -4,6 +4,8 @@ export default css`
   :host {
     display: inline-block;
     --color-primary-red-90: #f72a48;
+    --color-semantic-surface-regular-default: #ffffff;
+    --color-semantic-highlight-focus-ring-default: #191919;
   }
 
   .base {
@@ -48,6 +50,17 @@ export default css`
   .base:hover::before {
     transform: rotate(1turn);
     transition: transform 0.6s ease-in-out;
+  }
+
+  .base:active::after {
+    inset: 2px;
+  }
+
+  .base:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-semantic-surface-regular-default),
+      0 0 0 4px var(--color-semantic-highlight-focus-ring-default);
   }
 
   .icon {
