@@ -62,6 +62,25 @@ const parseVariantName = (name: string): Record<string, string> => {
   );
 };
 
+const convertSpeedaProps = (
+  props: Record<string, string>,
+): Record<string, string> => {
+  const { brand, "sub-brand": subBrand, language, ...rest } = props;
+
+  if (language === "zh") {
+    return { type: "shibida", ...rest };
+  }
+
+  const type = subBrand && subBrand !== "null" ? subBrand : "speeda";
+  return { type, ...rest };
+};
+
+const convertUzabaseProps = (
+  props: Record<string, string>,
+): Record<string, string> => {
+  return { inverse: props.inverse };
+};
+
 const toCamelCase = (str: string): string =>
   str.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
@@ -91,9 +110,10 @@ const generateKeyBuilder = (propKeys: string[]): string => {
     .join(" +\n");
 };
 
-const generateLogosModule = (logos: LogoVariant[]): string => {
-  const allKeys = [...new Set(logos.flatMap((l) => Object.keys(l.props)))];
-
+const generateLogosModule = (
+  logos: LogoVariant[],
+  propKeys: string[],
+): string => {
   return `// Auto-generated. DO NOT EDIT.
 
 const LOGO_MAP: Record<string, string> = {
@@ -104,7 +124,7 @@ export const resolveLogo = (
   input: Record<string, unknown>,
 ): string | undefined => {
   const key =
-${generateKeyBuilder(allKeys)};
+${generateKeyBuilder(propKeys)};
 
   return LOGO_MAP[key] ?? undefined;
 };
@@ -117,16 +137,44 @@ async function main() {
   const components: Record<string, Component> = logoNode.components;
 
   const svgUrls = await fetchSvgUrls(Object.keys(components));
-  const logos: LogoVariant[] = await Promise.all(
+
+  const allLogos = await Promise.all(
     Object.entries(svgUrls.images).map(async ([id, url]) => ({
-      props: parseVariantName(components[id].name),
+      rawProps: parseVariantName(components[id].name),
       svg: await fetchSvgContent(url as string),
     })),
   );
 
-  const outputPath = path.resolve(__dirname, "../src/components/logo/logos.ts");
-  await fs.writeFile(outputPath, generateLogosModule(logos));
-  console.log(`Generated: ${outputPath}`);
+  const speedaRawLogos = allLogos.filter((l) => l.rawProps.brand === "speeda");
+  const uzabaseRawLogos = allLogos.filter(
+    (l) => l.rawProps.brand === "uzabase",
+  );
+
+  const speedaLogos: LogoVariant[] = speedaRawLogos.map((l) => ({
+    props: convertSpeedaProps(l.rawProps),
+    svg: l.svg,
+  }));
+  const speedaPropKeys = ["type", "inverse", "symbol"];
+
+  const uzabaseLogos: LogoVariant[] = uzabaseRawLogos.map((l) => ({
+    props: convertUzabaseProps(l.rawProps),
+    svg: l.svg,
+  }));
+  const uzabasePropKeys = ["inverse"];
+
+  const outputDir = path.resolve(__dirname, "../src/components/logo");
+
+  await fs.writeFile(
+    path.join(outputDir, "speeda-logos.ts"),
+    generateLogosModule(speedaLogos, speedaPropKeys),
+  );
+  console.log(`Generated: speeda-logos.ts (${speedaLogos.length} variants)`);
+
+  await fs.writeFile(
+    path.join(outputDir, "uzabase-logos.ts"),
+    generateLogosModule(uzabaseLogos, uzabasePropKeys),
+  );
+  console.log(`Generated: uzabase-logos.ts (${uzabaseLogos.length} variants)`);
 }
 
 main().catch(console.error);
