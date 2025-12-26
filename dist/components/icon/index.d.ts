@@ -1,4 +1,6 @@
 import { LitElement } from 'lit';
+import { IconType } from './icons';
+export declare function isIconType(type: string): type is IconType;
 /**
  * アイコンです。
  *
