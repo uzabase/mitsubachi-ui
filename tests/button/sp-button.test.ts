@@ -231,6 +231,15 @@ describe("sp-button", () => {
       const button = getButton();
       expect(button?.disabled).toBe(false);
     });
+
+    test("loading属性を設定した場合、iconが表示されない", async () => {
+      document.body.innerHTML = `<sp-button loading="true" icon-type="download">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const spButton = getSpButton();
+      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      expect(icon).toBeFalsy();
+    });
   });
 
   describe("variant属性", () => {

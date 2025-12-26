@@ -134,6 +134,13 @@ export const Icon: Story = {
   },
 };
 
+export const AI: Story = {
+  render: () => html`
+    <sp-button ai variant="primary">ダウンロード</sp-button>
+    <sp-button ai variant="secondary">ダウンロード</sp-button>
+  `,
+};
+
 export const OverflowWrap: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 32px;">
@@ -321,6 +328,48 @@ export const ALL: Story = {
         </tbody>
       </table>
 
+      <!-- AIタイプ -->
+      <table>
+        <caption>
+          タイプ: AI
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>デフォルト</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button ai variant="${variant}">ボタン</sp-button>
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>無効</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button ai variant="${variant}" disabled>ボタン</sp-button>
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>読み込み中</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button ai variant="${variant}" loading>ボタン</sp-button>
+                </td>`,
+            )}
+          </tr>
+        </tbody>
+      </table>
+
       <!-- サイズバリエーション -->
       <table>
         <caption>
@@ -464,6 +513,62 @@ export const ALL: Story = {
                   >
                     ダウンロード
                   </sp-button>
+                </td>`,
+            )}
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- アイコン付きボタン（AI） -->
+      <table>
+        <caption>
+          アイコン付きボタン: AI
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>デフォルト</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button ai icon-type="download" variant="${variant}"
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>無効</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button
+                    ai
+                    icon-type="download"
+                    variant="${variant}"
+                    disabled
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>読み込み中</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button
+                    ai
+                    icon-type="download"
+                    variant="${variant}"
+                    loading
+                    >ボタン</sp-button
+                  >
                 </td>`,
             )}
           </tr>

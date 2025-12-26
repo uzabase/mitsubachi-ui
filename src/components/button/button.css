@@ -1,8 +1,14 @@
+@property --angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+}
+
 :host {
     display: inline-block;
 }
 
-.normal {
+.mode-normal {
     &.primary {
         --border-color: transparent;
         --background-color: rgb(0 0 0 / 84%);
@@ -36,7 +42,7 @@
     }
 }
 
-.danger {
+.mode-danger {
     &.primary {
         --border-color: transparent;
         --background-color: #DB351F;
@@ -70,33 +76,63 @@
     }
 }
 
-.primary {
-    --border-color-disabled: transparent;
-    --background-color-disabled: rgb(0 0 0 / 5%);
-    --color-disabled: rgb(0 0 0 / 35%);
+:is(.mode-normal, .mode-danger) {
+    .primary {
+        --border-color-disabled: transparent;
+        --background-color-disabled: rgb(0 0 0 / 5%);
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
+    
+    :is(.secondary, .tertiary) {
+        --border-color-disabled: rgb(0 0 0 / 10%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
+    
+    .ghost {
+        --border-color-disabled: transparent;
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
 }
 
-:is(.secondary, .tertiary) {
-    --border-color-disabled: rgb(0 0 0 / 10%);
-    --background-color-disabled: transparent;
-    --color-disabled: rgb(0 0 0 / 35%);
-}
+.mode-ai {
+    &.primary {
+        --border-color: transparent;
+        --background-color: #FFF;
+        --background-color-hover: #FFF;
+        --background-color-active: #FFF;
+        --color: rgb(0 0 0 / 84%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
 
-.ghost {
-    --border-color-disabled: transparent;
-    --background-color-disabled: transparent;
-    --color-disabled: rgb(0 0 0 / 35%);
+    &.secondary {
+        --border-color: rgb(0 0 0 / 84%);
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
 }
 
 .base {
+    --border-width: 1px;
+    --padding-block: 2px;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
     width: 100%;
     flex-basis: 100%;
-    padding-block: 2px;
-    border: 1px solid var(--border-color);
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
+    border: var(--border-width) solid var(--border-color);
     border-radius: 9999px;
     background-color: var(--background-color);
     color: var(--color);
@@ -130,23 +166,62 @@
             color: rgb(0 0 0 / 84%);
         }
     }
+
+    &.mode-ai.primary {
+        background-color: cyan;
+        /* stylelint-disable declaration-property-value-no-unknown */
+        mask-image:
+            linear-gradient(white 0 0),
+            linear-gradient(white 0 0);
+        /* stylelint-enable declaration-property-value-no-unknown */
+        mask-clip: padding-box, border-box;
+        mask-composite: exclude;
+
+        &:active:not(:disabled) {
+            --border-width: 2px;
+
+            padding-block: calc(var(--padding-block) - 1px);
+            padding-inline: calc(var(--padding-inline) - 1px);
+        }
+    }
 }
 
+.base.mode-ai.primary::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: 1;
+    width: calc(100% + var(--border-width) * 2);
+    aspect-ratio: 1 / 1;
+    border-radius: 9999px;
+    transition: transform 700ms ease-in-out;
+    background: conic-gradient(from 0deg at 50% 50%, #2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;
+  }
+
+  .base.mode-ai.primary:hover:not(:disabled)::before {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+
 .medium {
+    --padding-inline: 12px;
+
     min-height: 32px;
-    padding-inline: 12px;
     font-size: 12px;
 }
 
 .large {
+    --padding-inline: 16px;
+
     min-height: 40px;
-    padding-inline: 16px;
     font-size: 14px;
 }
 
 .x-large {
+    --padding-inline: 16px;
+    
     min-height: 48px;
-    padding-inline: 16px;
     font-size: 16px;
 }
 
@@ -162,3 +237,4 @@
         font-weight: var(--font-weight-bold);
     }
 }
+  
