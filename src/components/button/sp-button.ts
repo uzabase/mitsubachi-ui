@@ -73,6 +73,37 @@ export class SpButton extends LitElement {
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
 
+  @property({ type: Boolean })
+  ai = false;
+
+  protected updated(changedProperties: Map<string, unknown>) {
+    super.updated(changedProperties);
+
+    if (this.ai) {
+      // aiがtrueの時、variantはprimaryまたはsecondaryのみ許可
+      if (this.variant !== "primary" && this.variant !== "secondary") {
+        console.warn(
+          `ai属性がtrueの時、variantはprimaryまたはsecondaryのみ有効です。現在の値: ${this.variant}`,
+        );
+      }
+
+      // aiがtrueの時、dangerはtrueにできない
+      if (this.danger) {
+        console.warn("ai属性がtrueの時、danger属性はtrueにできません。");
+      }
+    }
+  }
+
+  private get buttonModeClass() {
+    if (this.ai) {
+      return "mode-ai";
+    } else if (this.danger) {
+      return "mode-danger";
+    } else {
+      return "mode-normal";
+    }
+  }
+
   private get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
@@ -82,7 +113,7 @@ export class SpButton extends LitElement {
 
     return [
       "base",
-      this.danger ? "danger" : "normal",
+      this.buttonModeClass,
       isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
@@ -105,7 +136,10 @@ export class SpButton extends LitElement {
   }
 
   private renderLoading() {
-    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
+    return html`<sp-loading
+      size="${this.loadingSize}"
+      ?ai="${this.ai && this.variant === "primary"}"
+    ></sp-loading>`;
   }
 
   private get showIcon() {

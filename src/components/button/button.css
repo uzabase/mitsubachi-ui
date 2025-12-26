@@ -2,7 +2,7 @@
     display: inline-block;
 }
 
-.normal {
+.mode-normal {
     &.primary {
         --border-color: transparent;
         --background-color: rgb(0 0 0 / 84%);
@@ -36,7 +36,7 @@
     }
 }
 
-.danger {
+.mode-danger {
     &.primary {
         --border-color: transparent;
         --background-color: #DB351F;
@@ -70,23 +70,64 @@
     }
 }
 
-.primary {
-    --border-color-disabled: transparent;
-    --background-color-disabled: rgb(0 0 0 / 5%);
-    --color-disabled: rgb(0 0 0 / 35%);
+:is(.mode-normal, .mode-danger) {
+    .primary {
+        --border-color-disabled: transparent;
+        --background-color-disabled: rgb(0 0 0 / 5%);
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
+    
+    :is(.secondary, .tertiary) {
+        --border-color-disabled: rgb(0 0 0 / 10%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
+    
+    .ghost {
+        --border-color-disabled: transparent;
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
 }
 
-:is(.secondary, .tertiary) {
-    --border-color-disabled: rgb(0 0 0 / 10%);
-    --background-color-disabled: transparent;
-    --color-disabled: rgb(0 0 0 / 35%);
+.mode-ai {
+    &.primary {
+        --border-color: #2A2AF7;
+        --background-color: #FFF;
+        --background-color-hover: #FFF;
+        --background-color-active: #FFF;
+        --color: rgb(0 0 0 / 84%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+        --conic-gradient-ai: conic-gradient(
+            from 0deg at 50% 50%,
+            #2A2AF7 0deg,
+            #2A2AF7 72deg,
+            #47D4FF 144deg,
+            #FF2ED5 216deg,
+            #F72A48 288deg,
+            #2A2AF7 360deg
+        );
+        
+        border: none;
+        background: var(--background-color);
+        transition: all 300ms ease-in-out;
+    }
+
+    &.secondary {
+        --border-color: rgb(0 0 0 / 84%);
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
+        --background-color-disabled: transparent;
+        --color-disabled: rgb(0 0 0 / 35%);
+    }
 }
 
-.ghost {
-    --border-color-disabled: transparent;
-    --background-color-disabled: transparent;
-    --color-disabled: rgb(0 0 0 / 35%);
-}
+
 
 .base {
     display: inline-flex;
@@ -162,3 +203,70 @@
         font-weight: var(--font-weight-bold);
     }
 }
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes rotate {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 180deg;
+    }
+}
+  
+  .mode-ai.primary.base::before {
+    --angle: 0deg;
+    --conic-gradient-ai: conic-gradient(
+      from var(--angle) at 50% 50%,
+      #2A2AF7 0deg,
+      #2A2AF7 72deg,
+      #47D4FF 144deg,
+      #FF2ED5 216deg,
+      #F72A48 288deg,
+      #2A2AF7 360deg
+    );
+    --conic-gradient-ai-hover: conic-gradient(
+      from var(--angle) at 50% 50%,
+      #2A2AF7 0deg,
+      #2A2AF7 72deg,
+      #47D4FF 144deg,
+      #FF2ED5 216deg,
+      #F72A48 288deg,
+      #2A2AF7 360deg
+    );
+  
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 1px;
+    background: var(--conic-gradient-ai);
+  
+    /* ★ ここが重要 */
+    transition: --angle 700ms ease-in-out;
+    /* stylelint-disable declaration-property-value-no-unknown */
+    mask-image:
+      linear-gradient(#fff 0 0),
+      linear-gradient(#fff 0 0);
+    /* stylelint-enable declaration-property-value-no-unknown */
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    animation: rotate 700ms ease-in-out forwards;
+    animation-play-state: paused;
+  }
+  
+  .mode-ai.primary.base:hover:not(:disabled)::before {
+    animation-play-state: running;
+  }
+  
+  .mode-ai.primary.base:active:not(:disabled)::before {
+    animation: none;
+    padding: 2px;
+  }
+  
