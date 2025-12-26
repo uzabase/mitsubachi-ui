@@ -4,20 +4,25 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
-import { type SpButton } from "../../src/components/button/sp-button";
+import {
+  sizes,
+  type SpButton,
+  variants,
+} from "../../src/components/button/sp-button";
+import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
   component: "sp-button",
   argTypes: {
     slot: { type: "string" },
     danger: { type: "boolean" },
-    variants: {
+    variant: {
       control: { type: "select" },
-      options: ["primary", "secondary", "tertiary"],
+      options: variants,
     },
     size: {
       control: { type: "select" },
-      options: ["medium", "large", "xLarge"],
+      options: sizes,
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
@@ -26,28 +31,34 @@ const meta = {
     },
     name: { type: "string" },
     value: { type: "string" },
+    iconType: {
+      control: { type: "select" },
+      options: ["", ...iconTypes],
+    },
   },
   args: {
     slot: "ダウンロード",
     danger: false,
-    variants: "primary",
+    variant: "primary",
     size: "medium",
     loading: false,
     disabled: false,
     onclick: action("onclick"),
     name: undefined,
     value: undefined,
+    iconType: undefined,
   },
   render: (args) => html`
     <sp-button
       ?danger=${args.danger}
-      variants=${args.variants}
+      variant=${args.variant}
       size=${args.size}
       ?loading=${args.loading}
       ?disabled=${args.disabled}
       @click=${args.onclick}
       name=${args.name || nothing}
       value=${args.value || nothing}
+      icon-type=${args.iconType || nothing}
     >
       ${args.slot}
     </sp-button>
@@ -60,7 +71,7 @@ type Story = StoryObj<SpButton>;
 export const Basic: Story = {
   args: {
     danger: undefined,
-    variants: undefined,
+    variant: undefined,
     size: undefined,
     loading: undefined,
     disabled: undefined,
@@ -85,48 +96,133 @@ export const FullWidth: Story = {
   },
 };
 
-export const OverflowWrap: Story = {
+export const Icon: Story = {
   render: () => html`
-    <p style="overflow-wrap: break-word;">
-      texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-    </p>
-    <sp-button>text</sp-button>
-    <sp-button>text</sp-button>
-    <sp-button
-      >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
-    >
-    <sp-button
-      >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
-    >
-    <sp-button
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</sp-button
-    >
-    <sp-button
-      >にほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんご</sp-button
-    >
-    <div style="display: flex; min-width: 0;">
-      <div>サンプルdiv</div>
-      <sp-button
-        >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
-      >
-    </div>
-    <div style="display: flex; min-width: 0;">
-      <div>サンプルdiv</div>
-      <sp-button
-        >texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</sp-button
-      >
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; gap: 16px;">
+        ${sizes.map(
+          (size) =>
+            html`<sp-button icon-type="arrow-down" size="${size}"
+              >ダウンロード</sp-button
+            >`,
+        )}
+      </div>
+      <div style="display: flex; gap: 16px;">
+        ${variants.map(
+          (variant) => html`
+            <sp-button icon-type="arrow-down" variant="${variant}">
+              ダウンロード
+            </sp-button>
+          `,
+        )}
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <sp-button icon-type="arrow-down" loading>ダウンロード</sp-button>
+      </div>
     </div>
   `,
   parameters: {
     docs: {
       description: {
-        story: "文字の折り返しを確認する",
+        story:
+          "アイコンを表示する時はicon-type属性にアイコンの種類を指定してください。sp-iconコンポーネントのtype属性と同じ値を指定できます。",
+      },
+    },
+  },
+};
+
+export const OverflowWrap: Story = {
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 32px;">
+      <!-- 通常の短いテキスト -->
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          通常のテキスト
+        </h3>
+        <sp-button>保存</sp-button>
+      </div>
+
+      <!-- 改行なしの長い英数字 -->
+      <div style="max-width: 400px;">
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          改行なしの長い英数字（単語区切りなし、幅制限: 400px）
+        </h3>
+        <sp-button>
+          texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+        </sp-button>
+      </div>
+
+      <!-- スペース区切りの長い英文 -->
+      <div style="max-width: 400px;">
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          スペース区切りの長い英文（幅制限: 400px）
+        </h3>
+        <sp-button>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua
+        </sp-button>
+      </div>
+
+      <!-- 長い日本語テキスト -->
+      <div style="max-width: 400px;">
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          長い日本語テキスト（幅制限あり: 400px）
+        </h3>
+        <sp-button>
+          これは非常に長い日本語のテキストです。ボタン内でどのように折り返されるかを確認するためのサンプルです。日本語の場合は自然に折り返しが発生します。さらに長いテキストを追加して確実に複数行になるようにしています。
+        </sp-button>
+      </div>
+
+      <!-- Flexコンテナ内での挙動 -->
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          Flexコンテナ内（min-width: 0あり）
+        </h3>
+        <div style="display: flex; gap: 8px; min-width: 0;">
+          <div style="flex-shrink: 0;">ラベル:</div>
+          <sp-button style="min-width: 0;">
+            texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+          </sp-button>
+        </div>
+      </div>
+
+      <!-- アイコン付きボタンでの長いテキスト -->
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          アイコン付きボタン
+        </h3>
+        <sp-button icon-type="download">
+          ダウンロードボタンの非常に長いテキスト
+        </sp-button>
+      </div>
+
+      <!-- 異なるサイズでの挙動 -->
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          異なるサイズ（Medium / Large / X-Large）
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sp-button size="medium">
+            Medium サイズの長いテキストテキストテキスト
+          </sp-button>
+          <sp-button size="large">
+            Large サイズの長いテキストテキストテキスト
+          </sp-button>
+          <sp-button size="xLarge">
+            X-Large サイズの長いテキストテキストテキスト
+          </sp-button>
+        </div>
+      </div>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ボタン内のテキストが長い場合の折り返し動作を確認するためのサンプルです。通常のテキスト、改行なしの長い文字列、スペース区切りの英文、日本語テキスト、Flexコンテナ内での挙動など、様々なパターンを確認できます。",
       },
     },
   },
@@ -145,47 +241,36 @@ export const ALL: Story = {
         <thead>
           <tr>
             <th>状態</th>
-            <th>プライマリ</th>
-            <th>セカンダリ</th>
-            <th>ターシャリ</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>デフォルト</th>
-            <td>
-              <sp-button variants="primary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="secondary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="tertiary">ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}">ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>無効</th>
-            <td>
-              <sp-button variants="primary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="secondary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="tertiary" disabled>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}" disabled>ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>読み込み中</th>
-            <td>
-              <sp-button variants="primary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="secondary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button variants="tertiary" loading>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button variant="${variant}" loading>ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
         </tbody>
       </table>
@@ -198,47 +283,40 @@ export const ALL: Story = {
         <thead>
           <tr>
             <th>状態</th>
-            <th>プライマリ</th>
-            <th>セカンダリ</th>
-            <th>ターシャリ</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>デフォルト</th>
-            <td>
-              <sp-button danger variants="primary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="secondary">ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="tertiary">ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}">ボタン</sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>無効</th>
-            <td>
-              <sp-button danger variants="primary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="secondary" disabled>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="tertiary" disabled>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}" disabled
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
           </tr>
           <tr>
             <th>読み込み中</th>
-            <td>
-              <sp-button danger variants="primary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="secondary" loading>ボタン</sp-button>
-            </td>
-            <td>
-              <sp-button danger variants="tertiary" loading>ボタン</sp-button>
-            </td>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button danger variant="${variant}" loading
+                    >ボタン</sp-button
+                  >
+                </td>`,
+            )}
           </tr>
         </tbody>
       </table>
@@ -250,25 +328,197 @@ export const ALL: Story = {
         </caption>
         <thead>
           <tr>
-            <th></th>
-            <th>medium</th>
-            <th>large</th>
-            <th>xLarge</th>
+            <th>バリアント</th>
+            ${sizes.map((size) => html`<th>${size}</th>`)}
+          </tr>
+        </thead>
+        <tbody>
+          ${variants.map(
+            (variant) =>
+              html`<tr>
+                <th>${variant}</th>
+                ${sizes.map(
+                  (size) =>
+                    html`<td>
+                      <sp-button variant="${variant}" size="${size}"
+                        >ボタン</sp-button
+                      >
+                    </td>`,
+                )}
+              </tr>`,
+          )}
+          ${variants.map(
+            (variant) =>
+              html`<tr>
+                <th>${variant} (danger)</th>
+                ${sizes.map(
+                  (size) =>
+                    html`<td>
+                      <sp-button danger variant="${variant}" size="${size}"
+                        >ボタン</sp-button
+                      >
+                    </td>`,
+                )}
+              </tr>`,
+          )}
+        </tbody>
+      </table>
+
+      <!-- アイコン付きボタン（ノーマル） -->
+      <table>
+        <caption>
+          アイコン付きボタン: ノーマル
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>ノーマル</td>
-            <td><sp-button size="medium">ボタン</sp-button></td>
-            <td><sp-button size="large">ボタン</sp-button></td>
-            <td><sp-button size="xLarge">ボタン</sp-button></td>
+            <th>デフォルト</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button icon-type="download" variant="${variant}">
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
           </tr>
           <tr>
-            <td>デンジャー</td>
-            <td><sp-button danger size="medium">ボタン</sp-button></td>
-            <td><sp-button danger size="large">ボタン</sp-button></td>
-            <td><sp-button danger size="xLarge">ボタン</sp-button></td>
+            <th>無効</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button icon-type="download" variant="${variant}" disabled>
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
           </tr>
+          <tr>
+            <th>読み込み中</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button icon-type="download" variant="${variant}" loading>
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- アイコン付きボタン（デンジャー） -->
+      <table>
+        <caption>
+          アイコン付きボタン: デンジャー
+        </caption>
+        <thead>
+          <tr>
+            <th>状態</th>
+            ${variants.map((variant) => html`<th>${variant}</th>`)}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>デフォルト</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button icon-type="download" danger variant="${variant}">
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>無効</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button
+                    icon-type="download"
+                    danger
+                    variant="${variant}"
+                    disabled
+                  >
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>読み込み中</th>
+            ${variants.map(
+              (variant) =>
+                html`<td>
+                  <sp-button
+                    icon-type="download"
+                    danger
+                    variant="${variant}"
+                    loading
+                  >
+                    ダウンロード
+                  </sp-button>
+                </td>`,
+            )}
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- アイコン付きボタン（サイズバリエーション） -->
+      <table>
+        <caption>
+          アイコン付きボタン: サイズバリエーション
+        </caption>
+        <thead>
+          <tr>
+            <th>バリアント</th>
+            ${sizes.map((size) => html`<th>${size}</th>`)}
+          </tr>
+        </thead>
+        <tbody>
+          ${variants.map(
+            (variant) =>
+              html`<tr>
+                <th>${variant}</th>
+                ${sizes.map(
+                  (size) =>
+                    html`<td>
+                      <sp-button
+                        icon-type="download"
+                        variant="${variant}"
+                        size="${size}"
+                      >
+                        ダウンロード
+                      </sp-button>
+                    </td>`,
+                )}
+              </tr>`,
+          )}
+          ${variants.map(
+            (variant) =>
+              html`<tr>
+                <th>${variant} (danger)</th>
+                ${sizes.map(
+                  (size) =>
+                    html`<td>
+                      <sp-button
+                        icon-type="download"
+                        danger
+                        variant="${variant}"
+                        size="${size}"
+                      >
+                        ダウンロード
+                      </sp-button>
+                    </td>`,
+                )}
+              </tr>`,
+          )}
         </tbody>
       </table>
     </div>
@@ -277,7 +527,7 @@ export const ALL: Story = {
     docs: {
       description: {
         story:
-          "sp-buttonコンポーネントの全パターンを一覧表示します。タイプ、バリアント、状態、サイズなど、利用可能な全ての組み合わせを確認できます。",
+          "sp-buttonコンポーネントの全パターンを一覧表示します。タイプ、バリアント、状態、サイズ、アイコンの有無など、利用可能な全ての組み合わせを確認できます。",
       },
     },
   },
