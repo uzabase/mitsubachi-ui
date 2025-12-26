@@ -89,7 +89,9 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      this.variants ? isValidVariant(this.variants) : isValidVariant(this.variant),
+      this.variants
+        ? isValidVariant(this.variants)
+        : isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
