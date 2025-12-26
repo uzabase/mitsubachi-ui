@@ -55,6 +55,12 @@ export class SpButton extends LitElement {
   @property({ type: Boolean, reflect: true })
   danger = false;
 
+  /**
+   * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+   */
+  @property({ type: String })
+  variants: Variant | null = null;
+
   @property({ type: String })
   variant: Variant = "primary";
 
@@ -83,7 +89,9 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      isValidVariant(this.variant),
+      this.variants
+        ? isValidVariant(this.variants)
+        : isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
