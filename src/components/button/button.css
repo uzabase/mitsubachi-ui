@@ -92,7 +92,7 @@
 
 .mode-ai {
     &.primary {
-        --border-color: #2A2AF7;
+        --border-color: transparent;
         --background-color: #FFF;
         --background-color-hover: #FFF;
         --background-color-active: #FFF;
@@ -220,53 +220,33 @@
     }
 }
   
-  .mode-ai.primary.base::before {
+.mode-ai.primary.base::before {
     --angle: 0deg;
-    --conic-gradient-ai: conic-gradient(
-      from var(--angle) at 50% 50%,
-      #2A2AF7 0deg,
-      #2A2AF7 72deg,
-      #47D4FF 144deg,
-      #FF2ED5 216deg,
-      #F72A48 288deg,
-      #2A2AF7 360deg
-    );
-    --conic-gradient-ai-hover: conic-gradient(
-      from var(--angle) at 50% 50%,
-      #2A2AF7 0deg,
-      #2A2AF7 72deg,
-      #47D4FF 144deg,
-      #FF2ED5 216deg,
-      #F72A48 288deg,
-      #2A2AF7 360deg
-    );
   
     content: "";
     position: absolute;
     inset: 0;
+    border: 1px solid transparent;
     border-radius: 9999px;
-    padding: 1px;
-    background: var(--conic-gradient-ai);
-  
-    /* ★ ここが重要 */
-    transition: --angle 700ms ease-in-out;
+    background: linear-gradient(white, white) content-box content-box, conic-gradient(from var(--angle) at 50% 50%, #2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;
+    transition: --angle 1s ease-in-out;
+
     /* stylelint-disable declaration-property-value-no-unknown */
     mask-image:
-      linear-gradient(#fff 0 0),
-      linear-gradient(#fff 0 0);
+      linear-gradient(white 0 0),
+      linear-gradient(white 0 0);
     /* stylelint-enable declaration-property-value-no-unknown */
     mask-clip: content-box, border-box;
     mask-composite: exclude;
-    animation: rotate 700ms ease-in-out forwards;
-    animation-play-state: paused;
   }
   
   .mode-ai.primary.base:hover:not(:disabled)::before {
-    animation-play-state: running;
+    --angle: 180deg;
   }
   
   .mode-ai.primary.base:active:not(:disabled)::before {
-    animation: none;
-    padding: 2px;
+    --angle: 0deg;
+
+    border-width: 2px;
   }
   
