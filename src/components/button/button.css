@@ -1,3 +1,9 @@
+@property --angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+}
+
 :host {
     display: inline-block;
 }
@@ -100,19 +106,6 @@
         --border-color-disabled: rgb(0 0 0 / 7%);
         --background-color-disabled: transparent;
         --color-disabled: rgb(0 0 0 / 35%);
-        --conic-gradient-ai: conic-gradient(
-            from 0deg at 50% 50%,
-            #2A2AF7 0deg,
-            #2A2AF7 72deg,
-            #47D4FF 144deg,
-            #FF2ED5 216deg,
-            #F72A48 288deg,
-            #2A2AF7 360deg
-        );
-        
-        border: none;
-        background: var(--background-color);
-        transition: all 300ms ease-in-out;
     }
 
     &.secondary {
@@ -126,8 +119,6 @@
         --color-disabled: rgb(0 0 0 / 35%);
     }
 }
-
-
 
 .base {
     display: inline-flex;
@@ -171,6 +162,20 @@
             color: rgb(0 0 0 / 84%);
         }
     }
+
+    &.mode-ai {
+        --angle: 0deg;
+
+        transition: --angle 700ms ease-in-out;
+
+        &:hover {
+            --angle: 180deg;
+        }
+
+        &:active {
+            --angle: 180deg;
+        }
+    }
 }
 
 .medium {
@@ -203,34 +208,15 @@
         font-weight: var(--font-weight-bold);
     }
 }
-
-@property --angle {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
-}
-
-@keyframes rotate {
-    from {
-        --angle: 0deg;
-    }
-
-    to {
-        --angle: 180deg;
-    }
-}
   
 .mode-ai.primary.base::before {
-    --angle: 0deg;
-  
     content: "";
     position: absolute;
     inset: 0;
     border: 1px solid transparent;
     border-radius: 9999px;
     background: linear-gradient(white, white) content-box content-box, conic-gradient(from var(--angle) at 50% 50%, #2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;
-    transition: --angle 1s ease-in-out;
-
+    
     /* stylelint-disable declaration-property-value-no-unknown */
     mask-image:
       linear-gradient(white 0 0),
@@ -240,13 +226,7 @@
     mask-composite: exclude;
   }
   
-  .mode-ai.primary.base:hover:not(:disabled)::before {
-    --angle: 180deg;
-  }
-  
   .mode-ai.primary.base:active:not(:disabled)::before {
-    --angle: 0deg;
-
     border-width: 2px;
   }
   

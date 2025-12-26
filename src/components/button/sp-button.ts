@@ -162,6 +162,7 @@ export class SpButton extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
+        <div class="ai-border"></div>
         ${this.loading ? this.renderLoading() : nothing}
         ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
