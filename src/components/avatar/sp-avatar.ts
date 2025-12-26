@@ -1,10 +1,9 @@
 import "../icon/index";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
-import { makeStyles } from "../styles";
-import style from "./avatar.css?inline";
+import { avatarStyles } from "./avatar.styles";
 
 const size = ["small", "medium", "large", "x-large", "2x-large"] as const;
 
@@ -27,7 +26,7 @@ function isValidColor(value: number): boolean {
  * @summary アバターです。
  */
 export class SpAvatar extends LitElement {
-  static styles = makeStyles(unsafeCSS(style));
+  static styles = avatarStyles;
 
   @property({ type: String })
   src = "";
@@ -44,14 +43,14 @@ export class SpAvatar extends LitElement {
   @property({ type: Number })
   color = 0; // イニシャル表示時の背景色（1-7: カラーバリエーション、0または範囲外: グレー）
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   inactive = false; // 休止状態・停止状態を表す
 
-  private get avatarClasses() {
+  get #avatarClasses() {
     const classes = ["base", `size-${isValidSize(this.size)}`];
 
     // イニシャル表示時のみ色クラスを追加（1-7の範囲内の場合のみ）
-    if (!this.src && this.displayContent && isValidColor(this.color)) {
+    if (!this.src && this.#displayContent && isValidColor(this.color)) {
       classes.push(`color-${this.color}`);
     }
 
@@ -63,12 +62,12 @@ export class SpAvatar extends LitElement {
     return classes.filter(Boolean).join(" ");
   }
 
-  private handleImageError() {
+  #handleImageError() {
     // 画像読み込み失敗時はsrcをクリアしてフォールバック表示（イニシャルまたはアイコン）
     this.src = "";
   }
 
-  private get displayContent() {
+  get #displayContent() {
     // initialsプロパティを優先、未指定の場合はslotのテキストコンテンツを使用
     const content = (this.initials || this.textContent || "").trim();
     // イニシャルは最大2文字に制限し、大文字に変換
@@ -76,16 +75,16 @@ export class SpAvatar extends LitElement {
   }
 
   render() {
-    const displayText = this.displayContent;
+    const displayText = this.#displayContent;
 
     return html`
-      <div class="${this.avatarClasses}">
+      <div class="${this.#avatarClasses}">
         ${this.src
           ? html`
               <img
                 src="${this.src}"
                 alt="${this.alt}"
-                @error="${this.handleImageError}"
+                @error="${this.#handleImageError}"
                 class="image"
               />
             `
