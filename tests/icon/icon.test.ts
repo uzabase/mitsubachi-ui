@@ -30,4 +30,14 @@ describe("sp-icon", () => {
       expect(icon?.getAttribute("aria-hidden")).toBe("true");
     }
   });
+
+  test('type=error-fillである場合、アイコンの色を要素の外のcolorで変更できる', async () => {
+      document.body.innerHTML = `<sp-icon type="error-fill"></sp-icon>`;
+      await customElements.whenDefined("sp-icon");
+
+      const fill = document
+        .querySelector("sp-icon")
+        ?.shadowRoot?.querySelector("svg")?.querySelector('path')?.getAttribute("fill");
+      expect(fill).toBe("currentColor");
+  });
 });
