@@ -7,7 +7,9 @@ type Size = (typeof size)[number];
  * @summary ボタンです。
  */
 export declare class SpButton extends LitElement {
+    #private;
     static styles: import('lit').CSSResult[];
+    static formAssociated: boolean;
     loading: boolean;
     disabled: boolean;
     danger: boolean;
@@ -16,6 +18,7 @@ export declare class SpButton extends LitElement {
     name: string;
     value: string;
     type: string;
+    constructor();
     private get buttonClasses();
     private get isDisabled();
     render(): import('lit-html').TemplateResult<1>;

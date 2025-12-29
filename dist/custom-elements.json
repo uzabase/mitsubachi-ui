@@ -150,6 +150,15 @@
             },
             {
               "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
               "name": "loading",
               "type": {
                 "text": "boolean"
@@ -214,6 +223,14 @@
             },
             {
               "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              }
+            },
+            {
+              "kind": "field",
               "name": "buttonClasses",
               "privacy": "private",
               "readonly": true
@@ -227,6 +244,27 @@
             {
               "kind": "method",
               "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "#handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              }
             }
           ],
           "superclass": {
@@ -789,6 +827,97 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/loading/loading.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/sp-loading.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "size",
+          "type": {
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n]"
+          },
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLoading",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ローディングスピナーです。",
+          "tagName": "sp-loading",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "size",
+          "declaration": {
+            "name": "size",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLoading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-loading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/logo/index.ts",
       "declarations": [
         {
@@ -935,97 +1064,6 @@
           "declaration": {
             "name": "uzabase",
             "module": "src/components/logo/uzabase.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/loading.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/sp-loading.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "size",
-          "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n]"
-          },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", ]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLoading",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ローディングスピナーです。",
-          "tagName": "sp-loading",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "size",
-          "declaration": {
-            "name": "size",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpLoading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-loading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
           }
         }
       ]
@@ -1317,171 +1355,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpTextField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\""
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\""
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "テキストフィールドです。",
-          "tagName": "sp-text-field",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpTextField",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-text-field",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/index.ts",
       "declarations": [
         {
@@ -1666,6 +1539,171 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキストフィールドです。",
+          "tagName": "sp-text-field",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-text-field",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },
