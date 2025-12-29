@@ -1,30 +1,42 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import "../loading/sp-loading";
+
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
-export const variants = ["primary", "secondary", "tertiary"] as const;
-type Variants = (typeof variants)[number];
+export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
+type Variant = (typeof variants)[number];
 
-export const size = ["medium", "large", "xLarge"] as const;
-type Size = (typeof size)[number];
+export const sizes = ["medium", "large", "xLarge"] as const;
+type Size = (typeof sizes)[number];
 
-function isValidVariants(value: string): Variants {
+function isValidVariant(value: string): Variant {
   if (variants.some((variant) => variant === value)) {
-    return value as Variants;
+    return value as Variant;
   } else {
-    console.warn(`${value}は無効なvariants属性です。`);
+    console.warn(`${value}は無効なvariant属性です。`);
     return variants[0];
   }
 }
 
 function isValidSize(value: string): Size {
-  if (size.some((s) => s === value)) {
+  if (sizes.some((s) => s === value)) {
     return value as Size;
   } else {
     console.warn(`${value}は無効なsize属性です。`);
-    return size[0];
+    return sizes[0];
+  }
+}
+
+function isValidIconType(value: string): boolean {
+  if (isIconType(value)) {
+    return true;
+  } else {
+    console.warn(`${value}は無効なicon-type属性です。`);
+    return false;
   }
 }
 
@@ -44,7 +56,7 @@ export class SpButton extends LitElement {
   danger = false;
 
   @property({ type: String })
-  variants: Variants = "primary";
+  variant: Variant = "primary";
 
   @property({ type: String })
   size: Size = "medium";
@@ -58,6 +70,9 @@ export class SpButton extends LitElement {
   @property({ type: String })
   type = "button";
 
+  @property({ type: String, attribute: "icon-type" })
+  iconType = "";
+
   private get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
@@ -68,7 +83,7 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      isValidVariants(this.variants),
+      isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
@@ -76,8 +91,29 @@ export class SpButton extends LitElement {
       .join(" ");
   }
 
+  private get loadingSize() {
+    const sizeAttributeMap = {
+      medium: "large",
+      large: "xLarge",
+      xLarge: "2xLarge",
+    };
+    return sizeAttributeMap[isValidSize(this.size)];
+  }
+
   private get isDisabled() {
     return this.disabled || this.loading;
+  }
+
+  private renderLoading() {
+    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
+  }
+
+  private get showIcon() {
+    return this.iconType && isValidIconType(this.iconType);
+  }
+
+  private renderIcon() {
+    return html`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
   }
 
   render() {
@@ -89,6 +125,8 @@ export class SpButton extends LitElement {
         value="${this.value}"
         type="${this.type}"
       >
+        ${this.loading ? this.renderLoading() : nothing}
+        ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
     `;

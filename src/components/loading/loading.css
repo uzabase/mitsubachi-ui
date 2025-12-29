@@ -41,6 +41,7 @@
   width: var(--size);
   height: var(--size);
   border: calc(var(--size) * var(--border-size-ratio)) solid transparent;
+  mask-image: radial-gradient(circle closest-side, transparent 80%, black 80%);
 }
 
 .variant-ai {
