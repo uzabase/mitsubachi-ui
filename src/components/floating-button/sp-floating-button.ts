@@ -16,7 +16,7 @@ export class SpFloatingButton extends LitElement {
   render() {
     return html`<button class="base">
       ${this.loading
-        ? html`<sp-loading class="loading" ai size="2xLarge"></sp-loading>`
+        ? html`<sp-loading class="loading" ai size="3xLarge"></sp-loading>`
         : html`<sp-icon class="icon" type="magic-fill"></sp-icon>`}
     </button>`;
   }
