@@ -3,7 +3,8 @@
   --size-large: 15px;
   --size-x-large: 17.5px;
   --size-2x-large: 20px;
-  --size-3x-large: 40px;
+  --size-3x-large: 32px;
+  --size-4x-large: 40px;
   --border-size-ratio: 1/10;
   --ui-semantic-object-regular-default: rgb(0 0 0 / 84%);
   --neutral-neutral-20-alpha: rgb(0 0 0 / 7%);
@@ -32,6 +33,10 @@
 
 .size-3x-large {
   --size: var(--size-3x-large);
+}
+
+.size-4x-large {
+  --size: var(--size-4x-large);
 }
 
 .loading {

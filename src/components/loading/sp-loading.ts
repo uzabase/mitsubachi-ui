@@ -12,6 +12,7 @@ export const size = [
   "xLarge",
   "2xLarge",
   "3xLarge",
+  "4xLarge",
 ] as const;
 type Size = (typeof size)[number];
 
@@ -34,6 +35,7 @@ export class SpLoading extends LitElement {
       xLarge: "size-x-large",
       "2xLarge": "size-2x-large",
       "3xLarge": "size-3x-large",
+      "4xLarge": "size-4x-large",
     };
 
     return [

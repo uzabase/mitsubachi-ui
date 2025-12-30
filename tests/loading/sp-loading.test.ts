@@ -42,6 +42,7 @@ describe("sp-loading", () => {
       ["xLarge", "size-x-large"],
       ["2xLarge", "size-2x-large"],
       ["3xLarge", "size-3x-large"],
+      ["4xLarge", "size-4x-large"],
     ])(
       "size='%s'を指定すると、'%s'クラスが適用される",
       async (size, expectedClass) => {
