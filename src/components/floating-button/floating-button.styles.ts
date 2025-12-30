@@ -49,7 +49,7 @@ export default css`
 
   .base:hover::before {
     transform: rotate(1turn);
-    transition: transform 0.6s ease-in-out;
+    transition: transform 0.3s ease;
   }
 
   .base:active::after {
