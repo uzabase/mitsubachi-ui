@@ -3,6 +3,7 @@ import "../icon/index";
 import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
+import { makeStyles } from "../styles";
 import { avatarStyles } from "./avatar.styles";
 
 const size = ["small", "medium", "large", "x-large", "2x-large"] as const;
@@ -26,7 +27,7 @@ function isValidColor(value: number): boolean {
  * @summary アバターです。
  */
 export class SpAvatar extends LitElement {
-  static styles = avatarStyles;
+  static styles = makeStyles(avatarStyles);
 
   @property({ type: String })
   src = "";
