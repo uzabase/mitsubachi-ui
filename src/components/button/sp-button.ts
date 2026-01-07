@@ -145,7 +145,7 @@ export class SpButton extends LitElement {
   #handleClick(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    const allowed = this.dispatchEvent(new MouseEvent('click', event));
+    const allowed = this.dispatchEvent(new MouseEvent("click", event));
     if (allowed && this.#internals.form) {
       this.#internals.form.requestSubmit();
     }
