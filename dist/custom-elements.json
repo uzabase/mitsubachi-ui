@@ -777,6 +777,111 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/label-unit/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "supportText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            },
+            {
+              "kind": "method",
+              "name": "#labelClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#supportClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/loading/loading.css",
       "declarations": [],
       "exports": []
@@ -1020,111 +1125,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/label-unit/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "supportText",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "method",
-              "name": "isEmpty",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              },
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            },
-            {
-              "kind": "method",
-              "name": "#labelClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#supportClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpLabelUnit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-label-unit",
-          "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/radio-button/radio-button-text.styles.ts",
       "declarations": [],
       "exports": [
@@ -1257,59 +1257,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
-          "tagName": "sp-control-menu",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -1405,6 +1352,59 @@
     {
       "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
+          "tagName": "sp-control-menu",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
