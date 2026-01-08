@@ -1257,6 +1257,59 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
+          "tagName": "sp-control-menu",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -1352,59 +1405,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。",
-          "tagName": "sp-control-menu",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
