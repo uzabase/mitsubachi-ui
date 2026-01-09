@@ -8,8 +8,8 @@ function getSpLoading(): SpLoading {
   return document.querySelector("sp-loading") as SpLoading;
 }
 
-function getInternalElement(): Element | null | undefined {
-  return getSpLoading().shadowRoot?.querySelector("span");
+function getLoadingElement(): Element | null | undefined {
+  return getSpLoading().shadowRoot?.querySelector(".loading");
 }
 
 describe("sp-loading", () => {
@@ -22,7 +22,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("variant-normal")).toBe(true);
     });
 
@@ -30,7 +30,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading ai></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("variant-ai")).toBe(true);
     });
   });
@@ -49,7 +49,7 @@ describe("sp-loading", () => {
         document.body.innerHTML = `<sp-loading size="${size}"></sp-loading>`;
         await customElements.whenDefined("sp-loading");
 
-        const element = getInternalElement();
+        const element = getLoadingElement();
 
         expect(element?.classList.contains(expectedClass)).toBe(true);
       },
@@ -59,7 +59,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("size-medium")).toBe(true);
     });
   });
@@ -69,7 +69,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getSpLoading();
       expect(element?.getAttribute("role")).toBe("status");
     });
   });
