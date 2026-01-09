@@ -117,7 +117,7 @@ export class SpButton extends LitElement {
   }
 
   private get showIcon() {
-    return this.iconType && isValidIconType(this.iconType);
+    return this.iconType && isValidIconType(this.iconType) && !this.loading;
   }
 
   private renderIcon() {

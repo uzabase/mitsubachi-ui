@@ -20,6 +20,15 @@ const meta = {
       control: { type: "select" },
       options: variants,
     },
+    variants: {
+      control: { type: "select" },
+      options: variants,
+      description:
+        "⚠️ **非推奨**: このプロパティは非推奨です。代わりに `variant` を使用してください。後方互換性のために残されていますが、将来のバージョンで削除される予定です。",
+      table: {
+        category: "非推奨",
+      },
+    },
     size: {
       control: { type: "select" },
       options: sizes,
@@ -40,6 +49,7 @@ const meta = {
     slot: "ダウンロード",
     danger: false,
     variant: "primary",
+    variants: undefined,
     size: "medium",
     loading: false,
     disabled: false,
@@ -52,6 +62,7 @@ const meta = {
     <sp-button
       ?danger=${args.danger}
       variant=${args.variant}
+      variants=${args.variants || nothing}
       size=${args.size}
       ?loading=${args.loading}
       ?disabled=${args.disabled}
