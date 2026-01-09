@@ -109,10 +109,7 @@ export class SpButton extends LitElement {
   }
 
   private get showIcon() {
-    if (this.loading) {
-      return false;
-    }
-    return this.iconType && isValidIconType(this.iconType);
+    return !this.loading && this.iconType && isValidIconType(this.iconType);
   }
 
   private renderIcon() {
