@@ -445,28 +445,6 @@ describe("sp-button", () => {
       const icon = spButton.shadowRoot?.querySelector("sp-icon");
       expect(icon).toBeFalsy();
     });
-
-    test("loading状態の時、アイコンが非表示になる", async () => {
-      document.body.innerHTML = `<sp-button icon-type="check" loading>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const spButton = getSpButton();
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
-      expect(icon).toBeFalsy();
-    });
-
-    test("loading状態が解除されると、アイコンが表示される", async () => {
-      document.body.innerHTML = `<sp-button icon-type="check" loading>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const spButton = getSpButton();
-      spButton.removeAttribute("loading");
-      await spButton.updateComplete;
-
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
-      expect(icon).toBeTruthy();
-      expect(icon?.getAttribute("type")).toBe("check");
-    });
   });
 
   describe("variants属性（非推奨）", () => {
