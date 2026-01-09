@@ -25,7 +25,7 @@ export class SpLoading extends LitElement {
   @property({ type: Boolean })
   ai = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   size: Size = "medium";
 
   private get loadingClasses() {
