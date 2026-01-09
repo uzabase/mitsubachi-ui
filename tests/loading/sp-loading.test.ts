@@ -69,7 +69,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getSpLoading();
+      const element = getLoadingElement();
       expect(element?.getAttribute("role")).toBe("status");
     });
   });

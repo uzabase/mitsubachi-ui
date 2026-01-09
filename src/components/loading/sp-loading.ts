@@ -28,9 +28,6 @@ export class SpLoading extends LitElement {
   @property({ type: String, reflect: true })
   size: Size = "medium";
 
-  @property({ type: String, reflect: true })
-  role = "status";
-
   private get loadingClasses() {
     const sizeClassMap = {
       medium: "size-medium",
@@ -53,7 +50,7 @@ export class SpLoading extends LitElement {
   render() {
     return html`
       <span class="base">
-        <span class="${this.loadingClasses}"></span>
+        <span class="${this.loadingClasses}" role="status"></span>
       </span>
     `;
   }
