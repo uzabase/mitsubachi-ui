@@ -883,7 +883,7 @@ const i1 = class i1 extends H {
     return u`<sp-loading size="${this.loadingSize}"></sp-loading>`;
   }
   get showIcon() {
-    return this.iconType && G2(this.iconType);
+    return !this.loading && this.iconType && G2(this.iconType);
   }
   renderIcon() {
     return u`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
