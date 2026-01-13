@@ -46,6 +46,8 @@ function isValidIconType(value: string): boolean {
 export class SpButton extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
+  static formAssociated = true;
+
   @property({ type: Boolean, reflect: true })
   loading = false;
 
@@ -72,6 +74,13 @@ export class SpButton extends LitElement {
 
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
+
+  #internals: ElementInternals;
+
+  constructor() {
+    super();
+    this.#internals = this.attachInternals();
+  }
 
   private get buttonClasses() {
     const sizeClassMap = {
@@ -124,12 +133,22 @@ export class SpButton extends LitElement {
         name="${this.name}"
         value="${this.value}"
         type="${this.type}"
+        @click="${this.#handleClick}"
       >
         ${this.loading ? this.renderLoading() : nothing}
         ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
     `;
+  }
+
+  #handleClick(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const allowed = this.dispatchEvent(new MouseEvent("click", event));
+    if (allowed && this.#internals.form) {
+      this.#internals.form.requestSubmit();
+    }
   }
 }
 
