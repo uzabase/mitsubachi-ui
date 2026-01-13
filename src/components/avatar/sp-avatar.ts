@@ -10,6 +10,18 @@ const size = ["small", "medium", "large", "x-large", "2x-large"] as const;
 
 export type AvatarSize = (typeof size)[number];
 
+const colors = [
+  "plum",
+  "violet",
+  "blue",
+  "viridian",
+  "green",
+  "brown",
+  "red",
+] as const;
+
+export type AvatarColor = (typeof colors)[number];
+
 function isValidSize(value: string): AvatarSize {
   if (size.some((s) => s === value)) {
     return value as AvatarSize;
@@ -19,8 +31,8 @@ function isValidSize(value: string): AvatarSize {
   }
 }
 
-function isValidColor(value: number): boolean {
-  return value >= 1 && value <= 7;
+function isValidColor(value: string): value is AvatarColor {
+  return colors.some((c) => c === value);
 }
 
 /**
@@ -41,8 +53,8 @@ export class SpAvatar extends LitElement {
   @property({ type: String })
   size: AvatarSize = "medium";
 
-  @property({ type: Number })
-  color = 0; // イニシャル表示時の背景色（1-7: カラーバリエーション、0または範囲外: グレー）
+  @property({ type: String })
+  color: AvatarColor | "" = ""; // イニシャル表示時の背景色（plum, violet, blue, viridian, green, brown, red のいずれか、空文字の場合はグレー）
 
   @property({ type: Boolean })
   inactive = false; // 休止状態・停止状態を表す
@@ -50,8 +62,8 @@ export class SpAvatar extends LitElement {
   get #avatarClasses() {
     const classes = ["base", `size-${isValidSize(this.size)}`];
 
-    // イニシャル表示時のみ色クラスを追加（1-7の範囲内の場合のみ）
-    if (!this.src && this.#displayContent && isValidColor(this.color)) {
+    // イニシャル表示時のみ色クラスを追加（有効な色名の場合のみ）
+    if (!this.src && this.#displayContent && this.color && isValidColor(this.color)) {
       classes.push(`color-${this.color}`);
     }
 

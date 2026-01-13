@@ -54,12 +54,12 @@ const meta = {
     },
     color: {
       control: { type: "select" },
-      options: [0, 1, 2, 3, 4, 5, 6, 7],
+      options: ["", "plum", "violet", "blue", "viridian", "green", "brown", "red"],
       description:
-        "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
+        "イニシャル表示時の背景色（plum, violet, blue, viridian, green, brown, red のいずれか、空文字の場合はグレー）",
       table: {
-        type: { summary: "number" },
-        defaultValue: { summary: "0" },
+        type: { summary: '"plum" | "violet" | "blue" | "viridian" | "green" | "brown" | "red" | ""' },
+        defaultValue: { summary: '""' },
       },
     },
     inactive: {
@@ -93,7 +93,7 @@ type Story = StoryObj<SpAvatar>;
 export const Basic: Story = {
   args: {
     initials: "TA",
-    color: 1,
+    color: "plum",
   },
   render: (args) => html`
     <sp-avatar
@@ -101,7 +101,7 @@ export const Basic: Story = {
       initials=${args.initials || nothing}
       alt=${args.alt || nothing}
       size=${args.size || nothing}
-      color=${args.color ?? 0}
+      color=${args.color || nothing}
       ?inactive=${args.inactive}
       @click=${args.onclick}
     >
@@ -140,21 +140,21 @@ export const LowerCaseToUpperCase: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="ta" color="1"></sp-avatar>
+        <sp-avatar initials="ta" color="plum"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ta"
         </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="ab" color="2"></sp-avatar>
+        <sp-avatar initials="ab" color="violet"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ab"
         </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="xy" color="3"></sp-avatar>
+        <sp-avatar initials="xy" color="blue"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "xy"
         </div>
@@ -177,21 +177,21 @@ export const TwoCharacterLimit: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="TARO" color="1"></sp-avatar>
+        <sp-avatar initials="TARO" color="plum"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "TARO"
         </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="HANAKO" color="2"></sp-avatar>
+        <sp-avatar initials="HANAKO" color="violet"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "HANAKO"
         </div>
         <div style="font-size: 14px; color: #666;">→ "HA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="ABC" color="3"></sp-avatar>
+        <sp-avatar initials="ABC" color="blue"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ABC"
         </div>
@@ -214,21 +214,21 @@ export const WhitespaceRemoval: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="  hs  " color="1"></sp-avatar>
+        <sp-avatar initials="  hs  " color="plum"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " hs "
         </div>
         <div style="font-size: 14px; color: #666;">→ "HS"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials=" ab " color="2"></sp-avatar>
+        <sp-avatar initials=" ab " color="violet"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " ab "
         </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="   ta   " color="3"></sp-avatar>
+        <sp-avatar initials="   ta   " color="blue"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " ta "
         </div>
@@ -251,21 +251,21 @@ export const SingleCharacter: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="A" color="1"></sp-avatar>
+        <sp-avatar initials="A" color="plum"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "A"
         </div>
         <div style="font-size: 14px; color: #666;">→ "A"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="b" color="2"></sp-avatar>
+        <sp-avatar initials="b" color="violet"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "b"
         </div>
         <div style="font-size: 14px; color: #666;">→ "B"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="Z" color="3"></sp-avatar>
+        <sp-avatar initials="Z" color="blue"></sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "Z"
         </div>
@@ -288,51 +288,51 @@ export const ColorVariations: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar color="0">DE</sp-avatar>
+        <sp-avatar color="">DE</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           デフォルト
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="1">C1</sp-avatar>
+        <sp-avatar color="plum">PL</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー1
+          plum
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="2">C2</sp-avatar>
+        <sp-avatar color="violet">VI</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー2
+          violet
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="3">C3</sp-avatar>
+        <sp-avatar color="blue">BL</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー3
+          blue
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="4">C4</sp-avatar>
+        <sp-avatar color="viridian">VR</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー4
+          viridian
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="5">C5</sp-avatar>
+        <sp-avatar color="green">GR</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー5
+          green
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="6">C6</sp-avatar>
+        <sp-avatar color="brown">BR</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー6
+          brown
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="7">C7</sp-avatar>
+        <sp-avatar color="red">RD</sp-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
-          カラー7
+          red
         </div>
       </div>
     </div>
@@ -341,8 +341,8 @@ export const ColorVariations: Story = {
     docs: {
       description: {
         story:
-          "イニシャル表示時のカラーバリエーション。color属性に1-7を指定することで、7種類のカラーパレットから選択できます。\n\n" +
-          "1~7以外の値（0、8、-1、999など）が指定された場合は、デフォルトのグレーで表示されます。",
+          "イニシャル表示時のカラーバリエーション。color属性にplum, violet, blue, viridian, green, brown, redを指定することで、7種類のカラーパレットから選択できます。\n\n" +
+          "空文字または無効な値が指定された場合は、デフォルトのグレーで表示されます。",
       },
     },
   },

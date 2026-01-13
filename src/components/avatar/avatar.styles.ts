@@ -3,6 +3,13 @@ import { css } from "lit";
 export const avatarStyles = css`
   :host {
     display: inline-block;
+    --palette-plum: #910091;
+    --palette-violet: #3e31d5;
+    --palette-blue: #214dde;
+    --palette-viridian: #0d8282;
+    --palette-green: #008744;
+    --palette-brown: #ae6022;
+    --palette-red: #d30030;
   }
 
   .base {
@@ -117,38 +124,38 @@ export const avatarStyles = css`
   }
 
   /* カラーバリエーション */
-  .color-1 {
-    background-color: #910091;
+  .color-plum {
+    background-color: var(--palette-plum);
     color: #fff;
   }
 
-  .color-2 {
-    background-color: #3e31d5;
+  .color-violet {
+    background-color: var(--palette-violet);
     color: #fff;
   }
 
-  .color-3 {
-    background-color: #214dde;
+  .color-blue {
+    background-color: var(--palette-blue);
     color: #fff;
   }
 
-  .color-4 {
-    background-color: #0d8282;
+  .color-viridian {
+    background-color: var(--palette-viridian);
     color: #fff;
   }
 
-  .color-5 {
-    background-color: #008744;
+  .color-green {
+    background-color: var(--palette-green);
     color: #fff;
   }
 
-  .color-6 {
-    background-color: #ae6022;
+  .color-brown {
+    background-color: var(--palette-brown);
     color: #fff;
   }
 
-  .color-7 {
-    background-color: #d30030;
+  .color-red {
+    background-color: var(--palette-red);
     color: #fff;
   }
 

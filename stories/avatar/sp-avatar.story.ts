@@ -52,12 +52,12 @@ const meta = {
     },
     color: {
       control: { type: "select" },
-      options: [0, 1, 2, 3, 4, 5, 6, 7],
+      options: ["", "plum", "violet", "blue", "viridian", "green", "brown", "red"],
       description:
-        "イニシャル表示時の背景色（1-7: カラーバリエーション、1~7以外: デフォルトのグレー）",
+        "イニシャル表示時の背景色（plum, violet, blue, viridian, green, brown, red のいずれか、空文字の場合はグレー）",
       table: {
-        type: { summary: "number" },
-        defaultValue: { summary: "0" },
+        type: { summary: '"plum" | "violet" | "blue" | "viridian" | "green" | "brown" | "red" | ""' },
+        defaultValue: { summary: '""' },
       },
     },
     inactive: {
@@ -84,7 +84,7 @@ const meta = {
       alt=${args.alt || nothing}
       initials=${args.initials || nothing}
       size=${args.size || nothing}
-      color=${args.color ?? 0}
+      color=${args.color || nothing}
       ?inactive=${args.inactive}
       @click=${args.onclick}
     >
@@ -164,7 +164,7 @@ export const Inactive: Story = {
             <div style="margin-top: 8px; font-size: 12px;">画像</div>
           </div>
           <div style="text-align: center;">
-            <sp-avatar initials="TA" color="1" inactive></sp-avatar>
+            <sp-avatar initials="TA" color="plum" inactive></sp-avatar>
             <div style="margin-top: 8px; font-size: 12px;">イニシャル</div>
           </div>
         </div>
@@ -221,11 +221,11 @@ export const Sizes: Story = {
       <div>
         <div style="margin-bottom: 8px; font-weight: bold;">イニシャル</div>
         <div style="display: flex; gap: 16px; align-items: center;">
-          <sp-avatar size="small" color="1">TA</sp-avatar>
-          <sp-avatar size="medium" color="2">TA</sp-avatar>
-          <sp-avatar size="large" color="3">TA</sp-avatar>
-          <sp-avatar size="x-large" color="4">TA</sp-avatar>
-          <sp-avatar size="2x-large" color="5">TA</sp-avatar>
+          <sp-avatar size="small" color="plum">TA</sp-avatar>
+          <sp-avatar size="medium" color="violet">TA</sp-avatar>
+          <sp-avatar size="large" color="blue">TA</sp-avatar>
+          <sp-avatar size="x-large" color="viridian">TA</sp-avatar>
+          <sp-avatar size="2x-large" color="green">TA</sp-avatar>
         </div>
       </div>
       <div>
@@ -256,11 +256,11 @@ export const Sizes: Story = {
 export const FallbackBehavior: Story = {
   render: () => html`
     <div style="display: flex; gap: 16px; align-items: center;">
-      <sp-avatar src="https://invalid-url.example.com/image.jpg" color="6"
+      <sp-avatar src="https://invalid-url.example.com/image.jpg" color="brown"
         >JY</sp-avatar
       >
-      <sp-avatar src="" color="7">CI</sp-avatar>
-      <sp-avatar color="1">KW</sp-avatar>
+      <sp-avatar src="" color="red">CI</sp-avatar>
+      <sp-avatar color="plum">KW</sp-avatar>
     </div>
   `,
   parameters: {
@@ -390,11 +390,11 @@ export const ALL: Story = {
         </thead>
         <tbody>
           <tr>
-            <td><sp-avatar size="small" color="1">TA</sp-avatar></td>
-            <td><sp-avatar size="medium" color="2">TA</sp-avatar></td>
-            <td><sp-avatar size="large" color="3">TA</sp-avatar></td>
-            <td><sp-avatar size="x-large" color="4">TA</sp-avatar></td>
-            <td><sp-avatar size="2x-large" color="5">TA</sp-avatar></td>
+            <td><sp-avatar size="small" color="plum">TA</sp-avatar></td>
+            <td><sp-avatar size="medium" color="violet">TA</sp-avatar></td>
+            <td><sp-avatar size="large" color="blue">TA</sp-avatar></td>
+            <td><sp-avatar size="x-large" color="viridian">TA</sp-avatar></td>
+            <td><sp-avatar size="2x-large" color="green">TA</sp-avatar></td>
           </tr>
         </tbody>
       </table>
@@ -438,43 +438,43 @@ export const ALL: Story = {
         <tbody>
           <tr>
             <td>"ta"</td>
-            <td><sp-avatar color="1">TA</sp-avatar></td>
+            <td><sp-avatar color="plum">TA</sp-avatar></td>
             <td>"TA"</td>
             <td>小文字→大文字</td>
           </tr>
           <tr>
             <td>"TARO"</td>
-            <td><sp-avatar color="2">TA</sp-avatar></td>
+            <td><sp-avatar color="violet">TA</sp-avatar></td>
             <td>"TA"</td>
             <td>4文字→2文字</td>
           </tr>
           <tr>
             <td>" hs "</td>
-            <td><sp-avatar color="3">HS</sp-avatar></td>
+            <td><sp-avatar color="blue">HS</sp-avatar></td>
             <td>"HS"</td>
             <td>空白除去</td>
           </tr>
           <tr>
             <td>"A"</td>
-            <td><sp-avatar color="4">A</sp-avatar></td>
+            <td><sp-avatar color="viridian">A</sp-avatar></td>
             <td>"A"</td>
             <td>1文字</td>
           </tr>
           <tr>
             <td>"9."</td>
-            <td><sp-avatar color="5">9.</sp-avatar></td>
+            <td><sp-avatar color="green">9.</sp-avatar></td>
             <td>"9."</td>
             <td>記号混在</td>
           </tr>
           <tr>
             <td>"a1b2"</td>
-            <td><sp-avatar color="6">A1</sp-avatar></td>
+            <td><sp-avatar color="brown">A1</sp-avatar></td>
             <td>"A1"</td>
             <td>アルファベットと数字</td>
           </tr>
           <tr>
             <td>"123"</td>
-            <td><sp-avatar color="7">12</sp-avatar></td>
+            <td><sp-avatar color="red">12</sp-avatar></td>
             <td>"12"</td>
             <td>数字のみ</td>
           </tr>
@@ -494,43 +494,43 @@ export const ALL: Story = {
         </thead>
         <tbody>
           <tr>
-            <td>デフォルト</td>
-            <td><sp-avatar color="0">DE</sp-avatar></td>
+            <td>デフォルト（グレー）</td>
+            <td><sp-avatar color="">DE</sp-avatar></td>
             <td>rgba(0, 0, 0, 0.05)</td>
           </tr>
           <tr>
-            <td>カラー 1</td>
-            <td><sp-avatar color="1">C1</sp-avatar></td>
+            <td>plum</td>
+            <td><sp-avatar color="plum">PL</sp-avatar></td>
             <td>#910091</td>
           </tr>
           <tr>
-            <td>カラー 2</td>
-            <td><sp-avatar color="2">C2</sp-avatar></td>
+            <td>violet</td>
+            <td><sp-avatar color="violet">VI</sp-avatar></td>
             <td>#3E31D5</td>
           </tr>
           <tr>
-            <td>カラー 3</td>
-            <td><sp-avatar color="3">C3</sp-avatar></td>
+            <td>blue</td>
+            <td><sp-avatar color="blue">BL</sp-avatar></td>
             <td>#214DDE</td>
           </tr>
           <tr>
-            <td>カラー 4</td>
-            <td><sp-avatar color="4">C4</sp-avatar></td>
+            <td>viridian</td>
+            <td><sp-avatar color="viridian">VR</sp-avatar></td>
             <td>#0D8282</td>
           </tr>
           <tr>
-            <td>カラー 5</td>
-            <td><sp-avatar color="5">C5</sp-avatar></td>
+            <td>green</td>
+            <td><sp-avatar color="green">GR</sp-avatar></td>
             <td>#008744</td>
           </tr>
           <tr>
-            <td>カラー 6</td>
-            <td><sp-avatar color="6">C6</sp-avatar></td>
+            <td>brown</td>
+            <td><sp-avatar color="brown">BR</sp-avatar></td>
             <td>#AE6022</td>
           </tr>
           <tr>
-            <td>カラー 7</td>
-            <td><sp-avatar color="7">C7</sp-avatar></td>
+            <td>red</td>
+            <td><sp-avatar color="red">RD</sp-avatar></td>
             <td>#D30030</td>
           </tr>
         </tbody>
