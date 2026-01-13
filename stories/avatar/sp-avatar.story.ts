@@ -52,11 +52,23 @@ const meta = {
     },
     color: {
       control: { type: "select" },
-      options: ["", "plum", "violet", "blue", "viridian", "green", "brown", "red"],
+      options: [
+        "",
+        "plum",
+        "violet",
+        "blue",
+        "viridian",
+        "green",
+        "brown",
+        "red",
+      ],
       description:
         "イニシャル表示時の背景色（plum, violet, blue, viridian, green, brown, red のいずれか、空文字の場合はグレー）",
       table: {
-        type: { summary: '"plum" | "violet" | "blue" | "viridian" | "green" | "brown" | "red" | ""' },
+        type: {
+          summary:
+            '"plum" | "violet" | "blue" | "viridian" | "green" | "brown" | "red" | ""',
+        },
         defaultValue: { summary: '""' },
       },
     },

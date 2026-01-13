@@ -157,44 +157,60 @@ describe("sp-avatar", () => {
   });
 
   describe("color属性", () => {
-    test("color属性が1-7の場合、対応するカラークラスが適用される", async () => {
-      document.body.innerHTML = `<sp-avatar initials="TA" color="1"></sp-avatar>`;
+    test("有効な色名が指定された場合、対応するカラークラスが適用される（plum）", async () => {
+      document.body.innerHTML = `<sp-avatar initials="TA" color="plum"></sp-avatar>`;
       await customElements.whenDefined("sp-avatar");
 
       const base = getBase();
-      expect(base?.classList.contains("color-1")).toBe(true);
+      expect(base?.classList.contains("color-plum")).toBe(true);
     });
 
-    test("color属性が0または範囲外の場合、カラークラスは適用されない", async () => {
-      document.body.innerHTML = `<sp-avatar initials="TA" color="0"></sp-avatar>`;
+    test("有効な色名が指定された場合、対応するカラークラスが適用される（violet）", async () => {
+      document.body.innerHTML = `<sp-avatar initials="TA" color="violet"></sp-avatar>`;
       await customElements.whenDefined("sp-avatar");
 
       const base = getBase();
-      expect(base?.classList.contains("color-0")).toBe(false);
+      expect(base?.classList.contains("color-violet")).toBe(true);
     });
 
-    test("color属性が8以上の場合、カラークラスは適用されない", async () => {
-      document.body.innerHTML = `<sp-avatar initials="TA" color="8"></sp-avatar>`;
+    test("有効な色名が指定された場合、対応するカラークラスが適用される（red）", async () => {
+      document.body.innerHTML = `<sp-avatar initials="TA" color="red"></sp-avatar>`;
       await customElements.whenDefined("sp-avatar");
 
       const base = getBase();
-      expect(base?.classList.contains("color-8")).toBe(false);
+      expect(base?.classList.contains("color-red")).toBe(true);
+    });
+
+    test("空文字の場合、カラークラスは適用されない", async () => {
+      document.body.innerHTML = `<sp-avatar initials="TA" color=""></sp-avatar>`;
+      await customElements.whenDefined("sp-avatar");
+
+      const base = getBase();
+      expect(base?.className).toMatch(/^base size-medium$/);
+    });
+
+    test("無効な色名の場合、カラークラスは適用されない", async () => {
+      document.body.innerHTML = `<sp-avatar initials="TA" color="invalid"></sp-avatar>`;
+      await customElements.whenDefined("sp-avatar");
+
+      const base = getBase();
+      expect(base?.classList.contains("color-invalid")).toBe(false);
     });
 
     test("画像表示時はcolor属性が無視される", async () => {
-      document.body.innerHTML = `<sp-avatar src="https://example.com/avatar.jpg" color="1"></sp-avatar>`;
+      document.body.innerHTML = `<sp-avatar src="https://example.com/avatar.jpg" color="plum"></sp-avatar>`;
       await customElements.whenDefined("sp-avatar");
 
       const base = getBase();
-      expect(base?.classList.contains("color-1")).toBe(false);
+      expect(base?.classList.contains("color-plum")).toBe(false);
     });
 
     test("アイコン表示時はcolor属性が無視される", async () => {
-      document.body.innerHTML = `<sp-avatar color="1"></sp-avatar>`;
+      document.body.innerHTML = `<sp-avatar color="plum"></sp-avatar>`;
       await customElements.whenDefined("sp-avatar");
 
       const base = getBase();
-      expect(base?.classList.contains("color-1")).toBe(false);
+      expect(base?.classList.contains("color-plum")).toBe(false);
     });
   });
 

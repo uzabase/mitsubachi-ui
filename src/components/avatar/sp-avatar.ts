@@ -63,7 +63,12 @@ export class SpAvatar extends LitElement {
     const classes = ["base", `size-${isValidSize(this.size)}`];
 
     // イニシャル表示時のみ色クラスを追加（有効な色名の場合のみ）
-    if (!this.src && this.#displayContent && this.color && isValidColor(this.color)) {
+    if (
+      !this.src &&
+      this.#displayContent &&
+      this.color &&
+      isValidColor(this.color)
+    ) {
       classes.push(`color-${this.color}`);
     }
 
