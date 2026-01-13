@@ -183,6 +183,15 @@
             },
             {
               "kind": "field",
+              "name": "variants",
+              "type": {
+                "text": "Variant | null"
+              },
+              "default": "null",
+              "deprecated": "このプロパティは非推奨です。代わりに `variant` を使用してください。"
+            },
+            {
+              "kind": "field",
               "name": "variant",
               "type": {
                 "text": "Variant"

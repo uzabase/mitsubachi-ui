@@ -13,6 +13,10 @@ export declare class SpButton extends LitElement {
     loading: boolean;
     disabled: boolean;
     danger: boolean;
+    /**
+     * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+     */
+    variants: Variant | null;
     variant: Variant;
     size: Size;
     name: string;
