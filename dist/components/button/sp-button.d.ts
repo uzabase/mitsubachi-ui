@@ -1,23 +1,35 @@
 import { LitElement } from 'lit';
-export declare const variants: readonly ["primary", "secondary", "tertiary"];
-type Variants = (typeof variants)[number];
-export declare const size: readonly ["medium", "large", "xLarge"];
-type Size = (typeof size)[number];
+export declare const variants: readonly ["primary", "secondary", "tertiary", "ghost"];
+type Variant = (typeof variants)[number];
+export declare const sizes: readonly ["medium", "large", "xLarge"];
+type Size = (typeof sizes)[number];
 /**
  * @summary ボタンです。
  */
 export declare class SpButton extends LitElement {
+    #private;
     static styles: import('lit').CSSResult[];
+    static formAssociated: boolean;
     loading: boolean;
     disabled: boolean;
     danger: boolean;
-    variants: Variants;
+    /**
+     * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+     */
+    variants: Variant | null;
+    variant: Variant;
     size: Size;
     name: string;
     value: string;
     type: string;
+    iconType: string;
+    constructor();
     private get buttonClasses();
+    private get loadingSize();
     private get isDisabled();
+    private renderLoading;
+    private get showIcon();
+    private renderIcon;
     render(): import('lit-html').TemplateResult<1>;
 }
 declare global {

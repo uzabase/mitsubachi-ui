@@ -6,7 +6,7 @@ import { makeStyles } from "../styles";
 import iconStyle from "./icon.css?inline";
 import { iconPaths, type IconType, iconTypes } from "./icons";
 
-function isIconType(type: string): type is IconType {
+export function isIconType(type: string): type is IconType {
   return (iconTypes as readonly string[]).includes(type);
 }
 

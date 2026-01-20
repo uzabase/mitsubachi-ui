@@ -1,30 +1,42 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import "../loading/sp-loading";
+
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
-export const variants = ["primary", "secondary", "tertiary"] as const;
-type Variants = (typeof variants)[number];
+export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
+type Variant = (typeof variants)[number];
 
-export const size = ["medium", "large", "xLarge"] as const;
-type Size = (typeof size)[number];
+export const sizes = ["medium", "large", "xLarge"] as const;
+type Size = (typeof sizes)[number];
 
-function isValidVariants(value: string): Variants {
+function isValidVariant(value: string): Variant {
   if (variants.some((variant) => variant === value)) {
-    return value as Variants;
+    return value as Variant;
   } else {
-    console.warn(`${value}は無効なvariants属性です。`);
+    console.warn(`${value}は無効なvariant属性です。`);
     return variants[0];
   }
 }
 
 function isValidSize(value: string): Size {
-  if (size.some((s) => s === value)) {
+  if (sizes.some((s) => s === value)) {
     return value as Size;
   } else {
     console.warn(`${value}は無効なsize属性です。`);
-    return size[0];
+    return sizes[0];
+  }
+}
+
+function isValidIconType(value: string): boolean {
+  if (isIconType(value)) {
+    return true;
+  } else {
+    console.warn(`${value}は無効なicon-type属性です。`);
+    return false;
   }
 }
 
@@ -33,6 +45,8 @@ function isValidSize(value: string): Size {
  */
 export class SpButton extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
+
+  static formAssociated = true;
 
   @property({ type: Boolean, reflect: true })
   loading = false;
@@ -43,8 +57,14 @@ export class SpButton extends LitElement {
   @property({ type: Boolean, reflect: true })
   danger = false;
 
+  /**
+   * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+   */
   @property({ type: String })
-  variants: Variants = "primary";
+  variants: Variant | null = null;
+
+  @property({ type: String })
+  variant: Variant = "primary";
 
   @property({ type: String })
   size: Size = "medium";
@@ -58,6 +78,16 @@ export class SpButton extends LitElement {
   @property({ type: String })
   type = "button";
 
+  @property({ type: String, attribute: "icon-type" })
+  iconType = "";
+
+  #internals: ElementInternals;
+
+  constructor() {
+    super();
+    this.#internals = this.attachInternals();
+  }
+
   private get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
@@ -68,7 +98,9 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      isValidVariants(this.variants),
+      this.variants
+        ? isValidVariant(this.variants)
+        : isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
@@ -76,8 +108,29 @@ export class SpButton extends LitElement {
       .join(" ");
   }
 
+  private get loadingSize() {
+    const sizeAttributeMap = {
+      medium: "large",
+      large: "xLarge",
+      xLarge: "2xLarge",
+    };
+    return sizeAttributeMap[isValidSize(this.size)];
+  }
+
   private get isDisabled() {
     return this.disabled || this.loading;
+  }
+
+  private renderLoading() {
+    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
+  }
+
+  private get showIcon() {
+    return !this.loading && this.iconType && isValidIconType(this.iconType);
+  }
+
+  private renderIcon() {
+    return html`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
   }
 
   render() {
@@ -88,10 +141,22 @@ export class SpButton extends LitElement {
         name="${this.name}"
         value="${this.value}"
         type="${this.type}"
+        @click="${this.#handleClick}"
       >
+        ${this.loading ? this.renderLoading() : nothing}
+        ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
     `;
+  }
+
+  #handleClick(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const allowed = this.dispatchEvent(new MouseEvent("click", event));
+    if (allowed && this.#internals.form) {
+      this.#internals.form.requestSubmit();
+    }
   }
 }
 
