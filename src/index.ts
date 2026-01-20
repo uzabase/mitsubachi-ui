@@ -1,3 +1,4 @@
+export { SpAvatar } from "./components/avatar/sp-avatar";
 export { SpButton } from "./components/button/sp-button";
 export { SpIcon } from "./components/icon";
 export { SpLabelUnit } from "./components/label-unit";

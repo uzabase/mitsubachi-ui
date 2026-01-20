@@ -5,6 +5,7 @@
         align-items: center;
         padding-top: 8px;
         color: #c92812;
+
         >.text {
             font-weight: var(--font-weight-normal);
             font-size: 14px;
