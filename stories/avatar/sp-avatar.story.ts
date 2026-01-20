@@ -8,6 +8,8 @@ import { type SpAvatar } from "../../src/components/avatar/sp-avatar";
 
 const meta = {
   component: "sp-avatar",
+  title: "Avatar/sp-avatar",
+  tags: ["!dev-only"],
   argTypes: {
     src: {
       type: "string",
