@@ -1044,9 +1044,9 @@
           "kind": "variable",
           "name": "size",
           "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n]"
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
           },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", ]"
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
         },
         {
           "kind": "class",
