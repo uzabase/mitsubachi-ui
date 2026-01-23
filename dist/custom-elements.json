@@ -25,6 +25,22 @@
         },
         {
           "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "./components/checkbox/sp-checkbox"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "./components/checkbox/sp-checkbox-text"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SpIcon",
           "declaration": {
             "name": "SpIcon",
