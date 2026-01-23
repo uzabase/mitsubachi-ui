@@ -1,10 +1,10 @@
-import "../../src/components/floating-button/sp-floating-button";
+import "../../src/components/floating-button/mi-floating-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
 const meta: Meta = {
-  component: "sp-floating-button",
+  component: "mi-floating-button",
   args: {
     loading: false,
   },
@@ -12,7 +12,7 @@ const meta: Meta = {
     loading: { type: "boolean" },
   },
   render: (args) =>
-    html`<sp-floating-button ?loading=${args.loading}></sp-floating-button>`,
+    html`<mi-floating-button ?loading=${args.loading}></mi-floating-button>`,
 };
 
 export default meta;

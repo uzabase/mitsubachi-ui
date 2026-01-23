@@ -15,7 +15,7 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  *
  * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
  */
-export class SpControlMenuItem extends LitElement {
+export class MiControlMenuItem extends LitElement {
   static styles = makeStyles(unsafeCSS(spControlMenuItemLitStyle));
 
   @property({ type: String, reflect: true })
@@ -30,15 +30,23 @@ export class SpControlMenuItem extends LitElement {
   render() {
     return html`
       <span class="text">${this.text}</span>
-      <sp-icon class="icon" type="check-small"></sp-icon>
+      <mi-icon class="icon" type="check-small"></mi-icon>
     `;
   }
 }
 
+/** @deprecated 代わりに MiControlMenuItem を使用してください */
+export class SpControlMenuItem extends MiControlMenuItem {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-control-menu-item": MiControlMenuItem;
     "sp-control-menu-item": SpControlMenuItem;
   }
+}
+
+if (!customElements.get("mi-control-menu-item")) {
+  customElements.define("mi-control-menu-item", MiControlMenuItem);
 }
 
 if (!customElements.get("sp-control-menu-item")) {

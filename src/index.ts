@@ -1,12 +1,28 @@
-export { SpAvatar } from "./components/avatar/sp-avatar";
-export { SpButton } from "./components/button/sp-button";
-export { SpCheckbox } from "./components/checkbox/sp-checkbox";
-export { SpCheckboxText } from "./components/checkbox/sp-checkbox-text";
-export { SpFloatingButton } from "./components/floating-button/sp-floating-button";
-export { SpIcon } from "./components/icon";
-export { SpLabelUnit } from "./components/label-unit";
-export { SpLoading } from "./components/loading/sp-loading";
-export { SpLogo } from "./components/logo";
-export { SpControlMenu } from "./components/menu/control-menu";
-export { SpControlMenuItem } from "./components/menu/control-menu-item";
-export { SpTextFieldUnit } from "./components/text-field/text-field-unit";
+export { MiAvatar, SpAvatar } from "./components/avatar/mi-avatar";
+export { MiButton, SpButton } from "./components/button/mi-button";
+export { MiCheckbox, SpCheckbox } from "./components/checkbox/mi-checkbox";
+export {
+  MiCheckboxText,
+  SpCheckboxText,
+} from "./components/checkbox/mi-checkbox-text";
+export {
+  MiFloatingButton,
+  SpFloatingButton,
+} from "./components/floating-button/mi-floating-button";
+export { MiIcon, SpIcon } from "./components/icon";
+export { MiLabelUnit, SpLabelUnit } from "./components/label-unit";
+export { MiLoading, SpLoading } from "./components/loading/mi-loading";
+export { MiLogo, SpLogo } from "./components/logo";
+export { MiControlMenu, SpControlMenu } from "./components/menu/control-menu";
+export {
+  MiControlMenuItem,
+  SpControlMenuItem,
+} from "./components/menu/control-menu-item";
+export {
+  MiRadioButtonText,
+  SpRadioButtonText,
+} from "./components/radio-button/mi-radio-button-text";
+export {
+  MiTextFieldUnit,
+  SpTextFieldUnit,
+} from "./components/text-field/text-field-unit";

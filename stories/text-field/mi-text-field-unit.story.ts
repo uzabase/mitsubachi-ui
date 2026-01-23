@@ -1,15 +1,17 @@
-import "../../src/components/text-field/text-field";
+import "../../src/components/text-field/text-field-unit";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 
-import type { SpTextField } from "../../src/components/text-field/text-field";
+import type { MiTextFieldUnit } from "../../src/components/text-field/text-field-unit";
 
 const meta = {
-  component: "sp-text-field",
+  component: "mi-text-field-unit",
   argTypes: {
+    text: { type: "string" },
     error: { type: "string" },
     placeholder: { type: "string" },
+    supportText: { type: "string" },
     disabled: { type: "boolean" },
     name: { type: "string" },
     value: { type: "string" },
@@ -20,39 +22,45 @@ const meta = {
     autocomplete: { type: "string" },
   },
   args: {
+    text: "ラベル",
     error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
+    supportText: "サポートテキスト",
     disabled: false,
     name: "surname",
     value: "Yamada",
     type: "text",
-    autocomplete: undefined,
+    autocomplete: "",
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpTextField>;
+} satisfies Meta<MiTextFieldUnit>;
 
 export default meta;
-type Story = StoryObj<SpTextField>;
+type Story = StoryObj<MiTextFieldUnit>;
 
 export const Default: Story = {
   render: ({
+    text,
     type,
     error,
+    supportText,
     placeholder,
     disabled,
     name,
     value,
     autocomplete,
   }) => {
-    return html`<sp-text-field
-      placeholder=${placeholder || nothing}
+    return html`<mi-text-field-unit
+      placeholder=${placeholder}
+      text=${text}
       ?disabled=${disabled}
       name=${name}
+      support-text=${supportText}
       value=${value}
       error=${error}
-      type=${type}
       autocomplete=${autocomplete || nothing}
+      type=${type}
     >
-    </sp-text-field>`;
+    </mi-text-field-unit>`;
   },
 };

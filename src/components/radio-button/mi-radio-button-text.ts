@@ -4,7 +4,7 @@ import { property } from "lit/decorators.js";
 import { makeStyles } from "../styles";
 import styles from "./radio-button-text.styles";
 
-export class SpRadioButtonText extends LitElement {
+export class MiRadioButtonText extends LitElement {
   static styles = makeStyles(styles);
 
   @property({ type: String, reflect: true })
@@ -61,10 +61,18 @@ export class SpRadioButtonText extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiRadioButtonText を使用してください */
+export class SpRadioButtonText extends MiRadioButtonText {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-radio-button-text": MiRadioButtonText;
     "sp-radio-button-text": SpRadioButtonText;
   }
+}
+
+if (!customElements.get("mi-radio-button-text")) {
+  customElements.define("mi-radio-button-text", MiRadioButtonText);
 }
 
 if (!customElements.get("sp-radio-button-text")) {

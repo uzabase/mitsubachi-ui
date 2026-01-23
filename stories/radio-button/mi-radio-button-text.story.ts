@@ -1,12 +1,12 @@
-import "../../src/components/radio-button/sp-radio-button-text";
+import "../../src/components/radio-button/mi-radio-button-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { SpRadioButtonText } from "../../src/components/radio-button/sp-radio-button-text";
+import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
 
 const meta = {
-  component: "sp-radio-button-text",
+  component: "mi-radio-button-text",
   argTypes: {
     slot: { type: "string" },
     value: { type: "string" },
@@ -16,23 +16,23 @@ const meta = {
   },
   args: {
     slot: "テキスト",
-    value: "sp-radio-button-text-value",
-    name: "sp-radio-button-text-name",
+    value: "mi-radio-button-text-value",
+    name: "mi-radio-button-text-name",
     checked: false,
     disabled: false,
   },
   render: (args) =>
-    html`<sp-radio-button-text
+    html`<mi-radio-button-text
       .value=${args.value}
       .name=${args.name}
       .checked=${args.checked}
       .disabled=${args.disabled}
-      >${args.slot}</sp-radio-button-text
+      >${args.slot}</mi-radio-button-text
     >`,
-} satisfies Meta<SpRadioButtonText>;
+} satisfies Meta<MiRadioButtonText>;
 
 export default meta;
-type Story = StoryObj<SpRadioButtonText>;
+type Story = StoryObj<MiRadioButtonText>;
 
 export const Basic: Story = {
   tags: ["!dev-only"],

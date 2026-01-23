@@ -6,7 +6,7 @@ import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
-import type { SpTextField } from "../text-field";
+import type { MiTextField } from "../text-field";
 import textFieldUnitStyle from "./styles.css?inline";
 
 /**
@@ -16,7 +16,7 @@ import textFieldUnitStyle from "./styles.css?inline";
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-export class SpTextFieldUnit extends LitElement {
+export class MiTextFieldUnit extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
 
   static formAssociated = true;
@@ -71,19 +71,19 @@ export class SpTextFieldUnit extends LitElement {
   }
 
   #handleInput(e: Event) {
-    const target = e.target as SpTextField;
+    const target = e.target as MiTextField;
     this.value = target.value;
   }
 
   render() {
     return html`
       <fieldset>
-        <sp-label-unit
+        <mi-label-unit
           class="${this.#labelClasses()}"
           text="${this.text}"
           support-text="${this.supportText}"
-        ></sp-label-unit>
-        <sp-text-field
+        ></mi-label-unit>
+        <mi-text-field
           error="${this.error}"
           placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
@@ -92,16 +92,24 @@ export class SpTextFieldUnit extends LitElement {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           @input="${this.#handleInput}"
-        ></sp-text-field>
+        ></mi-text-field>
       </fieldset>
     `;
   }
 }
 
+/** @deprecated 代わりに MiTextFieldUnit を使用してください */
+export class SpTextFieldUnit extends MiTextFieldUnit {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-text-field-unit": MiTextFieldUnit;
     "sp-text-field-unit": SpTextFieldUnit;
   }
+}
+
+if (!customElements.get("mi-text-field-unit")) {
+  customElements.define("mi-text-field-unit", MiTextFieldUnit);
 }
 
 if (!customElements.get("sp-text-field-unit")) {

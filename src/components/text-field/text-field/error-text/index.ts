@@ -10,7 +10,7 @@ import textFieldErrorTextStyle from "./styles.css?inline";
 /**
  * @summary テキストフィールドのエラーテキストコンポーネントです。
  */
-export class SpTextFieldErrorText extends LitElement {
+export class MiTextFieldErrorText extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldErrorTextStyle));
 
   @property({ type: String, reflect: true })
@@ -26,17 +26,25 @@ export class SpTextFieldErrorText extends LitElement {
   render() {
     return html`
       <div class="${this.#containerClasses()}" role="error">
-        <sp-icon class="icon" type="error-fill"></sp-icon>
+        <mi-icon class="icon" type="error-fill"></mi-icon>
         <span class="text">${this.text}</span>
       </div>
     `;
   }
 }
 
+/** @deprecated 代わりに MiTextFieldErrorText を使用してください */
+export class SpTextFieldErrorText extends MiTextFieldErrorText {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-text-field-error-text": MiTextFieldErrorText;
     "sp-text-field-error-text": SpTextFieldErrorText;
   }
+}
+
+if (!customElements.get("mi-text-field-error-text")) {
+  customElements.define("mi-text-field-error-text", MiTextFieldErrorText);
 }
 
 if (!customElements.get("sp-text-field-error-text")) {

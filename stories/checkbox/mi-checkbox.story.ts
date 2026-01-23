@@ -1,13 +1,13 @@
-import "../../src/components/checkbox/sp-checkbox";
+import "../../src/components/checkbox/mi-checkbox";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import { type SpCheckbox } from "../../src/components/checkbox/sp-checkbox";
+import { type MiCheckbox } from "../../src/components/checkbox/mi-checkbox";
 
 const meta = {
-  component: "sp-checkbox",
+  component: "mi-checkbox",
   argTypes: {
     value: { type: "string" },
     name: { type: "string" },
@@ -25,10 +25,10 @@ const meta = {
     onchange: action("onchange"),
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpCheckbox>;
+} satisfies Meta<MiCheckbox>;
 
 export default meta;
-type Story = StoryObj<SpCheckbox>;
+type Story = StoryObj<MiCheckbox>;
 
 export const Basic: Story = {
   args: {
@@ -40,60 +40,60 @@ export const Basic: Story = {
 
 export const Property: Story = {
   args: {
-    value: "sp-checkbox-value",
-    name: "sp-checkbox-name",
+    value: "mi-checkbox-value",
+    name: "mi-checkbox-name",
   },
 };
 
 export const Attribute: Story = {
   args: {
-    value: "sp-checkbox-value",
-    name: "sp-checkbox-name",
+    value: "mi-checkbox-value",
+    name: "mi-checkbox-name",
   },
   render: (args) =>
-    html`<sp-checkbox
+    html`<mi-checkbox
       value=${args.value}
       name=${args.name}
       checked=${args.checked}
       indeterminate=${args.indeterminate}
       disabled=${args.disabled}
       @change=${args.onchange}
-    ></sp-checkbox>`,
+    ></mi-checkbox>`,
 };
 
 export const AttributeHTML: Story = {
   args: {
-    value: "sp-checkbox-value",
-    name: "sp-checkbox-name",
+    value: "mi-checkbox-value",
+    name: "mi-checkbox-name",
   },
   render: (args) =>
-    html`<sp-checkbox
+    html`<mi-checkbox
       value=${args.value}
       name=${args.name}
       ?checked=${args.checked}
       ?indeterminate=${args.indeterminate}
       ?disabled=${args.disabled}
       @change=${args.onchange}
-    ></sp-checkbox>`,
+    ></mi-checkbox>`,
 };
 
 export const Form: Story = {
   args: {
-    value: "sp-checkbox-value",
-    name: "sp-checkbox-name",
+    value: "mi-checkbox-value",
+    name: "mi-checkbox-name",
   },
   render: (args) => html`
     <form>
       <input type="checkbox" name=${args.name} value="primitive1" />
       <input type="checkbox" name=${args.name} value="primitive2" />
-      <sp-checkbox
+      <mi-checkbox
         .value=${args.value}
         .name=${args.name}
         .checked=${args.checked}
         .indeterminate=${args.indeterminate}
         .disabled=${args.disabled}
         @change=${args.onchange}
-      ></sp-checkbox>
+      ></mi-checkbox>
       <input type="reset" />
       <input type="submit" />
     </form>
@@ -115,17 +115,17 @@ export const ALL: Story = {
       <tbody>
         <tr>
           <td>default</td>
-          <td><sp-checkbox></sp-checkbox></td>
-          <td><sp-checkbox checked></sp-checkbox></td>
-          <td><sp-checkbox indeterminate></sp-checkbox></td>
-          <td><sp-checkbox checked indeterminate></sp-checkbox></td>
+          <td><mi-checkbox></mi-checkbox></td>
+          <td><mi-checkbox checked></mi-checkbox></td>
+          <td><mi-checkbox indeterminate></mi-checkbox></td>
+          <td><mi-checkbox checked indeterminate></mi-checkbox></td>
         </tr>
         <tr>
           <td>disabled</td>
-          <td><sp-checkbox disabled></sp-checkbox></td>
-          <td><sp-checkbox checked disabled></sp-checkbox></td>
-          <td><sp-checkbox indeterminate disabled></sp-checkbox></td>
-          <td><sp-checkbox checked indeterminate disabled></sp-checkbox></td>
+          <td><mi-checkbox disabled></mi-checkbox></td>
+          <td><mi-checkbox checked disabled></mi-checkbox></td>
+          <td><mi-checkbox indeterminate disabled></mi-checkbox></td>
+          <td><mi-checkbox checked indeterminate disabled></mi-checkbox></td>
         </tr>
       </tbody>
     </table>

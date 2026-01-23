@@ -19,7 +19,7 @@ type Size = (typeof size)[number];
 /**
  * @summary ローディングスピナーです。
  */
-export class SpLoading extends LitElement {
+export class MiLoading extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
   @property({ type: Boolean })
@@ -56,10 +56,18 @@ export class SpLoading extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiLoading を使用してください */
+export class SpLoading extends MiLoading {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-loading": MiLoading;
     "sp-loading": SpLoading;
   }
+}
+
+if (!customElements.get("mi-loading")) {
+  customElements.define("mi-loading", MiLoading);
 }
 
 if (!customElements.get("sp-loading")) {

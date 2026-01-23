@@ -1,18 +1,18 @@
-import "../../src/components/button/sp-button";
+import "../../src/components/button/mi-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
 import {
+  type MiButton,
   sizes,
-  type SpButton,
   variants,
-} from "../../src/components/button/sp-button";
+} from "../../src/components/button/mi-button";
 import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
-  component: "sp-button",
+  component: "mi-button",
   argTypes: {
     slot: { type: "string" },
     danger: { type: "boolean" },
@@ -59,7 +59,7 @@ const meta = {
     iconType: undefined,
   },
   render: (args) => html`
-    <sp-button
+    <mi-button
       ?danger=${args.danger}
       variant=${args.variant}
       variants=${args.variants || nothing}
@@ -72,12 +72,12 @@ const meta = {
       icon-type=${args.iconType || nothing}
     >
       ${args.slot}
-    </sp-button>
+    </mi-button>
   `,
-} satisfies Meta<SpButton>;
+} satisfies Meta<MiButton>;
 
 export default meta;
-type Story = StoryObj<SpButton>;
+type Story = StoryObj<MiButton>;
 
 export const Basic: Story = {
   args: {
@@ -92,9 +92,9 @@ export const Basic: Story = {
 
 export const FullWidth: Story = {
   render: () => html`
-    <sp-button style="width: 100%;">ダウンロード</sp-button>
+    <mi-button style="width: 100%;">ダウンロード</mi-button>
     <div style="width: 400px;">
-      <sp-button style="width: 100%;">ダウンロード</sp-button>
+      <mi-button style="width: 100%;">ダウンロード</mi-button>
     </div>
   `,
   parameters: {
@@ -113,25 +113,25 @@ export const Icon: Story = {
       <div style="display: flex; gap: 16px;">
         ${sizes.map(
           (size) =>
-            html`<sp-button icon-type="arrow-down" size="${size}"
-              >ダウンロード</sp-button
+            html`<mi-button icon-type="arrow-down" size="${size}"
+              >ダウンロード</mi-button
             >`,
         )}
       </div>
       <div style="display: flex; gap: 16px;">
         ${variants.map(
           (variant) => html`
-            <sp-button icon-type="arrow-down" variant="${variant}">
+            <mi-button icon-type="arrow-down" variant="${variant}">
               ダウンロード
-            </sp-button>
+            </mi-button>
           `,
         )}
       </div>
       <div style="display: flex; gap: 16px;">
-        <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
+        <mi-button icon-type="arrow-down" danger>ダウンロード</mi-button>
       </div>
       <div style="display: flex; gap: 16px;">
-        <sp-button icon-type="arrow-down" loading>ダウンロード</sp-button>
+        <mi-button icon-type="arrow-down" loading>ダウンロード</mi-button>
       </div>
     </div>
   `,
@@ -139,7 +139,7 @@ export const Icon: Story = {
     docs: {
       description: {
         story:
-          "アイコンを表示する時はicon-type属性にアイコンの種類を指定してください。sp-iconコンポーネントのtype属性と同じ値を指定できます。",
+          "アイコンを表示する時はicon-type属性にアイコンの種類を指定してください。mi-iconコンポーネントのtype属性と同じ値を指定できます。",
       },
     },
   },
@@ -153,7 +153,7 @@ export const OverflowWrap: Story = {
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           通常のテキスト
         </h3>
-        <sp-button>保存</sp-button>
+        <mi-button>保存</mi-button>
       </div>
 
       <!-- 改行なしの長い英数字 -->
@@ -161,9 +161,9 @@ export const OverflowWrap: Story = {
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           改行なしの長い英数字（単語区切りなし、幅制限: 400px）
         </h3>
-        <sp-button>
+        <mi-button>
           texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-        </sp-button>
+        </mi-button>
       </div>
 
       <!-- スペース区切りの長い英文 -->
@@ -171,10 +171,10 @@ export const OverflowWrap: Story = {
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           スペース区切りの長い英文（幅制限: 400px）
         </h3>
-        <sp-button>
+        <mi-button>
           Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua
-        </sp-button>
+        </mi-button>
       </div>
 
       <!-- 長い日本語テキスト -->
@@ -182,9 +182,9 @@ export const OverflowWrap: Story = {
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           長い日本語テキスト（幅制限あり: 400px）
         </h3>
-        <sp-button>
+        <mi-button>
           これは非常に長い日本語のテキストです。ボタン内でどのように折り返されるかを確認するためのサンプルです。日本語の場合は自然に折り返しが発生します。さらに長いテキストを追加して確実に複数行になるようにしています。
-        </sp-button>
+        </mi-button>
       </div>
 
       <!-- Flexコンテナ内での挙動 -->
@@ -194,9 +194,9 @@ export const OverflowWrap: Story = {
         </h3>
         <div style="display: flex; gap: 8px; min-width: 0;">
           <div style="flex-shrink: 0;">ラベル:</div>
-          <sp-button style="min-width: 0;">
+          <mi-button style="min-width: 0;">
             texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-          </sp-button>
+          </mi-button>
         </div>
       </div>
 
@@ -205,9 +205,9 @@ export const OverflowWrap: Story = {
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           アイコン付きボタン
         </h3>
-        <sp-button icon-type="download">
+        <mi-button icon-type="download">
           ダウンロードボタンの非常に長いテキスト
-        </sp-button>
+        </mi-button>
       </div>
 
       <!-- 異なるサイズでの挙動 -->
@@ -216,15 +216,15 @@ export const OverflowWrap: Story = {
           異なるサイズ（Medium / Large / X-Large）
         </h3>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <sp-button size="medium">
+          <mi-button size="medium">
             Medium サイズの長いテキストテキストテキスト
-          </sp-button>
-          <sp-button size="large">
+          </mi-button>
+          <mi-button size="large">
             Large サイズの長いテキストテキストテキスト
-          </sp-button>
-          <sp-button size="xLarge">
+          </mi-button>
+          <mi-button size="xLarge">
             X-Large サイズの長いテキストテキストテキスト
-          </sp-button>
+          </mi-button>
         </div>
       </div>
     </div>
@@ -261,7 +261,7 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button variant="${variant}">ボタン</sp-button>
+                  <mi-button variant="${variant}">ボタン</mi-button>
                 </td>`,
             )}
           </tr>
@@ -270,7 +270,7 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button variant="${variant}" disabled>ボタン</sp-button>
+                  <mi-button variant="${variant}" disabled>ボタン</mi-button>
                 </td>`,
             )}
           </tr>
@@ -279,7 +279,7 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button variant="${variant}" loading>ボタン</sp-button>
+                  <mi-button variant="${variant}" loading>ボタン</mi-button>
                 </td>`,
             )}
           </tr>
@@ -303,7 +303,7 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button danger variant="${variant}">ボタン</sp-button>
+                  <mi-button danger variant="${variant}">ボタン</mi-button>
                 </td>`,
             )}
           </tr>
@@ -312,8 +312,8 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button danger variant="${variant}" disabled
-                    >ボタン</sp-button
+                  <mi-button danger variant="${variant}" disabled
+                    >ボタン</mi-button
                   >
                 </td>`,
             )}
@@ -323,8 +323,8 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button danger variant="${variant}" loading
-                    >ボタン</sp-button
+                  <mi-button danger variant="${variant}" loading
+                    >ボタン</mi-button
                   >
                 </td>`,
             )}
@@ -351,8 +351,8 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button variant="${variant}" size="${size}"
-                        >ボタン</sp-button
+                      <mi-button variant="${variant}" size="${size}"
+                        >ボタン</mi-button
                       >
                     </td>`,
                 )}
@@ -365,8 +365,8 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button danger variant="${variant}" size="${size}"
-                        >ボタン</sp-button
+                      <mi-button danger variant="${variant}" size="${size}"
+                        >ボタン</mi-button
                       >
                     </td>`,
                 )}
@@ -392,9 +392,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" variant="${variant}">
+                  <mi-button icon-type="download" variant="${variant}">
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -403,9 +403,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" variant="${variant}" disabled>
+                  <mi-button icon-type="download" variant="${variant}" disabled>
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -414,9 +414,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" variant="${variant}" loading>
+                  <mi-button icon-type="download" variant="${variant}" loading>
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -440,9 +440,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button icon-type="download" danger variant="${variant}">
+                  <mi-button icon-type="download" danger variant="${variant}">
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -451,14 +451,14 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button
+                  <mi-button
                     icon-type="download"
                     danger
                     variant="${variant}"
                     disabled
                   >
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -467,14 +467,14 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <sp-button
+                  <mi-button
                     icon-type="download"
                     danger
                     variant="${variant}"
                     loading
                   >
                     ダウンロード
-                  </sp-button>
+                  </mi-button>
                 </td>`,
             )}
           </tr>
@@ -500,13 +500,13 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button
+                      <mi-button
                         icon-type="download"
                         variant="${variant}"
                         size="${size}"
                       >
                         ダウンロード
-                      </sp-button>
+                      </mi-button>
                     </td>`,
                 )}
               </tr>`,
@@ -518,14 +518,14 @@ export const ALL: Story = {
                 ${sizes.map(
                   (size) =>
                     html`<td>
-                      <sp-button
+                      <mi-button
                         icon-type="download"
                         danger
                         variant="${variant}"
                         size="${size}"
                       >
                         ダウンロード
-                      </sp-button>
+                      </mi-button>
                     </td>`,
                 )}
               </tr>`,
@@ -538,7 +538,7 @@ export const ALL: Story = {
     docs: {
       description: {
         story:
-          "sp-buttonコンポーネントの全パターンを一覧表示します。タイプ、バリアント、状態、サイズ、アイコンの有無など、利用可能な全ての組み合わせを確認できます。",
+          "mi-buttonコンポーネントの全パターンを一覧表示します。タイプ、バリアント、状態、サイズ、アイコンの有無など、利用可能な全ての組み合わせを確認できます。",
       },
     },
   },
