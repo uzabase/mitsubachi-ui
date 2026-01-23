@@ -1,13 +1,13 @@
-var x1 = (i) => {
+var _1 = (i) => {
   throw TypeError(i);
 };
-var C2 = (i, t, e) => t.has(i) || x1("Cannot " + e);
-var E = (i, t, e) => t.has(i) ? x1("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(i) : t.set(i, e);
-var M = (i, t, e) => (C2(i, t, "access private method"), e);
-const Y = globalThis, d1 = Y.ShadowRoot && (Y.ShadyCSS === void 0 || Y.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, c1 = /* @__PURE__ */ Symbol(), _1 = /* @__PURE__ */ new WeakMap();
+var a2 = (i, t, e) => t.has(i) || _1("Cannot " + e);
+var S = (i, t, e) => t.has(i) ? _1("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(i) : t.set(i, e);
+var M = (i, t, e) => (a2(i, t, "access private method"), e);
+const G = globalThis, d1 = G.ShadowRoot && (G.ShadyCSS === void 0 || G.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, p1 = Symbol(), w1 = /* @__PURE__ */ new WeakMap();
 let D1 = class {
   constructor(t, e, r) {
-    if (this._$cssResult$ = !0, r !== c1) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+    if (this._$cssResult$ = !0, r !== p1) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = t, this.t = e;
   }
   get styleSheet() {
@@ -15,7 +15,7 @@ let D1 = class {
     const e = this.t;
     if (d1 && t === void 0) {
       const r = e !== void 0 && e.length === 1;
-      r && (t = _1.get(e)), t === void 0 && ((this.o = t = new CSSStyleSheet()).replaceSync(this.cssText), r && _1.set(e, t));
+      r && (t = w1.get(e)), t === void 0 && ((this.o = t = new CSSStyleSheet()).replaceSync(this.cssText), r && w1.set(e, t));
     }
     return t;
   }
@@ -23,25 +23,25 @@ let D1 = class {
     return this.cssText;
   }
 };
-const f = (i) => new D1(typeof i == "string" ? i : i + "", void 0, c1), w1 = (i, ...t) => {
-  const e = i.length === 1 ? i[0] : t.reduce((r, s, o) => r + ((n) => {
+const f = (i) => new D1(typeof i == "string" ? i : i + "", void 0, p1), A1 = (i, ...t) => {
+  const e = i.length === 1 ? i[0] : t.reduce(((r, s, o) => r + ((n) => {
     if (n._$cssResult$ === !0) return n.cssText;
     if (typeof n == "number") return n;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + n + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
-  })(s) + i[o + 1], i[0]);
-  return new D1(e, i, c1);
+  })(s) + i[o + 1]), i[0]);
+  return new D1(e, i, p1);
 }, l2 = (i, t) => {
-  if (d1) i.adoptedStyleSheets = t.map((e) => e instanceof CSSStyleSheet ? e : e.styleSheet);
+  if (d1) i.adoptedStyleSheets = t.map(((e) => e instanceof CSSStyleSheet ? e : e.styleSheet));
   else for (const e of t) {
-    const r = document.createElement("style"), s = Y.litNonce;
+    const r = document.createElement("style"), s = G.litNonce;
     s !== void 0 && r.setAttribute("nonce", s), r.textContent = e.cssText, i.appendChild(r);
   }
-}, A1 = d1 ? (i) => i : (i) => i instanceof CSSStyleSheet ? ((t) => {
+}, k1 = d1 ? (i) => i : (i) => i instanceof CSSStyleSheet ? ((t) => {
   let e = "";
   for (const r of t.cssRules) e += r.cssText;
   return f(e);
 })(i) : i;
-const { is: h2, defineProperty: d2, getOwnPropertyDescriptor: c2, getOwnPropertyNames: p2, getOwnPropertySymbols: u2, getPrototypeOf: H2 } = Object, n1 = globalThis, k1 = n1.trustedTypes, f2 = k1 ? k1.emptyScript : "", L2 = n1.reactiveElementPolyfillSupport, j = (i, t) => i, G = { toAttribute(i, t) {
+const { is: h2, defineProperty: c2, getOwnPropertyDescriptor: d2, getOwnPropertyNames: p2, getOwnPropertySymbols: u2, getPrototypeOf: H2 } = Object, C1 = globalThis, E1 = C1.trustedTypes, f2 = E1 ? E1.emptyScript : "", L2 = C1.reactiveElementPolyfillSupport, B = (i, t) => i, Q = { toAttribute(i, t) {
   switch (t) {
     case Boolean:
       i = i ? f2 : null;
@@ -69,23 +69,23 @@ const { is: h2, defineProperty: d2, getOwnPropertyDescriptor: c2, getOwnProperty
       }
   }
   return e;
-} }, p1 = (i, t) => !h2(i, t), E1 = { attribute: !0, type: String, converter: G, reflect: !1, useDefault: !1, hasChanged: p1 };
-Symbol.metadata ??= /* @__PURE__ */ Symbol("metadata"), n1.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-let S = class extends HTMLElement {
+} }, u1 = (i, t) => !h2(i, t), S1 = { attribute: !0, type: String, converter: Q, reflect: !1, useDefault: !1, hasChanged: u1 };
+Symbol.metadata ??= Symbol("metadata"), C1.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+let z = class extends HTMLElement {
   static addInitializer(t) {
     this._$Ei(), (this.l ??= []).push(t);
   }
   static get observedAttributes() {
     return this.finalize(), this._$Eh && [...this._$Eh.keys()];
   }
-  static createProperty(t, e = E1) {
+  static createProperty(t, e = S1) {
     if (e.state && (e.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(t) && ((e = Object.create(e)).wrapped = !0), this.elementProperties.set(t, e), !e.noAccessor) {
-      const r = /* @__PURE__ */ Symbol(), s = this.getPropertyDescriptor(t, r, e);
-      s !== void 0 && d2(this.prototype, t, s);
+      const r = Symbol(), s = this.getPropertyDescriptor(t, r, e);
+      s !== void 0 && c2(this.prototype, t, s);
     }
   }
   static getPropertyDescriptor(t, e, r) {
-    const { get: s, set: o } = c2(this.prototype, t) ?? { get() {
+    const { get: s, set: o } = d2(this.prototype, t) ?? { get() {
       return this[e];
     }, set(n) {
       this[e] = n;
@@ -96,16 +96,16 @@ let S = class extends HTMLElement {
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(t) {
-    return this.elementProperties.get(t) ?? E1;
+    return this.elementProperties.get(t) ?? S1;
   }
   static _$Ei() {
-    if (this.hasOwnProperty(j("elementProperties"))) return;
+    if (this.hasOwnProperty(B("elementProperties"))) return;
     const t = H2(this);
     t.finalize(), t.l !== void 0 && (this.l = [...t.l]), this.elementProperties = new Map(t.elementProperties);
   }
   static finalize() {
-    if (this.hasOwnProperty(j("finalized"))) return;
-    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(j("properties"))) {
+    if (this.hasOwnProperty(B("finalized"))) return;
+    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(B("properties"))) {
       const e = this.properties, r = [...p2(e), ...u2(e)];
       for (const s of r) this.createProperty(s, e[s]);
     }
@@ -125,8 +125,8 @@ let S = class extends HTMLElement {
     const e = [];
     if (Array.isArray(t)) {
       const r = new Set(t.flat(1 / 0).reverse());
-      for (const s of r) e.unshift(A1(s));
-    } else t !== void 0 && e.push(A1(t));
+      for (const s of r) e.unshift(k1(s));
+    } else t !== void 0 && e.push(k1(t));
     return e;
   }
   static _$Eu(t, e) {
@@ -137,7 +137,7 @@ let S = class extends HTMLElement {
     super(), this._$Ep = void 0, this.isUpdatePending = !1, this.hasUpdated = !1, this._$Em = null, this._$Ev();
   }
   _$Ev() {
-    this._$ES = new Promise((t) => this.enableUpdating = t), this._$AL = /* @__PURE__ */ new Map(), this._$E_(), this.requestUpdate(), this.constructor.l?.forEach((t) => t(this));
+    this._$ES = new Promise(((t) => this.enableUpdating = t)), this._$AL = /* @__PURE__ */ new Map(), this._$E_(), this.requestUpdate(), this.constructor.l?.forEach(((t) => t(this)));
   }
   addController(t) {
     (this._$EO ??= /* @__PURE__ */ new Set()).add(t), this.renderRoot !== void 0 && this.isConnected && t.hostConnected?.();
@@ -155,12 +155,12 @@ let S = class extends HTMLElement {
     return l2(t, this.constructor.elementStyles), t;
   }
   connectedCallback() {
-    this.renderRoot ??= this.createRenderRoot(), this.enableUpdating(!0), this._$EO?.forEach((t) => t.hostConnected?.());
+    this.renderRoot ??= this.createRenderRoot(), this.enableUpdating(!0), this._$EO?.forEach(((t) => t.hostConnected?.()));
   }
   enableUpdating(t) {
   }
   disconnectedCallback() {
-    this._$EO?.forEach((t) => t.hostDisconnected?.());
+    this._$EO?.forEach(((t) => t.hostDisconnected?.()));
   }
   attributeChangedCallback(t, e, r) {
     this._$AK(t, r);
@@ -168,23 +168,23 @@ let S = class extends HTMLElement {
   _$ET(t, e) {
     const r = this.constructor.elementProperties.get(t), s = this.constructor._$Eu(t, r);
     if (s !== void 0 && r.reflect === !0) {
-      const o = (r.converter?.toAttribute !== void 0 ? r.converter : G).toAttribute(e, r.type);
+      const o = (r.converter?.toAttribute !== void 0 ? r.converter : Q).toAttribute(e, r.type);
       this._$Em = t, o == null ? this.removeAttribute(s) : this.setAttribute(s, o), this._$Em = null;
     }
   }
   _$AK(t, e) {
     const r = this.constructor, s = r._$Eh.get(t);
     if (s !== void 0 && this._$Em !== s) {
-      const o = r.getPropertyOptions(s), n = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : G;
+      const o = r.getPropertyOptions(s), n = typeof o.converter == "function" ? { fromAttribute: o.converter } : o.converter?.fromAttribute !== void 0 ? o.converter : Q;
       this._$Em = s;
       const l = n.fromAttribute(e, o.type);
       this[s] = l ?? this._$Ej?.get(s) ?? l, this._$Em = null;
     }
   }
-  requestUpdate(t, e, r, s = !1, o) {
+  requestUpdate(t, e, r) {
     if (t !== void 0) {
-      const n = this.constructor;
-      if (s === !1 && (o = this[t]), r ??= n.getPropertyOptions(t), !((r.hasChanged ?? p1)(o, e) || r.useDefault && r.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(n._$Eu(t, r)))) return;
+      const s = this.constructor, o = this[t];
+      if (r ??= s.getPropertyOptions(t), !((r.hasChanged ?? u1)(o, e) || r.useDefault && r.reflect && o === this._$Ej?.get(t) && !this.hasAttribute(s._$Eu(t, r)))) return;
       this.C(t, e, r);
     }
     this.isUpdatePending === !1 && (this._$ES = this._$EP());
@@ -221,7 +221,7 @@ let S = class extends HTMLElement {
     let t = !1;
     const e = this._$AL;
     try {
-      t = this.shouldUpdate(e), t ? (this.willUpdate(e), this._$EO?.forEach((r) => r.hostUpdate?.()), this.update(e)) : this._$EM();
+      t = this.shouldUpdate(e), t ? (this.willUpdate(e), this._$EO?.forEach(((r) => r.hostUpdate?.())), this.update(e)) : this._$EM();
     } catch (r) {
       throw t = !1, this._$EM(), r;
     }
@@ -230,7 +230,7 @@ let S = class extends HTMLElement {
   willUpdate(t) {
   }
   _$AE(t) {
-    this._$EO?.forEach((e) => e.hostUpdated?.()), this.hasUpdated || (this.hasUpdated = !0, this.firstUpdated(t)), this.updated(t);
+    this._$EO?.forEach(((e) => e.hostUpdated?.())), this.hasUpdated || (this.hasUpdated = !0, this.firstUpdated(t)), this.updated(t);
   }
   _$EM() {
     this._$AL = /* @__PURE__ */ new Map(), this.isUpdatePending = !1;
@@ -245,75 +245,75 @@ let S = class extends HTMLElement {
     return !0;
   }
   update(t) {
-    this._$Eq &&= this._$Eq.forEach((e) => this._$ET(e, this[e])), this._$EM();
+    this._$Eq &&= this._$Eq.forEach(((e) => this._$ET(e, this[e]))), this._$EM();
   }
   updated(t) {
   }
   firstUpdated(t) {
   }
 };
-S.elementStyles = [], S.shadowRootOptions = { mode: "open" }, S[j("elementProperties")] = /* @__PURE__ */ new Map(), S[j("finalized")] = /* @__PURE__ */ new Map(), L2?.({ ReactiveElement: S }), (n1.reactiveElementVersions ??= []).push("2.1.2");
-const u1 = globalThis, S1 = (i) => i, Q = u1.trustedTypes, z1 = Q ? Q.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, F1 = "$lit$", $ = `lit$${Math.random().toFixed(9).slice(2)}$`, I1 = "?" + $, V2 = `<${I1}>`, A = document, B = () => A.createComment(""), R = (i) => i === null || typeof i != "object" && typeof i != "function", H1 = Array.isArray, g2 = (i) => H1(i) || typeof i?.[Symbol.iterator] == "function", C1 = `[ 	
-\f\r]`, N = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, P1 = /-->/g, T1 = />/g, _ = RegExp(`>|${C1}(?:([^\\s"'>=/]+)(${C1}*=${C1}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), O1 = /'/g, U1 = /"/g, q1 = /^(?:script|style|textarea|title)$/i, b2 = (i) => (t, ...e) => ({ _$litType$: i, strings: t, values: e }), u = b2(1), x = /* @__PURE__ */ Symbol.for("lit-noChange"), d = /* @__PURE__ */ Symbol.for("lit-nothing"), N1 = /* @__PURE__ */ new WeakMap(), w = A.createTreeWalker(A, 129);
+z.elementStyles = [], z.shadowRootOptions = { mode: "open" }, z[B("elementProperties")] = /* @__PURE__ */ new Map(), z[B("finalized")] = /* @__PURE__ */ new Map(), L2?.({ ReactiveElement: z }), (C1.reactiveElementVersions ??= []).push("2.1.1");
+const H1 = globalThis, X = H1.trustedTypes, z1 = X ? X.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, F1 = "$lit$", x = `lit$${Math.random().toFixed(9).slice(2)}$`, I1 = "?" + x, V2 = `<${I1}>`, k = document, R = () => k.createComment(""), D = (i) => i === null || typeof i != "object" && typeof i != "function", f1 = Array.isArray, g2 = (i) => f1(i) || typeof i?.[Symbol.iterator] == "function", l1 = `[ 	
+\f\r]`, N = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, P1 = /-->/g, T1 = />/g, w = RegExp(`>|${l1}(?:([^\\s"'>=/]+)(${l1}*=${l1}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), O1 = /'/g, U1 = /"/g, q1 = /^(?:script|style|textarea|title)$/i, b2 = (i) => (t, ...e) => ({ _$litType$: i, strings: t, values: e }), u = b2(1), _ = Symbol.for("lit-noChange"), c = Symbol.for("lit-nothing"), j1 = /* @__PURE__ */ new WeakMap(), A = k.createTreeWalker(k, 129);
 function W1(i, t) {
-  if (!H1(i) || !i.hasOwnProperty("raw")) throw Error("invalid template strings array");
+  if (!f1(i) || !i.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return z1 !== void 0 ? z1.createHTML(t) : t;
 }
 const m2 = (i, t) => {
   const e = i.length - 1, r = [];
   let s, o = t === 2 ? "<svg>" : t === 3 ? "<math>" : "", n = N;
   for (let l = 0; l < e; l++) {
-    const a = i[l];
-    let c, p, h = -1, m = 0;
-    for (; m < a.length && (n.lastIndex = m, p = n.exec(a), p !== null); ) m = n.lastIndex, n === N ? p[1] === "!--" ? n = P1 : p[1] !== void 0 ? n = T1 : p[2] !== void 0 ? (q1.test(p[2]) && (s = RegExp("</" + p[2], "g")), n = _) : p[3] !== void 0 && (n = _) : n === _ ? p[0] === ">" ? (n = s ?? N, h = -1) : p[1] === void 0 ? h = -2 : (h = n.lastIndex - p[2].length, c = p[1], n = p[3] === void 0 ? _ : p[3] === '"' ? U1 : O1) : n === U1 || n === O1 ? n = _ : n === P1 || n === T1 ? n = N : (n = _, s = void 0);
-    const v = n === _ && i[l + 1].startsWith("/>") ? " " : "";
-    o += n === N ? a + V2 : h >= 0 ? (r.push(c), a.slice(0, h) + F1 + a.slice(h) + $ + v) : a + $ + (h === -2 ? l : v);
+    const C = i[l];
+    let d, p, h = -1, m = 0;
+    for (; m < C.length && (n.lastIndex = m, p = n.exec(C), p !== null); ) m = n.lastIndex, n === N ? p[1] === "!--" ? n = P1 : p[1] !== void 0 ? n = T1 : p[2] !== void 0 ? (q1.test(p[2]) && (s = RegExp("</" + p[2], "g")), n = w) : p[3] !== void 0 && (n = w) : n === w ? p[0] === ">" ? (n = s ?? N, h = -1) : p[1] === void 0 ? h = -2 : (h = n.lastIndex - p[2].length, d = p[1], n = p[3] === void 0 ? w : p[3] === '"' ? U1 : O1) : n === U1 || n === O1 ? n = w : n === P1 || n === T1 ? n = N : (n = w, s = void 0);
+    const $ = n === w && i[l + 1].startsWith("/>") ? " " : "";
+    o += n === N ? C + V2 : h >= 0 ? (r.push(d), C.slice(0, h) + F1 + C.slice(h) + x + $) : C + x + (h === -2 ? l : $);
   }
   return [W1(i, o + (i[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), r];
 };
-class D {
+class F {
   constructor({ strings: t, _$litType$: e }, r) {
     let s;
     this.parts = [];
     let o = 0, n = 0;
-    const l = t.length - 1, a = this.parts, [c, p] = m2(t, e);
-    if (this.el = D.createElement(c, r), w.currentNode = this.el.content, e === 2 || e === 3) {
+    const l = t.length - 1, C = this.parts, [d, p] = m2(t, e);
+    if (this.el = F.createElement(d, r), A.currentNode = this.el.content, e === 2 || e === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
-    for (; (s = w.nextNode()) !== null && a.length < l; ) {
+    for (; (s = A.nextNode()) !== null && C.length < l; ) {
       if (s.nodeType === 1) {
         if (s.hasAttributes()) for (const h of s.getAttributeNames()) if (h.endsWith(F1)) {
-          const m = p[n++], v = s.getAttribute(h).split($), K = /([.?@])?(.*)/.exec(m);
-          a.push({ type: 1, index: o, name: K[2], strings: v, ctor: K[1] === "." ? y2 : K[1] === "?" ? Z2 : K[1] === "@" ? v2 : a1 }), s.removeAttribute(h);
-        } else h.startsWith($) && (a.push({ type: 6, index: o }), s.removeAttribute(h));
+          const m = p[n++], $ = s.getAttribute(h).split(x), Y = /([.?@])?(.*)/.exec(m);
+          C.push({ type: 1, index: o, name: Y[2], strings: $, ctor: Y[1] === "." ? y2 : Y[1] === "?" ? Z2 : Y[1] === "@" ? $2 : a1 }), s.removeAttribute(h);
+        } else h.startsWith(x) && (C.push({ type: 6, index: o }), s.removeAttribute(h));
         if (q1.test(s.tagName)) {
-          const h = s.textContent.split($), m = h.length - 1;
+          const h = s.textContent.split(x), m = h.length - 1;
           if (m > 0) {
-            s.textContent = Q ? Q.emptyScript : "";
-            for (let v = 0; v < m; v++) s.append(h[v], B()), w.nextNode(), a.push({ type: 2, index: ++o });
-            s.append(h[m], B());
+            s.textContent = X ? X.emptyScript : "";
+            for (let $ = 0; $ < m; $++) s.append(h[$], R()), A.nextNode(), C.push({ type: 2, index: ++o });
+            s.append(h[m], R());
           }
         }
-      } else if (s.nodeType === 8) if (s.data === I1) a.push({ type: 2, index: o });
+      } else if (s.nodeType === 8) if (s.data === I1) C.push({ type: 2, index: o });
       else {
         let h = -1;
-        for (; (h = s.data.indexOf($, h + 1)) !== -1; ) a.push({ type: 7, index: o }), h += $.length - 1;
+        for (; (h = s.data.indexOf(x, h + 1)) !== -1; ) C.push({ type: 7, index: o }), h += x.length - 1;
       }
       o++;
     }
   }
   static createElement(t, e) {
-    const r = A.createElement("template");
+    const r = k.createElement("template");
     return r.innerHTML = t, r;
   }
 }
-function z(i, t, e = i, r) {
-  if (t === x) return t;
+function P(i, t, e = i, r) {
+  if (t === _) return t;
   let s = r !== void 0 ? e._$Co?.[r] : e._$Cl;
-  const o = R(t) ? void 0 : t._$litDirective$;
-  return s?.constructor !== o && (s?._$AO?.(!1), o === void 0 ? s = void 0 : (s = new o(i), s._$AT(i, e, r)), r !== void 0 ? (e._$Co ??= [])[r] = s : e._$Cl = s), s !== void 0 && (t = z(i, s._$AS(i, t.values), s, r)), t;
+  const o = D(t) ? void 0 : t._$litDirective$;
+  return s?.constructor !== o && (s?._$AO?.(!1), o === void 0 ? s = void 0 : (s = new o(i), s._$AT(i, e, r)), r !== void 0 ? (e._$Co ??= [])[r] = s : e._$Cl = s), s !== void 0 && (t = P(i, s._$AS(i, t.values), s, r)), t;
 }
 class M2 {
   constructor(t, e) {
@@ -326,29 +326,29 @@ class M2 {
     return this._$AM._$AU;
   }
   u(t) {
-    const { el: { content: e }, parts: r } = this._$AD, s = (t?.creationScope ?? A).importNode(e, !0);
-    w.currentNode = s;
-    let o = w.nextNode(), n = 0, l = 0, a = r[0];
-    for (; a !== void 0; ) {
-      if (n === a.index) {
-        let c;
-        a.type === 2 ? c = new J(o, o.nextSibling, this, t) : a.type === 1 ? c = new a.ctor(o, a.name, a.strings, this, t) : a.type === 6 && (c = new $2(o, this, t)), this._$AV.push(c), a = r[++l];
+    const { el: { content: e }, parts: r } = this._$AD, s = (t?.creationScope ?? k).importNode(e, !0);
+    A.currentNode = s;
+    let o = A.nextNode(), n = 0, l = 0, C = r[0];
+    for (; C !== void 0; ) {
+      if (n === C.index) {
+        let d;
+        C.type === 2 ? d = new K(o, o.nextSibling, this, t) : C.type === 1 ? d = new C.ctor(o, C.name, C.strings, this, t) : C.type === 6 && (d = new v2(o, this, t)), this._$AV.push(d), C = r[++l];
       }
-      n !== a?.index && (o = w.nextNode(), n++);
+      n !== C?.index && (o = A.nextNode(), n++);
     }
-    return w.currentNode = A, s;
+    return A.currentNode = k, s;
   }
   p(t) {
     let e = 0;
     for (const r of this._$AV) r !== void 0 && (r.strings !== void 0 ? (r._$AI(t, r, e), e += r.strings.length - 2) : r._$AI(t[e])), e++;
   }
 }
-class J {
+class K {
   get _$AU() {
     return this._$AM?._$AU ?? this._$Cv;
   }
   constructor(t, e, r, s) {
-    this.type = 2, this._$AH = d, this._$AN = void 0, this._$AA = t, this._$AB = e, this._$AM = r, this.options = s, this._$Cv = s?.isConnected ?? !0;
+    this.type = 2, this._$AH = c, this._$AN = void 0, this._$AA = t, this._$AB = e, this._$AM = r, this.options = s, this._$Cv = s?.isConnected ?? !0;
   }
   get parentNode() {
     let t = this._$AA.parentNode;
@@ -362,7 +362,7 @@ class J {
     return this._$AB;
   }
   _$AI(t, e = this) {
-    t = z(this, t, e), R(t) ? t === d || t == null || t === "" ? (this._$AH !== d && this._$AR(), this._$AH = d) : t !== this._$AH && t !== x && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : g2(t) ? this.k(t) : this._(t);
+    t = P(this, t, e), D(t) ? t === c || t == null || t === "" ? (this._$AH !== c && this._$AR(), this._$AH = c) : t !== this._$AH && t !== _ && this._(t) : t._$litType$ !== void 0 ? this.$(t) : t.nodeType !== void 0 ? this.T(t) : g2(t) ? this.k(t) : this._(t);
   }
   O(t) {
     return this._$AA.parentNode.insertBefore(t, this._$AB);
@@ -371,10 +371,10 @@ class J {
     this._$AH !== t && (this._$AR(), this._$AH = this.O(t));
   }
   _(t) {
-    this._$AH !== d && R(this._$AH) ? this._$AA.nextSibling.data = t : this.T(A.createTextNode(t)), this._$AH = t;
+    this._$AH !== c && D(this._$AH) ? this._$AA.nextSibling.data = t : this.T(k.createTextNode(t)), this._$AH = t;
   }
   $(t) {
-    const { values: e, _$litType$: r } = t, s = typeof r == "number" ? this._$AC(t) : (r.el === void 0 && (r.el = D.createElement(W1(r.h, r.h[0]), this.options)), r);
+    const { values: e, _$litType$: r } = t, s = typeof r == "number" ? this._$AC(t) : (r.el === void 0 && (r.el = F.createElement(W1(r.h, r.h[0]), this.options)), r);
     if (this._$AH?._$AD === s) this._$AH.p(e);
     else {
       const o = new M2(s, this), n = o.u(this.options);
@@ -382,20 +382,20 @@ class J {
     }
   }
   _$AC(t) {
-    let e = N1.get(t.strings);
-    return e === void 0 && N1.set(t.strings, e = new D(t)), e;
+    let e = j1.get(t.strings);
+    return e === void 0 && j1.set(t.strings, e = new F(t)), e;
   }
   k(t) {
-    H1(this._$AH) || (this._$AH = [], this._$AR());
+    f1(this._$AH) || (this._$AH = [], this._$AR());
     const e = this._$AH;
     let r, s = 0;
-    for (const o of t) s === e.length ? e.push(r = new J(this.O(B()), this.O(B()), this, this.options)) : r = e[s], r._$AI(o), s++;
+    for (const o of t) s === e.length ? e.push(r = new K(this.O(R()), this.O(R()), this, this.options)) : r = e[s], r._$AI(o), s++;
     s < e.length && (this._$AR(r && r._$AB.nextSibling, s), e.length = s);
   }
   _$AR(t = this._$AA.nextSibling, e) {
     for (this._$AP?.(!1, !0, e); t !== this._$AB; ) {
-      const r = S1(t).nextSibling;
-      S1(t).remove(), t = r;
+      const r = t.nextSibling;
+      t.remove(), t = r;
     }
   }
   setConnected(t) {
@@ -410,21 +410,21 @@ class a1 {
     return this._$AM._$AU;
   }
   constructor(t, e, r, s, o) {
-    this.type = 1, this._$AH = d, this._$AN = void 0, this.element = t, this.name = e, this._$AM = s, this.options = o, r.length > 2 || r[0] !== "" || r[1] !== "" ? (this._$AH = Array(r.length - 1).fill(new String()), this.strings = r) : this._$AH = d;
+    this.type = 1, this._$AH = c, this._$AN = void 0, this.element = t, this.name = e, this._$AM = s, this.options = o, r.length > 2 || r[0] !== "" || r[1] !== "" ? (this._$AH = Array(r.length - 1).fill(new String()), this.strings = r) : this._$AH = c;
   }
   _$AI(t, e = this, r, s) {
     const o = this.strings;
     let n = !1;
-    if (o === void 0) t = z(this, t, e, 0), n = !R(t) || t !== this._$AH && t !== x, n && (this._$AH = t);
+    if (o === void 0) t = P(this, t, e, 0), n = !D(t) || t !== this._$AH && t !== _, n && (this._$AH = t);
     else {
       const l = t;
-      let a, c;
-      for (t = o[0], a = 0; a < o.length - 1; a++) c = z(this, l[r + a], e, a), c === x && (c = this._$AH[a]), n ||= !R(c) || c !== this._$AH[a], c === d ? t = d : t !== d && (t += (c ?? "") + o[a + 1]), this._$AH[a] = c;
+      let C, d;
+      for (t = o[0], C = 0; C < o.length - 1; C++) d = P(this, l[r + C], e, C), d === _ && (d = this._$AH[C]), n ||= !D(d) || d !== this._$AH[C], d === c ? t = c : t !== c && (t += (d ?? "") + o[C + 1]), this._$AH[C] = d;
     }
     n && !s && this.j(t);
   }
   j(t) {
-    t === d ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, t ?? "");
+    t === c ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, t ?? "");
   }
 }
 class y2 extends a1 {
@@ -432,7 +432,7 @@ class y2 extends a1 {
     super(...arguments), this.type = 3;
   }
   j(t) {
-    this.element[this.name] = t === d ? void 0 : t;
+    this.element[this.name] = t === c ? void 0 : t;
   }
 }
 class Z2 extends a1 {
@@ -440,23 +440,23 @@ class Z2 extends a1 {
     super(...arguments), this.type = 4;
   }
   j(t) {
-    this.element.toggleAttribute(this.name, !!t && t !== d);
+    this.element.toggleAttribute(this.name, !!t && t !== c);
   }
 }
-class v2 extends a1 {
+class $2 extends a1 {
   constructor(t, e, r, s, o) {
     super(t, e, r, s, o), this.type = 5;
   }
   _$AI(t, e = this) {
-    if ((t = z(this, t, e, 0) ?? d) === x) return;
-    const r = this._$AH, s = t === d && r !== d || t.capture !== r.capture || t.once !== r.once || t.passive !== r.passive, o = t !== d && (r === d || s);
+    if ((t = P(this, t, e, 0) ?? c) === _) return;
+    const r = this._$AH, s = t === c && r !== c || t.capture !== r.capture || t.once !== r.once || t.passive !== r.passive, o = t !== c && (r === c || s);
     s && this.element.removeEventListener(this.name, this, r), o && this.element.addEventListener(this.name, this, t), this._$AH = t;
   }
   handleEvent(t) {
     typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, t) : this._$AH.handleEvent(t);
   }
 }
-class $2 {
+class v2 {
   constructor(t, e, r) {
     this.element = t, this.type = 6, this._$AN = void 0, this._$AM = e, this.options = r;
   }
@@ -464,22 +464,22 @@ class $2 {
     return this._$AM._$AU;
   }
   _$AI(t) {
-    z(this, t);
+    P(this, t);
   }
 }
-const x2 = u1.litHtmlPolyfillSupport;
-x2?.(D, J), (u1.litHtmlVersions ??= []).push("3.3.2");
+const x2 = H1.litHtmlPolyfillSupport;
+x2?.(F, K), (H1.litHtmlVersions ??= []).push("3.3.1");
 const _2 = (i, t, e) => {
   const r = e?.renderBefore ?? t;
   let s = r._$litPart$;
   if (s === void 0) {
     const o = e?.renderBefore ?? null;
-    r._$litPart$ = s = new J(t.insertBefore(B(), o), o, void 0, e ?? {});
+    r._$litPart$ = s = new K(t.insertBefore(R(), o), o, void 0, e ?? {});
   }
   return s._$AI(i), s;
 };
-const f1 = globalThis;
-let H = class extends S {
+const L1 = globalThis;
+let H = class extends z {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -498,21 +498,21 @@ let H = class extends S {
     super.disconnectedCallback(), this._$Do?.setConnected(!1);
   }
   render() {
-    return x;
+    return _;
   }
 };
-H._$litElement$ = !0, H.finalized = !0, f1.litElementHydrateSupport?.({ LitElement: H });
-const w2 = f1.litElementPolyfillSupport;
+H._$litElement$ = !0, H.finalized = !0, L1.litElementHydrateSupport?.({ LitElement: H });
+const w2 = L1.litElementPolyfillSupport;
 w2?.({ LitElement: H });
-(f1.litElementVersions ??= []).push("4.2.2");
-const A2 = { attribute: !0, type: String, converter: G, reflect: !1, hasChanged: p1 }, k2 = (i = A2, t, e) => {
+(L1.litElementVersions ??= []).push("4.2.1");
+const A2 = { attribute: !0, type: String, converter: Q, reflect: !1, hasChanged: u1 }, k2 = (i = A2, t, e) => {
   const { kind: r, metadata: s } = e;
   let o = globalThis.litPropertyMetadata.get(s);
   if (o === void 0 && globalThis.litPropertyMetadata.set(s, o = /* @__PURE__ */ new Map()), r === "setter" && ((i = Object.create(i)).wrapped = !0), o.set(e.name, i), r === "accessor") {
     const { name: n } = e;
     return { set(l) {
-      const a = t.get.call(this);
-      t.set.call(this, l), this.requestUpdate(n, a, i, !0, l);
+      const C = t.get.call(this);
+      t.set.call(this, l), this.requestUpdate(n, C, i);
     }, init(l) {
       return l !== void 0 && this.C(n, void 0, i, l), l;
     } };
@@ -520,19 +520,19 @@ const A2 = { attribute: !0, type: String, converter: G, reflect: !1, hasChanged:
   if (r === "setter") {
     const { name: n } = e;
     return function(l) {
-      const a = this[n];
-      t.call(this, l), this.requestUpdate(n, a, i, !0, l);
+      const C = this[n];
+      t.call(this, l), this.requestUpdate(n, C, i);
     };
   }
   throw Error("Unsupported decorator location: " + r);
 };
-function C(i) {
+function a(i) {
   return (t, e) => typeof e == "object" ? k2(i, t, e) : ((r, s, o) => {
     const n = s.hasOwnProperty(o);
     return s.constructor.createProperty(o, r), n ? Object.getOwnPropertyDescriptor(s, o) : void 0;
   })(i, t, e);
 }
-const J1 = { ATTRIBUTE: 1, CHILD: 2 }, L1 = (i) => (...t) => ({ _$litDirective$: i, values: t });
+const J1 = { ATTRIBUTE: 1, CHILD: 2 }, V1 = (i) => (...t) => ({ _$litDirective$: i, values: t });
 class K1 {
   constructor(t) {
   }
@@ -549,13 +549,13 @@ class K1 {
     return this.render(...e);
   }
 }
-let X = class extends K1 {
+let t1 = class extends K1 {
   constructor(t) {
-    if (super(t), this.it = d, t.type !== J1.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
+    if (super(t), this.it = c, t.type !== J1.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
   }
   render(t) {
-    if (t === d || t == null) return this._t = void 0, this.it = t;
-    if (t === x) return t;
+    if (t === c || t == null) return this._t = void 0, this.it = t;
+    if (t === _) return t;
     if (typeof t != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
     if (t === this.it) return this._t;
     this.it = t;
@@ -563,16 +563,16 @@ let X = class extends K1 {
     return e.raw = e, this._t = { _$litType$: this.constructor.resultType, strings: e, values: [] };
   }
 };
-X.directiveName = "unsafeHTML", X.resultType = 1;
-const E2 = L1(X);
-class l1 extends X {
+t1.directiveName = "unsafeHTML", t1.resultType = 1;
+const E2 = V1(t1);
+class h1 extends t1 {
 }
-l1.directiveName = "unsafeSVG", l1.resultType = 2;
-const S2 = L1(l1), z2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', P2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
+h1.directiveName = "unsafeSVG", h1.resultType = 2;
+const S2 = V1(h1), z2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', P2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
 function b(...i) {
-  const t = w1`
+  const t = A1`
     ${f(z2)}
-  `, e = w1`
+  `, e = A1`
     ${f(P2)}
   `;
   return [t, e, ...i];
@@ -621,8 +621,8 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "eye-slash",
   "follow",
   "follow-fill",
-  "followlist",
-  "followlist-fill",
+  "follow-list",
+  "follow-list-fill",
   "gear",
   "headset",
   "headset-face",
@@ -637,14 +637,16 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "list-open",
   "lock",
   "lock-fill",
+  "magic",
   "magic-fill",
   "mail",
   "mail-gear",
   "maximize",
   "menu",
   "minimize",
-  "minus-cycle",
-  "minus-cycle-fill",
+  "minus",
+  "minus-circle",
+  "minus-circle-fill",
   "money",
   "open-in-new",
   "pencil-square",
@@ -654,10 +656,10 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "person-fill",
   "person-gear",
   "plus",
-  "plus-cycle",
-  "plus-cycle-fill",
+  "plus-circle",
+  "plus-circle-fill",
   "plus-small",
-  "question",
+  "question-circle",
   "report",
   "route",
   "search",
@@ -671,7 +673,7 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "unlock",
   "unlock-fill",
   "warning-fill"
-], U2 = {
+], v = {
   app: '<path d="M7.41 5.71C7.41 6.65 6.65 7.41 5.71 7.41C4.77 7.41 4.01 6.64 4.01 5.71C4.01 4.78 4.77 4.01 5.71 4.01C6.65 4.01 7.41 4.78 7.41 5.71ZM13.71 5.71C13.71 4.77 12.95 4.01 12.01 4.01C11.07 4.01 10.31 4.78 10.31 5.71C10.31 6.64 11.07 7.41 12.01 7.41C12.95 7.41 13.71 6.64 13.71 5.71ZM19.99 5.71C19.99 4.77 19.23 4.01 18.29 4.01C17.35 4.01 16.59 4.78 16.59 5.71C16.59 6.64 17.35 7.41 18.29 7.41C19.23 7.41 19.99 6.64 19.99 5.71ZM7.41 12C7.41 11.06 6.65 10.3 5.71 10.3C4.77 10.3 4.01 11.06 4.01 12C4.01 12.94 4.77 13.7 5.71 13.7C6.65 13.7 7.41 12.94 7.41 12ZM13.71 12C13.71 11.06 12.95 10.3 12.01 10.3C11.07 10.3 10.31 11.06 10.31 12C10.31 12.94 11.07 13.7 12.01 13.7C12.95 13.7 13.71 12.94 13.71 12ZM19.99 12.01C19.99 11.07 19.23 10.31 18.29 10.31C17.35 10.31 16.59 11.07 16.59 12.01C16.59 12.95 17.35 13.71 18.29 13.71C19.23 13.71 19.99 12.95 19.99 12.01ZM7.41 18.31C7.41 17.38 6.65 16.61 5.71 16.61C4.77 16.61 4.01 17.37 4.01 18.31C4.01 19.25 4.77 20.01 5.71 20.01C6.65 20.01 7.41 19.25 7.41 18.31ZM13.71 18.31C13.71 17.38 12.95 16.61 12.01 16.61C11.07 16.61 10.31 17.37 10.31 18.31C10.31 19.25 11.07 20.01 12.01 20.01C12.95 20.01 13.71 19.25 13.71 18.31ZM19.99 18.31C19.99 17.38 19.23 16.61 18.29 16.61C17.35 16.61 16.59 17.37 16.59 18.31C16.59 19.25 17.35 20.01 18.29 20.01C19.23 20.01 19.99 19.25 19.99 18.31Z"/>',
   "arrow-down": '<path d="M17.87 13.06L12.75 18.18V3.01001H11.25V18.18L6.13 13.06L5.07 14.12L12 21.05L18.93 14.12L17.87 13.06Z"/>',
   "arrow-down-small": '<path d="M15.58 12.37L12.76 15.19V6H11.26V15.19L8.43 12.36L7.37 13.42L12.01 18.06L16.64 13.43L15.58 12.37Z"/>',
@@ -709,14 +711,14 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "double-chevron-right": '<path d="M12.93 19.98L11.81 18.98L18.01 11.99L11.81 5L12.93 4L20.01 11.98L12.93 19.96V19.98ZM14.07 12L6.99 4.02L5.87 5.02L12.07 12.01L5.87 19L6.99 20L14.07 12.02V12Z"/>',
   download: '<path d="M21 15V20.25C21 20.66 20.66 21 20.25 21H3.75C3.34 21 3 20.66 3 20.25V15H4.5V19.5H19.5V15H21ZM16.95 11.06L15.89 10L12.76 13.13V3.01001H11.26V13.13L8.13 10L7.07 11.06L12.01 16L16.95 11.06Z"/>',
   drag: '<path d="M10.41 5.71C10.41 6.65 9.65 7.41 8.71 7.41C7.77 7.41 7.01 6.64 7.01 5.71C7.01 4.78 7.77 4.01 8.71 4.01C9.65 4.01 10.41 4.78 10.41 5.71ZM10.41 12C10.41 11.06 9.65 10.3 8.71 10.3C7.77 10.3 7.01 11.06 7.01 12C7.01 12.94 7.77 13.7 8.71 13.7C9.65 13.7 10.41 12.94 10.41 12ZM10.41 18.31C10.41 17.38 9.65 16.61 8.71 16.61C7.77 16.61 7.01 17.37 7.01 18.31C7.01 19.25 7.77 20.01 8.71 20.01C9.65 20.01 10.41 19.25 10.41 18.31ZM17 5.71C17 4.77 16.24 4.01 15.3 4.01C14.36 4.01 13.6 4.78 13.6 5.71C13.6 6.64 14.36 7.41 15.3 7.41C16.24 7.41 17 6.64 17 5.71ZM17 12C17 11.06 16.24 10.3 15.3 10.3C14.36 10.3 13.6 11.06 13.6 12C13.6 12.94 14.36 13.7 15.3 13.7C16.24 13.7 17 12.94 17 12ZM17 18.31C17 17.38 16.24 16.61 15.3 16.61C14.36 16.61 13.6 17.37 13.6 18.31C13.6 19.25 14.36 20.01 15.3 20.01C16.24 20.01 17 19.25 17 18.31Z"/>',
-  "error-fill": '<path d="M21.28 7.84L16.15 2.72C16.01 2.58 15.82 2.5 15.62 2.5H8.37C8.17 2.5 7.98 2.58 7.84 2.72L2.72 7.84C2.58 7.98 2.5 8.17 2.5 8.37V15.62C2.5 15.82 2.58 16.01 2.72 16.15L7.85 21.28C7.99 21.42 8.18 21.5 8.38 21.5H15.63C15.83 21.5 16.02 21.42 16.16 21.28L21.29 16.15C21.43 16.01 21.51 15.82 21.51 15.62V8.37C21.51 8.17 21.43 7.98 21.29 7.84H21.28ZM16.81 15.75L15.75 16.81L12 13.06L8.25 16.81L7.19 15.75L10.94 12L7.19 8.25L8.25 7.19L12 10.94L15.75 7.19L16.81 8.25L13.06 12L16.81 15.75Z"/><path d="M16.81 8.24994L15.75 7.18994L12 10.9399L8.25 7.18994L7.19 8.24994L10.94 11.9999L7.19 15.7499L8.25 16.8099L12 13.0599L15.75 16.8099L16.81 15.7499L13.06 11.9999L16.81 8.24994Z" fill="white"/>',
+  "error-fill": '<path fill="currentColor" d="M21.28 7.84L16.15 2.72C16.01 2.58 15.82 2.5 15.62 2.5H8.37C8.17 2.5 7.98 2.58 7.84 2.72L2.72 7.84C2.58 7.98 2.5 8.17 2.5 8.37V15.62C2.5 15.82 2.58 16.01 2.72 16.15L7.85 21.28C7.99 21.42 8.18 21.5 8.38 21.5H15.63C15.83 21.5 16.02 21.42 16.16 21.28L21.29 16.15C21.43 16.01 21.51 15.82 21.51 15.62V8.37C21.51 8.17 21.43 7.98 21.29 7.84H21.28ZM16.81 15.75L15.75 16.81L12 13.06L8.25 16.81L7.19 15.75L10.94 12L7.19 8.25L8.25 7.19L12 10.94L15.75 7.19L16.81 8.25L13.06 12L16.81 15.75Z"/><path d="M16.81 8.24994L15.75 7.18994L12 10.9399L8.25 7.18994L7.19 8.24994L10.94 11.9999L7.19 15.7499L8.25 16.8099L12 13.0599L15.75 16.8099L16.81 15.7499L13.06 11.9999L16.81 8.24994Z" fill="white"/>',
   exit: '<path d="M12.23 15.73H13.73V20.25C13.73 20.66 13.39 21 12.98 21H3.78C3.37 21 3.03 20.66 3.03 20.25V3.75C3.03 3.34 3.37 3 3.78 3H12.98C13.39 3 13.73 3.34 13.73 3.75V8.24H12.23V4.5H4.53V19.5H12.23V15.73ZM17.02 8L15.96 9.06L18.15 11.25H13.73H12.23H8.03V12.75H18.14L15.95 14.94L17.01 16L21.01 12L17.01 8H17.02Z"/>',
   eye: '<path d="M12 15.59C10.02 15.59 8.41 13.98 8.41 12C8.41 10.02 10.02 8.40999 12 8.40999C13.98 8.40999 15.59 10.02 15.59 12C15.59 13.98 13.98 15.59 12 15.59ZM12 9.90999C10.85 9.90999 9.91 10.85 9.91 12C9.91 13.15 10.85 14.09 12 14.09C13.15 14.09 14.09 13.15 14.09 12C14.09 10.85 13.15 9.90999 12 9.90999ZM12 19.09C7.23 19.09 3.34 14.25 2.26 12.77C1.92 12.31 1.92 11.68 2.26 11.22C3.34 9.73999 7.22 4.89999 12 4.89999C16.78 4.89999 20.66 9.73999 21.73 11.22C22.07 11.68 22.07 12.31 21.73 12.77C20.65 14.25 16.77 19.09 12 19.09ZM3.56 12C4.42 13.16 7.97 17.59 12 17.59C16.03 17.59 19.59 13.15 20.44 12C19.58 10.85 16.03 6.40999 12 6.40999C7.97 6.40999 4.41 10.85 3.56 12Z"/>',
   "eye-slash": '<path d="M15.59 12C15.59 12.44 15.5 12.85 15.36 13.24L14.09 11.97C14.07 10.84 13.16 9.93 12.03 9.91L10.76 8.64C11.15 8.5 11.56 8.41 12 8.41C13.98 8.41 15.59 10.02 15.59 12ZM21.74 12.78C21.22 13.49 20.05 14.97 18.44 16.33L17.37 15.26C18.89 14 20.01 12.59 20.44 12C19.58 10.85 16.03 6.41 12 6.41C11.03 6.41 10.08 6.67 9.19 7.08L8.07 5.96C9.27 5.33 10.59 4.91 12 4.91C16.77 4.91 20.66 9.75 21.74 11.23C22.08 11.69 22.08 12.32 21.74 12.78ZM20.42 20.43L19.37 21.48L15.93 18.04C14.73 18.67 13.41 19.09 12 19.09C7.23 19.09 3.34 14.25 2.26 12.77C1.92 12.31 1.92 11.68 2.26 11.22C2.78 10.51 3.95001 9.02 5.55001 7.67L2.44 4.56L3.5 3.5V3.51L20.42 20.43ZM9.91 12.03C9.93 13.16 10.84 14.07 11.97 14.09L9.91 12.03ZM14.81 16.92L13.24 15.35C12.85 15.49 12.44 15.58 12 15.58C10.02 15.58 8.41 13.97 8.41 11.99C8.41 11.55 8.50001 11.14 8.64001 10.75L6.62 8.73C5.1 9.99 3.98 11.41 3.55 11.99C4.41 13.15 7.96 17.58 11.99 17.58C12.96 17.58 13.91 17.32 14.8 16.91L14.81 16.92Z"/>',
   follow: '<path d="M5.81252 21.0001C5.63577 21.0001 5.45999 20.9376 5.32034 20.8161C5.08206 20.609 4.99905 20.2755 5.11233 19.9811L7.25002 14.421L2.67874 10.3898C2.44436 10.1837 2.36331 9.85414 2.47366 9.56214C2.58401 9.27015 2.86331 9.07728 3.17483 9.07728H9.02835L11.2764 3.47084C11.3916 3.18275 11.6973 2.99427 11.9844 3.00013C12.2949 3.00502 12.5713 3.2013 12.6778 3.4933L14.7129 9.07728H20.8262C21.1397 9.07728 21.4199 9.27211 21.5293 9.56605C21.6387 9.86 21.5537 10.1906 21.3164 10.3952L16.6582 14.4118L18.8076 19.9801C18.9219 20.2745 18.8389 20.609 18.6006 20.8161C18.3623 21.0236 18.0186 21.0587 17.7432 20.9054L11.9717 17.6915L6.17581 20.9059C6.06252 20.9694 5.93752 21.0001 5.81252 21.0001ZM5.1592 10.5773L8.63381 13.6408C8.86917 13.8483 8.95022 14.1798 8.83792 14.4723L7.25295 18.5934L11.6094 16.1779C11.834 16.0514 12.1094 16.0529 12.3379 16.1784L16.6621 18.5866L15.0694 14.4591C14.9551 14.1637 15.0391 13.8283 15.2783 13.6212L18.8086 10.5773H14.1875C13.8721 10.5773 13.5908 10.38 13.4824 10.0841L11.9395 5.84828L10.2315 10.1066C10.1172 10.3908 9.84182 10.5773 9.53518 10.5773H5.1592Z"/>',
   "follow-fill": '<path d="M6.0176 21.0001C5.84085 21.0001 5.66506 20.9376 5.52542 20.8161C5.28713 20.609 5.20413 20.2755 5.31741 19.9811L7.4551 14.421L2.88381 10.3898C2.64944 10.1837 2.56838 9.85414 2.67874 9.56214C2.78909 9.27015 3.06838 9.07728 3.37991 9.07728H9.23342L11.4815 3.47084C11.5967 3.18275 11.9024 2.99427 12.1895 3.00013C12.5 3.00502 12.7764 3.2013 12.8828 3.4933L14.918 9.07728H21.0313C21.3448 9.07728 21.625 9.27211 21.7344 9.56605C21.8438 9.86 21.7588 10.1906 21.5215 10.3952L16.8633 14.4118L19.0127 19.9801C19.127 20.2745 19.044 20.609 18.8057 20.8161C18.5674 21.0236 18.2237 21.0587 17.9483 20.9054L12.1768 17.6915L6.38088 20.9059C6.2676 20.9694 6.1426 21.0001 6.0176 21.0001Z"/>',
-  followlist: '<path d="M20.995 6.25H3.01497V4.75H20.985V6.25H20.995ZM20.995 11.24H3.01497V12.74H20.985V11.24H20.995ZM20.995 17.74H18.255V14.99H16.755V17.74H14.005V19.24H16.755V21.99H18.255V19.24H20.995V17.74ZM3.01497 19.24H11.005V17.74H3.01497V19.24Z"/>',
-  "followlist-fill": '<path d="M20.995 4.495V6.495H3.01501V4.495H20.985H20.995ZM3.01501 12.985H20.985V10.985H3.01501V12.985ZM18.505 14.995H16.505V17.495H14.005V19.495H16.505V21.995H18.505V19.495H20.995V17.495H18.505V14.995ZM3.01501 19.485H11.005V17.485H3.01501V19.485Z"/>',
+  "follow-list": '<path d="M20.995 6.25H3.01497V4.75H20.985V6.25H20.995ZM20.995 11.24H3.01497V12.74H20.985V11.24H20.995ZM20.995 17.74H18.255V14.99H16.755V17.74H14.005V19.24H16.755V21.99H18.255V19.24H20.995V17.74ZM3.01497 19.24H11.005V17.74H3.01497V19.24Z"/>',
+  "follow-list-fill": '<path d="M20.995 4.495V6.495H3.01501V4.495H20.985H20.995ZM3.01501 12.985H20.985V10.985H3.01501V12.985ZM18.505 14.995H16.505V17.495H14.005V19.495H16.505V21.995H18.505V19.495H20.995V17.495H18.505V14.995ZM3.01501 19.485H11.005V17.485H3.01501V19.485Z"/>',
   gear: '<path d="M14.08 22.01H9.91C9.11 22.01 8.47 21.36 8.47 20.56V19.32C8.11 19.14 7.76 18.94 7.43 18.72L6.35 19.34C6.02 19.53 5.63 19.58 5.26 19.49C4.88 19.39 4.57 19.15 4.38 18.82L2.29 15.2C1.89 14.51 2.13 13.63 2.82 13.23L3.9 12.61C3.89 12.41 3.88 12.21 3.88 12.01C3.88 11.81 3.88 11.61 3.9 11.41L2.83 10.79C2.14 10.39 1.9 9.51 2.3 8.82L4.39 5.21C4.59 4.87 4.9 4.64 5.27 4.54C5.65 4.44 6.04 4.5 6.37 4.69L7.45 5.31C7.78 5.08 8.13 4.88 8.49 4.71V3.47C8.49 2.67 9.14 2.03 9.93 2.03H14.1C14.9 2.03 15.55 2.68 15.55 3.47V4.71C15.91 4.88 16.26 5.09 16.59 5.31L17.67 4.69C17.99 4.5 18.38 4.45 18.76 4.54C19.14 4.64 19.45 4.89 19.65 5.21L21.74 8.82C21.93 9.16 21.98 9.55 21.88 9.92C21.78 10.29 21.54 10.6 21.21 10.8L20.13 11.42C20.14 11.62 20.15 11.82 20.15 12.02C20.15 12.22 20.15 12.42 20.13 12.62L21.21 13.24C21.54 13.44 21.78 13.75 21.88 14.12C21.98 14.49 21.93 14.88 21.74 15.22L19.66 18.83C19.47 19.16 19.15 19.4 18.78 19.5C18.4 19.6 18.01 19.55 17.68 19.36L16.6 18.74C16.27 18.97 15.92 19.17 15.56 19.34V20.58C15.56 21.38 14.91 22.03 14.11 22.03L14.08 22.01ZM7.54 16.92L7.94 17.23C8.42 17.6 8.94 17.91 9.5 18.14L9.97 18.33V20.56L14.08 20.51L14.03 18.33L14.5 18.14C15.06 17.91 15.58 17.61 16.06 17.23L16.46 16.92L18.4 18.04L20.38 14.5L18.49 13.41L18.56 12.91C18.6 12.61 18.62 12.3 18.62 12C18.62 11.7 18.6 11.39 18.56 11.09L18.49 10.59L20.42 9.47L18.32 5.93L16.45 7.07L16.05 6.76C15.57 6.39 15.05 6.08 14.49 5.85L14.02 5.66V3.43L9.9 3.49L9.96 5.67L9.49 5.86C8.93 6.09 8.4 6.4 7.93 6.77L7.53 7.08L5.59 5.96L3.58 9.55L5.49 10.59L5.42 11.09C5.38 11.39 5.36 11.7 5.36 12C5.36 12.3 5.38 12.6 5.42 12.91L5.49 13.41L3.56 14.53L5.67 18.07L7.54 16.93V16.92ZM12 15.75C9.93 15.75 8.25 14.07 8.25 12C8.25 9.93 9.93 8.25 12 8.25C14.07 8.25 15.75 9.93 15.75 12C15.75 14.07 14.07 15.75 12 15.75ZM12 9.75C10.76 9.75 9.75 10.76 9.75 12C9.75 13.24 10.76 14.25 12 14.25C13.24 14.25 14.25 13.24 14.25 12C14.25 10.76 13.24 9.75 12 9.75Z"/>',
   headset: '<path d="M18.94 9.78C18.98 9.68 18.99 9.58 18.99 9.47C18.72 5.84 15.65 2.99 12 2.99C8.34999 2.99 5.19999 5.9 4.99999 9.62C4.99999 9.68 5.00999 9.73 5.01999 9.78C3.86999 10 2.98999 11.02 2.98999 12.23V14.73C2.98999 16.11 4.10999 17.23 5.48999 17.23C6.86999 17.23 7.98999 16.11 7.98999 14.73V12.23C7.98999 11.19 7.34999 10.29 6.43999 9.92C6.46999 9.85 6.48999 9.78 6.49999 9.7C6.64999 6.78 9.06999 4.49 12 4.49C14.93 4.49 17.28 6.72 17.49 9.58C17.49 9.7 17.54 9.81 17.6 9.91C16.66 10.27 15.99 11.18 15.99 12.24V14.74C15.99 15.48 16.32 16.14 16.84 16.6C16.12 17.93 14.93 18.89 13.51 19.29C13.3 19.12 13.04 19 12.74 19H11.24C10.55 19 9.98999 19.56 9.98999 20.25C9.98999 20.94 10.55 21.5 11.24 21.5H12.74C13.26 21.5 13.7 21.19 13.89 20.74C15.74 20.23 17.3 18.97 18.21 17.21C18.3 17.22 18.39 17.24 18.49 17.24C19.87 17.24 20.99 16.12 20.99 14.74V12.24C20.99 11.01 20.1 10 18.93 9.78H18.94ZM6.49999 14.74C6.49999 15.29 6.04999 15.74 5.49999 15.74C4.94999 15.74 4.49999 15.29 4.49999 14.74V12.24C4.49999 11.69 4.94999 11.24 5.49999 11.24C6.04999 11.24 6.49999 11.69 6.49999 12.24V14.74ZM19.5 14.74C19.5 15.29 19.05 15.74 18.5 15.74C17.95 15.74 17.5 15.29 17.5 14.74V12.24C17.5 11.69 17.95 11.24 18.5 11.24C19.05 11.24 19.5 11.69 19.5 12.24V14.74Z"/>',
   "headset-face": '<path d="M21 12.24V14.74C21 16.12 19.88 17.24 18.5 17.24C18.4 17.24 18.31 17.22 18.22 17.21C17.31 18.97 15.74 20.22 13.9 20.74C13.71 21.19 13.27 21.5 12.75 21.5H11.25C10.56 21.5 10 20.94 10 20.25C10 19.56 10.56 19 11.25 19H12.75C13.05 19 13.31 19.12 13.52 19.29C14.93 18.89 16.13 17.93 16.85 16.6C16.34 16.14 16 15.48 16 14.74V12.24C16 11.18 16.67 10.27 17.61 9.90999C17.55 9.80999 17.51 9.70999 17.5 9.57999C17.29 6.72999 14.88 4.48999 12.01 4.48999C9.14 4.48999 6.67 6.77999 6.51 9.69999C6.51 9.77999 6.48 9.84999 6.45 9.91999C7.36 10.29 8 11.19 8 12.23V14.73C8 16.11 6.88 17.23 5.5 17.23C4.12 17.23 3 16.11 3 14.73V12.23C3 11.01 3.88 9.99999 5.03 9.77999C5.03 9.72999 5 9.67999 5.01 9.61999C5.2 5.89999 8.28 2.98999 12.01 2.98999C15.74 2.98999 18.73 5.82999 19 9.46999C19 9.57999 18.99 9.67999 18.95 9.77999C20.12 9.98999 21.01 11.01 21.01 12.24H21ZM6.5 12.24C6.5 11.69 6.05 11.24 5.5 11.24C4.95 11.24 4.5 11.69 4.5 12.24V14.74C4.5 15.29 4.95 15.74 5.5 15.74C6.05 15.74 6.5 15.29 6.5 14.74V12.24ZM19.5 12.24C19.5 11.69 19.05 11.24 18.5 11.24C17.95 11.24 17.5 11.69 17.5 12.24V14.74C17.5 15.29 17.95 15.74 18.5 15.74C19.05 15.74 19.5 15.29 19.5 14.74V12.24ZM14.96 15.68L13.9 14.62C12.88 15.64 11.11 15.64 10.1 14.62L9.04 15.68C9.83 16.47 10.88 16.91 12 16.91C13.12 16.91 14.17 16.47 14.96 15.68Z"/>',
@@ -731,14 +733,16 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "list-open": '<path d="M11.95 7.56H3.02V6.06H11.96V7.56H11.95ZM15.53 11.25H3.02V12.75H15.53V11.25ZM11.95 16.44H3.02V17.94H11.96V16.44H11.95ZM21 12L15.73 6.06L14.61 7.06L18.99 12L14.61 16.94L15.73 17.94L21 12Z"/>',
   lock: '<path d="M10.4 15.76C10.4 14.88 11.12 14.16 12 14.16C12.88 14.16 13.6 14.88 13.6 15.76C13.6 16.64 12.88 17.36 12 17.36C11.12 17.36 10.4 16.64 10.4 15.76ZM19.75 10.26V21.26C19.75 21.67 19.41 22.01 19 22.01H5C4.59 22.01 4.25 21.67 4.25 21.26V10.26C4.25 9.85001 4.59 9.51001 5 9.51001H7V8.04001C7 5.28001 9.24 3.04001 12 3.04001C14.76 3.04001 17 5.28001 17 8.04001V9.51001H19C19.41 9.51001 19.75 9.85001 19.75 10.26ZM8.5 9.51001H15.5V8.04001C15.5 6.11001 13.93 4.54001 12 4.54001C10.07 4.54001 8.5 6.11001 8.5 8.04001V9.51001ZM18.25 11.01H5.75V20.51H18.25V11.01Z"/>',
   "lock-fill": '<path d="M19 9.50998H17V8.03998C17 5.27998 14.76 3.03998 12 3.03998C9.24 3.03998 7 5.27998 7 8.03998V9.50998H5C4.59 9.50998 4.25 9.84998 4.25 10.26V21.26C4.25 21.67 4.59 22.01 5 22.01H19C19.41 22.01 19.75 21.67 19.75 21.26V10.26C19.75 9.84998 19.41 9.50998 19 9.50998ZM12 17.36C11.12 17.36 10.4 16.64 10.4 15.76C10.4 14.88 11.12 14.16 12 14.16C12.88 14.16 13.6 14.88 13.6 15.76C13.6 16.64 12.88 17.36 12 17.36ZM15.5 9.50998H8.5V8.03998C8.5 6.10998 10.07 4.53998 12 4.53998C13.93 4.53998 15.5 6.10998 15.5 8.03998V9.50998Z"/>',
+  magic: '<path d="M17.02 2.23C17.08 1.92 17.52 1.92 17.58 2.23C18 4.34 19.65 5.99 21.76 6.41C22.07 6.47 22.07 6.91 21.76 6.97C19.65 7.39 18 9.04 17.58 11.15C17.52 11.46 17.08 11.46 17.02 11.15C16.6 9.04 14.95 7.39 12.84 6.97C12.53 6.91 12.53 6.47 12.84 6.41C14.95 5.99 16.6 4.34 17.02 2.23ZM10.79 21.25C11.71 18.4 13.95 16.15 16.8 15.24C17.24 15.1 17.54 14.69 17.54 14.22C17.54 13.76 17.24 13.35 16.8 13.21C13.95 12.29 11.7 10.05 10.79 7.2C10.65 6.76 10.24 6.46 9.77 6.46C9.3 6.46 8.9 6.76 8.75 7.2C7.83 10.05 5.59 12.3 2.74 13.21C2.3 13.35 2 13.76 2 14.22C2 14.69 2.3 15.09 2.74 15.24C5.59 16.16 7.84 18.4 8.75 21.25C8.89 21.69 9.3 21.99 9.77 21.99C10.24 21.99 10.64 21.69 10.79 21.25ZM9.78 8.73C10.87 11.17 12.83 13.13 15.27 14.22C12.83 15.31 10.87 17.27 9.78 19.71C8.69 17.27 6.73 15.31 4.29 14.22C6.73 13.13 8.69 11.17 9.78 8.73Z"/>',
   "magic-fill": '<path d="M9.45995 6.66957C9.55995 6.33957 10.02 6.33957 10.13 6.66957C11.23 10.0896 13.91 12.7696 17.33 13.8696C17.66 13.9696 17.66 14.4296 17.33 14.5396C13.91 15.6396 11.23 18.3196 10.13 21.7396C10.03 22.0696 9.56995 22.0696 9.45995 21.7396C8.35995 18.3196 5.67995 15.6396 2.25995 14.5396C1.92995 14.4396 1.92995 13.9796 2.25995 13.8696C5.67995 12.7696 8.35995 10.0896 9.45995 6.66957ZM12.84 6.40957C12.53 6.46957 12.53 6.90957 12.84 6.96957C14.95 7.38957 16.6 9.03957 17.02 11.1496C17.08 11.4596 17.52 11.4596 17.58 11.1496C18 9.03957 19.65 7.38957 21.76 6.96957C22.07 6.90957 22.07 6.46957 21.76 6.40957C19.65 5.98957 18 4.33957 17.58 2.22957C17.52 1.91957 17.08 1.91957 17.02 2.22957C16.6 4.33957 14.95 5.98957 12.84 6.40957Z"/>',
   mail: '<path d="M21.25 4H2.75C2.34 4 2 4.34 2 4.75V19.25C2 19.66 2.34 20 2.75 20H21.25C21.66 20 22 19.66 22 19.25V4.75C22 4.34 21.66 4 21.25 4ZM20.5 5.5V7.14L12 11.11L3.5 7.14V5.5H20.5ZM3.5 18.5V8.79L12 12.76L20.5 8.79V18.5H3.5Z"/>',
   "mail-gear": '<path d="M12 12.77L20.5 8.8V12.67C20.67 12.67 20.84 12.69 21.03 12.74C21.4 12.84 21.73 13.04 22 13.31V4.75C22 4.34 21.66 4 21.25 4H2.75C2.34 4 2 4.34 2 4.75V19.25C2 19.66 2.34 20 2.75 20H11.92L11.8 19.79C11.57 19.4 11.48 18.95 11.52 18.5H3.5V8.79L12 12.76V12.77ZM20.5 5.5V7.14L12 11.11L3.5 7.14V5.5H20.5ZM22.07 18.53C22.06 18.47 22.02 18.43 22 18.38C21.94 18.28 21.87 18.19 21.77 18.13L21.27 17.85C21.27 17.76 21.28 17.67 21.28 17.58C21.28 17.49 21.28 17.4 21.27 17.3L21.77 17.01C21.87 16.95 21.95 16.86 22 16.76C22 16.76 22.06 16.66 22.07 16.61C22.12 16.44 22.09 16.26 22 16.11L21.04 14.47C20.95 14.32 20.81 14.21 20.64 14.16C20.59 14.15 20.54 14.14 20.49 14.14C20.49 14.14 20.45 14.14 20.43 14.14C20.33 14.14 20.23 14.17 20.14 14.22L19.63 14.51C19.49 14.41 19.34 14.33 19.19 14.25V13.63C19.19 13.54 19.17 13.45 19.14 13.37C19.04 13.13 18.8 12.97 18.53 12.97H16.62C16.35 12.97 16.11 13.14 16.01 13.37C15.98 13.45 15.96 13.53 15.96 13.63V14.21C15.78 14.29 15.61 14.39 15.45 14.5L14.94 14.21C14.85 14.16 14.75 14.14 14.65 14.13C14.58 14.13 14.51 14.13 14.44 14.14C14.27 14.19 14.13 14.29 14.04 14.44L13.08 16.08C12.99 16.23 12.97 16.41 13.01 16.58C13.06 16.75 13.17 16.89 13.32 16.98L13.82 17.27C13.82 17.37 13.81 17.46 13.81 17.55C13.81 17.64 13.81 17.72 13.82 17.82L13.32 18.1C13.24 18.14 13.18 18.2 13.13 18.27C13.08 18.34 13.04 18.42 13.02 18.5C13 18.58 12.99 18.67 13 18.76C13.01 18.84 13.04 18.93 13.08 19L14.04 20.64C14.13 20.79 14.27 20.9 14.45 20.95C14.52 20.97 14.59 20.97 14.65 20.96C14.75 20.96 14.85 20.93 14.94 20.88L15.44 20.59C15.61 20.7 15.78 20.8 15.96 20.88V21.4C15.96 21.58 16.03 21.75 16.15 21.86C16.27 21.98 16.43 22.05 16.62 22.05H18.53C18.89 22.05 19.19 21.76 19.19 21.39V20.84C19.34 20.76 19.49 20.68 19.64 20.58L20.14 20.87C20.23 20.92 20.32 20.94 20.42 20.95C20.49 20.95 20.56 20.95 20.64 20.94C20.81 20.9 20.95 20.79 21.04 20.64L22 19C22.09 18.85 22.11 18.67 22.07 18.5V18.53ZM17.55 18.92C16.8 18.92 16.19 18.31 16.19 17.55C16.19 16.79 16.8 16.18 17.55 16.18C18.3 16.18 18.91 16.79 18.91 17.55C18.91 18.31 18.3 18.92 17.55 18.92Z"/>',
   maximize: '<path d="M20.31 3.68994V9.30994H18.81V6.24994L13.59 11.4699L12.53 10.4099L17.75 5.18994H14.69V3.68994H20.31ZM10.47 12.4699L5.25 17.6899V14.6299H3.75V20.2499H9.37V18.7499H6.31L11.53 13.5299L10.47 12.4699Z"/>',
   menu: '<path d="M21 6.74H3V5.24H21V6.74ZM21 11.25H3V12.75H21V11.25ZM21 17.26H3V18.76H21V17.26Z"/>',
   minimize: '<path d="M5.33001 13.05H10.95V18.67H9.45001V15.61L4.23001 20.83L3.17001 19.77L8.39001 14.55H5.33001V13.05ZM20.84 4.22003L19.78 3.16003L14.56 8.38003V5.32003H13.06V10.94H18.68V9.44003H15.62L20.84 4.22003Z"/>',
-  "minus-cycle": '<path d="M12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM12 3.5C7.31 3.5 3.5 7.31 3.5 12C3.5 16.69 7.31 20.5 12 20.5C16.69 20.5 20.5 16.69 20.5 12C20.5 7.31 16.69 3.5 12 3.5ZM17 11.25H7V12.75H17V11.25Z"/>',
-  "minus-cycle-fill": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM17 12.75H12.75V17H11.25V12.75H7V11.25H11.25V7H12.75V11.25H17V12.75Z"/>',
+  minus: '<path d="M21 11.25H3V12.75H21V11.25Z"/>',
+  "minus-circle": '<path d="M12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM12 3.5C7.31 3.5 3.5 7.31 3.5 12C3.5 16.69 7.31 20.5 12 20.5C16.69 20.5 20.5 16.69 20.5 12C20.5 7.31 16.69 3.5 12 3.5ZM17 11.25H7V12.75H17V11.25Z"/>',
+  "minus-circle-fill": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM17 12.75H12.75V17H11.25V12.75H7V11.25H11.25V7H12.75V11.25H17V12.75Z"/>',
   money: '<path d="M21.1 14.46L18.87 9.29C18.18 7.7 16.77 6.54 15.03 6.04C15.91 5.23 16.47 4.08 16.47 2.8C16.47 2.39 16.13 2.05 15.72 2.05H8.28C7.87 2.05 7.53 2.39 7.53 2.8C7.53 4.08 8.09 5.23 8.97 6.04C7.24 6.54 5.82 7.7 5.13 9.29L2.9 14.46C2.22 16.04 2.37 17.79 3.33 19.24C4.45 20.94 6.42 21.95 8.62 21.95H15.37C17.57 21.95 19.55 20.94 20.66 19.24C21.62 17.78 21.78 16.04 21.09 14.46H21.1ZM14.87 3.55C14.54 4.8 13.4 5.72 12.05 5.72H11.94C10.59 5.72 9.45 4.8 9.12 3.55H14.87ZM19.41 18.42C18.57 19.69 17.06 20.46 15.37 20.46H8.62C6.93 20.46 5.42 19.7 4.58 18.42C3.89 17.38 3.78 16.18 4.27 15.06L6.5 9.89C7.17 8.33 8.92 7.28 10.85 7.28H13.14C15.07 7.28 16.81 8.33 17.49 9.89L19.72 15.06C20.21 16.19 20.1 17.38 19.41 18.43V18.42ZM14.72 15.5C14.72 16.61 13.84 17.51 12.75 17.56V18.99H11.25V17.57H9.65V16.07H12.66C12.97 16.07 13.23 15.81 13.23 15.5C13.23 15.19 12.97 14.93 12.66 14.93H11.36C10.22 14.93 9.29 14 9.29 12.86C9.29 11.72 10.17 10.85 11.26 10.8V9.37H12.76V10.79H14.32V12.29H11.36C11.05 12.29 10.79 12.54 10.79 12.86C10.79 13.18 11.04 13.43 11.36 13.43H12.66C13.8 13.43 14.73 14.36 14.73 15.5H14.72Z"/>',
   "open-in-new": '<path d="M19.09 12.435H20.59V19.825C20.59 20.235 20.25 20.575 19.84 20.575H4.19C3.78 20.575 3.44 20.235 3.44 19.825V4.17496C3.44 3.76496 3.78 3.42496 4.19 3.42496H11.59V4.92496H4.94V19.075H19.09V12.435ZM14.58 2.45496V3.95496H19L12.05 10.905L13.11 11.965L20.07 5.00496V9.43496H21.57V2.45496H14.59H14.58Z"/>',
   "pencil-square": '<path d="M20.01 11.27V20.39C20.01 20.8 19.67 21.14 19.26 21.14H3.60999C3.19999 21.14 2.85999 20.8 2.85999 20.39V4.74C2.85999 4.33 3.19999 3.99 3.60999 3.99H12.82L11.32 5.49H4.35999V19.64H18.51V12.77L20.01 11.27ZM15.46 5.61L10.62 10.45L9.99999 11.08V14.05H12.97L18.44 8.58L15.47 5.6L15.46 5.61ZM17.84 3.14C18 2.97 18.27 2.97 18.44 3.14L20.88 5.58C21.04 5.74 21.04 6.01 20.88 6.17L19.13 7.92L16.15 4.94L17.84 3.15V3.14Z"/>',
@@ -748,10 +752,10 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "person-fill": '<path d="M21.03 19.785C21.03 20.195 20.69 20.535 20.28 20.535H3.78001C3.37001 20.535 3.03001 20.195 3.03001 19.785C3.03001 15.415 7.15001 11.715 12.03 11.715C16.91 11.715 21.03 15.415 21.03 19.785ZM12.03 10.975C14.37 10.975 16.28 9.06498 16.28 6.72498C16.28 4.38498 14.37 2.47498 12.03 2.47498C9.69001 2.47498 7.78001 4.38498 7.78001 6.72498C7.78001 9.06498 9.69001 10.975 12.03 10.975Z"/>',
   "person-gear": '<path d="M12.02 10.99C9.81 10.99 8.02 9.19999 8.02 6.98999C8.02 4.77999 9.81 2.98999 12.02 2.98999C14.23 2.98999 16.02 4.77999 16.02 6.98999C16.02 9.19999 14.23 10.99 12.02 10.99ZM12.02 4.48999C10.64 4.48999 9.52 5.60999 9.52 6.98999C9.52 8.36999 10.64 9.48999 12.02 9.48999C13.4 9.48999 14.52 8.36999 14.52 6.98999C14.52 5.60999 13.4 4.48999 12.02 4.48999ZM11.17 19.57H4.58C5.01 16.42 8.12 13.87 11.79 13.76L12.15 13.14C12.36 12.78 12.67 12.5 13.03 12.3C12.7 12.27 12.37 12.24 12.03 12.24C7.15 12.24 3.03 15.94 3.03 20.31C3.03 20.72 3.37 21.06 3.78 21.06H12.05L11.17 19.56V19.57ZM21.91 18.74C22 18.58 22.03 18.39 21.98 18.21C21.93 18.03 21.82 17.88 21.65 17.78L21.12 17.48C21.12 17.48 21.12 17.48 21.12 17.47C21.12 17.38 21.13 17.29 21.13 17.2C21.13 17.11 21.13 17.01 21.12 16.91L21.65 16.61C21.73 16.56 21.8 16.5 21.86 16.43C21.92 16.36 21.96 16.27 21.98 16.18C22.03 16 22 15.81 21.91 15.65L20.89 13.9C20.8 13.74 20.64 13.62 20.46 13.58C20.39 13.56 20.32 13.56 20.25 13.57C20.14 13.57 20.03 13.6 19.94 13.65L19.4 13.96C19.25 13.86 19.09 13.77 18.93 13.69V13.03C18.93 12.64 18.61 12.33 18.23 12.33H16.19C15.9 12.33 15.65 12.51 15.54 12.76C15.5 12.84 15.48 12.94 15.48 13.03V13.65C15.29 13.74 15.11 13.84 14.94 13.96L14.4 13.65C14.3 13.6 14.2 13.57 14.09 13.57C14.02 13.57 13.94 13.57 13.87 13.58C13.78 13.6 13.7 13.65 13.62 13.7C13.55 13.75 13.49 13.82 13.44 13.9L12.8 15L12.42 15.64C12.42 15.64 12.41 15.68 12.4 15.71C12.33 15.86 12.31 16.02 12.35 16.17C12.4 16.35 12.52 16.5 12.68 16.6L13.21 16.9C13.21 16.9 13.21 16.9 13.21 16.91C13.21 17.01 13.2 17.1 13.2 17.19C13.2 17.28 13.2 17.37 13.21 17.47L12.68 17.77C12.52 17.86 12.4 18.02 12.35 18.2C12.33 18.29 12.32 18.38 12.33 18.47C12.34 18.56 12.37 18.65 12.42 18.73L13.44 20.47C13.53 20.63 13.69 20.75 13.87 20.8C13.94 20.82 14.01 20.82 14.08 20.81C14.19 20.81 14.29 20.78 14.39 20.73L14.92 20.43C15.1 20.55 15.28 20.65 15.47 20.74V21.29C15.47 21.48 15.55 21.66 15.68 21.78C15.81 21.91 15.98 21.99 16.18 21.99H18.22C18.35 21.99 18.46 21.95 18.57 21.89C18.78 21.77 18.93 21.55 18.93 21.29V20.7C19.03 20.65 19.12 20.59 19.22 20.53C19.28 20.49 19.34 20.46 19.4 20.42L19.93 20.72C20.02 20.77 20.12 20.8 20.23 20.8C20.3 20.8 20.37 20.8 20.46 20.79C20.64 20.74 20.79 20.63 20.89 20.47L21.91 18.73V18.74ZM18.37 17.98C18.32 18.06 18.26 18.13 18.19 18.2C18.08 18.31 17.95 18.39 17.82 18.46C17.71 18.52 17.59 18.57 17.46 18.59C17.37 18.61 17.27 18.62 17.17 18.62C16.37 18.62 15.72 17.97 15.72 17.17C15.72 16.69 15.96 16.26 16.32 15.99C16.56 15.82 16.85 15.71 17.17 15.71C17.57 15.71 17.93 15.87 18.2 16.14C18.27 16.21 18.33 16.28 18.38 16.36C18.48 16.51 18.56 16.69 18.6 16.88C18.62 16.97 18.63 17.07 18.63 17.17C18.63 17.47 18.54 17.75 18.38 17.98H18.37Z"/>',
   plus: '<path d="M21 11.25H12.75V3H11.25V11.25H3V12.75H11.25V21H12.75V12.75H21V11.25Z"/>',
-  "plus-cycle": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12 20.5C7.31 20.5 3.5 16.69 3.5 12C3.5 7.31 7.31 3.5 12 3.5C16.69 3.5 20.5 7.31 20.5 12C20.5 16.69 16.69 20.5 12 20.5ZM12.75 11.25H17V12.75H12.75V17H11.25V12.75H7V11.25H11.25V7H12.75V11.25Z"/>',
-  "plus-cycle-fill": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM17 12.75H7V11.25H17V12.75Z"/>',
+  "plus-circle": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12 20.5C7.31 20.5 3.5 16.69 3.5 12C3.5 7.31 7.31 3.5 12 3.5C16.69 3.5 20.5 7.31 20.5 12C20.5 16.69 16.69 20.5 12 20.5ZM12.75 11.25H17V12.75H12.75V17H11.25V12.75H7V11.25H11.25V7H12.75V11.25Z"/>',
+  "plus-circle-fill": '<path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM17 12.75H7V11.25H17V12.75Z"/>',
   "plus-small": '<path d="M17 11.3H12.8V7H11.3V11.3H7V12.8H11.3V17H12.8V12.8H17V11.3Z"/>',
-  question: '<path d="M12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM12 3.5C7.31 3.5 3.5 7.31 3.5 12C3.5 16.69 7.31 20.5 12 20.5C16.69 20.5 20.5 16.69 20.5 12C20.5 7.31 16.69 3.5 12 3.5ZM11.1 17.58H12.76V15.86H11.1V17.58ZM14.37 7.23C13.8 6.69 13.03 6.42 12.08 6.42C11.06 6.42 10.24 6.74 9.65 7.37C9.06 7.99 8.77 8.83 8.77 9.85V10H10.28V9.86C10.31 9.29 10.4 8.86 10.55 8.56C10.82 8.04 11.31 7.79 12.03 7.79C12.61 7.79 13.02 7.94 13.27 8.23C13.52 8.53 13.64 8.88 13.64 9.3C13.64 9.59 13.55 9.87 13.38 10.14C13.29 10.29 13.16 10.45 13 10.6L12.44 11.14C11.89 11.67 11.53 12.15 11.37 12.56C11.21 12.97 11.13 13.52 11.13 14.19V14.34H12.65V14.19C12.65 13.64 12.71 13.22 12.84 12.95C12.97 12.67 13.25 12.33 13.68 11.92C14.31 11.32 14.71 10.88 14.92 10.57C15.13 10.24 15.24 9.82 15.24 9.31C15.24 8.47 14.95 7.77 14.37 7.24V7.23Z"/>',
+  "question-circle": '<path d="M12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM12 3.5C7.31 3.5 3.5 7.31 3.5 12C3.5 16.69 7.31 20.5 12 20.5C16.69 20.5 20.5 16.69 20.5 12C20.5 7.31 16.69 3.5 12 3.5ZM11.1 17.58H12.76V15.86H11.1V17.58ZM14.37 7.23C13.8 6.69 13.03 6.42 12.08 6.42C11.06 6.42 10.24 6.74 9.65 7.37C9.06 7.99 8.77 8.83 8.77 9.85V10H10.28V9.86C10.31 9.29 10.4 8.86 10.55 8.56C10.82 8.04 11.31 7.79 12.03 7.79C12.61 7.79 13.02 7.94 13.27 8.23C13.52 8.53 13.64 8.88 13.64 9.3C13.64 9.59 13.55 9.87 13.38 10.14C13.29 10.29 13.16 10.45 13 10.6L12.44 11.14C11.89 11.67 11.53 12.15 11.37 12.56C11.21 12.97 11.13 13.52 11.13 14.19V14.34H12.65V14.19C12.65 13.64 12.71 13.22 12.84 12.95C12.97 12.67 13.25 12.33 13.68 11.92C14.31 11.32 14.71 10.88 14.92 10.57C15.13 10.24 15.24 9.82 15.24 9.31C15.24 8.47 14.95 7.77 14.37 7.24V7.23Z"/>',
   report: '<path d="M16 14.76H8V13.26H16V14.76ZM13 16.26H8V17.76H13V16.26ZM20 9.74V21.25C20 21.66 19.66 22 19.25 22H4.75C4.34 22 4 21.66 4 21.25V2.75C4 2.34 4.34 2 4.75 2H13.01C13.22 2 13.43 2.09 13.57 2.25C14.35 3.13 15.46 4.37 16.59 5.63C17.78 6.96 18.99 8.31 19.81 9.24C19.93 9.38 20 9.55 20 9.74ZM15.47 6.63C14.87 5.96 14.29 5.31 13.74 4.7V9.22H17.79C17.09 8.44 16.28 7.53 15.47 6.63ZM18.5 20.5V10.73H13C12.59 10.73 12.25 10.39 12.25 9.98V3.5H5.5V20.5H18.5Z"/>',
   route: '<path d="M18.8 15.62V6.69H18.79C18.73 4.68 17.08 3.05 15.05 3.05C13.02 3.05 11.3 4.73 11.3 6.8V17.24C11.3 18.48 10.29 19.49 9.04999 19.49C7.80999 19.49 6.79999 18.48 6.79999 17.24V8.38C7.94999 8.05 8.79999 7 8.79999 5.75C8.79999 4.23 7.56999 3 6.04999 3C4.52999 3 3.29999 4.23 3.29999 5.75C3.29999 7 4.14999 8.05 5.29999 8.38V17.39H5.31999C5.39999 19.39 7.03999 20.99 9.05999 20.99C11.08 20.99 12.81 19.31 12.81 17.24V6.8C12.81 5.56 13.82 4.55 15.06 4.55C16.3 4.55 17.31 5.56 17.31 6.8V15.61C16.16 15.94 15.31 16.99 15.31 18.24C15.31 19.76 16.54 20.99 18.06 20.99C19.58 20.99 20.81 19.76 20.81 18.24C20.81 16.99 19.96 15.94 18.81 15.61L18.8 15.62ZM4.78999 5.75C4.78999 5.06 5.34999 4.5 6.03999 4.5C6.72999 4.5 7.28999 5.06 7.28999 5.75C7.28999 6.44 6.72999 7 6.03999 7C5.34999 7 4.78999 6.44 4.78999 5.75ZM18.05 19.5C17.36 19.5 16.8 18.94 16.8 18.25C16.8 17.56 17.36 17 18.05 17C18.74 17 19.3 17.56 19.3 18.25C19.3 18.94 18.74 19.5 18.05 19.5Z"/>',
   search: '<path d="M20.57 19.51L16.02 14.96C17.08 13.67 17.72 12.01 17.72 10.22C17.72 6.08 14.36 2.72 10.22 2.72C6.08 2.72 2.72 6.08 2.72 10.22C2.72 14.36 6.08 17.72 10.22 17.72C12.02 17.72 13.67 17.08 14.96 16.02L19.51 20.57L20.57 19.51ZM4.22 10.21C4.22 6.9 6.91 4.21 10.22 4.21C13.53 4.21 16.22 6.9 16.22 10.21C16.22 13.52 13.53 16.21 10.22 16.21C6.91 16.21 4.22 13.52 4.22 10.21Z"/>',
@@ -764,17 +768,35 @@ const T2 = ":host{display:inline-block;width:1.28em;height:1.28em}.icon{width:10
   "success-fill": '<path d="M12 2.02002C6.49 2.02002 2 6.51002 2 12.02C2 17.53 6.49 22.02 12 22.02C17.51 22.02 22 17.53 22 12.02C22 6.51002 17.52 2.02002 12 2.02002ZM10.83 15.5L7.22 11.9L8.28 10.84L10.83 13.38L15.73 8.50002L16.79 9.56002L10.83 15.5Z"/><path d="M10.83 15.5L7.22 11.9L8.28 10.84L10.83 13.38L15.72 8.5L16.78 9.56L10.83 15.5Z" fill="white"/>',
   unlock: '<path d="M8.4 15.76C8.4 14.88 9.12 14.16 10 14.16C10.88 14.16 11.6 14.88 11.6 15.76C11.6 16.64 10.88 17.36 10 17.36C9.12 17.36 8.4 16.64 8.4 15.76ZM23.52 7.57001V9.01001H22.02V7.57001C22.02 5.64001 20.45 4.07001 18.52 4.07001C16.59 4.07001 15.02 5.64001 15.02 7.57001V9.51001H16.75C17.16 9.51001 17.5 9.85001 17.5 10.26V21.26C17.5 21.67 17.16 22.01 16.75 22.01H2.75C2.34 22.01 2 21.67 2 21.26V10.26C2 9.85001 2.34 9.51001 2.75 9.51001H13.52V7.57001C13.52 4.81001 15.76 2.57001 18.52 2.57001C21.28 2.57001 23.52 4.81001 23.52 7.57001ZM16 11.01H3.5V20.51H16V11.01Z"/>',
   "unlock-fill": '<path d="M18.52 2.57001C15.76 2.57001 13.52 4.81001 13.52 7.57001V9.52001H2.75C2.34 9.52001 2 9.86001 2 10.27V21.27C2 21.68 2.34 22.02 2.75 22.02H16.75C17.16 22.02 17.5 21.68 17.5 21.27V10.27C17.5 9.86001 17.16 9.52001 16.75 9.52001H15.02V7.57001C15.02 5.64001 16.59 4.07001 18.52 4.07001C20.45 4.07001 22.02 5.64001 22.02 7.57001V9.01001H23.52V7.57001C23.52 4.81001 21.28 2.57001 18.52 2.57001ZM10 17.36C9.12 17.36 8.4 16.64 8.4 15.76C8.4 14.88 9.12 14.16 10 14.16C10.88 14.16 11.6 14.88 11.6 15.76C11.6 16.64 10.88 17.36 10 17.36Z"/>',
-  "warning-fill": '<path d="M21.92 19.3601L12.66 3.3201C12.39 2.8601 11.63 2.8601 11.36 3.3201L2.1 19.3601C1.97 19.5901 1.97 19.8801 2.1 20.1101C2.23 20.3401 2.48 20.4901 2.75 20.4901H21.27C21.54 20.4901 21.79 20.3501 21.92 20.1101C22.05 19.8701 22.05 19.5901 21.92 19.3601Z"/><path d="M12.83 16.1399H11.17V17.8599H12.83V16.1399Z" fill="black" fill-opacity="0.84"/><path d="M12.75 8.65991H11.25V14.6599H12.75V8.65991Z" fill="black" fill-opacity="0.84"/>'
+  "warning-fill": '<path d="M19.9175 16.385L10.6575 0.345C10.3875 -0.115 9.6275 -0.115 9.3575 0.345L0.0975 16.385C-0.0325 16.615 -0.0325 16.905 0.0975 17.135C0.2275 17.365 0.4775 17.515 0.7475 17.515H19.2675C19.5375 17.515 19.7875 17.375 19.9175 17.135C20.0475 16.905 20.0475 16.615 19.9175 16.385ZM9.2475 5.685H10.7475V11.685H9.2475V5.685ZM10.8275 14.885H9.1675V13.165H10.8275V14.885Z"/>'
 };
-var N2 = Object.defineProperty, j2 = (i, t, e, r) => {
+var U2 = Object.defineProperty, j2 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && N2(t, e, s), s;
+  return s && U2(t, e, s), s;
 };
+const N2 = {
+  ...v,
+  "minus-cycle": v["minus-circle"],
+  "minus-cycle-fill": v["minus-circle-fill"],
+  "plus-cycle": v["plus-circle"],
+  "plus-cycle-fill": v["plus-circle-fill"],
+  question: v["question-circle"],
+  followlist: v["follow-list"],
+  "followlist-fill": v["follow-list-fill"]
+}, B2 = [
+  "minus-cycle",
+  "minus-cycle-fill",
+  "plus-cycle",
+  "plus-cycle-fill",
+  "question",
+  "followlist",
+  "followlist-fill"
+], R2 = [...O2, ...B2];
 function Y1(i) {
-  return O2.includes(i);
+  return R2.includes(i);
 }
-const g1 = class g1 extends H {
+const b1 = class b1 extends H {
   constructor() {
     super(...arguments), this.type = "";
   }
@@ -785,23 +807,23 @@ const g1 = class g1 extends H {
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        ${S2(U2[this.type])}
+        ${S2(N2[this.type])}
       </svg>` : u``;
   }
 };
-g1.styles = b(f(T2));
-let t1 = g1;
+b1.styles = b(f(T2));
+let e1 = b1;
 j2([
-  C({ type: String, reflect: !0 })
-], t1.prototype, "type");
-customElements.get("sp-icon") || customElements.define("sp-icon", t1);
-const B2 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 40px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
-var R2 = Object.defineProperty, G1 = (i, t, e, r) => {
+  a({ type: String, reflect: !0 })
+], e1.prototype, "type");
+customElements.get("sp-icon") || customElements.define("sp-icon", e1);
+const D2 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 40px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
+var F2 = Object.defineProperty, G1 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && R2(t, e, s), s;
+  return s && F2(t, e, s), s;
 };
-const b1 = class b1 extends H {
+const m1 = class m1 extends H {
   constructor() {
     super(...arguments), this.ai = !1, this.size = "medium";
   }
@@ -823,32 +845,32 @@ const b1 = class b1 extends H {
     return u` <span class="${this.loadingClasses}" role="status"></span> `;
   }
 };
-b1.styles = b(f(B2));
-let F = b1;
+m1.styles = b(f(D2));
+let I = m1;
 G1([
-  C({ type: Boolean })
-], F.prototype, "ai");
+  a({ type: Boolean })
+], I.prototype, "ai");
 G1([
-  C({ type: String })
-], F.prototype, "size");
-customElements.get("sp-loading") || customElements.define("sp-loading", F);
-const D2 = ":host{display:inline-block}.normal.primary{--border-color: transparent;--background-color: rgb(0 0 0 / 84%);--background-color-hover: rgb(0 0 0 / 90%);--background-color-active: #000;--color: #FFF}.normal.secondary{--border-color: rgb(0 0 0 / 84%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.tertiary{--border-color: rgb(0 0 0 / 29%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.danger.primary{--border-color: transparent;--background-color: #DB351F;--background-color-hover: #C92812;--background-color-active: #B02412;--color: #fff}.danger.secondary,.danger.tertiary{--border-color: #DB351F;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.danger.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.primary{--border-color-disabled: transparent;--background-color-disabled: rgb(0 0 0 / 5%);--color-disabled: rgb(0 0 0 / 35%)}:is(.secondary,.tertiary){--border-color-disabled: rgb(0 0 0 / 10%);--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.ghost{--border-color-disabled: transparent;--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.base{display:inline-flex;justify-content:center;align-items:center;gap:4px;width:100%;flex-basis:100%;padding-block:2px;border:1px solid var(--border-color);border-radius:9999px;background-color:var(--background-color);color:var(--color);position:relative;cursor:pointer}.base:focus-visible{box-shadow:0 0 0 2px #fff,0 0 0 4px #191919}.base:hover{background-color:var(--background-color-hover)}.base:active{background-color:var(--background-color-active)}.base:disabled{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled);color:var(--color-disabled);cursor:not-allowed}.base:disabled:hover{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled)}.base:disabled.loading{color:#000000d6}.medium{min-height:32px;padding-inline:12px;font-size:12px}.large{min-height:40px;padding-inline:16px;font-size:14px}.x-large{min-height:48px;padding-inline:16px;font-size:16px}.icon{fill:currentcolor}.text{line-height:1.5;letter-spacing:.02em}.text:is(.primary *,.secondary *){font-weight:var(--font-weight-bold)}";
-var F2 = Object.defineProperty, y = (i, t, e, r) => {
+  a({ type: String })
+], I.prototype, "size");
+customElements.get("sp-loading") || customElements.define("sp-loading", I);
+const I2 = ":host{display:inline-block}.normal.primary{--border-color: transparent;--background-color: rgb(0 0 0 / 84%);--background-color-hover: rgb(0 0 0 / 90%);--background-color-active: #000;--color: #FFF}.normal.secondary{--border-color: rgb(0 0 0 / 84%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.tertiary{--border-color: rgb(0 0 0 / 29%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.danger.primary{--border-color: transparent;--background-color: #DB351F;--background-color-hover: #C92812;--background-color-active: #B02412;--color: #fff}.danger.secondary,.danger.tertiary{--border-color: #DB351F;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.danger.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.primary{--border-color-disabled: transparent;--background-color-disabled: rgb(0 0 0 / 5%);--color-disabled: rgb(0 0 0 / 35%)}:is(.secondary,.tertiary){--border-color-disabled: rgb(0 0 0 / 10%);--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.ghost{--border-color-disabled: transparent;--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.base{display:inline-flex;justify-content:center;align-items:center;gap:4px;width:100%;flex-basis:100%;padding-block:2px;border:1px solid var(--border-color);border-radius:9999px;background-color:var(--background-color);color:var(--color);position:relative;cursor:pointer}.base:focus-visible{box-shadow:0 0 0 2px #fff,0 0 0 4px #191919}.base:hover{background-color:var(--background-color-hover)}.base:active{background-color:var(--background-color-active)}.base:disabled{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled);color:var(--color-disabled);cursor:not-allowed}.base:disabled:hover{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled)}.base:disabled.loading{color:#000000d6}.medium{min-height:32px;padding-inline:12px;font-size:12px}.large{min-height:40px;padding-inline:16px;font-size:14px}.x-large{min-height:48px;padding-inline:16px;font-size:16px}.icon{fill:currentcolor}.text{line-height:1.5;letter-spacing:.02em}.text:is(.primary *,.secondary *){font-weight:var(--font-weight-bold)}";
+var q2 = Object.defineProperty, y = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && F2(t, e, s), s;
+  return s && q2(t, e, s), s;
 };
-const j1 = ["primary", "secondary", "tertiary", "ghost"], B1 = ["medium", "large", "xLarge"];
-function I2(i) {
-  return j1.some((t) => t === i) ? i : (console.warn(`${i}は無効なvariant属性です。`), j1[0]);
+const N1 = ["primary", "secondary", "tertiary", "ghost"], B1 = ["medium", "large", "xLarge"];
+function W2(i) {
+  return N1.some((t) => t === i) ? i : (console.warn(`${i}は無効なvariant属性です。`), N1[0]);
 }
 function R1(i) {
   return B1.some((t) => t === i) ? i : (console.warn(`${i}は無効なsize属性です。`), B1[0]);
 }
-function q2(i) {
+function J2(i) {
   return Y1(i) ? !0 : (console.warn(`${i}は無効なicon-type属性です。`), !1);
 }
-const m1 = class m1 extends H {
+const M1 = class M1 extends H {
   constructor() {
     super(...arguments), this.loading = !1, this.disabled = !1, this.danger = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "";
   }
@@ -861,7 +883,7 @@ const m1 = class m1 extends H {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      I2(this.variant),
+      W2(this.variant),
       t[R1(this.size)],
       this.loading ? "loading" : ""
     ].filter(Boolean).join(" ");
@@ -880,7 +902,7 @@ const m1 = class m1 extends H {
     return u`<sp-loading size="${this.loadingSize}"></sp-loading>`;
   }
   get showIcon() {
-    return this.iconType && q2(this.iconType);
+    return this.iconType && J2(this.iconType);
   }
   renderIcon() {
     return u`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
@@ -894,53 +916,53 @@ const m1 = class m1 extends H {
         value="${this.value}"
         type="${this.type}"
       >
-        ${this.loading ? this.renderLoading() : d}
-        ${this.showIcon ? this.renderIcon() : d}
+        ${this.loading ? this.renderLoading() : c}
+        ${this.showIcon ? this.renderIcon() : c}
         <slot class="text"></slot>
       </button>
     `;
   }
 };
-m1.styles = b(f(D2));
-let L = m1;
+M1.styles = b(f(I2));
+let L = M1;
 y([
-  C({ type: Boolean, reflect: !0 })
+  a({ type: Boolean, reflect: !0 })
 ], L.prototype, "loading");
 y([
-  C({ type: Boolean, reflect: !0 })
+  a({ type: Boolean, reflect: !0 })
 ], L.prototype, "disabled");
 y([
-  C({ type: Boolean, reflect: !0 })
+  a({ type: Boolean, reflect: !0 })
 ], L.prototype, "danger");
 y([
-  C({ type: String })
+  a({ type: String })
 ], L.prototype, "variant");
 y([
-  C({ type: String })
+  a({ type: String })
 ], L.prototype, "size");
 y([
-  C({ type: String })
+  a({ type: String })
 ], L.prototype, "name");
 y([
-  C({ type: String })
+  a({ type: String })
 ], L.prototype, "value");
 y([
-  C({ type: String })
+  a({ type: String })
 ], L.prototype, "type");
 y([
-  C({ type: String, attribute: "icon-type" })
+  a({ type: String, attribute: "icon-type" })
 ], L.prototype, "iconType");
 customElements.get("sp-button") || customElements.define("sp-button", L);
-const I = L1(class extends K1 {
+const q = V1(class extends K1 {
   constructor(i) {
     if (super(i), i.type !== J1.ATTRIBUTE || i.name !== "class" || i.strings?.length > 2) throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
   }
   render(i) {
-    return " " + Object.keys(i).filter((t) => i[t]).join(" ") + " ";
+    return " " + Object.keys(i).filter(((t) => i[t])).join(" ") + " ";
   }
   update(i, [t]) {
     if (this.st === void 0) {
-      this.st = /* @__PURE__ */ new Set(), i.strings !== void 0 && (this.nt = new Set(i.strings.join(" ").split(/\s/).filter((r) => r !== "")));
+      this.st = /* @__PURE__ */ new Set(), i.strings !== void 0 && (this.nt = new Set(i.strings.join(" ").split(/\s/).filter(((r) => r !== ""))));
       for (const r in t) t[r] && !this.nt?.has(r) && this.st.add(r);
       return this.render(t);
     }
@@ -950,18 +972,18 @@ const I = L1(class extends K1 {
       const s = !!t[r];
       s === this.st.has(r) || this.nt?.has(r) || (s ? (e.add(r), this.st.add(r)) : (e.remove(r), this.st.delete(r)));
     }
-    return x;
+    return _;
   }
-}), W2 = ":host{display:flex;flex-direction:column;gap:4px}:host .label{font-weight:var(--font-weight-bold);font-size:14px;color:#000000d6}:host .label.none{display:none}:host .support{font-weight:var(--font-weight-normal);font-size:12px;color:#0000008a}:host .support.none{display:none}";
-var J2 = Object.defineProperty, Q1 = (i, t, e, r) => {
+}), K2 = ":host{display:flex;flex-direction:column;gap:4px}:host .label{font-weight:var(--font-weight-bold);font-size:14px;color:#000000d6}:host .label.none{display:none}:host .support{font-weight:var(--font-weight-normal);font-size:12px;color:#0000008a}:host .support.none{display:none}";
+var Y2 = Object.defineProperty, Q1 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && J2(t, e, s), s;
-}, T, X1, t2;
-const M1 = class M1 extends H {
+  return s && Y2(t, e, s), s;
+}, O, X1, t2;
+const y1 = class y1 extends H {
   constructor() {
     super(...arguments);
-    E(this, T);
+    S(this, O);
     this.text = "", this.supportText = "";
   }
   /**
@@ -972,31 +994,31 @@ const M1 = class M1 extends H {
   }
   render() {
     return u`
-      <span class=${M(this, T, X1).call(this)}>${this.text}</span>
-      <span class=${M(this, T, t2).call(this)}>${this.supportText}</span>
+      <span class=${M(this, O, X1).call(this)}>${this.text}</span>
+      <span class=${M(this, O, t2).call(this)}>${this.supportText}</span>
     `;
   }
 };
-T = new WeakSet(), X1 = function() {
-  return I({
+O = new WeakSet(), X1 = function() {
+  return q({
     label: !0,
     none: !this.text
   });
 }, t2 = function() {
-  return I({
+  return q({
     support: !0,
     none: !this.supportText
   });
-}, M1.styles = b(f(W2));
-let q = M1;
+}, y1.styles = b(f(K2));
+let W = y1;
 Q1([
-  C({ type: String, reflect: !0 })
-], q.prototype, "text");
+  a({ type: String, reflect: !0 })
+], W.prototype, "text");
 Q1([
-  C({ type: String, attribute: "support-text", reflect: !0 })
-], q.prototype, "supportText");
-customElements.get("sp-label-unit") || customElements.define("sp-label-unit", q);
-const K2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+  a({ type: String, attribute: "support-text", reflect: !0 })
+], W.prototype, "supportText");
+customElements.get("sp-label-unit") || customElements.define("sp-label-unit", W);
+const G2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_10_438)">
 <path d="M0.812012 1.2381V24.7619C0.812012 25.4457 1.36633 26 2.05011 26H57.9432C58.6067 26 59.2198 25.646 59.5516 25.0714L73.1687 1.48571C73.5499 0.825395 73.0734 0 72.3109 0H2.05011C1.36633 0 0.812012 0.554314 0.812012 1.2381Z" fill="#F72A48"/>
 <path d="M10.5969 17.5256C10.0161 17.8902 9.39656 18.2299 8.73824 18.5363C8.73805 18.5364 8.73787 18.5365 8.73767 18.5365C8.73767 18.5366 8.73768 18.5365 8.73767 18.5365L7.3739 16.5267C10.5202 15.1267 12.7216 13.069 13.7984 10.8079H8.36688V8.63046L16.9291 8.63047C16.6076 10.614 15.8557 12.3764 14.6848 13.9237C15.874 14.7334 17.1438 15.6717 18.2251 16.6103L16.6578 18.68C15.5557 17.6134 14.371 16.6055 13.1394 15.6214C12.395 16.3092 11.547 16.9436 10.5969 17.5256ZM31.8955 12.1251V14.533H39.9379L41.3298 12.1251H31.8955ZM53.7827 6.56189L53.3408 8.28962H54.8604L55.3012 6.56189H53.7827ZM51.3513 6.56189L50.9106 8.28962H52.4302L52.871 6.56189H51.3513ZM45.9291 18.9428L44.4946 16.9455C45.9176 16.5384 47.1377 15.9168 48.1075 15.1511C47.3533 14.4926 46.5161 13.8469 45.7377 13.2968C45.3318 13.667 44.9005 14.0141 44.4104 14.337L42.8305 12.7583C44.8763 11.2625 45.9776 9.51546 46.6234 7.63808L48.9448 8.21119C48.849 8.48682 48.7406 8.77393 48.6219 9.06111H53.4553C53.1748 13.532 50.8371 17.2615 45.9291 18.9428ZM50.6549 11.1668H47.5205C47.4018 11.3467 47.2061 11.6216 47.0746 11.8014C47.8634 12.2673 48.7623 12.9547 49.588 13.6132C50.0908 12.8832 50.5119 11.9683 50.6549 11.1668ZM22.8732 14.9699V13.8051C25.3258 13.5538 27.7066 13.1231 29.3577 12.6924L28.8911 10.3953C27.0367 10.9576 24.7994 11.3405 22.8971 11.5798C22.9091 10.6346 22.921 8.98122 22.945 8.03607L20.5402 8.63047V15.7356C20.5402 18.272 21.7246 18.5113 24.7755 18.5113C26.0436 18.5113 28.257 18.4874 29.3457 18.4275V16.1424C28.3527 16.2022 25.936 16.286 24.6797 16.286C23.1842 16.286 22.8732 16.2022 22.8732 14.9699ZM30.7542 8.25709C30.7542 9.19336 29.9953 9.95229 29.059 9.95229C28.1228 9.95229 27.3638 9.19336 27.3638 8.25709C27.3638 7.32087 28.1228 6.56189 29.059 6.56189C29.9953 6.56189 30.7542 7.32087 30.7542 8.25709ZM29.9006 8.25709C29.9006 7.79235 29.5238 7.41554 29.059 7.41554C28.5943 7.41554 28.2175 7.79235 28.2175 8.25709C28.2175 8.7219 28.5943 9.09863 29.059 9.09863C29.5238 9.09863 29.9006 8.7219 29.9006 8.25709Z" fill="white"/>
@@ -1007,11 +1029,11 @@ const K2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/s
 </clipPath>
 </defs>
 </svg>
-`, Y2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+`, Q2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M72.1973 0H1.9354C1.25055 0 0.697144 0.556428 0.697144 1.23822V24.7618C0.697144 25.4466 1.25055 26 1.9354 26H57.8275C58.491 26 59.1055 25.6454 59.4357 25.0706L73.0533 1.48589C73.4355 0.82548 72.9585 0 72.1973 0Z" fill="#F72A48"/>
 <path d="M13.1507 10.0632C12.9506 9.80871 12.6891 9.60628 12.3665 9.45625C12.0436 9.30623 11.7323 9.23123 11.4323 9.23123C11.2776 9.23123 11.1207 9.24486 10.9618 9.27214C10.8026 9.29942 10.6594 9.35184 10.5322 9.42899C10.4047 9.50633 10.298 9.60628 10.2117 9.72902C10.1252 9.85175 10.0821 10.0086 10.0821 10.1995C10.0821 10.3632 10.1162 10.4996 10.1844 10.6087C10.2526 10.7178 10.3525 10.8132 10.4844 10.8951C10.6161 10.9769 10.773 11.0519 10.9549 11.1201C11.1367 11.1883 11.3413 11.2588 11.5687 11.3315C11.896 11.4406 12.2369 11.5612 12.5915 11.6929C12.9461 11.8248 13.2687 11.9998 13.5598 12.218C13.8507 12.4362 14.0917 12.7068 14.2826 13.0294C14.4736 13.3523 14.569 13.7546 14.569 14.2364C14.569 14.7911 14.4667 15.2708 14.2622 15.6752C14.0576 16.0799 13.7825 16.414 13.4371 16.6776C13.0914 16.9414 12.6959 17.1368 12.2506 17.2641C11.805 17.3913 11.3457 17.455 10.8731 17.455C10.1821 17.455 9.51379 17.3344 8.86833 17.0936C8.22263 16.8528 7.68629 16.5095 7.25903 16.0639L8.7865 14.5092C9.02284 14.8003 9.33414 15.0434 9.72071 15.2388C10.107 15.4344 10.4913 15.532 10.8731 15.532C11.0457 15.532 11.2141 15.5139 11.3777 15.4775C11.5414 15.4412 11.6846 15.382 11.8073 15.3002C11.9301 15.2183 12.0277 15.1092 12.1006 14.9729C12.1732 14.8365 12.2097 14.6728 12.2097 14.4819C12.2097 14.3001 12.164 14.1456 12.0733 14.0182C11.9823 13.891 11.8527 13.7751 11.6846 13.6704C11.5163 13.566 11.3072 13.4705 11.0572 13.384C10.8071 13.2977 10.523 13.2046 10.2048 13.1044C9.89565 13.0045 9.59327 12.8862 9.29794 12.7499C9.00237 12.6135 8.73875 12.4385 8.5069 12.2248C8.27505 12.0113 8.08859 11.7521 7.94777 11.4474C7.80671 11.1429 7.73636 10.7723 7.73636 10.3359C7.73636 9.79955 7.84547 9.34034 8.06367 8.95847C8.28189 8.57661 8.5683 8.26292 8.92289 8.01745C9.27748 7.77196 9.67746 7.59253 10.123 7.47874C10.5684 7.36517 11.0185 7.30826 11.4732 7.30826C12.0187 7.30826 12.5755 7.40842 13.1439 7.6083C13.712 7.8084 14.2098 8.10396 14.6372 8.49477L13.1507 10.0632ZM22.97 12.4304C22.8217 11.9978 22.6086 11.6177 22.3304 11.2902C22.0524 10.9627 21.7125 10.7032 21.314 10.5147C20.9123 10.3232 20.4674 10.2274 19.9761 10.2274C19.4786 10.2274 19.043 10.3293 18.6753 10.5332C18.3076 10.7372 18.0171 10.9782 17.8101 11.2501H17.7668V10.4189H15.6411V20.5717L17.8781 20.0186V16.4594H17.9059C18.1129 16.7499 18.4034 16.9785 18.7772 17.1484C19.1511 17.3153 19.5466 17.4018 19.9637 17.4018C20.4736 17.4018 20.9277 17.2998 21.3263 17.099C21.7279 16.9013 22.0648 16.6355 22.3428 16.3018C22.6209 15.9713 22.831 15.5881 22.9793 15.1494C23.1245 14.7137 23.1956 14.2595 23.1956 13.7868C23.1956 13.314 23.1214 12.8598 22.97 12.4304ZM20.9247 14.4356C20.8566 14.6488 20.7578 14.8373 20.6249 15.001C20.492 15.1648 20.3283 15.2946 20.1275 15.3965C19.9267 15.4954 19.6949 15.5448 19.4323 15.5448C19.1758 15.5448 18.9503 15.4954 18.7494 15.3965C18.5486 15.2946 18.3787 15.1648 18.2397 15.001C18.0975 14.8373 17.9894 14.6488 17.9121 14.4418C17.8349 14.2317 17.7947 14.0185 17.7947 13.7991C17.7947 13.5829 17.8349 13.3697 17.9121 13.1595C17.9894 12.9495 18.0975 12.764 18.2397 12.6003C18.3787 12.4365 18.5486 12.3037 18.7494 12.2048C18.9503 12.1029 19.1758 12.0534 19.4323 12.0534C19.6949 12.0534 19.9267 12.1029 20.1275 12.2048C20.3283 12.3037 20.492 12.4335 20.6249 12.5941C20.7578 12.7517 20.8566 12.9371 20.9247 13.1441C20.9926 13.3542 21.0266 13.5674 21.0266 13.7868C21.0266 14.003 20.9926 14.2193 20.9247 14.4356ZM31.1612 13.8954V14.1682C31.1612 14.2592 31.1565 14.3455 31.1476 14.4273H26.2242C26.2424 14.6183 26.2992 14.7911 26.3947 14.9456C26.4902 15.1003 26.6129 15.2343 26.7629 15.3479C26.913 15.4617 27.0811 15.5503 27.2676 15.6138C27.4538 15.6776 27.6471 15.7093 27.8472 15.7093C28.2017 15.7093 28.5018 15.6435 28.7473 15.5115C28.9928 15.3799 29.1926 15.2094 29.3473 15.0001L30.9021 15.9821C30.5837 16.4458 30.1633 16.8027 29.6406 17.0527C29.1176 17.3026 28.5108 17.4277 27.8199 17.4277C27.3106 17.4277 26.8288 17.348 26.3743 17.189C25.9195 17.0301 25.5219 16.7982 25.1809 16.4935C24.84 16.189 24.5717 15.8139 24.3763 15.3684C24.1807 14.923 24.0831 14.4137 24.0831 13.8409C24.0831 13.2864 24.1785 12.7839 24.3695 12.3339C24.5604 11.8838 24.8195 11.502 25.1468 11.1883C25.4742 10.8746 25.8605 10.6315 26.3061 10.4587C26.7514 10.2861 27.2335 10.1995 27.7517 10.1995C28.2516 10.1995 28.7108 10.2837 29.1291 10.4518C29.5472 10.6202 29.9065 10.8633 30.2065 11.1815C30.5066 11.4998 30.7406 11.8862 30.9089 12.3407C31.0771 12.7954 31.1612 13.3137 31.1612 13.8954ZM29.1019 13.0362C29.1019 12.6817 28.9904 12.3771 28.7677 12.1225C28.5448 11.8681 28.2107 11.7406 27.7654 11.7406C27.5471 11.7406 27.347 11.7747 27.1653 11.8429C26.9833 11.9111 26.8243 12.0044 26.6879 12.1225C26.5515 12.2408 26.4424 12.3795 26.3606 12.5385C26.2788 12.6976 26.2332 12.8636 26.2242 13.0362H29.1019ZM39.153 13.8954V14.1682C39.153 14.2592 39.1483 14.3455 39.1394 14.4273H34.2161C34.2342 14.6183 34.2911 14.7911 34.3865 14.9456C34.482 15.1003 34.6047 15.2343 34.7548 15.3479C34.9048 15.4617 35.0729 15.5503 35.2594 15.6138C35.4456 15.6776 35.6389 15.7093 35.839 15.7093C36.1936 15.7093 36.4936 15.6435 36.7391 15.5115C36.9846 15.3799 37.1845 15.2094 37.3392 15.0001L38.8939 15.9821C38.5755 16.4458 38.1551 16.8027 37.6324 17.0527C37.1094 17.3026 36.5025 17.4277 35.8117 17.4277C35.3024 17.4277 34.8206 17.348 34.3661 17.189C33.9113 17.0301 33.5137 16.7982 33.1728 16.4935C32.8318 16.189 32.5635 15.8139 32.3681 15.3684C32.1725 14.923 32.0749 14.4137 32.0749 13.8409C32.0749 13.2864 32.1703 12.7839 32.3613 12.3339C32.5522 11.8838 32.8113 11.502 33.1387 11.1883C33.4659 10.8746 33.8523 10.6315 34.2979 10.4587C34.7432 10.2861 35.2253 10.1995 35.7435 10.1995C36.2434 10.1995 36.7027 10.2837 37.121 10.4518C37.5391 10.6202 37.8983 10.8633 38.1984 11.1815C38.4984 11.4998 38.7324 11.8862 38.9007 12.3407C39.0688 12.7954 39.153 13.3137 39.153 13.8954ZM37.0937 13.0362C37.0937 12.6817 36.9823 12.3771 36.7596 12.1225C36.5366 11.8681 36.2025 11.7406 35.7571 11.7406C35.5389 11.7406 35.3388 11.7747 35.1571 11.8429C34.9751 11.9111 34.8161 12.0044 34.6798 12.1225C34.5434 12.2408 34.4343 12.3795 34.3524 12.5385C34.2706 12.6976 34.225 12.8636 34.2161 13.0362H37.0937ZM45.3733 7.11546V11.1419H45.3454C45.1539 10.9133 44.8851 10.7032 44.5391 10.5147C44.193 10.3232 43.7728 10.2274 43.2722 10.2274C42.7809 10.2274 42.336 10.3232 41.9406 10.5147C41.545 10.7032 41.2114 10.9627 40.9333 11.2902C40.6552 11.6177 40.442 11.9978 40.2906 12.4304C40.1423 12.8598 40.0682 13.314 40.0682 13.7868C40.0682 14.2595 40.1392 14.7137 40.2845 15.1494C40.4297 15.5881 40.6428 15.9713 40.9179 16.3018C41.1959 16.6355 41.5358 16.9013 41.9344 17.099C42.336 17.2998 42.7903 17.4018 43.3001 17.4018C43.7542 17.4018 44.1837 17.306 44.5885 17.1206C44.9932 16.9352 45.3022 16.6695 45.5216 16.3235H45.5494V17.2103H47.6072V6.56238L45.3733 7.11546ZM45.3516 14.4418C45.2744 14.6488 45.1663 14.8373 45.0242 15.001C44.882 15.1648 44.712 15.2946 44.5112 15.3965C44.3135 15.4954 44.0849 15.5448 43.8315 15.5448C43.5657 15.5448 43.334 15.4954 43.1363 15.3965C42.9354 15.2946 42.7655 15.1648 42.6296 15.001C42.4936 14.8373 42.3917 14.6488 42.3237 14.4356C42.2557 14.2193 42.2217 14.003 42.2217 13.7868C42.2217 13.5674 42.2557 13.3542 42.3237 13.1441C42.3917 12.9371 42.4936 12.7517 42.6296 12.5941C42.7655 12.4335 42.9354 12.3037 43.1363 12.2048C43.334 12.1029 43.5657 12.0534 43.8315 12.0534C44.0849 12.0534 44.3135 12.1029 44.5112 12.2048C44.712 12.3037 44.882 12.4365 45.0242 12.6003C45.1663 12.764 45.2744 12.9495 45.3516 13.1595C45.4289 13.3697 45.466 13.5829 45.466 13.7991C45.466 14.0185 45.4289 14.2317 45.3516 14.4418ZM49.0353 11.3451C49.4352 10.9633 49.9013 10.6769 50.4331 10.4859C50.965 10.295 51.5082 10.1995 52.0629 10.1995C52.6357 10.1995 53.1199 10.2701 53.5153 10.4109C53.9108 10.552 54.2313 10.7702 54.4768 11.0655C54.7223 11.3611 54.9017 11.7338 55.0155 12.1839C55.1291 12.6339 55.186 13.1681 55.186 13.7863V17.2095H53.1403V16.4867H53.0994C52.9266 16.7686 52.6651 16.9868 52.3152 17.1413C51.9651 17.2958 51.5856 17.3731 51.1764 17.3731C50.9037 17.3731 50.6217 17.3367 50.3309 17.2641C50.0398 17.1914 49.7738 17.0731 49.533 16.9095C49.292 16.7458 49.0943 16.5276 48.9398 16.2548C48.7851 15.9821 48.7079 15.6458 48.7079 15.2456C48.7079 14.7546 48.842 14.3591 49.1102 14.0591C49.3783 13.7591 49.724 13.5272 50.1467 13.3636C50.5695 13.1999 51.04 13.0908 51.5583 13.0362C52.0765 12.9817 52.5811 12.9544 53.0721 12.9544V12.8453C53.0721 12.5091 52.9538 12.2612 52.7175 12.102C52.481 11.9431 52.1901 11.8634 51.8447 11.8634C51.5263 11.8634 51.2195 11.9316 50.9241 12.0679C50.6286 12.2043 50.3763 12.368 50.1672 12.5589L49.0353 11.3451ZM53.1403 14.25H52.8539C52.6084 14.25 52.3606 14.2615 52.1106 14.2841C51.8604 14.3069 51.6378 14.3502 51.4423 14.4137C51.2467 14.4774 51.0854 14.5705 50.9582 14.6933C50.8308 14.816 50.7673 14.9775 50.7673 15.1774C50.7673 15.3049 50.7967 15.414 50.8559 15.5047C50.9149 15.5957 50.99 15.6684 51.081 15.7229C51.1717 15.7775 51.2764 15.8163 51.3946 15.8389C51.5127 15.8617 51.6265 15.873 51.7356 15.873C52.1901 15.873 52.5379 15.7481 52.7789 15.4979C53.0197 15.248 53.1403 14.9093 53.1403 14.4819V14.25Z" fill="white"/>
 </svg>
-`, G2 = `<svg viewBox="0 0 134 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+`, X2 = `<svg viewBox="0 0 134 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_10_447)">
 <path d="M1.04199 0V3.126H2.08399V10.418H19.168V0H1.04199ZM4.74999 2.292H9.47999V4.272H4.74999V2.292ZM4.74999 6.146H9.47999V8.126H4.74999V6.146ZM16.5 8.124H11.77V6.144H16.5V8.124ZM16.5 4.27H11.77V2.29H16.5V4.27Z" fill="#191919"/>
 <path d="M15.088 11.876L16.892 15H19.538L17.734 11.876H15.088Z" fill="#191919"/>
@@ -1038,7 +1060,7 @@ const K2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/s
 </clipPath>
 </defs>
 </svg>
-`, Q2 = `<svg viewBox="0 0 118 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+`, t9 = `<svg viewBox="0 0 118 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2813_53)">
 <path d="M10.2549 0.167748H9.8355C8.91288 0.167748 8.57739 0.475856 8.57739 1.39676V13.4386C8.57739 15.1435 7.54351 16.2613 5.75649 16.2613C3.96946 16.2613 2.90649 15.1435 2.90649 13.4386V1.39676C2.90649 0.474144 2.59838 0.167748 1.67748 0.167748H1.25811C0.335496 0.167748 0 0.474144 0 1.39676V13.4386C0 15.1144 0.530631 16.4564 1.5936 17.4629C2.65487 18.4694 4.05162 18.9726 5.75649 18.9726C7.46135 18.9726 8.82901 18.4694 9.89198 17.4629C10.9532 16.429 11.4856 15.0887 11.4856 13.4386V1.39676C11.4856 0.474144 11.1775 0.167748 10.2566 0.167748H10.2549ZM27.4644 16.15H20.787L27.437 5.05811C27.9403 4.24847 28.1919 3.43712 28.1919 2.60009V1.53883C28.1919 0.504955 27.8838 0.169459 26.8499 0.169459H19.6128C18.6902 0.169459 18.3838 0.477568 18.3838 1.39847V1.6227C18.3838 2.54532 18.6919 2.85171 19.6128 2.85171H25.4241L18.8014 13.9436C18.2708 14.7259 18.0192 15.5646 18.0192 16.4581V17.4646C18.0192 18.4985 18.3547 18.834 19.3886 18.834H27.4627C28.3853 18.834 28.6917 18.5259 28.6917 17.605V17.3807C28.6917 16.4581 28.3836 16.1517 27.4627 16.1517L27.4644 16.15ZM43.195 1.50973C42.9434 0.475856 42.5532 0.167748 41.5193 0.167748H39.4806C38.4468 0.167748 38.0565 0.475856 37.8049 1.50973L34.1726 17.6032C33.9484 18.4968 34.2565 18.8323 35.1791 18.8323H35.6532C36.6306 18.8323 36.9661 18.5806 37.1904 17.6032L37.8049 14.7532H43.1968L43.8404 17.6032C44.0355 18.5806 44.371 18.8323 45.3484 18.8323H45.8516C46.7742 18.8323 47.0532 18.4968 46.829 17.6032L43.1968 1.50973H43.195ZM38.3886 12.0984L38.9192 9.64036C39.5611 6.65 40.0643 3.85649 40.4563 1.31459C40.7079 2.90649 41.2386 5.67261 42.0773 9.66946L42.6079 12.1001H38.3886V12.0984ZM61.8869 9.24838C63.4514 8.82901 64.5127 7.6 64.5127 5.39189V4.77739C64.5127 1.98387 62.5562 0.167748 59.0078 0.167748H54.6498C53.6159 0.167748 53.2805 0.503243 53.2805 1.53712V17.4629C53.2805 18.4968 53.6159 18.8323 54.6498 18.8323H59.2595C62.9191 18.8323 65.016 16.8758 65.016 13.8871V13.2726C65.016 10.842 63.8143 9.50171 61.8869 9.25009V9.24838ZM56.1596 2.79351H58.9257C60.6853 2.79351 61.6644 3.60315 61.6644 5.02901V5.58703C61.6644 7.17892 60.9096 8.10153 58.6741 8.10153H56.1596V2.79351ZM62.1386 13.7194C62.1386 15.2565 61.1047 16.2065 58.9805 16.2065H56.1578V10.6742H59.0078C61.103 10.6742 62.1369 11.513 62.1369 13.1887V13.7194H62.1386ZM79.9078 1.50973C79.6562 0.475856 79.266 0.167748 78.2321 0.167748H76.1934C75.1596 0.167748 74.7693 0.475856 74.5177 1.50973L70.8854 17.6032C70.6612 18.4968 70.9693 18.8323 71.8919 18.8323H72.366C73.3434 18.8323 73.6789 18.5806 73.9032 17.6032L74.5177 14.7532H79.9096L80.5532 17.6032C80.7483 18.5806 81.0838 18.8323 82.0612 18.8323H82.5644C83.487 18.8323 83.766 18.4968 83.5418 17.6032L79.9096 1.50973H79.9078ZM75.1014 12.0984L75.632 9.64036C76.2739 6.65 76.7771 3.85649 77.1691 1.31459C77.4207 2.90649 77.9514 5.67261 78.7901 9.66946L79.3207 12.1001H75.1014V12.0984ZM95.2191 7.99027C93.5707 7.23541 92.2578 6.25802 92.2578 4.91604C92.2578 3.49189 93.2078 2.65315 94.7997 2.65315C96.4755 2.65315 97.5094 3.60315 97.5933 5.08378C97.6771 5.86604 98.0126 6.09027 98.9061 6.09027H99.3255C100.192 6.09027 100.5 5.78216 100.5 5.02901C100.5 3.54838 99.9691 2.34676 98.9352 1.42414C97.9014 0.474144 96.532 0 94.8271 0C93.2352 0 91.8932 0.474144 90.8594 1.39676C89.8255 2.31937 89.2949 3.51928 89.2949 5.00162C89.2384 8.43874 92.3691 9.83549 94.7433 10.8129C96.419 11.5113 97.7336 12.5177 97.7336 13.8854C97.7336 15.4225 96.6433 16.316 94.9401 16.316C93.0401 16.316 91.9224 15.1983 91.8385 13.7177C91.7546 12.9354 91.4465 12.6838 90.553 12.6838H90.1062C89.2966 12.6838 88.9046 13.0193 88.9046 13.6903C88.9046 15.2548 89.4626 16.5403 90.6095 17.5177C91.7546 18.495 93.1805 18.9709 94.9401 18.9709C96.6997 18.9709 98.0691 18.4968 99.103 17.5468C100.137 16.5968 100.667 15.3386 100.667 13.8032C100.695 10.45 97.6224 8.99847 95.2191 7.99198V7.99027ZM115.811 2.85C116.734 2.85 117.04 2.54189 117.04 1.62099V1.39676C117.04 0.474144 116.732 0.167748 115.811 0.167748H108.909C107.876 0.167748 107.54 0.503243 107.54 1.53712V17.4629C107.54 18.4968 107.876 18.8323 108.909 18.8323H115.811C116.734 18.8323 117.04 18.5241 117.04 17.6032V17.379C117.04 16.4564 116.732 16.15 115.811 16.15H110.419V10.842H115.226C116.148 10.842 116.427 10.563 116.427 9.58387V9.35964C116.427 8.43703 116.148 8.13063 115.226 8.13063H110.419V2.85H115.811Z" fill="black"/>
 </g>
@@ -1049,49 +1071,49 @@ const K2 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/s
 </defs>
 </svg>
 `;
-var X2 = Object.defineProperty, e2 = (i, t, e, r) => {
+var e9 = Object.defineProperty, e2 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && X2(t, e, s), s;
-}, s1, s2;
-const y1 = class y1 extends H {
+  return s && e9(t, e, s), s;
+}, r1, s2;
+const Z1 = class Z1 extends H {
   constructor() {
     super(...arguments);
-    E(this, s1);
+    S(this, r1);
     this.language = "", this.brand = "";
   }
   render() {
-    const e = M(this, s1, s2).call(this);
+    const e = M(this, r1, s2).call(this);
     return e ? u`${E2(e)}` : u``;
   }
 };
-s1 = new WeakSet(), s2 = function() {
+r1 = new WeakSet(), s2 = function() {
   if (this.brand === "uzabase")
-    return Q2;
+    return t9;
   if (this.brand === "speeda")
-    return this.language === "en" ? Y2 : this.language === "zh" ? G2 : K2;
-}, y1.styles = b();
-let W = y1;
+    return this.language === "en" ? Q2 : this.language === "zh" ? X2 : G2;
+}, Z1.styles = b();
+let J = Z1;
 e2([
-  C({ type: String, reflect: !0 })
-], W.prototype, "language");
+  a({ type: String, reflect: !0 })
+], J.prototype, "language");
 e2([
-  C({ type: String, reflect: !0 })
-], W.prototype, "brand");
-customElements.get("sp-logo") || customElements.define("sp-logo", W);
-const t9 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 5px 9px 2px #00000021;background-color:#fff}", Z1 = class Z1 extends H {
+  a({ type: String, reflect: !0 })
+], J.prototype, "brand");
+customElements.get("sp-logo") || customElements.define("sp-logo", J);
+const s9 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 5px 9px 2px #00000021;background-color:#fff}", $1 = class $1 extends H {
   render() {
     return u`<slot></slot>`;
   }
 };
-Z1.styles = b(f(t9));
-let h1 = Z1;
-customElements.get("sp-control-menu") || customElements.define("sp-control-menu", h1);
-const e9 = ":host{display:flex;font-size:14px;align-items:center;justify-content:space-between;padding:4px 12px 4px 16px;box-sizing:border-box;min-height:32px;cursor:pointer;color:#000000d6;column-gap:8px}:host .icon{display:none;width:24px;height:24px}:host([selected]){background-color:#f0f6ff}:host([selected]) .icon{display:block}:host([selected]:hover){background-color:#e3efff}:host([selected]:active){background-color:#d4e6ff}:host([disabled]){background-color:transparent;cursor:not-allowed;color:#00000059}:host([disabled]:hover){background-color:transparent}:host([disabled]:active){background-color:transparent}:host([disabled]:focus){border:none;padding:4px 12px 4px 16px}:host(:hover){background-color:#f8f8f8}:host(:active){background-color:#0000000d}:host(:focus){border:2px solid #191919;box-sizing:border-box;padding:2px 10px 2px 14px;outline:none}";
-var s9 = Object.defineProperty, V1 = (i, t, e, r) => {
+$1.styles = b(f(s9));
+let c1 = $1;
+customElements.get("sp-control-menu") || customElements.define("sp-control-menu", c1);
+const r9 = ":host{display:flex;font-size:14px;align-items:center;justify-content:space-between;padding:4px 12px 4px 16px;box-sizing:border-box;min-height:32px;cursor:pointer;color:#000000d6;column-gap:8px}:host .icon{display:none;width:24px;height:24px}:host([selected]){background-color:#f0f6ff}:host([selected]) .icon{display:block}:host([selected]:hover){background-color:#e3efff}:host([selected]:active){background-color:#d4e6ff}:host([disabled]){background-color:transparent;cursor:not-allowed;color:#00000059}:host([disabled]:hover){background-color:transparent}:host([disabled]:active){background-color:transparent}:host([disabled]:focus){border:none;padding:4px 12px 4px 16px}:host(:hover){background-color:#f8f8f8}:host(:active){background-color:#0000000d}:host(:focus){border:2px solid #191919;box-sizing:border-box;padding:2px 10px 2px 14px;outline:none}";
+var i9 = Object.defineProperty, g1 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && s9(t, e, s), s;
+  return s && i9(t, e, s), s;
 };
 const v1 = class v1 extends H {
   constructor() {
@@ -1104,60 +1126,60 @@ const v1 = class v1 extends H {
     `;
   }
 };
-v1.styles = b(f(e9));
-let P = v1;
-V1([
-  C({ type: String, reflect: !0 })
-], P.prototype, "text");
-V1([
-  C({ type: Boolean, reflect: !0 })
-], P.prototype, "selected");
-V1([
-  C({ type: Boolean, reflect: !0 })
-], P.prototype, "disabled");
-customElements.get("sp-control-menu-item") || customElements.define("sp-control-menu-item", P);
-const r9 = ":host .container{display:flex;gap:2px;align-items:center;padding-top:8px}:host .container>.text{font-weight:var(--font-weight-normal);font-size:14px;color:#c92812}:host .container .icon{width:21px;height:21px}:host .container.none{display:none}";
-var i9 = Object.defineProperty, o9 = (i, t, e, r) => {
+v1.styles = b(f(r9));
+let T = v1;
+g1([
+  a({ type: String, reflect: !0 })
+], T.prototype, "text");
+g1([
+  a({ type: Boolean, reflect: !0 })
+], T.prototype, "selected");
+g1([
+  a({ type: Boolean, reflect: !0 })
+], T.prototype, "disabled");
+customElements.get("sp-control-menu-item") || customElements.define("sp-control-menu-item", T);
+const o9 = ":host .container{display:flex;gap:2px;align-items:center;padding-top:8px}:host .container>.text{font-weight:var(--font-weight-normal);font-size:14px;color:#c92812}:host .container .icon{width:21px;height:21px}:host .container.none{display:none}";
+var n9 = Object.defineProperty, C9 = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && i9(t, e, s), s;
-}, r1, r2;
-const $1 = class $1 extends H {
+  return s && n9(t, e, s), s;
+}, i1, r2;
+const x1 = class x1 extends H {
   constructor() {
     super(...arguments);
-    E(this, r1);
+    S(this, i1);
     this.text = "";
   }
   render() {
     return u`
-      <div class="${M(this, r1, r2).call(this)}" role="error">
+      <div class="${M(this, i1, r2).call(this)}" role="error">
         <sp-icon class="icon" type="error-fill"></sp-icon>
         <span class="text">${this.text}</span>
       </div>
     `;
   }
 };
-r1 = new WeakSet(), r2 = function() {
-  return I({
+i1 = new WeakSet(), r2 = function() {
+  return q({
     container: !0,
     none: !this.text
   });
-}, $1.styles = b(f(r9));
-let e1 = $1;
-o9([
-  C({ type: String, reflect: !0 })
-], e1.prototype, "text");
-customElements.get("sp-text-field-error-text") || customElements.define("sp-text-field-error-text", e1);
-const n9 = ".input{width:100%;box-sizing:border-box;height:48px;background:#fff;border:1px solid #b6b6b6;border-radius:6px;padding:4px 12px;font-weight:var(--font-weight-normal);font-size:16px;line-height:24}.input::placeholder{color:#0000008a}.input[disabled]{color:#000000ad;background-color:#0000000d;border-color:#e5e5e5}.input[disabled]::placeholder{color:#00000059}.input[disabled]:hover{border-color:#e5e5e5}.input:hover{border-color:#0000008f}.input:focus-visible{outline:canvastext solid 3px;box-shadow:0 0 0 2px #fff,0 0 0 4px #282828;outline-offset:1px}.input.error{border-color:#db351f}";
-var a9 = Object.defineProperty, k = (i, t, e, r) => {
+}, x1.styles = b(f(o9));
+let s1 = x1;
+C9([
+  a({ type: String, reflect: !0 })
+], s1.prototype, "text");
+customElements.get("sp-text-field-error-text") || customElements.define("sp-text-field-error-text", s1);
+const a9 = ".input{width:100%;box-sizing:border-box;height:48px;background:#fff;border:1px solid #b6b6b6;border-radius:6px;padding:4px 12px;font-weight:var(--font-weight-normal);font-size:16px;line-height:24}.input::placeholder{color:#0000008a}.input[disabled]{color:#000000ad;background-color:#0000000d;border-color:#e5e5e5}.input[disabled]::placeholder{color:#00000059}.input[disabled]:hover{border-color:#e5e5e5}.input:hover{border-color:#0000008f}.input:focus-visible{outline:canvastext solid 3px;box-shadow:0 0 0 2px #fff,0 0 0 4px #282828;outline-offset:1px}.input.error{border-color:#db351f}";
+var l9 = Object.defineProperty, E = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && a9(t, e, s), s;
-}, O, i2, o2;
-const i1 = class i1 extends H {
+  return s && l9(t, e, s), s;
+}, U, i2, o2;
+const o1 = class o1 extends H {
   constructor() {
     super();
-    E(this, O);
+    S(this, U);
     this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.internals = this.attachInternals();
   }
   updated(e) {
@@ -1166,7 +1188,7 @@ const i1 = class i1 extends H {
   render() {
     return u`
       <input
-        class="${M(this, O, i2).call(this)}"
+        class="${M(this, U, i2).call(this)}"
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
@@ -1174,7 +1196,7 @@ const i1 = class i1 extends H {
         name="${this.name}"
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
-        @input="${M(this, O, o2)}"
+        @input="${M(this, U, o2)}"
       />
       <sp-text-field-error-text
         text="${this.disabled ? "" : this.error}"
@@ -1182,8 +1204,8 @@ const i1 = class i1 extends H {
     `;
   }
 };
-O = new WeakSet(), i2 = function() {
-  return I({
+U = new WeakSet(), i2 = function() {
+  return q({
     input: !0,
     error: this.error && !this.disabled
   });
@@ -1195,40 +1217,40 @@ O = new WeakSet(), i2 = function() {
       composed: !0
     })
   );
-}, i1.styles = b(f(n9)), i1.formAssociated = !0;
-let g = i1;
-k([
-  C({ type: String, reflect: !0 })
+}, o1.styles = b(f(a9)), o1.formAssociated = !0;
+let g = o1;
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "error");
-k([
-  C({ type: String, reflect: !0 })
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "placeholder");
-k([
-  C({ type: String, reflect: !0 })
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "autocomplete");
-k([
-  C({ type: Boolean, reflect: !0 })
+E([
+  a({ type: Boolean, reflect: !0 })
 ], g.prototype, "disabled");
-k([
-  C({ type: String, reflect: !0 })
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "name");
-k([
-  C({ type: String, reflect: !0 })
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "value");
-k([
-  C({ type: String, reflect: !0 })
+E([
+  a({ type: String, reflect: !0 })
 ], g.prototype, "type");
 customElements.get("sp-text-field") || customElements.define("sp-text-field", g);
-const C9 = ":host .label{margin-bottom:8px}:host .label.none{display:none}";
-var l9 = Object.defineProperty, Z = (i, t, e, r) => {
+const h9 = ":host .label{margin-bottom:8px}:host .label.none{display:none}";
+var c9 = Object.defineProperty, Z = (i, t, e, r) => {
   for (var s = void 0, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (s = n(t, e, s) || s);
-  return s && l9(t, e, s), s;
-}, U, n2, a2;
-const o1 = class o1 extends H {
+  return s && c9(t, e, s), s;
+}, j, n2, C2;
+const n1 = class n1 extends H {
   constructor() {
     super();
-    E(this, U);
+    S(this, j);
     this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.internals = this.attachInternals();
   }
   updated(e) {
@@ -1238,7 +1260,7 @@ const o1 = class o1 extends H {
     return u`
       <fieldset>
         <sp-label-unit
-          class="${M(this, U, n2).call(this)}"
+          class="${M(this, j, n2).call(this)}"
           text="${this.text}"
           support-text="${this.supportText}"
         ></sp-label-unit>
@@ -1250,57 +1272,57 @@ const o1 = class o1 extends H {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          @input="${M(this, U, a2)}"
+          @input="${M(this, j, C2)}"
         ></sp-text-field>
       </fieldset>
     `;
   }
 };
-U = new WeakSet(), n2 = function() {
-  return I({
+j = new WeakSet(), n2 = function() {
+  return q({
     label: !0,
     none: !this.text && !this.supportText
   });
-}, a2 = function(e) {
+}, C2 = function(e) {
   const r = e.target;
   this.value = r.value;
-}, o1.styles = b(f(C9)), o1.formAssociated = !0;
-let V = o1;
+}, n1.styles = b(f(h9)), n1.formAssociated = !0;
+let V = n1;
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "text");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "error");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "placeholder");
 Z([
-  C({ type: String, attribute: "support-text", reflect: !0 })
+  a({ type: String, attribute: "support-text", reflect: !0 })
 ], V.prototype, "supportText");
 Z([
-  C({ type: Boolean, reflect: !0 })
+  a({ type: Boolean, reflect: !0 })
 ], V.prototype, "disabled");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "name");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "value");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "type");
 Z([
-  C({ type: String, reflect: !0 })
+  a({ type: String, reflect: !0 })
 ], V.prototype, "autocomplete");
 customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", V);
 export {
   L as SpButton,
-  h1 as SpControlMenu,
-  P as SpControlMenuItem,
-  t1 as SpIcon,
-  q as SpLabelUnit,
-  F as SpLoading,
-  W as SpLogo,
+  c1 as SpControlMenu,
+  T as SpControlMenuItem,
+  e1 as SpIcon,
+  W as SpLabelUnit,
+  I as SpLoading,
+  J as SpLogo,
   V as SpTextFieldUnit
 };

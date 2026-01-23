@@ -3,8 +3,7 @@ import "../../src/components/icon";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type SpIcon } from "../../src/components/icon";
-import { iconTypes } from "../../src/components/icon/icons";
+import { iconTypes, type SpIcon } from "../../src/components/icon";
 
 // 削除予定のアイコン（後方互換性のために残されているが、新規使用は非推奨）
 const deprecatedIcons = [
@@ -25,7 +24,7 @@ const renamedIcons = {
   "followlist-fill": "follow-list-fill",
 } as const;
 
-// 推奨されるアイコン（削除予定と名前変更前を除外）
+// 推奨されるアイコン（削除予定と旧名を除外）
 const recommendedIcons = iconTypes.filter(
   (icon) =>
     !deprecatedIcons.includes(icon as (typeof deprecatedIcons)[number]) &&
@@ -63,19 +62,13 @@ export const AllIcons: Story = {
       <div
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 24px; padding: 16px;"
       >
-        ${iconTypes
-          .filter((iconType) => {
-            // 新名のアイコンは旧名のところで表示するのでスキップ
-            const newNames = Object.values(renamedIcons) as readonly string[];
-            return !newNames.includes(iconType);
-          })
+        ${[...iconTypes]
+          .sort((a, b) => a.localeCompare(b))
           .map((iconType) => {
             const isDeprecated = deprecatedIcons.includes(
               iconType as (typeof deprecatedIcons)[number],
             );
-            const isRenamed =
-              iconType in renamedIcons &&
-              Object.keys(renamedIcons).includes(iconType);
+            const isRenamed = Object.keys(renamedIcons).includes(iconType);
             const newName = isRenamed
               ? renamedIcons[iconType as keyof typeof renamedIcons]
               : null;
@@ -91,7 +84,7 @@ export const AllIcons: Story = {
                 ${isRenamed
                   ? html`
                       <div
-                        style="font-size: 12px; text-align: center; word-break: break-all; color: #055160; font-weight: bold;"
+                        style="font-size: 12px; text-align: center; word-break: break-all;"
                       >
                         ${newName}
                       </div>
