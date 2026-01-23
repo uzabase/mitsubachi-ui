@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-export declare const size: readonly ["medium", "large", "xLarge", "2xLarge", "3xLarge"];
+export declare const size: readonly ["medium", "large", "xLarge", "2xLarge", "3xLarge", "4xLarge"];
 type Size = (typeof size)[number];
 /**
  * @summary ローディングスピナーです。

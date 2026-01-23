@@ -48,7 +48,11 @@ export class SpLoading extends LitElement {
   }
 
   render() {
-    return html` <span class="${this.loadingClasses}" role="status"></span> `;
+    return html`
+      <span class="base">
+        <span class="${this.loadingClasses}" role="status"></span>
+      </span>
+    `;
   }
 }
 

@@ -5,6 +5,12 @@
   --size-2x-large: 20px;
   --size-3x-large: 26px;
   --size-4x-large: 40px;
+  --padding-medium: 1.25px;
+  --padding-large: 1.5px;
+  --padding-x-large: 2px 2px 1.5px 1.5px;
+  --padding-2x-large: 2px;
+  --padding-3x-large: 3px;
+  --padding-4x-large: 4px;
   --border-size-ratio: 1/10;
   --ui-semantic-object-regular-default: rgb(0 0 0 / 84%);
   --neutral-neutral-20-alpha: rgb(0 0 0 / 7%);
@@ -13,6 +19,34 @@
 
   display: inline-flex;
   flex-shrink: 0;
+}
+
+.base {
+  display: flex;
+}
+
+.base:has(.size-medium) {
+  padding: var(--padding-medium);
+}
+
+.base:has(.size-large) {
+  padding: var(--padding-large);
+}
+
+.base:has(.size-x-large) {
+  padding: var(--padding-x-large);
+}
+
+.base:has(.size-2x-large) {
+  padding: var(--padding-2x-large);
+}
+
+.base:has(.size-3x-large) {
+  padding: var(--padding-3x-large);
+}
+
+.base:has(.size-4x-large) {
+  padding: var(--padding-4x-large);
 }
 
 .size-medium {
