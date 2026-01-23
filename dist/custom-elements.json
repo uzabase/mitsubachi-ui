@@ -41,6 +41,14 @@
         },
         {
           "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "./components/floating-button/sp-floating-button"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SpIcon",
           "declaration": {
             "name": "SpIcon",
@@ -811,6 +819,74 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/sp-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "sp-floating-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/sp-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/sp-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/icon/icon.css",
       "declarations": [],
       "exports": []
@@ -943,97 +1019,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/loading/loading.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/sp-loading.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "size",
-          "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
-          },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLoading",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ローディングスピナーです。",
-          "tagName": "sp-loading",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "size",
-          "declaration": {
-            "name": "size",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpLoading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-loading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/label-unit/index.ts",
       "declarations": [
         {
@@ -1136,6 +1121,97 @@
       "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/loading.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/sp-loading.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "size",
+          "type": {
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
+          },
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLoading",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ローディングスピナーです。",
+          "tagName": "sp-loading",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "size",
+          "declaration": {
+            "name": "size",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLoading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-loading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
