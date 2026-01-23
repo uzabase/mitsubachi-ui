@@ -9,10 +9,34 @@
       "exports": [
         {
           "kind": "js",
+          "name": "SpAvatar",
+          "declaration": {
+            "name": "SpAvatar",
+            "module": "./components/avatar/sp-avatar"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SpButton",
           "declaration": {
             "name": "SpButton",
             "module": "./components/button/sp-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "./components/checkbox/sp-checkbox"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "./components/checkbox/sp-checkbox-text"
           }
         },
         {
@@ -150,6 +174,15 @@
             },
             {
               "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
               "name": "loading",
               "type": {
                 "text": "boolean"
@@ -171,6 +204,15 @@
                 "text": "boolean"
               },
               "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "variants",
+              "type": {
+                "text": "Variant | null"
+              },
+              "default": "null",
+              "deprecated": "このプロパティは非推奨です。代わりに `variant` を使用してください。"
             },
             {
               "kind": "field",
@@ -222,6 +264,14 @@
             },
             {
               "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              }
+            },
+            {
+              "kind": "field",
               "name": "buttonClasses",
               "privacy": "private",
               "readonly": true
@@ -257,6 +307,27 @@
             {
               "kind": "method",
               "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "#handleClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              }
             }
           ],
           "superclass": {
@@ -299,6 +370,139 @@
           "declaration": {
             "name": "SpButton",
             "module": "src/components/button/sp-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/avatar/avatar.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "avatarStyles",
+          "default": "css` :host { display: inline-block; --palette-plum: #910091; --palette-violet: #3e31d5; --palette-blue: #214dde; --palette-viridian: #0d8282; --palette-green: #008744; --palette-brown: #ae6022; --palette-red: #d30030; } .base { display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; background-color: rgb(0 0 0 / 5%); color: rgb(0 0 0 / 84%); font-weight: var(--font-weight-bold); position: relative; } .inactive { filter: grayscale(100%); } .image { width: 100%; height: 100%; object-fit: cover; } .initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; } .icon { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: rgb(0 0 0 / 84%); } sp-icon { fill: currentcolor; display: flex; align-items: center; justify-content: center; } .size-small { width: 24px; height: 24px; .initials { font-size: 10px; } sp-icon { font-size: 15.625px; /* 20px / 1.28 */ } } .size-medium { width: 32px; height: 32px; .initials { font-size: 12px; } sp-icon { font-size: 18.75px; /* 24px / 1.28 */ } } .size-large { width: 40px; height: 40px; .initials { font-size: 14px; } sp-icon { font-size: 25px; /* 32px / 1.28 */ } } .size-x-large { width: 80px; height: 80px; .initials { font-size: 32px; } sp-icon { font-size: 50px; /* 64px / 1.28 */ } } .size-2x-large { width: 96px; height: 96px; .initials { font-size: 40px; } sp-icon { font-size: 62.5px; /* 80px / 1.28 */ } } /* カラーバリエーション */ .color-plum { background-color: var(--palette-plum); color: #fff; } .color-violet { background-color: var(--palette-violet); color: #fff; } .color-blue { background-color: var(--palette-blue); color: #fff; } .color-viridian { background-color: var(--palette-viridian); color: #fff; } .color-green { background-color: var(--palette-green); color: #fff; } .color-brown { background-color: var(--palette-brown); color: #fff; } .color-red { background-color: var(--palette-red); color: #fff; } [class*=\"color-\"] { &.inactive { background-color: #ededed; color: rgb(0 0 0 / 35%); } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "avatarStyles",
+          "declaration": {
+            "name": "avatarStyles",
+            "module": "src/components/avatar/avatar.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/avatar/sp-avatar.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpAvatar",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "src",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "alt",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "initials",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "AvatarSize"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "AvatarColor | \"\""
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "inactive",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "#avatarClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "#handleImageError",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#displayContent",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "アバターです。",
+          "tagName": "sp-avatar",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpAvatar",
+          "declaration": {
+            "name": "SpAvatar",
+            "module": "src/components/avatar/sp-avatar.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-avatar",
+          "declaration": {
+            "name": "SpAvatar",
+            "module": "src/components/avatar/sp-avatar.ts"
           }
         }
       ]
@@ -607,12 +811,26 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/label-unit/index.ts",
+      "path": "src/components/loading/loading.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/sp-loading.ts",
       "declarations": [
         {
+          "kind": "variable",
+          "name": "size",
+          "type": {
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
+          },
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
+        },
+        {
           "kind": "class",
-          "description": "ラベルです。",
-          "name": "SpLabelUnit",
+          "description": "",
+          "name": "SpLoading",
           "members": [
             {
               "kind": "field",
@@ -621,94 +839,66 @@
             },
             {
               "kind": "field",
-              "name": "text",
+              "name": "ai",
               "type": {
-                "text": "string"
+                "text": "boolean"
               },
-              "default": "\"\""
+              "default": "false"
             },
             {
               "kind": "field",
-              "name": "supportText",
+              "name": "size",
               "type": {
-                "text": "string"
+                "text": "Size"
               },
-              "default": "\"\""
+              "default": "\"medium\""
             },
             {
-              "kind": "method",
-              "name": "isEmpty",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              },
-              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
-            },
-            {
-              "kind": "method",
-              "name": "#labelClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#supportClasses",
-              "privacy": "private"
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true
             },
             {
               "kind": "method",
               "name": "render"
             }
           ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルのテキストです。文字の色は黒です。",
-              "name": "text"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
-              "name": "support-text"
-            }
-          ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
-          "tagName": "sp-label-unit",
+          "summary": "ローディングスピナーです。",
+          "tagName": "sp-loading",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "SpLabelUnit",
+          "name": "size",
           "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
+            "name": "size",
+            "module": "src/components/loading/sp-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLoading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-label-unit",
+          "name": "sp-loading",
           "declaration": {
-            "name": "SpLabelUnit",
-            "module": "src/components/label-unit/index.ts"
+            "name": "SpLoading",
+            "module": "src/components/loading/sp-loading.ts"
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/label-unit/styles.css",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -854,97 +1044,6 @@
           "declaration": {
             "name": "SpIcon",
             "module": "src/components/icon/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/loading.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/sp-loading.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "size",
-          "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n]"
-          },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", ]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLoading",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ローディングスピナーです。",
-          "tagName": "sp-loading",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "size",
-          "declaration": {
-            "name": "size",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpLoading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-loading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/sp-loading.ts"
           }
         }
       ]
@@ -1100,6 +1199,111 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/label-unit/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ラベルです。",
+          "name": "SpLabelUnit",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "supportText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "isEmpty",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "description": "テキストもサポートテキストも空のとき、かつそのときに限り、真を返す。"
+            },
+            {
+              "kind": "method",
+              "name": "#labelClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#supportClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルのテキストです。文字の色は黒です。",
+              "name": "text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ラベルの下に灰色で表示されるテキストです。textを補足します。",
+              "name": "support-text"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ラベルです。テキストフィールド上に置き、テキストフィールドを説明するために使います。",
+          "tagName": "sp-label-unit",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SpLabelUnit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-label-unit",
+          "declaration": {
+            "name": "SpLabelUnit",
+            "module": "src/components/label-unit/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/label-unit/styles.css",
+      "declarations": [],
+      "exports": []
     },
     {
       "kind": "javascript-module",

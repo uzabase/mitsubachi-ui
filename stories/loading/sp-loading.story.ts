@@ -9,6 +9,7 @@ const SIZE_OPTIONS = [
   { value: "xLarge", label: "x-large" },
   { value: "2xLarge", label: "2x-large" },
   { value: "3xLarge", label: "3x-large" },
+  { value: "4xLarge", label: "4x-large" },
 ];
 
 const meta: Meta = {

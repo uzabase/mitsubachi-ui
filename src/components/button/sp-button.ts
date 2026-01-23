@@ -46,6 +46,8 @@ function isValidIconType(value: string): boolean {
 export class SpButton extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
+  static formAssociated = true;
+
   @property({ type: Boolean, reflect: true })
   loading = false;
 
@@ -54,6 +56,12 @@ export class SpButton extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   danger = false;
+
+  /**
+   * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+   */
+  @property({ type: String })
+  variants: Variant | null = null;
 
   @property({ type: String })
   variant: Variant = "primary";
@@ -73,6 +81,13 @@ export class SpButton extends LitElement {
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
 
+  #internals: ElementInternals;
+
+  constructor() {
+    super();
+    this.#internals = this.attachInternals();
+  }
+
   private get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
@@ -83,7 +98,9 @@ export class SpButton extends LitElement {
     return [
       "base",
       this.danger ? "danger" : "normal",
-      isValidVariant(this.variant),
+      this.variants
+        ? isValidVariant(this.variants)
+        : isValidVariant(this.variant),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
@@ -109,7 +126,7 @@ export class SpButton extends LitElement {
   }
 
   private get showIcon() {
-    return this.iconType && isValidIconType(this.iconType);
+    return !this.loading && this.iconType && isValidIconType(this.iconType);
   }
 
   private renderIcon() {
@@ -124,12 +141,22 @@ export class SpButton extends LitElement {
         name="${this.name}"
         value="${this.value}"
         type="${this.type}"
+        @click="${this.#handleClick}"
       >
         ${this.loading ? this.renderLoading() : nothing}
         ${this.showIcon ? this.renderIcon() : nothing}
         <slot class="text"></slot>
       </button>
     `;
+  }
+
+  #handleClick(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const allowed = this.dispatchEvent(new MouseEvent("click", event));
+    if (allowed && this.#internals.form) {
+      this.#internals.form.requestSubmit();
+    }
   }
 }
 
