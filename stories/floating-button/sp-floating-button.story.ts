@@ -5,6 +5,7 @@ import { html } from "lit";
 
 const meta: Meta = {
   component: "sp-floating-button",
+  tags: ["!dev-only"],
   args: {
     loading: false,
   },
