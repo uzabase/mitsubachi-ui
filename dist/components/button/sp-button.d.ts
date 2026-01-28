@@ -7,16 +7,23 @@ type Size = (typeof sizes)[number];
  * @summary ボタンです。
  */
 export declare class SpButton extends LitElement {
+    #private;
     static styles: import('lit').CSSResult[];
+    static formAssociated: boolean;
     loading: boolean;
     disabled: boolean;
     danger: boolean;
+    /**
+     * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
+     */
+    variants: Variant | null;
     variant: Variant;
     size: Size;
     name: string;
     value: string;
     type: string;
     iconType: string;
+    constructor();
     private get buttonClasses();
     private get loadingSize();
     private get isDisabled();

@@ -1,4 +1,8 @@
+export { SpAvatar } from './components/avatar/sp-avatar';
 export { SpButton } from './components/button/sp-button';
+export { SpCheckbox } from './components/checkbox/sp-checkbox';
+export { SpCheckboxText } from './components/checkbox/sp-checkbox-text';
+export { SpFloatingButton } from './components/floating-button/sp-floating-button';
 export { SpIcon } from './components/icon';
 export { SpLabelUnit } from './components/label-unit';
 export { SpLoading } from './components/loading/sp-loading';

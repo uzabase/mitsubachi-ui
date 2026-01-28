@@ -415,4 +415,44 @@ describe("sp-button", () => {
       expect(icon).toBeFalsy();
     });
   });
+
+  describe("variants属性（非推奨）", () => {
+    test("variants属性を設定すると、buttonに適切なクラスが適用される", async () => {
+      document.body.innerHTML = `<sp-button variants="secondary">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("secondary")).toBe(true);
+    });
+
+    test("variants属性を更新すると、buttonのクラスが更新される", async () => {
+      document.body.innerHTML = `<sp-button variants="primary">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const spButton = getSpButton();
+      spButton.setAttribute("variants", "tertiary");
+      await spButton.updateComplete;
+
+      const button = getButton();
+      expect(button?.classList.contains("tertiary")).toBe(true);
+      expect(button?.classList.contains("primary")).toBe(false);
+    });
+
+    test("variants属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
+      document.body.innerHTML = `<sp-button variants="invalid">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("primary")).toBe(true);
+      expect(button?.classList.contains("invalid")).toBe(false);
+    });
+
+    test("variants属性が設定されていない場合、variant属性が使用される", async () => {
+      document.body.innerHTML = `<sp-button variant="tertiary">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("tertiary")).toBe(true);
+    });
+  });
 });

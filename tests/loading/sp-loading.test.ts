@@ -8,8 +8,8 @@ function getSpLoading(): SpLoading {
   return document.querySelector("sp-loading") as SpLoading;
 }
 
-function getInternalElement(): Element | null | undefined {
-  return getSpLoading().shadowRoot?.querySelector("span");
+function getLoadingElement(): Element | null | undefined {
+  return getSpLoading().shadowRoot?.querySelector(".loading");
 }
 
 describe("sp-loading", () => {
@@ -22,7 +22,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("variant-normal")).toBe(true);
     });
 
@@ -30,7 +30,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading ai></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("variant-ai")).toBe(true);
     });
   });
@@ -42,13 +42,14 @@ describe("sp-loading", () => {
       ["xLarge", "size-x-large"],
       ["2xLarge", "size-2x-large"],
       ["3xLarge", "size-3x-large"],
+      ["4xLarge", "size-4x-large"],
     ])(
       "size='%s'を指定すると、'%s'クラスが適用される",
       async (size, expectedClass) => {
         document.body.innerHTML = `<sp-loading size="${size}"></sp-loading>`;
         await customElements.whenDefined("sp-loading");
 
-        const element = getInternalElement();
+        const element = getLoadingElement();
 
         expect(element?.classList.contains(expectedClass)).toBe(true);
       },
@@ -58,7 +59,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.classList.contains("size-medium")).toBe(true);
     });
   });
@@ -68,7 +69,7 @@ describe("sp-loading", () => {
       document.body.innerHTML = "<sp-loading></sp-loading>";
       await customElements.whenDefined("sp-loading");
 
-      const element = getInternalElement();
+      const element = getLoadingElement();
       expect(element?.getAttribute("role")).toBe("status");
     });
   });

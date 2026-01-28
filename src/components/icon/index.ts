@@ -4,7 +4,48 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
 import iconStyle from "./icon.css?inline";
-import { iconPaths, type IconType, iconTypes } from "./icons";
+import {
+  iconPaths as iconPathsBase,
+  type IconType as IconTypeBase,
+  iconTypes as iconTypesBase,
+} from "./icons";
+
+// 後方互換性のための旧名を型定義に追加
+type DeprecatedIconType =
+  | "minus-cycle"
+  | "minus-cycle-fill"
+  | "plus-cycle"
+  | "plus-cycle-fill"
+  | "question"
+  | "followlist"
+  | "followlist-fill";
+
+export type IconType = IconTypeBase | DeprecatedIconType;
+
+// 後方互換性のための旧名マッピング（新名と同じSVGパスを参照）
+const iconPaths = {
+  ...iconPathsBase,
+  "minus-cycle": iconPathsBase["minus-circle"],
+  "minus-cycle-fill": iconPathsBase["minus-circle-fill"],
+  "plus-cycle": iconPathsBase["plus-circle"],
+  "plus-cycle-fill": iconPathsBase["plus-circle-fill"],
+  question: iconPathsBase["question-circle"],
+  followlist: iconPathsBase["follow-list"],
+  "followlist-fill": iconPathsBase["follow-list-fill"],
+} as const;
+
+// 旧名を含む全てのアイコンタイプのリスト
+const deprecatedIconTypes: readonly DeprecatedIconType[] = [
+  "minus-cycle",
+  "minus-cycle-fill",
+  "plus-cycle",
+  "plus-cycle-fill",
+  "question",
+  "followlist",
+  "followlist-fill",
+] as const;
+
+export const iconTypes = [...iconTypesBase, ...deprecatedIconTypes] as const;
 
 export function isIconType(type: string): type is IconType {
   return (iconTypes as readonly string[]).includes(type);
