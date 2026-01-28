@@ -6,7 +6,7 @@ type Size = (typeof sizes)[number];
 /**
  * @summary ボタンです。
  */
-export declare class SpButton extends LitElement {
+export declare class MiButton extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];
     static formAssociated: boolean;
@@ -32,10 +32,14 @@ export declare class SpButton extends LitElement {
     private renderIcon;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiButton を使用してください */
+export declare class SpButton extends MiButton {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-button": MiButton;
         "sp-button": SpButton;
     }
 }
 export {};
-//# sourceMappingURL=sp-button.d.ts.map
+//# sourceMappingURL=mi-button.d.ts.map

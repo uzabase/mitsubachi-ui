@@ -6,7 +6,7 @@ export type AvatarColor = (typeof colors)[number];
 /**
  * @summary アバターです。
  */
-export declare class SpAvatar extends LitElement {
+export declare class MiAvatar extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];
     src: string;
@@ -17,10 +17,14 @@ export declare class SpAvatar extends LitElement {
     inactive: boolean;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiAvatar を使用してください */
+export declare class SpAvatar extends MiAvatar {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-avatar": MiAvatar;
         "sp-avatar": SpAvatar;
     }
 }
 export {};
-//# sourceMappingURL=sp-avatar.d.ts.map
+//# sourceMappingURL=mi-avatar.d.ts.map

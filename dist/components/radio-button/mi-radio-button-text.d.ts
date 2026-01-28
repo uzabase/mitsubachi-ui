@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-export declare class SpRadioButtonText extends LitElement {
+export declare class MiRadioButtonText extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];
     value: string;
@@ -12,9 +12,13 @@ export declare class SpRadioButtonText extends LitElement {
     formResetCallback(): void;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiRadioButtonText を使用してください */
+export declare class SpRadioButtonText extends MiRadioButtonText {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-radio-button-text": MiRadioButtonText;
         "sp-radio-button-text": SpRadioButtonText;
     }
 }
-//# sourceMappingURL=sp-radio-button-text.d.ts.map
+//# sourceMappingURL=mi-radio-button-text.d.ts.map

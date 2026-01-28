@@ -8,7 +8,7 @@ import { LitElement } from 'lit';
  *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
  */
-export declare class SpLabelUnit extends LitElement {
+export declare class MiLabelUnit extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];
     text: string;
@@ -19,8 +19,12 @@ export declare class SpLabelUnit extends LitElement {
     isEmpty(): boolean;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiLabelUnit を使用してください */
+export declare class SpLabelUnit extends MiLabelUnit {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-label-unit": MiLabelUnit;
         "sp-label-unit": SpLabelUnit;
     }
 }

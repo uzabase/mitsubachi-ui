@@ -6,7 +6,7 @@ import { LitElement } from 'lit';
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
  */
-export declare class SpTextFieldUnit extends LitElement {
+export declare class MiTextFieldUnit extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];
     static formAssociated: boolean;
@@ -24,8 +24,12 @@ export declare class SpTextFieldUnit extends LitElement {
     protected updated(changedProperties: Map<string, unknown>): void;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiTextFieldUnit を使用してください */
+export declare class SpTextFieldUnit extends MiTextFieldUnit {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-text-field-unit": MiTextFieldUnit;
         "sp-text-field-unit": SpTextFieldUnit;
     }
 }

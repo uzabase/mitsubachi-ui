@@ -2,7 +2,7 @@ import { LitElement } from 'lit';
 /**
  * @summary チェックボックスです。
  */
-export declare class SpCheckbox extends LitElement {
+export declare class MiCheckbox extends LitElement {
     static styles: import('lit').CSSResult[];
     static formAssociated: boolean;
     value: string;
@@ -16,9 +16,13 @@ export declare class SpCheckbox extends LitElement {
     private handleChange;
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiCheckbox を使用してください */
+export declare class SpCheckbox extends MiCheckbox {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-checkbox": MiCheckbox;
         "sp-checkbox": SpCheckbox;
     }
 }
-//# sourceMappingURL=sp-checkbox.d.ts.map
+//# sourceMappingURL=mi-checkbox.d.ts.map
