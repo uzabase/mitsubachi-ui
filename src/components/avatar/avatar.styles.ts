@@ -51,7 +51,8 @@ export const avatarStyles = css`
     color: rgb(0 0 0 / 84%);
   }
 
-  mi-icon {
+  mi-icon,
+  sp-icon {
     fill: currentcolor;
     display: flex;
     align-items: center;
@@ -66,7 +67,8 @@ export const avatarStyles = css`
       font-size: 10px;
     }
 
-    mi-icon {
+    mi-icon,
+    sp-icon {
       font-size: 15.625px; /* 20px / 1.28 */
     }
   }
@@ -79,7 +81,8 @@ export const avatarStyles = css`
       font-size: 12px;
     }
 
-    mi-icon {
+    mi-icon,
+    sp-icon {
       font-size: 18.75px; /* 24px / 1.28 */
     }
   }
@@ -92,7 +95,8 @@ export const avatarStyles = css`
       font-size: 14px;
     }
 
-    mi-icon {
+    mi-icon,
+    sp-icon {
       font-size: 25px; /* 32px / 1.28 */
     }
   }
@@ -105,7 +109,8 @@ export const avatarStyles = css`
       font-size: 32px;
     }
 
-    mi-icon {
+    mi-icon,
+    sp-icon {
       font-size: 50px; /* 64px / 1.28 */
     }
   }
@@ -118,7 +123,8 @@ export const avatarStyles = css`
       font-size: 40px;
     }
 
-    mi-icon {
+    mi-icon,
+    sp-icon {
       font-size: 62.5px; /* 80px / 1.28 */
     }
   }
