@@ -13,7 +13,7 @@ import { uzabase } from "./uzabase";
  *
  * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
-export class SpLogo extends LitElement {
+export class MiLogo extends LitElement {
   static styles = makeStyles();
 
   @property({ type: String, reflect: true })
@@ -42,10 +42,18 @@ export class SpLogo extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiLogo を使用してください */
+export class SpLogo extends MiLogo {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-logo": MiLogo;
     "sp-logo": SpLogo;
   }
+}
+
+if (!customElements.get("mi-logo")) {
+  customElements.define("mi-logo", MiLogo);
 }
 
 if (!customElements.get("sp-logo")) {

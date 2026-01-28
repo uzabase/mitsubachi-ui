@@ -3,10 +3,10 @@ import "../../src/components/label-unit";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type SpLabelUnit } from "../../src/components/label-unit";
+import { type MiLabelUnit } from "../../src/components/label-unit";
 
 const meta = {
-  component: "sp-label-unit",
+  component: "mi-label-unit",
   argTypes: {
     text: { type: "string" },
     supportText: { type: "string" },
@@ -16,15 +16,15 @@ const meta = {
     supportText: "サポートテキスト",
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpLabelUnit>;
+} satisfies Meta<MiLabelUnit>;
 
 export default meta;
-type Story = StoryObj<SpLabelUnit>;
+type Story = StoryObj<MiLabelUnit>;
 
 export const Default: Story = {
   render: ({ text, supportText }) => {
     return html`
-      <sp-label-unit text=${text} support-text=${supportText}></sp-label-unit>
+      <mi-label-unit text=${text} support-text=${supportText}></mi-label-unit>
     `;
   },
 };

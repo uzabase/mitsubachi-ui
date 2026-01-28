@@ -4,29 +4,29 @@ import "../../src/components/menu/control-menu-item";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { SpControlMenu } from "../../src/components/menu/control-menu";
+import type { MiControlMenu } from "../../src/components/menu/control-menu";
 
 const meta = {
-  component: "sp-control-menu",
+  component: "mi-control-menu",
   args: {},
   tags: ["!dev-only"],
-} satisfies Meta<SpControlMenu>;
+} satisfies Meta<MiControlMenu>;
 
 export default meta;
-type Story = StoryObj<SpControlMenu>;
+type Story = StoryObj<MiControlMenu>;
 
 export const Default: Story = {
   render: () => {
     return html`
-      <sp-control-menu>
-        <sp-control-menu-item text="日本語"></sp-control-menu-item>
-        <sp-control-menu-item
+      <mi-control-menu>
+        <mi-control-menu-item text="日本語"></mi-control-menu-item>
+        <mi-control-menu-item
           text="English"
           selected
           tabindex="0"
-        ></sp-control-menu-item>
-        <sp-control-menu-item text="中文" disabled></sp-control-menu-item>
-      </sp-control-menu>
+        ></mi-control-menu-item>
+        <mi-control-menu-item text="中文" disabled></mi-control-menu-item>
+      </mi-control-menu>
     `;
   },
 };

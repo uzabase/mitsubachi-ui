@@ -1,4 +1,4 @@
-import "../../src/components/loading/sp-loading";
+import "../../src/components/loading/mi-loading";
 
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
@@ -13,7 +13,7 @@ const SIZE_OPTIONS = [
 ];
 
 const meta: Meta = {
-  component: "sp-loading",
+  component: "mi-loading",
   tags: ["!dev-only"],
 };
 
@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => html`<sp-loading></sp-loading>`,
+  render: () => html`<mi-loading></mi-loading>`,
 };
 
 export const Sizes: Story = {
@@ -32,7 +32,7 @@ export const Sizes: Story = {
       ${SIZE_OPTIONS.map(
         (option) => html`
           <div style="text-align: center;">
-            <sp-loading size="${option.value}"></sp-loading>
+            <mi-loading size="${option.value}"></mi-loading>
             <div style="margin-top: 8px; font-size: 12px;">${option.label}</div>
           </div>
         `,
@@ -49,7 +49,7 @@ export const AISizes: Story = {
       ${SIZE_OPTIONS.map(
         (option) => html`
           <div style="text-align: center;">
-            <sp-loading ai size="${option.value}"></sp-loading>
+            <mi-loading ai size="${option.value}"></mi-loading>
             <div style="margin-top: 8px; font-size: 12px;">${option.label}</div>
           </div>
         `,

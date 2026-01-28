@@ -38,7 +38,7 @@ function isValidColor(value: string): value is AvatarColor {
 /**
  * @summary アバターです。
  */
-export class SpAvatar extends LitElement {
+export class MiAvatar extends LitElement {
   static styles = makeStyles(avatarStyles);
 
   @property({ type: String })
@@ -108,16 +108,24 @@ export class SpAvatar extends LitElement {
             `
           : displayText
             ? html`<div class="initials">${displayText}</div>`
-            : html`<div class="icon"><sp-icon type="person"></sp-icon></div>`}
+            : html`<div class="icon"><mi-icon type="person"></mi-icon></div>`}
       </div>
     `;
   }
 }
 
+/** @deprecated 代わりに MiAvatar を使用してください */
+export class SpAvatar extends MiAvatar {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-avatar": MiAvatar;
     "sp-avatar": SpAvatar;
   }
+}
+
+if (!customElements.get("mi-avatar")) {
+  customElements.define("mi-avatar", MiAvatar);
 }
 
 if (!customElements.get("sp-avatar")) {

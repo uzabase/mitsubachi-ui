@@ -3,10 +3,10 @@ import "../../src/components/logo";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type SpLogo } from "../../src/components/logo";
+import { type MiLogo } from "../../src/components/logo";
 
 const meta = {
-  component: "sp-logo",
+  component: "mi-logo",
   args: {
     language: "ja",
     brand: "uzabase",
@@ -22,17 +22,17 @@ const meta = {
     },
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpLogo>;
+} satisfies Meta<MiLogo>;
 
 export default meta;
-type Story = StoryObj<SpLogo>;
+type Story = StoryObj<MiLogo>;
 
 export const Default: Story = {
   render: ({ language, brand }) => {
-    return html`<sp-logo
+    return html`<mi-logo
       style="height: 32px; display: flex;"
       language=${language}
       brand=${brand}
-    ></sp-logo>`;
+    ></mi-logo>`;
   },
 };

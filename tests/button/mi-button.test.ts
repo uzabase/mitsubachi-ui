@@ -1,28 +1,28 @@
-import "../../src/components/button/sp-button";
+import "../../src/components/button/mi-button";
 
 import { describe, expect, test } from "vitest";
 
-import type { SpButton } from "../../src/components/button/sp-button";
+import type { MiButton } from "../../src/components/button/mi-button";
 
-function getSpButton() {
-  return document.querySelector("sp-button") as SpButton;
+function getMiButton() {
+  return document.querySelector("mi-button") as MiButton;
 }
 
 function getButton(): HTMLButtonElement | undefined | null {
-  return getSpButton().shadowRoot?.querySelector("button");
+  return getMiButton().shadowRoot?.querySelector("button");
 }
 
 function getLoading() {
-  return getSpButton().shadowRoot?.querySelector("sp-loading");
+  return getMiButton().shadowRoot?.querySelector("mi-loading");
 }
 
-describe("sp-button", () => {
+describe("mi-button", () => {
   describe("テキストのslot", () => {
     test("slotに文字列を渡すと、ボタンにその文字列が表示される", async () => {
-      document.body.innerHTML = "<sp-button>ダウンロード</sp-button>";
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = "<mi-button>ダウンロード</mi-button>";
+      await customElements.whenDefined("mi-button");
 
-      const button = getSpButton();
+      const button = getMiButton();
 
       expect(button.textContent).toBe("ダウンロード");
     });
@@ -30,18 +30,18 @@ describe("sp-button", () => {
 
   describe("name属性", () => {
     test("name属性を設定すると、buttonのname属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button name="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button name="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("name")).toBe("submit");
     });
 
     test("name属性を更新すると、buttonのname属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button name="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button name="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("name", "cancel");
       await spButton.updateComplete;
 
@@ -50,8 +50,8 @@ describe("sp-button", () => {
     });
 
     test("name属性を設定しない場合、buttonのname属性は空文字になる", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("name")).toBe("");
@@ -60,18 +60,18 @@ describe("sp-button", () => {
 
   describe("value属性", () => {
     test("value属性を設定すると、buttonのvalue属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button value="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button value="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("value")).toBe("submit");
     });
 
     test("value属性を更新すると、buttonのvalue属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button value="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button value="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("value", "cancel");
       await spButton.updateComplete;
 
@@ -80,8 +80,8 @@ describe("sp-button", () => {
     });
 
     test("value属性を設定しない場合、buttonのvalue属性は空文字になる", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("value")).toBe("");
@@ -90,18 +90,18 @@ describe("sp-button", () => {
 
   describe("type属性", () => {
     test("type属性を設定すると、buttonのtype属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button type="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button type="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("type")).toBe("submit");
     });
 
     test("type属性を更新すると、buttonのtype属性にも反映される", async () => {
-      document.body.innerHTML = `<sp-button type="submit">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button type="submit">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("type", "reset");
       await spButton.updateComplete;
 
@@ -110,8 +110,8 @@ describe("sp-button", () => {
     });
 
     test("type属性を設定しない場合、buttonのtype属性はbuttonになる", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.getAttribute("type")).toBe("button");
@@ -120,26 +120,26 @@ describe("sp-button", () => {
 
   describe("disabled属性", () => {
     test("disabled属性にtrueを設定すると、buttonが無効になる", async () => {
-      document.body.innerHTML = `<sp-button disabled="true">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button disabled="true">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.disabled).toBe(true);
     });
 
     test("disabled属性に空文字列を設定すると、buttonが無効になる", async () => {
-      document.body.innerHTML = `<sp-button disabled>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button disabled>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.disabled).toBe(true);
     });
 
     test("disabled属性を削除すると、buttonが有効になる", async () => {
-      document.body.innerHTML = `<sp-button disabled>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button disabled>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("disabled");
       await spButton.updateComplete;
 
@@ -148,10 +148,10 @@ describe("sp-button", () => {
     });
 
     test("disabled属性を更新（削除）すると、buttonには更新後の状態が反映される", async () => {
-      document.body.innerHTML = `<sp-button disabled="true">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button disabled="true">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("disabled");
       await spButton.updateComplete;
 
@@ -160,8 +160,8 @@ describe("sp-button", () => {
     });
 
     test("disabled属性を設定しない場合、buttonが有効になる", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.disabled).toBe(false);
@@ -170,8 +170,8 @@ describe("sp-button", () => {
 
   describe("loading属性", () => {
     test("loading属性にtrueを設定すると、ローディングが表示され、buttonが無効になる", async () => {
-      document.body.innerHTML = `<sp-button loading="true">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button loading="true">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const loading = getLoading();
       expect(loading).toBeTruthy();
@@ -181,8 +181,8 @@ describe("sp-button", () => {
     });
 
     test("loading属性に空文字列を設定すると、ローディングが表示され、buttonが無効になる", async () => {
-      document.body.innerHTML = `<sp-button loading>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button loading>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const loading = getLoading();
       expect(loading).toBeTruthy();
@@ -192,10 +192,10 @@ describe("sp-button", () => {
     });
 
     test("loading属性を削除すると、ローディングが非表示になり、buttonが有効になる", async () => {
-      document.body.innerHTML = `<sp-button loading>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button loading>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("loading");
       await spButton.updateComplete;
 
@@ -207,10 +207,10 @@ describe("sp-button", () => {
     });
 
     test("loading属性を更新（削除）すると、buttonには更新後の状態が反映される", async () => {
-      document.body.innerHTML = `<sp-button loading="true">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button loading="true">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("loading");
       await spButton.updateComplete;
 
@@ -222,8 +222,8 @@ describe("sp-button", () => {
     });
 
     test("loading属性を設定しない場合、ローディングが非表示になり、buttonが有効になる", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const loading = getLoading();
       expect(loading).toBeFalsy();
@@ -233,29 +233,29 @@ describe("sp-button", () => {
     });
 
     test("loading属性を設定した場合、iconが表示されない", async () => {
-      document.body.innerHTML = `<sp-button loading="true" icon-type="download">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button loading="true" icon-type="download">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const spButton = getMiButton();
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
   });
 
   describe("variant属性", () => {
     test("variant属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button variant="secondary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="secondary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("secondary")).toBe(true);
     });
 
     test("variant属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<sp-button variant="primary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="primary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("variant", "secondary");
       await spButton.updateComplete;
 
@@ -265,16 +265,16 @@ describe("sp-button", () => {
     });
 
     test("variant属性を設定しない場合、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("primary")).toBe(true);
     });
 
     test("variant属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button variant="invalid">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="invalid">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("primary")).toBe(true);
@@ -284,18 +284,18 @@ describe("sp-button", () => {
 
   describe("variant属性", () => {
     test("variant属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button variant="secondary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="secondary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("secondary")).toBe(true);
     });
 
     test("variant属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<sp-button variant="primary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="primary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("variant", "tertiary");
       await spButton.updateComplete;
 
@@ -305,16 +305,16 @@ describe("sp-button", () => {
     });
 
     test("variant属性を設定しない場合、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("primary")).toBe(true);
     });
 
     test("variant属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button variant="invalid">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="invalid">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("primary")).toBe(true);
@@ -324,18 +324,18 @@ describe("sp-button", () => {
 
   describe("size属性", () => {
     test("size属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button size="large">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button size="large">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("large")).toBe(true);
     });
 
     test("size属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<sp-button size="medium">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button size="medium">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("size", "xLarge");
       await spButton.updateComplete;
 
@@ -345,16 +345,16 @@ describe("sp-button", () => {
     });
 
     test("size属性を設定しない場合、デフォルト値（medium）が使用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("medium")).toBe(true);
     });
 
     test("size属性に無効な値を設定すると、デフォルト値（medium）が使用される", async () => {
-      document.body.innerHTML = `<sp-button size="invalid">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button size="invalid">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("medium")).toBe(true);
@@ -364,8 +364,8 @@ describe("sp-button", () => {
 
   describe("danger属性", () => {
     test("danger属性にtrueを設定すると、buttonにdangerクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button danger="true">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button danger="true">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("danger")).toBe(true);
@@ -373,18 +373,18 @@ describe("sp-button", () => {
     });
 
     test("danger属性に空文字列を設定すると、buttonにdangerクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button danger>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button danger>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("danger")).toBe(true);
     });
 
     test("danger属性を削除すると、buttonにnormalクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button danger>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button danger>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("danger");
       await spButton.updateComplete;
 
@@ -394,8 +394,8 @@ describe("sp-button", () => {
     });
 
     test("danger属性を設定しない場合、buttonにnormalクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("normal")).toBe(true);
@@ -403,73 +403,73 @@ describe("sp-button", () => {
   });
 
   describe("icon-type属性", () => {
-    test("icon-type属性に有効な値を設定すると、sp-iconが表示される", async () => {
-      document.body.innerHTML = `<sp-button icon-type="check">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+    test("icon-type属性に有効な値を設定すると、mi-iconが表示される", async () => {
+      document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const spButton = getMiButton();
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeTruthy();
       expect(icon?.getAttribute("type")).toBe("check");
     });
 
-    test("icon-type属性を更新すると、sp-iconのtype属性が更新される", async () => {
-      document.body.innerHTML = `<sp-button icon-type="check">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+    test("icon-type属性を更新すると、mi-iconのtype属性が更新される", async () => {
+      document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("icon-type", "cross");
       await spButton.updateComplete;
 
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon?.getAttribute("type")).toBe("cross");
     });
 
-    test("icon-type属性を削除すると、sp-iconが非表示になる", async () => {
-      document.body.innerHTML = `<sp-button icon-type="check">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+    test("icon-type属性を削除すると、mi-iconが非表示になる", async () => {
+      document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.removeAttribute("icon-type");
       await spButton.updateComplete;
 
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
 
-    test("icon-type属性を設定しない場合、sp-iconが表示されない", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+    test("icon-type属性を設定しない場合、mi-iconが表示されない", async () => {
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const spButton = getMiButton();
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
 
-    test("icon-type属性に無効な値を設定すると、sp-iconが表示されない", async () => {
-      document.body.innerHTML = `<sp-button icon-type="invalid-icon">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+    test("icon-type属性に無効な値を設定すると、mi-iconが表示されない", async () => {
+      document.body.innerHTML = `<mi-button icon-type="invalid-icon">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
-      const icon = spButton.shadowRoot?.querySelector("sp-icon");
+      const spButton = getMiButton();
+      const icon = spButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
   });
 
   describe("variants属性（非推奨）", () => {
     test("variants属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button variants="secondary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variants="secondary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("secondary")).toBe(true);
     });
 
     test("variants属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<sp-button variants="primary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variants="primary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
-      const spButton = getSpButton();
+      const spButton = getMiButton();
       spButton.setAttribute("variants", "tertiary");
       await spButton.updateComplete;
 
@@ -479,8 +479,8 @@ describe("sp-button", () => {
     });
 
     test("variants属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button variants="invalid">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variants="invalid">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("primary")).toBe(true);
@@ -488,8 +488,8 @@ describe("sp-button", () => {
     });
 
     test("variants属性が設定されていない場合、variant属性が使用される", async () => {
-      document.body.innerHTML = `<sp-button variant="tertiary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
+      document.body.innerHTML = `<mi-button variant="tertiary">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
 
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);

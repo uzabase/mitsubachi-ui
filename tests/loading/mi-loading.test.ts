@@ -1,34 +1,34 @@
-import "../../src/components/loading/sp-loading";
+import "../../src/components/loading/mi-loading";
 
 import { beforeEach, describe, expect, test } from "vitest";
 
-import type { SpLoading } from "../../src/components/loading/sp-loading";
+import type { MiLoading } from "../../src/components/loading/mi-loading";
 
-function getSpLoading(): SpLoading {
-  return document.querySelector("sp-loading") as SpLoading;
+function getMiLoading(): MiLoading {
+  return document.querySelector("mi-loading") as MiLoading;
 }
 
 function getLoadingElement(): Element | null | undefined {
-  return getSpLoading().shadowRoot?.querySelector(".loading");
+  return getMiLoading().shadowRoot?.querySelector(".loading");
 }
 
-describe("sp-loading", () => {
+describe("mi-loading", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
   });
 
   describe("ai属性", () => {
     test("ai属性を指定しない場合、normalタイプのloadingアイコンが表示される", async () => {
-      document.body.innerHTML = "<sp-loading></sp-loading>";
-      await customElements.whenDefined("sp-loading");
+      document.body.innerHTML = "<mi-loading></mi-loading>";
+      await customElements.whenDefined("mi-loading");
 
       const element = getLoadingElement();
       expect(element?.classList.contains("variant-normal")).toBe(true);
     });
 
     test("ai属性を指定した場合、aiタイプのloadingアイコンが表示される", async () => {
-      document.body.innerHTML = "<sp-loading ai></sp-loading>";
-      await customElements.whenDefined("sp-loading");
+      document.body.innerHTML = "<mi-loading ai></mi-loading>";
+      await customElements.whenDefined("mi-loading");
 
       const element = getLoadingElement();
       expect(element?.classList.contains("variant-ai")).toBe(true);
@@ -46,8 +46,8 @@ describe("sp-loading", () => {
     ])(
       "size='%s'を指定すると、'%s'クラスが適用される",
       async (size, expectedClass) => {
-        document.body.innerHTML = `<sp-loading size="${size}"></sp-loading>`;
-        await customElements.whenDefined("sp-loading");
+        document.body.innerHTML = `<mi-loading size="${size}"></mi-loading>`;
+        await customElements.whenDefined("mi-loading");
 
         const element = getLoadingElement();
 
@@ -56,8 +56,8 @@ describe("sp-loading", () => {
     );
 
     test("デフォルトサイズはmedium", async () => {
-      document.body.innerHTML = "<sp-loading></sp-loading>";
-      await customElements.whenDefined("sp-loading");
+      document.body.innerHTML = "<mi-loading></mi-loading>";
+      await customElements.whenDefined("mi-loading");
 
       const element = getLoadingElement();
       expect(element?.classList.contains("size-medium")).toBe(true);
@@ -66,8 +66,8 @@ describe("sp-loading", () => {
 
   describe("アクセシビリティ", () => {
     test("role='status'が設定されている", async () => {
-      document.body.innerHTML = "<sp-loading></sp-loading>";
-      await customElements.whenDefined("sp-loading");
+      document.body.innerHTML = "<mi-loading></mi-loading>";
+      await customElements.whenDefined("mi-loading");
 
       const element = getLoadingElement();
       expect(element?.getAttribute("role")).toBe("status");

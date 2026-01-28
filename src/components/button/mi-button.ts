@@ -1,4 +1,4 @@
-import "../loading/sp-loading";
+import "../loading/mi-loading";
 
 import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
@@ -43,7 +43,7 @@ function isValidIconType(value: string): boolean {
 /**
  * @summary ボタンです。
  */
-export class SpButton extends LitElement {
+export class MiButton extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
   static formAssociated = true;
@@ -122,7 +122,7 @@ export class SpButton extends LitElement {
   }
 
   private renderLoading() {
-    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
+    return html`<mi-loading size="${this.loadingSize}"></mi-loading>`;
   }
 
   private get showIcon() {
@@ -130,7 +130,7 @@ export class SpButton extends LitElement {
   }
 
   private renderIcon() {
-    return html`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
+    return html`<mi-icon type="${this.iconType}" class="icon"></mi-icon>`;
   }
 
   render() {
@@ -160,10 +160,18 @@ export class SpButton extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiButton を使用してください */
+export class SpButton extends MiButton {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-button": MiButton;
     "sp-button": SpButton;
   }
+}
+
+if (!customElements.get("mi-button")) {
+  customElements.define("mi-button", MiButton);
 }
 
 if (!customElements.get("sp-button")) {

@@ -58,7 +58,7 @@ export function isIconType(type: string): type is IconType {
  *
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
-export class SpIcon extends LitElement {
+export class MiIcon extends LitElement {
   static styles = makeStyles(unsafeCSS(iconStyle));
 
   @property({ type: String, reflect: true })
@@ -79,10 +79,18 @@ export class SpIcon extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiIcon を使用してください */
+export class SpIcon extends MiIcon {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-icon": MiIcon;
     "sp-icon": SpIcon;
   }
+}
+
+if (!customElements.get("mi-icon")) {
+  customElements.define("mi-icon", MiIcon);
 }
 
 if (!customElements.get("sp-icon")) {

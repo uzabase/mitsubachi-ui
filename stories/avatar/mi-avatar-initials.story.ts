@@ -1,14 +1,14 @@
-import "../../src/components/avatar/sp-avatar";
+import "../../src/components/avatar/mi-avatar";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
 
-import { type SpAvatar } from "../../src/components/avatar/sp-avatar";
+import { type MiAvatar } from "../../src/components/avatar/mi-avatar";
 
 const meta = {
-  component: "sp-avatar",
-  title: "Avatar/sp-avatar/WithInitials",
+  component: "mi-avatar",
+  title: "Avatar/mi-avatar/WithInitials",
   tags: ["!dev-only"],
   argTypes: {
     src: {
@@ -97,10 +97,10 @@ const meta = {
     actions: { disable: true },
     interactions: { disable: true },
   },
-} satisfies Meta<SpAvatar>;
+} satisfies Meta<MiAvatar>;
 
 export default meta;
-type Story = StoryObj<SpAvatar>;
+type Story = StoryObj<MiAvatar>;
 
 export const Basic: Story = {
   args: {
@@ -108,7 +108,7 @@ export const Basic: Story = {
     color: "plum",
   },
   render: (args) => html`
-    <sp-avatar
+    <mi-avatar
       src=${args.src || nothing}
       initials=${args.initials || nothing}
       alt=${args.alt || nothing}
@@ -117,7 +117,7 @@ export const Basic: Story = {
       ?inactive=${args.inactive}
       @click=${args.onclick}
     >
-    </sp-avatar>
+    </mi-avatar>
   `,
   parameters: {
     controls: { disable: false },
@@ -152,21 +152,21 @@ export const LowerCaseToUpperCase: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="ta" color="plum"></sp-avatar>
+        <mi-avatar initials="ta" color="plum"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ta"
         </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="ab" color="violet"></sp-avatar>
+        <mi-avatar initials="ab" color="violet"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ab"
         </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="xy" color="blue"></sp-avatar>
+        <mi-avatar initials="xy" color="blue"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "xy"
         </div>
@@ -189,21 +189,21 @@ export const TwoCharacterLimit: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="TARO" color="plum"></sp-avatar>
+        <mi-avatar initials="TARO" color="plum"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "TARO"
         </div>
         <div style="font-size: 14px; color: #666;">→ "TA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="HANAKO" color="violet"></sp-avatar>
+        <mi-avatar initials="HANAKO" color="violet"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "HANAKO"
         </div>
         <div style="font-size: 14px; color: #666;">→ "HA"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="ABC" color="blue"></sp-avatar>
+        <mi-avatar initials="ABC" color="blue"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "ABC"
         </div>
@@ -226,21 +226,21 @@ export const WhitespaceRemoval: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="  hs  " color="plum"></sp-avatar>
+        <mi-avatar initials="  hs  " color="plum"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " hs "
         </div>
         <div style="font-size: 14px; color: #666;">→ "HS"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials=" ab " color="violet"></sp-avatar>
+        <mi-avatar initials=" ab " color="violet"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " ab "
         </div>
         <div style="font-size: 14px; color: #666;">→ "AB"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="   ta   " color="blue"></sp-avatar>
+        <mi-avatar initials="   ta   " color="blue"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: " ta "
         </div>
@@ -263,21 +263,21 @@ export const SingleCharacter: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar initials="A" color="plum"></sp-avatar>
+        <mi-avatar initials="A" color="plum"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "A"
         </div>
         <div style="font-size: 14px; color: #666;">→ "A"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="b" color="violet"></sp-avatar>
+        <mi-avatar initials="b" color="violet"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "b"
         </div>
         <div style="font-size: 14px; color: #666;">→ "B"</div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar initials="Z" color="blue"></sp-avatar>
+        <mi-avatar initials="Z" color="blue"></mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           入力: "Z"
         </div>
@@ -300,49 +300,49 @@ export const ColorVariations: Story = {
       style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;"
     >
       <div style="text-align: center;">
-        <sp-avatar color="">DE</sp-avatar>
+        <mi-avatar color="">DE</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           デフォルト
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="plum">PL</sp-avatar>
+        <mi-avatar color="plum">PL</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           plum
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="violet">VI</sp-avatar>
+        <mi-avatar color="violet">VI</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           violet
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="blue">BL</sp-avatar>
+        <mi-avatar color="blue">BL</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           blue
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="viridian">VR</sp-avatar>
+        <mi-avatar color="viridian">VR</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           viridian
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="green">GR</sp-avatar>
+        <mi-avatar color="green">GR</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           green
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="brown">BR</sp-avatar>
+        <mi-avatar color="brown">BR</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           brown
         </div>
       </div>
       <div style="text-align: center;">
-        <sp-avatar color="red">RD</sp-avatar>
+        <mi-avatar color="red">RD</mi-avatar>
         <div style="margin-top: 8px; font-size: 14px; font-weight: 500;">
           red
         </div>

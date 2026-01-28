@@ -3,7 +3,7 @@ import "../../src/components/icon";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { iconTypes, type SpIcon } from "../../src/components/icon";
+import { iconTypes, type MiIcon } from "../../src/components/icon";
 
 // 削除予定のアイコン（後方互換性のために残されているが、新規使用は非推奨）
 const deprecatedIcons = [
@@ -42,17 +42,17 @@ const meta = {
     },
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpIcon>;
+} satisfies Meta<MiIcon>;
 
 export default meta;
-type Story = StoryObj<SpIcon>;
+type Story = StoryObj<MiIcon>;
 
 export const Default: Story = {
   render: ({ type }) => {
-    return html`<sp-icon
+    return html`<mi-icon
       style="display: inline-block; width: 24px; height: 24px;"
       type=${type}
-    ></sp-icon>`;
+    ></mi-icon>`;
   },
 };
 

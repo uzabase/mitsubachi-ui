@@ -2,36 +2,36 @@ import "../../src/components/logo";
 
 import { describe, expect, test } from "vitest";
 
-describe("sp-logo", () => {
+describe("mi-logo", () => {
   test("brandがuzabaseのとき当社のロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-logo brand="uzabase"></sp-logo>`;
-    await customElements.whenDefined("sp-logo");
+    document.body.innerHTML = `<mi-logo brand="uzabase"></mi-logo>`;
+    await customElements.whenDefined("mi-logo");
     const logo = document
-      .querySelector("sp-logo")
+      .querySelector("mi-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(isUzabaseLogo(logo)).toBeTruthy();
   });
   test("brandがspeeda, language=jaのときスピーダの英語のロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-logo brand="speeda" language="en"></sp-logo>`;
-    await customElements.whenDefined("sp-logo");
+    document.body.innerHTML = `<mi-logo brand="speeda" language="en"></mi-logo>`;
+    await customElements.whenDefined("mi-logo");
     const logo = document
-      .querySelector("sp-logo")
+      .querySelector("mi-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(isEnSpeedaLogo(logo)).toBeTruthy();
   });
   test("brandがspeeda, language=jaのときスピーダの日本語のロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-logo brand="speeda" language="ja"></sp-logo>`;
-    await customElements.whenDefined("sp-logo");
+    document.body.innerHTML = `<mi-logo brand="speeda" language="ja"></mi-logo>`;
+    await customElements.whenDefined("mi-logo");
     const logo = document
-      .querySelector("sp-logo")
+      .querySelector("mi-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(isJaSpeedaLogo(logo)).toBeTruthy();
   });
   test("brandがspeeda, language=zhのときスピーダの中国語のロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-logo brand="speeda" language="zh"></sp-logo>`;
-    await customElements.whenDefined("sp-logo");
+    document.body.innerHTML = `<mi-logo brand="speeda" language="zh"></mi-logo>`;
+    await customElements.whenDefined("mi-logo");
     const logo = document
-      .querySelector("sp-logo")
+      .querySelector("mi-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(isZhSpeedaLogo(logo)).toBeTruthy();
   });

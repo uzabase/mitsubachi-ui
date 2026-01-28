@@ -10,7 +10,7 @@ import textFieldStyle from "./styles.css?inline";
 /**
  * @summary テキストフィールドです。
  */
-export class SpTextField extends LitElement {
+export class MiTextField extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldStyle));
 
   static formAssociated = true;
@@ -62,7 +62,7 @@ export class SpTextField extends LitElement {
     const target = e.target as HTMLInputElement;
     this.value = target.value;
 
-    // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、sp-text-field-unitにinputイベントが伝搬されず、
+    // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、mi-text-field-unitにinputイベントが伝搬されず、
     // 自動入力されたパスワードがformで送信されないことがありました。
     // そのため、composedがfalseのイベントがinputタグで発生したら、代わりに発火します。
     if (!e.composed) {
@@ -88,17 +88,25 @@ export class SpTextField extends LitElement {
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
         @input="${this.#handleInput}"
       />
-      <sp-text-field-error-text
+      <mi-text-field-error-text
         text="${this.disabled ? "" : this.error}"
-      ></sp-text-field-error-text>
+      ></mi-text-field-error-text>
     `;
   }
 }
 
+/** @deprecated 代わりに MiTextField を使用してください */
+export class SpTextField extends MiTextField {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-text-field": MiTextField;
     "sp-text-field": SpTextField;
   }
+}
+
+if (!customElements.get("mi-text-field")) {
+  customElements.define("mi-text-field", MiTextField);
 }
 
 if (!customElements.get("sp-text-field")) {

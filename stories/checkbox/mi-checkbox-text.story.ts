@@ -1,13 +1,13 @@
-import "../../src/components/checkbox/sp-checkbox-text";
+import "../../src/components/checkbox/mi-checkbox-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import type { SpCheckboxText } from "../../src/components/checkbox/sp-checkbox-text";
+import type { MiCheckboxText } from "../../src/components/checkbox/mi-checkbox-text";
 
 const meta: Meta = {
-  component: "sp-checkbox-text",
+  component: "mi-checkbox-text",
   argTypes: {
     text: { type: "string" },
     value: { type: "string" },
@@ -20,17 +20,17 @@ const meta: Meta = {
     },
   },
   args: {
-    text: "あいう（えお）じゃ「がげ」があう。sp-checkbox-text-text",
+    text: "あいう（えお）じゃ「がげ」があう。mi-checkbox-text-text",
     checked: false,
     indeterminate: false,
     disabled: false,
     onchange: action("onchange"),
   },
   tags: ["!dev-only"],
-} satisfies Meta<SpCheckboxText>;
+} satisfies Meta<MiCheckboxText>;
 
 export default meta;
-type Story = StoryObj<SpCheckboxText>;
+type Story = StoryObj<MiCheckboxText>;
 
 export const Basic: Story = {
   args: {
@@ -42,18 +42,18 @@ export const Basic: Story = {
 
 export const Property: Story = {
   args: {
-    value: "sp-checkbox-text-value",
-    name: "sp-checkbox-text-name",
+    value: "mi-checkbox-text-value",
+    name: "mi-checkbox-text-name",
   },
 };
 
 export const Attribute: Story = {
   args: {
-    value: "sp-checkbox-text-value",
-    name: "sp-checkbox-text-name",
+    value: "mi-checkbox-text-value",
+    name: "mi-checkbox-text-name",
   },
   render: (args) =>
-    html`<sp-checkbox-text
+    html`<mi-checkbox-text
       text=${args.text}
       value=${args.value}
       name=${args.name}
@@ -61,16 +61,16 @@ export const Attribute: Story = {
       indeterminate=${args.indeterminate}
       disabled=${args.disabled}
       @change=${args.onchange}
-    ></sp-checkbox-text>`,
+    ></mi-checkbox-text>`,
 };
 
 export const AttributeHTML: Story = {
   args: {
-    value: "sp-checkbox-text-value",
-    name: "sp-checkbox-text-name",
+    value: "mi-checkbox-text-value",
+    name: "mi-checkbox-text-name",
   },
   render: (args) =>
-    html`<sp-checkbox-text
+    html`<mi-checkbox-text
       text=${args.text}
       value=${args.value}
       name=${args.name}
@@ -78,19 +78,19 @@ export const AttributeHTML: Story = {
       ?indeterminate=${args.indeterminate}
       ?disabled=${args.disabled}
       @change=${args.onchange}
-    ></sp-checkbox-text>`,
+    ></mi-checkbox-text>`,
 };
 
 export const Form: Story = {
   args: {
-    value: "sp-checkbox-text-value",
-    name: "sp-checkbox-text-name",
+    value: "mi-checkbox-text-value",
+    name: "mi-checkbox-text-name",
   },
   render: (args) => html`
     <form>
       <input type="checkbox" name=${args.name} value="primitive1" />
       <input type="checkbox" name=${args.name} value="primitive2" />
-      <sp-checkbox-text
+      <mi-checkbox-text
         .text=${args.text}
         .value=${args.value}
         .name=${args.name}
@@ -98,7 +98,7 @@ export const Form: Story = {
         .indeterminate=${args.indeterminate}
         .disabled=${args.disabled}
         @change=${args.onchange}
-      ></sp-checkbox-text>
+      ></mi-checkbox-text>
       <input type="reset" />
       <input type="submit" />
     </form>
@@ -107,20 +107,20 @@ export const Form: Story = {
 
 export const OverflowWrap: Story = {
   render: () => html`
-    <sp-checkbox-text
+    <mi-checkbox-text
       text="texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext"
-    ></sp-checkbox-text>
-    <sp-checkbox-text
+    ></mi-checkbox-text>
+    <mi-checkbox-text
       text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    ></sp-checkbox-text>
-    <sp-checkbox-text
+    ></mi-checkbox-text>
+    <mi-checkbox-text
       text="にほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんごにほんご"
-    ></sp-checkbox-text>
+    ></mi-checkbox-text>
     <div style="display: flex;">
       <div>サンプルdiv</div>
-      <sp-checkbox-text
+      <mi-checkbox-text
         text="texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttextexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext"
-      ></sp-checkbox-text>
+      ></mi-checkbox-text>
     </div>
   `,
 };
@@ -141,44 +141,44 @@ export const ALL: Story = {
         <tr>
           <td>default</td>
           <td>
-            <sp-checkbox-text text="text"></sp-checkbox-text>
+            <mi-checkbox-text text="text"></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text text="text" checked></sp-checkbox-text>
+            <mi-checkbox-text text="text" checked></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text text="text" indeterminate></sp-checkbox-text>
+            <mi-checkbox-text text="text" indeterminate></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text
+            <mi-checkbox-text
               text="text"
               checked
               indeterminate
-            ></sp-checkbox-text>
+            ></mi-checkbox-text>
           </td>
         </tr>
         <tr>
           <td>disabled</td>
           <td>
-            <sp-checkbox-text text="text" disabled></sp-checkbox-text>
+            <mi-checkbox-text text="text" disabled></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text text="text" checked disabled></sp-checkbox-text>
+            <mi-checkbox-text text="text" checked disabled></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text
+            <mi-checkbox-text
               text="text"
               indeterminate
               disabled
-            ></sp-checkbox-text>
+            ></mi-checkbox-text>
           </td>
           <td>
-            <sp-checkbox-text
+            <mi-checkbox-text
               text="text"
               checked
               indeterminate
               disabled
-            ></sp-checkbox-text>
+            ></mi-checkbox-text>
           </td>
         </tr>
       </tbody>

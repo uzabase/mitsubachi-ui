@@ -2,16 +2,16 @@ import { html, LitElement, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
-import checkboxTextStyle from "./checkbox-text.css?inline";
+import checkboxStyle from "./checkbox.css?inline";
 import checkmarkStyle from "./checkmark.css?inline";
 
 /**
- * @summary テキスト付きチェックボックスです。
+ * @summary チェックボックスです。
  */
-export class SpCheckboxText extends LitElement {
+export class MiCheckbox extends LitElement {
   static styles = makeStyles(
     unsafeCSS(checkmarkStyle),
-    unsafeCSS(checkboxTextStyle),
+    unsafeCSS(checkboxStyle),
   );
 
   static formAssociated = true;
@@ -30,9 +30,6 @@ export class SpCheckboxText extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
-
-  @property({ type: String, reflect: true })
-  text = "";
 
   private internals: ElementInternals;
 
@@ -81,18 +78,25 @@ export class SpCheckboxText extends LitElement {
             @change=${this.handleChange}
           />
         </span>
-        <span class="text">${this.text}</span>
       </label>
     `;
   }
 }
 
+/** @deprecated 代わりに MiCheckbox を使用してください */
+export class SpCheckbox extends MiCheckbox {}
+
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-checkbox-text": SpCheckboxText;
+    "mi-checkbox": MiCheckbox;
+    "sp-checkbox": SpCheckbox;
   }
 }
 
-if (!customElements.get("sp-checkbox-text")) {
-  customElements.define("sp-checkbox-text", SpCheckboxText);
+if (!customElements.get("mi-checkbox")) {
+  customElements.define("mi-checkbox", MiCheckbox);
+}
+
+if (!customElements.get("sp-checkbox")) {
+  customElements.define("sp-checkbox", SpCheckbox);
 }
