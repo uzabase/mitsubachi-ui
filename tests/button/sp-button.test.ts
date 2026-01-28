@@ -256,46 +256,6 @@ describe("sp-button", () => {
       await customElements.whenDefined("sp-button");
 
       const spButton = getSpButton();
-      spButton.setAttribute("variant", "secondary");
-      await spButton.updateComplete;
-
-      const button = getButton();
-      expect(button?.classList.contains("secondary")).toBe(true);
-      expect(button?.classList.contains("primary")).toBe(false);
-    });
-
-    test("variant属性を設定しない場合、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("primary")).toBe(true);
-    });
-
-    test("variant属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<sp-button variant="invalid">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("primary")).toBe(true);
-      expect(button?.classList.contains("invalid")).toBe(false);
-    });
-  });
-
-  describe("variant属性", () => {
-    test("variant属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button variant="secondary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("secondary")).toBe(true);
-    });
-
-    test("variant属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<sp-button variant="primary">ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const spButton = getSpButton();
       spButton.setAttribute("variant", "tertiary");
       await spButton.updateComplete;
 
