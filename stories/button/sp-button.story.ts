@@ -15,10 +15,10 @@ const meta = {
   component: "sp-button",
   argTypes: {
     slot: { type: "string" },
-    danger: { type: "boolean" },
     variant: {
       control: { type: "select" },
       options: variants,
+      description: "ボタンのバリアント。削除などの危険なアクションには sp-danger-button を使用してください。",
     },
     variants: {
       control: { type: "select" },
@@ -47,7 +47,6 @@ const meta = {
   },
   args: {
     slot: "ダウンロード",
-    danger: false,
     variant: "primary",
     variants: undefined,
     size: "medium",
@@ -60,7 +59,6 @@ const meta = {
   },
   render: (args) => html`
     <sp-button
-      ?danger=${args.danger}
       variant=${args.variant}
       variants=${args.variants || nothing}
       size=${args.size}
@@ -81,7 +79,6 @@ type Story = StoryObj<SpButton>;
 
 export const Basic: Story = {
   args: {
-    danger: undefined,
     variant: undefined,
     size: undefined,
     loading: undefined,
@@ -126,9 +123,6 @@ export const Icon: Story = {
             </sp-button>
           `,
         )}
-      </div>
-      <div style="display: flex; gap: 16px;">
-        <sp-button icon-type="arrow-down" danger>ダウンロード</sp-button>
       </div>
       <div style="display: flex; gap: 16px;">
         <sp-button icon-type="arrow-down" loading>ダウンロード</sp-button>
@@ -286,52 +280,6 @@ export const ALL: Story = {
         </tbody>
       </table>
 
-      <!-- デンジャータイプ -->
-      <table>
-        <caption>
-          タイプ: デンジャー
-        </caption>
-        <thead>
-          <tr>
-            <th>状態</th>
-            ${variants.map((variant) => html`<th>${variant}</th>`)}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>デフォルト</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button danger variant="${variant}">ボタン</sp-button>
-                </td>`,
-            )}
-          </tr>
-          <tr>
-            <th>無効</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button danger variant="${variant}" disabled
-                    >ボタン</sp-button
-                  >
-                </td>`,
-            )}
-          </tr>
-          <tr>
-            <th>読み込み中</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button danger variant="${variant}" loading
-                    >ボタン</sp-button
-                  >
-                </td>`,
-            )}
-          </tr>
-        </tbody>
-      </table>
-
       <!-- サイズバリエーション -->
       <table>
         <caption>
@@ -352,20 +300,6 @@ export const ALL: Story = {
                   (size) =>
                     html`<td>
                       <sp-button variant="${variant}" size="${size}"
-                        >ボタン</sp-button
-                      >
-                    </td>`,
-                )}
-              </tr>`,
-          )}
-          ${variants.map(
-            (variant) =>
-              html`<tr>
-                <th>${variant} (danger)</th>
-                ${sizes.map(
-                  (size) =>
-                    html`<td>
-                      <sp-button danger variant="${variant}" size="${size}"
                         >ボタン</sp-button
                       >
                     </td>`,
@@ -423,64 +357,6 @@ export const ALL: Story = {
         </tbody>
       </table>
 
-      <!-- アイコン付きボタン（デンジャー） -->
-      <table>
-        <caption>
-          アイコン付きボタン: デンジャー
-        </caption>
-        <thead>
-          <tr>
-            <th>状態</th>
-            ${variants.map((variant) => html`<th>${variant}</th>`)}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>デフォルト</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button icon-type="download" danger variant="${variant}">
-                    ダウンロード
-                  </sp-button>
-                </td>`,
-            )}
-          </tr>
-          <tr>
-            <th>無効</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button
-                    icon-type="download"
-                    danger
-                    variant="${variant}"
-                    disabled
-                  >
-                    ダウンロード
-                  </sp-button>
-                </td>`,
-            )}
-          </tr>
-          <tr>
-            <th>読み込み中</th>
-            ${variants.map(
-              (variant) =>
-                html`<td>
-                  <sp-button
-                    icon-type="download"
-                    danger
-                    variant="${variant}"
-                    loading
-                  >
-                    ダウンロード
-                  </sp-button>
-                </td>`,
-            )}
-          </tr>
-        </tbody>
-      </table>
-
       <!-- アイコン付きボタン（サイズバリエーション） -->
       <table>
         <caption>
@@ -502,25 +378,6 @@ export const ALL: Story = {
                     html`<td>
                       <sp-button
                         icon-type="download"
-                        variant="${variant}"
-                        size="${size}"
-                      >
-                        ダウンロード
-                      </sp-button>
-                    </td>`,
-                )}
-              </tr>`,
-          )}
-          ${variants.map(
-            (variant) =>
-              html`<tr>
-                <th>${variant} (danger)</th>
-                ${sizes.map(
-                  (size) =>
-                    html`<td>
-                      <sp-button
-                        icon-type="download"
-                        danger
                         variant="${variant}"
                         size="${size}"
                       >

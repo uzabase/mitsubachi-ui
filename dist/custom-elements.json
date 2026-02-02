@@ -17,10 +17,26 @@
         },
         {
           "kind": "js",
+          "name": "SpAiButton",
+          "declaration": {
+            "name": "SpAiButton",
+            "module": "./components/button/sp-ai-button"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SpButton",
           "declaration": {
             "name": "SpButton",
             "module": "./components/button/sp-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpDangerButton",
+          "declaration": {
+            "name": "SpDangerButton",
+            "module": "./components/button/sp-danger-button"
           }
         },
         {
@@ -279,22 +295,8 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button/button.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button/sp-button.ts",
+      "path": "src/components/button/base-button.ts",
       "declarations": [
-        {
-          "kind": "variable",
-          "name": "variants",
-          "type": {
-            "text": "[\"primary\", \"secondary\", \"tertiary\", \"ghost\"]"
-          },
-          "default": "[\"primary\", \"secondary\", \"tertiary\", \"ghost\"]"
-        },
         {
           "kind": "variable",
           "name": "sizes",
@@ -304,14 +306,109 @@
           "default": "[\"medium\", \"large\", \"xLarge\"]"
         },
         {
+          "kind": "function",
+          "name": "isValidSize",
+          "return": {
+            "type": {
+              "text": "Size"
+            }
+          },
+          "parameters": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "sizes",
+          "declaration": {
+            "name": "sizes",
+            "module": "src/components/button/base-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isValidSize",
+          "declaration": {
+            "name": "isValidSize",
+            "module": "src/components/button/base-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/sp-ai-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "aiVariants",
+          "type": {
+            "text": "[\"primary\", \"secondary\"]"
+          },
+          "default": "[\"primary\", \"secondary\"]"
+        },
+        {
           "kind": "class",
           "description": "",
-          "name": "SpButton",
+          "name": "SpAiButton",
           "members": [
             {
               "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "AiVariant"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "kind": "field",
+              "name": "buttonModeClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "ボタンのモードクラス（normal, danger, ai）を返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variantClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "バリアントクラスを返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "styles",
-              "static": true
+              "static": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -320,7 +417,11 @@
                 "text": "boolean"
               },
               "static": true,
-              "default": "true"
+              "default": "true",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -328,7 +429,11 @@
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -336,15 +441,250 @@
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "BaseButton",
+            "module": "/src/components/button/base-button"
+          },
+          "summary": "AIボタンです。AI機能に関連するアクションに使用します。",
+          "tagName": "sp-ai-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "aiVariants",
+          "declaration": {
+            "name": "aiVariants",
+            "module": "src/components/button/sp-ai-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpAiButton",
+          "declaration": {
+            "name": "SpAiButton",
+            "module": "src/components/button/sp-ai-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-ai-button",
+          "declaration": {
+            "name": "SpAiButton",
+            "module": "src/components/button/sp-ai-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/sp-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "variants",
+          "type": {
+            "text": "[\n  \"primary\",\n  \"secondary\",\n  \"tertiary\",\n  \"ghost\",\n  \"plane\",\n]"
+          },
+          "default": "[ \"primary\", \"secondary\", \"tertiary\", \"ghost\", \"plane\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpButton",
+          "members": [
             {
               "kind": "field",
               "name": "danger",
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "deprecated": "このプロパティは非推奨です。代わりに `sp-danger-button` コンポーネントを使用してください。"
+            },
+            {
+              "kind": "field",
+              "name": "buttonType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"normal\"",
+              "deprecated": "このプロパティは非推奨です。代わりに `sp-danger-button` コンポーネントを使用してください。\nこのプロパティは後方互換性のために残されていますが、設定しても無視されます。"
             },
             {
               "kind": "field",
@@ -364,12 +704,103 @@
               "default": "\"primary\""
             },
             {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "buttonModeClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "ボタンのモードクラス（normal, danger, ai）を返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variantClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "バリアントクラスを返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
               "kind": "field",
               "name": "size",
               "type": {
                 "text": "Size"
               },
-              "default": "\"medium\""
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -377,7 +808,11 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"\""
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -385,7 +820,11 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"\""
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -393,7 +832,11 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"button\""
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
@@ -401,58 +844,94 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"\""
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
-              "name": "#internals",
-              "privacy": "private",
+              "name": "internals",
               "type": {
                 "text": "ElementInternals"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
               }
             },
             {
               "kind": "field",
               "name": "buttonClasses",
-              "privacy": "private",
-              "readonly": true
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
               "name": "loadingSize",
-              "privacy": "private",
-              "readonly": true
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
               "name": "isDisabled",
-              "privacy": "private",
-              "readonly": true
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "method",
               "name": "renderLoading",
-              "privacy": "private"
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "field",
               "name": "showIcon",
-              "privacy": "private",
-              "readonly": true
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "method",
               "name": "renderIcon",
-              "privacy": "private"
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "method",
-              "name": "render"
+              "name": "render",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             },
             {
               "kind": "method",
-              "name": "#handleClick",
-              "privacy": "private",
+              "name": "handleClick",
+              "privacy": "protected",
               "parameters": [
                 {
                   "name": "event",
@@ -460,40 +939,57 @@
                     "text": "Event"
                   }
                 }
-              ]
+              ],
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
             }
           ],
+          "superclass": {
+            "name": "BaseButton",
+            "module": "/src/components/button/base-button"
+          },
+          "deprecated": "danger タイプは `sp-danger-button` の使用を推奨します。 AI 機能には `sp-ai-button` の使用を推奨します。",
+          "summary": "ボタンです。",
+          "tagName": "sp-button",
+          "customElement": true,
           "events": [
             {
               "name": "click",
               "type": {
                 "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
               }
             }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ボタンです。",
-          "tagName": "sp-button",
-          "customElement": true
+          ]
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "variants",
+          "name": "sizes",
           "declaration": {
-            "name": "variants",
-            "module": "src/components/button/sp-button.ts"
+            "name": "sizes",
+            "module": "./base-button"
           }
         },
         {
           "kind": "js",
-          "name": "sizes",
+          "name": "Size",
           "declaration": {
-            "name": "sizes",
+            "name": "Size",
+            "module": "./base-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "variants",
+          "declaration": {
+            "name": "variants",
             "module": "src/components/button/sp-button.ts"
           }
         },
@@ -511,6 +1007,309 @@
           "declaration": {
             "name": "SpButton",
             "module": "src/components/button/sp-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/sp-danger-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "dangerVariants",
+          "type": {
+            "text": "[\"primary\", \"secondary\", \"ghost\"]"
+          },
+          "default": "[\"primary\", \"secondary\", \"ghost\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpDangerButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "DangerVariant"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "kind": "field",
+              "name": "buttonModeClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "ボタンのモードクラス（normal, danger, ai）を返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variantClass",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "protected",
+              "description": "バリアントクラスを返す\n各サブクラスで実装する",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "BaseButton",
+            "module": "/src/components/button/base-button"
+          },
+          "summary": "Dangerボタンです。削除や破壊的なアクションに使用します。",
+          "tagName": "sp-danger-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "BaseButton",
+                "module": "src/components/button/base-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "dangerVariants",
+          "declaration": {
+            "name": "dangerVariants",
+            "module": "src/components/button/sp-danger-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpDangerButton",
+          "declaration": {
+            "name": "SpDangerButton",
+            "module": "src/components/button/sp-danger-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-danger-button",
+          "declaration": {
+            "name": "SpDangerButton",
+            "module": "src/components/button/sp-danger-button.ts"
           }
         }
       ]

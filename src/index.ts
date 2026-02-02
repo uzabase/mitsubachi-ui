@@ -1,5 +1,7 @@
 export { SpAvatar } from "./components/avatar/sp-avatar";
+export { SpAiButton } from "./components/button/sp-ai-button";
 export { SpButton } from "./components/button/sp-button";
+export { SpDangerButton } from "./components/button/sp-danger-button";
 export { SpCheckbox } from "./components/checkbox/sp-checkbox";
 export { SpCheckboxText } from "./components/checkbox/sp-checkbox-text";
 export { SpFloatingButton } from "./components/floating-button/sp-floating-button";

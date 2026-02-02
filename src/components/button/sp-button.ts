@@ -1,19 +1,24 @@
-import "../loading/sp-loading";
-
-import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
-import { isIconType } from "../icon";
-import { makeStyles } from "../styles";
-import style from "./button.css?inline";
+import { BaseButton } from "./base-button";
 
-export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
-type Variant = (typeof variants)[number];
+export { sizes, type Size } from "./base-button";
 
-export const sizes = ["medium", "large", "xLarge"] as const;
-type Size = (typeof sizes)[number];
+export const variants = [
+  "primary",
+  "secondary",
+  "tertiary",
+  "ghost",
+  "plane",
+] as const;
+export type Variant = (typeof variants)[number];
 
 function isValidVariant(value: string): Variant {
+  // 空文字列や未定義の場合はデフォルト値を返す
+  if (!value) {
+    return variants[0];
+  }
+  
   if (variants.some((variant) => variant === value)) {
     return value as Variant;
   } else {
@@ -22,40 +27,25 @@ function isValidVariant(value: string): Variant {
   }
 }
 
-function isValidSize(value: string): Size {
-  if (sizes.some((s) => s === value)) {
-    return value as Size;
-  } else {
-    console.warn(`${value}は無効なsize属性です。`);
-    return sizes[0];
-  }
-}
-
-function isValidIconType(value: string): boolean {
-  if (isIconType(value)) {
-    return true;
-  } else {
-    console.warn(`${value}は無効なicon-type属性です。`);
-    return false;
-  }
-}
-
 /**
  * @summary ボタンです。
+ *
+ * @deprecated danger タイプは `sp-danger-button` の使用を推奨します。
+ * AI 機能には `sp-ai-button` の使用を推奨します。
  */
-export class SpButton extends LitElement {
-  static styles = makeStyles(unsafeCSS(style));
-
-  static formAssociated = true;
-
-  @property({ type: Boolean, reflect: true })
-  loading = false;
-
-  @property({ type: Boolean, reflect: true })
-  disabled = false;
-
+export class SpButton extends BaseButton {
+  /**
+   * @deprecated このプロパティは非推奨です。代わりに `sp-danger-button` コンポーネントを使用してください。
+   */
   @property({ type: Boolean, reflect: true })
   danger = false;
+
+  /**
+   * @deprecated このプロパティは非推奨です。代わりに `sp-danger-button` コンポーネントを使用してください。
+   * このプロパティは後方互換性のために残されていますが、設定しても無視されます。
+   */
+  @property({ type: String, attribute: "button-type" })
+  buttonType: string = "normal";
 
   /**
    * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
@@ -66,97 +56,32 @@ export class SpButton extends LitElement {
   @property({ type: String })
   variant: Variant = "primary";
 
-  @property({ type: String })
-  size: Size = "medium";
+  protected updated(changedProperties: Map<string, unknown>) {
+    super.updated(changedProperties);
 
-  @property({ type: String })
-  name = "";
-
-  @property({ type: String })
-  value = "";
-
-  @property({ type: String })
-  type = "button";
-
-  @property({ type: String, attribute: "icon-type" })
-  iconType = "";
-
-  #internals: ElementInternals;
-
-  constructor() {
-    super();
-    this.#internals = this.attachInternals();
-  }
-
-  private get buttonClasses() {
-    const sizeClassMap = {
-      medium: "medium",
-      large: "large",
-      xLarge: "x-large",
-    };
-
-    return [
-      "base",
-      this.danger ? "danger" : "normal",
-      this.variants
-        ? isValidVariant(this.variants)
-        : isValidVariant(this.variant),
-      sizeClassMap[isValidSize(this.size)],
-      this.loading ? "loading" : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
-  }
-
-  private get loadingSize() {
-    const sizeAttributeMap = {
-      medium: "large",
-      large: "xLarge",
-      xLarge: "2xLarge",
-    };
-    return sizeAttributeMap[isValidSize(this.size)];
-  }
-
-  private get isDisabled() {
-    return this.disabled || this.loading;
-  }
-
-  private renderLoading() {
-    return html`<sp-loading size="${this.loadingSize}"></sp-loading>`;
-  }
-
-  private get showIcon() {
-    return !this.loading && this.iconType && isValidIconType(this.iconType);
-  }
-
-  private renderIcon() {
-    return html`<sp-icon type="${this.iconType}" class="icon"></sp-icon>`;
-  }
-
-  render() {
-    return html`
-      <button
-        class="${this.buttonClasses}"
-        ?disabled="${this.isDisabled}"
-        name="${this.name}"
-        value="${this.value}"
-        type="${this.type}"
-        @click="${this.#handleClick}"
-      >
-        ${this.loading ? this.renderLoading() : nothing}
-        ${this.showIcon ? this.renderIcon() : nothing}
-        <slot class="text"></slot>
-      </button>
-    `;
-  }
-
-  #handleClick(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const allowed = this.dispatchEvent(new MouseEvent("click", event));
-    if (allowed && this.#internals.form) {
-      this.#internals.form.requestSubmit();
+    // 後方互換性: danger または buttonType="danger" が設定されている場合は警告
+    if (this.danger) {
+      console.warn(
+        "⚠️ sp-button で danger プロパティを使用しています。代わりに sp-danger-button コンポーネントの使用を推奨します。",
+      );
     }
+    if (this.buttonType === "danger") {
+      console.warn(
+        "⚠️ sp-button で button-type=\"danger\" を使用しています。代わりに sp-danger-button コンポーネントの使用を推奨します。",
+      );
+    }
+  }
+
+  protected get buttonModeClass() {
+    // sp-button は常に normal モード
+    // danger プロパティや buttonType は後方互換性のために残されているが、実際には無視される
+    return "normal";
+  }
+
+  protected get variantClass() {
+    return this.variants
+      ? isValidVariant(this.variants)
+      : isValidVariant(this.variant);
   }
 }
 

@@ -1,6 +1,6 @@
 import "../../src/components/button/sp-button";
 
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import type { SpButton } from "../../src/components/button/sp-button";
 
@@ -280,6 +280,14 @@ describe("sp-button", () => {
       expect(button?.classList.contains("primary")).toBe(true);
       expect(button?.classList.contains("invalid")).toBe(false);
     });
+
+    test("variant属性にplaneを設定すると、buttonにplaneクラスが適用される", async () => {
+      document.body.innerHTML = `<sp-button variant="plane">Label</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("plane")).toBe(true);
+    });
   });
 
   describe("variant属性", () => {
@@ -362,8 +370,87 @@ describe("sp-button", () => {
     });
   });
 
-  describe("danger属性", () => {
-    test("danger属性にtrueを設定すると、buttonにdangerクラスが適用される", async () => {
+  describe("buttonType属性", () => {
+    test("buttonType属性にdangerを設定すると、buttonにdangerクラスが適用される", async () => {
+      document.body.innerHTML = `<sp-button button-type="danger">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("danger")).toBe(true);
+      expect(button?.classList.contains("normal")).toBe(false);
+    });
+
+    test("buttonType属性にnormalを設定すると、buttonにnormalクラスが適用される", async () => {
+      document.body.innerHTML = `<sp-button button-type="normal">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("normal")).toBe(true);
+    });
+
+    test("buttonType属性を更新すると、buttonのクラスが更新される", async () => {
+      document.body.innerHTML = `<sp-button button-type="normal">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const spButton = getSpButton();
+      spButton.setAttribute("button-type", "danger");
+      await spButton.updateComplete;
+
+      const button = getButton();
+      expect(button?.classList.contains("danger")).toBe(true);
+      expect(button?.classList.contains("normal")).toBe(false);
+    });
+
+    test("buttonType属性を設定しない場合、デフォルト値（normal）が使用される", async () => {
+      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("normal")).toBe(true);
+    });
+
+    test("buttonType属性に無効な値を設定すると、デフォルト値（normal）が使用される", async () => {
+      document.body.innerHTML = `<sp-button button-type="invalid">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("normal")).toBe(true);
+      expect(button?.classList.contains("invalid")).toBe(false);
+    });
+
+    test("dangerタイプではplaneバリアントを設定できない（警告が出る）", async () => {
+      const consoleWarnSpy = vi.spyOn(console, "warn");
+      document.body.innerHTML = `<sp-button button-type="danger" variant="plane">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const spButton = getSpButton();
+      await spButton.updateComplete;
+
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        "danger タイプのボタンでは plane バリアントは使用できません。",
+      );
+
+      consoleWarnSpy.mockRestore();
+    });
+
+    test("dangerタイプではtertiaryバリアントを設定できない（警告が出る）", async () => {
+      const consoleWarnSpy = vi.spyOn(console, "warn");
+      document.body.innerHTML = `<sp-button button-type="danger" variant="tertiary">ダウンロード</sp-button>`;
+      await customElements.whenDefined("sp-button");
+
+      const spButton = getSpButton();
+      await spButton.updateComplete;
+
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        "danger タイプのボタンでは tertiary バリアントは使用できません。",
+      );
+
+      consoleWarnSpy.mockRestore();
+    });
+  });
+
+  describe("danger属性（非推奨）", () => {
+    test("danger属性にtrueを設定すると、buttonにdangerクラスが適用される（後方互換性）", async () => {
       document.body.innerHTML = `<sp-button danger="true">ダウンロード</sp-button>`;
       await customElements.whenDefined("sp-button");
 
@@ -372,33 +459,12 @@ describe("sp-button", () => {
       expect(button?.classList.contains("normal")).toBe(false);
     });
 
-    test("danger属性に空文字列を設定すると、buttonにdangerクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button danger>ダウンロード</sp-button>`;
+    test("danger属性はbuttonType属性より優先される", async () => {
+      document.body.innerHTML = `<sp-button danger button-type="normal">ダウンロード</sp-button>`;
       await customElements.whenDefined("sp-button");
 
       const button = getButton();
       expect(button?.classList.contains("danger")).toBe(true);
-    });
-
-    test("danger属性を削除すると、buttonにnormalクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button danger>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const spButton = getSpButton();
-      spButton.removeAttribute("danger");
-      await spButton.updateComplete;
-
-      const button = getButton();
-      expect(button?.classList.contains("normal")).toBe(true);
-      expect(button?.classList.contains("danger")).toBe(false);
-    });
-
-    test("danger属性を設定しない場合、buttonにnormalクラスが適用される", async () => {
-      document.body.innerHTML = `<sp-button>ダウンロード</sp-button>`;
-      await customElements.whenDefined("sp-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("normal")).toBe(true);
     });
   });
 
