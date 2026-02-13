@@ -3,12 +3,15 @@ import "../../src/components/icon-color";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { iconColorTypes, type MiIconColor } from "../../src/components/icon-color";
+import {
+  iconColorTypes,
+  type MiIconColor,
+} from "../../src/components/icon-color";
 
 // 型安全のためのヘルパー関数
 function getFirstIcon(): string {
   if (iconColorTypes.length > 0) {
-    // @ts-ignore - 空の配列の場合でも型安全を保証
+    // @ts-expect-error - 空の配列の場合でも型安全を保証
     return iconColorTypes[0];
   }
   return "";
@@ -63,7 +66,10 @@ export const AllIcons: Story = {
               <div
                 style="display: flex; flex-direction: column; align-items: center;"
               >
-                <mi-icon-color style="margin-bottom: 8px;" type=${iconType}></mi-icon-color>
+                <mi-icon-color
+                  style="margin-bottom: 8px;"
+                  type=${iconType}
+                ></mi-icon-color>
                 <div
                   style="font-size: 12px; text-align: center; word-break: break-all;"
                 >
@@ -76,4 +82,3 @@ export const AllIcons: Story = {
     `;
   },
 };
-

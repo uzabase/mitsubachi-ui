@@ -4,11 +4,7 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
 import iconColorStyle from "./icon-color.css?inline";
-import {
-  iconColorPaths,
-  type IconColorType,
-  iconColorTypes,
-} from "./icons";
+import { iconColorPaths, type IconColorType, iconColorTypes } from "./icons";
 
 export type { IconColorType };
 export { iconColorTypes };

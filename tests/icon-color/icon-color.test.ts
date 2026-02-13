@@ -10,7 +10,7 @@ describe("mi-icon-color", () => {
       // カラーアイコンが登録されていない場合はスキップ
       return;
     }
-    
+
     for (const type of iconColorTypes) {
       document.body.innerHTML = `<mi-icon-color type="${type}"></mi-icon-color>`;
       await customElements.whenDefined("mi-icon-color");
@@ -28,7 +28,7 @@ describe("mi-icon-color", () => {
       // カラーアイコンが登録されていない場合はスキップ
       return;
     }
-    
+
     for (const type of iconColorTypes) {
       document.body.innerHTML = `<mi-icon-color type="${type}"></mi-icon-color>`;
       await customElements.whenDefined("mi-icon-color");

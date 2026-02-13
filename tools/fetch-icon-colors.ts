@@ -57,18 +57,20 @@ async function fetchFigma(
 
 async function fetchImageAndExtractPath(url: string): Promise<string> {
   const response = await fetch(url);
-  
+
   if (!response.ok) {
-    throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Failed to fetch image: ${response.status} ${response.statusText}`,
+    );
   }
-  
+
   const text = await response.text();
   const match = /<svg.*?>([\s\S]*?)<\/svg>/.exec(text);
-  
+
   if (!match) {
     throw new Error("SVGが見つかりません");
   }
-  
+
   // カラーアイコンはfill属性を保持する（色情報が重要）
   return match[1].replace(/\n|\r/g, "");
 }
@@ -95,7 +97,7 @@ async function writeIconColors(icons: IconColor[]) {
 
 async function main() {
   console.log("Figmaからカラーアイコンを取得しています...");
-  
+
   const fileResponse = await fetchFigma("files", FIGMA_FILE_KEY);
   const components: FigmaResponseComponent = fileResponse.components;
 
@@ -118,7 +120,9 @@ async function main() {
 
   if (icons.length === 0) {
     console.warn("⚠️  カラーアイコンが見つかりませんでした");
-    console.warn("Figmaで 'icon-color/' で始まるコンポーネント名を確認してください");
+    console.warn(
+      "Figmaで 'icon-color/' で始まるコンポーネント名を確認してください",
+    );
     return;
   }
 
