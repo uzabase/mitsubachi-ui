@@ -11,7 +11,6 @@ import {
 // 型安全のためのヘルパー関数
 function getFirstIcon(): string {
   if (iconColorTypes.length > 0) {
-    // @ts-expect-error - 空の配列の場合でも型安全を保証
     return iconColorTypes[0];
   }
   return "";
