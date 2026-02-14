@@ -651,7 +651,7 @@
               "kind": "field",
               "name": "type",
               "type": {
-                "text": "string"
+                "text": "\"button\" | \"submit\" | \"reset\""
               },
               "default": "\"button\""
             },
@@ -874,7 +874,7 @@
               "kind": "field",
               "name": "type",
               "type": {
-                "text": "string"
+                "text": "\"button\" | \"submit\" | \"reset\""
               },
               "default": "\"button\"",
               "inheritedFrom": {
