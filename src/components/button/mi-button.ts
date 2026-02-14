@@ -155,7 +155,7 @@ export class MiButton extends LitElement {
     event.stopPropagation();
     const allowed = this.dispatchEvent(new MouseEvent("click", event));
     if (allowed && this.#internals.form) {
-      this.#internals.form.requestSubmit();
+      this.#internals.form.requestSubmit(this);
     }
   }
 }
