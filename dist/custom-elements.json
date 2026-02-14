@@ -1727,6 +1727,133 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/icon/icon.css",
       "declarations": [],
       "exports": []
@@ -1941,133 +2068,6 @@
           "declaration": {
             "name": "SpIcon",
             "module": "src/components/icon/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-floating-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiFloatingButton",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpFloatingButton",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-floating-button",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-floating-button",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
           }
         }
       ]

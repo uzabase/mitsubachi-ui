@@ -2,7 +2,7 @@ var K1 = (s) => {
   throw TypeError(s);
 };
 var A1 = (s, e, t) => e.has(s) || K1("Cannot " + t);
-var Z = (s, e, t) => (A1(s, e, "read from private field"), t ? t.call(s) : e.get(s)), L = (s, e, t) => e.has(s) ? K1("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t), p1 = (s, e, t, r) => (A1(s, e, "write to private field"), r ? r.call(s, t) : e.set(s, t), t), V = (s, e, t) => (A1(s, e, "access private method"), t);
+var L = (s, e, t) => (A1(s, e, "read from private field"), t ? t.call(s) : e.get(s)), V = (s, e, t) => e.has(s) ? K1("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t), p1 = (s, e, t, r) => (A1(s, e, "write to private field"), r ? r.call(s, t) : e.set(s, t), t), v = (s, e, t) => (A1(s, e, "access private method"), t);
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -80,7 +80,7 @@ const { is: j2, defineProperty: I2, getOwnPropertyDescriptor: O2, getOwnProperty
   return t;
 } }, j1 = (s, e) => !j2(s, e), i2 = { attribute: !0, type: String, converter: f1, reflect: !1, useDefault: !1, hasChanged: j1 };
 Symbol.metadata ??= Symbol("metadata"), k1.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-let U = class extends HTMLElement {
+let D = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ??= []).push(e);
   }
@@ -261,15 +261,15 @@ let U = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-U.elementStyles = [], U.shadowRootOptions = { mode: "open" }, U[e1("elementProperties")] = /* @__PURE__ */ new Map(), U[e1("finalized")] = /* @__PURE__ */ new Map(), R2?.({ ReactiveElement: U }), (k1.reactiveElementVersions ??= []).push("2.1.1");
+D.elementStyles = [], D.shadowRootOptions = { mode: "open" }, D[e1("elementProperties")] = /* @__PURE__ */ new Map(), D[e1("finalized")] = /* @__PURE__ */ new Map(), R2?.({ ReactiveElement: D }), (k1.reactiveElementVersions ??= []).push("2.1.1");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const I1 = globalThis, g1 = I1.trustedTypes, s2 = g1 ? g1.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, u2 = "$lit$", S = `lit$${Math.random().toFixed(9).slice(2)}$`, f2 = "?" + S, F2 = `<${f2}>`, I = document, i1 = () => I.createComment(""), s1 = (s) => s === null || typeof s != "object" && typeof s != "function", O1 = Array.isArray, q2 = (s) => O1(s) || typeof s?.[Symbol.iterator] == "function", E1 = `[ 	
-\f\r]`, Q = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, r2 = /-->/g, o2 = />/g, T = RegExp(`>|${E1}(?:([^\\s"'>=/]+)(${E1}*=${E1}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), n2 = /'/g, a2 = /"/g, g2 = /^(?:script|style|textarea|title)$/i, W2 = (s) => (e, ...t) => ({ _$litType$: s, strings: e, values: t }), C = W2(1), z = Symbol.for("lit-noChange"), h = Symbol.for("lit-nothing"), l2 = /* @__PURE__ */ new WeakMap(), j = I.createTreeWalker(I, 129);
+const I1 = globalThis, g1 = I1.trustedTypes, s2 = g1 ? g1.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, u2 = "$lit$", S = `lit$${Math.random().toFixed(9).slice(2)}$`, f2 = "?" + S, F2 = `<${f2}>`, O = document, i1 = () => O.createComment(""), s1 = (s) => s === null || typeof s != "object" && typeof s != "function", O1 = Array.isArray, q2 = (s) => O1(s) || typeof s?.[Symbol.iterator] == "function", E1 = `[ 	
+\f\r]`, Q = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, r2 = /-->/g, o2 = />/g, j = RegExp(`>|${E1}(?:([^\\s"'>=/]+)(${E1}*=${E1}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), n2 = /'/g, a2 = /"/g, g2 = /^(?:script|style|textarea|title)$/i, W2 = (s) => (e, ...t) => ({ _$litType$: s, strings: e, values: t }), C = W2(1), P = Symbol.for("lit-noChange"), h = Symbol.for("lit-nothing"), l2 = /* @__PURE__ */ new WeakMap(), I = O.createTreeWalker(O, 129);
 function m2(s, e) {
   if (!O1(s) || !s.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return s2 !== void 0 ? s2.createHTML(e) : e;
@@ -279,9 +279,9 @@ const G2 = (s, e) => {
   let i, o = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", n = Q;
   for (let c = 0; c < t; c++) {
     const l = s[c];
-    let u, f, d = -1, $ = 0;
-    for (; $ < l.length && (n.lastIndex = $, f = n.exec(l), f !== null); ) $ = n.lastIndex, n === Q ? f[1] === "!--" ? n = r2 : f[1] !== void 0 ? n = o2 : f[2] !== void 0 ? (g2.test(f[2]) && (i = RegExp("</" + f[2], "g")), n = T) : f[3] !== void 0 && (n = T) : n === T ? f[0] === ">" ? (n = i ?? Q, d = -1) : f[1] === void 0 ? d = -2 : (d = n.lastIndex - f[2].length, u = f[1], n = f[3] === void 0 ? T : f[3] === '"' ? a2 : n2) : n === a2 || n === n2 ? n = T : n === r2 || n === o2 ? n = Q : (n = T, i = void 0);
-    const A = n === T && s[c + 1].startsWith("/>") ? " " : "";
+    let u, f, d = -1, Z = 0;
+    for (; Z < l.length && (n.lastIndex = Z, f = n.exec(l), f !== null); ) Z = n.lastIndex, n === Q ? f[1] === "!--" ? n = r2 : f[1] !== void 0 ? n = o2 : f[2] !== void 0 ? (g2.test(f[2]) && (i = RegExp("</" + f[2], "g")), n = j) : f[3] !== void 0 && (n = j) : n === j ? f[0] === ">" ? (n = i ?? Q, d = -1) : f[1] === void 0 ? d = -2 : (d = n.lastIndex - f[2].length, u = f[1], n = f[3] === void 0 ? j : f[3] === '"' ? a2 : n2) : n === a2 || n === n2 ? n = j : n === r2 || n === o2 ? n = Q : (n = j, i = void 0);
+    const A = n === j && s[c + 1].startsWith("/>") ? " " : "";
     o += n === Q ? l + F2 : d >= 0 ? (r.push(u), l.slice(0, d) + u2 + l.slice(d) + S + A) : l + S + (d === -2 ? c : A);
   }
   return [m2(s, o + (s[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), r];
@@ -292,22 +292,22 @@ class r1 {
     this.parts = [];
     let o = 0, n = 0;
     const c = e.length - 1, l = this.parts, [u, f] = G2(e, t);
-    if (this.el = r1.createElement(u, r), j.currentNode = this.el.content, t === 2 || t === 3) {
+    if (this.el = r1.createElement(u, r), I.currentNode = this.el.content, t === 2 || t === 3) {
       const d = this.el.content.firstChild;
       d.replaceWith(...d.childNodes);
     }
-    for (; (i = j.nextNode()) !== null && l.length < c; ) {
+    for (; (i = I.nextNode()) !== null && l.length < c; ) {
       if (i.nodeType === 1) {
         if (i.hasAttributes()) for (const d of i.getAttributeNames()) if (d.endsWith(u2)) {
-          const $ = f[n++], A = i.getAttribute(d).split(S), h1 = /([.?@])?(.*)/.exec($);
+          const Z = f[n++], A = i.getAttribute(d).split(S), h1 = /([.?@])?(.*)/.exec(Z);
           l.push({ type: 1, index: o, name: h1[2], strings: A, ctor: h1[1] === "." ? Y2 : h1[1] === "?" ? X2 : h1[1] === "@" ? K2 : w1 }), i.removeAttribute(d);
         } else d.startsWith(S) && (l.push({ type: 6, index: o }), i.removeAttribute(d));
         if (g2.test(i.tagName)) {
-          const d = i.textContent.split(S), $ = d.length - 1;
-          if ($ > 0) {
+          const d = i.textContent.split(S), Z = d.length - 1;
+          if (Z > 0) {
             i.textContent = g1 ? g1.emptyScript : "";
-            for (let A = 0; A < $; A++) i.append(d[A], i1()), j.nextNode(), l.push({ type: 2, index: ++o });
-            i.append(d[$], i1());
+            for (let A = 0; A < Z; A++) i.append(d[A], i1()), I.nextNode(), l.push({ type: 2, index: ++o });
+            i.append(d[Z], i1());
           }
         }
       } else if (i.nodeType === 8) if (i.data === f2) l.push({ type: 2, index: o });
@@ -319,12 +319,12 @@ class r1 {
     }
   }
   static createElement(e, t) {
-    const r = I.createElement("template");
+    const r = O.createElement("template");
     return r.innerHTML = e, r;
   }
 }
 function R(s, e, t = s, r) {
-  if (e === z) return e;
+  if (e === P) return e;
   let i = r !== void 0 ? t._$Co?.[r] : t._$Cl;
   const o = s1(e) ? void 0 : e._$litDirective$;
   return i?.constructor !== o && (i?._$AO?.(!1), o === void 0 ? i = void 0 : (i = new o(s), i._$AT(s, t, r)), r !== void 0 ? (t._$Co ??= [])[r] = i : t._$Cl = i), i !== void 0 && (e = R(s, i._$AS(s, e.values), i, r)), e;
@@ -340,17 +340,17 @@ class J2 {
     return this._$AM._$AU;
   }
   u(e) {
-    const { el: { content: t }, parts: r } = this._$AD, i = (e?.creationScope ?? I).importNode(t, !0);
-    j.currentNode = i;
-    let o = j.nextNode(), n = 0, c = 0, l = r[0];
+    const { el: { content: t }, parts: r } = this._$AD, i = (e?.creationScope ?? O).importNode(t, !0);
+    I.currentNode = i;
+    let o = I.nextNode(), n = 0, c = 0, l = r[0];
     for (; l !== void 0; ) {
       if (n === l.index) {
         let u;
         l.type === 2 ? u = new d1(o, o.nextSibling, this, e) : l.type === 1 ? u = new l.ctor(o, l.name, l.strings, this, e) : l.type === 6 && (u = new Q2(o, this, e)), this._$AV.push(u), l = r[++c];
       }
-      n !== l?.index && (o = j.nextNode(), n++);
+      n !== l?.index && (o = I.nextNode(), n++);
     }
-    return j.currentNode = I, i;
+    return I.currentNode = O, i;
   }
   p(e) {
     let t = 0;
@@ -376,7 +376,7 @@ class d1 {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = R(this, e, t), s1(e) ? e === h || e == null || e === "" ? (this._$AH !== h && this._$AR(), this._$AH = h) : e !== this._$AH && e !== z && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : q2(e) ? this.k(e) : this._(e);
+    e = R(this, e, t), s1(e) ? e === h || e == null || e === "" ? (this._$AH !== h && this._$AR(), this._$AH = h) : e !== this._$AH && e !== P && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : q2(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -385,7 +385,7 @@ class d1 {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== h && s1(this._$AH) ? this._$AA.nextSibling.data = e : this.T(I.createTextNode(e)), this._$AH = e;
+    this._$AH !== h && s1(this._$AH) ? this._$AA.nextSibling.data = e : this.T(O.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     const { values: t, _$litType$: r } = e, i = typeof r == "number" ? this._$AC(e) : (r.el === void 0 && (r.el = r1.createElement(m2(r.h, r.h[0]), this.options)), r);
@@ -429,11 +429,11 @@ class w1 {
   _$AI(e, t = this, r, i) {
     const o = this.strings;
     let n = !1;
-    if (o === void 0) e = R(this, e, t, 0), n = !s1(e) || e !== this._$AH && e !== z, n && (this._$AH = e);
+    if (o === void 0) e = R(this, e, t, 0), n = !s1(e) || e !== this._$AH && e !== P, n && (this._$AH = e);
     else {
       const c = e;
       let l, u;
-      for (e = o[0], l = 0; l < o.length - 1; l++) u = R(this, c[r + l], t, l), u === z && (u = this._$AH[l]), n ||= !s1(u) || u !== this._$AH[l], u === h ? e = h : e !== h && (e += (u ?? "") + o[l + 1]), this._$AH[l] = u;
+      for (e = o[0], l = 0; l < o.length - 1; l++) u = R(this, c[r + l], t, l), u === P && (u = this._$AH[l]), n ||= !s1(u) || u !== this._$AH[l], u === h ? e = h : e !== h && (e += (u ?? "") + o[l + 1]), this._$AH[l] = u;
     }
     n && !i && this.j(e);
   }
@@ -462,7 +462,7 @@ class K2 extends w1 {
     super(e, t, r, i, o), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = R(this, e, t, 0) ?? h) === z) return;
+    if ((e = R(this, e, t, 0) ?? h) === P) return;
     const r = this._$AH, i = e === h && r !== h || e.capture !== r.capture || e.once !== r.once || e.passive !== r.passive, o = e !== h && (r === h || i);
     i && this.element.removeEventListener(this.name, this, r), o && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
@@ -498,7 +498,7 @@ const t9 = (s, e, t) => {
  * SPDX-License-Identifier: BSD-3-Clause
  */
 const N1 = globalThis;
-let p = class extends U {
+let p = class extends D {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -517,7 +517,7 @@ let p = class extends U {
     super.disconnectedCallback(), this._$Do?.setConnected(!1);
   }
   render() {
-    return z;
+    return P;
   }
 };
 p._$litElement$ = !0, p.finalized = !0, N1.litElementHydrateSupport?.({ LitElement: p });
@@ -589,7 +589,7 @@ let m1 = class extends H2 {
   }
   render(e) {
     if (e === h || e == null) return this._t = void 0, this.it = e;
-    if (e === z) return e;
+    if (e === P) return e;
     if (typeof e != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
     if (e === this.it) return this._t;
     this.it = e;
@@ -1055,18 +1055,18 @@ var w, V2, v2, z1;
 const R1 = class R1 extends p {
   constructor() {
     super(...arguments);
-    L(this, w);
+    V(this, w);
     this.src = "", this.alt = "", this.initials = "", this.size = "medium", this.color = "", this.inactive = !1;
   }
   render() {
-    const t = Z(this, w, z1);
+    const t = L(this, w, z1);
     return C`
-      <div class="${Z(this, w, V2)}">
+      <div class="${L(this, w, V2)}">
         ${this.src ? C`
               <img
                 src="${this.src}"
                 alt="${this.alt}"
-                @error="${V(this, w, v2)}"
+                @error="${v(this, w, v2)}"
                 class="image"
               />
             ` : t ? C`<div class="initials">${t}</div>` : C`<div class="icon"><mi-icon type="person"></mi-icon></div>`}
@@ -1076,34 +1076,34 @@ const R1 = class R1 extends p {
 };
 w = new WeakSet(), V2 = function() {
   const t = ["base", `size-${V9(this.size)}`];
-  return !this.src && Z(this, w, z1) && this.color && v9(this.color) && t.push(`color-${this.color}`), this.inactive && t.push("inactive"), t.filter(Boolean).join(" ");
+  return !this.src && L(this, w, z1) && this.color && v9(this.color) && t.push(`color-${this.color}`), this.inactive && t.push("inactive"), t.filter(Boolean).join(" ");
 }, v2 = function() {
   this.src = "";
 }, z1 = function() {
   return (this.initials || this.textContent || "").trim().slice(0, 2).toUpperCase();
 }, R1.styles = m(m9);
-let y = R1;
+let x = R1;
 X([
   a({ type: String })
-], y.prototype, "src");
+], x.prototype, "src");
 X([
   a({ type: String })
-], y.prototype, "alt");
+], x.prototype, "alt");
 X([
   a({ type: String })
-], y.prototype, "initials");
+], x.prototype, "initials");
 X([
   a({ type: String })
-], y.prototype, "size");
+], x.prototype, "size");
 X([
   a({ type: String })
-], y.prototype, "color");
+], x.prototype, "color");
 X([
   a({ type: Boolean })
-], y.prototype, "inactive");
-class y9 extends y {
+], x.prototype, "inactive");
+class y9 extends x {
 }
-customElements.get("mi-avatar") || customElements.define("mi-avatar", y);
+customElements.get("mi-avatar") || customElements.define("mi-avatar", x);
 customElements.get("sp-avatar") || customElements.define("sp-avatar", y9);
 const x9 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 26px;--size-4x-large: 40px;--padding-medium: 1.25px;--padding-large: 1.5px;--padding-x-large: 2px 2px 1.5px 1.5px;--padding-2x-large: 2px;--padding-3x-large: 3px;--padding-4x-large: 4px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.base{display:flex}.base:has(.size-medium){padding:var(--padding-medium)}.base:has(.size-large){padding:var(--padding-large)}.base:has(.size-x-large){padding:var(--padding-x-large)}.base:has(.size-2x-large){padding:var(--padding-2x-large)}.base:has(.size-3x-large){padding:var(--padding-3x-large)}.base:has(.size-4x-large){padding:var(--padding-4x-large)}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.size-4x-large{--size: var(--size-4x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
 var M9 = Object.defineProperty, y2 = (s, e, t, r) => {
@@ -1151,7 +1151,7 @@ class $9 extends F {
 customElements.get("mi-loading") || customElements.define("mi-loading", F);
 customElements.get("sp-loading") || customElements.define("sp-loading", $9);
 const Z9 = ":host{display:inline-block}.normal.primary{--border-color: transparent;--background-color: rgb(0 0 0 / 84%);--background-color-hover: rgb(0 0 0 / 90%);--background-color-active: #000;--color: #FFF}.normal.secondary{--border-color: rgb(0 0 0 / 84%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.tertiary{--border-color: rgb(0 0 0 / 29%);--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.normal.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: rgb(0 0 0 / 4%);--background-color-active: rgb(0 0 0 / 7%);--color: rgb(0 0 0 / 84%)}.danger.primary{--border-color: transparent;--background-color: #DB351F;--background-color-hover: #C92812;--background-color-active: #B02412;--color: #fff}.danger.secondary,.danger.tertiary{--border-color: #DB351F;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.danger.ghost{--border-color: transparent;--background-color: transparent;--background-color-hover: #FFF4F2;--background-color-active: #FFEDEB;--color: #C92812}.primary{--border-color-disabled: transparent;--background-color-disabled: rgb(0 0 0 / 5%);--color-disabled: rgb(0 0 0 / 35%)}:is(.secondary,.tertiary){--border-color-disabled: rgb(0 0 0 / 10%);--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.ghost{--border-color-disabled: transparent;--background-color-disabled: transparent;--color-disabled: rgb(0 0 0 / 35%)}.base{display:inline-flex;justify-content:center;align-items:center;gap:4px;width:100%;flex-basis:100%;padding-block:2px;border:1px solid var(--border-color);border-radius:9999px;background-color:var(--background-color);color:var(--color);position:relative;cursor:pointer}.base:focus-visible{box-shadow:0 0 0 2px #fff,0 0 0 4px #191919}.base:hover{background-color:var(--background-color-hover)}.base:active{background-color:var(--background-color-active)}.base:disabled{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled);color:var(--color-disabled);cursor:not-allowed}.base:disabled:hover{border-color:var(--border-color-disabled);background-color:var(--background-color-disabled)}.base:disabled.loading{color:#000000d6}.medium{min-height:32px;padding-inline:12px;font-size:12px}.large{min-height:40px;padding-inline:16px;font-size:14px}.x-large{min-height:48px;padding-inline:16px;font-size:16px}.icon{fill:currentcolor}.text{line-height:1.5;letter-spacing:.02em}.text:is(.primary *,.secondary *){font-weight:var(--font-weight-bold)}";
-var k9 = Object.defineProperty, M = (s, e, t, r) => {
+var k9 = Object.defineProperty, $ = (s, e, t, r) => {
   for (var i = void 0, o = s.length - 1, n; o >= 0; o--)
     (n = s[o]) && (i = n(e, t, i) || i);
   return i && k9(e, t, i), i;
@@ -1166,13 +1166,13 @@ function h2(s) {
 function w9(s) {
   return L2(s) ? !0 : (console.warn(`${s}は無効なicon-type属性です。`), !1);
 }
-var D, H1, x2;
+var z, H1, x2;
 const L1 = class L1 extends p {
   constructor() {
     super();
-    L(this, H1);
-    L(this, D);
-    this.loading = !1, this.disabled = !1, this.danger = !1, this.variants = null, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", p1(this, D, this.attachInternals());
+    V(this, H1);
+    V(this, z);
+    this.loading = !1, this.disabled = !1, this.danger = !1, this.variants = null, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", p1(this, z, this.attachInternals());
   }
   get buttonClasses() {
     const t = {
@@ -1215,7 +1215,7 @@ const L1 = class L1 extends p {
         name="${this.name}"
         value="${this.value}"
         type="${this.type}"
-        @click="${V(this, H1, x2)}"
+        @click="${v(this, H1, x2)}"
       >
         ${this.loading ? this.renderLoading() : h}
         ${this.showIcon ? this.renderIcon() : h}
@@ -1224,38 +1224,43 @@ const L1 = class L1 extends p {
     `;
   }
 };
-D = new WeakMap(), H1 = new WeakSet(), x2 = function(t) {
-  t.preventDefault(), t.stopPropagation(), this.dispatchEvent(new MouseEvent("click", t)) && Z(this, D).form && Z(this, D).form.requestSubmit(this);
+z = new WeakMap(), H1 = new WeakSet(), x2 = function(t) {
+  if (t.preventDefault(), t.stopPropagation(), this.dispatchEvent(new MouseEvent("click", t)) && L(this, z).form)
+    if (this.name) {
+      const i = document.createElement("input");
+      i.type = "hidden", i.name = this.name, i.value = this.value, L(this, z).form.appendChild(i), L(this, z).form.requestSubmit(), i.remove();
+    } else
+      L(this, z).form.requestSubmit();
 }, L1.styles = m(g(Z9)), L1.formAssociated = !0;
 let b = L1;
-M([
+$([
   a({ type: Boolean, reflect: !0 })
 ], b.prototype, "loading");
-M([
+$([
   a({ type: Boolean, reflect: !0 })
 ], b.prototype, "disabled");
-M([
+$([
   a({ type: Boolean, reflect: !0 })
 ], b.prototype, "danger");
-M([
+$([
   a({ type: String })
 ], b.prototype, "variants");
-M([
+$([
   a({ type: String })
 ], b.prototype, "variant");
-M([
+$([
   a({ type: String })
 ], b.prototype, "size");
-M([
+$([
   a({ type: String })
 ], b.prototype, "name");
-M([
+$([
   a({ type: String })
 ], b.prototype, "value");
-M([
+$([
   a({ type: String })
 ], b.prototype, "type");
-M([
+$([
   a({ type: String, attribute: "icon-type" })
 ], b.prototype, "iconType");
 class _9 extends b {
@@ -1381,28 +1386,28 @@ v1.styles = m(
   g(M2),
   g(z9)
 ), v1.formAssociated = !0;
-let x = v1;
+let M = v1;
 K([
   a({ type: String, reflect: !0 })
-], x.prototype, "value");
+], M.prototype, "value");
 K([
   a({ type: String, reflect: !0 })
-], x.prototype, "name");
+], M.prototype, "name");
 K([
   a({ type: Boolean, reflect: !0 })
-], x.prototype, "checked");
+], M.prototype, "checked");
 K([
   a({ type: Boolean, reflect: !0 })
-], x.prototype, "indeterminate");
+], M.prototype, "indeterminate");
 K([
   a({ type: Boolean, reflect: !0 })
-], x.prototype, "disabled");
+], M.prototype, "disabled");
 K([
   a({ type: String, reflect: !0 })
-], x.prototype, "text");
-class T9 extends x {
+], M.prototype, "text");
+class T9 extends M {
 }
-customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", x);
+customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", M);
 customElements.get("sp-checkbox-text") || customElements.define("sp-checkbox-text", T9);
 const j9 = t1`
   :host {
@@ -1531,7 +1536,7 @@ const a1 = U1(class extends H2 {
       const i = !!e[r];
       i === this.st.has(r) || this.nt?.has(r) || (i ? (t.add(r), this.st.add(r)) : (t.remove(r), this.st.delete(r)));
     }
-    return z;
+    return P;
   }
 }), U9 = ":host{display:flex;flex-direction:column;gap:4px}:host .label{font-weight:var(--font-weight-bold);font-size:14px;color:#000000d6}:host .label.none{display:none}:host .support{font-weight:var(--font-weight-normal);font-size:12px;color:#0000008a}:host .support.none{display:none}";
 var D9 = Object.defineProperty, $2 = (s, e, t, r) => {
@@ -1542,7 +1547,7 @@ var D9 = Object.defineProperty, $2 = (s, e, t, r) => {
 const W1 = class W1 extends p {
   constructor() {
     super(...arguments);
-    L(this, G);
+    V(this, G);
     this.text = "", this.supportText = "";
   }
   /**
@@ -1553,8 +1558,8 @@ const W1 = class W1 extends p {
   }
   render() {
     return C`
-      <span class=${V(this, G, Z2).call(this)}>${this.text}</span>
-      <span class=${V(this, G, k2).call(this)}>${this.supportText}</span>
+      <span class=${v(this, G, Z2).call(this)}>${this.text}</span>
+      <span class=${v(this, G, k2).call(this)}>${this.supportText}</span>
     `;
   }
 };
@@ -1641,11 +1646,11 @@ var G9 = Object.defineProperty, w2 = (s, e, t, r) => {
 const G1 = class G1 extends p {
   constructor() {
     super(...arguments);
-    L(this, y1);
+    V(this, y1);
     this.language = "", this.brand = "";
   }
   render() {
-    const t = V(this, y1, _2).call(this);
+    const t = v(this, y1, _2).call(this);
     return t ? C`${o9(t)}` : C``;
   }
 };
@@ -1695,19 +1700,19 @@ const Y1 = class Y1 extends p {
   }
 };
 Y1.styles = m(g(K9));
-let O = Y1;
+let N = Y1;
 D1([
   a({ type: String, reflect: !0 })
-], O.prototype, "text");
+], N.prototype, "text");
 D1([
   a({ type: Boolean, reflect: !0 })
-], O.prototype, "selected");
+], N.prototype, "selected");
 D1([
   a({ type: Boolean, reflect: !0 })
-], O.prototype, "disabled");
-class e0 extends O {
+], N.prototype, "disabled");
+class e0 extends N {
 }
-customElements.get("mi-control-menu-item") || customElements.define("mi-control-menu-item", O);
+customElements.get("mi-control-menu-item") || customElements.define("mi-control-menu-item", N);
 customElements.get("sp-control-menu-item") || customElements.define("sp-control-menu-item", e0);
 const t0 = t1`
   :host {
@@ -1849,12 +1854,12 @@ var i0 = Object.defineProperty, _1 = (s, e, t, r) => {
 const x1 = class x1 extends p {
   constructor() {
     super();
-    L(this, B);
-    L(this, c1);
+    V(this, B);
+    V(this, c1);
     this.value = "", this.name = "", this.checked = !1, this.disabled = !1, p1(this, B, `radio-${Math.random().toString(36).slice(2)}`), p1(this, c1, this.attachInternals());
   }
   updated(t) {
-    super.updated(t), t.has("checked") && Z(this, c1).setFormValue(this.checked ? this.value : null);
+    super.updated(t), t.has("checked") && L(this, c1).setFormValue(this.checked ? this.value : null);
   }
   formResetCallback() {
     this.checked = this.hasAttribute("checked");
@@ -1865,14 +1870,14 @@ const x1 = class x1 extends p {
         <input
           type="radio"
           class="input"
-          aria-labelledby="${Z(this, B)}"
+          aria-labelledby="${L(this, B)}"
           .value=${this.value}
           .name=${this.name}
           .checked=${this.checked}
           .disabled=${this.disabled}
         />
         <span class="radio" aria-hidden="true"></span>
-        <span class="text" id="${Z(this, B)}" aria-hidden="true">
+        <span class="text" id="${L(this, B)}" aria-hidden="true">
           <slot></slot>
         </span>
       </label>
@@ -1880,22 +1885,22 @@ const x1 = class x1 extends p {
   }
 };
 B = new WeakMap(), c1 = new WeakMap(), x1.styles = m(t0), x1.formAssociated = !0;
-let P = x1;
+let T = x1;
 _1([
   a({ type: String, reflect: !0 })
-], P.prototype, "value");
+], T.prototype, "value");
 _1([
   a({ type: String, reflect: !0 })
-], P.prototype, "name");
+], T.prototype, "name");
 _1([
   a({ type: Boolean, reflect: !0 })
-], P.prototype, "checked");
+], T.prototype, "checked");
 _1([
   a({ type: Boolean, reflect: !0 })
-], P.prototype, "disabled");
-class s0 extends P {
+], T.prototype, "disabled");
+class s0 extends T {
 }
-customElements.get("mi-radio-button-text") || customElements.define("mi-radio-button-text", P);
+customElements.get("mi-radio-button-text") || customElements.define("mi-radio-button-text", T);
 customElements.get("sp-radio-button-text") || customElements.define("sp-radio-button-text", s0);
 const r0 = ":host .container{display:flex;gap:2px;align-items:center;padding-top:8px;color:#c92812}:host .container>.text{font-weight:var(--font-weight-normal);font-size:14px}:host .container .icon{width:21px;height:21px}:host .container.none{display:none}";
 var o0 = Object.defineProperty, n0 = (s, e, t, r) => {
@@ -1906,12 +1911,12 @@ var o0 = Object.defineProperty, n0 = (s, e, t, r) => {
 const X1 = class X1 extends p {
   constructor() {
     super(...arguments);
-    L(this, M1);
+    V(this, M1);
     this.text = "";
   }
   render() {
     return C`
-      <div class="${V(this, M1, A2).call(this)}" role="error">
+      <div class="${v(this, M1, A2).call(this)}" role="error">
         <mi-icon class="icon" type="error-fill"></mi-icon>
         <span class="text">${this.text}</span>
       </div>
@@ -1933,7 +1938,7 @@ class a0 extends l1 {
 customElements.get("mi-text-field-error-text") || customElements.define("mi-text-field-error-text", l1);
 customElements.get("sp-text-field-error-text") || customElements.define("sp-text-field-error-text", a0);
 const l0 = ".input{width:100%;box-sizing:border-box;height:48px;background:#fff;border:1px solid #b6b6b6;border-radius:6px;padding:4px 12px;font-weight:var(--font-weight-normal);font-size:16px;line-height:24}.input::placeholder{color:#0000008a}.input[disabled]{color:#000000ad;background-color:#0000000d;border-color:#e5e5e5}.input[disabled]::placeholder{color:#00000059}.input[disabled]:hover{border-color:#e5e5e5}.input:hover{border-color:#0000008f}.input:focus-visible{outline:canvastext solid 3px;box-shadow:0 0 0 2px #fff,0 0 0 4px #282828;outline-offset:1px}.input.error{border-color:#db351f}";
-var c0 = Object.defineProperty, N = (s, e, t, r) => {
+var c0 = Object.defineProperty, U = (s, e, t, r) => {
   for (var i = void 0, o = s.length - 1, n; o >= 0; o--)
     (n = s[o]) && (i = n(e, t, i) || i);
   return i && c0(e, t, i), i;
@@ -1941,7 +1946,7 @@ var c0 = Object.defineProperty, N = (s, e, t, r) => {
 const $1 = class $1 extends p {
   constructor() {
     super();
-    L(this, J);
+    V(this, J);
     this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.internals = this.attachInternals();
   }
   updated(t) {
@@ -1950,7 +1955,7 @@ const $1 = class $1 extends p {
   render() {
     return C`
       <input
-        class="${V(this, J, E2).call(this)}"
+        class="${v(this, J, E2).call(this)}"
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
@@ -1958,7 +1963,7 @@ const $1 = class $1 extends p {
         name="${this.name}"
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
-        @input="${V(this, J, S2)}"
+        @input="${v(this, J, S2)}"
       />
       <mi-text-field-error-text
         text="${this.disabled ? "" : this.error}"
@@ -1980,31 +1985,31 @@ J = new WeakSet(), E2 = function() {
     })
   );
 }, $1.styles = m(g(l0)), $1.formAssociated = !0;
-let v = $1;
-N([
+let y = $1;
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "error");
-N([
+], y.prototype, "error");
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "placeholder");
-N([
+], y.prototype, "placeholder");
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "autocomplete");
-N([
+], y.prototype, "autocomplete");
+U([
   a({ type: Boolean, reflect: !0 })
-], v.prototype, "disabled");
-N([
+], y.prototype, "disabled");
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "name");
-N([
+], y.prototype, "name");
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "value");
-N([
+], y.prototype, "value");
+U([
   a({ type: String, reflect: !0 })
-], v.prototype, "type");
-class d0 extends v {
+], y.prototype, "type");
+class d0 extends y {
 }
-customElements.get("mi-text-field") || customElements.define("mi-text-field", v);
+customElements.get("mi-text-field") || customElements.define("mi-text-field", y);
 customElements.get("sp-text-field") || customElements.define("sp-text-field", d0);
 const C0 = ":host .label{margin-bottom:8px;text-align:left}:host .label.none{display:none}";
 var h0 = Object.defineProperty, _ = (s, e, t, r) => {
@@ -2015,7 +2020,7 @@ var h0 = Object.defineProperty, _ = (s, e, t, r) => {
 const Z1 = class Z1 extends p {
   constructor() {
     super();
-    L(this, Y);
+    V(this, Y);
     this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.internals = this.attachInternals();
   }
   updated(t) {
@@ -2025,7 +2030,7 @@ const Z1 = class Z1 extends p {
     return C`
       <fieldset>
         <mi-label-unit
-          class="${V(this, Y, z2).call(this)}"
+          class="${v(this, Y, z2).call(this)}"
           text="${this.text}"
           support-text="${this.supportText}"
         ></mi-label-unit>
@@ -2037,7 +2042,7 @@ const Z1 = class Z1 extends p {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          @input="${V(this, Y, P2)}"
+          @input="${v(this, Y, P2)}"
         ></mi-text-field>
       </fieldset>
     `;
@@ -2085,18 +2090,18 @@ class p0 extends H {
 customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", H);
 customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", p0);
 export {
-  y as MiAvatar,
+  x as MiAvatar,
   b as MiButton,
   k as MiCheckbox,
-  x as MiCheckboxText,
+  M as MiCheckboxText,
   b1 as MiControlMenu,
-  O as MiControlMenuItem,
+  N as MiControlMenuItem,
   n1 as MiFloatingButton,
   o1 as MiIcon,
   q as MiLabelUnit,
   F as MiLoading,
   W as MiLogo,
-  P as MiRadioButtonText,
+  T as MiRadioButtonText,
   H as MiTextFieldUnit,
   y9 as SpAvatar,
   _9 as SpButton,
