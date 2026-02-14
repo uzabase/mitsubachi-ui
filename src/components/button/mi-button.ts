@@ -76,7 +76,7 @@ export class MiButton extends LitElement {
   value = "";
 
   @property({ type: String })
-  type = "button";
+  type: "button" | "submit" | "reset" = "button";
 
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
@@ -151,12 +151,13 @@ export class MiButton extends LitElement {
   }
 
   #handleClick(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
     const allowed = this.dispatchEvent(new MouseEvent("click", event));
-    if (allowed && this.#internals.form) {
+    if (!allowed || !this.#internals.form) return;
+
+    if (this.type === "submit") {
+      event.preventDefault();
+      event.stopPropagation();
       if (this.name) {
-        // Include the button's name and value in the submitted form data.
         const hidden = document.createElement("input");
         hidden.type = "hidden";
         hidden.name = this.name;
@@ -167,6 +168,8 @@ export class MiButton extends LitElement {
       } else {
         this.#internals.form.requestSubmit();
       }
+    } else if (this.type === "reset") {
+      this.#internals.form.reset();
     }
   }
 }
