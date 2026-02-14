@@ -497,7 +497,7 @@ describe("mi-button", () => {
 
     test("type=resetであればinput.valueが初期値に戻る", async () => {
       document.body.innerHTML = `<form>
-          <input name="surname" value="">
+          <input name="surname" value="initial">
           <mi-button type="reset">Reset</mi-button>
         </form>
       `;
@@ -506,7 +506,7 @@ describe("mi-button", () => {
       const input = form.querySelector("input")!;
       input.value = "Smith";
       getButton()!.click();
-      expect(input.value).toBe("");
+      expect(input.value).toBe("initial");
     });
 
     test("type=submitであり、mi-butonにnameが定義されていたら、formDataにnameとそのvalueが含まれる", async () => {
