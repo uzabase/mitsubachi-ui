@@ -155,7 +155,18 @@ export class MiButton extends LitElement {
     event.stopPropagation();
     const allowed = this.dispatchEvent(new MouseEvent("click", event));
     if (allowed && this.#internals.form) {
-      this.#internals.form.requestSubmit(this);
+      if (this.name) {
+        // Add name and value attributes of <mi-button> to form data.
+        const hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = this.name;
+        hidden.value = this.value;
+        this.#internals.form.appendChild(hidden);
+        this.#internals.form.requestSubmit();
+        hidden.remove();
+      } else {
+        this.#internals.form.requestSubmit();
+      }
     }
   }
 }
