@@ -2074,6 +2074,178 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/loading/loading.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/mi-loading.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "size",
+          "type": {
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
+          },
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiLoading",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ローディングスピナーです。",
+          "tagName": "mi-loading",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLoading",
+          "superclass": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          },
+          "deprecated": "代わりに MiLoading を使用してください",
+          "tagName": "sp-loading",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "size",
+          "declaration": {
+            "name": "size",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiLoading",
+          "declaration": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLoading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-loading",
+          "declaration": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-loading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/label-unit/index.ts",
       "declarations": [
         {
@@ -2303,178 +2475,6 @@
       "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/loading.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/mi-loading.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "size",
-          "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
-          },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiLoading",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ローディングスピナーです。",
-          "tagName": "mi-loading",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLoading",
-          "superclass": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          },
-          "deprecated": "代わりに MiLoading を使用してください",
-          "tagName": "sp-loading",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\"",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "size",
-          "declaration": {
-            "name": "size",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiLoading",
-          "declaration": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpLoading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-loading",
-          "declaration": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-loading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        }
-      ]
     },
     {
       "kind": "javascript-module",
@@ -3339,382 +3339,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiTextField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\""
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\""
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "テキストフィールドです。",
-          "tagName": "mi-text-field",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpTextField",
-          "superclass": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          },
-          "deprecated": "代わりに MiTextField を使用してください",
-          "tagName": "sp-text-field",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiTextField",
-          "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpTextField",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-text-field",
-          "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-text-field",
-          "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/index.ts",
       "declarations": [
         {
@@ -4146,6 +3770,382 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキストフィールドです。",
+          "tagName": "mi-text-field",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "superclass": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          },
+          "deprecated": "代わりに MiTextField を使用してください",
+          "tagName": "sp-text-field",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTextField",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-text-field",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-text-field",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },
