@@ -21,7 +21,7 @@ export declare class MiButton extends LitElement {
     size: Size;
     name: string;
     value: string;
-    type: string;
+    type: "button" | "submit" | "reset";
     iconType: string;
     constructor();
     private get buttonClasses();
