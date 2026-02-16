@@ -38,6 +38,10 @@ const meta = {
     onclick: {
       action: "onclick",
     },
+    type: {
+      control: { type: "select" },
+      options: ["button", "submit", "reset"],
+    },
     name: { type: "string" },
     value: { type: "string" },
     iconType: {
@@ -57,6 +61,7 @@ const meta = {
     name: undefined,
     value: undefined,
     iconType: undefined,
+    type: "button",
   },
   render: (args) => html`
     <mi-button
@@ -70,6 +75,7 @@ const meta = {
       name=${args.name || nothing}
       value=${args.value || nothing}
       icon-type=${args.iconType || nothing}
+      type=${args.type || nothing}
     >
       ${args.slot}
     </mi-button>
