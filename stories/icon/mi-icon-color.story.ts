@@ -8,17 +8,9 @@ import {
   type MiIconColor,
 } from "../../src/components/icon-color";
 
-// 型安全のためのヘルパー関数
-function getFirstIcon(): string {
-  if (iconColorTypes.length > 0) {
-    return iconColorTypes[0];
-  }
-  return "";
-}
-
 const meta = {
   args: {
-    type: "",
+    type: "information",
   },
   argTypes: {
     type: {
@@ -39,10 +31,9 @@ export const Default: Story = {
         カラーアイコンが登録されていません。fetch-icon-colorsスクリプトを実行してください。
       </div>`;
     }
-    const displayType = type || getFirstIcon();
     return html`<mi-icon-color
       style="display: inline-block; width: 24px; height: 24px;"
-      type=${displayType}
+      type=${type}
     ></mi-icon-color>`;
   },
 };
