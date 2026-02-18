@@ -4,6 +4,7 @@ export default css`
   .base {
     display: flex;
     align-items: flex-start;
+    line-height: 1.5;
     gap: 8px;
     padding: 16px;
     border-radius: 6px;
@@ -28,6 +29,7 @@ export default css`
 
   .icon {
     display: inline-block;
+    min-width:20px;
     width: 20px;
     height: 20px;
   }
