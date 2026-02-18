@@ -24,7 +24,7 @@ export class MiIconColor extends LitElement {
   static styles = makeStyles(unsafeCSS(iconColorStyle));
 
   @property({ type: String, reflect: true })
-  type = "";
+  type = "information";
 
   render() {
     if (isIconColorType(this.type)) {
