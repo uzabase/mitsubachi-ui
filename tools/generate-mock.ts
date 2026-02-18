@@ -43,7 +43,9 @@ function main() {
 
   writeFileSync(resolve(distDir, "mock.js"), mockCode);
 
-  console.log(`Generated dist/mock.js with ${tagNames.length} custom elements:`);
+  console.log(
+    `Generated dist/mock.js with ${tagNames.length} custom elements:`,
+  );
   console.log(tagNames.join(", "));
 }
 
