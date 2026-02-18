@@ -6,7 +6,7 @@ import { property } from "lit/decorators.js";
 import { makeStyles } from "../styles";
 import style from "./inline-notification.styles";
 
-type Type = "error" | "information" | "success" | "warning";
+type Type = typeof types[number];
 
 export const types = [
   "information",
