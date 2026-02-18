@@ -6,14 +6,9 @@ import { property } from "lit/decorators.js";
 import { makeStyles } from "../styles";
 import style from "./inline-notification.styles";
 
-type Type = typeof types[number];
+type Type = (typeof types)[number];
 
-export const types = [
-  "information",
-  "success",
-  "warning",
-  "error",
-] as const;
+export const types = ["information", "success", "warning", "error"] as const;
 
 export class MiInlineNotification extends LitElement {
   @property({ type: String, reflect: true })

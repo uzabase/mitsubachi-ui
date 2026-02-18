@@ -51,12 +51,11 @@ export const All: Story = {
     return html`
       <div style="display: flex; flex-direction: column; gap: 16px;">
         ${types.map(
-          (type) =>
-            html`
-              <mi-inline-notification type=${type}>
-                ${type}
-              </mi-inline-notification>
-            `,
+          (type) => html`
+            <mi-inline-notification type=${type}>
+              ${type}
+            </mi-inline-notification>
+          `,
         )}
       </div>
     `;
