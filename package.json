@@ -5,15 +5,17 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./mock": "./dist/mock.js",
     "./custom-elements.json": "./dist/custom-elements.json"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "rimraf dist && run-s build:*",
+    "build": "run-s build:vite build:manifest build:mock",
     "build:vite": "vite build",
-    "build:custom-elements-manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
+    "build:manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
+    "build:mock": "tsx tools/generate-mock.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "run-s \"format:* !format:prettier:check\"",
@@ -58,7 +60,6 @@
     "playwright": "^1.57.0",
     "prettier": "3.7.4",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "rimraf": "^6.1.2",
     "shadow-dom-testing-library": "^1.13.1",
     "storybook": "^10.1.11",
     "stylelint": "^16.26.1",
