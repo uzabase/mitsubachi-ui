@@ -2160,7 +2160,7 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"\""
+              "default": "\"information\""
             },
             {
               "kind": "method",

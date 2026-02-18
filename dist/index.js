@@ -1495,7 +1495,7 @@ function J9(s) {
 }
 const G1 = class G1 extends p {
   constructor() {
-    super(...arguments), this.type = "";
+    super(...arguments), this.type = "information";
   }
   render() {
     return J9(this.type) ? d`<svg
