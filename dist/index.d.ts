@@ -5,6 +5,7 @@ export { MiCheckboxText, SpCheckboxText, } from './components/checkbox/mi-checkb
 export { MiFloatingButton, SpFloatingButton, } from './components/floating-button/mi-floating-button';
 export { MiIcon, SpIcon } from './components/icon';
 export { MiIconColor } from './components/icon-color';
+export { MiInlineNotification } from './components/inline-notification/mi-inline-notification';
 export { MiLabelUnit, SpLabelUnit } from './components/label-unit';
 export { MiLoading, SpLoading } from './components/loading/mi-loading';
 export { MiLogo, SpLogo } from './components/logo';
