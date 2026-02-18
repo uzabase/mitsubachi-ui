@@ -27,21 +27,38 @@ type Story = StoryObj<MiInlineNotification>;
 
 export const Default: Story = {
   render: ({ type }) => {
-    return html`<mi-inline-notification type=${type}>
-      Hello, world!
-    </mi-inline-notification>`;
+    return html`
+      <mi-inline-notification type=${type}>
+        Hello, world!
+      </mi-inline-notification>
+    `;
+  },
+};
+
+export const MultiLineChildren: Story = {
+  render: ({ type }) => {
+    return html`
+      <mi-inline-notification type=${type}>
+        <div>Hello, world!</div>
+        <div>Hello, world!</div>
+      </mi-inline-notification>
+    `;
   },
 };
 
 export const All: Story = {
   render: () => {
-    return html`<div style="display: flex; flex-direction: column; gap: 16px;">
-      ${types.map(
-        (type) =>
-          html`<mi-inline-notification type=${type}>
-            ${type}
-          </mi-inline-notification>`,
-      )}
-    </div>`;
+    return html`
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        ${types.map(
+          (type) =>
+            html`
+              <mi-inline-notification type=${type}>
+                ${type}
+              </mi-inline-notification>
+            `,
+        )}
+      </div>
+    `;
   },
 };

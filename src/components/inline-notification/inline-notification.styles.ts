@@ -3,10 +3,11 @@ import { css } from "lit";
 export default css`
   .base {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     padding: 16px;
     border-radius: 6px;
+    font-size: 14px;
   }
 
   .base[data-type="error"] {

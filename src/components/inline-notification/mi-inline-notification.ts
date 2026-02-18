@@ -1,6 +1,6 @@
 import "../icon-color";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
@@ -8,7 +8,7 @@ import style from "./inline-notification.styles";
 
 type Type = "error" | "information" | "success" | "warning";
 
-export const types: Type[] = [
+export const types = [
   "information",
   "success",
   "warning",
@@ -19,7 +19,7 @@ export class MiInlineNotification extends LitElement {
   @property({ type: String, reflect: true })
   type: Type = "information";
 
-  static styles = makeStyles(unsafeCSS(style));
+  static styles = makeStyles(style);
 
   render() {
     const type = types.includes(this.type) ? this.type : "information";
