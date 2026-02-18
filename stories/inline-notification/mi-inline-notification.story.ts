@@ -3,8 +3,10 @@ import "../../src/components/inline-notification/mi-inline-notification";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { type MiInlineNotification,types } from "../../src/components/inline-notification/mi-inline-notification";
-
+import {
+  type MiInlineNotification,
+  types,
+} from "../../src/components/inline-notification/mi-inline-notification";
 
 const meta: Meta<MiInlineNotification> = {
   component: "mi-inline-notification",
@@ -14,16 +16,11 @@ const meta: Meta<MiInlineNotification> = {
   argTypes: {
     type: {
       control: { type: "select" },
-      options: [
-        "information",
-        "success",
-        "warning",
-        "error",
-      ],
+      options: ["information", "success", "warning", "error"],
     },
   },
   tags: [],
-}
+};
 export default meta;
 
 type Story = StoryObj<MiInlineNotification>;
@@ -31,7 +28,7 @@ type Story = StoryObj<MiInlineNotification>;
 export const Default: Story = {
   render: ({ type }) => {
     return html`<mi-inline-notification type=${type}>
-    こんちゃ
+      こんちゃ
     </mi-inline-notification>`;
   },
 };
@@ -39,9 +36,12 @@ export const Default: Story = {
 export const All: Story = {
   render: () => {
     return html`<div style="display: flex; flex-direction: column; gap: 16px;">
-      ${types.map((type) => html`<mi-inline-notification type=${type}>
-        ${type}
-      </mi-inline-notification>`)}
+      ${types.map(
+        (type) =>
+          html`<mi-inline-notification type=${type}>
+            ${type}
+          </mi-inline-notification>`,
+      )}
     </div>`;
   },
 };

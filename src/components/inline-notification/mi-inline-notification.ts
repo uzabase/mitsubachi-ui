@@ -8,7 +8,12 @@ import style from "./inline-notification.styles";
 
 type Type = "error" | "information" | "success" | "warning";
 
-export const types: Type[] = ["information", "success", "warning", "error"] as const;
+export const types: Type[] = [
+  "information",
+  "success",
+  "warning",
+  "error",
+] as const;
 
 export class MiInlineNotification extends LitElement {
   @property({ type: String, reflect: true })

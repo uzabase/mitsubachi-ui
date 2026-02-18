@@ -10,19 +10,19 @@ export default css`
   }
 
   .base[data-type="error"] {
-    background-color: #FFEDEB;
+    background-color: #ffedeb;
   }
 
   .base[data-type="information"] {
-    background-color: #EDF1FF;
+    background-color: #edf1ff;
   }
 
   .base[data-type="success"] {
-    background-color: #DFF5EA;
+    background-color: #dff5ea;
   }
 
   .base[data-type="warning"] {
-    background-color: #FCF6D4;
+    background-color: #fcf6d4;
   }
 
   .icon {
