@@ -494,5 +494,36 @@ describe("mi-button", () => {
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);
     });
+
+    test("type=resetであればinput.valueが初期値に戻る", async () => {
+      document.body.innerHTML = `<form>
+          <input name="surname" value="initial">
+          <mi-button type="reset">Reset</mi-button>
+        </form>
+      `;
+      await customElements.whenDefined("mi-button");
+      const form = document.querySelector("form") as HTMLFormElement;
+      const input = form.querySelector("input")!;
+      input.value = "Smith";
+      getButton()!.click();
+      expect(input.value).toBe("initial");
+    });
+
+    test("type=submitであり、mi-butonにnameが定義されていたら、formDataにnameとそのvalueが含まれる", async () => {
+      document.body.innerHTML = `
+        <form >
+          <mi-button name="foo" value="bar" type="submit">Submit</mi-button>
+        </form>
+      `;
+      await customElements.whenDefined("mi-button");
+      const form = document.querySelector("form") as HTMLFormElement;
+      let submittedData: FormData | null = null;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submittedData = new FormData(form);
+      });
+      getButton()?.click();
+      expect(submittedData!.get("foo")).toBe("bar");
+    });
   });
 });
