@@ -28,7 +28,7 @@ type Story = StoryObj<MiInlineNotification>;
 export const Default: Story = {
   render: ({ type }) => {
     return html`<mi-inline-notification type=${type}>
-      こんちゃ
+      Hello, world!
     </mi-inline-notification>`;
   },
 };
