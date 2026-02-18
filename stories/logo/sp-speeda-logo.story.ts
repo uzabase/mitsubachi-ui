@@ -8,20 +8,16 @@ import { type SpSpeedaLogo } from "../../src/components/logo";
 const meta = {
   component: "sp-speeda-logo",
   args: {
-    type: "speeda",
+    type: null,
     inverse: false,
     noSymbol: false,
+    logoLanguage: "en",
   },
   argTypes: {
     type: {
       options: [
-        "speeda",
-        "shibida",
+        null,
         "ai-agent",
-        "sales-insights",
-        "customer-analytics",
-        "startup-insights",
-        "innovation-insights",
         "expert-research",
       ],
       control: { type: "select" },
@@ -32,6 +28,10 @@ const meta = {
     noSymbol: {
       control: { type: "boolean" },
     },
+    logoLanguage: {
+      options: ["en", "zh"],
+      control: { type: "select" },
+    },
   },
   tags: ["!dev-only"],
 } satisfies Meta<SpSpeedaLogo>;
@@ -40,34 +40,27 @@ export default meta;
 type Story = StoryObj<SpSpeedaLogo>;
 
 export const Default: Story = {
-  render: ({ type, inverse, noSymbol }) => {
+  render: ({ type, inverse, noSymbol, logoLanguage }) => {
     return html`<sp-speeda-logo
       type=${type}
       ?inverse=${inverse}
       ?no-symbol=${noSymbol}
+      logo-language=${logoLanguage}
     ></sp-speeda-logo>`;
   },
 };
 
 const allPropsCombinations = [
-  { type: "speeda", inverse: false, noSymbol: true },
-  { type: "speeda", inverse: false, noSymbol: false },
-  { type: "shibida", inverse: false, noSymbol: true },
-  { type: "ai-agent", inverse: false, noSymbol: false },
-  { type: "expert-research", inverse: false, noSymbol: false },
-  { type: "startup-insights", inverse: false, noSymbol: false },
-  { type: "innovation-insights", inverse: false, noSymbol: false },
-  { type: "customer-analytics", inverse: false, noSymbol: false },
-  { type: "sales-insights", inverse: false, noSymbol: false },
-  { type: "speeda", inverse: true, noSymbol: true },
-  { type: "speeda", inverse: true, noSymbol: false },
-  { type: "shibida", inverse: true, noSymbol: true },
-  { type: "ai-agent", inverse: true, noSymbol: false },
-  { type: "expert-research", inverse: true, noSymbol: false },
-  { type: "startup-insights", inverse: true, noSymbol: false },
-  { type: "innovation-insights", inverse: true, noSymbol: false },
-  { type: "customer-analytics", inverse: true, noSymbol: false },
-  { type: "sales-insights", inverse: true, noSymbol: false },
+  { type: null, inverse: false, noSymbol: true, logoLanguage: "en" },
+  { type: null, inverse: false, noSymbol: false, logoLanguage: "en" },
+  { type: null, inverse: false, noSymbol: true, logoLanguage: "zh" },
+  { type: "ai-agent", inverse: false, noSymbol: false, logoLanguage: "en" },
+  { type: "expert-research", inverse: false, noSymbol: false, logoLanguage: "en" },
+  { type: null, inverse: true, noSymbol: true, logoLanguage: "en" },
+  { type: null, inverse: true, noSymbol: false, logoLanguage: "en" },
+  { type: null, inverse: true, noSymbol: true, logoLanguage: "zh" },
+  { type: "ai-agent", inverse: true, noSymbol: false, logoLanguage: "en" },
+  { type: "expert-research", inverse: true, noSymbol: false, logoLanguage: "en" },
 ] as const;
 
 const inverseFalseLogos = allPropsCombinations.filter((l) => !l.inverse);
@@ -100,6 +93,7 @@ const renderTableRow = (logo: (typeof allPropsCombinations)[number]) => {
           type=${logo.type}
           ?inverse=${logo.inverse}
           ?no-symbol=${logo.noSymbol}
+          logo-language=${logo.logoLanguage}
         ></sp-speeda-logo>
       </td>
       <td style="${cellStyle} border-color: ${borderColor};">${logo.type}</td>
@@ -108,6 +102,9 @@ const renderTableRow = (logo: (typeof allPropsCombinations)[number]) => {
       </td>
       <td style="${cellStyle} border-color: ${borderColor};">
         ${String(logo.noSymbol)}
+      </td>
+      <td style="${cellStyle} border-color: ${borderColor};">
+        ${logo.logoLanguage}
       </td>
     </tr>
   `;
@@ -135,6 +132,7 @@ export const All: Story = {
               <th style="${headerStyle}">type</th>
               <th style="${headerStyle}">inverse</th>
               <th style="${headerStyle}">no-symbol</th>
+              <th style="${headerStyle}">logo-language</th>
             </tr>
           </thead>
           <tbody>

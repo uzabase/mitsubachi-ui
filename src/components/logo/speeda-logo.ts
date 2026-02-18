@@ -8,9 +8,10 @@ import { resolveLogo } from "./speeda-logos";
 /**
  * @summary Speedaのロゴです。
  *
- * @attr {string} type - ロゴの種類。speeda, shibida, ai-agent, sales-insights, customer-analytics, startup-insights, innovation-insights, expert-research
+ * @attr {string} type - ロゴの種類。ai-agent, sales-insights, customer-analytics, startup-insights, innovation-insights, expert-research（未指定で標準のSPEEDAロゴ）
  * @attr {boolean} inverse - 反転表示（暗い背景用）
  * @attr {boolean} no-symbol - シンボルを非表示にする
+ * @attr {string} logo-language - ロゴの言語。en, zh
  */
 export class SpSpeedaLogo extends LitElement {
   static styles = makeStyles(css`
@@ -21,14 +22,9 @@ export class SpSpeedaLogo extends LitElement {
 
   @property({ type: String, reflect: true })
   type:
-    | "speeda"
-    | "shibida"
     | "ai-agent"
-    | "sales-insights"
-    | "customer-analytics"
-    | "startup-insights"
-    | "innovation-insights"
-    | "expert-research" = "speeda";
+    | "expert-research"
+    | null = null;
 
   @property({ type: Boolean, reflect: true })
   inverse = false;
@@ -36,11 +32,15 @@ export class SpSpeedaLogo extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: "no-symbol" })
   noSymbol = false;
 
+  @property({ type: String, reflect: true, attribute: "logo-language" })
+  logoLanguage: "en" | "zh" = "en";
+
   #getSvg(): string | undefined {
     return resolveLogo({
       type: this.type,
       inverse: this.inverse,
       symbol: !this.noSymbol,
+      logoLanguage: this.logoLanguage,
     });
   }
 

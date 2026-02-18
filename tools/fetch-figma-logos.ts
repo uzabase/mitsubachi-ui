@@ -65,14 +65,14 @@ const parseVariantName = (name: string): Record<string, string> => {
 const convertSpeedaProps = (
   props: Record<string, string>,
 ): Record<string, string> => {
-  const { brand, "sub-brand": subBrand, language, ...rest } = props;
+  const {
+    "sub-brand": subBrand,
+    "logo-language": logoLanguage,
+    ...rest
+  } = props;
 
-  if (language === "zh") {
-    return { type: "shibida", ...rest };
-  }
-
-  const type = subBrand && subBrand !== "null" ? subBrand : "speeda";
-  return { type, ...rest };
+  const type = subBrand && subBrand !== "null" ? subBrand : "null";
+  return { type, "logo-language": logoLanguage, ...rest };
 };
 
 const convertUzabaseProps = (
@@ -131,32 +131,38 @@ ${generateKeyBuilder(propKeys)};
 `;
 };
 
-async function main() {
-  const logoSet = await findComponentSetByName("logo");
+const fetchLogosFromComponentSet = async (
+  setName: string,
+): Promise<{ components: Record<string, Component>; logos: { rawProps: Record<string, string>; svg: string }[] }> => {
+  const logoSet = await findComponentSetByName(setName);
   const logoNode = await fetchNodeById(logoSet.node_id);
   const components: Record<string, Component> = logoNode.components;
 
   const svgUrls = await fetchSvgUrls(Object.keys(components));
 
-  const allLogos = await Promise.all(
+  const logos = await Promise.all(
     Object.entries(svgUrls.images).map(async ([id, url]) => ({
       rawProps: parseVariantName(components[id].name),
       svg: await fetchSvgContent(url as string),
     })),
   );
 
-  const speedaRawLogos = allLogos.filter((l) => l.rawProps.brand === "speeda");
-  const uzabaseRawLogos = allLogos.filter(
-    (l) => l.rawProps.brand === "uzabase",
-  );
+  return { components, logos };
+};
 
-  const speedaLogos: LogoVariant[] = speedaRawLogos.map((l) => ({
+async function main() {
+  const [speedaResult, uzabaseResult] = await Promise.all([
+    fetchLogosFromComponentSet("sp-logo"),
+    fetchLogosFromComponentSet("ub-logo"),
+  ]);
+
+  const speedaLogos: LogoVariant[] = speedaResult.logos.map((l) => ({
     props: convertSpeedaProps(l.rawProps),
     svg: l.svg,
   }));
-  const speedaPropKeys = ["type", "inverse", "symbol"];
+  const speedaPropKeys = ["type", "inverse", "symbol", "logo-language"];
 
-  const uzabaseLogos: LogoVariant[] = uzabaseRawLogos.map((l) => ({
+  const uzabaseLogos: LogoVariant[] = uzabaseResult.logos.map((l) => ({
     props: convertUzabaseProps(l.rawProps),
     svg: l.svg,
   }));
