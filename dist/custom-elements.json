@@ -105,6 +105,14 @@
         },
         {
           "kind": "js",
+          "name": "MiIconColor",
+          "declaration": {
+            "name": "MiIconColor",
+            "module": "./components/icon-color"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiLabelUnit",
           "declaration": {
             "name": "MiLabelUnit",
@@ -2068,6 +2076,154 @@
           "declaration": {
             "name": "SpIcon",
             "module": "src/components/icon/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/icon-color.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/icons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "iconColorTypes",
+          "type": {
+            "text": "[\n  \"error\",\n  \"information\",\n  \"success\",\n  \"warning\",\n]"
+          },
+          "default": "[ \"error\", \"information\", \"success\", \"warning\", ]"
+        },
+        {
+          "kind": "variable",
+          "name": "iconColorPaths",
+          "default": "{ 'error': '<rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" fill=\"white\"/><path d=\"M21.28 7.845L16.15 2.715C16.01 2.575 15.82 2.495 15.62 2.495H8.37C8.17 2.495 7.98 2.575 7.84 2.715L2.72 7.845C2.58 7.985 2.5 8.175 2.5 8.375V15.625C2.5 15.825 2.58 16.015 2.72 16.155L7.85 21.285C7.99 21.425 8.18 21.505 8.38 21.505H15.63C15.83 21.505 16.02 21.425 16.16 21.285L21.29 16.155C21.43 16.015 21.51 15.825 21.51 15.625V8.375C21.51 8.175 21.43 7.985 21.29 7.845H21.28ZM16.81 15.745L15.75 16.805L12 13.055L8.25 16.805L7.19 15.745L10.94 11.995L7.19 8.245L8.25 7.185L12 10.935L15.75 7.185L16.81 8.245L13.06 11.995L16.81 15.745Z\" fill=\"#C92812\"/>', 'information': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12.75 16.86H11.25V10.36H12.75V16.86ZM12.83 8.86H11.17V7.14H12.83V8.86Z\" fill=\"#315CE8\"/>', 'success': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2.02002C6.49 2.02002 2 6.51002 2 12.02C2 17.53 6.49 22.02 12 22.02C17.51 22.02 22 17.53 22 12.02C22 6.51002 17.52 2.02002 12 2.02002ZM10.83 15.5L7.22 11.9L8.28 10.84L10.83 13.38L15.73 8.49002L16.79 9.55002L10.83 15.49V15.5Z\" fill=\"#00783C\"/>', 'warning': '<rect x=\"10\" y=\"8\" width=\"4\" height=\"11\" fill=\"black\" fill-opacity=\"0.84\"/><path d=\"M21.92 19.3601L12.66 3.3201C12.39 2.8601 11.63 2.8601 11.36 3.3201L2.1 19.3601C1.97 19.5901 1.97 19.8801 2.1 20.1101C2.23 20.3401 2.48 20.4901 2.75 20.4901H21.27C21.54 20.4901 21.79 20.3501 21.92 20.1101C22.05 19.8801 22.05 19.5901 21.92 19.3601ZM11.25 8.6601H12.75V14.6601H11.25V8.6601ZM12.83 17.8601H11.17V16.1401H12.83V17.8601Z\" fill=\"#F0C800\"/>', } satisfies {[key in IconColorType]: string}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconColorTypes",
+          "declaration": {
+            "name": "iconColorTypes",
+            "module": "src/components/icon-color/icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconColorPaths",
+          "declaration": {
+            "name": "iconColorPaths",
+            "module": "src/components/icon-color/icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/index.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "isIconColorType",
+          "return": {
+            "type": {
+              "text": "type is IconColorType"
+            }
+          },
+          "parameters": [
+            {
+              "name": "type",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "カラーアイコンです。",
+          "name": "MiIconColor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "カラーアイコンの画像を定義します。",
+              "name": "type"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "カラーアイコンです。",
+          "tagName": "mi-icon-color",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "IconColorType",
+          "declaration": {
+            "name": "IconColorType",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconColorTypes",
+          "declaration": {
+            "name": "iconColorTypes",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isIconColorType",
+          "declaration": {
+            "name": "isIconColorType",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiIconColor",
+          "declaration": {
+            "name": "MiIconColor",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-icon-color",
+          "declaration": {
+            "name": "MiIconColor",
+            "module": "src/components/icon-color/index.ts"
           }
         }
       ]
