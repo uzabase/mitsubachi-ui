@@ -21,10 +21,7 @@ export class SpSpeedaLogo extends LitElement {
   `);
 
   @property({ type: String, reflect: true })
-  type:
-    | "ai-agent"
-    | "expert-research"
-    | null = null;
+  type: "ai-agent" | "expert-research" | null = null;
 
   @property({ type: Boolean, reflect: true })
   inverse = false;

@@ -133,7 +133,10 @@ ${generateKeyBuilder(propKeys)};
 
 const fetchLogosFromComponentSet = async (
   setName: string,
-): Promise<{ components: Record<string, Component>; logos: { rawProps: Record<string, string>; svg: string }[] }> => {
+): Promise<{
+  components: Record<string, Component>;
+  logos: { rawProps: Record<string, string>; svg: string }[];
+}> => {
   const logoSet = await findComponentSetByName(setName);
   const logoNode = await fetchNodeById(logoSet.node_id);
   const components: Record<string, Component> = logoNode.components;

@@ -16,11 +16,7 @@ const meta = {
   },
   argTypes: {
     type: {
-      options: [
-        null,
-        "ai-agent",
-        "expert-research",
-      ],
+      options: [null, "ai-agent", "expert-research"],
       control: { type: "select" },
     },
     inverse: {
@@ -56,12 +52,22 @@ const allPropsCombinations = [
   { type: null, inverse: false, noSymbol: false, logoLanguage: "en" },
   { type: null, inverse: false, noSymbol: true, logoLanguage: "zh" },
   { type: "ai-agent", inverse: false, noSymbol: false, logoLanguage: "en" },
-  { type: "expert-research", inverse: false, noSymbol: false, logoLanguage: "en" },
+  {
+    type: "expert-research",
+    inverse: false,
+    noSymbol: false,
+    logoLanguage: "en",
+  },
   { type: null, inverse: true, noSymbol: true, logoLanguage: "en" },
   { type: null, inverse: true, noSymbol: false, logoLanguage: "en" },
   { type: null, inverse: true, noSymbol: true, logoLanguage: "zh" },
   { type: "ai-agent", inverse: true, noSymbol: false, logoLanguage: "en" },
-  { type: "expert-research", inverse: true, noSymbol: false, logoLanguage: "en" },
+  {
+    type: "expert-research",
+    inverse: true,
+    noSymbol: false,
+    logoLanguage: "en",
+  },
 ] as const;
 
 const inverseFalseLogos = allPropsCombinations.filter((l) => !l.inverse);
