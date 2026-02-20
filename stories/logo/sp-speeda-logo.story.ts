@@ -2,6 +2,7 @@ import "../../src/components/logo";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 import { type SpSpeedaLogo } from "../../src/components/logo";
 
@@ -42,7 +43,7 @@ type Story = StoryObj<SpSpeedaLogo>;
 export const Default: Story = {
   render: ({ type, inverse, noSymbol, logoLanguage }) => {
     return html`<sp-speeda-logo
-      type=${type}
+      type=${ifDefined(type)}
       ?inverse=${inverse}
       ?no-symbol=${noSymbol}
       logo-language=${logoLanguage}
@@ -90,7 +91,7 @@ const renderTableRow = (logo: (typeof allPropsCombinations)[number]) => {
     <tr style="background: ${bgColor}; color: ${textColor}; height: 4rem;">
       <td style="${cellStyle} border-color: ${borderColor}; min-width: 280px;">
         <sp-speeda-logo
-          type=${logo.type}
+          type=${ifDefined(logo.type)}
           ?inverse=${logo.inverse}
           ?no-symbol=${logo.noSymbol}
           logo-language=${logo.logoLanguage}
