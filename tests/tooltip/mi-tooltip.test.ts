@@ -1,6 +1,6 @@
 import "../../src/components/tooltip/mi-tooltip";
 
-import { describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
 
 import {
   type MiTooltip,
@@ -15,10 +15,6 @@ function getTooltipEl() {
   return getMiTooltip().shadowRoot?.querySelector(
     '[role="tooltip"]',
   ) as HTMLElement | null;
-}
-
-function wait(ms: number) {
-  return new Promise<void>((resolve) => setTimeout(resolve, ms));
 }
 
 describe("mi-tooltip", () => {
@@ -86,6 +82,10 @@ describe("mi-tooltip", () => {
   });
 
   describe("表示・非表示", () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
     test("mouseenterでツールチップが表示される", async () => {
       document.body.innerHTML = `<mi-tooltip text="補足情報"><button>トリガー</button></mi-tooltip>`;
       await customElements.whenDefined("mi-tooltip");
@@ -106,8 +106,9 @@ describe("mi-tooltip", () => {
       await el.updateComplete;
       expect(getTooltipEl()).not.toBeNull();
 
+      vi.useFakeTimers();
       el.dispatchEvent(new MouseEvent("mouseleave", { bubbles: false }));
-      await wait(150);
+      await vi.advanceTimersByTimeAsync(100);
       await el.updateComplete;
 
       expect(getTooltipEl()).toBeNull();
@@ -120,10 +121,12 @@ describe("mi-tooltip", () => {
       const el = getMiTooltip();
       el.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
       await el.updateComplete;
+
+      vi.useFakeTimers();
       el.dispatchEvent(new MouseEvent("mouseleave", { bubbles: false }));
-      // 100ms 経つ前に再度 mouseenter
+      // 100ms 経つ前に再度 mouseenter してタイマーをキャンセル
       el.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-      await wait(150);
+      await vi.advanceTimersByTimeAsync(150);
       await el.updateComplete;
 
       expect(getTooltipEl()).not.toBeNull();
@@ -162,8 +165,9 @@ describe("mi-tooltip", () => {
       await el.updateComplete;
       expect(getTooltipEl()).not.toBeNull();
 
+      vi.useFakeTimers();
       el.dispatchEvent(new FocusEvent("focusout", { bubbles: true }));
-      await wait(150);
+      await vi.advanceTimersByTimeAsync(100);
       await el.updateComplete;
 
       expect(getTooltipEl()).toBeNull();
