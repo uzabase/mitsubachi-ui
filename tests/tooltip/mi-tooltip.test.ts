@@ -13,7 +13,8 @@ import {
  * CI 環境のタイマー遅延に影響されない。
  */
 function waitForTooltipHidden(el: MiTooltip, timeout = 2000): Promise<void> {
-  if (!el.shadowRoot?.querySelector('[role="tooltip"]')) return Promise.resolve();
+  if (!el.shadowRoot?.querySelector('[role="tooltip"]'))
+    return Promise.resolve();
   return new Promise<void>((resolve, reject) => {
     const id = setTimeout(() => {
       observer.disconnect();
