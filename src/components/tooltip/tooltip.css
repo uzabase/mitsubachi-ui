@@ -24,8 +24,7 @@
   pointer-events: none;
   opacity: 1;
   transition:
-    opacity 0.2s ease-out,
-    transform 0.2s ease-out;
+    opacity 0.2s ease-out;
 
   @starting-style {
     opacity: 0;
