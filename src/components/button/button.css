@@ -34,6 +34,36 @@
         --background-color-active: rgb(0 0 0 / 7%);
         --color: rgb(0 0 0 / 84%);
     }
+
+    &.plane {
+        --border-color: transparent;
+        --background-color: transparent;
+        --background-color-hover: rgb(49 92 232 / 8%);
+        --background-color-active: rgb(49 92 232 / 12%);
+        --color: #315ce8;
+
+        &:focus-visible {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919;
+            outline: none;
+        }
+
+
+        &.medium {
+            padding-inline: 4px;
+            padding-block: 0;
+            min-height: auto;
+        }
+
+        &.large {
+            padding-inline: 4px;
+            min-height: auto;
+        }
+
+        &.x-large {
+            padding-inline: 4px;
+            min-height: auto;
+        }
+    }
 }
 
 .danger {
@@ -69,6 +99,41 @@
         --color: #C92812;
     }
 }
+.ai {
+    &.primary {
+        --angle: 0deg;
+        border: 1px solid transparent;
+        background: linear-gradient(white, white) padding-box padding-box,conic-gradient(from var(--angle) at 50% 50%,#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box white;
+        transition: --angle 0.5s;
+        &:hover{
+            --angle: 360deg;
+        }
+    }
+
+    &.secondary {
+        --border-color: rgb(0 0 0 / 84%);
+        --background-color: transparent;
+        --background-color-hover: rgb(0 0 0 / 4%);
+        --background-color-active: rgb(0 0 0 / 7%);
+        --color: rgb(0 0 0 / 84%);
+    }
+
+    &.tertiary {
+        --border-color: #7C3AED;
+        --background-color: transparent;
+        --background-color-hover: #EDE9FE;
+        --background-color-active: #DDD6FE;
+        --color: #6D28D9;
+    }
+
+    &.ghost {
+        --border-color: transparent;
+        --background-color: transparent;
+        --background-color-hover: #EDE9FE;
+        --background-color-active: #DDD6FE;
+        --color: #6D28D9;
+    }
+}
 
 .primary {
     --border-color-disabled: transparent;
@@ -83,6 +148,12 @@
 }
 
 .ghost {
+    --border-color-disabled: transparent;
+    --background-color-disabled: transparent;
+    --color-disabled: rgb(0 0 0 / 35%);
+}
+
+.plane {
     --border-color-disabled: transparent;
     --background-color-disabled: transparent;
     --color-disabled: rgb(0 0 0 / 35%);
@@ -105,6 +176,7 @@
 
     &:focus-visible {
         box-shadow: 0 0 0 2px #FFF, 0 0 0 4px #191919;
+        outline: none;
     }
 
     &:hover {

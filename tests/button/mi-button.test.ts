@@ -1,8 +1,8 @@
-import "../../src/components/button/mi-button";
+import "../../src/components/button/mi-neutral-button";
 
 import { describe, expect, test } from "vitest";
 
-import type { MiButton } from "../../src/components/button/mi-button";
+import type { MiButton } from "../../src/components/button/mi-neutral-button";
 
 function getMiButton() {
   return document.querySelector("mi-button") as MiButton;

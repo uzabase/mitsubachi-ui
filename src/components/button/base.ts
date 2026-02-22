@@ -1,3 +1,7 @@
+/**
+ * ボタン共通ベースクラス（内部用）
+ * @internal Storybookからは見えない
+ */
 import "../loading/mi-loading";
 
 import { html, LitElement, nothing, unsafeCSS } from "lit";
@@ -7,13 +11,15 @@ import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
-export const variants = ["primary", "secondary", "tertiary", "ghost"] as const;
-type Variant = (typeof variants)[number];
+export const variants = ["primary", "secondary", "tertiary", "ghost", "plane"] as const;
+export type Variant = (typeof variants)[number];
 
 export const sizes = ["medium", "large", "xLarge"] as const;
-type Size = (typeof sizes)[number];
+export type Size = (typeof sizes)[number];
 
-function isValidVariant(value: string): Variant {
+export type ButtonTheme = "normal" | "danger" | "ai";
+
+export function isValidVariant(value: string): Variant {
   if (variants.some((variant) => variant === value)) {
     return value as Variant;
   } else {
@@ -22,7 +28,7 @@ function isValidVariant(value: string): Variant {
   }
 }
 
-function isValidSize(value: string): Size {
+export function isValidSize(value: string): Size {
   if (sizes.some((s) => s === value)) {
     return value as Size;
   } else {
@@ -41,12 +47,18 @@ function isValidIconType(value: string): boolean {
 }
 
 /**
- * @summary ボタンです。
+ * ボタン共通ベースクラス。mi-button / mi-danger-button / mi-ai-button が継承する。
+ * @internal
  */
-export class MiButton extends LitElement {
+export class ButtonBase extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
   static formAssociated = true;
+
+  /** 継承クラスでオーバーライド可能。テーマ（normal / danger / ai） */
+  protected getTheme(): ButtonTheme {
+    return "normal";
+  }
 
   @property({ type: Boolean, reflect: true })
   loading = false;
@@ -54,20 +66,11 @@ export class MiButton extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
-  @property({ type: Boolean, reflect: true })
-  danger = false;
-
-  /**
-   * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
-   */
-  @property({ type: String })
-  variants: Variant | null = null;
-
   @property({ type: String })
   variant: Variant = "primary";
 
   @property({ type: String })
-  size: Size = "medium";
+  size: string = "medium";
 
   @property({ type: String })
   name = "";
@@ -88,7 +91,12 @@ export class MiButton extends LitElement {
     this.#internals = this.attachInternals();
   }
 
-  private get buttonClasses() {
+  /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
+  protected getEffectiveVariant(): Variant {
+    return isValidVariant(this.variant);
+  }
+
+  protected get buttonClasses() {
     const sizeClassMap = {
       medium: "medium",
       large: "large",
@@ -97,10 +105,8 @@ export class MiButton extends LitElement {
 
     return [
       "base",
-      this.danger ? "danger" : "normal",
-      this.variants
-        ? isValidVariant(this.variants)
-        : isValidVariant(this.variant),
+      this.getTheme(),
+      this.getEffectiveVariant(),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
     ]
@@ -108,7 +114,11 @@ export class MiButton extends LitElement {
       .join(" ");
   }
 
-  private get loadingSize() {
+  protected get isDisabled() {
+    return this.disabled || this.loading;
+  }
+
+  protected get loadingSize() {
     const sizeAttributeMap = {
       medium: "large",
       large: "xLarge",
@@ -117,19 +127,15 @@ export class MiButton extends LitElement {
     return sizeAttributeMap[isValidSize(this.size)];
   }
 
-  private get isDisabled() {
-    return this.disabled || this.loading;
-  }
-
-  private renderLoading() {
+  protected renderLoading() {
     return html`<mi-loading size="${this.loadingSize}"></mi-loading>`;
   }
 
-  private get showIcon() {
+  protected get showIcon() {
     return !this.loading && this.iconType && isValidIconType(this.iconType);
   }
 
-  private renderIcon() {
+  protected renderIcon() {
     return html`<mi-icon type="${this.iconType}" class="icon"></mi-icon>`;
   }
 
@@ -172,22 +178,4 @@ export class MiButton extends LitElement {
       this.#internals.form.reset();
     }
   }
-}
-
-/** @deprecated 代わりに MiButton を使用してください */
-export class SpButton extends MiButton {}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "mi-button": MiButton;
-    "sp-button": SpButton;
-  }
-}
-
-if (!customElements.get("mi-button")) {
-  customElements.define("mi-button", MiButton);
-}
-
-if (!customElements.get("sp-button")) {
-  customElements.define("sp-button", SpButton);
 }
