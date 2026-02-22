@@ -38,6 +38,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.1"
   },
   "devDependencies": {
