@@ -338,11 +338,17 @@ export const OverflowBehavior: Story = {
           top-start / top-end のシフト動作
         </div>
         <div style="font-size: 12px; color: #666; margin-bottom: 16px;">
-          <code>top-start</code> は「ツールチップの左端をトリガーの左端に揃える」配置です。
-          右端に置くとツールチップが画面右端からはみ出すため、<code>shift()</code>
+          <code>top-start</code>
+          は「ツールチップの左端をトリガーの左端に揃える」配置です。
+          右端に置くとツールチップが画面右端からはみ出すため、<code
+            >shift()</code
+          >
           により左方向にスライドします。<br />
-          <code>top-end</code> は「ツールチップの右端をトリガーの右端に揃える」配置です。
-          左端に置くとツールチップが画面左端からはみ出すため、<code>shift()</code>
+          <code>top-end</code>
+          は「ツールチップの右端をトリガーの右端に揃える」配置です。
+          左端に置くとツールチップが画面左端からはみ出すため、<code
+            >shift()</code
+          >
           により右方向にスライドします。
         </div>
         <div
