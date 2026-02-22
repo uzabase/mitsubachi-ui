@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import "../../src/components/tooltip/mi-tooltip";
 
 import { afterEach, describe, expect, test, vi } from "vitest";
