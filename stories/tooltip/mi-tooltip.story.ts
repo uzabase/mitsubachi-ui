@@ -240,55 +240,54 @@ export const OverflowBehavior: Story = {
         style="position: relative; height: 420px; border: 1px solid #ddd; margin: 24px; border-radius: 8px; overflow: hidden; background: #fafafa;"
       >
         <div
-          style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #999;"
+          style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #999; white-space: nowrap;"
         >
-          スクロールせずに確認できます（この枠内でのみ overflow: hidden
-          は適用されていません）
+          各隅のトリガーにホバーして flip の動作を確認してください
         </div>
 
-        <!-- 左上隅：right を指定 → 画面端なので left に flip -->
+        <!-- 左上隅：left を指定 → 左にスペースなし → right に flip -->
         <div style="position: absolute; top: 40px; left: 16px;">
           <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-            左上隅 / right 指定
+            左上隅 / left 指定
           </div>
-          <mi-tooltip text="right 指定でも左に反転します" placement="right">
-            <button>right →flip→ left</button>
-          </mi-tooltip>
-        </div>
-
-        <!-- 右上隅：left を指定 → 画面端なので right に flip -->
-        <div style="position: absolute; top: 40px; right: 16px;">
-          <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-            右上隅 / left 指定
-          </div>
-          <mi-tooltip text="left 指定でも右に反転します" placement="left">
+          <mi-tooltip text="左にスペースなし → 右に反転" placement="left">
             <button>left →flip→ right</button>
           </mi-tooltip>
         </div>
 
-        <!-- 左下隅：right-end を指定 -->
-        <div style="position: absolute; bottom: 40px; left: 16px;">
+        <!-- 右上隅：right を指定 → 右にスペースなし → left に flip -->
+        <div style="position: absolute; top: 40px; right: 16px;">
           <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-            左下隅 / right-end 指定
+            右上隅 / right 指定
           </div>
-          <mi-tooltip
-            text="下端なので上方向にシフトします"
-            placement="right-end"
-          >
-            <button>right-end + shift</button>
+          <mi-tooltip text="右にスペースなし → 左に反転" placement="right">
+            <button>right →flip→ left</button>
           </mi-tooltip>
         </div>
 
-        <!-- 右下隅：left-end を指定 -->
-        <div style="position: absolute; bottom: 40px; right: 16px;">
+        <!-- 左下隅：left-end を指定 → left に flip + 下端で shift -->
+        <div style="position: absolute; bottom: 40px; left: 16px;">
           <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-            右下隅 / left-end 指定
+            左下隅 / left-end 指定
           </div>
           <mi-tooltip
-            text="画面端でも見切れないようシフトします"
+            text="左→右に反転、さらに下端で上方向にシフト"
             placement="left-end"
           >
-            <button>left-end + shift</button>
+            <button>left-end →flip+shift</button>
+          </mi-tooltip>
+        </div>
+
+        <!-- 右下隅：right-end を指定 → right に flip + 下端で shift -->
+        <div style="position: absolute; bottom: 40px; right: 16px;">
+          <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
+            右下隅 / right-end 指定
+          </div>
+          <mi-tooltip
+            text="右→左に反転、さらに下端で上方向にシフト"
+            placement="right-end"
+          >
+            <button>right-end →flip+shift</button>
           </mi-tooltip>
         </div>
 
@@ -339,35 +338,44 @@ export const OverflowBehavior: Story = {
           top-start / top-end のシフト動作
         </div>
         <div style="font-size: 12px; color: #666; margin-bottom: 16px;">
-          左右どちらかに寄った位置で <code>top-start</code> や
-          <code>top-end</code> を使うと、
-          ツールチップが画面端に合わせてスライド（shift）します。
+          <code>top-start</code> は「ツールチップの左端をトリガーの左端に揃える」配置です。
+          右端に置くとツールチップが画面右端からはみ出すため、<code>shift()</code>
+          により左方向にスライドします。<br />
+          <code>top-end</code> は「ツールチップの右端をトリガーの右端に揃える」配置です。
+          左端に置くとツールチップが画面左端からはみ出すため、<code>shift()</code>
+          により右方向にスライドします。
         </div>
         <div
           style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 0 8px;"
         >
           <div>
             <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-              左端 / top-start
+              左端 / top-end
             </div>
-            <mi-tooltip text="左端では右方向にシフト" placement="top-start">
-              <button>top-start</button>
-            </mi-tooltip>
-          </div>
-          <div>
-            <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-              中央 / top-start
-            </div>
-            <mi-tooltip text="中央ではそのまま表示" placement="top-start">
-              <button>top-start</button>
-            </mi-tooltip>
-          </div>
-          <div>
-            <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
-              右端 / top-end
-            </div>
-            <mi-tooltip text="右端では左方向にシフト" placement="top-end">
+            <mi-tooltip
+              text="右端に揃えようとするが左端からはみ出す → 右にシフト"
+              placement="top-end"
+            >
               <button>top-end</button>
+            </mi-tooltip>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
+              中央 / top（通常）
+            </div>
+            <mi-tooltip text="中央ではそのまま表示" placement="top">
+              <button>top（通常）</button>
+            </mi-tooltip>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: #888; margin-bottom: 4px;">
+              右端 / top-start
+            </div>
+            <mi-tooltip
+              text="左端に揃えようとするが右端からはみ出す → 左にシフト"
+              placement="top-start"
+            >
+              <button>top-start</button>
             </mi-tooltip>
           </div>
         </div>
