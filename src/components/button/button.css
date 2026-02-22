@@ -17,6 +17,14 @@
         --background-color-hover: rgb(0 0 0 / 4%);
         --background-color-active: rgb(0 0 0 / 7%);
         --color: rgb(0 0 0 / 84%);
+
+        &.selected {
+            --border-color: #3f69f2;
+            --background-color: #e8edff;
+            --background-color-hover: #dbe4ff;
+            --background-color-active: #d5dfff;
+            --color: #315ce8;
+        }
     }
 
     &.tertiary {
@@ -25,6 +33,13 @@
         --background-color-hover: rgb(0 0 0 / 4%);
         --background-color-active: rgb(0 0 0 / 7%);
         --color: rgb(0 0 0 / 84%);
+
+        &.selected {
+            --border-color: rgb(0 0 0 / 20%);
+            --background-color: #e8edff;
+            --background-color-hover: #dbe4ff;
+            --background-color-active: #d5dfff;
+        }
     }
 
     &.ghost {
@@ -33,6 +48,12 @@
         --background-color-hover: rgb(0 0 0 / 4%);
         --background-color-active: rgb(0 0 0 / 7%);
         --color: rgb(0 0 0 / 84%);
+
+        &.selected {
+            --background-color: #e8edff;
+            --background-color-hover: #dbe4ff;
+            --background-color-active: #d5dfff;
+        }
     }
 
     &.plane {
@@ -98,15 +119,37 @@
         --background-color-active: #FFEDEB;
         --color: #C92812;
     }
+
+    /* .selected は danger テーマでは非サポート */
 }
+
 .ai {
     &.primary {
         --angle: 0deg;
+
         border: 1px solid transparent;
         background: linear-gradient(white, white) padding-box padding-box,conic-gradient(from var(--angle) at 50% 50%,#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box white;
         transition: --angle 0.5s;
-        &:hover{
+
+        &:hover {
             --angle: 360deg;
+        }
+
+        &:disabled {
+            border: 1px solid rgb(0 0 0 / 7%);
+            background: transparent;
+            color: rgb(0 0 0 / 35%);
+            cursor: not-allowed;
+
+            &:hover {
+                border: 1px solid rgb(0 0 0 / 7%);
+                background: transparent;
+            }
+
+            &.loading {
+                border: 1px solid transparent;
+                background: linear-gradient(white, white) padding-box padding-box,conic-gradient(from var(--angle) at 50% 50%,#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box white;
+            }
         }
     }
 
@@ -133,6 +176,8 @@
         --background-color-active: #DDD6FE;
         --color: #6D28D9;
     }
+
+    /* .selected は ai テーマでは非サポート */
 }
 
 .primary {

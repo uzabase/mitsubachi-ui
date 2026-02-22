@@ -17,8 +17,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "ノーマル（ニュートラル）ボタンです。",
+        component: "ノーマル（ニュートラル）ボタンです。",
       },
     },
   },
@@ -51,6 +50,8 @@ const meta = {
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
+    selected: { type: "boolean" },
+    toggle: { type: "boolean" },
     onclick: {
       action: "onclick",
     },
@@ -73,6 +74,8 @@ const meta = {
     size: "medium",
     loading: false,
     disabled: false,
+    selected: false,
+    toggle: false,
     onclick: action("onclick"),
     name: undefined,
     value: undefined,
@@ -87,6 +90,8 @@ const meta = {
       size=${args.size}
       ?loading=${args.loading}
       ?disabled=${args.disabled}
+      ?selected=${args.selected}
+      ?toggle=${args.toggle}
       @click=${args.onclick}
       name=${args.name || nothing}
       value=${args.value || nothing}
@@ -241,7 +246,9 @@ export const ALL: Story = {
       style="display:flex; flex-direction:column; gap:32px; align-items: flex-start;"
     >
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -254,7 +261,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <mi-neutral-button variant="${variant}">ボタン</mi-neutral-button>
+                  <mi-neutral-button variant="${variant}"
+                    >ボタン</mi-neutral-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -263,7 +272,9 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <mi-neutral-button variant="${variant}" disabled>ボタン</mi-neutral-button>
+                  <mi-neutral-button variant="${variant}" disabled
+                    >ボタン</mi-neutral-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -272,15 +283,35 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <mi-neutral-button variant="${variant}" loading>ボタン</mi-neutral-button>
+                  <mi-neutral-button variant="${variant}" loading
+                    >ボタン</mi-neutral-button
+                  >
                 </td>`,
+            )}
+          </tr>
+          <tr>
+            <th>選択中</th>
+            ${variants.map((variant) =>
+              ["secondary", "tertiary", "ghost"].includes(variant)
+                ? html`<td>
+                    <mi-neutral-button variant="${variant}" selected
+                      >ボタン</mi-neutral-button
+                    >
+                  </td>`
+                : html`<td>
+                    <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+                      >なし<br />デフォルトスタイルが<br />適用されます</span
+                    >
+                  </td>`,
             )}
           </tr>
         </tbody>
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>
@@ -306,7 +337,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -330,7 +363,11 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <mi-neutral-button icon-type="download" variant="${variant}" disabled>
+                  <mi-neutral-button
+                    icon-type="download"
+                    variant="${variant}"
+                    disabled
+                  >
                     ダウンロード
                   </mi-neutral-button>
                 </td>`,
@@ -341,7 +378,11 @@ export const ALL: Story = {
             ${variants.map(
               (variant) =>
                 html`<td>
-                  <mi-neutral-button icon-type="download" variant="${variant}" loading>
+                  <mi-neutral-button
+                    icon-type="download"
+                    variant="${variant}"
+                    loading
+                  >
                     ダウンロード
                   </mi-neutral-button>
                 </td>`,
@@ -351,7 +392,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>

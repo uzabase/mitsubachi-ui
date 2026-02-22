@@ -3,11 +3,11 @@ import { property } from "lit/decorators.js";
 import {
   ButtonBase,
   type ButtonTheme,
-  type Variant,
   isValidVariant,
-  variants,
-  sizes,
   type Size,
+  sizes,
+  type Variant,
+  variants,
 } from "./base";
 
 /**
@@ -35,14 +35,14 @@ export class MiNeutralButton extends ButtonBase {
   }
 
   protected override getEffectiveVariant(): Variant {
-    return this.variants
+    return this.variants != null
       ? isValidVariant(this.variants)
       : isValidVariant(this.variant);
   }
 }
 
-export type { Variant, Size };
-export { variants, sizes };
+export type { Size, Variant };
+export { sizes, variants };
 
 /** @deprecated 代わりに MiNeutralButton を使用してください。後方互換のため別クラスとして登録しています。 */
 export class MiButton extends MiNeutralButton {}

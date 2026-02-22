@@ -1,10 +1,6 @@
-import "../icon";
-import "../loading/mi-loading";
-
-import { html, nothing, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
-import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import { ButtonBase } from "./base";
 import style from "./icon-button.css?inline";
@@ -25,7 +21,7 @@ export type IconButtonSize = (typeof iconButtonSizes)[number];
  * テキストを持たず、アイコンのみで操作を表現します。
  * 必ずツールチップで意味を補完してください。
  */
-export class MiIconButton extends ButtonBase {
+export class MiIconButton extends ButtonBase<IconButtonSize> {
   static override styles = makeStyles(unsafeCSS(style));
 
   @property({ type: String })
@@ -33,9 +29,6 @@ export class MiIconButton extends ButtonBase {
 
   @property({ type: String })
   override size: IconButtonSize = "medium";
-
-  @property({ type: Boolean, reflect: true })
-  selected = false;
 
   protected override get loadingSize() {
     const sizeMap: Record<IconButtonSize, string> = {
@@ -46,6 +39,11 @@ export class MiIconButton extends ButtonBase {
     return sizeMap[this.size];
   }
 
+  /**
+   * icon-button.css は theme クラス（normal/danger/ai）を持たず、
+   * size も独自体系（small/medium/large）のため、base のクラス組み立てロジックとは
+   * 互換性がない。そのため super.buttonClasses を呼ばず完全オーバーライドしている。
+   */
   protected override get buttonClasses() {
     return [
       "base",
@@ -58,34 +56,12 @@ export class MiIconButton extends ButtonBase {
       .join(" ");
   }
 
-  override render() {
-    const showIcon =
-      !this.loading && !!this.iconType && isIconType(this.iconType);
-    return html`
-      <button
-        class="${this.buttonClasses}"
-        ?disabled="${this.isDisabled}"
-        name="${this.name}"
-        value="${this.value}"
-        type="${this.type}"
-        aria-pressed="${this.selected ? "true" : nothing}"
-        @click="${this.#handleIconButtonClick}"
-      >
-        ${this.loading ? this.renderLoading() : nothing}
-        ${showIcon
-          ? html`<mi-icon type="${this.iconType}" class="icon"></mi-icon>`
-          : nothing}
-      </button>
-    `;
-  }
-
-  #handleIconButtonClick(event: Event) {
-    if (this.disabled || this.loading) return;
-    this.dispatchEvent(new MouseEvent("click", event));
+  protected override renderSlot() {
+    return html``;
   }
 }
 
-export type { IconButtonVariant as Variant, IconButtonSize as Size };
+export type { IconButtonSize as Size, IconButtonVariant as Variant };
 
 declare global {
   interface HTMLElementTagNameMap {

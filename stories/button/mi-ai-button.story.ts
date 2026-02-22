@@ -1,5 +1,3 @@
-import "../../src/components/button/mi-ai-button";
-
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
@@ -30,6 +28,7 @@ const meta = {
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
+    selected: { table: { disable: true } },
     onclick: {
       action: "onclick",
     },
@@ -103,7 +102,9 @@ export const ALL: Story = {
       style="display:flex; flex-direction:column; gap:32px; align-items: flex-start;"
     >
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -125,7 +126,9 @@ export const ALL: Story = {
             ${aiVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-ai-button variant="${variant}" disabled>AIで生成</mi-ai-button>
+                  <mi-ai-button variant="${variant}" disabled
+                    >AIで生成</mi-ai-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -134,7 +137,9 @@ export const ALL: Story = {
             ${aiVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-ai-button variant="${variant}" loading>AIで生成</mi-ai-button>
+                  <mi-ai-button variant="${variant}" loading
+                    >AIで生成</mi-ai-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -142,7 +147,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>
@@ -168,7 +175,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -213,7 +222,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>

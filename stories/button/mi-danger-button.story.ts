@@ -1,5 +1,3 @@
-import "../../src/components/button/mi-danger-button";
-
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
@@ -34,6 +32,7 @@ const meta = {
     },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
+    selected: { table: { disable: true } },
     onclick: {
       action: "onclick",
     },
@@ -113,7 +112,9 @@ export const ALL: Story = {
       style="display:flex; flex-direction:column; gap:32px; align-items: flex-start;"
     >
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -126,7 +127,9 @@ export const ALL: Story = {
             ${dangerVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-danger-button variant="${variant}">ボタン</mi-danger-button>
+                  <mi-danger-button variant="${variant}"
+                    >ボタン</mi-danger-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -135,7 +138,9 @@ export const ALL: Story = {
             ${dangerVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-danger-button variant="${variant}" disabled>ボタン</mi-danger-button>
+                  <mi-danger-button variant="${variant}" disabled
+                    >ボタン</mi-danger-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -144,7 +149,9 @@ export const ALL: Story = {
             ${dangerVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-danger-button variant="${variant}" loading>ボタン</mi-danger-button>
+                  <mi-danger-button variant="${variant}" loading
+                    >ボタン</mi-danger-button
+                  >
                 </td>`,
             )}
           </tr>
@@ -152,7 +159,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>
@@ -178,7 +187,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -202,7 +213,11 @@ export const ALL: Story = {
             ${dangerVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-danger-button icon-type="trash" variant="${variant}" disabled>
+                  <mi-danger-button
+                    icon-type="trash"
+                    variant="${variant}"
+                    disabled
+                  >
                     削除
                   </mi-danger-button>
                 </td>`,
@@ -213,7 +228,11 @@ export const ALL: Story = {
             ${dangerVariants.map(
               (variant) =>
                 html`<td>
-                  <mi-danger-button icon-type="trash" variant="${variant}" loading>
+                  <mi-danger-button
+                    icon-type="trash"
+                    variant="${variant}"
+                    loading
+                  >
                     削除
                   </mi-danger-button>
                 </td>`,
@@ -223,7 +242,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">アイコン付き: バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          アイコン付き: バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>

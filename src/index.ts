@@ -1,16 +1,16 @@
 export { MiAvatar, SpAvatar } from "./components/avatar/mi-avatar";
+export { MiAiButton } from "./components/button/mi-ai-button";
+export { MiDangerButton } from "./components/button/mi-danger-button";
 export {
-  MiNeutralButton,
+  iconButtonSizes,
+  iconButtonVariants,
+  MiIconButton,
+} from "./components/button/mi-icon-button";
+export {
   MiButton,
+  MiNeutralButton,
   SpButton,
 } from "./components/button/mi-neutral-button";
-export { MiDangerButton } from "./components/button/mi-danger-button";
-export { MiAiButton } from "./components/button/mi-ai-button";
-export {
-  MiIconButton,
-  iconButtonVariants,
-  iconButtonSizes,
-} from "./components/button/mi-icon-button";
 export { MiCheckbox, SpCheckbox } from "./components/checkbox/mi-checkbox";
 export {
   MiCheckboxText,

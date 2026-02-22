@@ -15,6 +15,7 @@
 
     &:focus-visible {
         box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919;
+        outline: none;
     }
 
     &:hover {
@@ -35,6 +36,11 @@
             background-color: var(--background-color-disabled, transparent);
         }
     }
+}
+
+.icon {
+    fill: currentcolor;
+    display: block;
 }
 
 /* サイズ */
@@ -66,8 +72,8 @@
     padding: 4px;
 
     .icon {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
     }
 }
 
@@ -88,15 +94,18 @@
     --background-color: transparent;
     --background-color-hover: rgb(0 0 0 / 7%);
     --background-color-active: rgb(0 0 0 / 10%);
-    --border-color-disabled: rgb(0 0 0 / 10%);
+    --border-color-disabled: rgb(0 0 0 / 7%);
     --background-color-disabled: transparent;
+    --color: rgb(0 0 0 / 84%);
     --color-disabled: rgb(0 0 0 / 35%);
 
     &.selected {
-        --background-color: #e8edff;
         --border-color: #3f69f2;
-        --background-color-hover: #d9e1ff;
-        --background-color-active: #c9d3f7;
+        --background-color: #e8edff;
+        --background-color-hover: #dbe4ff;
+        --background-color-active: #d5dfff;
+        --background-color-disabled: rgb(0 0 0 / 7%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
     }
 }
 
@@ -105,15 +114,18 @@
     --background-color: transparent;
     --background-color-hover: rgb(0 0 0 / 7%);
     --background-color-active: rgb(0 0 0 / 10%);
-    --border-color-disabled: rgb(0 0 0 / 10%);
+    --border-color-disabled: rgb(0 0 0 / 7%);
     --background-color-disabled: transparent;
+    --color: rgb(0 0 0 / 84%);
     --color-disabled: rgb(0 0 0 / 35%);
 
     &.selected {
+        --border-color: rgb(0 0 0 / 10%);
         --background-color: #e8edff;
-        --border-color: #3f69f2;
-        --background-color-hover: #d9e1ff;
-        --background-color-active: #c9d3f7;
+        --background-color-hover: #dbe4ff;
+        --background-color-active: #d5dfff;
+        --background-color-disabled: rgb(0 0 0 / 7%);
+        --border-color-disabled: rgb(0 0 0 / 7%);
     }
 }
 
@@ -124,16 +136,12 @@
     --background-color-active: rgb(0 0 0 / 10%);
     --border-color-disabled: transparent;
     --background-color-disabled: transparent;
+    --color: rgb(0 0 0 / 84%);
     --color-disabled: rgb(0 0 0 / 35%);
 
     &.selected {
         --background-color: #e8edff;
-        --background-color-hover: #d9e1ff;
-        --background-color-active: #c9d3f7;
+        --background-color-hover: #dbe4ff;
+        --background-color-active: #d5dfff;
     }
-}
-
-.icon {
-    fill: currentcolor;
-    display: block;
 }

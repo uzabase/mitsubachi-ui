@@ -11,7 +11,13 @@ import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./button.css?inline";
 
-export const variants = ["primary", "secondary", "tertiary", "ghost", "plane"] as const;
+export const variants = [
+  "primary",
+  "secondary",
+  "tertiary",
+  "ghost",
+  "plane",
+] as const;
 export type Variant = (typeof variants)[number];
 
 export const sizes = ["medium", "large", "xLarge"] as const;
@@ -47,10 +53,11 @@ function isValidIconType(value: string): boolean {
 }
 
 /**
- * ボタン共通ベースクラス。mi-button / mi-danger-button / mi-ai-button が継承する。
+ * ボタン共通ベースクラス。mi-neutral-button / mi-danger-button / mi-ai-button / mi-icon-button が継承する。
  * @internal
+ * @typeParam S - size プロパティの型。サブクラスが独自のサイズ体系を持つ場合にオーバーライドする。
  */
-export class ButtonBase extends LitElement {
+export class ButtonBase<S extends string = Size> extends LitElement {
   static styles = makeStyles(unsafeCSS(style));
 
   static formAssociated = true;
@@ -66,11 +73,28 @@ export class ButtonBase extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
+  /**
+   * 選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。
+   * `toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、
+   * スクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが
+   * 別途必要な場合は `aria-current` などを合わせて使用すること。
+   */
+  @property({ type: Boolean, reflect: true })
+  selected = false;
+
+  /**
+   * true のときトグルボタンとして振る舞い、aria-pressed 属性を "true"/"false" で出力する。
+   * false（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。
+   * トグルボタンとして使う場合は `selected` と必ず併用すること。
+   */
+  @property({ type: Boolean, reflect: true })
+  toggle = false;
+
   @property({ type: String })
   variant: Variant = "primary";
 
   @property({ type: String })
-  size: string = "medium";
+  size: S = "medium" as S;
 
   @property({ type: String })
   name = "";
@@ -109,6 +133,7 @@ export class ButtonBase extends LitElement {
       this.getEffectiveVariant(),
       sizeClassMap[isValidSize(this.size)],
       this.loading ? "loading" : "",
+      this.selected ? "selected" : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -139,30 +164,42 @@ export class ButtonBase extends LitElement {
     return html`<mi-icon type="${this.iconType}" class="icon"></mi-icon>`;
   }
 
+  /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
+  protected renderSlot() {
+    return html`<slot class="text"></slot>`;
+  }
+
   render() {
     return html`
       <button
         class="${this.buttonClasses}"
         ?disabled="${this.isDisabled}"
-        name="${this.name}"
-        value="${this.value}"
+        name="${this.name || nothing}"
+        value="${this.value || nothing}"
         type="${this.type}"
-        @click="${this.#handleClick}"
+        aria-pressed="${this.toggle
+          ? this.selected
+            ? "true"
+            : "false"
+          : nothing}"
+        aria-busy="${this.loading ? "true" : nothing}"
+        @click="${this.handleClick}"
       >
         ${this.loading ? this.renderLoading() : nothing}
-        ${this.showIcon ? this.renderIcon() : nothing}
-        <slot class="text"></slot>
+        ${this.showIcon ? this.renderIcon() : nothing} ${this.renderSlot()}
       </button>
     `;
   }
 
-  #handleClick(event: Event) {
+  protected handleClick(event: Event) {
+    // shadow button の click が composed: true でホストにも伝播するため、
+    // this.dispatchEvent による再発行と二重になるのを防ぐ
+    event.stopPropagation();
     const allowed = this.dispatchEvent(new MouseEvent("click", event));
     if (!allowed || !this.#internals.form) return;
 
     if (this.type === "submit") {
       event.preventDefault();
-      event.stopPropagation();
       if (this.name) {
         const hidden = document.createElement("input");
         hidden.type = "hidden";

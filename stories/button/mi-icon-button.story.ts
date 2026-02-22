@@ -1,5 +1,3 @@
-import "../../src/components/button/mi-icon-button";
-
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { action } from "storybook/actions";
@@ -36,6 +34,7 @@ const meta = {
       options: iconTypes,
     },
     selected: { type: "boolean" },
+    toggle: { type: "boolean" },
     loading: { type: "boolean" },
     disabled: { type: "boolean" },
     onclick: {
@@ -53,6 +52,7 @@ const meta = {
     size: "medium",
     iconType: "search",
     selected: false,
+    toggle: false,
     loading: false,
     disabled: false,
     onclick: action("onclick"),
@@ -66,6 +66,7 @@ const meta = {
       size=${args.size}
       icon-type=${args.iconType}
       ?selected=${args.selected}
+      ?toggle=${args.toggle}
       ?loading=${args.loading}
       ?disabled=${args.disabled}
       @click=${args.onclick}
@@ -81,8 +82,8 @@ type Story = StoryObj<MiIconButton>;
 
 export const Basic: Story = {
   args: {
-    variant: undefined,
-    size: undefined,
+    variant: "primary",
+    size: "medium",
     loading: undefined,
     disabled: undefined,
     selected: undefined,
@@ -96,7 +97,9 @@ export const ALL: Story = {
       style="display:flex; flex-direction:column; gap:32px; align-items: flex-start;"
     >
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × 状態</caption>
+        <caption style="text-align: left;">
+          バリアント × 状態
+        </caption>
         <thead>
           <tr>
             <th>状態</th>
@@ -109,17 +112,29 @@ export const ALL: Story = {
             ${iconButtonVariants.map(
               (v) =>
                 html`<td>
-                  <mi-icon-button variant="${v}" icon-type="search"></mi-icon-button>
+                  <mi-icon-button
+                    variant="${v}"
+                    icon-type="search"
+                  ></mi-icon-button>
                 </td>`,
             )}
           </tr>
           <tr>
             <th>選択中</th>
-            ${iconButtonVariants.map(
-              (v) =>
-                html`<td>
-                  <mi-icon-button variant="${v}" icon-type="search" selected></mi-icon-button>
-                </td>`,
+            ${iconButtonVariants.map((v) =>
+              v === "primary"
+                ? html`<td>
+                    <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+                      >なし<br />デフォルトスタイルが<br />適用されます</span
+                    >
+                  </td>`
+                : html`<td>
+                    <mi-icon-button
+                      variant="${v}"
+                      icon-type="search"
+                      selected
+                    ></mi-icon-button>
+                  </td>`,
             )}
           </tr>
           <tr>
@@ -127,7 +142,11 @@ export const ALL: Story = {
             ${iconButtonVariants.map(
               (v) =>
                 html`<td>
-                  <mi-icon-button variant="${v}" icon-type="search" disabled></mi-icon-button>
+                  <mi-icon-button
+                    variant="${v}"
+                    icon-type="search"
+                    disabled
+                  ></mi-icon-button>
                 </td>`,
             )}
           </tr>
@@ -136,7 +155,11 @@ export const ALL: Story = {
             ${iconButtonVariants.map(
               (v) =>
                 html`<td>
-                  <mi-icon-button variant="${v}" icon-type="search" loading></mi-icon-button>
+                  <mi-icon-button
+                    variant="${v}"
+                    icon-type="search"
+                    loading
+                  ></mi-icon-button>
                 </td>`,
             )}
           </tr>
@@ -144,7 +167,9 @@ export const ALL: Story = {
       </table>
 
       <table style="border-collapse: separate; border-spacing: 16px 20px;">
-        <caption style="text-align: left;">バリアント × サイズ</caption>
+        <caption style="text-align: left;">
+          バリアント × サイズ
+        </caption>
         <thead>
           <tr>
             <th>サイズ</th>
@@ -175,8 +200,7 @@ export const ALL: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "mi-icon-buttonコンポーネントの全パターンを一覧表示します。",
+        story: "mi-icon-buttonコンポーネントの全パターンを一覧表示します。",
       },
     },
   },

@@ -41,20 +41,20 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button name="submit">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("name", "cancel");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("name", "cancel");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.getAttribute("name")).toBe("cancel");
     });
 
-    test("name属性を設定しない場合、buttonのname属性は空文字になる", async () => {
+    test("name属性を設定しない場合、buttonのname属性は付与されない", async () => {
       document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
       const button = getButton();
-      expect(button?.getAttribute("name")).toBe("");
+      expect(button?.getAttribute("name")).toBeNull();
     });
   });
 
@@ -71,20 +71,20 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button value="submit">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("value", "cancel");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("value", "cancel");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.getAttribute("value")).toBe("cancel");
     });
 
-    test("value属性を設定しない場合、buttonのvalue属性は空文字になる", async () => {
+    test("value属性を設定しない場合、buttonのvalue属性は付与されない", async () => {
       document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
       const button = getButton();
-      expect(button?.getAttribute("value")).toBe("");
+      expect(button?.getAttribute("value")).toBeNull();
     });
   });
 
@@ -101,9 +101,9 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button type="submit">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("type", "reset");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("type", "reset");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.getAttribute("type")).toBe("reset");
@@ -139,21 +139,9 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button disabled>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.removeAttribute("disabled");
-      await spButton.updateComplete;
-
-      const button = getButton();
-      expect(button?.disabled).toBe(false);
-    });
-
-    test("disabled属性を更新（削除）すると、buttonには更新後の状態が反映される", async () => {
-      document.body.innerHTML = `<mi-button disabled="true">ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const spButton = getMiButton();
-      spButton.removeAttribute("disabled");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.removeAttribute("disabled");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.disabled).toBe(false);
@@ -169,116 +157,54 @@ describe("mi-button", () => {
   });
 
   describe("loading属性", () => {
-    test("loading属性にtrueを設定すると、ローディングが表示され、buttonが無効になる", async () => {
-      document.body.innerHTML = `<mi-button loading="true">ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const loading = getLoading();
-      expect(loading).toBeTruthy();
-
-      const button = getButton();
-      expect(button?.disabled).toBe(true);
-    });
-
-    test("loading属性に空文字列を設定すると、ローディングが表示され、buttonが無効になる", async () => {
+    test("loading属性を設定すると、ローディングが表示され、buttonが無効になる", async () => {
       document.body.innerHTML = `<mi-button loading>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const loading = getLoading();
-      expect(loading).toBeTruthy();
-
-      const button = getButton();
-      expect(button?.disabled).toBe(true);
+      expect(getLoading()).toBeTruthy();
+      expect(getButton()?.disabled).toBe(true);
     });
 
     test("loading属性を削除すると、ローディングが非表示になり、buttonが有効になる", async () => {
       document.body.innerHTML = `<mi-button loading>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.removeAttribute("loading");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.removeAttribute("loading");
+      await miButton.updateComplete;
 
-      const loading = getLoading();
-      expect(loading).toBeFalsy();
-
-      const button = getButton();
-      expect(button?.disabled).toBe(false);
+      expect(getLoading()).toBeFalsy();
+      expect(getButton()?.disabled).toBe(false);
     });
 
-    test("loading属性を更新（削除）すると、buttonには更新後の状態が反映される", async () => {
-      document.body.innerHTML = `<mi-button loading="true">ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const spButton = getMiButton();
-      spButton.removeAttribute("loading");
-      await spButton.updateComplete;
-
-      const loading = getLoading();
-      expect(loading).toBeFalsy();
-
-      const button = getButton();
-      expect(button?.disabled).toBe(false);
-    });
-
-    test("loading属性を設定しない場合、ローディングが非表示になり、buttonが有効になる", async () => {
+    test("loading属性を設定しない場合、ローディングが非表示でbuttonが有効になる", async () => {
       document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const loading = getLoading();
-      expect(loading).toBeFalsy();
-
-      const button = getButton();
-      expect(button?.disabled).toBe(false);
+      expect(getLoading()).toBeFalsy();
+      expect(getButton()?.disabled).toBe(false);
     });
 
     test("loading属性を設定した場合、iconが表示されない", async () => {
-      document.body.innerHTML = `<mi-button loading="true" icon-type="download">ダウンロード</mi-button>`;
+      document.body.innerHTML = `<mi-button loading icon-type="download">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = getMiButton().shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
-  });
 
-  describe("variant属性", () => {
-    test("variant属性を設定すると、buttonに適切なクラスが適用される", async () => {
-      document.body.innerHTML = `<mi-button variant="secondary">ダウンロード</mi-button>`;
+    test("loading属性を設定すると、aria-busy='true' が付与される", async () => {
+      document.body.innerHTML = `<mi-button loading>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const button = getButton();
-      expect(button?.classList.contains("secondary")).toBe(true);
+      expect(getButton()?.getAttribute("aria-busy")).toBe("true");
     });
 
-    test("variant属性を更新すると、buttonのクラスが更新される", async () => {
-      document.body.innerHTML = `<mi-button variant="primary">ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const spButton = getMiButton();
-      spButton.setAttribute("variant", "secondary");
-      await spButton.updateComplete;
-
-      const button = getButton();
-      expect(button?.classList.contains("secondary")).toBe(true);
-      expect(button?.classList.contains("primary")).toBe(false);
-    });
-
-    test("variant属性を設定しない場合、デフォルト値（primary）が使用される", async () => {
+    test("loading属性を設定しない場合、aria-busy属性は付与されない", async () => {
       document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const button = getButton();
-      expect(button?.classList.contains("primary")).toBe(true);
-    });
-
-    test("variant属性に無効な値を設定すると、デフォルト値（primary）が使用される", async () => {
-      document.body.innerHTML = `<mi-button variant="invalid">ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("primary")).toBe(true);
-      expect(button?.classList.contains("invalid")).toBe(false);
+      expect(getButton()?.getAttribute("aria-busy")).toBeNull();
     });
   });
 
@@ -295,12 +221,12 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button variant="primary">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("variant", "tertiary");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("variant", "secondary");
+      await miButton.updateComplete;
 
       const button = getButton();
-      expect(button?.classList.contains("tertiary")).toBe(true);
+      expect(button?.classList.contains("secondary")).toBe(true);
       expect(button?.classList.contains("primary")).toBe(false);
     });
 
@@ -335,9 +261,9 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button size="medium">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("size", "xLarge");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("size", "xLarge");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.classList.contains("x-large")).toBe(true);
@@ -363,8 +289,8 @@ describe("mi-button", () => {
   });
 
   describe("danger属性", () => {
-    test("danger属性にtrueを設定すると、buttonにdangerクラスが適用される", async () => {
-      document.body.innerHTML = `<mi-button danger="true">ダウンロード</mi-button>`;
+    test("danger属性を設定すると、buttonにdangerクラスが適用される", async () => {
+      document.body.innerHTML = `<mi-button danger>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
       const button = getButton();
@@ -372,21 +298,13 @@ describe("mi-button", () => {
       expect(button?.classList.contains("normal")).toBe(false);
     });
 
-    test("danger属性に空文字列を設定すると、buttonにdangerクラスが適用される", async () => {
-      document.body.innerHTML = `<mi-button danger>ダウンロード</mi-button>`;
-      await customElements.whenDefined("mi-button");
-
-      const button = getButton();
-      expect(button?.classList.contains("danger")).toBe(true);
-    });
-
     test("danger属性を削除すると、buttonにnormalクラスが適用される", async () => {
       document.body.innerHTML = `<mi-button danger>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.removeAttribute("danger");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.removeAttribute("danger");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.classList.contains("normal")).toBe(true);
@@ -407,8 +325,7 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = getMiButton().shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeTruthy();
       expect(icon?.getAttribute("type")).toBe("check");
     });
@@ -417,11 +334,11 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("icon-type", "cross");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("icon-type", "cross");
+      await miButton.updateComplete;
 
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = miButton.shadowRoot?.querySelector("mi-icon");
       expect(icon?.getAttribute("type")).toBe("cross");
     });
 
@@ -429,11 +346,11 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button icon-type="check">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.removeAttribute("icon-type");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.removeAttribute("icon-type");
+      await miButton.updateComplete;
 
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = miButton.shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
 
@@ -441,8 +358,7 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = getMiButton().shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
     });
 
@@ -450,9 +366,85 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button icon-type="invalid-icon">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      const icon = spButton.shadowRoot?.querySelector("mi-icon");
+      const icon = getMiButton().shadowRoot?.querySelector("mi-icon");
       expect(icon).toBeFalsy();
+    });
+  });
+
+  describe("selected属性", () => {
+    test("selected属性を設定すると、buttonにselectedクラスが付与される", async () => {
+      document.body.innerHTML = `<mi-button selected>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()?.classList.contains("selected")).toBe(true);
+    });
+
+    test("selected属性を削除すると、selectedクラスが除去される", async () => {
+      document.body.innerHTML = `<mi-button selected>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      miButton.removeAttribute("selected");
+      await miButton.updateComplete;
+
+      expect(getButton()?.classList.contains("selected")).toBe(false);
+    });
+
+    test("selected属性を設定しない場合、selectedクラスは付与されない", async () => {
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()?.classList.contains("selected")).toBe(false);
+    });
+  });
+
+  describe("toggle属性・aria-pressed", () => {
+    test("toggle属性を設定しない場合、aria-pressed属性は付与されない", async () => {
+      document.body.innerHTML = `<mi-button selected>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()?.getAttribute("aria-pressed")).toBeNull();
+    });
+
+    test("toggle=true かつ selected=false の場合、aria-pressed='false' が付与される", async () => {
+      document.body.innerHTML = `<mi-button toggle>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()?.getAttribute("aria-pressed")).toBe("false");
+    });
+
+    test("toggle=true かつ selected=true の場合、aria-pressed='true' が付与される", async () => {
+      document.body.innerHTML = `<mi-button toggle selected>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()?.getAttribute("aria-pressed")).toBe("true");
+    });
+
+    test("toggle=true の状態で selected を変更すると、aria-pressed が更新される", async () => {
+      document.body.innerHTML = `<mi-button toggle>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      miButton.setAttribute("selected", "");
+      await miButton.updateComplete;
+
+      expect(getButton()?.getAttribute("aria-pressed")).toBe("true");
+    });
+  });
+
+  describe("クリックイベント", () => {
+    test("ボタンをクリックすると、clickイベントが1回だけ発火する", async () => {
+      document.body.innerHTML = `<mi-button>ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      let clickCount = 0;
+      miButton.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getButton()?.click();
+      expect(clickCount).toBe(1);
     });
   });
 
@@ -469,9 +461,9 @@ describe("mi-button", () => {
       document.body.innerHTML = `<mi-button variants="primary">ダウンロード</mi-button>`;
       await customElements.whenDefined("mi-button");
 
-      const spButton = getMiButton();
-      spButton.setAttribute("variants", "tertiary");
-      await spButton.updateComplete;
+      const miButton = getMiButton();
+      miButton.setAttribute("variants", "tertiary");
+      await miButton.updateComplete;
 
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);
@@ -494,28 +486,32 @@ describe("mi-button", () => {
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);
     });
+  });
 
-    test("type=resetであればinput.valueが初期値に戻る", async () => {
-      document.body.innerHTML = `<form>
+  describe("フォーム連携", () => {
+    test("type=reset であれば input.value が初期値に戻る", async () => {
+      document.body.innerHTML = `
+        <form>
           <input name="surname" value="initial">
           <mi-button type="reset">Reset</mi-button>
         </form>
       `;
       await customElements.whenDefined("mi-button");
-      const form = document.querySelector("form") as HTMLFormElement;
-      const input = form.querySelector("input")!;
+
+      const input = document.querySelector("input")!;
       input.value = "Smith";
-      getButton()!.click();
+      getButton()?.click();
       expect(input.value).toBe("initial");
     });
 
-    test("type=submitであり、mi-butonにnameが定義されていたら、formDataにnameとそのvalueが含まれる", async () => {
+    test("type=submit かつ name が設定されている場合、formData に name と value が含まれる", async () => {
       document.body.innerHTML = `
-        <form >
+        <form>
           <mi-button name="foo" value="bar" type="submit">Submit</mi-button>
         </form>
       `;
       await customElements.whenDefined("mi-button");
+
       const form = document.querySelector("form") as HTMLFormElement;
       let submittedData: FormData | null = null;
       form.addEventListener("submit", (e) => {

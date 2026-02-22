@@ -19,11 +19,18 @@ export type AiVariant = (typeof aiVariants)[number];
 
 /**
  * @summary AIボタンです。AI機能の起動などに使用します。
- * アイコンは常に magic-fill が表示されます。
+ * アイコンは常に magic-fill が表示されます。icon-type 属性は無効です。
  */
 export class MiAiButton extends ButtonBase {
   @property({ type: String })
   override variant: AiVariant = "primary";
+
+  /**
+   * icon-type 属性は mi-ai-button では無効です。アイコンは常に magic-fill が使用されます。
+   * @deprecated 設定しても効果はありません。
+   */
+  @property({ attribute: false })
+  override iconType = "";
 
   protected override getTheme(): ButtonTheme {
     return "ai";
@@ -35,6 +42,13 @@ export class MiAiButton extends ButtonBase {
 
   protected override renderIcon() {
     return html`<mi-icon type="magic-fill" class="icon"></mi-icon>`;
+  }
+
+  protected override renderLoading() {
+    return html`<mi-loading
+      size="${this.loadingSize}"
+      ?ai="${this.variant === "primary"}"
+    ></mi-loading>`;
   }
 }
 
