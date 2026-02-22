@@ -1,11 +1,34 @@
 import "../../src/components/tooltip/mi-tooltip";
 
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import {
   type MiTooltip,
   placements,
 } from "../../src/components/tooltip/mi-tooltip";
+
+/**
+ * ツールチップが非表示になるまで待機する。
+ * タイマーのポーリングではなく MutationObserver でシャドウ DOM の変化を監視するため、
+ * CI 環境のタイマー遅延に影響されない。
+ */
+function waitForTooltipHidden(el: MiTooltip, timeout = 2000): Promise<void> {
+  if (!el.shadowRoot?.querySelector('[role="tooltip"]')) return Promise.resolve();
+  return new Promise<void>((resolve, reject) => {
+    const id = setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`Tooltip was not hidden within ${timeout}ms`));
+    }, timeout);
+    const observer = new MutationObserver(() => {
+      if (!el.shadowRoot?.querySelector('[role="tooltip"]')) {
+        observer.disconnect();
+        clearTimeout(id);
+        resolve();
+      }
+    });
+    observer.observe(el.shadowRoot!, { childList: true, subtree: true });
+  });
+}
 
 function getMiTooltip() {
   return document.querySelector("mi-tooltip") as MiTooltip;
@@ -103,13 +126,7 @@ describe("mi-tooltip", () => {
       expect(getTooltipEl()).not.toBeNull();
 
       el.dispatchEvent(new MouseEvent("mouseleave", { bubbles: false }));
-      await vi.waitFor(
-        async () => {
-          await el.updateComplete;
-          expect(getTooltipEl()).toBeNull();
-        },
-        { timeout: 1000 },
-      );
+      await waitForTooltipHidden(el);
     });
 
     test("mouseenterとmouseleaveを素早く繰り返してもツールチップは表示されたままになる", async () => {
@@ -164,13 +181,7 @@ describe("mi-tooltip", () => {
       expect(getTooltipEl()).not.toBeNull();
 
       el.dispatchEvent(new FocusEvent("focusout", { bubbles: true }));
-      await vi.waitFor(
-        async () => {
-          await el.updateComplete;
-          expect(getTooltipEl()).toBeNull();
-        },
-        { timeout: 1000 },
-      );
+      await waitForTooltipHidden(el);
     });
   });
 
