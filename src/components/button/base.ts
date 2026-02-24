@@ -4,12 +4,12 @@
  */
 import "../loading/mi-loading";
 
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, LitElement, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
 import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
-import style from "./button.css?inline";
+import { buttonStyles } from "./button.styles";
 
 export const variants = [
   "primary",
@@ -48,7 +48,7 @@ function isValidIconType(value: string): boolean {
  * @typeParam S - size プロパティの型。サブクラスが独自のサイズ体系を持つ場合にオーバーライドする。
  */
 export class ButtonBase<S extends string = Size> extends LitElement {
-  static styles = makeStyles(unsafeCSS(style));
+  static styles = makeStyles(buttonStyles);
 
   static formAssociated = true;
 
@@ -80,10 +80,10 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   @property({ type: Boolean, reflect: true })
   toggle = false;
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   variant: Variant = "primary";
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   size: S = "medium" as S;
 
   @property({ type: String })
@@ -166,7 +166,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   }
 
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
-  protected renderSlot() {
+  protected renderSlot(): TemplateResult | typeof nothing {
     return html`<slot class="text"></slot>`;
   }
 

@@ -1,9 +1,9 @@
-import { html, unsafeCSS } from "lit";
+import { nothing } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import { ButtonBase } from "./base";
-import style from "./icon-button.css?inline";
+import { iconButtonStyles } from "./icon-button.styles";
 
 export const iconButtonVariants = [
   "primary",
@@ -22,7 +22,7 @@ export type IconButtonSize = (typeof iconButtonSizes)[number];
  * 必ずツールチップで意味を補完してください。
  */
 export class MiIconButton extends ButtonBase<IconButtonSize> {
-  static override styles = makeStyles(unsafeCSS(style));
+  static override styles = makeStyles(iconButtonStyles);
 
   @property({ type: String })
   override variant: IconButtonVariant = "ghost";
@@ -56,8 +56,8 @@ export class MiIconButton extends ButtonBase<IconButtonSize> {
       .join(" ");
   }
 
-  protected override renderSlot() {
-    return html``;
+  protected override renderSlot(): typeof nothing {
+    return nothing;
   }
 }
 
