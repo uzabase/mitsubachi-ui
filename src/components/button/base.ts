@@ -25,22 +25,12 @@ export type Size = (typeof sizes)[number];
 
 export type ButtonTheme = "normal" | "danger" | "ai";
 
-export function isValidVariant(value: string): Variant {
-  if (variants.some((variant) => variant === value)) {
-    return value as Variant;
-  } else {
-    console.warn(`${value}は無効なvariant属性です。`);
-    return variants[0];
-  }
+export function isValidVariant(value: string): value is Variant {
+  return variants.some((variant) => variant === value);
 }
 
-export function isValidSize(value: string): Size {
-  if (sizes.some((s) => s === value)) {
-    return value as Size;
-  } else {
-    console.warn(`${value}は無効なsize属性です。`);
-    return sizes[0];
-  }
+export function isValidSize(value: string): value is Size {
+  return sizes.some((s) => s === value);
 }
 
 function isValidIconType(value: string): boolean {
@@ -117,7 +107,11 @@ export class ButtonBase<S extends string = Size> extends LitElement {
 
   /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
   protected getEffectiveVariant(): Variant {
-    return isValidVariant(this.variant);
+    const validVariant = isValidVariant(this.variant);
+    if (!validVariant) {
+      console.warn(`${this.variant}は無効なvariant属性です。`);
+    }
+    return validVariant ? this.variant : variants[0];
   }
 
   protected get buttonClasses() {
@@ -126,12 +120,17 @@ export class ButtonBase<S extends string = Size> extends LitElement {
       large: "large",
       xLarge: "x-large",
     };
+    const validSize = isValidSize(this.size);
+    if (!validSize) {
+      console.warn(`${this.size}は無効なsize属性です。`);
+    }
+    const size: Size = validSize ? (this.size as Size) : sizes[0];
 
     return [
       "base",
       this.getTheme(),
       this.getEffectiveVariant(),
-      sizeClassMap[isValidSize(this.size)],
+      sizeClassMap[size],
       this.loading ? "loading" : "",
       this.selected ? "selected" : "",
     ]
@@ -149,7 +148,9 @@ export class ButtonBase<S extends string = Size> extends LitElement {
       large: "xLarge",
       xLarge: "2xLarge",
     };
-    return sizeAttributeMap[isValidSize(this.size)];
+    const validSize = isValidSize(this.size);
+    const size: Size = validSize ? (this.size as Size) : sizes[0];
+    return sizeAttributeMap[size];
   }
 
   protected renderLoading() {

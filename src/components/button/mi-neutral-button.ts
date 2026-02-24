@@ -35,9 +35,12 @@ export class MiNeutralButton extends ButtonBase {
   }
 
   protected override getEffectiveVariant(): Variant {
-    return this.variants != null
-      ? isValidVariant(this.variants)
-      : isValidVariant(this.variant);
+    const value = this.variants != null ? this.variants : this.variant;
+    const validVariant = isValidVariant(value);
+    if (!validVariant) {
+      console.warn(`${value}は無効なvariant属性です。`);
+    }
+    return validVariant ? value : variants[0];
   }
 }
 
