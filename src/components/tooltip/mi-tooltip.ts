@@ -5,11 +5,11 @@ import {
   offset,
   shift,
 } from "@floating-ui/dom";
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
-import style from "./tooltip.css?inline";
+import { tooltipStyles } from "./tooltip.styles";
 
 export const placements = [
   "top",
@@ -27,19 +27,15 @@ export const placements = [
 ] as const;
 export type Placement = (typeof placements)[number];
 
-function isValidPlacement(value: string): Placement {
-  if (placements.some((p) => p === value)) {
-    return value as Placement;
-  }
-  console.warn(`"${value}" は無効な placement 属性です。"top" を使用します。`);
-  return "top";
+function isValidPlacement(value: string): value is Placement {
+  return placements.some((p) => p === value);
 }
 
 /**
  * @summary ツールチップコンポーネントです。アイコンやボタンなどにホバー・フォーカスすることで補足情報を表示します。
  */
 export class MiTooltip extends LitElement {
-  static styles = makeStyles(unsafeCSS(style));
+  static styles = makeStyles(tooltipStyles);
 
   private static _idCounter = 0;
 
@@ -156,8 +152,12 @@ export class MiTooltip extends LitElement {
 
   private async _updatePosition() {
     if (!this._tooltipEl) return;
+    if (!isValidPlacement(this.placement)) {
+      console.warn(`"${this.placement}" は無効な placement 属性です。"top" を使用します。`);
+    }
+    const placement = isValidPlacement(this.placement) ? this.placement : "top";
     const { x, y } = await computePosition(this, this._tooltipEl, {
-      placement: isValidPlacement(this.placement),
+      placement,
       strategy: "fixed",
       middleware: [offset(8), flip(), shift({ padding: 8 })],
     });
