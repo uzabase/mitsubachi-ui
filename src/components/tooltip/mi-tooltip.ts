@@ -42,7 +42,7 @@ export class MiTooltip extends LitElement {
   @property({ type: String })
   text = "";
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   placement: Placement = "top";
 
   @state()
@@ -152,10 +152,13 @@ export class MiTooltip extends LitElement {
 
   private async _updatePosition() {
     if (!this._tooltipEl) return;
-    if (!isValidPlacement(this.placement)) {
-      console.warn(`"${this.placement}" は無効な placement 属性です。"top" を使用します。`);
+    const validPlacement = isValidPlacement(this.placement);
+    if (!validPlacement) {
+      console.warn(
+        `"${this.placement}" は無効な placement 属性です。"top" を使用します。`,
+      );
     }
-    const placement = isValidPlacement(this.placement) ? this.placement : "top";
+    const placement = validPlacement ? this.placement : "top";
     const { x, y } = await computePosition(this, this._tooltipEl, {
       placement,
       strategy: "fixed",
