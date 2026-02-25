@@ -39,3 +39,4 @@ export {
   MiTextFieldUnit,
   SpTextFieldUnit,
 } from "./components/text-field/text-field-unit";
+export { MiTooltip } from "./components/tooltip/mi-tooltip";

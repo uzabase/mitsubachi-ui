@@ -16,4 +16,5 @@ export { MiControlMenu, SpControlMenu } from './components/menu/control-menu';
 export { MiControlMenuItem, SpControlMenuItem, } from './components/menu/control-menu-item';
 export { MiRadioButtonText, SpRadioButtonText, } from './components/radio-button/mi-radio-button-text';
 export { MiTextFieldUnit, SpTextFieldUnit, } from './components/text-field/text-field-unit';
+export { MiTooltip } from './components/tooltip/mi-tooltip';
 //# sourceMappingURL=index.d.ts.map

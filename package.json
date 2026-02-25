@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -38,6 +38,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.1"
   },
   "devDependencies": {
