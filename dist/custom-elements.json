@@ -230,6 +230,14 @@
             "name": "SpTextFieldUnit",
             "module": "./components/text-field/text-field-unit"
           }
+        },
+        {
+          "kind": "js",
+          "name": "MiTooltip",
+          "declaration": {
+            "name": "MiTooltip",
+            "module": "./components/tooltip/mi-tooltip"
+          }
         }
       ]
     },
@@ -3263,6 +3271,224 @@
           "name": "default",
           "declaration": {
             "module": "src/components/radio-button/radio-button-text.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/tooltip/mi-tooltip.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "placements",
+          "type": {
+            "text": "[\n  \"top\",\n  \"top-start\",\n  \"top-end\",\n  \"bottom\",\n  \"bottom-start\",\n  \"bottom-end\",\n  \"left\",\n  \"left-start\",\n  \"left-end\",\n  \"right\",\n  \"right-start\",\n  \"right-end\",\n]"
+          },
+          "default": "[ \"top\", \"top-start\", \"top-end\", \"bottom\", \"bottom-start\", \"bottom-end\", \"left\", \"left-start\", \"left-end\", \"right\", \"right-start\", \"right-end\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTooltip",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "_idCounter",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "static": true,
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placement",
+              "type": {
+                "text": "Placement"
+              },
+              "default": "\"top\""
+            },
+            {
+              "kind": "field",
+              "name": "_open",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_tooltipEl",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_cleanup",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_hideTimer",
+              "type": {
+                "text": "ReturnType<typeof setTimeout> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_pointerActive",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_descId",
+              "privacy": "private",
+              "default": "`mi-tooltip-desc-${MiTooltip._idCounter++}`"
+            },
+            {
+              "kind": "field",
+              "name": "_descEl",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_onSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleMouseEnter",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_onPointerDown",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleFocusin",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleKeyDown",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_show",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_scheduleHide",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_updatePosition",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ツールチップコンポーネントです。アイコンやボタンなどにホバー・フォーカスすることで補足情報を表示します。",
+          "tagName": "mi-tooltip",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "placements",
+          "declaration": {
+            "name": "placements",
+            "module": "src/components/tooltip/mi-tooltip.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTooltip",
+          "declaration": {
+            "name": "MiTooltip",
+            "module": "src/components/tooltip/mi-tooltip.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-tooltip",
+          "declaration": {
+            "name": "MiTooltip",
+            "module": "src/components/tooltip/mi-tooltip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/tooltip/tooltip.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "tooltipStyles",
+          "default": "css` :host { display: inline-block; } .tooltip { position: fixed; z-index: 9999; top: 0; left: 0; max-width: 200px; padding: 4px 8px; background-color: #282828; border-radius: 4px; box-shadow: 0 8px 16px 0 rgb(0 0 0 / 13%), 0 0 6px 0 rgb(0 0 0 / 10%), inset 0 0 1px 0 rgb(255 255 255 / 0%); color: #fff; font-size: 12px; letter-spacing: 0.24px; line-height: 1.3; white-space: pre-wrap; overflow-wrap: anywhere; pointer-events: none; opacity: 1; transition: opacity 0.2s ease-out; @starting-style { opacity: 0; } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "tooltipStyles",
+          "declaration": {
+            "name": "tooltipStyles",
+            "module": "src/components/tooltip/tooltip.styles.ts"
           }
         }
       ]
