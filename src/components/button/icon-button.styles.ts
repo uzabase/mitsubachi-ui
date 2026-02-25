@@ -31,7 +31,8 @@ export const iconButtonStyles = css`
       background-color: var(--background-color-active, transparent);
     }
 
-    &:disabled {
+    &:disabled,
+    &.loading {
       cursor: not-allowed;
       background-color: var(--background-color-disabled, transparent);
       border-color: var(--border-color-disabled, transparent);

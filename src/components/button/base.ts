@@ -196,6 +196,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
     // shadow button の click が composed: true でホストにも伝播するため、
     // this.dispatchEvent による再発行と二重になるのを防ぐ
     event.stopPropagation();
+    if (this.loading) return;
     const allowed = this.dispatchEvent(new MouseEvent("click", event));
     if (!allowed || !this.#internals.form) return;
 

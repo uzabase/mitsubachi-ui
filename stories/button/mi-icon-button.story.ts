@@ -8,6 +8,7 @@ import {
   iconButtonVariants,
 } from "../../src/components/button/mi-icon-button";
 import { iconTypes } from "../../src/components/icon/icons";
+import { placements } from "../../src/components/tooltip/mi-tooltip";
 
 const meta = {
   component: "mi-icon-button",
@@ -33,6 +34,12 @@ const meta = {
       control: { type: "select" },
       options: iconTypes,
     },
+    label: { type: "string" },
+    tooltipPlacement: {
+      control: { type: "select" },
+      options: placements,
+    },
+    tooltipDisabled: { type: "boolean" },
     selected: { type: "boolean" },
     toggle: { type: "boolean" },
     loading: { type: "boolean" },
@@ -51,6 +58,9 @@ const meta = {
     variant: "ghost",
     size: "medium",
     iconType: "search",
+    label: "",
+    tooltipPlacement: "top",
+    tooltipDisabled: false,
     selected: false,
     toggle: false,
     loading: false,
@@ -61,19 +71,24 @@ const meta = {
     type: "button",
   },
   render: (args) => html`
-    <mi-icon-button
-      variant=${args.variant}
-      size=${args.size}
-      icon-type=${args.iconType}
-      ?selected=${args.selected}
-      ?toggle=${args.toggle}
-      ?loading=${args.loading}
-      ?disabled=${args.disabled}
-      @click=${args.onclick}
-      name=${args.name || nothing}
-      value=${args.value || nothing}
-      type=${args.type || nothing}
-    ></mi-icon-button>
+    <div style="padding: 40px; display: inline-block;">
+      <mi-icon-button
+        variant=${args.variant}
+        size=${args.size}
+        icon-type=${args.iconType}
+        aria-label=${args.label || nothing}
+        tooltip-placement=${args.tooltipPlacement || nothing}
+        ?tooltip-disabled=${args.tooltipDisabled}
+        ?selected=${args.selected}
+        ?toggle=${args.toggle}
+        ?loading=${args.loading}
+        ?disabled=${args.disabled}
+        @click=${args.onclick}
+        name=${args.name || nothing}
+        value=${args.value || nothing}
+        type=${args.type || nothing}
+      ></mi-icon-button>
+    </div>
   `,
 } satisfies Meta<MiIconButton>;
 
@@ -84,11 +99,46 @@ export const Basic: Story = {
   args: {
     variant: "primary",
     size: "medium",
+    label: "検索",
     loading: undefined,
     disabled: undefined,
     selected: undefined,
   },
   tags: ["!dev-only"],
+};
+
+export const WithTooltip: Story = {
+  render: () => html`
+    <div
+      style="display: flex; gap: 24px; padding: 60px; align-items: center; flex-wrap: wrap;"
+    >
+      ${placements.map(
+        (placement) => html`
+          <div
+            style="display: flex; flex-direction: column; align-items: center; gap: 8px;"
+          >
+            <mi-icon-button
+              variant="ghost"
+              icon-type="search"
+              aria-label="${placement}"
+              tooltip-placement="${placement}"
+            ></mi-icon-button>
+            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+              >${placement}</span
+            >
+          </div>
+        `,
+      )}
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "aria-label 属性を指定すると、ホバー・フォーカス時にツールチップが表示されます。tooltip-placement で表示位置を変更できます。",
+      },
+    },
+  },
 };
 
 export const ALL: Story = {

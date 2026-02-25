@@ -124,12 +124,19 @@ describe("mi-icon-button", () => {
   });
 
   describe("loading属性", () => {
-    test("loading属性を設定すると、ローディングが表示され、buttonが無効になる", async () => {
+    test("loading属性を設定すると、ローディングが表示される", async () => {
       document.body.innerHTML = `<mi-icon-button loading icon-type="search"></mi-icon-button>`;
       await customElements.whenDefined("mi-icon-button");
 
       expect(getLoading()).toBeTruthy();
-      expect(getButton()?.disabled).toBe(true);
+    });
+
+    test("loading属性を設定しても、disabled属性は付与されない（aria-disabled で代替）", async () => {
+      document.body.innerHTML = `<mi-icon-button loading icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getButton()?.disabled).toBe(false);
+      expect(getButton()?.getAttribute("aria-disabled")).toBe("true");
     });
 
     test("loading属性を設定すると、iconが非表示になる", async () => {
@@ -152,6 +159,20 @@ describe("mi-icon-button", () => {
       await customElements.whenDefined("mi-icon-button");
 
       expect(getButton()?.getAttribute("aria-busy")).toBeNull();
+    });
+
+    test("loading中にクリックしても、clickイベントが発火しない", async () => {
+      document.body.innerHTML = `<mi-icon-button loading icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const el = getMiIconButton();
+      let clickCount = 0;
+      el.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getButton()?.click();
+      expect(clickCount).toBe(0);
     });
   });
 
@@ -201,6 +222,74 @@ describe("mi-icon-button", () => {
 
       const slot = getMiIconButton().shadowRoot?.querySelector("slot");
       expect(slot).toBeFalsy();
+    });
+  });
+
+  describe("aria-label属性", () => {
+    test("aria-label属性を設定すると、buttonのaria-label属性に反映される", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getButton()?.getAttribute("aria-label")).toBe("検索");
+    });
+
+    test("aria-label属性を設定すると、mi-tooltipがレンダリングされる", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip).toBeTruthy();
+      expect(tooltip?.getAttribute("text")).toBe("検索");
+    });
+
+    test("aria-label属性を設定しない場合、mi-tooltipはレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-icon-button icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip).toBeFalsy();
+    });
+  });
+
+  describe("tooltip-disabled属性", () => {
+    test("tooltip-disabledを設定すると、mi-tooltipがレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search" tooltip-disabled></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip).toBeFalsy();
+    });
+
+    test("tooltip-disabledを設定すると、buttonにtitle属性が付与される", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search" tooltip-disabled></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getButton()?.getAttribute("title")).toBe("検索");
+    });
+
+    test("tooltip-disabledなしのとき、title属性は付与されない", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getButton()?.getAttribute("title")).toBeNull();
+    });
+  });
+
+  describe("tooltip-placement属性", () => {
+    test("tooltip-placement属性がmi-tooltipのplacement属性に反映される", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search" tooltip-placement="bottom"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip?.getAttribute("placement")).toBe("bottom");
+    });
+
+    test("tooltip-placement属性を設定しない場合、デフォルト値（top）が使用される", async () => {
+      document.body.innerHTML = `<mi-icon-button aria-label="検索" icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip?.getAttribute("placement")).toBe("top");
     });
   });
 
