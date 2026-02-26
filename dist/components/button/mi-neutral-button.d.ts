@@ -1,4 +1,4 @@
-import { ButtonBase, ButtonTheme, Variant, variants, sizes, Size } from './base';
+import { ButtonBase, ButtonTheme, Size, sizes, Variant, variants } from './base';
 /**
  * @summary ノーマル（ニュートラル）ボタンです。
  */
@@ -16,8 +16,8 @@ export declare class MiNeutralButton extends ButtonBase {
     protected getTheme(): ButtonTheme;
     protected getEffectiveVariant(): Variant;
 }
-export type { Variant, Size };
-export { variants, sizes };
+export type { Size, Variant };
+export { sizes, variants };
 /** @deprecated 代わりに MiNeutralButton を使用してください。後方互換のため別クラスとして登録しています。 */
 export declare class MiButton extends MiNeutralButton {
 }

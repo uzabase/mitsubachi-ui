@@ -25,10 +25,58 @@
         },
         {
           "kind": "js",
+          "name": "MiAiButton",
+          "declaration": {
+            "name": "MiAiButton",
+            "module": "./components/button/mi-ai-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiDangerButton",
+          "declaration": {
+            "name": "MiDangerButton",
+            "module": "./components/button/mi-danger-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconButtonSizes",
+          "declaration": {
+            "name": "iconButtonSizes",
+            "module": "./components/button/mi-icon-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconButtonVariants",
+          "declaration": {
+            "name": "iconButtonVariants",
+            "module": "./components/button/mi-icon-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiIconButton",
+          "declaration": {
+            "name": "MiIconButton",
+            "module": "./components/button/mi-icon-button"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiButton",
           "declaration": {
             "name": "MiButton",
-            "module": "./components/button/mi-button"
+            "module": "./components/button/mi-neutral-button"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiNeutralButton",
+          "declaration": {
+            "name": "MiNeutralButton",
+            "module": "./components/button/mi-neutral-button"
           }
         },
         {
@@ -36,7 +84,7 @@
           "name": "SpButton",
           "declaration": {
             "name": "SpButton",
-            "module": "./components/button/mi-button"
+            "module": "./components/button/mi-neutral-button"
           }
         },
         {
@@ -563,21 +611,15 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button/button.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button/mi-button.ts",
+      "path": "src/components/button/base.ts",
       "declarations": [
         {
           "kind": "variable",
           "name": "variants",
           "type": {
-            "text": "[\"primary\", \"secondary\", \"tertiary\", \"ghost\"]"
+            "text": "[\n  \"primary\",\n  \"secondary\",\n  \"tertiary\",\n  \"ghost\",\n  \"plane\",\n]"
           },
-          "default": "[\"primary\", \"secondary\", \"tertiary\", \"ghost\"]"
+          "default": "[ \"primary\", \"secondary\", \"tertiary\", \"ghost\", \"plane\", ]"
         },
         {
           "kind": "variable",
@@ -588,14 +630,211 @@
           "default": "[\"medium\", \"large\", \"xLarge\"]"
         },
         {
+          "kind": "function",
+          "name": "isValidVariant",
+          "return": {
+            "type": {
+              "text": "value is Variant"
+            }
+          },
+          "parameters": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isValidSize",
+          "return": {
+            "type": {
+              "text": "value is Size"
+            }
+          },
+          "parameters": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "variants",
+          "declaration": {
+            "name": "variants",
+            "module": "src/components/button/base.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sizes",
+          "declaration": {
+            "name": "sizes",
+            "module": "src/components/button/base.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isValidVariant",
+          "declaration": {
+            "name": "isValidVariant",
+            "module": "src/components/button/base.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isValidSize",
+          "declaration": {
+            "name": "isValidSize",
+            "module": "src/components/button/base.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "buttonStyles",
+          "default": "css` :host { display: inline-block; } .normal { &.primary { --border-color: transparent; --background-color: rgb(0 0 0 / 84%); --background-color-hover: rgb(0 0 0 / 90%); --background-color-active: #000; --color: #fff; } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --color: #315ce8; } } &.tertiary { --border-color: rgb(0 0 0 / 29%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: rgb(0 0 0 / 20%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.plane { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(49 92 232 / 8%); --background-color-active: rgb(49 92 232 / 12%); --color: #315ce8; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &.medium { padding-inline: 4px; padding-block: 0; min-height: auto; } &.large { padding-inline: 4px; min-height: auto; } &.x-large { padding-inline: 4px; min-height: auto; } } } .danger { &.primary { --border-color: transparent; --background-color: #db351f; --background-color-hover: #c92812; --background-color-active: #b02412; --color: #fff; } &.secondary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.tertiary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } /* .selected は danger テーマでは非サポート */ } .ai { &.primary { --angle: 0deg; border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; transition: --angle 0.5s; &:hover { --angle: 360deg; } &:disabled { border: 1px solid rgb(0 0 0 / 7%); background: transparent; color: rgb(0 0 0 / 35%); cursor: not-allowed; &:hover { border: 1px solid rgb(0 0 0 / 7%); background: transparent; } &.loading { border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; } } } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); } &.tertiary { --border-color: #7c3aed; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } /* .selected は ai テーマでは非サポート */ } .primary { --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 5%); --color-disabled: rgb(0 0 0 / 35%); } :is(.secondary, .tertiary) { --border-color-disabled: rgb(0 0 0 / 10%); --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .ghost { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .plane { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .base { display: inline-flex; justify-content: center; align-items: center; gap: 4px; width: 100%; flex-basis: 100%; padding-block: 2px; border: 1px solid var(--border-color); border-radius: 9999px; background-color: var(--background-color); color: var(--color); position: relative; cursor: pointer; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover); } &:active { background-color: var(--background-color-active); } &:disabled { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); color: var(--color-disabled); cursor: not-allowed; &:hover { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); } &.loading { color: rgb(0 0 0 / 84%); } } } .medium { min-height: 32px; padding-inline: 12px; font-size: 12px; } .large { min-height: 40px; padding-inline: 16px; font-size: 14px; } .x-large { min-height: 48px; padding-inline: 16px; font-size: 16px; } .icon { fill: currentcolor; } .text { line-height: 1.5; letter-spacing: 0.02em; &:is(.primary *, .secondary *) { font-weight: var(--font-weight-bold); } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "buttonStyles",
+          "declaration": {
+            "name": "buttonStyles",
+            "module": "src/components/button/button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/icon-button.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "iconButtonStyles",
+          "default": "css` :host { display: inline-block; } .base { display: flex; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid var(--border-color, transparent); background-color: var(--background-color, transparent); color: var(--color, inherit); cursor: pointer; position: relative; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover, transparent); } &:active { background-color: var(--background-color-active, transparent); } &:disabled, &.loading { cursor: not-allowed; background-color: var(--background-color-disabled, transparent); border-color: var(--border-color-disabled, transparent); color: var(--color-disabled, rgb(0 0 0 / 35%)); &:hover { background-color: var(--background-color-disabled, transparent); } } } .icon { fill: currentcolor; display: block; } /* サイズ */ .small { width: 24px; height: 24px; padding: 2px; .icon { width: 18px; height: 18px; } } .medium { width: 32px; height: 32px; padding: 4px; .icon { width: 20px; height: 20px; } } .large { width: 40px; height: 40px; padding: 4px; .icon { width: 22px; height: 22px; } } /* バリアント */ .primary { --border-color: transparent; --background-color: #282828; --background-color-hover: #191919; --background-color-active: #000; --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 7%); --color: #fff; --color-disabled: rgb(0 0 0 / 35%); } .secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .tertiary { --border-color: rgb(0 0 0 / 20%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: rgb(0 0 0 / 10%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: transparent; --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconButtonStyles",
+          "declaration": {
+            "name": "iconButtonStyles",
+            "module": "src/components/button/icon-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/mi-ai-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "aiVariants",
+          "type": {
+            "text": "[\"primary\", \"secondary\"]"
+          },
+          "default": "[\"primary\", \"secondary\"]"
+        },
+        {
           "kind": "class",
           "description": "",
-          "name": "MiButton",
+          "name": "MiAiButton",
           "members": [
             {
               "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "Variant"
+              },
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "icon-type 属性は mi-ai-button では無効です。アイコンは常に magic-fill が使用されます。",
+              "deprecated": "設定しても効果はありません。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "styles",
-              "static": true
+              "static": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
             },
             {
               "kind": "field",
@@ -604,7 +843,11 @@
                 "text": "boolean"
               },
               "static": true,
-              "default": "true"
+              "default": "true",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
             },
             {
               "kind": "field",
@@ -612,7 +855,11 @@
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
             },
             {
               "kind": "field",
@@ -620,15 +867,1052 @@
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
             },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "S"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"button\" | \"submit\" | \"reset\""
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "ButtonBase",
+            "module": "/src/components/button/base"
+          },
+          "summary": "AIボタンです。AI機能の起動などに使用します。\nアイコンは常に magic-fill が表示されます。icon-type 属性は無効です。",
+          "tagName": "mi-ai-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "aiVariants",
+          "declaration": {
+            "name": "aiVariants",
+            "module": "src/components/button/mi-ai-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiAiButton",
+          "declaration": {
+            "name": "MiAiButton",
+            "module": "src/components/button/mi-ai-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Size",
+          "declaration": {
+            "name": "Size",
+            "module": "src/components/button/mi-ai-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sizes",
+          "declaration": {
+            "name": "sizes",
+            "module": "src/components/button/mi-ai-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-ai-button",
+          "declaration": {
+            "name": "MiAiButton",
+            "module": "src/components/button/mi-ai-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/mi-danger-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "dangerVariants",
+          "type": {
+            "text": "[\"primary\", \"secondary\", \"ghost\"]"
+          },
+          "default": "[\"primary\", \"secondary\", \"ghost\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiDangerButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "Variant"
+              },
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "S"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"button\" | \"submit\" | \"reset\""
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "ButtonBase",
+            "module": "/src/components/button/base"
+          },
+          "summary": "Dangerボタンです。削除・破壊的操作などに使用します。",
+          "tagName": "mi-danger-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "dangerVariants",
+          "declaration": {
+            "name": "dangerVariants",
+            "module": "src/components/button/mi-danger-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiDangerButton",
+          "declaration": {
+            "name": "MiDangerButton",
+            "module": "src/components/button/mi-danger-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Size",
+          "declaration": {
+            "name": "Size",
+            "module": "src/components/button/mi-danger-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "sizes",
+          "declaration": {
+            "name": "sizes",
+            "module": "src/components/button/mi-danger-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-danger-button",
+          "declaration": {
+            "name": "MiDangerButton",
+            "module": "src/components/button/mi-danger-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/mi-icon-button.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "iconButtonVariants",
+          "type": {
+            "text": "[\n  \"primary\",\n  \"secondary\",\n  \"tertiary\",\n  \"ghost\",\n]"
+          },
+          "default": "[ \"primary\", \"secondary\", \"tertiary\", \"ghost\", ]"
+        },
+        {
+          "kind": "variable",
+          "name": "iconButtonSizes",
+          "type": {
+            "text": "[\"small\", \"medium\", \"large\"]"
+          },
+          "default": "[\"small\", \"medium\", \"large\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiIconButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "Variant"
+              },
+              "default": "\"ghost\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "S"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "ボタンのラベルテキスト。\n- 常に aria-label に設定されます\n- tooltip-disabled が false（デフォルト）のとき: ツールチップのテキストとして使用\n- tooltip-disabled が true のとき: title 属性として設定"
+            },
+            {
+              "kind": "field",
+              "name": "tooltipPlacement",
+              "type": {
+                "text": "Placement"
+              },
+              "default": "\"top\"",
+              "description": "ツールチップの表示位置。デフォルトは \"top\"。"
+            },
+            {
+              "kind": "field",
+              "name": "tooltipDisabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときツールチップを非表示にし、代わりに title 属性を設定します。"
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "description": "icon-button.css は theme クラス（normal/danger/ai）を持たず、\nsize も独自体系（small/medium/large）のため、base のクラス組み立てロジックとは\n互換性がない。そのため super.buttonClasses を呼ばず完全オーバーライドしている。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "description": "base.ts の render() とは disabled・aria-label・title・aria-disabled の扱いが異なるため\n完全にオーバーライドしている。\n- disabled: loading 時は aria-disabled で代替し、ネイティブ disabled は付与しない\n- aria-label / title: label プロパティから設定",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"button\" | \"submit\" | \"reset\""
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "ButtonBase",
+            "module": "/src/components/button/base"
+          },
+          "summary": "アイコンのみのコンパクトなボタンです。\nテキストを持たず、アイコンのみで操作を表現します。\naria-label 属性でラベルを必ず指定してください。",
+          "tagName": "mi-icon-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconButtonVariants",
+          "declaration": {
+            "name": "iconButtonVariants",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconButtonSizes",
+          "declaration": {
+            "name": "iconButtonSizes",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiIconButton",
+          "declaration": {
+            "name": "MiIconButton",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Size",
+          "declaration": {
+            "name": "IconButtonSize",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Variant",
+          "declaration": {
+            "name": "IconButtonVariant",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-icon-button",
+          "declaration": {
+            "name": "MiIconButton",
+            "module": "src/components/button/mi-icon-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/mi-neutral-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiNeutralButton",
+          "members": [
             {
               "kind": "field",
               "name": "danger",
               "type": {
                 "text": "boolean"
               },
-              "default": "false"
+              "default": "false",
+              "description": "Danger スタイルで表示するかどうか。",
+              "deprecated": "この属性は非推奨です。Danger ボタンには `mi-danger-button` の利用を推奨します。"
             },
             {
               "kind": "field",
@@ -645,143 +1929,49 @@
               "type": {
                 "text": "Variant"
               },
-              "default": "\"primary\""
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "\"button\" | \"submit\" | \"reset\""
-              },
-              "default": "\"button\""
-            },
-            {
-              "kind": "field",
-              "name": "iconType",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "#internals",
-              "privacy": "private",
-              "type": {
-                "text": "ElementInternals"
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
-              "kind": "field",
-              "name": "buttonClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "loadingSize",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "isDisabled",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
               "kind": "method",
-              "name": "renderLoading",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "showIcon",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "renderIcon",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "method",
-              "name": "#handleClick",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
                 }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "click",
-              "type": {
-                "text": "MouseEvent"
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ボタンです。",
-          "tagName": "mi-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpButton",
-          "superclass": {
-            "name": "MiButton",
-            "module": "src/components/button/mi-button.ts"
-          },
-          "deprecated": "代わりに MiButton を使用してください",
-          "tagName": "sp-button",
-          "customElement": true,
-          "members": [
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
             {
               "kind": "field",
               "name": "styles",
               "static": true,
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -793,8 +1983,8 @@
               "static": true,
               "default": "true",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -805,8 +1995,8 @@
               },
               "default": "false",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -817,10 +2007,239 @@
               },
               "default": "false",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "S"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"button\" | \"submit\" | \"reset\""
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "ButtonBase",
+            "module": "/src/components/button/base"
+          },
+          "summary": "ノーマル（ニュートラル）ボタンです。",
+          "tagName": "mi-neutral-button",
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiButton",
+          "superclass": {
+            "name": "MiNeutralButton",
+            "module": "src/components/button/mi-neutral-button.ts"
+          },
+          "deprecated": "代わりに MiNeutralButton を使用してください。後方互換のため別クラスとして登録しています。",
+          "tagName": "mi-button",
+          "customElement": true,
+          "members": [
             {
               "kind": "field",
               "name": "danger",
@@ -828,9 +2247,11 @@
                 "text": "boolean"
               },
               "default": "false",
+              "description": "Danger スタイルで表示するかどうか。",
+              "deprecated": "この属性は非推奨です。Danger ボタンには `mi-danger-button` の利用を推奨します。",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "MiNeutralButton",
+                "module": "src/components/button/mi-neutral-button.ts"
               }
             },
             {
@@ -842,8 +2263,8 @@
               "default": "null",
               "deprecated": "このプロパティは非推奨です。代わりに `variant` を使用してください。",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "MiNeutralButton",
+                "module": "src/components/button/mi-neutral-button.ts"
               }
             },
             {
@@ -854,20 +2275,122 @@
               },
               "default": "\"primary\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "field",
               "name": "size",
               "type": {
-                "text": "Size"
+                "text": "S"
               },
               "default": "\"medium\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -878,8 +2401,8 @@
               },
               "default": "\"\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -890,8 +2413,8 @@
               },
               "default": "\"\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -902,8 +2425,8 @@
               },
               "default": "\"button\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -914,8 +2437,8 @@
               },
               "default": "\"\"",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
@@ -926,80 +2449,95 @@
                 "text": "ElementInternals"
               },
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "field",
               "name": "buttonClasses",
-              "privacy": "private",
+              "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loadingSize",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "field",
               "name": "isDisabled",
-              "privacy": "private",
+              "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "method",
               "name": "renderLoading",
-              "privacy": "private",
+              "privacy": "protected",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "field",
               "name": "showIcon",
-              "privacy": "private",
+              "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "method",
               "name": "renderIcon",
-              "privacy": "private",
+              "privacy": "protected",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             },
             {
               "kind": "method",
-              "name": "#handleClick",
-              "privacy": "private",
+              "name": "handleClick",
+              "privacy": "protected",
               "parameters": [
                 {
                   "name": "event",
@@ -1009,8 +2547,8 @@
                 }
               ],
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             }
           ],
@@ -1021,8 +2559,345 @@
                 "text": "MouseEvent"
               },
               "inheritedFrom": {
-                "name": "MiButton",
-                "module": "src/components/button/mi-button.ts"
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpButton",
+          "superclass": {
+            "name": "MiButton",
+            "module": "src/components/button/mi-neutral-button.ts"
+          },
+          "deprecated": "代わりに MiNeutralButton を使用してください",
+          "tagName": "sp-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Danger スタイルで表示するかどうか。",
+              "deprecated": "この属性は非推奨です。Danger ボタンには `mi-danger-button` の利用を推奨します。",
+              "inheritedFrom": {
+                "name": "MiNeutralButton",
+                "module": "src/components/button/mi-neutral-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variants",
+              "type": {
+                "text": "Variant | null"
+              },
+              "default": "null",
+              "deprecated": "このプロパティは非推奨です。代わりに `variant` を使用してください。",
+              "inheritedFrom": {
+                "name": "MiNeutralButton",
+                "module": "src/components/button/mi-neutral-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "Variant"
+              },
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getTheme",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "ButtonTheme"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能。テーマ（normal / danger / ai）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getEffectiveVariant",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "Variant"
+                }
+              },
+              "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態。`toggle=true` と併用するとスクリーンリーダーに状態が伝わる。\n`toggle=false` のまま `selected=true` にすると視覚的な選択スタイルは適用されるが、\nスクリーンリーダーには伝わらない。ナビゲーションの active 状態など意味的マーキングが\n別途必要な場合は `aria-current` などを合わせて使用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "toggle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "true のときトグルボタンとして振る舞い、aria-pressed 属性を \"true\"/\"false\" で出力する。\nfalse（デフォルト）のときは通常ボタンとして扱われ、aria-pressed は付与されない。\nトグルボタンとして使う場合は `selected` と必ず併用すること。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "S"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"button\" | \"submit\" | \"reset\""
+              },
+              "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "iconType",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#internals",
+              "privacy": "private",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDisabled",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingSize",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderLoading",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showIcon",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderIcon",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderSlot",
+              "privacy": "protected",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              },
+              "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "MouseEvent"
+              },
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
               }
             }
           ]
@@ -1031,10 +2906,26 @@
       "exports": [
         {
           "kind": "js",
-          "name": "variants",
+          "name": "MiNeutralButton",
           "declaration": {
-            "name": "variants",
-            "module": "src/components/button/mi-button.ts"
+            "name": "MiNeutralButton",
+            "module": "src/components/button/mi-neutral-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Size",
+          "declaration": {
+            "name": "Size",
+            "module": "src/components/button/mi-neutral-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Variant",
+          "declaration": {
+            "name": "Variant",
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         },
         {
@@ -1042,7 +2933,15 @@
           "name": "sizes",
           "declaration": {
             "name": "sizes",
-            "module": "src/components/button/mi-button.ts"
+            "module": "src/components/button/mi-neutral-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "variants",
+          "declaration": {
+            "name": "variants",
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         },
         {
@@ -1050,7 +2949,7 @@
           "name": "MiButton",
           "declaration": {
             "name": "MiButton",
-            "module": "src/components/button/mi-button.ts"
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         },
         {
@@ -1058,7 +2957,15 @@
           "name": "SpButton",
           "declaration": {
             "name": "SpButton",
-            "module": "src/components/button/mi-button.ts"
+            "module": "src/components/button/mi-neutral-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-neutral-button",
+          "declaration": {
+            "name": "MiNeutralButton",
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         },
         {
@@ -1066,7 +2973,7 @@
           "name": "mi-button",
           "declaration": {
             "name": "MiButton",
-            "module": "src/components/button/mi-button.ts"
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         },
         {
@@ -1074,7 +2981,7 @@
           "name": "sp-button",
           "declaration": {
             "name": "SpButton",
-            "module": "src/components/button/mi-button.ts"
+            "module": "src/components/button/mi-neutral-button.ts"
           }
         }
       ]
