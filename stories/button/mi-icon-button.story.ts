@@ -34,7 +34,7 @@ const meta = {
       control: { type: "select" },
       options: iconTypes,
     },
-    label: { type: "string" },
+    label: { name: "aria-label", type: "string" },
     tooltipPlacement: {
       control: { type: "select" },
       options: placements,
