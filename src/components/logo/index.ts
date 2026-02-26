@@ -1,2 +1,2 @@
-export { SpSpeedaLogo } from "./speeda-logo";
-export { SpUzabaseLogo } from "./uzabase-logo";
+export { MiSpeedaLogo } from "./speeda-logo";
+export { MiUzabaseLogo } from "./uzabase-logo";

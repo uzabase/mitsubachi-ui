@@ -13,7 +13,7 @@ import { resolveLogo } from "./speeda-logos";
  * @attr {boolean} no-symbol - シンボルを非表示にする
  * @attr {string} logo-language - ロゴの言語。en, zh
  */
-export class SpSpeedaLogo extends LitElement {
+export class MiSpeedaLogo extends LitElement {
   static styles = makeStyles(css`
     :host {
       display: flex;
@@ -52,10 +52,10 @@ export class SpSpeedaLogo extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-speeda-logo": SpSpeedaLogo;
+    "mi-speeda-logo": MiSpeedaLogo;
   }
 }
 
-if (!customElements.get("sp-speeda-logo")) {
-  customElements.define("sp-speeda-logo", SpSpeedaLogo);
+if (!customElements.get("mi-speeda-logo")) {
+  customElements.define("mi-speeda-logo", MiSpeedaLogo);
 }

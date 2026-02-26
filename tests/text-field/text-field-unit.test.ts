@@ -3,32 +3,32 @@ import "../../src/components/text-field/text-field-unit";
 import { describe, expect, test } from "vitest";
 import { page } from "vitest/browser";
 
-describe("sp-text-field", () => {
+describe("mi-text-field-unit", () => {
   test("入力すると、valueが更新される。", async () => {
-    document.body.innerHTML = `<sp-text-field-unit placeholder="placeholder"></sp-text-field-unit>`;
-    await customElements.whenDefined("sp-text-field");
-    await customElements.whenDefined("sp-text-field-unit");
+    document.body.innerHTML = `<mi-text-field-unit placeholder="placeholder"></mi-text-field-unit>`;
+    await customElements.whenDefined("mi-text-field");
+    await customElements.whenDefined("mi-text-field-unit");
 
     const input = document
-      .querySelector("sp-text-field-unit")
-      ?.shadowRoot?.querySelector("sp-text-field")
+      .querySelector("mi-text-field-unit")
+      ?.shadowRoot?.querySelector("mi-text-field")
       ?.shadowRoot?.querySelector("input");
 
     await page.elementLocator(input!).fill("new-text");
 
-    expect(document.querySelector("sp-text-field-unit")?.value).toBe(
+    expect(document.querySelector("mi-text-field-unit")?.value).toBe(
       "new-text",
     );
   });
 
   test(`autocomplete属性を指定できる`, async () => {
-    document.body.innerHTML = `<sp-text-field-unit autocomplete="foobar"></sp-text-field-unit>`;
-    await customElements.whenDefined("sp-text-field");
-    await customElements.whenDefined("sp-text-field-unit");
+    document.body.innerHTML = `<mi-text-field-unit autocomplete="foobar"></mi-text-field-unit>`;
+    await customElements.whenDefined("mi-text-field");
+    await customElements.whenDefined("mi-text-field-unit");
 
     const input = document
-      .querySelector("sp-text-field-unit")
-      ?.shadowRoot?.querySelector("sp-text-field");
+      .querySelector("mi-text-field-unit")
+      ?.shadowRoot?.querySelector("mi-text-field");
 
     expect(input?.getAttribute("autocomplete")).eq("foobar");
   });

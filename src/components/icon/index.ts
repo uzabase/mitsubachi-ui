@@ -4,9 +4,50 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
 import { makeStyles } from "../styles";
 import iconStyle from "./icon.css?inline";
-import { iconPaths, type IconType, iconTypes } from "./icons";
+import {
+  iconPaths as iconPathsBase,
+  type IconType as IconTypeBase,
+  iconTypes as iconTypesBase,
+} from "./icons";
 
-function isIconType(type: string): type is IconType {
+// 後方互換性のための旧名を型定義に追加
+type DeprecatedIconType =
+  | "minus-cycle"
+  | "minus-cycle-fill"
+  | "plus-cycle"
+  | "plus-cycle-fill"
+  | "question"
+  | "followlist"
+  | "followlist-fill";
+
+export type IconType = IconTypeBase | DeprecatedIconType;
+
+// 後方互換性のための旧名マッピング（新名と同じSVGパスを参照）
+const iconPaths = {
+  ...iconPathsBase,
+  "minus-cycle": iconPathsBase["minus-circle"],
+  "minus-cycle-fill": iconPathsBase["minus-circle-fill"],
+  "plus-cycle": iconPathsBase["plus-circle"],
+  "plus-cycle-fill": iconPathsBase["plus-circle-fill"],
+  question: iconPathsBase["question-circle"],
+  followlist: iconPathsBase["follow-list"],
+  "followlist-fill": iconPathsBase["follow-list-fill"],
+} as const;
+
+// 旧名を含む全てのアイコンタイプのリスト
+const deprecatedIconTypes: readonly DeprecatedIconType[] = [
+  "minus-cycle",
+  "minus-cycle-fill",
+  "plus-cycle",
+  "plus-cycle-fill",
+  "question",
+  "followlist",
+  "followlist-fill",
+] as const;
+
+export const iconTypes = [...iconTypesBase, ...deprecatedIconTypes] as const;
+
+export function isIconType(type: string): type is IconType {
   return (iconTypes as readonly string[]).includes(type);
 }
 
@@ -17,7 +58,7 @@ function isIconType(type: string): type is IconType {
  *
  * @attr {string} type - iconの画像を定義します。error-fillは赤いバツ印。information-circleは逆向きの!マーク。personは肩より上の人のアイコンです。checkCircleは白い丸の中にチェックマークがあります。  chevronDownとchevronDownSmallは下向きの矢印です。globeは地球儀のアイコンです。
  */
-export class SpIcon extends LitElement {
+export class MiIcon extends LitElement {
   static styles = makeStyles(unsafeCSS(iconStyle));
 
   @property({ type: String, reflect: true })
@@ -38,10 +79,18 @@ export class SpIcon extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiIcon を使用してください */
+export class SpIcon extends MiIcon {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-icon": MiIcon;
     "sp-icon": SpIcon;
   }
+}
+
+if (!customElements.get("mi-icon")) {
+  customElements.define("mi-icon", MiIcon);
 }
 
 if (!customElements.get("sp-icon")) {

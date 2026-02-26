@@ -1,13 +1,17 @@
 import { LitElement } from 'lit';
 /**
- * @summary ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。
+ * @summary ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。
  */
-export declare class SpControlMenu extends LitElement {
+export declare class MiControlMenu extends LitElement {
     static styles: import('lit').CSSResult[];
     render(): import('lit-html').TemplateResult<1>;
 }
+/** @deprecated 代わりに MiControlMenu を使用してください */
+export declare class SpControlMenu extends MiControlMenu {
+}
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-control-menu": MiControlMenu;
         "sp-control-menu": SpControlMenu;
     }
 }

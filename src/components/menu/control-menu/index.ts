@@ -4,9 +4,9 @@ import { makeStyles } from "../../styles";
 import spControlMenuLitStyle from "./styles.css?inline";
 
 /**
- * @summary ドロップダウンメニューのコンポーネントです。<sp-control-menu><sp-control-menu-item><sp-control-menu-item></sp-control-menu>のように使います。
+ * @summary ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。
  */
-export class SpControlMenu extends LitElement {
+export class MiControlMenu extends LitElement {
   static styles = makeStyles(unsafeCSS(spControlMenuLitStyle));
 
   render() {
@@ -14,10 +14,18 @@ export class SpControlMenu extends LitElement {
   }
 }
 
+/** @deprecated 代わりに MiControlMenu を使用してください */
+export class SpControlMenu extends MiControlMenu {}
+
 declare global {
   interface HTMLElementTagNameMap {
+    "mi-control-menu": MiControlMenu;
     "sp-control-menu": SpControlMenu;
   }
+}
+
+if (!customElements.get("mi-control-menu")) {
+  customElements.define("mi-control-menu", MiControlMenu);
 }
 
 if (!customElements.get("sp-control-menu")) {

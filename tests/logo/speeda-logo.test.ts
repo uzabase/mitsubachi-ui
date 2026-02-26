@@ -2,67 +2,67 @@ import "../../src/components/logo/speeda-logo";
 
 import { describe, expect, test } from "vitest";
 
-describe("sp-speeda-logo", () => {
+describe("mi-speeda-logo", () => {
   test("デフォルトでSVGが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("logo-language=zhのとき中国語のロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo logo-language="zh"></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo logo-language="zh"></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("type=ai-agentのときAI Agentロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo type="ai-agent"></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo type="ai-agent"></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("type=expert-researchのときExpert Researchロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo type="expert-research"></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo type="expert-research"></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("inverseのとき反転ロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo inverse></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo inverse></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("no-symbolのときシンボルなしロゴが表示される", async () => {
-    document.body.innerHTML = `<sp-speeda-logo no-symbol></sp-speeda-logo>`;
-    await customElements.whenDefined("sp-speeda-logo");
+    document.body.innerHTML = `<mi-speeda-logo no-symbol></mi-speeda-logo>`;
+    await customElements.whenDefined("mi-speeda-logo");
     const svg = document
-      .querySelector("sp-speeda-logo")
+      .querySelector("mi-speeda-logo")
       ?.shadowRoot?.querySelector("svg");
     expect(svg).toBeDefined();
   });
 
   test("inverseの有無でSVGの内容が異なる", async () => {
     document.body.innerHTML = `
-      <sp-speeda-logo id="normal"></sp-speeda-logo>
-      <sp-speeda-logo id="inverse" inverse></sp-speeda-logo>
+      <mi-speeda-logo id="normal"></mi-speeda-logo>
+      <mi-speeda-logo id="inverse" inverse></mi-speeda-logo>
     `;
-    await customElements.whenDefined("sp-speeda-logo");
+    await customElements.whenDefined("mi-speeda-logo");
     const normalSvg = document
       .querySelector("#normal")
       ?.shadowRoot?.querySelector("svg")?.outerHTML;
@@ -74,10 +74,10 @@ describe("sp-speeda-logo", () => {
 
   test("logo-languageの違いでSVGの内容が異なる", async () => {
     document.body.innerHTML = `
-      <sp-speeda-logo id="en" logo-language="en"></sp-speeda-logo>
-      <sp-speeda-logo id="zh" logo-language="zh"></sp-speeda-logo>
+      <mi-speeda-logo id="en" logo-language="en"></mi-speeda-logo>
+      <mi-speeda-logo id="zh" logo-language="zh"></mi-speeda-logo>
     `;
-    await customElements.whenDefined("sp-speeda-logo");
+    await customElements.whenDefined("mi-speeda-logo");
     const enSvg = document
       .querySelector("#en")
       ?.shadowRoot?.querySelector("svg")?.outerHTML;

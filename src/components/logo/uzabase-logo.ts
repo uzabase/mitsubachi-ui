@@ -10,7 +10,7 @@ import { resolveLogo } from "./uzabase-logos";
  *
  * @attr {boolean} inverse - 反転表示（暗い背景用）
  */
-export class SpUzabaseLogo extends LitElement {
+export class MiUzabaseLogo extends LitElement {
   static styles = makeStyles(css`
     :host {
       display: flex;
@@ -37,10 +37,10 @@ export class SpUzabaseLogo extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sp-uzabase-logo": SpUzabaseLogo;
+    "mi-uzabase-logo": MiUzabaseLogo;
   }
 }
 
-if (!customElements.get("sp-uzabase-logo")) {
-  customElements.define("sp-uzabase-logo", SpUzabaseLogo);
+if (!customElements.get("mi-uzabase-logo")) {
+  customElements.define("mi-uzabase-logo", MiUzabaseLogo);
 }

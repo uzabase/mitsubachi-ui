@@ -1,4 +1,4 @@
-export declare const iconTypes: readonly ["app", "arrow-down", "arrow-down-small", "arrow-left", "arrow-up-down", "arrow-up-small", "bell", "bell-fill", "book-ai", "bookmark", "bookmark-fill", "building", "building-add", "building-cancel-fill", "calendar", "calendar-event", "calendar-fill", "chain", "check", "check-small", "chevron-down", "chevron-down-fill", "chevron-down-small", "chevron-left", "chevron-left-small", "chevron-right", "chevron-right-fill", "chevron-right-small", "chevron-up", "chevron-up-small", "clock", "copy", "cross", "cross-small", "double-chevron-right", "download", "drag", "error-fill", "exit", "eye", "eye-slash", "follow", "follow-fill", "followlist", "followlist-fill", "gear", "headset", "headset-face", "history", "home", "home-fill", "information", "information-fill", "kebab-menu", "language", "list-close", "list-open", "lock", "lock-fill", "magic-fill", "mail", "mail-gear", "maximize", "menu", "minimize", "minus-cycle", "minus-cycle-fill", "money", "open-in-new", "pencil-square", "person", "person-add", "person-cancel-fill", "person-fill", "person-gear", "plus", "plus-cycle", "plus-cycle-fill", "plus-small", "question", "report", "route", "search", "search-fill", "share", "side-left", "side-right", "stop-fill", "success", "success-fill", "unlock", "unlock-fill", "warning-fill"];
+export declare const iconTypes: readonly ["app", "arrow-down", "arrow-down-small", "arrow-left", "arrow-up-down", "arrow-up-small", "bell", "bell-fill", "book-ai", "bookmark", "bookmark-fill", "building", "building-add", "building-cancel-fill", "calendar", "calendar-event", "calendar-fill", "chain", "check", "check-small", "chevron-down", "chevron-down-fill", "chevron-down-small", "chevron-left", "chevron-left-small", "chevron-right", "chevron-right-fill", "chevron-right-small", "chevron-up", "chevron-up-small", "clock", "copy", "cross", "cross-small", "double-chevron-right", "download", "drag", "error-fill", "exit", "eye", "eye-slash", "follow", "follow-fill", "follow-list", "follow-list-fill", "gear", "headset", "headset-face", "history", "home", "home-fill", "information", "information-fill", "kebab-menu", "language", "list-close", "list-open", "lock", "lock-fill", "magic", "magic-fill", "mail", "mail-gear", "maximize", "menu", "minimize", "minus", "minus-circle", "minus-circle-fill", "money", "open-in-new", "pencil-square", "person", "person-add", "person-cancel-fill", "person-fill", "person-gear", "plus", "plus-circle", "plus-circle-fill", "plus-small", "question-circle", "report", "route", "search", "search-fill", "share", "side-left", "side-right", "stop-fill", "success", "success-fill", "unlock", "unlock-fill", "warning-fill"];
 export type IconType = (typeof iconTypes)[number];
 export declare const iconPaths: {
     app: string;
@@ -44,8 +44,8 @@ export declare const iconPaths: {
     'eye-slash': string;
     follow: string;
     'follow-fill': string;
-    followlist: string;
-    'followlist-fill': string;
+    'follow-list': string;
+    'follow-list-fill': string;
     gear: string;
     headset: string;
     'headset-face': string;
@@ -60,14 +60,16 @@ export declare const iconPaths: {
     'list-open': string;
     lock: string;
     'lock-fill': string;
+    magic: string;
     'magic-fill': string;
     mail: string;
     'mail-gear': string;
     maximize: string;
     menu: string;
     minimize: string;
-    'minus-cycle': string;
-    'minus-cycle-fill': string;
+    minus: string;
+    'minus-circle': string;
+    'minus-circle-fill': string;
     money: string;
     'open-in-new': string;
     'pencil-square': string;
@@ -77,10 +79,10 @@ export declare const iconPaths: {
     'person-fill': string;
     'person-gear': string;
     plus: string;
-    'plus-cycle': string;
-    'plus-cycle-fill': string;
+    'plus-circle': string;
+    'plus-circle-fill': string;
     'plus-small': string;
-    question: string;
+    'question-circle': string;
     report: string;
     route: string;
     search: string;

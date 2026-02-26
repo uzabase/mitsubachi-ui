@@ -1,4 +1,10 @@
-.icon {
+:host {
+  display: inline-block;
   width: 1.28em;
   height: 1.28em;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
 }
