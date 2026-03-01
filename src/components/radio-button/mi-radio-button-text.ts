@@ -4,6 +4,9 @@ import { property } from "lit/decorators.js";
 import { makeStyles } from "../styles";
 import styles from "./radio-button-text.styles";
 
+/**
+ * @slot - ラジオボタンのラベルテキスト
+ */
 export class MiRadioButtonText extends LitElement {
   static styles = makeStyles(styles);
 
