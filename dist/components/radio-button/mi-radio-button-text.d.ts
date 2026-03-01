@@ -1,4 +1,7 @@
 import { LitElement } from 'lit';
+/**
+ * @slot - ラジオボタンのラベルテキスト
+ */
 export declare class MiRadioButtonText extends LitElement {
     #private;
     static styles: import('lit').CSSResult[];

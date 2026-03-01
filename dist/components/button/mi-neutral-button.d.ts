@@ -1,6 +1,8 @@
 import { ButtonBase, ButtonTheme, Size, sizes, Variant, variants } from './base';
 /**
  * @summary ノーマル（ニュートラル）ボタンです。
+ *
+ * @slot - ボタンのテキスト
  */
 export declare class MiNeutralButton extends ButtonBase {
     /**

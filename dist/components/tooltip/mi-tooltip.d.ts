@@ -3,6 +3,8 @@ export declare const placements: readonly ["top", "top-start", "top-end", "botto
 export type Placement = (typeof placements)[number];
 /**
  * @summary ツールチップコンポーネントです。アイコンやボタンなどにホバー・フォーカスすることで補足情報を表示します。
+ *
+ * @slot - ツールチップのトリガーとなる要素
  */
 export declare class MiTooltip extends LitElement {
     static styles: import('lit').CSSResult[];

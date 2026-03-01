@@ -3,6 +3,8 @@ export declare const dangerVariants: readonly ["primary", "secondary", "ghost"];
 export type DangerVariant = (typeof dangerVariants)[number];
 /**
  * @summary Dangerボタンです。削除・破壊的操作などに使用します。
+ *
+ * @slot - ボタンのテキスト
  */
 export declare class MiDangerButton extends ButtonBase {
     variant: DangerVariant;

@@ -1,6 +1,8 @@
 import { LitElement } from 'lit';
 /**
  * @summary ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。
+ *
+ * @slot - メニュー項目（mi-control-menu-item）
  */
 export declare class MiControlMenu extends LitElement {
     static styles: import('lit').CSSResult[];
