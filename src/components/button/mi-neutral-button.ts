@@ -12,6 +12,8 @@ import {
 
 /**
  * @summary ノーマル（ニュートラル）ボタンです。
+ *
+ * @slot - ボタンのテキスト
  */
 export class MiNeutralButton extends ButtonBase {
   /**

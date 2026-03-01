@@ -33,6 +33,8 @@ function isValidPlacement(value: string): value is Placement {
 
 /**
  * @summary ツールチップコンポーネントです。アイコンやボタンなどにホバー・フォーカスすることで補足情報を表示します。
+ *
+ * @slot - ツールチップのトリガーとなる要素
  */
 export class MiTooltip extends LitElement {
   static styles = makeStyles(tooltipStyles);

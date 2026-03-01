@@ -10,6 +10,9 @@ type Type = (typeof types)[number];
 
 export const types = ["information", "success", "warning", "error"] as const;
 
+/**
+ * @slot - 通知メッセージのコンテンツ
+ */
 export class MiInlineNotification extends LitElement {
   @property({ type: String, reflect: true })
   type: Type = "information";

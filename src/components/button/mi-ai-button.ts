@@ -20,6 +20,8 @@ export type AiVariant = (typeof aiVariants)[number];
 /**
  * @summary AIボタンです。AI機能の起動などに使用します。
  * アイコンは常に magic-fill が表示されます。icon-type 属性は無効です。
+ *
+ * @slot - ボタンのテキスト
  */
 export class MiAiButton extends ButtonBase {
   @property({ type: String })
