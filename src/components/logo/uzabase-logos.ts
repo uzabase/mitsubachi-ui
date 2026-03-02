@@ -10,7 +10,8 @@ const LOGO_MAP: Record<string, string> = {
 export const resolveLogo = (
   input: Record<string, unknown>,
 ): string | undefined => {
-  const key = `inverse:${input.inverse ?? "null"}`;
+  const key =
+    `inverse:${input.inverse ?? "null"}`;
 
   return LOGO_MAP[key] ?? undefined;
 };
