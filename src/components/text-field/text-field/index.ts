@@ -82,10 +82,10 @@ export class MiTextField extends LitElement {
   }
 
   #handleKeyDown(e: KeyboardEvent) {
-    // Enterキーでフォームを送信するため、Enterキーが押されたときにinputイベントを発火させる
     if (e.key === "Enter") {
       if (e.isComposing) return; // IMEでEnterが押されたときは無視する
 
+      // submitByEnterが指定されている場合、Enterキーでフォームを送信する
       if (this.submitByEnter) {
         const form = this.internals.form;
         form?.requestSubmit();
