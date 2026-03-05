@@ -4043,6 +4043,96 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/inline-notification/inline-notification.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/inline-notification/inline-notification.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/inline-notification/mi-inline-notification.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "types",
+          "type": {
+            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
+          },
+          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiInlineNotification",
+          "slots": [
+            {
+              "description": "通知メッセージのコンテンツ",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "Type"
+              },
+              "default": "\"information\""
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-inline-notification",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "types",
+          "declaration": {
+            "name": "types",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInlineNotification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-inline-notification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/icon-color/icon-color.css",
       "declarations": [],
       "exports": []
@@ -4185,96 +4275,6 @@
           "declaration": {
             "name": "MiIconColor",
             "module": "src/components/icon-color/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/inline-notification.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/inline-notification/inline-notification.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/mi-inline-notification.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "types",
-          "type": {
-            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
-          },
-          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiInlineNotification",
-          "slots": [
-            {
-              "description": "通知メッセージのコンテンツ",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "Type"
-              },
-              "default": "\"information\""
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-inline-notification",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "types",
-          "declaration": {
-            "name": "types",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiInlineNotification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-inline-notification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
           }
         }
       ]
@@ -6370,6 +6370,19 @@
             },
             {
               "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
               "name": "render"
             }
           ],
@@ -6622,6 +6635,23 @@
                   "name": "e",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextFieldUnit",
+                "module": "src/components/text-field/text-field-unit/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
                   }
                 }
               ],

@@ -78,6 +78,18 @@ export class MiTextFieldUnit extends LitElement {
     this.value = target.value;
   }
 
+  #handleKeyDown(e: KeyboardEvent) {
+    // Enterキーでフォームを送信するため、Enterキーが押されたときにinputイベントを発火させる
+    if (e.key === "Enter") {
+      if (e.isComposing) return; // IMEでEnterが押されたときは無視する
+      
+      if (this.submitByEnter) {
+        const form = this.internals.form;
+        form?.requestSubmit();
+      }
+    }
+  }  
+
   render() {
     return html`
       <fieldset>
@@ -95,7 +107,7 @@ export class MiTextFieldUnit extends LitElement {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           @input="${this.#handleInput}"
-          submitByEnter="${this.submitByEnter}"
+          @keydown="${this.#handleKeyDown}"
         ></mi-text-field>
       </fieldset>
     `;
