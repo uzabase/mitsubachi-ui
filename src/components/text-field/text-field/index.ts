@@ -60,6 +60,7 @@ export class MiTextField extends LitElement {
   protected firstUpdated() {
     if (this.autofocus) {
       const input = this.renderRoot.querySelector("input");
+      console.log("FOCUS!");
       input?.focus();
     }
   }
