@@ -49,6 +49,9 @@ export class MiTextFieldUnit extends LitElement {
   autocomplete: AutoFill = "off";
 
   @property({ type: Boolean, reflect: true })
+  autofocus = false;
+
+  @property({ type: Boolean, reflect: true })
   submitByEnter = true;
 
   private internals: ElementInternals;
@@ -106,6 +109,7 @@ export class MiTextFieldUnit extends LitElement {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
+          autofocus="${this.autofocus}"
           @input="${this.#handleInput}"
           @keydown="${this.#handleKeyDown}"
         ></mi-text-field>

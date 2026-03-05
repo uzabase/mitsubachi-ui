@@ -37,6 +37,9 @@ export class MiTextField extends LitElement {
   type = "text";
 
   @property({ type: Boolean, reflect: true })
+  autofocus = false;
+
+  @property({ type: Boolean, reflect: true })
   submitByEnter = true;
 
   private internals: ElementInternals;
@@ -51,6 +54,14 @@ export class MiTextField extends LitElement {
 
     if (changedProperties.has("value")) {
       this.internals.setFormValue(this.value);
+    }
+  }
+
+  protected firstUpdated() {
+    if (this.autofocus) {
+      const input = this.renderRoot.querySelector("input");
+      console.log("FOCUS!");
+      input?.focus();
     }
   }
 
