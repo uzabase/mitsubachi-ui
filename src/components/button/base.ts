@@ -98,12 +98,6 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
 
-  @property({ type: Boolean, reflect: true })
-  lightdom = false;
-
-  private _content: Node[] = [];
-
-
   #internals: ElementInternals;
 
   constructor() {
@@ -118,24 +112,6 @@ export class ButtonBase<S extends string = Size> extends LitElement {
       console.warn(`${this.variant}は無効なvariant属性です。`);
     }
     return validVariant ? this.variant : variants[0];
-  }
-
-  private isLightDom() {
-    return this.hasAttribute("lightdom");
-  }
-
-  createRenderRoot() {
-    console.log("createRenderRoot: lightdom =", this.lightdom);
-    return this.isLightDom() ? this : super.createRenderRoot();
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    if (this.isLightDom()) {
-      // Light DOM の場合、小要素を保存しておいて、render で再配置する
-      this._content = Array.from(this.childNodes);
-    }
   }
 
   protected get buttonClasses() {
@@ -190,13 +166,8 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   }
 
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
-  protected renderSlot(): Node[] | TemplateResult | typeof nothing {
-    if (this.isLightDom()) {
-      // Light DOM の場合、保存しておいた小要素を返す
-      return this._content;
-    } else {
-      return html`<slot class="text"></slot>`;
-    }
+  protected renderSlot(): TemplateResult | typeof nothing {
+    return html`<slot class="text"></slot>`;
   }
 
   render() {

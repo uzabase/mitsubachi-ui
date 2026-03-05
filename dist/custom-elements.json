@@ -955,31 +955,6 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
@@ -1000,23 +975,6 @@
                 }
               },
               "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -1058,7 +1016,7 @@
               "privacy": "protected",
               "return": {
                 "type": {
-                  "text": "Node[] | TemplateResult | typeof nothing"
+                  "text": "TemplateResult | typeof nothing"
                 }
               },
               "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
@@ -1341,31 +1299,6 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
@@ -1386,23 +1319,6 @@
                 }
               },
               "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -1472,7 +1388,7 @@
               "privacy": "protected",
               "return": {
                 "type": {
-                  "text": "Node[] | TemplateResult | typeof nothing"
+                  "text": "TemplateResult | typeof nothing"
                 }
               },
               "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
@@ -1838,31 +1754,6 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
@@ -1883,23 +1774,6 @@
                 }
               },
               "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -2243,53 +2117,11 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
                 "text": "ElementInternals"
               },
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -2359,7 +2191,7 @@
               "privacy": "protected",
               "return": {
                 "type": {
-                  "text": "Node[] | TemplateResult | typeof nothing"
+                  "text": "TemplateResult | typeof nothing"
                 }
               },
               "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
@@ -2639,53 +2471,11 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
                 "text": "ElementInternals"
               },
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -2755,7 +2545,7 @@
               "privacy": "protected",
               "return": {
                 "type": {
-                  "text": "Node[] | TemplateResult | typeof nothing"
+                  "text": "TemplateResult | typeof nothing"
                 }
               },
               "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
@@ -3028,53 +2818,11 @@
             },
             {
               "kind": "field",
-              "name": "lightdom",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_content",
-              "type": {
-                "text": "Node[]"
-              },
-              "privacy": "private",
-              "default": "[]",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
                 "text": "ElementInternals"
               },
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "isLightDom",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "ButtonBase",
-                "module": "src/components/button/base.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createRenderRoot",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -3144,7 +2892,7 @@
               "privacy": "protected",
               "return": {
                 "type": {
-                  "text": "Node[] | TemplateResult | typeof nothing"
+                  "text": "TemplateResult | typeof nothing"
                 }
               },
               "description": "スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。",
@@ -5720,6 +5468,122 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "superclass": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          },
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
+          "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiControlMenu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-control-menu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -5933,122 +5797,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },

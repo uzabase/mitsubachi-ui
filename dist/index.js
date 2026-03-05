@@ -2,7 +2,7 @@ var pt = (t) => {
   throw TypeError(t);
 };
 var _e = (t, e, i) => e.has(t) || pt("Cannot " + i);
-var S = (t, e, i) => (_e(t, e, "read from private field"), i ? i.call(t) : e.get(t)), D = (t, e, i) => e.has(t) ? pt("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, i), J1 = (t, e, i, r) => (_e(t, e, "write to private field"), r ? r.call(t, i) : e.set(t, i), i), P = (t, e, i) => (_e(t, e, "access private method"), i);
+var S = (t, e, i) => (_e(t, e, "read from private field"), i ? i.call(t) : e.get(t)), R = (t, e, i) => e.has(t) ? pt("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, i), J1 = (t, e, i, r) => (_e(t, e, "write to private field"), r ? r.call(t, i) : e.set(t, i), i), P = (t, e, i) => (_e(t, e, "access private method"), i);
 const K1 = globalThis, Re = K1.ShadowRoot && (K1.ShadyCSS === void 0 || K1.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, De = /* @__PURE__ */ Symbol(), ut = /* @__PURE__ */ new WeakMap();
 let At = class {
   constructor(e, i, r) {
@@ -22,7 +22,7 @@ let At = class {
     return this.cssText;
   }
 };
-const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), q = (t, ...e) => {
+const $ = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), q = (t, ...e) => {
   const i = t.length === 1 ? t[0] : e.reduce((r, o, s) => r + ((n) => {
     if (n._$cssResult$ === !0) return n.cssText;
     if (typeof n == "number") return n;
@@ -38,7 +38,7 @@ const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), q = (t, 
 }, ft = Re ? (t) => t : (t) => t instanceof CSSStyleSheet ? ((e) => {
   let i = "";
   for (const r of e.cssRules) i += r.cssText;
-  return M(i);
+  return $(i);
 })(t) : t;
 const { is: y2, defineProperty: x2, getOwnPropertyDescriptor: L2, getOwnPropertyNames: H2, getOwnPropertySymbols: V2, getPrototypeOf: w2 } = Object, be = globalThis, Ct = be.trustedTypes, $2 = Ct ? Ct.emptyScript : "", M2 = be.reactiveElementPolyfillSupport, A1 = (t, e) => t, Q1 = { toAttribute(t, e) {
   switch (e) {
@@ -582,9 +582,9 @@ Ae.directiveName = "unsafeSVG", Ae.resultType = 2;
 const jt = Fe(Ae), W2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', q2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
 function w(...t) {
   const e = q`
-    ${M(W2)}
+    ${$(W2)}
   `, i = q`
-    ${M(q2)}
+    ${$(q2)}
   `;
   return [e, i, ...t];
 }
@@ -822,7 +822,7 @@ const Ke = class Ke extends L {
       </svg>` : m``;
   }
 };
-Ke.styles = w(M(Y2));
+Ke.styles = w($(Y2));
 let O1 = Ke;
 X2([
   d({ type: String, reflect: !0 })
@@ -1027,7 +1027,7 @@ var G, Bt, It, ze;
 const Qe = class Qe extends L {
   constructor() {
     super(...arguments);
-    D(this, G);
+    R(this, G);
     this.src = "", this.alt = "", this.initials = "", this.size = "medium", this.color = "", this.inactive = !1;
   }
   render() {
@@ -1054,28 +1054,28 @@ G = new WeakSet(), Bt = function() {
 }, ze = function() {
   return (this.initials || this.textContent || "").trim().slice(0, 2).toUpperCase();
 }, Qe.styles = w(i9);
-let N = Qe;
+let j = Qe;
 k1([
   d({ type: String })
-], N.prototype, "src");
+], j.prototype, "src");
 k1([
   d({ type: String })
-], N.prototype, "alt");
+], j.prototype, "alt");
 k1([
   d({ type: String })
-], N.prototype, "initials");
+], j.prototype, "initials");
 k1([
   d({ type: String })
-], N.prototype, "size");
+], j.prototype, "size");
 k1([
   d({ type: String })
-], N.prototype, "color");
+], j.prototype, "color");
 k1([
   d({ type: Boolean })
-], N.prototype, "inactive");
-class l9 extends N {
+], j.prototype, "inactive");
+class l9 extends j {
 }
-customElements.get("mi-avatar") || customElements.define("mi-avatar", N);
+customElements.get("mi-avatar") || customElements.define("mi-avatar", j);
 customElements.get("sp-avatar") || customElements.define("sp-avatar", l9);
 const c9 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 26px;--size-4x-large: 40px;--padding-medium: 1.25px;--padding-large: 1.5px;--padding-x-large: 2px 2px 1.5px 1.5px;--padding-2x-large: 2px;--padding-3x-large: 3px;--padding-4x-large: 4px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.base{display:flex}.base:has(.size-medium){padding:var(--padding-medium)}.base:has(.size-large){padding:var(--padding-large)}.base:has(.size-x-large){padding:var(--padding-x-large)}.base:has(.size-2x-large){padding:var(--padding-2x-large)}.base:has(.size-3x-large){padding:var(--padding-3x-large)}.base:has(.size-4x-large){padding:var(--padding-4x-large)}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.size-4x-large{--size: var(--size-4x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
 var d9 = Object.defineProperty, Ft = (t, e, i, r) => {
@@ -1110,7 +1110,7 @@ const et = class et extends L {
     `;
   }
 };
-et.styles = w(M(c9));
+et.styles = w($(c9));
 let L1 = et;
 Ft([
   d({ type: Boolean })
@@ -1432,7 +1432,7 @@ const p9 = q`
     }
   }
 `;
-var u9 = Object.defineProperty, R = (t, e, i, r) => {
+var u9 = Object.defineProperty, I = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && u9(e, i, o), o;
@@ -1457,8 +1457,8 @@ var W;
 const ce = class ce extends L {
   constructor() {
     super();
-    D(this, W);
-    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", this.lightdom = !1, this._content = [], J1(this, W, this.attachInternals());
+    R(this, W);
+    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", J1(this, W, this.attachInternals());
   }
   /** 継承クラスでオーバーライド可能。テーマ（normal / danger / ai） */
   getTheme() {
@@ -1468,15 +1468,6 @@ const ce = class ce extends L {
   getEffectiveVariant() {
     const i = Ut(this.variant);
     return i || console.warn(`${this.variant}は無効なvariant属性です。`), i ? this.variant : Ue[0];
-  }
-  isLightDom() {
-    return this.hasAttribute("lightdom");
-  }
-  createRenderRoot() {
-    return console.log("createRenderRoot: lightdom =", this.lightdom), this.isLightDom() ? this : super.createRenderRoot();
-  }
-  connectedCallback() {
-    super.connectedCallback(), this.isLightDom() && (this._content = Array.from(this.childNodes));
   }
   get buttonClasses() {
     const i = {
@@ -1517,7 +1508,7 @@ const ce = class ce extends L {
   }
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
   renderSlot() {
-    return this.isLightDom() ? this._content : m`<slot class="text"></slot>`;
+    return m`<slot class="text"></slot>`;
   }
   render() {
     return m`
@@ -1548,40 +1539,37 @@ const ce = class ce extends L {
   }
 };
 W = new WeakMap(), ce.styles = w(p9), ce.formAssociated = !0;
-let $ = ce;
-R([
+let M = ce;
+I([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "loading");
-R([
+], M.prototype, "loading");
+I([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "disabled");
-R([
+], M.prototype, "disabled");
+I([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "selected");
-R([
+], M.prototype, "selected");
+I([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "toggle");
-R([
+], M.prototype, "toggle");
+I([
   d({ type: String, reflect: !0 })
-], $.prototype, "variant");
-R([
+], M.prototype, "variant");
+I([
   d({ type: String, reflect: !0 })
-], $.prototype, "size");
-R([
+], M.prototype, "size");
+I([
   d({ type: String })
-], $.prototype, "name");
-R([
+], M.prototype, "name");
+I([
   d({ type: String })
-], $.prototype, "value");
-R([
+], M.prototype, "value");
+I([
   d({ type: String })
-], $.prototype, "type");
-R([
+], M.prototype, "type");
+I([
   d({ type: String, attribute: "icon-type" })
-], $.prototype, "iconType");
-R([
-  d({ type: Boolean, reflect: !0 })
-], $.prototype, "lightdom");
+], M.prototype, "iconType");
 var C9 = Object.defineProperty, Wt = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
@@ -1596,7 +1584,7 @@ try {
   });
 } catch {
 }
-class We extends $ {
+class We extends M {
   constructor() {
     super(...arguments), this.variant = "primary", this.iconType = "";
   }
@@ -1628,7 +1616,7 @@ var g9 = Object.defineProperty, m9 = (t, e, i, r) => {
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && g9(e, i, o), o;
 };
-class qt extends $ {
+class qt extends M {
   constructor() {
     super(...arguments), this.variant = "primary";
   }
@@ -1640,7 +1628,7 @@ m9([
   d({ type: String })
 ], qt.prototype, "variant");
 customElements.get("mi-danger-button") || customElements.define("mi-danger-button", qt);
-const ie = Math.min, h1 = Math.max, oe = Math.round, X1 = Math.floor, j = (t) => ({
+const ie = Math.min, h1 = Math.max, oe = Math.round, X1 = Math.floor, D = (t) => ({
   x: t,
   y: t
 }), b9 = {
@@ -2112,7 +2100,7 @@ function Xt(t) {
 function T(t) {
   return Le() ? t instanceof Element || t instanceof _(t).Element : !1;
 }
-function B(t) {
+function N(t) {
   return Le() ? t instanceof HTMLElement || t instanceof _(t).HTMLElement : !1;
 }
 function Zt(t) {
@@ -2149,7 +2137,7 @@ function qe(t) {
 }
 function I9(t) {
   let e = i1(t);
-  for (; B(e) && !H1(e); ) {
+  for (; N(e) && !H1(e); ) {
     if (qe(e))
       return e;
     if (He(e))
@@ -2191,7 +2179,7 @@ function i1(t) {
 }
 function Kt(t) {
   const e = i1(t);
-  return H1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : B(e) && F1(e) ? e : Kt(e);
+  return H1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : N(e) && F1(e) ? e : Kt(e);
 }
 function R1(t, e, i) {
   var r;
@@ -2209,7 +2197,7 @@ function Oe(t) {
 function Qt(t) {
   const e = O(t);
   let i = parseFloat(e.width) || 0, r = parseFloat(e.height) || 0;
-  const o = B(t), s = o ? t.offsetWidth : i, n = o ? t.offsetHeight : r, a = oe(i) !== s || oe(r) !== n;
+  const o = N(t), s = o ? t.offsetWidth : i, n = o ? t.offsetHeight : r, a = oe(i) !== s || oe(r) !== n;
   return a && (i = s, r = n), {
     width: i,
     height: r,
@@ -2221,8 +2209,8 @@ function Ge(t) {
 }
 function v1(t) {
   const e = Ge(t);
-  if (!B(e))
-    return j(1);
+  if (!N(e))
+    return D(1);
   const i = e.getBoundingClientRect(), {
     width: r,
     height: o,
@@ -2234,7 +2222,7 @@ function v1(t) {
     y: a
   };
 }
-const U9 = /* @__PURE__ */ j(0);
+const U9 = /* @__PURE__ */ D(0);
 function e2(t) {
   const e = _(t);
   return !Ye() || !e.visualViewport ? U9 : {
@@ -2248,9 +2236,9 @@ function W9(t, e, i) {
 function f1(t, e, i, r) {
   e === void 0 && (e = !1), i === void 0 && (i = !1);
   const o = t.getBoundingClientRect(), s = Ge(t);
-  let n = j(1);
+  let n = D(1);
   e && (r ? T(r) && (n = v1(r)) : n = v1(t));
-  const a = W9(s, i, r) ? e2(s) : j(0);
+  const a = W9(s, i, r) ? e2(s) : D(0);
   let l = (o.left + a.x) / n.x, c = (o.top + a.y) / n.y, p = o.width / n.x, h = o.height / n.y;
   if (s) {
     const f = _(s), u = r && T(r) ? _(r) : r;
@@ -2291,13 +2279,13 @@ function q9(t) {
   let l = {
     scrollLeft: 0,
     scrollTop: 0
-  }, c = j(1);
-  const p = j(0), h = B(r);
-  if ((h || !h && !s) && ((Z1(r) !== "body" || F1(n)) && (l = Ve(r)), B(r))) {
+  }, c = D(1);
+  const p = D(0), h = N(r);
+  if ((h || !h && !s) && ((Z1(r) !== "body" || F1(n)) && (l = Ve(r)), N(r))) {
     const u = f1(r);
     c = v1(r), p.x = u.x + r.clientLeft, p.y = u.y + r.clientTop;
   }
-  const f = n && !h && !s ? t2(n, l) : j(0);
+  const f = n && !h && !s ? t2(n, l) : D(0);
   return {
     width: i.width * c.x,
     height: i.height * c.y,
@@ -2342,7 +2330,7 @@ function J9(t, e) {
 }
 const X9 = /* @__PURE__ */ new Set(["absolute", "fixed"]);
 function K9(t, e) {
-  const i = f1(t, !0, e === "fixed"), r = i.top + t.clientTop, o = i.left + t.clientLeft, s = B(t) ? v1(t) : j(1), n = t.clientWidth * s.x, a = t.clientHeight * s.y, l = o * s.x, c = r * s.y;
+  const i = f1(t, !0, e === "fixed"), r = i.top + t.clientTop, o = i.left + t.clientLeft, s = N(t) ? v1(t) : D(1), n = t.clientWidth * s.x, a = t.clientHeight * s.y, l = o * s.x, c = r * s.y;
   return {
     width: n,
     height: a,
@@ -2415,12 +2403,12 @@ function t0(t) {
   };
 }
 function i0(t, e, i) {
-  const r = B(e), o = F(e), s = i === "fixed", n = f1(t, !0, s, e);
+  const r = N(e), o = F(e), s = i === "fixed", n = f1(t, !0, s, e);
   let a = {
     scrollLeft: 0,
     scrollTop: 0
   };
-  const l = j(0);
+  const l = D(0);
   function c() {
     l.x = we(o);
   }
@@ -2430,7 +2418,7 @@ function i0(t, e, i) {
       l.x = u.x + e.clientLeft, l.y = u.y + e.clientTop;
     } else o && c();
   s && !r && o && c();
-  const p = o && !r && !s ? t2(o, a) : j(0), h = n.left + a.scrollLeft - l.x - p.x, f = n.top + a.scrollTop - l.y - p.y;
+  const p = o && !r && !s ? t2(o, a) : D(0), h = n.left + a.scrollLeft - l.x - p.x, f = n.top + a.scrollTop - l.y - p.y;
   return {
     x: h,
     y: f,
@@ -2442,7 +2430,7 @@ function Se(t) {
   return O(t).position === "static";
 }
 function St(t, e) {
-  if (!B(t) || O(t).position === "fixed")
+  if (!N(t) || O(t).position === "fixed")
     return null;
   if (e)
     return e(t);
@@ -2453,7 +2441,7 @@ function o2(t, e) {
   const i = _(t);
   if (He(t))
     return i;
-  if (!B(t)) {
+  if (!N(t)) {
     let o = i1(t);
     for (; o && !H1(o); ) {
       if (T(o) && !Se(o))
@@ -2881,7 +2869,7 @@ const v5 = [
   "secondary",
   "tertiary",
   "ghost"
-], y5 = ["small", "medium", "large"], de = class de extends $ {
+], y5 = ["small", "medium", "large"], de = class de extends M {
   constructor() {
     super(...arguments), this.variant = "ghost", this.size = "medium", this.label = "", this.tooltipPlacement = "top", this.tooltipDisabled = !1;
   }
@@ -2967,7 +2955,7 @@ var v0 = Object.defineProperty, Je = (t, e, i, r) => {
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && v0(e, i, o), o;
 };
-class q1 extends $ {
+class q1 extends M {
   constructor() {
     super(...arguments), this.danger = !1, this.variants = null, this.variant = "primary";
   }
@@ -3041,8 +3029,8 @@ const he = class he extends L {
   }
 };
 he.styles = w(
-  M(n2),
-  M(x0)
+  $(n2),
+  $(x0)
 ), he.formAssociated = !0;
 let Y = he;
 Y1([
@@ -3111,31 +3099,31 @@ const pe = class pe extends L {
   }
 };
 pe.styles = w(
-  M(n2),
-  M(V0)
+  $(n2),
+  $(V0)
 ), pe.formAssociated = !0;
-let I = pe;
+let B = pe;
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "value");
+], B.prototype, "value");
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "name");
+], B.prototype, "name");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "checked");
+], B.prototype, "checked");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "indeterminate");
+], B.prototype, "indeterminate");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "disabled");
+], B.prototype, "disabled");
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "text");
-class $0 extends I {
+], B.prototype, "text");
+class $0 extends B {
 }
-customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", I);
+customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", B);
 customElements.get("sp-checkbox-text") || customElements.define("sp-checkbox-text", $0);
 const M0 = q`
   :host {
@@ -3274,7 +3262,7 @@ const it = class it extends L {
       </svg>` : m``;
   }
 };
-it.styles = w(M(E0));
+it.styles = w($(E0));
 let ne = it;
 P0([
   d({ type: String, reflect: !0 })
@@ -3369,7 +3357,7 @@ var B0 = Object.defineProperty, a2 = (t, e, i, r) => {
 const rt = class rt extends L {
   constructor() {
     super(...arguments);
-    D(this, $1);
+    R(this, $1);
     this.text = "", this.supportText = "";
   }
   /**
@@ -3395,7 +3383,7 @@ $1 = new WeakSet(), l2 = function() {
     support: !0,
     none: !this.supportText
   });
-}, rt.styles = w(M(N0));
+}, rt.styles = w($(N0));
 let V1 = rt;
 a2([
   d({ type: String, reflect: !0 })
@@ -3468,7 +3456,7 @@ var Y0 = Object.defineProperty, d2 = (t, e, i, r) => {
 const st = class st extends L {
   constructor() {
     super(...arguments);
-    D(this, ue);
+    R(this, ue);
     this.language = "", this.brand = "";
   }
   render() {
@@ -3498,7 +3486,7 @@ const J0 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 5px
     return m`<slot></slot>`;
   }
 };
-nt.styles = w(M(J0));
+nt.styles = w($(J0));
 let le = nt;
 class X0 extends le {
 }
@@ -3521,7 +3509,7 @@ const at = class at extends L {
     `;
   }
 };
-at.styles = w(M(K0));
+at.styles = w($(K0));
 let C1 = at;
 Xe([
   d({ type: String, reflect: !0 })
@@ -3676,8 +3664,8 @@ var i5 = Object.defineProperty, Me = (t, e, i, r) => {
 const fe = class fe extends L {
   constructor() {
     super();
-    D(this, y1);
-    D(this, B1);
+    R(this, y1);
+    R(this, B1);
     this.value = "", this.name = "", this.checked = !1, this.disabled = !1, J1(this, y1, `radio-${Math.random().toString(36).slice(2)}`), J1(this, B1, this.attachInternals());
   }
   updated(i) {
@@ -3733,7 +3721,7 @@ var s5 = Object.defineProperty, n5 = (t, e, i, r) => {
 const lt = class lt extends L {
   constructor() {
     super(...arguments);
-    D(this, Ce);
+    R(this, Ce);
     this.text = "";
   }
   render() {
@@ -3750,7 +3738,7 @@ Ce = new WeakSet(), p2 = function() {
     container: !0,
     none: !this.text
   });
-}, lt.styles = w(M(r5));
+}, lt.styles = w($(r5));
 let N1 = lt;
 n5([
   d({ type: String, reflect: !0 })
@@ -3768,7 +3756,7 @@ var c5 = Object.defineProperty, n1 = (t, e, i, r) => {
 const ge = class ge extends L {
   constructor() {
     super();
-    D(this, s1);
+    R(this, s1);
     this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.submitByEnter = !0, this.internals = this.attachInternals();
   }
   updated(i) {
@@ -3812,7 +3800,7 @@ s1 = new WeakSet(), u2 = function() {
     if (i.isComposing) return;
     this.submitByEnter && this.internals.form?.requestSubmit();
   }
-}, ge.styles = w(M(l5)), ge.formAssociated = !0;
+}, ge.styles = w($(l5)), ge.formAssociated = !0;
 let A = ge;
 n1([
   d({ type: String, reflect: !0 })
@@ -3851,7 +3839,7 @@ var p5 = Object.defineProperty, U = (t, e, i, r) => {
 const me = class me extends L {
   constructor() {
     super();
-    D(this, M1);
+    R(this, M1);
     this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.submitByEnter = !0, this.internals = this.attachInternals();
   }
   updated(i) {
@@ -3888,7 +3876,7 @@ M1 = new WeakSet(), g2 = function() {
 }, m2 = function(i) {
   const r = i.target;
   this.value = r.value;
-}, me.styles = w(M(h5)), me.formAssociated = !0;
+}, me.styles = w($(h5)), me.formAssociated = !0;
 let k = me;
 U([
   d({ type: String, reflect: !0 })
@@ -3926,10 +3914,10 @@ customElements.get("mi-text-field-unit") || customElements.define("mi-text-field
 customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", u5);
 export {
   We as MiAiButton,
-  N as MiAvatar,
+  j as MiAvatar,
   s2 as MiButton,
   Y as MiCheckbox,
-  I as MiCheckboxText,
+  B as MiCheckboxText,
   le as MiControlMenu,
   C1 as MiControlMenuItem,
   qt as MiDangerButton,

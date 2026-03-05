@@ -38,14 +38,9 @@ export declare class ButtonBase<S extends string = Size> extends LitElement {
     value: string;
     type: "button" | "submit" | "reset";
     iconType: string;
-    lightdom: boolean;
-    private _content;
     constructor();
     /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
     protected getEffectiveVariant(): Variant;
-    private isLightDom;
-    createRenderRoot(): HTMLElement | DocumentFragment;
-    connectedCallback(): void;
     protected get buttonClasses(): string;
     protected get isDisabled(): boolean;
     protected get loadingSize(): string;
@@ -53,7 +48,7 @@ export declare class ButtonBase<S extends string = Size> extends LitElement {
     protected get showIcon(): boolean | "";
     protected renderIcon(): TemplateResult<1>;
     /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
-    protected renderSlot(): Node[] | TemplateResult | typeof nothing;
+    protected renderSlot(): TemplateResult | typeof nothing;
     render(): TemplateResult<1>;
     protected handleClick(event: Event): void;
 }
