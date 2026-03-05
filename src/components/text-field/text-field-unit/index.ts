@@ -85,13 +85,13 @@ export class MiTextFieldUnit extends LitElement {
     // Enterキーでフォームを送信するため、Enterキーが押されたときにinputイベントを発火させる
     if (e.key === "Enter") {
       if (e.isComposing) return; // IMEでEnterが押されたときは無視する
-      
+
       if (this.submitByEnter) {
         const form = this.internals.form;
         form?.requestSubmit();
       }
     }
-  }  
+  }
 
   render() {
     return html`

@@ -46,5 +46,5 @@ describe("mi-text-field-unit", () => {
 
     const input = miTextField?.shadowRoot?.querySelector("input");
     expect(input?.hasAttribute("autofocus")).toBe(true);
-  });  
+  });
 });
