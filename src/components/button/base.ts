@@ -120,15 +120,19 @@ export class ButtonBase<S extends string = Size> extends LitElement {
     return validVariant ? this.variant : variants[0];
   }
 
+  private isLightDom() {
+    return this.hasAttribute("lightdom");
+  }
+
   createRenderRoot() {
     console.log("createRenderRoot: lightdom =", this.lightdom);
-    return this.lightdom ? this : super.createRenderRoot();
+    return this.isLightDom() ? this : super.createRenderRoot();
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    if (this.lightdom) {
+    if (this.isLightDom()) {
       // Light DOM の場合、小要素を保存しておいて、render で再配置する
       this._content = Array.from(this.childNodes);
     }
@@ -187,8 +191,8 @@ export class ButtonBase<S extends string = Size> extends LitElement {
 
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
   protected renderSlot(): Node[] | TemplateResult | typeof nothing {
-    if (this.lightdom) {
-      // Light DOM の場合、初回は slot をレンダリングせず、子要素を保存しておく
+    if (this.isLightDom()) {
+      // Light DOM の場合、保存しておいた小要素を返す
       return this._content;
     } else {
       return html`<slot class="text"></slot>`;

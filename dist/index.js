@@ -1469,11 +1469,14 @@ const ce = class ce extends L {
     const i = Ut(this.variant);
     return i || console.warn(`${this.variant}は無効なvariant属性です。`), i ? this.variant : Ue[0];
   }
+  isLightDom() {
+    return this.hasAttribute("lightdom");
+  }
   createRenderRoot() {
-    return console.log("createRenderRoot: lightdom =", this.lightdom), this.lightdom ? this : super.createRenderRoot();
+    return console.log("createRenderRoot: lightdom =", this.lightdom), this.isLightDom() ? this : super.createRenderRoot();
   }
   connectedCallback() {
-    super.connectedCallback(), this.lightdom && (this._content = Array.from(this.childNodes));
+    super.connectedCallback(), this.isLightDom() && (this._content = Array.from(this.childNodes));
   }
   get buttonClasses() {
     const i = {
@@ -1514,7 +1517,7 @@ const ce = class ce extends L {
   }
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
   renderSlot() {
-    return this.lightdom ? this._content : m`<slot class="text"></slot>`;
+    return this.isLightDom() ? this._content : m`<slot class="text"></slot>`;
   }
   render() {
     return m`

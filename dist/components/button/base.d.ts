@@ -43,6 +43,7 @@ export declare class ButtonBase<S extends string = Size> extends LitElement {
     constructor();
     /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
     protected getEffectiveVariant(): Variant;
+    private isLightDom;
     createRenderRoot(): HTMLElement | DocumentFragment;
     connectedCallback(): void;
     protected get buttonClasses(): string;
