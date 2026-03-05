@@ -4281,6 +4281,178 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/loading/loading.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/loading/mi-loading.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "size",
+          "type": {
+            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
+          },
+          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiLoading",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ローディングスピナーです。",
+          "tagName": "mi-loading",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLoading",
+          "superclass": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          },
+          "deprecated": "代わりに MiLoading を使用してください",
+          "tagName": "sp-loading",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "ai",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "Size"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loadingClasses",
+              "privacy": "private",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiLoading",
+                "module": "src/components/loading/mi-loading.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "size",
+          "declaration": {
+            "name": "size",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiLoading",
+          "declaration": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLoading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-loading",
+          "declaration": {
+            "name": "MiLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-loading",
+          "declaration": {
+            "name": "SpLoading",
+            "module": "src/components/loading/mi-loading.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/label-unit/index.ts",
       "declarations": [
         {
@@ -4510,178 +4682,6 @@
       "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/loading.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/loading/mi-loading.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "size",
-          "type": {
-            "text": "[\n  \"medium\",\n  \"large\",\n  \"xLarge\",\n  \"2xLarge\",\n  \"3xLarge\",\n  \"4xLarge\",\n]"
-          },
-          "default": "[ \"medium\", \"large\", \"xLarge\", \"2xLarge\", \"3xLarge\", \"4xLarge\", ]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiLoading",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ローディングスピナーです。",
-          "tagName": "mi-loading",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpLoading",
-          "superclass": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          },
-          "deprecated": "代わりに MiLoading を使用してください",
-          "tagName": "sp-loading",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "ai",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "Size"
-              },
-              "default": "\"medium\"",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loadingClasses",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiLoading",
-                "module": "src/components/loading/mi-loading.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "size",
-          "declaration": {
-            "name": "size",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiLoading",
-          "declaration": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpLoading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-loading",
-          "declaration": {
-            "name": "MiLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-loading",
-          "declaration": {
-            "name": "SpLoading",
-            "module": "src/components/loading/mi-loading.ts"
-          }
-        }
-      ]
     },
     {
       "kind": "javascript-module",
