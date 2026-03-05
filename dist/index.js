@@ -3808,7 +3808,10 @@ s1 = new WeakSet(), u2 = function() {
     })
   );
 }, C2 = function(i) {
-  i.key === "Enter" && this.submitByEnter && this.internals.form?.requestSubmit();
+  if (i.key === "Enter") {
+    if (i.isComposing) return;
+    this.submitByEnter && this.internals.form?.requestSubmit();
+  }
 }, ge.styles = w(M(l5)), ge.formAssociated = !0;
 let A = ge;
 n1([
