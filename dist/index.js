@@ -534,16 +534,16 @@ function c(t) {
 function I2(t) {
   return c({ ...t, state: !0, attribute: !1 });
 }
-const U2 = (t, e, i) => (i.configurable = !0, i.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(t, e, i), i);
-function F2(t, e) {
+const F2 = (t, e, i) => (i.configurable = !0, i.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(t, e, i), i);
+function U2(t, e) {
   return (i, r, o) => {
     const s = (n) => n.renderRoot?.querySelector(t) ?? null;
-    return U2(i, r, { get() {
+    return F2(i, r, { get() {
       return s(this);
     } });
   };
 }
-const Rt = { ATTRIBUTE: 1, CHILD: 2 }, Ue = (t) => (...e) => ({ _$litDirective$: t, values: e });
+const Rt = { ATTRIBUTE: 1, CHILD: 2 }, Fe = (t) => (...e) => ({ _$litDirective$: t, values: e });
 class Dt {
   constructor(e) {
   }
@@ -575,11 +575,11 @@ let te = class extends Dt {
   }
 };
 te.directiveName = "unsafeHTML", te.resultType = 1;
-const q2 = Ue(te);
+const q2 = Fe(te);
 class Ae extends te {
 }
 Ae.directiveName = "unsafeSVG", Ae.resultType = 2;
-const jt = Ue(Ae), W2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', Y2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
+const jt = Fe(Ae), W2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', Y2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
 function w(...t) {
   const e = W`
     ${$(W2)}
@@ -1078,7 +1078,7 @@ class c9 extends N {
 customElements.get("mi-avatar") || customElements.define("mi-avatar", N);
 customElements.get("sp-avatar") || customElements.define("sp-avatar", c9);
 const d9 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 26px;--size-4x-large: 40px;--padding-medium: 1.25px;--padding-large: 1.5px;--padding-x-large: 2px 2px 1.5px 1.5px;--padding-2x-large: 2px;--padding-3x-large: 3px;--padding-4x-large: 4px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.base{display:flex}.base:has(.size-medium){padding:var(--padding-medium)}.base:has(.size-large){padding:var(--padding-large)}.base:has(.size-x-large){padding:var(--padding-x-large)}.base:has(.size-2x-large){padding:var(--padding-2x-large)}.base:has(.size-3x-large){padding:var(--padding-3x-large)}.base:has(.size-4x-large){padding:var(--padding-4x-large)}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.size-4x-large{--size: var(--size-4x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
-var h9 = Object.defineProperty, Ut = (t, e, i, r) => {
+var h9 = Object.defineProperty, Ft = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && h9(e, i, o), o;
@@ -1112,10 +1112,10 @@ const et = class et extends L {
 };
 et.styles = w($(d9));
 let H1 = et;
-Ut([
+Ft([
   c({ type: Boolean })
 ], H1.prototype, "ai");
-Ut([
+Ft([
   c({ type: String })
 ], H1.prototype, "size");
 class p9 extends H1 {
@@ -1432,20 +1432,20 @@ const u9 = W`
     }
   }
 `;
-var f9 = Object.defineProperty, U = (t, e, i, r) => {
+var f9 = Object.defineProperty, F = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && f9(e, i, o), o;
 };
-const Fe = [
+const Ue = [
   "primary",
   "secondary",
   "tertiary",
   "ghost",
   "plane"
 ], Pe = ["medium", "large", "xLarge"];
-function Ft(t) {
-  return Fe.some((e) => e === t);
+function Ut(t) {
+  return Ue.some((e) => e === t);
 }
 function Vt(t) {
   return Pe.some((e) => e === t);
@@ -1466,8 +1466,8 @@ const ce = class ce extends L {
   }
   /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
   getEffectiveVariant() {
-    const i = Ft(this.variant);
-    return i || console.warn(`${this.variant}は無効なvariant属性です。`), i ? this.variant : Fe[0];
+    const i = Ut(this.variant);
+    return i || console.warn(`${this.variant}は無効なvariant属性です。`), i ? this.variant : Ue[0];
   }
   get buttonClasses() {
     const i = {
@@ -1540,34 +1540,34 @@ const ce = class ce extends L {
 };
 q = new WeakMap(), ce.styles = w(u9), ce.formAssociated = !0;
 let M = ce;
-U([
+F([
   c({ type: Boolean, reflect: !0 })
 ], M.prototype, "loading");
-U([
+F([
   c({ type: Boolean, reflect: !0 })
 ], M.prototype, "disabled");
-U([
+F([
   c({ type: Boolean, reflect: !0 })
 ], M.prototype, "selected");
-U([
+F([
   c({ type: Boolean, reflect: !0 })
 ], M.prototype, "toggle");
-U([
+F([
   c({ type: String, reflect: !0 })
 ], M.prototype, "variant");
-U([
+F([
   c({ type: String, reflect: !0 })
 ], M.prototype, "size");
-U([
+F([
   c({ type: String })
 ], M.prototype, "name");
-U([
+F([
   c({ type: String })
 ], M.prototype, "value");
-U([
+F([
   c({ type: String })
 ], M.prototype, "type");
-U([
+F([
   c({ type: String, attribute: "icon-type" })
 ], M.prototype, "iconType");
 var g9 = Object.defineProperty, qt = (t, e, i, r) => {
@@ -2090,7 +2090,7 @@ function _(t) {
   var e;
   return (t == null || (e = t.ownerDocument) == null ? void 0 : e.defaultView) || window;
 }
-function F(t) {
+function U(t) {
   var e;
   return (e = (Xt(t) ? t.ownerDocument : t.document) || window.document) == null ? void 0 : e.documentElement;
 }
@@ -2107,7 +2107,7 @@ function Zt(t) {
   return !Le() || typeof ShadowRoot > "u" ? !1 : t instanceof ShadowRoot || t instanceof _(t).ShadowRoot;
 }
 const O9 = /* @__PURE__ */ new Set(["inline", "contents"]);
-function U1(t) {
+function F1(t) {
   const {
     overflow: e,
     overflowX: i,
@@ -2135,7 +2135,7 @@ function We(t) {
   const e = Ye(), i = T(t) ? O(t) : t;
   return N9.some((r) => i[r] ? i[r] !== "none" : !1) || (i.containerType ? i.containerType !== "normal" : !1) || !e && (i.backdropFilter ? i.backdropFilter !== "none" : !1) || !e && (i.filter ? i.filter !== "none" : !1) || B9.some((r) => (i.willChange || "").includes(r)) || I9.some((r) => (i.contain || "").includes(r));
 }
-function U9(t) {
+function F9(t) {
   let e = o1(t);
   for (; B(e) && !V1(e); ) {
     if (We(e))
@@ -2149,9 +2149,9 @@ function U9(t) {
 function Ye() {
   return typeof CSS > "u" || !CSS.supports ? !1 : CSS.supports("-webkit-backdrop-filter", "none");
 }
-const F9 = /* @__PURE__ */ new Set(["html", "body", "#document"]);
+const U9 = /* @__PURE__ */ new Set(["html", "body", "#document"]);
 function V1(t) {
-  return F9.has(Z1(t));
+  return U9.has(Z1(t));
 }
 function O(t) {
   return _(t).getComputedStyle(t);
@@ -2173,13 +2173,13 @@ function o1(t) {
     t.assignedSlot || // DOM Element detected.
     t.parentNode || // ShadowRoot detected.
     Zt(t) && t.host || // Fallback.
-    F(t)
+    U(t)
   );
   return Zt(e) ? e.host : e;
 }
 function Kt(t) {
   const e = o1(t);
-  return V1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : B(e) && U1(e) ? e : Kt(e);
+  return V1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : B(e) && F1(e) ? e : Kt(e);
 }
 function R1(t, e, i) {
   var r;
@@ -2187,7 +2187,7 @@ function R1(t, e, i) {
   const o = Kt(t), s = o === ((r = t.ownerDocument) == null ? void 0 : r.body), n = _(o);
   if (s) {
     const a = Oe(n);
-    return e.concat(n, n.visualViewport || [], U1(o) ? o : [], a && i ? R1(a) : []);
+    return e.concat(n, n.visualViewport || [], F1(o) ? o : [], a && i ? R1(a) : []);
   }
   return e.concat(o, R1(o, [], i));
 }
@@ -2257,7 +2257,7 @@ function C1(t, e, i, r) {
 }
 function we(t, e) {
   const i = Ve(t).scrollLeft;
-  return e ? e.left + i : C1(F(t)).left + i;
+  return e ? e.left + i : C1(U(t)).left + i;
 }
 function t2(t, e) {
   const i = t.getBoundingClientRect(), r = i.left + e.scrollLeft - we(t, i), o = i.top + e.scrollTop;
@@ -2273,7 +2273,7 @@ function Y9(t) {
     offsetParent: r,
     strategy: o
   } = t;
-  const s = o === "fixed", n = F(r), a = e ? He(e.floating) : !1;
+  const s = o === "fixed", n = U(r), a = e ? He(e.floating) : !1;
   if (r === n || a && s)
     return i;
   let l = {
@@ -2281,7 +2281,7 @@ function Y9(t) {
     scrollTop: 0
   }, d = j(1);
   const p = j(0), h = B(r);
-  if ((h || !h && !s) && ((Z1(r) !== "body" || U1(n)) && (l = Ve(r)), B(r))) {
+  if ((h || !h && !s) && ((Z1(r) !== "body" || F1(n)) && (l = Ve(r)), B(r))) {
     const u = C1(r);
     d = y1(r), p.x = u.x + r.clientLeft, p.y = u.y + r.clientTop;
   }
@@ -2297,7 +2297,7 @@ function G9(t) {
   return Array.from(t.getClientRects());
 }
 function J9(t) {
-  const e = F(t), i = Ve(t), r = t.ownerDocument.body, o = p1(e.scrollWidth, e.clientWidth, r.scrollWidth, r.clientWidth), s = p1(e.scrollHeight, e.clientHeight, r.scrollHeight, r.clientHeight);
+  const e = U(t), i = Ve(t), r = t.ownerDocument.body, o = p1(e.scrollWidth, e.clientWidth, r.scrollWidth, r.clientWidth), s = p1(e.scrollHeight, e.clientHeight, r.scrollHeight, r.clientHeight);
   let n = -i.scrollLeft + we(t);
   const a = -i.scrollTop;
   return O(r).direction === "rtl" && (n += p1(e.clientWidth, r.clientWidth) - o), {
@@ -2309,7 +2309,7 @@ function J9(t) {
 }
 const _t = 25;
 function X9(t, e) {
-  const i = _(t), r = F(t), o = i.visualViewport;
+  const i = _(t), r = U(t), o = i.visualViewport;
   let s = r.clientWidth, n = r.clientHeight, a = 0, l = 0;
   if (o) {
     s = o.width, n = o.height;
@@ -2343,7 +2343,7 @@ function Et(t, e, i) {
   if (e === "viewport")
     r = X9(t, i);
   else if (e === "document")
-    r = J9(F(t));
+    r = J9(U(t));
   else if (T(e))
     r = Q9(e, i);
   else {
@@ -2370,7 +2370,7 @@ function e0(t, e) {
   let n = s ? o1(t) : t;
   for (; T(n) && !V1(n); ) {
     const a = O(n), l = We(n);
-    !l && a.position === "fixed" && (o = null), (s ? !l && !o : !l && a.position === "static" && !!o && K9.has(o.position) || U1(n) && !l && i2(t, n)) ? r = r.filter((p) => p !== n) : o = a, n = o1(n);
+    !l && a.position === "fixed" && (o = null), (s ? !l && !o : !l && a.position === "static" && !!o && K9.has(o.position) || F1(n) && !l && i2(t, n)) ? r = r.filter((p) => p !== n) : o = a, n = o1(n);
   }
   return e.set(t, r), r;
 }
@@ -2403,7 +2403,7 @@ function i0(t) {
   };
 }
 function o0(t, e, i) {
-  const r = B(e), o = F(e), s = i === "fixed", n = C1(t, !0, s, e);
+  const r = B(e), o = U(e), s = i === "fixed", n = C1(t, !0, s, e);
   let a = {
     scrollLeft: 0,
     scrollTop: 0
@@ -2413,7 +2413,7 @@ function o0(t, e, i) {
     l.x = we(o);
   }
   if (r || !r && !s)
-    if ((Z1(e) !== "body" || U1(o)) && (a = Ve(e)), r) {
+    if ((Z1(e) !== "body" || F1(o)) && (a = Ve(e)), r) {
       const u = C1(e, !0, s, e);
       l.x = u.x + e.clientLeft, l.y = u.y + e.clientTop;
     } else o && d();
@@ -2435,7 +2435,7 @@ function St(t, e) {
   if (e)
     return e(t);
   let i = t.offsetParent;
-  return F(t) === i && (i = i.ownerDocument.body), i;
+  return U(t) === i && (i = i.ownerDocument.body), i;
 }
 function o2(t, e) {
   const i = _(t);
@@ -2453,7 +2453,7 @@ function o2(t, e) {
   let r = St(t, e);
   for (; r && D9(r) && Se(r); )
     r = St(r, e);
-  return r && V1(r) && Se(r) && !We(r) ? i : r || U9(t) || i;
+  return r && V1(r) && Se(r) && !We(r) ? i : r || F9(t) || i;
 }
 const r0 = async function(t) {
   const e = this.getOffsetParent || o2, i = this.getDimensions, r = await i(t.floating);
@@ -2472,7 +2472,7 @@ function s0(t) {
 }
 const n0 = {
   convertOffsetParentRelativeRectToViewportRelativeRect: Y9,
-  getDocumentElement: F,
+  getDocumentElement: U,
   getClippingRect: t0,
   getOffsetParent: o2,
   getElementRects: r0,
@@ -2487,7 +2487,7 @@ function r2(t, e) {
 }
 function a0(t, e) {
   let i = null, r;
-  const o = F(t);
+  const o = U(t);
   function s() {
     var a;
     clearTimeout(r), (a = i) == null || a.disconnect(), i = null;
@@ -2635,7 +2635,7 @@ function g0(t) {
   return C0.some((e) => e === t);
 }
 var t1;
-const F1 = (t1 = class extends L {
+const U1 = (t1 = class extends L {
   constructor() {
     super(...arguments), this.text = "", this.placement = "top", this._open = !1, this._pointerActive = !1, this._descId = `mi-tooltip-desc-${t1._idCounter++}`, this._onSlotChange = () => {
       this.shadowRoot?.querySelector("slot")?.assignedElements().forEach((e) => e.setAttribute("aria-describedby", this._descId));
@@ -2695,17 +2695,17 @@ const F1 = (t1 = class extends L {
 }, t1.styles = w(u0), t1._idCounter = 0, t1);
 $e([
   c({ type: String })
-], F1.prototype, "text");
+], U1.prototype, "text");
 $e([
   c({ type: String, reflect: !0 })
-], F1.prototype, "placement");
+], U1.prototype, "placement");
 $e([
   I2()
-], F1.prototype, "_open");
+], U1.prototype, "_open");
 $e([
-  F2(".tooltip")
-], F1.prototype, "_tooltipEl");
-let m0 = F1;
+  U2(".tooltip")
+], U1.prototype, "_tooltipEl");
+let m0 = U1;
 customElements.get("mi-tooltip") || customElements.define("mi-tooltip", m0);
 const b0 = W`
   :host {
@@ -2963,8 +2963,8 @@ class W1 extends M {
     return this.danger ? "danger" : "normal";
   }
   getEffectiveVariant() {
-    const e = this.variants != null ? this.variants : this.variant, i = Ft(e);
-    return i || console.warn(`${e}は無効なvariant属性です。`), i ? e : Fe[0];
+    const e = this.variants != null ? this.variants : this.variant, i = Ut(e);
+    return i || console.warn(`${e}は無効なvariant属性です。`), i ? e : Ue[0];
   }
 }
 Je([
@@ -3327,7 +3327,7 @@ j0([
   c({ type: String, reflect: !0 })
 ], ae.prototype, "type");
 customElements.get("mi-inline-notification") || customElements.define("mi-inline-notification", ae);
-const j1 = Ue(class extends Dt {
+const j1 = Fe(class extends Dt {
   constructor(t) {
     if (super(t), t.type !== Rt.ATTRIBUTE || t.name !== "class" || t.strings?.length > 2) throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
   }
@@ -3391,11 +3391,11 @@ a2([
 a2([
   c({ type: String, attribute: "support-text", reflect: !0 })
 ], w1.prototype, "supportText");
-class U0 extends w1 {
+class F0 extends w1 {
 }
 customElements.get("mi-label-unit") || customElements.define("mi-label-unit", w1);
-customElements.get("sp-label-unit") || customElements.define("sp-label-unit", U0);
-const F0 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+customElements.get("sp-label-unit") || customElements.define("sp-label-unit", F0);
+const U0 = `<svg viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_10_438)">
 <path d="M0.812012 1.2381V24.7619C0.812012 25.4457 1.36633 26 2.05011 26H57.9432C58.6067 26 59.2198 25.646 59.5516 25.0714L73.1687 1.48571C73.5499 0.825395 73.0734 0 72.3109 0H2.05011C1.36633 0 0.812012 0.554314 0.812012 1.2381Z" fill="#F72A48"/>
 <path d="M10.5969 17.5256C10.0161 17.8902 9.39656 18.2299 8.73824 18.5363C8.73805 18.5364 8.73787 18.5365 8.73767 18.5365C8.73767 18.5366 8.73768 18.5365 8.73767 18.5365L7.3739 16.5267C10.5202 15.1267 12.7216 13.069 13.7984 10.8079H8.36688V8.63046L16.9291 8.63047C16.6076 10.614 15.8557 12.3764 14.6848 13.9237C15.874 14.7334 17.1438 15.6717 18.2251 16.6103L16.6578 18.68C15.5557 17.6134 14.371 16.6055 13.1394 15.6214C12.395 16.3092 11.547 16.9436 10.5969 17.5256ZM31.8955 12.1251V14.533H39.9379L41.3298 12.1251H31.8955ZM53.7827 6.56189L53.3408 8.28962H54.8604L55.3012 6.56189H53.7827ZM51.3513 6.56189L50.9106 8.28962H52.4302L52.871 6.56189H51.3513ZM45.9291 18.9428L44.4946 16.9455C45.9176 16.5384 47.1377 15.9168 48.1075 15.1511C47.3533 14.4926 46.5161 13.8469 45.7377 13.2968C45.3318 13.667 44.9005 14.0141 44.4104 14.337L42.8305 12.7583C44.8763 11.2625 45.9776 9.51546 46.6234 7.63808L48.9448 8.21119C48.849 8.48682 48.7406 8.77393 48.6219 9.06111H53.4553C53.1748 13.532 50.8371 17.2615 45.9291 18.9428ZM50.6549 11.1668H47.5205C47.4018 11.3467 47.2061 11.6216 47.0746 11.8014C47.8634 12.2673 48.7623 12.9547 49.588 13.6132C50.0908 12.8832 50.5119 11.9683 50.6549 11.1668ZM22.8732 14.9699V13.8051C25.3258 13.5538 27.7066 13.1231 29.3577 12.6924L28.8911 10.3953C27.0367 10.9576 24.7994 11.3405 22.8971 11.5798C22.9091 10.6346 22.921 8.98122 22.945 8.03607L20.5402 8.63047V15.7356C20.5402 18.272 21.7246 18.5113 24.7755 18.5113C26.0436 18.5113 28.257 18.4874 29.3457 18.4275V16.1424C28.3527 16.2022 25.936 16.286 24.6797 16.286C23.1842 16.286 22.8732 16.2022 22.8732 14.9699ZM30.7542 8.25709C30.7542 9.19336 29.9953 9.95229 29.059 9.95229C28.1228 9.95229 27.3638 9.19336 27.3638 8.25709C27.3638 7.32087 28.1228 6.56189 29.059 6.56189C29.9953 6.56189 30.7542 7.32087 30.7542 8.25709ZM29.9006 8.25709C29.9006 7.79235 29.5238 7.41554 29.059 7.41554C28.5943 7.41554 28.2175 7.79235 28.2175 8.25709C28.2175 8.7219 28.5943 9.09863 29.059 9.09863C29.5238 9.09863 29.9006 8.7219 29.9006 8.25709Z" fill="white"/>
@@ -3468,7 +3468,7 @@ ue = new WeakSet(), h2 = function() {
   if (this.brand === "uzabase")
     return Y0;
   if (this.brand === "speeda")
-    return this.language === "en" ? q0 : this.language === "zh" ? W0 : F0;
+    return this.language === "en" ? q0 : this.language === "zh" ? W0 : U0;
 }, st.styles = w();
 let $1 = st;
 d2([
@@ -3762,12 +3762,6 @@ const ge = class ge extends L {
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);
   }
-  firstUpdated() {
-    if (this.autofocus) {
-      const i = this.renderRoot.querySelector("input");
-      console.log("FOCUS!"), i?.focus();
-    }
-  }
   render() {
     return m`
       <input
@@ -3775,6 +3769,7 @@ const ge = class ge extends L {
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
+        ?autofocus="${this.autofocus}"
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
@@ -3870,7 +3865,7 @@ const me = class me extends L {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          autofocus="${this.autofocus}"
+          ?autofocus="${this.autofocus}"
           @input="${z(this, a1, m2)}"
           @keydown="${z(this, a1, b2)}"
         ></mi-text-field>
@@ -3959,7 +3954,7 @@ export {
   t5 as SpControlMenuItem,
   E0 as SpFloatingButton,
   i9 as SpIcon,
-  U0 as SpLabelUnit,
+  F0 as SpLabelUnit,
   p9 as SpLoading,
   J0 as SpLogo,
   r5 as SpRadioButtonText,

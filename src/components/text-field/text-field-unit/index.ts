@@ -109,7 +109,7 @@ export class MiTextFieldUnit extends LitElement {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          autofocus="${this.autofocus}"
+          ?autofocus="${this.autofocus}"
           @input="${this.#handleInput}"
           @keydown="${this.#handleKeyDown}"
         ></mi-text-field>

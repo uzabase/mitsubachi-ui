@@ -5918,11 +5918,6 @@
             },
             {
               "kind": "method",
-              "name": "firstUpdated",
-              "privacy": "protected"
-            },
-            {
-              "kind": "method",
               "name": "#inputClasses",
               "privacy": "private"
             },
@@ -6139,15 +6134,6 @@
                   }
                 }
               ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "firstUpdated",
-              "privacy": "protected",
               "inheritedFrom": {
                 "name": "MiTextField",
                 "module": "src/components/text-field/text-field/index.ts"

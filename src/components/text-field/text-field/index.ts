@@ -57,14 +57,6 @@ export class MiTextField extends LitElement {
     }
   }
 
-  protected firstUpdated() {
-    if (this.autofocus) {
-      const input = this.renderRoot.querySelector("input");
-      console.log("FOCUS!");
-      input?.focus();
-    }
-  }
-
   #inputClasses() {
     return classMap({
       input: true,
@@ -108,6 +100,7 @@ export class MiTextField extends LitElement {
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
+        ?autofocus="${this.autofocus}"
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"

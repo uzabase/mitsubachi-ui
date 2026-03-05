@@ -18,7 +18,6 @@ export declare class MiTextField extends LitElement {
     private internals;
     constructor();
     protected updated(changedProperties: Map<string, unknown>): void;
-    protected firstUpdated(): void;
     render(): import('lit-html').TemplateResult<1>;
 }
 /** @deprecated 代わりに MiTextField を使用してください */
