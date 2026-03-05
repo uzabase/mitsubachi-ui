@@ -61,7 +61,6 @@ export class MiTextField extends LitElement {
   #handleInput(e: Event) {
     const target = e.target as HTMLInputElement;
     this.value = target.value;
-    this.internals.setFormValue(target.value);
 
     // 1パスワードがパスワードを自動入力したときのイベントにcomposedがなかったため、mi-text-field-unitにinputイベントが伝搬されず、
     // 自動入力されたパスワードがformで送信されないことがありました。
