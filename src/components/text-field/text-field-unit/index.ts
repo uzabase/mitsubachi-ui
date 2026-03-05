@@ -73,6 +73,7 @@ export class MiTextFieldUnit extends LitElement {
   #handleInput(e: Event) {
     const target = e.target as MiTextField;
     this.value = target.value;
+    this.internals.setFormValue(target.value);
   }
 
   render() {
