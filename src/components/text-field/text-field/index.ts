@@ -36,6 +36,9 @@ export class MiTextField extends LitElement {
   @property({ type: String, reflect: true })
   type = "text";
 
+  @property({ type: Boolean, reflect: true })
+  submitByEnter = true;
+
   private internals: ElementInternals;
 
   constructor() {
@@ -75,6 +78,16 @@ export class MiTextField extends LitElement {
     }
   }
 
+  #handleKeyDown(e: KeyboardEvent) {
+    // Enterキーでフォームを送信するため、Enterキーが押されたときにinputイベントを発火させる
+    if (e.key === "Enter") {
+      if (this.submitByEnter) {
+        const form = this.internals.form;
+        form?.requestSubmit();
+      }
+    }
+  }
+
   render() {
     return html`
       <input
@@ -87,6 +100,7 @@ export class MiTextField extends LitElement {
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
         @input="${this.#handleInput}"
+        @keydown="${this.#handleKeyDown}"
       />
       <mi-text-field-error-text
         text="${this.disabled ? "" : this.error}"
