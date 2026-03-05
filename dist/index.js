@@ -22,7 +22,7 @@ let At = class {
     return this.cssText;
   }
 };
-const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), W = (t, ...e) => {
+const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), q = (t, ...e) => {
   const i = t.length === 1 ? t[0] : e.reduce((r, o, s) => r + ((n) => {
     if (n._$cssResult$ === !0) return n.cssText;
     if (typeof n == "number") return n;
@@ -581,9 +581,9 @@ class Ae extends te {
 Ae.directiveName = "unsafeSVG", Ae.resultType = 2;
 const jt = Fe(Ae), W2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', q2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
 function w(...t) {
-  const e = W`
+  const e = q`
     ${M(W2)}
-  `, i = W`
+  `, i = q`
     ${M(q2)}
   `;
   return [e, i, ...t];
@@ -831,7 +831,7 @@ class t9 extends O1 {
 }
 customElements.get("mi-icon") || customElements.define("mi-icon", O1);
 customElements.get("sp-icon") || customElements.define("sp-icon", t9);
-const i9 = W`
+const i9 = q`
   :host {
     display: inline-block;
     --palette-plum: #910091;
@@ -1023,22 +1023,22 @@ function n9(t) {
 function a9(t) {
   return s9.some((e) => e === t);
 }
-var Y, Bt, It, ze;
+var G, Bt, It, ze;
 const Qe = class Qe extends L {
   constructor() {
     super(...arguments);
-    D(this, Y);
+    D(this, G);
     this.src = "", this.alt = "", this.initials = "", this.size = "medium", this.color = "", this.inactive = !1;
   }
   render() {
-    const i = S(this, Y, ze);
+    const i = S(this, G, ze);
     return m`
-      <div class="${S(this, Y, Bt)}">
+      <div class="${S(this, G, Bt)}">
         ${this.src ? m`
               <img
                 src="${this.src}"
                 alt="${this.alt}"
-                @error="${P(this, Y, It)}"
+                @error="${P(this, G, It)}"
                 class="image"
               />
             ` : i ? m`<div class="initials">${i}</div>` : m`<div class="icon"><mi-icon type="person"></mi-icon></div>`}
@@ -1046,9 +1046,9 @@ const Qe = class Qe extends L {
     `;
   }
 };
-Y = new WeakSet(), Bt = function() {
+G = new WeakSet(), Bt = function() {
   const i = ["base", `size-${n9(this.size)}`];
-  return !this.src && S(this, Y, ze) && this.color && a9(this.color) && i.push(`color-${this.color}`), this.inactive && i.push("inactive"), i.filter(Boolean).join(" ");
+  return !this.src && S(this, G, ze) && this.color && a9(this.color) && i.push(`color-${this.color}`), this.inactive && i.push("inactive"), i.filter(Boolean).join(" ");
 }, It = function() {
   this.src = "";
 }, ze = function() {
@@ -1122,7 +1122,7 @@ class h9 extends L1 {
 }
 customElements.get("mi-loading") || customElements.define("mi-loading", L1);
 customElements.get("sp-loading") || customElements.define("sp-loading", h9);
-const p9 = W`
+const p9 = q`
   :host {
     display: inline-block;
   }
@@ -1453,12 +1453,12 @@ function Vt(t) {
 function f9(t) {
   return Nt(t) ? !0 : (console.warn(`${t}は無効なicon-type属性です。`), !1);
 }
-var U;
+var W;
 const ce = class ce extends L {
   constructor() {
     super();
-    D(this, U);
-    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", this.lightdom = !1, this._content = [], J1(this, U, this.attachInternals());
+    D(this, W);
+    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", this.lightdom = !1, this._content = [], J1(this, W, this.attachInternals());
   }
   /** 継承クラスでオーバーライド可能。テーマ（normal / danger / ai） */
   getTheme() {
@@ -1537,17 +1537,17 @@ const ce = class ce extends L {
     `;
   }
   handleClick(i) {
-    if (i.stopPropagation(), !(this.loading || !this.dispatchEvent(new MouseEvent("click", i)) || !S(this, U).form))
+    if (i.stopPropagation(), !(this.loading || !this.dispatchEvent(new MouseEvent("click", i)) || !S(this, W).form))
       if (this.type === "submit")
         if (i.preventDefault(), this.name) {
           const o = document.createElement("input");
-          o.type = "hidden", o.name = this.name, o.value = this.value, S(this, U).form.appendChild(o), S(this, U).form.requestSubmit(), o.remove();
+          o.type = "hidden", o.name = this.name, o.value = this.value, S(this, W).form.appendChild(o), S(this, W).form.requestSubmit(), o.remove();
         } else
-          S(this, U).form.requestSubmit();
-      else this.type === "reset" && S(this, U).form.reset();
+          S(this, W).form.requestSubmit();
+      else this.type === "reset" && S(this, W).form.reset();
   }
 };
-U = new WeakMap(), ce.styles = w(p9), ce.formAssociated = !0;
+W = new WeakMap(), ce.styles = w(p9), ce.formAssociated = !0;
 let $ = ce;
 R([
   d({ type: Boolean, reflect: !0 })
@@ -1863,7 +1863,7 @@ const _9 = async (t, e, i) => {
       x: H,
       y: V,
       data: E,
-      reset: k
+      reset: Z
     } = await x({
       x: p,
       y: h,
@@ -1887,11 +1887,11 @@ const _9 = async (t, e, i) => {
         ...u[b],
         ...E
       }
-    }, k && C <= 50 && (C++, typeof k == "object" && (k.placement && (f = k.placement), k.rects && (c = k.rects === !0 ? await n.getElementRects({
+    }, Z && C <= 50 && (C++, typeof Z == "object" && (Z.placement && (f = Z.placement), Z.rects && (c = Z.rects === !0 ? await n.getElementRects({
       reference: t,
       floating: e,
       strategy: o
-    }) : k.rects), {
+    }) : Z.rects), {
       x: p,
       y: h
     } = kt(c, f, l)), y = -1);
@@ -1927,8 +1927,8 @@ const _9 = async (t, e, i) => {
       } = ye(t, e);
       if ((i = s.arrow) != null && i.alignmentOffset)
         return {};
-      const b = u1(o), x = Q(a), H = u1(a) === a, V = await (l.isRTL == null ? void 0 : l.isRTL(c.floating)), E = f || (H || !v ? [re(a)] : L9(a)), k = C !== "none";
-      !f && k && E.push(...$9(a, v, C, V));
+      const b = u1(o), x = Q(a), H = u1(a) === a, V = await (l.isRTL == null ? void 0 : l.isRTL(c.floating)), E = f || (H || !v ? [re(a)] : L9(a)), Z = C !== "none";
+      !f && Z && E.push(...$9(a, v, C, V));
       const g1 = [a, ...E], ke = await l.detectOverflow(e, y), G1 = [];
       let m1 = ((r = s.flip) == null ? void 0 : r.overflows) || [];
       if (p && G1.push(ke[b]), h) {
@@ -1959,7 +1959,7 @@ const _9 = async (t, e, i) => {
             case "bestFit": {
               var ht;
               const l1 = (ht = m1.filter((z) => {
-                if (k) {
+                if (Z) {
                   const J = Q(z.placement);
                   return J === x || // Create a bias to the `y` side axis due to horizontal
                   // reading directions favoring greater width.
@@ -2098,7 +2098,7 @@ function Le() {
 function Z1(t) {
   return Xt(t) ? (t.nodeName || "").toLowerCase() : "#document";
 }
-function Z(t) {
+function _(t) {
   var e;
   return (t == null || (e = t.ownerDocument) == null ? void 0 : e.defaultView) || window;
 }
@@ -2107,16 +2107,16 @@ function F(t) {
   return (e = (Xt(t) ? t.ownerDocument : t.document) || window.document) == null ? void 0 : e.documentElement;
 }
 function Xt(t) {
-  return Le() ? t instanceof Node || t instanceof Z(t).Node : !1;
+  return Le() ? t instanceof Node || t instanceof _(t).Node : !1;
 }
 function T(t) {
-  return Le() ? t instanceof Element || t instanceof Z(t).Element : !1;
+  return Le() ? t instanceof Element || t instanceof _(t).Element : !1;
 }
 function B(t) {
-  return Le() ? t instanceof HTMLElement || t instanceof Z(t).HTMLElement : !1;
+  return Le() ? t instanceof HTMLElement || t instanceof _(t).HTMLElement : !1;
 }
 function Zt(t) {
-  return !Le() || typeof ShadowRoot > "u" ? !1 : t instanceof ShadowRoot || t instanceof Z(t).ShadowRoot;
+  return !Le() || typeof ShadowRoot > "u" ? !1 : t instanceof ShadowRoot || t instanceof _(t).ShadowRoot;
 }
 const T9 = /* @__PURE__ */ new Set(["inline", "contents"]);
 function F1(t) {
@@ -2166,7 +2166,7 @@ function H1(t) {
   return F9.has(Z1(t));
 }
 function O(t) {
-  return Z(t).getComputedStyle(t);
+  return _(t).getComputedStyle(t);
 }
 function Ve(t) {
   return T(t) ? {
@@ -2196,7 +2196,7 @@ function Kt(t) {
 function R1(t, e, i) {
   var r;
   e === void 0 && (e = []), i === void 0 && (i = !0);
-  const o = Kt(t), s = o === ((r = t.ownerDocument) == null ? void 0 : r.body), n = Z(o);
+  const o = Kt(t), s = o === ((r = t.ownerDocument) == null ? void 0 : r.body), n = _(o);
   if (s) {
     const a = Oe(n);
     return e.concat(n, n.visualViewport || [], F1(o) ? o : [], a && i ? R1(a) : []);
@@ -2236,14 +2236,14 @@ function v1(t) {
 }
 const U9 = /* @__PURE__ */ j(0);
 function e2(t) {
-  const e = Z(t);
+  const e = _(t);
   return !Ye() || !e.visualViewport ? U9 : {
     x: e.visualViewport.offsetLeft,
     y: e.visualViewport.offsetTop
   };
 }
 function W9(t, e, i) {
-  return e === void 0 && (e = !1), !i || e && i !== Z(t) ? !1 : e;
+  return e === void 0 && (e = !1), !i || e && i !== _(t) ? !1 : e;
 }
 function f1(t, e, i, r) {
   e === void 0 && (e = !1), i === void 0 && (i = !1);
@@ -2253,11 +2253,11 @@ function f1(t, e, i, r) {
   const a = W9(s, i, r) ? e2(s) : j(0);
   let l = (o.left + a.x) / n.x, c = (o.top + a.y) / n.y, p = o.width / n.x, h = o.height / n.y;
   if (s) {
-    const f = Z(s), u = r && T(r) ? Z(r) : r;
+    const f = _(s), u = r && T(r) ? _(r) : r;
     let C = f, v = Oe(C);
     for (; v && r && u !== C; ) {
       const y = v1(v), b = v.getBoundingClientRect(), x = O(v), H = b.left + (v.clientLeft + parseFloat(x.paddingLeft)) * y.x, V = b.top + (v.clientTop + parseFloat(x.paddingTop)) * y.y;
-      l *= y.x, c *= y.y, p *= y.x, h *= y.y, l += H, c += V, C = Z(v), v = Oe(C);
+      l *= y.x, c *= y.y, p *= y.x, h *= y.y, l += H, c += V, C = _(v), v = Oe(C);
     }
   }
   return se({
@@ -2321,7 +2321,7 @@ function G9(t) {
 }
 const _t = 25;
 function J9(t, e) {
-  const i = Z(t), r = F(t), o = i.visualViewport;
+  const i = _(t), r = F(t), o = i.visualViewport;
   let s = r.clientWidth, n = r.clientHeight, a = 0, l = 0;
   if (o) {
     s = o.width, n = o.height;
@@ -2450,7 +2450,7 @@ function St(t, e) {
   return F(t) === i && (i = i.ownerDocument.body), i;
 }
 function o2(t, e) {
-  const i = Z(t);
+  const i = _(t);
   if (He(t))
     return i;
   if (!B(t)) {
@@ -2519,8 +2519,8 @@ function n0(t, e) {
       threshold: h1(0, ie(1, l)) || 1
     };
     let V = !0;
-    function E(k) {
-      const g1 = k[0].intersectionRatio;
+    function E(Z) {
+      const g1 = Z[0].intersectionRatio;
       if (g1 !== l) {
         if (!V)
           return n();
@@ -2591,7 +2591,7 @@ const l0 = z9, c0 = P9, d0 = E9, h0 = (t, e, i) => {
     ...o,
     platform: s
   });
-}, p0 = W`
+}, p0 = q`
   :host {
     display: inline-block;
   }
@@ -2719,7 +2719,7 @@ $e([
 ], U1.prototype, "_tooltipEl");
 let g0 = U1;
 customElements.get("mi-tooltip") || customElements.define("mi-tooltip", g0);
-const m0 = W`
+const m0 = q`
   :host {
     display: inline-block;
   }
@@ -3044,25 +3044,25 @@ he.styles = w(
   M(n2),
   M(x0)
 ), he.formAssociated = !0;
-let q = he;
+let Y = he;
 Y1([
   d({ type: String, reflect: !0 })
-], q.prototype, "value");
+], Y.prototype, "value");
 Y1([
   d({ type: String, reflect: !0 })
-], q.prototype, "name");
+], Y.prototype, "name");
 Y1([
   d({ type: Boolean, reflect: !0 })
-], q.prototype, "checked");
+], Y.prototype, "checked");
 Y1([
   d({ type: Boolean, reflect: !0 })
-], q.prototype, "indeterminate");
+], Y.prototype, "indeterminate");
 Y1([
   d({ type: Boolean, reflect: !0 })
-], q.prototype, "disabled");
-class H0 extends q {
+], Y.prototype, "disabled");
+class H0 extends Y {
 }
-customElements.get("mi-checkbox") || customElements.define("mi-checkbox", q);
+customElements.get("mi-checkbox") || customElements.define("mi-checkbox", Y);
 customElements.get("sp-checkbox") || customElements.define("sp-checkbox", H0);
 const V0 = ":host{display:inline-block;max-width:100%}.base{display:inline-flex;align-items:flex-start;justify-content:flex-start;max-width:100%;cursor:pointer}.checkmark:has(.input:focus-visible):before{box-shadow:0 0 0 2px #fff,0 0 0 4px #191919}.base:has(.input:disabled){cursor:not-allowed}.text{color:#000000d6;font-size:14px;line-height:1.3;letter-spacing:.02em;padding-block:3px;padding-inline:4px}.base:has(.input:disabled) .text{color:#00000059}.base:hover .checkmark:has(:not(.input:disabled)):before{border-color:#0000008a;outline:4px solid rgb(0 0 0 / 4%)}.base:active .checkmark:has(:not(.input:disabled)):before,.base:hover:active .checkmark:has(:not(.input:disabled)):before{outline:4px solid rgb(0 0 0 / 7%)}.base:hover .checkmark:has(:is(.input:checked,.input:indeterminate)):has(:not(.input:disabled)):before{background-color:#2666bf;border-color:#2666bf}";
 var w0 = Object.defineProperty, _1 = (t, e, i, r) => {
@@ -3137,7 +3137,7 @@ class $0 extends I {
 }
 customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", I);
 customElements.get("sp-checkbox-text") || customElements.define("sp-checkbox-text", $0);
-const M0 = W`
+const M0 = q`
   :host {
     display: inline-block;
     --color-primary-red-90: #f72a48;
@@ -3280,7 +3280,7 @@ P0([
   d({ type: String, reflect: !0 })
 ], ne.prototype, "type");
 customElements.get("mi-icon-color") || customElements.define("mi-icon-color", ne);
-const O0 = W`
+const O0 = q`
   .base {
     display: flex;
     align-items: flex-start;
@@ -3536,7 +3536,7 @@ class e5 extends C1 {
 }
 customElements.get("mi-control-menu-item") || customElements.define("mi-control-menu-item", C1);
 customElements.get("sp-control-menu-item") || customElements.define("sp-control-menu-item", e5);
-const t5 = W`
+const t5 = q`
   :host {
     display: inline-block;
 
@@ -3843,7 +3843,7 @@ class d5 extends A {
 customElements.get("mi-text-field") || customElements.define("mi-text-field", A);
 customElements.get("sp-text-field") || customElements.define("sp-text-field", d5);
 const h5 = ":host .label{margin-bottom:8px;text-align:left}:host .label.none{display:none}";
-var p5 = Object.defineProperty, G = (t, e, i, r) => {
+var p5 = Object.defineProperty, U = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && p5(e, i, o), o;
@@ -3852,7 +3852,7 @@ const me = class me extends L {
   constructor() {
     super();
     D(this, M1);
-    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.internals = this.attachInternals();
+    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.submitByEnter = !0, this.internals = this.attachInternals();
   }
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);
@@ -3874,6 +3874,7 @@ const me = class me extends L {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           @input="${P(this, M1, m2)}"
+          submitByEnter="${this.submitByEnter}"
         ></mi-text-field>
       </fieldset>
     `;
@@ -3888,43 +3889,46 @@ M1 = new WeakSet(), g2 = function() {
   const r = i.target;
   this.value = r.value;
 }, me.styles = w(M(h5)), me.formAssociated = !0;
-let _ = me;
-G([
+let k = me;
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "text");
-G([
+], k.prototype, "text");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "error");
-G([
+], k.prototype, "error");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "placeholder");
-G([
+], k.prototype, "placeholder");
+U([
   d({ type: String, attribute: "support-text", reflect: !0 })
-], _.prototype, "supportText");
-G([
+], k.prototype, "supportText");
+U([
   d({ type: Boolean, reflect: !0 })
-], _.prototype, "disabled");
-G([
+], k.prototype, "disabled");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "name");
-G([
+], k.prototype, "name");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "value");
-G([
+], k.prototype, "value");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "type");
-G([
+], k.prototype, "type");
+U([
   d({ type: String, reflect: !0 })
-], _.prototype, "autocomplete");
-class u5 extends _ {
+], k.prototype, "autocomplete");
+U([
+  d({ type: Boolean, reflect: !0 })
+], k.prototype, "submitByEnter");
+class u5 extends k {
 }
-customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", _);
+customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", k);
 customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", u5);
 export {
   We as MiAiButton,
   N as MiAvatar,
   s2 as MiButton,
-  q as MiCheckbox,
+  Y as MiCheckbox,
   I as MiCheckboxText,
   le as MiControlMenu,
   C1 as MiControlMenuItem,
@@ -3939,7 +3943,7 @@ export {
   w1 as MiLogo,
   q1 as MiNeutralButton,
   r1 as MiRadioButtonText,
-  _ as MiTextFieldUnit,
+  k as MiTextFieldUnit,
   g0 as MiTooltip,
   l9 as SpAvatar,
   y0 as SpButton,

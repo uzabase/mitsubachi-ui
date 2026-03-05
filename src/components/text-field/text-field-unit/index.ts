@@ -48,6 +48,9 @@ export class MiTextFieldUnit extends LitElement {
   @property({ type: String, reflect: true })
   autocomplete: AutoFill = "off";
 
+  @property({ type: Boolean, reflect: true })
+  submitByEnter = true;
+
   private internals: ElementInternals;
 
   constructor() {
@@ -92,6 +95,7 @@ export class MiTextFieldUnit extends LitElement {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           @input="${this.#handleInput}"
+          submitByEnter="${this.submitByEnter}"
         ></mi-text-field>
       </fieldset>
     `;
