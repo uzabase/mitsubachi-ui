@@ -32,4 +32,19 @@ describe("mi-text-field-unit", () => {
 
     expect(input?.getAttribute("autocomplete")).eq("foobar");
   });
+
+  test(`autofocus属性を指定できる`, async () => {
+    document.body.innerHTML = `<mi-text-field-unit autofocus="foobar"></mi-text-field-unit>`;
+    await customElements.whenDefined("mi-text-field");
+    await customElements.whenDefined("mi-text-field-unit");
+
+    const miTextField = document
+      .querySelector("mi-text-field-unit")
+      ?.shadowRoot?.querySelector("mi-text-field");
+
+    expect(miTextField?.hasAttribute("autofocus")).toBe(true);
+
+    const input = miTextField?.shadowRoot?.querySelector("input");
+    expect(input?.hasAttribute("autofocus")).toBe(true);
+  });  
 });
