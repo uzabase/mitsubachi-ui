@@ -36,6 +36,12 @@ export class MiTextField extends LitElement {
   @property({ type: String, reflect: true })
   type = "text";
 
+  @property({ type: Boolean, reflect: true })
+  autofocus = false;
+
+  @property({ type: Boolean, reflect: true })
+  submitByEnter = false;
+
   private internals: ElementInternals;
 
   constructor() {
@@ -75,6 +81,18 @@ export class MiTextField extends LitElement {
     }
   }
 
+  #handleKeyDown(e: KeyboardEvent) {
+    if (e.key === "Enter") {
+      if (e.isComposing) return; // IMEでEnterが押されたときは無視する
+
+      // submitByEnterが指定されている場合、Enterキーでフォームを送信する
+      if (this.submitByEnter) {
+        const form = this.internals.form;
+        form?.requestSubmit();
+      }
+    }
+  }
+
   render() {
     return html`
       <input
@@ -82,11 +100,13 @@ export class MiTextField extends LitElement {
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
+        ?autofocus="${this.autofocus}"
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
         @input="${this.#handleInput}"
+        @keydown="${this.#handleKeyDown}"
       />
       <mi-text-field-error-text
         text="${this.disabled ? "" : this.error}"

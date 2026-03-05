@@ -13,6 +13,8 @@ export declare class MiTextField extends LitElement {
     name: string;
     value: string;
     type: string;
+    autofocus: boolean;
+    submitByEnter: boolean;
     private internals;
     constructor();
     protected updated(changedProperties: Map<string, unknown>): void;
