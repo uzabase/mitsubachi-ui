@@ -71,6 +71,9 @@
   if (!customElements.get("sp-icon")) {
     customElements.define("sp-icon", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-icon-color")) {
+    customElements.define("mi-icon-color", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-inline-notification")) {
     customElements.define("mi-inline-notification", class extends HTMLElement {
       constructor() {
@@ -78,9 +81,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-icon-color")) {
-    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-label-unit")) {
     customElements.define("mi-label-unit", class extends HTMLElement {});
@@ -124,6 +124,12 @@
       }
     });
   }
+  if (!customElements.get("mi-control-menu-item")) {
+    customElements.define("mi-control-menu-item", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-control-menu-item")) {
+    customElements.define("sp-control-menu-item", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-control-menu")) {
     customElements.define("mi-control-menu", class extends HTMLElement {
       constructor() {
@@ -139,12 +145,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-control-menu-item")) {
-    customElements.define("mi-control-menu-item", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-control-menu-item")) {
-    customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
   if (!customElements.get("mi-text-field")) {
     customElements.define("mi-text-field", class extends HTMLElement {});

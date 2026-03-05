@@ -37,6 +37,9 @@ export class MiTextField extends LitElement {
   type = "text";
 
   @property({ type: Boolean, reflect: true })
+  autofocus = false;
+
+  @property({ type: Boolean, reflect: true })
   submitByEnter = true;
 
   private internals: ElementInternals;
@@ -82,7 +85,7 @@ export class MiTextField extends LitElement {
     // Enterキーでフォームを送信するため、Enterキーが押されたときにinputイベントを発火させる
     if (e.key === "Enter") {
       if (e.isComposing) return; // IMEでEnterが押されたときは無視する
-      
+
       if (this.submitByEnter) {
         const form = this.internals.form;
         form?.requestSubmit();
@@ -97,6 +100,7 @@ export class MiTextField extends LitElement {
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
+        autofocus="${this.autofocus}"
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
