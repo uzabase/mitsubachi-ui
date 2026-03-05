@@ -2,7 +2,7 @@ var pt = (t) => {
   throw TypeError(t);
 };
 var _e = (t, e, i) => e.has(t) || pt("Cannot " + i);
-var S = (t, e, i) => (_e(t, e, "read from private field"), i ? i.call(t) : e.get(t)), O = (t, e, i) => e.has(t) ? pt("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, i), J1 = (t, e, i, r) => (_e(t, e, "write to private field"), r ? r.call(t, i) : e.set(t, i), i), R = (t, e, i) => (_e(t, e, "access private method"), i);
+var S = (t, e, i) => (_e(t, e, "read from private field"), i ? i.call(t) : e.get(t)), R = (t, e, i) => e.has(t) ? pt("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, i), J1 = (t, e, i, r) => (_e(t, e, "write to private field"), r ? r.call(t, i) : e.set(t, i), i), D = (t, e, i) => (_e(t, e, "access private method"), i);
 const K1 = globalThis, Re = K1.ShadowRoot && (K1.ShadyCSS === void 0 || K1.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, De = /* @__PURE__ */ Symbol(), ut = /* @__PURE__ */ new WeakMap();
 let At = class {
   constructor(e, i, r) {
@@ -22,7 +22,7 @@ let At = class {
     return this.cssText;
   }
 };
-const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), W = (t, ...e) => {
+const $ = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), W = (t, ...e) => {
   const i = t.length === 1 ? t[0] : e.reduce((r, o, s) => r + ((n) => {
     if (n._$cssResult$ === !0) return n.cssText;
     if (typeof n == "number") return n;
@@ -38,7 +38,7 @@ const M = (t) => new At(typeof t == "string" ? t : t + "", void 0, De), W = (t, 
 }, ft = Re ? (t) => t : (t) => t instanceof CSSStyleSheet ? ((e) => {
   let i = "";
   for (const r of e.cssRules) i += r.cssText;
-  return M(i);
+  return $(i);
 })(t) : t;
 const { is: v2, defineProperty: y2, getOwnPropertyDescriptor: x2, getOwnPropertyNames: L2, getOwnPropertySymbols: H2, getPrototypeOf: V2 } = Object, be = globalThis, Ct = be.trustedTypes, w2 = Ct ? Ct.emptyScript : "", M2 = be.reactiveElementPolyfillSupport, A1 = (t, e) => t, Q1 = { toAttribute(t, e) {
   switch (e) {
@@ -582,9 +582,9 @@ Ae.directiveName = "unsafeSVG", Ae.resultType = 2;
 const jt = Fe(Ae), U2 = '*,*:before,*:after{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}[hidden]:not([hidden=until-found]){display:none!important}body,article,p,span,div,li,td,th,dt,dd,h1,h2,h3,h4,h5,h6{overflow-wrap:anywhere;line-break:strict}body{line-height:1;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}li{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}button{all:unset;box-sizing:border-box}button,label,select,summary,[role=button],[role=option]{cursor:pointer}button,input,select,textarea{margin:0;font-family:inherit;font-size:100%}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}input[type=text],input[type=email],input[type=password],input[type=search],input[type=tel],input[type=url],input[type=number],textarea{-webkit-appearance:none}a,button,input,select,textarea{touch-action:manipulation}:focus{outline:auto;outline-offset:2px}:focus:not(:focus-visible){outline:0}:focus-visible{outline:auto;outline-offset:2px}img{max-width:100%;height:auto}', W2 = ":host{--font-weight-normal: 400;--font-weight-bold: 700}:host,:host *{font-family:Arial,YakuHanJPs,Hiragino Sans,Hiragino Kaku Gothic ProN,Meiryo,Noto Sans JP,sans-serif;font-weight:var(--font-weight-normal);overflow-wrap:anywhere;line-break:strict}:host :lang(ja){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(en){--font-weight-normal: 300;--font-weight-bold: 600}:host :lang(zh){font-family:Arial,YakuHanJPs,PingFang SC,Microsoft YaHei,PingFang TC,Microsoft JhengHei,sans-serif}:where(:focus-visible){outline:inherit}fieldset{border:none}button{box-sizing:border-box}";
 function w(...t) {
   const e = W`
-    ${M(U2)}
+    ${$(U2)}
   `, i = W`
-    ${M(W2)}
+    ${$(W2)}
   `;
   return [e, i, ...t];
 }
@@ -822,7 +822,7 @@ const Ke = class Ke extends L {
       </svg>` : m``;
   }
 };
-Ke.styles = w(M(q2));
+Ke.styles = w($(q2));
 let O1 = Ke;
 J2([
   d({ type: String, reflect: !0 })
@@ -1027,7 +1027,7 @@ var Y, It, Bt, ze;
 const Qe = class Qe extends L {
   constructor() {
     super(...arguments);
-    O(this, Y);
+    R(this, Y);
     this.src = "", this.alt = "", this.initials = "", this.size = "medium", this.color = "", this.inactive = !1;
   }
   render() {
@@ -1038,7 +1038,7 @@ const Qe = class Qe extends L {
               <img
                 src="${this.src}"
                 alt="${this.alt}"
-                @error="${R(this, Y, Bt)}"
+                @error="${D(this, Y, Bt)}"
                 class="image"
               />
             ` : i ? m`<div class="initials">${i}</div>` : m`<div class="icon"><mi-icon type="person"></mi-icon></div>`}
@@ -1054,28 +1054,28 @@ Y = new WeakSet(), It = function() {
 }, ze = function() {
   return (this.initials || this.textContent || "").trim().slice(0, 2).toUpperCase();
 }, Qe.styles = w(t9);
-let j = Qe;
+let N = Qe;
 k1([
   d({ type: String })
-], j.prototype, "src");
+], N.prototype, "src");
 k1([
   d({ type: String })
-], j.prototype, "alt");
+], N.prototype, "alt");
 k1([
   d({ type: String })
-], j.prototype, "initials");
+], N.prototype, "initials");
 k1([
   d({ type: String })
-], j.prototype, "size");
+], N.prototype, "size");
 k1([
   d({ type: String })
-], j.prototype, "color");
+], N.prototype, "color");
 k1([
   d({ type: Boolean })
-], j.prototype, "inactive");
-class a9 extends j {
+], N.prototype, "inactive");
+class a9 extends N {
 }
-customElements.get("mi-avatar") || customElements.define("mi-avatar", j);
+customElements.get("mi-avatar") || customElements.define("mi-avatar", N);
 customElements.get("sp-avatar") || customElements.define("sp-avatar", a9);
 const l9 = ":host{--size-medium: 12.5px;--size-large: 15px;--size-x-large: 17.5px;--size-2x-large: 20px;--size-3x-large: 26px;--size-4x-large: 40px;--padding-medium: 1.25px;--padding-large: 1.5px;--padding-x-large: 2px 2px 1.5px 1.5px;--padding-2x-large: 2px;--padding-3x-large: 3px;--padding-4x-large: 4px;--border-size-ratio: 1/10;--ui-semantic-object-regular-default: rgb(0 0 0 / 84%);--neutral-neutral-20-alpha: rgb(0 0 0 / 7%);--background-normal: linear-gradient(white, white) padding-box padding-box,conic-gradient(var(--ui-semantic-object-regular-default) 0deg 270deg, var(--neutral-neutral-20-alpha) 270deg 360deg) border-box border-box;--background-ai: linear-gradient(white, white) padding-box padding-box,conic-gradient(#2A2AF7 5%, #2A2AF7 22%, #47D4FF 30%, #FF2ED5 73%, #F72A48 80%, #F72A48 84%, #2A2AF7 100%) border-box border-box;display:inline-flex;flex-shrink:0}.base{display:flex}.base:has(.size-medium){padding:var(--padding-medium)}.base:has(.size-large){padding:var(--padding-large)}.base:has(.size-x-large){padding:var(--padding-x-large)}.base:has(.size-2x-large){padding:var(--padding-2x-large)}.base:has(.size-3x-large){padding:var(--padding-3x-large)}.base:has(.size-4x-large){padding:var(--padding-4x-large)}.size-medium{--size: var(--size-medium)}.size-large{--size: var(--size-large)}.size-x-large{--size: var(--size-x-large)}.size-2x-large{--size: var(--size-2x-large)}.size-3x-large{--size: var(--size-3x-large)}.size-4x-large{--size: var(--size-4x-large)}.loading{display:inline-block;animation:spin 1s linear infinite;border-radius:50%;width:var(--size);height:var(--size);border:calc(var(--size) * var(--border-size-ratio)) solid transparent;-webkit-mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%);mask-image:radial-gradient(circle closest-side,transparent 80%,black 80%)}.variant-ai{background:var(--background-ai)}.variant-normal{background:var(--background-normal)}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}";
 var c9 = Object.defineProperty, Ft = (t, e, i, r) => {
@@ -1110,7 +1110,7 @@ const et = class et extends L {
     `;
   }
 };
-et.styles = w(M(l9));
+et.styles = w($(l9));
 let x1 = et;
 Ft([
   d({ type: Boolean })
@@ -1432,7 +1432,7 @@ const h9 = W`
     }
   }
 `;
-var p9 = Object.defineProperty, B = (t, e, i, r) => {
+var p9 = Object.defineProperty, O = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && p9(e, i, o), o;
@@ -1457,8 +1457,8 @@ var U;
 const ce = class ce extends L {
   constructor() {
     super();
-    O(this, U);
-    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", J1(this, U, this.attachInternals());
+    R(this, U);
+    this.loading = !1, this.disabled = !1, this.selected = !1, this.toggle = !1, this.variant = "primary", this.size = "medium", this.name = "", this.value = "", this.type = "button", this.iconType = "", this.lightdom = !1, this._content = [], J1(this, U, this.attachInternals());
   }
   /** 継承クラスでオーバーライド可能。テーマ（normal / danger / ai） */
   getTheme() {
@@ -1468,6 +1468,12 @@ const ce = class ce extends L {
   getEffectiveVariant() {
     const i = Ut(this.variant);
     return i || console.warn(`${this.variant}は無効なvariant属性です。`), i ? this.variant : Ue[0];
+  }
+  createRenderRoot() {
+    return console.log("createRenderRoot: lightdom =", this.lightdom), this.lightdom ? this : super.createRenderRoot();
+  }
+  connectedCallback() {
+    super.connectedCallback(), this.lightdom && (this._content = Array.from(this.childNodes));
   }
   get buttonClasses() {
     const i = {
@@ -1508,7 +1514,7 @@ const ce = class ce extends L {
   }
   /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
   renderSlot() {
-    return m`<slot class="text"></slot>`;
+    return this.lightdom ? this._content : m`<slot class="text"></slot>`;
   }
   render() {
     return m`
@@ -1539,37 +1545,40 @@ const ce = class ce extends L {
   }
 };
 U = new WeakMap(), ce.styles = w(h9), ce.formAssociated = !0;
-let $ = ce;
-B([
+let M = ce;
+O([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "loading");
-B([
+], M.prototype, "loading");
+O([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "disabled");
-B([
+], M.prototype, "disabled");
+O([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "selected");
-B([
+], M.prototype, "selected");
+O([
   d({ type: Boolean, reflect: !0 })
-], $.prototype, "toggle");
-B([
+], M.prototype, "toggle");
+O([
   d({ type: String, reflect: !0 })
-], $.prototype, "variant");
-B([
+], M.prototype, "variant");
+O([
   d({ type: String, reflect: !0 })
-], $.prototype, "size");
-B([
+], M.prototype, "size");
+O([
   d({ type: String })
-], $.prototype, "name");
-B([
+], M.prototype, "name");
+O([
   d({ type: String })
-], $.prototype, "value");
-B([
+], M.prototype, "value");
+O([
   d({ type: String })
-], $.prototype, "type");
-B([
+], M.prototype, "type");
+O([
   d({ type: String, attribute: "icon-type" })
-], $.prototype, "iconType");
+], M.prototype, "iconType");
+O([
+  d({ type: Boolean, reflect: !0 })
+], M.prototype, "lightdom");
 var f9 = Object.defineProperty, Wt = (t, e, i, r) => {
   for (var o = void 0, s = t.length - 1, n; s >= 0; s--)
     (n = t[s]) && (o = n(e, i, o) || o);
@@ -1584,7 +1593,7 @@ try {
   });
 } catch {
 }
-class We extends $ {
+class We extends M {
   constructor() {
     super(...arguments), this.variant = "primary", this.iconType = "";
   }
@@ -1616,7 +1625,7 @@ var C9 = Object.defineProperty, g9 = (t, e, i, r) => {
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && C9(e, i, o), o;
 };
-class qt extends $ {
+class qt extends M {
   constructor() {
     super(...arguments), this.variant = "primary";
   }
@@ -1628,7 +1637,7 @@ g9([
   d({ type: String })
 ], qt.prototype, "variant");
 customElements.get("mi-danger-button") || customElements.define("mi-danger-button", qt);
-const ie = Math.min, c1 = Math.max, oe = Math.round, X1 = Math.floor, D = (t) => ({
+const ie = Math.min, c1 = Math.max, oe = Math.round, X1 = Math.floor, j = (t) => ({
   x: t,
   y: t
 }), m9 = {
@@ -2100,7 +2109,7 @@ function Xt(t) {
 function z(t) {
   return Le() ? t instanceof Element || t instanceof Z(t).Element : !1;
 }
-function N(t) {
+function I(t) {
   return Le() ? t instanceof HTMLElement || t instanceof Z(t).HTMLElement : !1;
 }
 function Zt(t) {
@@ -2137,7 +2146,7 @@ function qe(t) {
 }
 function I9(t) {
   let e = i1(t);
-  for (; N(e) && !L1(e); ) {
+  for (; I(e) && !L1(e); ) {
     if (qe(e))
       return e;
     if (He(e))
@@ -2179,7 +2188,7 @@ function i1(t) {
 }
 function Kt(t) {
   const e = i1(t);
-  return L1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : N(e) && F1(e) ? e : Kt(e);
+  return L1(e) ? t.ownerDocument ? t.ownerDocument.body : t.body : I(e) && F1(e) ? e : Kt(e);
 }
 function R1(t, e, i) {
   var r;
@@ -2197,7 +2206,7 @@ function Oe(t) {
 function Qt(t) {
   const e = P(t);
   let i = parseFloat(e.width) || 0, r = parseFloat(e.height) || 0;
-  const o = N(t), s = o ? t.offsetWidth : i, n = o ? t.offsetHeight : r, a = oe(i) !== s || oe(r) !== n;
+  const o = I(t), s = o ? t.offsetWidth : i, n = o ? t.offsetHeight : r, a = oe(i) !== s || oe(r) !== n;
   return a && (i = s, r = n), {
     width: i,
     height: r,
@@ -2209,8 +2218,8 @@ function Ge(t) {
 }
 function b1(t) {
   const e = Ge(t);
-  if (!N(e))
-    return D(1);
+  if (!I(e))
+    return j(1);
   const i = e.getBoundingClientRect(), {
     width: r,
     height: o,
@@ -2222,7 +2231,7 @@ function b1(t) {
     y: a
   };
 }
-const F9 = /* @__PURE__ */ D(0);
+const F9 = /* @__PURE__ */ j(0);
 function e2(t) {
   const e = Z(t);
   return !Ye() || !e.visualViewport ? F9 : {
@@ -2236,9 +2245,9 @@ function U9(t, e, i) {
 function p1(t, e, i, r) {
   e === void 0 && (e = !1), i === void 0 && (i = !1);
   const o = t.getBoundingClientRect(), s = Ge(t);
-  let n = D(1);
+  let n = j(1);
   e && (r ? z(r) && (n = b1(r)) : n = b1(t));
-  const a = U9(s, i, r) ? e2(s) : D(0);
+  const a = U9(s, i, r) ? e2(s) : j(0);
   let l = (o.left + a.x) / n.x, c = (o.top + a.y) / n.y, p = o.width / n.x, h = o.height / n.y;
   if (s) {
     const f = Z(s), u = r && z(r) ? Z(r) : r;
@@ -2279,13 +2288,13 @@ function W9(t) {
   let l = {
     scrollLeft: 0,
     scrollTop: 0
-  }, c = D(1);
-  const p = D(0), h = N(r);
-  if ((h || !h && !s) && ((Z1(r) !== "body" || F1(n)) && (l = Ve(r)), N(r))) {
+  }, c = j(1);
+  const p = j(0), h = I(r);
+  if ((h || !h && !s) && ((Z1(r) !== "body" || F1(n)) && (l = Ve(r)), I(r))) {
     const u = p1(r);
     c = b1(r), p.x = u.x + r.clientLeft, p.y = u.y + r.clientTop;
   }
-  const f = n && !h && !s ? t2(n, l) : D(0);
+  const f = n && !h && !s ? t2(n, l) : j(0);
   return {
     width: i.width * c.x,
     height: i.height * c.y,
@@ -2330,7 +2339,7 @@ function G9(t, e) {
 }
 const J9 = /* @__PURE__ */ new Set(["absolute", "fixed"]);
 function X9(t, e) {
-  const i = p1(t, !0, e === "fixed"), r = i.top + t.clientTop, o = i.left + t.clientLeft, s = N(t) ? b1(t) : D(1), n = t.clientWidth * s.x, a = t.clientHeight * s.y, l = o * s.x, c = r * s.y;
+  const i = p1(t, !0, e === "fixed"), r = i.top + t.clientTop, o = i.left + t.clientLeft, s = I(t) ? b1(t) : j(1), n = t.clientWidth * s.x, a = t.clientHeight * s.y, l = o * s.x, c = r * s.y;
   return {
     width: n,
     height: a,
@@ -2403,12 +2412,12 @@ function e0(t) {
   };
 }
 function t0(t, e, i) {
-  const r = N(e), o = F(e), s = i === "fixed", n = p1(t, !0, s, e);
+  const r = I(e), o = F(e), s = i === "fixed", n = p1(t, !0, s, e);
   let a = {
     scrollLeft: 0,
     scrollTop: 0
   };
-  const l = D(0);
+  const l = j(0);
   function c() {
     l.x = we(o);
   }
@@ -2418,7 +2427,7 @@ function t0(t, e, i) {
       l.x = u.x + e.clientLeft, l.y = u.y + e.clientTop;
     } else o && c();
   s && !r && o && c();
-  const p = o && !r && !s ? t2(o, a) : D(0), h = n.left + a.scrollLeft - l.x - p.x, f = n.top + a.scrollTop - l.y - p.y;
+  const p = o && !r && !s ? t2(o, a) : j(0), h = n.left + a.scrollLeft - l.x - p.x, f = n.top + a.scrollTop - l.y - p.y;
   return {
     x: h,
     y: f,
@@ -2430,7 +2439,7 @@ function Se(t) {
   return P(t).position === "static";
 }
 function St(t, e) {
-  if (!N(t) || P(t).position === "fixed")
+  if (!I(t) || P(t).position === "fixed")
     return null;
   if (e)
     return e(t);
@@ -2441,7 +2450,7 @@ function o2(t, e) {
   const i = Z(t);
   if (He(t))
     return i;
-  if (!N(t)) {
+  if (!I(t)) {
     let o = i1(t);
     for (; o && !L1(o); ) {
       if (z(o) && !Se(o))
@@ -2869,7 +2878,7 @@ const b5 = [
   "secondary",
   "tertiary",
   "ghost"
-], v5 = ["small", "medium", "large"], de = class de extends $ {
+], v5 = ["small", "medium", "large"], de = class de extends M {
   constructor() {
     super(...arguments), this.variant = "ghost", this.size = "medium", this.label = "", this.tooltipPlacement = "top", this.tooltipDisabled = !1;
   }
@@ -2955,7 +2964,7 @@ var b0 = Object.defineProperty, Je = (t, e, i, r) => {
     (n = t[s]) && (o = n(e, i, o) || o);
   return o && b0(e, i, o), o;
 };
-class q1 extends $ {
+class q1 extends M {
   constructor() {
     super(...arguments), this.danger = !1, this.variants = null, this.variant = "primary";
   }
@@ -3029,8 +3038,8 @@ const he = class he extends L {
   }
 };
 he.styles = w(
-  M(n2),
-  M(y0)
+  $(n2),
+  $(y0)
 ), he.formAssociated = !0;
 let q = he;
 Y1([
@@ -3099,31 +3108,31 @@ const pe = class pe extends L {
   }
 };
 pe.styles = w(
-  M(n2),
-  M(H0)
+  $(n2),
+  $(H0)
 ), pe.formAssociated = !0;
-let I = pe;
+let B = pe;
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "value");
+], B.prototype, "value");
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "name");
+], B.prototype, "name");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "checked");
+], B.prototype, "checked");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "indeterminate");
+], B.prototype, "indeterminate");
 _1([
   d({ type: Boolean, reflect: !0 })
-], I.prototype, "disabled");
+], B.prototype, "disabled");
 _1([
   d({ type: String, reflect: !0 })
-], I.prototype, "text");
-class w0 extends I {
+], B.prototype, "text");
+class w0 extends B {
 }
-customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", I);
+customElements.get("mi-checkbox-text") || customElements.define("mi-checkbox-text", B);
 customElements.get("sp-checkbox-text") || customElements.define("sp-checkbox-text", w0);
 const M0 = W`
   :host {
@@ -3262,7 +3271,7 @@ const it = class it extends L {
       </svg>` : m``;
   }
 };
-it.styles = w(M(_0));
+it.styles = w($(_0));
 let ne = it;
 z0([
   d({ type: String, reflect: !0 })
@@ -3357,7 +3366,7 @@ var N0 = Object.defineProperty, a2 = (t, e, i, r) => {
 const rt = class rt extends L {
   constructor() {
     super(...arguments);
-    O(this, w1);
+    R(this, w1);
     this.text = "", this.supportText = "";
   }
   /**
@@ -3368,8 +3377,8 @@ const rt = class rt extends L {
   }
   render() {
     return m`
-      <span class=${R(this, w1, l2).call(this)}>${this.text}</span>
-      <span class=${R(this, w1, c2).call(this)}>${this.supportText}</span>
+      <span class=${D(this, w1, l2).call(this)}>${this.text}</span>
+      <span class=${D(this, w1, c2).call(this)}>${this.supportText}</span>
     `;
   }
 };
@@ -3383,7 +3392,7 @@ w1 = new WeakSet(), l2 = function() {
     support: !0,
     none: !this.supportText
   });
-}, rt.styles = w(M(j0));
+}, rt.styles = w($(j0));
 let H1 = rt;
 a2([
   d({ type: String, reflect: !0 })
@@ -3456,11 +3465,11 @@ var q0 = Object.defineProperty, d2 = (t, e, i, r) => {
 const st = class st extends L {
   constructor() {
     super(...arguments);
-    O(this, ue);
+    R(this, ue);
     this.language = "", this.brand = "";
   }
   render() {
-    const i = R(this, ue, h2).call(this);
+    const i = D(this, ue, h2).call(this);
     return i ? m`${F2(i)}` : m``;
   }
 };
@@ -3486,7 +3495,7 @@ const G0 = ":host{display:block;border-radius:6px;padding:8px 0;box-shadow:0 5px
     return m`<slot></slot>`;
   }
 };
-nt.styles = w(M(G0));
+nt.styles = w($(G0));
 let le = nt;
 class J0 extends le {
 }
@@ -3509,7 +3518,7 @@ const at = class at extends L {
     `;
   }
 };
-at.styles = w(M(X0));
+at.styles = w($(X0));
 let u1 = at;
 Xe([
   d({ type: String, reflect: !0 })
@@ -3664,8 +3673,8 @@ var t5 = Object.defineProperty, $e = (t, e, i, r) => {
 const fe = class fe extends L {
   constructor() {
     super();
-    O(this, v1);
-    O(this, I1);
+    R(this, v1);
+    R(this, I1);
     this.value = "", this.name = "", this.checked = !1, this.disabled = !1, J1(this, v1, `radio-${Math.random().toString(36).slice(2)}`), J1(this, I1, this.attachInternals());
   }
   updated(i) {
@@ -3721,12 +3730,12 @@ var r5 = Object.defineProperty, s5 = (t, e, i, r) => {
 const lt = class lt extends L {
   constructor() {
     super(...arguments);
-    O(this, Ce);
+    R(this, Ce);
     this.text = "";
   }
   render() {
     return m`
-      <div class="${R(this, Ce, p2).call(this)}" role="error">
+      <div class="${D(this, Ce, p2).call(this)}" role="error">
         <mi-icon class="icon" type="error-fill"></mi-icon>
         <span class="text">${this.text}</span>
       </div>
@@ -3738,7 +3747,7 @@ Ce = new WeakSet(), p2 = function() {
     container: !0,
     none: !this.text
   });
-}, lt.styles = w(M(o5));
+}, lt.styles = w($(o5));
 let N1 = lt;
 s5([
   d({ type: String, reflect: !0 })
@@ -3756,7 +3765,7 @@ var l5 = Object.defineProperty, f1 = (t, e, i, r) => {
 const ge = class ge extends L {
   constructor() {
     super();
-    O(this, M1);
+    R(this, M1);
     this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.internals = this.attachInternals();
   }
   updated(i) {
@@ -3765,7 +3774,7 @@ const ge = class ge extends L {
   render() {
     return m`
       <input
-        class="${R(this, M1, u2).call(this)}"
+        class="${D(this, M1, u2).call(this)}"
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
@@ -3773,7 +3782,7 @@ const ge = class ge extends L {
         name="${this.name}"
         .value="${this.value}"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
-        @input="${R(this, M1, f2)}"
+        @input="${D(this, M1, f2)}"
       />
       <mi-text-field-error-text
         text="${this.disabled ? "" : this.error}"
@@ -3794,7 +3803,7 @@ M1 = new WeakSet(), u2 = function() {
       composed: !0
     })
   );
-}, ge.styles = w(M(a5)), ge.formAssociated = !0;
+}, ge.styles = w($(a5)), ge.formAssociated = !0;
 let T = ge;
 f1([
   d({ type: String, reflect: !0 })
@@ -3830,7 +3839,7 @@ var h5 = Object.defineProperty, G = (t, e, i, r) => {
 const me = class me extends L {
   constructor() {
     super();
-    O(this, $1);
+    R(this, $1);
     this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.internals = this.attachInternals();
   }
   updated(i) {
@@ -3840,7 +3849,7 @@ const me = class me extends L {
     return m`
       <fieldset>
         <mi-label-unit
-          class="${R(this, $1, C2).call(this)}"
+          class="${D(this, $1, C2).call(this)}"
           text="${this.text}"
           support-text="${this.supportText}"
         ></mi-label-unit>
@@ -3852,7 +3861,7 @@ const me = class me extends L {
           .value="${this.value}"
           type="${this.type}"
           autocomplete="${this.autocomplete}"
-          @input="${R(this, $1, g2)}"
+          @input="${D(this, $1, g2)}"
         ></mi-text-field>
       </fieldset>
     `;
@@ -3866,7 +3875,7 @@ $1 = new WeakSet(), C2 = function() {
 }, g2 = function(i) {
   const r = i.target;
   this.value = r.value;
-}, me.styles = w(M(d5)), me.formAssociated = !0;
+}, me.styles = w($(d5)), me.formAssociated = !0;
 let _ = me;
 G([
   d({ type: String, reflect: !0 })
@@ -3901,10 +3910,10 @@ customElements.get("mi-text-field-unit") || customElements.define("mi-text-field
 customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", p5);
 export {
   We as MiAiButton,
-  j as MiAvatar,
+  N as MiAvatar,
   s2 as MiButton,
   q as MiCheckbox,
-  I as MiCheckboxText,
+  B as MiCheckboxText,
   le as MiControlMenu,
   u1 as MiControlMenuItem,
   qt as MiDangerButton,

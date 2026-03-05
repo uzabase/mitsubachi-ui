@@ -65,14 +65,14 @@
   if (!customElements.get("sp-floating-button")) {
     customElements.define("sp-floating-button", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-icon-color")) {
+    customElements.define("mi-icon-color", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-icon")) {
     customElements.define("mi-icon", class extends HTMLElement {});
   }
   if (!customElements.get("sp-icon")) {
     customElements.define("sp-icon", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-icon-color")) {
-    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-inline-notification")) {
     customElements.define("mi-inline-notification", class extends HTMLElement {
