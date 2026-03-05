@@ -3757,7 +3757,7 @@ const ge = class ge extends L {
   constructor() {
     super();
     D(this, n1);
-    this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autofocus = !1, this.submitByEnter = !0, this.internals = this.attachInternals();
+    this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autofocus = !1, this.submitByEnter = !1, this.internals = this.attachInternals();
   }
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);
@@ -3844,7 +3844,7 @@ const me = class me extends L {
   constructor() {
     super();
     D(this, a1);
-    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.autofocus = !1, this.submitByEnter = !0, this.internals = this.attachInternals();
+    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.autofocus = !1, this.submitByEnter = !1, this.internals = this.attachInternals();
   }
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);

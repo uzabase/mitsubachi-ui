@@ -40,7 +40,7 @@ export class MiTextField extends LitElement {
   autofocus = false;
 
   @property({ type: Boolean, reflect: true })
-  submitByEnter = true;
+  submitByEnter = false;
 
   private internals: ElementInternals;
 
