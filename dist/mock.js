@@ -12,6 +12,22 @@
       }
     });
   }
+  if (!customElements.get("mi-button")) {
+    customElements.define("mi-button", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("sp-button")) {
+    customElements.define("sp-button", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
   if (!customElements.get("mi-danger-button")) {
     customElements.define("mi-danger-button", class extends HTMLElement {
       constructor() {
@@ -94,11 +110,11 @@
   if (!customElements.get("sp-loading")) {
     customElements.define("sp-loading", class extends HTMLElement {});
   }
-  if (!customElements.get("mi-logo")) {
-    customElements.define("mi-logo", class extends HTMLElement {});
+  if (!customElements.get("mi-speeda-logo")) {
+    customElements.define("mi-speeda-logo", class extends HTMLElement {});
   }
-  if (!customElements.get("sp-logo")) {
-    customElements.define("sp-logo", class extends HTMLElement {});
+  if (!customElements.get("mi-uzabase-logo")) {
+    customElements.define("mi-uzabase-logo", class extends HTMLElement {});
   }
   if (!customElements.get("mi-radio-button-text")) {
     customElements.define("mi-radio-button-text", class extends HTMLElement {
@@ -146,17 +162,17 @@
   if (!customElements.get("sp-control-menu-item")) {
     customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
-  if (!customElements.get("mi-text-field")) {
-    customElements.define("mi-text-field", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-text-field")) {
-    customElements.define("sp-text-field", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-text-field-unit")) {
     customElements.define("mi-text-field-unit", class extends HTMLElement {});
   }
   if (!customElements.get("sp-text-field-unit")) {
     customElements.define("sp-text-field-unit", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-text-field")) {
+    customElements.define("mi-text-field", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-text-field")) {
+    customElements.define("sp-text-field", class extends HTMLElement {});
   }
   if (!customElements.get("mi-text-field-error-text")) {
     customElements.define("mi-text-field-error-text", class extends HTMLElement {});

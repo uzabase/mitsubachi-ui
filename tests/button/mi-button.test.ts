@@ -511,7 +511,6 @@ describe("mi-button", () => {
         </form>
       `;
       await customElements.whenDefined("mi-button");
-
       const form = document.querySelector("form") as HTMLFormElement;
       let submittedData: FormData | null = null;
       form.addEventListener("submit", (e) => {
