@@ -91,7 +91,7 @@ const generateLogoMapEntries = (logos: LogoVariant[]): string => {
         .map(([k, v]) => `${toCamelCase(k)}:${v}`)
         .sort()
         .join("|");
-      const escapedSvg = logo.svg.replace(/'/g, "\\'");
+      const escapedSvg = logo.svg.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
       return { key, entry: `  "${key}":\n    '${escapedSvg}',` };
     })
     .sort((a, b) => a.key.localeCompare(b.key))
