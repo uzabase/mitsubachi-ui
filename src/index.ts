@@ -25,7 +25,7 @@ export { MiIconColor } from "./components/icon-color";
 export { MiInlineNotification } from "./components/inline-notification/mi-inline-notification";
 export { MiLabelUnit, SpLabelUnit } from "./components/label-unit";
 export { MiLoading, SpLoading } from "./components/loading/mi-loading";
-export { MiSpeedaLogo, MiUzabaseLogo } from "./components/logo";
+export { MiLogo, MiSpeedaLogo, MiUzabaseLogo, SpLogo } from "./components/logo";
 export { MiControlMenu, SpControlMenu } from "./components/menu/control-menu";
 export {
   MiControlMenuItem,

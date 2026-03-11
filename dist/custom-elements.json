@@ -201,6 +201,14 @@
         },
         {
           "kind": "js",
+          "name": "MiLogo",
+          "declaration": {
+            "name": "MiLogo",
+            "module": "./components/logo"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiSpeedaLogo",
           "declaration": {
             "name": "MiSpeedaLogo",
@@ -212,6 +220,14 @@
           "name": "MiUzabaseLogo",
           "declaration": {
             "name": "MiUzabaseLogo",
+            "module": "./components/logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLogo",
+          "declaration": {
+            "name": "SpLogo",
             "module": "./components/logo"
           }
         },
@@ -4690,6 +4706,22 @@
       "exports": [
         {
           "kind": "js",
+          "name": "MiLogo",
+          "declaration": {
+            "name": "MiLogo",
+            "module": "./mi-logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLogo",
+          "declaration": {
+            "name": "SpLogo",
+            "module": "./mi-logo"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiSpeedaLogo",
           "declaration": {
             "name": "MiSpeedaLogo",
@@ -4702,6 +4734,205 @@
           "declaration": {
             "name": "MiUzabaseLogo",
             "module": "./uzabase-logo"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/mi-logo.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiLogo",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "language",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "brand",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "method",
+              "name": "#getSvg",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。",
+              "name": "brand"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=enであれば英語, zhであれば簡体字です。",
+              "name": "language"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "deprecated": "代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください",
+          "summary": "ロゴです。",
+          "tagName": "mi-logo",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpLogo",
+          "superclass": {
+            "name": "MiLogo",
+            "module": "src/components/logo/mi-logo.ts"
+          },
+          "deprecated": "代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください",
+          "tagName": "sp-logo",
+          "customElement": true,
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。",
+              "name": "brand",
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=enであれば英語, zhであれば簡体字です。",
+              "name": "language",
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "language",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "brand",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#getSvg",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiLogo",
+                "module": "src/components/logo/mi-logo.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiLogo",
+          "declaration": {
+            "name": "MiLogo",
+            "module": "src/components/logo/mi-logo.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLogo",
+          "declaration": {
+            "name": "SpLogo",
+            "module": "src/components/logo/mi-logo.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-logo",
+          "declaration": {
+            "name": "MiLogo",
+            "module": "src/components/logo/mi-logo.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-logo",
+          "declaration": {
+            "name": "SpLogo",
+            "module": "src/components/logo/mi-logo.ts"
           }
         }
       ]
