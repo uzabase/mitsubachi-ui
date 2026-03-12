@@ -95,6 +95,21 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   @property({ type: String })
   type: "button" | "submit" | "reset" = "button";
 
+  /**
+   * 設定するとボタンがリンク (`<a>`) としてレンダリングされる。
+   * `disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。
+   */
+  @property({ type: String })
+  href = "";
+
+  /** `href` 指定時のリンクターゲット。`href` がない場合は無視される。 */
+  @property({ type: String })
+  target = "";
+
+  /** `href` 指定時の rel 属性。`target="_blank"` のとき自動で `"noopener noreferrer"` が付与される。 */
+  @property({ type: String })
+  rel = "";
+
   @property({ type: String, attribute: "icon-type" })
   iconType = "";
 
@@ -138,6 +153,10 @@ export class ButtonBase<S extends string = Size> extends LitElement {
       .join(" ");
   }
 
+  protected get isLink() {
+    return !!this.href;
+  }
+
   protected get isDisabled() {
     return this.disabled || this.loading;
   }
@@ -170,7 +189,33 @@ export class ButtonBase<S extends string = Size> extends LitElement {
     return html`<slot class="text"></slot>`;
   }
 
+  protected get effectiveRel() {
+    if (this.rel) return this.rel;
+    return this.target === "_blank" ? "noopener noreferrer" : "";
+  }
+
+  protected renderContent() {
+    return html`${this.loading ? this.renderLoading() : nothing}${this.showIcon
+      ? this.renderIcon()
+      : nothing} ${this.renderSlot()}`;
+  }
+
   render() {
+    if (this.isLink) {
+      return html`
+        <a
+          class="${this.buttonClasses}"
+          href="${this.isDisabled ? nothing : this.href}"
+          target="${this.target || nothing}"
+          rel="${this.effectiveRel || nothing}"
+          aria-disabled="${this.isDisabled ? "true" : nothing}"
+          aria-busy="${this.loading ? "true" : nothing}"
+          @click="${this.handleLinkClick}"
+        >
+          ${this.renderContent()}
+        </a>
+      `;
+    }
     return html`
       <button
         class="${this.buttonClasses}"
@@ -186,8 +231,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
         aria-busy="${this.loading ? "true" : nothing}"
         @click="${this.handleClick}"
       >
-        ${this.loading ? this.renderLoading() : nothing}
-        ${this.showIcon ? this.renderIcon() : nothing} ${this.renderSlot()}
+        ${this.renderContent()}
       </button>
     `;
   }
@@ -215,6 +259,18 @@ export class ButtonBase<S extends string = Size> extends LitElement {
       }
     } else if (this.type === "reset") {
       this.#internals.form.reset();
+    }
+  }
+
+  protected handleLinkClick(event: MouseEvent) {
+    event.stopPropagation();
+    if (this.isDisabled) {
+      event.preventDefault();
+      return;
+    }
+    const allowed = this.dispatchEvent(new MouseEvent("click", event));
+    if (!allowed) {
+      event.preventDefault();
     }
   }
 }

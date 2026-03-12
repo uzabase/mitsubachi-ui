@@ -15,6 +15,9 @@ export const iconButtonStyles = css`
     color: var(--color, inherit);
     cursor: pointer;
     position: relative;
+    box-sizing: border-box;
+    text-decoration: none;
+    font: inherit;
 
     &:focus-visible {
       box-shadow:
@@ -32,6 +35,7 @@ export const iconButtonStyles = css`
     }
 
     &:disabled,
+    &[aria-disabled="true"],
     &.loading {
       cursor: not-allowed;
       background-color: var(--background-color-disabled, transparent);
