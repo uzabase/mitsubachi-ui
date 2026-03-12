@@ -316,7 +316,7 @@ export const AsLink: Story = {
     docs: {
       description: {
         story:
-          "`href` 属性を指定すると、ボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target=\"_blank\"` を指定すると自動で `rel=\"noopener noreferrer\"` が付与されます。",
+          '`href` 属性を指定すると、ボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target="_blank"` を指定すると自動で `rel="noopener noreferrer"` が付与されます。',
       },
     },
   },

@@ -197,7 +197,8 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   protected renderContent() {
     return html`${this.loading ? this.renderLoading() : nothing}${this.showIcon
       ? this.renderIcon()
-      : nothing} ${this.renderSlot()}`;
+      : nothing}
+    ${this.renderSlot()}`;
   }
 
   render() {

@@ -153,7 +153,9 @@ export const WithTooltip: Story = {
 export const AsLink: Story = {
   name: "リンクとしての使用（href）",
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 32px; padding: 40px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 32px; padding: 40px;"
+    >
       <div>
         <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
           基本的なリンクアイコンボタン
@@ -161,7 +163,9 @@ export const AsLink: Story = {
         <div style="display: flex; gap: 16px; align-items: center;">
           ${iconButtonVariants.map(
             (v) =>
-              html`<div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+              html`<div
+                style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+              >
                 <mi-icon-button
                   variant="${v}"
                   icon-type="open-in-new"
@@ -169,7 +173,9 @@ export const AsLink: Story = {
                   href="https://example.com"
                   target="_blank"
                 ></mi-icon-button>
-                <span style="font-size: 11px; color: rgb(0 0 0 / 45%);">${v}</span>
+                <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+                  >${v}</span
+                >
               </div>`,
           )}
         </div>
@@ -180,23 +186,31 @@ export const AsLink: Story = {
           無効状態のリンクアイコンボタン
         </h3>
         <div style="display: flex; gap: 16px; align-items: center;">
-          <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+          <div
+            style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+          >
             <mi-icon-button
               icon-type="open-in-new"
               aria-label="外部リンク"
               href="https://example.com"
               disabled
             ></mi-icon-button>
-            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);">disabled</span>
+            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+              >disabled</span
+            >
           </div>
-          <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+          <div
+            style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+          >
             <mi-icon-button
               icon-type="open-in-new"
               aria-label="外部リンク"
               href="https://example.com"
               loading
             ></mi-icon-button>
-            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);">loading</span>
+            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+              >loading</span
+            >
           </div>
         </div>
       </div>
@@ -206,7 +220,7 @@ export const AsLink: Story = {
     docs: {
       description: {
         story:
-          "`href` 属性を指定すると、アイコンボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target=\"_blank\"` を指定すると自動で `rel=\"noopener noreferrer\"` が付与されます。",
+          '`href` 属性を指定すると、アイコンボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target="_blank"` を指定すると自動で `rel="noopener noreferrer"` が付与されます。',
       },
     },
   },
