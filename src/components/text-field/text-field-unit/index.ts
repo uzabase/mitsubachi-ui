@@ -51,8 +51,8 @@ export class MiTextFieldUnit extends LitElement {
   @property({ type: Boolean, reflect: true })
   autofocus = false;
 
-  @property({ type: Boolean, reflect: true })
-  submitByEnter = false;
+  @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
+  submitOnEnter = false;
 
   private internals: ElementInternals;
 
@@ -85,8 +85,8 @@ export class MiTextFieldUnit extends LitElement {
     if (e.key === "Enter") {
       if (e.isComposing) return; // IMEでEnterが押されたときは無視する
 
-      // submitByEnterが指定されている場合、Enterキーでフォームを送信する
-      if (this.submitByEnter) {
+      // submitOnEnterが指定されている場合、Enterキーでフォームを送信する
+      if (this.submitOnEnter) {
         const form = this.internals.form;
         form?.requestSubmit();
       }
