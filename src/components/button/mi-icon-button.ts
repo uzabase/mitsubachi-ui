@@ -101,34 +101,51 @@ export class MiIconButton extends ButtonBase<IconButtonSize> {
    * - aria-label / title: label プロパティから設定
    */
   override render() {
-    const button = html`
-      <button
-        class="${this.buttonClasses}"
-        ?disabled="${this.disabled}"
-        name="${this.name || nothing}"
-        value="${this.value || nothing}"
-        type="${this.type}"
-        aria-label="${this.label || nothing}"
-        title="${this.tooltipDisabled && this.label ? this.label : nothing}"
-        aria-disabled="${this.loading ? "true" : nothing}"
-        aria-pressed="${this.toggle
-          ? this.selected
-            ? "true"
-            : "false"
-          : nothing}"
-        aria-busy="${this.loading ? "true" : nothing}"
-        @click="${this.handleClick}"
-      >
-        ${this.loading ? this.renderLoading() : nothing}
-        ${this.showIcon ? this.renderIcon() : nothing} ${this.renderSlot()}
-      </button>
-    `;
+    const content = this.renderContent();
 
-    if (!this.label || this.tooltipDisabled) return button;
+    const inner = this.isLink
+      ? html`
+          <a
+            class="${this.buttonClasses}"
+            href="${this.isDisabled ? nothing : this.href}"
+            target="${this.target || nothing}"
+            rel="${this.effectiveRel || nothing}"
+            aria-label="${this.label || nothing}"
+            title="${this.tooltipDisabled && this.label ? this.label : nothing}"
+            aria-disabled="${this.isDisabled ? "true" : nothing}"
+            aria-busy="${this.loading ? "true" : nothing}"
+            @click="${this.handleLinkClick}"
+          >
+            ${content}
+          </a>
+        `
+      : html`
+          <button
+            class="${this.buttonClasses}"
+            ?disabled="${this.disabled}"
+            name="${this.name || nothing}"
+            value="${this.value || nothing}"
+            type="${this.type}"
+            aria-label="${this.label || nothing}"
+            title="${this.tooltipDisabled && this.label ? this.label : nothing}"
+            aria-disabled="${this.loading ? "true" : nothing}"
+            aria-pressed="${this.toggle
+              ? this.selected
+                ? "true"
+                : "false"
+              : nothing}"
+            aria-busy="${this.loading ? "true" : nothing}"
+            @click="${this.handleClick}"
+          >
+            ${content}
+          </button>
+        `;
+
+    if (!this.label || this.tooltipDisabled) return inner;
 
     return html`
       <mi-tooltip text="${this.label}" placement="${this.tooltipPlacement}">
-        ${button}
+        ${inner}
       </mi-tooltip>
     `;
   }

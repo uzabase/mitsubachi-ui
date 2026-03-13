@@ -23,6 +23,11 @@ const meta = {
   },
   argTypes: {
     slot: { type: "string" },
+    href: { type: "string" },
+    target: {
+      control: { type: "select" },
+      options: ["", "_blank", "_self", "_parent", "_top"],
+    },
     danger: {
       type: "boolean",
       description:
@@ -81,6 +86,8 @@ const meta = {
     value: undefined,
     iconType: undefined,
     type: "button",
+    href: undefined,
+    target: undefined,
   },
   render: (args) => html`
     <mi-neutral-button
@@ -97,6 +104,8 @@ const meta = {
       value=${args.value || nothing}
       icon-type=${args.iconType || nothing}
       type=${args.type || nothing}
+      href=${args.href || nothing}
+      target=${args.target || nothing}
     >
       ${args.slot}
     </mi-neutral-button>
@@ -235,6 +244,79 @@ export const OverflowWrap: Story = {
       description: {
         story:
           "ボタン内のテキストが長い場合の折り返し動作を確認するためのサンプルです。通常のテキスト、改行なしの長い文字列、スペース区切りの英文、日本語テキスト、Flexコンテナ内での挙動など、様々なパターンを確認できます。",
+      },
+    },
+  },
+};
+
+export const AsLink: Story = {
+  name: "リンクとしての使用（href）",
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 32px;">
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          基本的なリンクボタン
+        </h3>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          ${variants.map(
+            (variant) =>
+              html`<mi-neutral-button
+                variant="${variant}"
+                href="https://example.com"
+              >
+                ${variant}
+              </mi-neutral-button>`,
+          )}
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          新しいタブで開く（target="_blank"）
+        </h3>
+        <mi-neutral-button
+          variant="secondary"
+          href="https://example.com"
+          target="_blank"
+        >
+          外部リンク
+        </mi-neutral-button>
+      </div>
+
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          無効状態のリンクボタン
+        </h3>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <mi-neutral-button href="https://example.com" disabled>
+            disabled
+          </mi-neutral-button>
+          <mi-neutral-button href="https://example.com" loading>
+            loading
+          </mi-neutral-button>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          アイコン付きリンクボタン
+        </h3>
+        <mi-neutral-button
+          variant="secondary"
+          icon-type="open-in-new"
+          href="https://example.com"
+          target="_blank"
+        >
+          外部サイトへ
+        </mi-neutral-button>
+      </div>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`href` 属性を指定すると、ボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target="_blank"` を指定すると自動で `rel="noopener noreferrer"` が付与されます。',
       },
     },
   },
