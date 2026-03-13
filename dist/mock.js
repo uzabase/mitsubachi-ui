@@ -100,6 +100,12 @@
   if (!customElements.get("sp-logo")) {
     customElements.define("sp-logo", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-speeda-logo")) {
+    customElements.define("mi-speeda-logo", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-uzabase-logo")) {
+    customElements.define("mi-uzabase-logo", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-radio-button-text")) {
     customElements.define("mi-radio-button-text", class extends HTMLElement {
       constructor() {

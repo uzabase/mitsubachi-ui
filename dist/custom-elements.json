@@ -209,6 +209,22 @@
         },
         {
           "kind": "js",
+          "name": "MiSpeedaLogo",
+          "declaration": {
+            "name": "MiSpeedaLogo",
+            "module": "./components/logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiUzabaseLogo",
+          "declaration": {
+            "name": "MiUzabaseLogo",
+            "module": "./components/logo"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SpLogo",
           "declaration": {
             "name": "SpLogo",
@@ -4686,6 +4702,45 @@
     {
       "kind": "javascript-module",
       "path": "src/components/logo/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiLogo",
+          "declaration": {
+            "name": "MiLogo",
+            "module": "./mi-logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpLogo",
+          "declaration": {
+            "name": "SpLogo",
+            "module": "./mi-logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSpeedaLogo",
+          "declaration": {
+            "name": "MiSpeedaLogo",
+            "module": "./speeda-logo"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiUzabaseLogo",
+          "declaration": {
+            "name": "MiUzabaseLogo",
+            "module": "./uzabase-logo"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/mi-logo.ts",
       "declarations": [
         {
           "kind": "class",
@@ -4743,6 +4798,7 @@
             "name": "LitElement",
             "package": "lit"
           },
+          "deprecated": "代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください",
           "summary": "スピーダのロゴです。",
           "tagName": "mi-logo",
           "customElement": true
@@ -4753,9 +4809,9 @@
           "name": "SpLogo",
           "superclass": {
             "name": "MiLogo",
-            "module": "src/components/logo/index.ts"
+            "module": "src/components/logo/mi-logo.ts"
           },
-          "deprecated": "代わりに MiLogo を使用してください",
+          "deprecated": "代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください",
           "tagName": "sp-logo",
           "customElement": true,
           "attributes": [
@@ -4767,7 +4823,7 @@
               "name": "brand",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             },
             {
@@ -4778,7 +4834,7 @@
               "name": "language",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             }
           ],
@@ -4789,7 +4845,7 @@
               "static": true,
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             },
             {
@@ -4801,7 +4857,7 @@
               "default": "\"\"",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             },
             {
@@ -4813,7 +4869,7 @@
               "default": "\"\"",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             },
             {
@@ -4822,7 +4878,7 @@
               "privacy": "private",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             },
             {
@@ -4830,7 +4886,7 @@
               "name": "render",
               "inheritedFrom": {
                 "name": "MiLogo",
-                "module": "src/components/logo/index.ts"
+                "module": "src/components/logo/mi-logo.ts"
               }
             }
           ]
@@ -4842,7 +4898,7 @@
           "name": "MiLogo",
           "declaration": {
             "name": "MiLogo",
-            "module": "src/components/logo/index.ts"
+            "module": "src/components/logo/mi-logo.ts"
           }
         },
         {
@@ -4850,7 +4906,7 @@
           "name": "SpLogo",
           "declaration": {
             "name": "SpLogo",
-            "module": "src/components/logo/index.ts"
+            "module": "src/components/logo/mi-logo.ts"
           }
         },
         {
@@ -4858,7 +4914,7 @@
           "name": "mi-logo",
           "declaration": {
             "name": "MiLogo",
-            "module": "src/components/logo/index.ts"
+            "module": "src/components/logo/mi-logo.ts"
           }
         },
         {
@@ -4866,7 +4922,159 @@
           "name": "sp-logo",
           "declaration": {
             "name": "SpLogo",
-            "module": "src/components/logo/index.ts"
+            "module": "src/components/logo/mi-logo.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/speeda-logo.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiSpeedaLogo",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"ai-agent\" | \"expert-research\" | null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "inverse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "noSymbol",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "logoLanguage",
+              "type": {
+                "text": "\"en\" | \"zh\""
+              },
+              "default": "\"en\""
+            },
+            {
+              "kind": "method",
+              "name": "#getSvg",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ロゴの種類。ai-agent, sales-insights, customer-analytics, startup-insights, innovation-insights, expert-research（未指定で標準のSPEEDAロゴ）",
+              "name": "type"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "反転表示（暗い背景用）",
+              "name": "inverse"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "シンボルを非表示にする",
+              "name": "no-symbol"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ロゴの言語。en, zh",
+              "name": "logo-language"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "Speedaのロゴです。",
+          "tagName": "mi-speeda-logo",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiSpeedaLogo",
+          "declaration": {
+            "name": "MiSpeedaLogo",
+            "module": "src/components/logo/speeda-logo.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-speeda-logo",
+          "declaration": {
+            "name": "MiSpeedaLogo",
+            "module": "src/components/logo/speeda-logo.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/speeda-logos.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "resolveLogo",
+          "return": {
+            "type": {
+              "text": "string | undefined"
+            }
+          },
+          "parameters": [
+            {
+              "name": "input",
+              "type": {
+                "text": "Record<string, unknown>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "resolveLogo",
+          "declaration": {
+            "name": "resolveLogo",
+            "module": "src/components/logo/speeda-logos.ts"
           }
         }
       ]
@@ -4914,6 +5122,113 @@
           "declaration": {
             "name": "speedaZh",
             "module": "src/components/logo/speeda.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/uzabase-logo.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiUzabaseLogo",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "inverse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "#getSvg",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "反転表示（暗い背景用）",
+              "name": "inverse"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "Uzabaseのロゴです。",
+          "tagName": "mi-uzabase-logo",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiUzabaseLogo",
+          "declaration": {
+            "name": "MiUzabaseLogo",
+            "module": "src/components/logo/uzabase-logo.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-uzabase-logo",
+          "declaration": {
+            "name": "MiUzabaseLogo",
+            "module": "src/components/logo/uzabase-logo.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/logo/uzabase-logos.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "resolveLogo",
+          "return": {
+            "type": {
+              "text": "string | undefined"
+            }
+          },
+          "parameters": [
+            {
+              "name": "input",
+              "type": {
+                "text": "Record<string, unknown>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "resolveLogo",
+          "declaration": {
+            "name": "resolveLogo",
+            "module": "src/components/logo/uzabase-logos.ts"
           }
         }
       ]

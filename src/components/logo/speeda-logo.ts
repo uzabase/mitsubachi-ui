@@ -1,0 +1,61 @@
+import { css, html, LitElement } from "lit";
+import { property } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+
+import { makeStyles } from "../styles";
+import { resolveLogo } from "./speeda-logos";
+
+/**
+ * @summary Speedaのロゴです。
+ *
+ * @attr {string} type - ロゴの種類。ai-agent, sales-insights, customer-analytics, startup-insights, innovation-insights, expert-research（未指定で標準のSPEEDAロゴ）
+ * @attr {boolean} inverse - 反転表示（暗い背景用）
+ * @attr {boolean} no-symbol - シンボルを非表示にする
+ * @attr {string} logo-language - ロゴの言語。en, zh
+ */
+export class MiSpeedaLogo extends LitElement {
+  static styles = makeStyles(css`
+    :host {
+      display: flex;
+    }
+  `);
+
+  @property({ type: String, reflect: true })
+  type: "ai-agent" | "expert-research" | null = null;
+
+  @property({ type: Boolean, reflect: true })
+  inverse = false;
+
+  @property({ type: Boolean, reflect: true, attribute: "no-symbol" })
+  noSymbol = false;
+
+  @property({ type: String, reflect: true, attribute: "logo-language" })
+  logoLanguage: "en" | "zh" = "en";
+
+  #getSvg(): string | undefined {
+    return resolveLogo({
+      type: this.type,
+      inverse: this.inverse,
+      symbol: !this.noSymbol,
+      logoLanguage: this.logoLanguage,
+    });
+  }
+
+  render() {
+    const svg = this.#getSvg();
+    if (svg) {
+      return html`${unsafeHTML(svg)}`;
+    }
+    return html``;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "mi-speeda-logo": MiSpeedaLogo;
+  }
+}
+
+if (!customElements.get("mi-speeda-logo")) {
+  customElements.define("mi-speeda-logo", MiSpeedaLogo);
+}
