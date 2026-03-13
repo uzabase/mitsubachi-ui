@@ -3942,9 +3942,9 @@ a1 = new WeakSet(), g2 = function() {
 }, /*
  * 子コンポーネントであるmi-text-fieldにもsubmit-on-enter属性があるので、移譲すれば良さそうに見えるが、
  * このコンポーネント自体がform-associated custom elementであるため、子コンポーネントの方ではformのサブミット処理が起動しない模様。
- * 
+ *
  * そのためこちらでも明示的にEnterキーをチェックしている。
- * 
+ *
  * もしこのコンポーネントをform-associatedで無くすことができるなら、委譲しても問題なさそう。
  */
 b2 = function(i) {
