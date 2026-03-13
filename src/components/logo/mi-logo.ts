@@ -1,25 +1,22 @@
-import { css, html, LitElement } from "lit";
+import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
-import { resolveLogo as resolveSpeedaLogo } from "./speeda-logos";
-import { resolveLogo as resolveUzabaseLogo } from "./uzabase-logos";
+import { speedaEn, speedaJa, speedaZh } from "./speeda";
+import { uzabase } from "./uzabase";
 
 /**
  * @deprecated 代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください
  *
- * @summary ロゴです。
+ * @summary スピーダのロゴです。
  *
  * @attr {string} brand - uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。
- * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=enであれば英語, zhであれば簡体字です。
+ *
+ * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
 export class MiLogo extends LitElement {
-  static styles = makeStyles(css`
-    :host {
-      display: flex;
-    }
-  `);
+  static styles = makeStyles();
 
   @property({ type: String, reflect: true })
   language = "";
@@ -27,25 +24,21 @@ export class MiLogo extends LitElement {
   @property({ type: String, reflect: true })
   brand = "";
 
-  #getSvg(): string | undefined {
+  #getLogoContent() {
     if (this.brand === "uzabase") {
-      return resolveUzabaseLogo({ inverse: false });
+      return uzabase;
     } else if (this.brand === "speeda") {
-      const logoLanguage = this.language === "zh" ? "zh" : "en";
-      return resolveSpeedaLogo({
-        type: null,
-        inverse: false,
-        symbol: false,
-        logoLanguage,
-      });
+      if (this.language === "en") return speedaEn;
+      else if (this.language === "zh") return speedaZh;
+      else return speedaJa;
     }
     return undefined;
   }
 
   render() {
-    const svg = this.#getSvg();
-    if (svg) {
-      return html`${unsafeHTML(svg)}`;
+    const logo = this.#getLogoContent();
+    if (logo) {
+      return html`${unsafeHTML(logo)}`;
     }
     return html``;
   }
