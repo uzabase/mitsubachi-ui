@@ -2,10 +2,11 @@ import { LitElement } from 'lit';
 /**
  * @deprecated 代わりに MiSpeedaLogo または MiUzabaseLogo を使用してください
  *
- * @summary ロゴです。
+ * @summary スピーダのロゴです。
  *
  * @attr {string} brand - uzabaseであれば、Uzabaseのロゴを表示します。speedaのときは、スピーダのロゴを表示します。
- * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=enであれば英語, zhであれば簡体字です。
+ *
+ * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
 export declare class MiLogo extends LitElement {
     #private;
