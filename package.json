@@ -63,7 +63,7 @@
     "prettier": "3.7.4",
     "prettier-plugin-organize-imports": "^4.3.0",
     "shadow-dom-testing-library": "^1.13.1",
-    "storybook": "^10.1.11",
+    "storybook": "^10.2.13",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "tsx": "^4.21.0",
