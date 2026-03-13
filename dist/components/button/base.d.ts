@@ -37,11 +37,21 @@ export declare class ButtonBase<S extends string = Size> extends LitElement {
     name: string;
     value: string;
     type: "button" | "submit" | "reset";
+    /**
+     * 設定するとボタンがリンク (`<a>`) としてレンダリングされる。
+     * `disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。
+     */
+    href: string;
+    /** `href` 指定時のリンクターゲット。`href` がない場合は無視される。 */
+    target: string;
+    /** `href` 指定時の rel 属性。`target="_blank"` のとき自動で `"noopener noreferrer"` が付与される。 */
+    rel: string;
     iconType: string;
     constructor();
     /** 継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映） */
     protected getEffectiveVariant(): Variant;
     protected get buttonClasses(): string;
+    protected get isLink(): boolean;
     protected get isDisabled(): boolean;
     protected get loadingSize(): string;
     protected renderLoading(): TemplateResult<1>;
@@ -49,7 +59,10 @@ export declare class ButtonBase<S extends string = Size> extends LitElement {
     protected renderIcon(): TemplateResult<1>;
     /** スロットのレンダリング。テキストを持たないボタン（mi-icon-button）はオーバーライドして nothing を返す。 */
     protected renderSlot(): TemplateResult | typeof nothing;
+    protected get effectiveRel(): string;
+    protected renderContent(): TemplateResult<1>;
     render(): TemplateResult<1>;
     protected handleClick(event: Event): void;
+    protected handleLinkClick(event: MouseEvent): void;
 }
 //# sourceMappingURL=base.d.ts.map

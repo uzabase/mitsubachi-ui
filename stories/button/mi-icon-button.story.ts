@@ -53,6 +53,11 @@ const meta = {
     },
     name: { type: "string" },
     value: { type: "string" },
+    href: { type: "string" },
+    target: {
+      control: { type: "select" },
+      options: ["", "_blank", "_self", "_parent", "_top"],
+    },
   },
   args: {
     variant: "ghost",
@@ -69,6 +74,8 @@ const meta = {
     name: undefined,
     value: undefined,
     type: "button",
+    href: undefined,
+    target: undefined,
   },
   render: (args) => html`
     <div style="padding: 40px; display: inline-block;">
@@ -87,6 +94,8 @@ const meta = {
         name=${args.name || nothing}
         value=${args.value || nothing}
         type=${args.type || nothing}
+        href=${args.href || nothing}
+        target=${args.target || nothing}
       ></mi-icon-button>
     </div>
   `,
@@ -136,6 +145,82 @@ export const WithTooltip: Story = {
       description: {
         story:
           "aria-label 属性を指定すると、ホバー・フォーカス時にツールチップが表示されます。tooltip-placement で表示位置を変更できます。",
+      },
+    },
+  },
+};
+
+export const AsLink: Story = {
+  name: "リンクとしての使用（href）",
+  render: () => html`
+    <div
+      style="display: flex; flex-direction: column; gap: 32px; padding: 40px;"
+    >
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          基本的なリンクアイコンボタン
+        </h3>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          ${iconButtonVariants.map(
+            (v) =>
+              html`<div
+                style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+              >
+                <mi-icon-button
+                  variant="${v}"
+                  icon-type="open-in-new"
+                  aria-label="外部リンク"
+                  href="https://example.com"
+                  target="_blank"
+                ></mi-icon-button>
+                <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+                  >${v}</span
+                >
+              </div>`,
+          )}
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold;">
+          無効状態のリンクアイコンボタン
+        </h3>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div
+            style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+          >
+            <mi-icon-button
+              icon-type="open-in-new"
+              aria-label="外部リンク"
+              href="https://example.com"
+              disabled
+            ></mi-icon-button>
+            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+              >disabled</span
+            >
+          </div>
+          <div
+            style="display: flex; flex-direction: column; align-items: center; gap: 4px;"
+          >
+            <mi-icon-button
+              icon-type="open-in-new"
+              aria-label="外部リンク"
+              href="https://example.com"
+              loading
+            ></mi-icon-button>
+            <span style="font-size: 11px; color: rgb(0 0 0 / 45%);"
+              >loading</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`href` 属性を指定すると、アイコンボタンの見た目のまま内部的に `<a>` タグとしてレンダリングされます。ページ遷移やナビゲーション用途に使用してください。`target="_blank"` を指定すると自動で `rel="noopener noreferrer"` が付与されます。',
       },
     },
   },

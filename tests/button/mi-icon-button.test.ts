@@ -12,6 +12,10 @@ function getButton(): HTMLButtonElement | undefined | null {
   return getMiIconButton().shadowRoot?.querySelector("button");
 }
 
+function getAnchor(): HTMLAnchorElement | undefined | null {
+  return getMiIconButton().shadowRoot?.querySelector("a");
+}
+
 function getLoading() {
   return getMiIconButton().shadowRoot?.querySelector("mi-loading");
 }
@@ -290,6 +294,150 @@ describe("mi-icon-button", () => {
 
       const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
       expect(tooltip?.getAttribute("placement")).toBe("top");
+    });
+  });
+
+  describe("href属性（リンクとしてのレンダリング）", () => {
+    test("href属性を設定すると、<a>タグがレンダリングされ<button>はレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getAnchor()).toBeTruthy();
+      expect(getButton()).toBeFalsy();
+    });
+
+    test("href属性を設定しない場合、<button>タグがレンダリングされ<a>はレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-icon-button icon-type="search"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getButton()).toBeTruthy();
+      expect(getAnchor()).toBeFalsy();
+    });
+
+    test("href属性の値が<a>のhref属性に反映される", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getAnchor()?.getAttribute("href")).toBe("https://example.com");
+    });
+
+    test('target="_blank"の場合、rel="noopener noreferrer"が自動で付与される', async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" target="_blank" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getAnchor()?.getAttribute("rel")).toBe("noopener noreferrer");
+    });
+
+    test("<a>にはrole='button'が付与されない", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getAnchor()?.getAttribute("role")).toBeNull();
+    });
+
+    test("aria-label属性が<a>に反映される", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      expect(getAnchor()?.getAttribute("aria-label")).toBe("検索");
+    });
+
+    test("aria-label属性を設定すると、リンクでもmi-tooltipがレンダリングされる", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const tooltip = getMiIconButton().shadowRoot?.querySelector("mi-tooltip");
+      expect(tooltip).toBeTruthy();
+      expect(tooltip?.getAttribute("text")).toBe("検索");
+    });
+
+    test("disabled時はhref属性が削除され、aria-disabled='true'が付与される", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索" disabled></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.getAttribute("href")).toBeNull();
+      expect(anchor?.getAttribute("aria-disabled")).toBe("true");
+    });
+
+    test("loading時はhref属性が削除され、aria-disabled='true'とaria-busy='true'が付与される", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索" loading></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.getAttribute("href")).toBeNull();
+      expect(anchor?.getAttribute("aria-disabled")).toBe("true");
+      expect(anchor?.getAttribute("aria-busy")).toBe("true");
+    });
+
+    test("disabled時にクリックしてもclickイベントが発火しない", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索" disabled></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const el = getMiIconButton();
+      let clickCount = 0;
+      el.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(0);
+    });
+
+    test("loading時にクリックしてもclickイベントが発火しない", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索" loading></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const el = getMiIconButton();
+      let clickCount = 0;
+      el.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(0);
+    });
+
+    test("リンクボタンをクリックすると、clickイベントが1回だけ発火する", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const el = getMiIconButton();
+      let clickCount = 0;
+      el.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(1);
+    });
+
+    test("消費者がpreventDefaultするとナビゲーションがキャンセルされる", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const el = getMiIconButton();
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+
+      const anchor = getAnchor()!;
+      let defaultPrevented = false;
+      anchor.addEventListener("click", (e) => {
+        defaultPrevented = e.defaultPrevented;
+      });
+
+      anchor.click();
+      expect(defaultPrevented).toBe(true);
+    });
+
+    test("variant・sizeのクラスが<a>にも適用される", async () => {
+      document.body.innerHTML = `<mi-icon-button href="https://example.com" variant="primary" size="large" icon-type="search" aria-label="検索"></mi-icon-button>`;
+      await customElements.whenDefined("mi-icon-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.classList.contains("primary")).toBe(true);
+      expect(anchor?.classList.contains("large")).toBe(true);
     });
   });
 
