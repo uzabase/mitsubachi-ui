@@ -3757,7 +3757,7 @@ const ge = class ge extends L {
   constructor() {
     super();
     D(this, n1);
-    this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autofocus = !1, this.submitByEnter = !1, this.internals = this.attachInternals();
+    this.error = "", this.placeholder = "", this.autocomplete = "off", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autofocus = !1, this.submitOnEnter = !1, this.internals = this.attachInternals();
   }
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);
@@ -3799,7 +3799,7 @@ n1 = new WeakSet(), u2 = function() {
 }, C2 = function(i) {
   if (i.key === "Enter") {
     if (i.isComposing) return;
-    this.submitByEnter && this.internals.form?.requestSubmit();
+    this.submitOnEnter && this.internals.form?.requestSubmit();
   }
 }, ge.styles = w($(c5)), ge.formAssociated = !0;
 let E = ge;
@@ -3828,8 +3828,8 @@ J([
   c({ type: Boolean, reflect: !0 })
 ], E.prototype, "autofocus");
 J([
-  c({ type: Boolean, reflect: !0 })
-], E.prototype, "submitByEnter");
+  c({ type: Boolean, attribute: "submit-on-enter", reflect: !0 })
+], E.prototype, "submitOnEnter");
 class h5 extends E {
 }
 customElements.get("mi-text-field") || customElements.define("mi-text-field", E);
@@ -3844,7 +3844,7 @@ const me = class me extends L {
   constructor() {
     super();
     D(this, a1);
-    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.autofocus = !1, this.submitByEnter = !1, this.internals = this.attachInternals();
+    this.text = "", this.error = "", this.placeholder = "", this.supportText = "", this.disabled = !1, this.name = "", this.value = "", this.type = "text", this.autocomplete = "off", this.autofocus = !1, this.submitOnEnter = !1, this.internals = this.attachInternals();
   }
   updated(i) {
     super.updated(i), i.has("value") && this.internals.setFormValue(this.value);
@@ -3884,7 +3884,7 @@ a1 = new WeakSet(), g2 = function() {
 }, b2 = function(i) {
   if (i.key === "Enter") {
     if (i.isComposing) return;
-    this.submitByEnter && this.internals.form?.requestSubmit();
+    this.submitOnEnter && this.internals.form?.requestSubmit();
   }
 }, me.styles = w($(p5)), me.formAssociated = !0;
 let k = me;
@@ -3919,8 +3919,8 @@ R([
   c({ type: Boolean, reflect: !0 })
 ], k.prototype, "autofocus");
 R([
-  c({ type: Boolean, reflect: !0 })
-], k.prototype, "submitByEnter");
+  c({ type: Boolean, attribute: "submit-on-enter", reflect: !0 })
+], k.prototype, "submitOnEnter");
 class f5 extends k {
 }
 customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", k);

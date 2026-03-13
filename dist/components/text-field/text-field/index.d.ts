@@ -14,7 +14,7 @@ export declare class MiTextField extends LitElement {
     value: string;
     type: string;
     autofocus: boolean;
-    submitByEnter: boolean;
+    submitOnEnter: boolean;
     private internals;
     constructor();
     protected updated(changedProperties: Map<string, unknown>): void;

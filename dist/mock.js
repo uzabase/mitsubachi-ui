@@ -82,17 +82,17 @@
       }
     });
   }
-  if (!customElements.get("mi-loading")) {
-    customElements.define("mi-loading", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-loading")) {
-    customElements.define("sp-loading", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-label-unit")) {
     customElements.define("mi-label-unit", class extends HTMLElement {});
   }
   if (!customElements.get("sp-label-unit")) {
     customElements.define("sp-label-unit", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-loading")) {
+    customElements.define("mi-loading", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-loading")) {
+    customElements.define("sp-loading", class extends HTMLElement {});
   }
   if (!customElements.get("mi-logo")) {
     customElements.define("mi-logo", class extends HTMLElement {});
