@@ -90,9 +90,11 @@ describe("mi-text-field-unit", () => {
       submitHandler();
     });
 
-    const input = sut?.shadowRoot?.querySelector("mi-text-field")?.shadowRoot?.querySelector("input");
+    const input = sut?.shadowRoot
+      ?.querySelector("mi-text-field")
+      ?.shadowRoot?.querySelector("input");
     input!.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
 
     expect(submitHandler).not.toHaveBeenCalled();
-  });  
+  });
 });

@@ -93,5 +93,5 @@ describe("mi-text-field", () => {
     input?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
 
     expect(submitHandler).not.toHaveBeenCalled();
-  });  
+  });
 });
