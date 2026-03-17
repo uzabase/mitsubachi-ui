@@ -136,9 +136,7 @@ export const SizeLarge: Story = {
           これは large サイズ (max-width: 1280px) のダイアログです。
           テーブルやグラフなど、広い表示領域が必要なコンテンツに適しています。
         </p>
-        <table
-          style="width: 100%; border-collapse: collapse; font-size: 14px;"
-        >
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
           <thead>
             <tr style="border-bottom: 2px solid rgba(0,0,0,0.1);">
               <th style="text-align: left; padding: 8px;">項目</th>
@@ -231,7 +229,8 @@ export const ALL: Story = {
               @mi-action=${action("mi-action")}
             >
               <p style="margin: 0;">
-                これは ${size} サイズ (${size === "small"
+                これは ${size} サイズ
+                (${size === "small"
                   ? "560px"
                   : size === "medium"
                     ? "800px"
@@ -247,8 +246,7 @@ export const ALL: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "全サイズバリアントのダイアログをそれぞれ開いて確認できます。",
+        story: "全サイズバリアントのダイアログをそれぞれ開いて確認できます。",
       },
     },
   },

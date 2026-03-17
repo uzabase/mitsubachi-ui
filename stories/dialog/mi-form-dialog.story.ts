@@ -85,9 +85,7 @@ export const WithTrigger: Story = {
       </div>
     </mi-form-dialog>
   `,
-  decorators: [
-    (story) => html`<div>${story()}</div>`,
-  ],
+  decorators: [(story) => html`<div>${story()}</div>`],
   parameters: {
     docs: {
       description: {

@@ -154,7 +154,10 @@ export class DialogBase extends LitElement {
 
   override render() {
     return html`
-      <dialog @cancel=${this._handleNativeCancel} aria-labelledby="dialog-title">
+      <dialog
+        @cancel=${this._handleNativeCancel}
+        aria-labelledby="dialog-title"
+      >
         <div class="${this.popupClasses}" role="document">
           <div class="header ${this._headerBordered ? "bordered" : ""}">
             <h2 class="title" id="dialog-title">${this.headerText}</h2>
@@ -164,23 +167,23 @@ export class DialogBase extends LitElement {
           </div>
           ${this.actionLabel
             ? html`
-                <div
-                  class="footer ${this._footerBordered ? "bordered" : ""}"
-                >
+                <div class="footer ${this._footerBordered ? "bordered" : ""}">
                   ${this.cancelLabel
                     ? html`
                         <mi-neutral-button
                           variant="ghost"
                           size="large"
                           @click=${this._handleCancelClick}
-                        >${this.cancelLabel}</mi-neutral-button>
+                          >${this.cancelLabel}</mi-neutral-button
+                        >
                       `
                     : nothing}
                   <mi-neutral-button
                     variant="primary"
                     size="large"
                     @click=${this._handleActionClick}
-                  >${this.actionLabel}</mi-neutral-button>
+                    >${this.actionLabel}</mi-neutral-button
+                  >
                 </div>
               `
             : nothing}
