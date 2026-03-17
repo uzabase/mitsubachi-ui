@@ -12,6 +12,9 @@ export {
   SpButton,
 } from "./components/button/mi-neutral-button";
 export { MiCheckbox, SpCheckbox } from "./components/checkbox/mi-checkbox";
+export { MiActionDialog } from "./components/dialog/mi-action-dialog";
+export { MiFormDialog } from "./components/dialog/mi-form-dialog";
+export { MiInformationDialog } from "./components/dialog/mi-information-dialog";
 export {
   MiCheckboxText,
   SpCheckboxText,
