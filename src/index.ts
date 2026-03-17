@@ -16,9 +16,6 @@ export {
   MiCheckboxText,
   SpCheckboxText,
 } from "./components/checkbox/mi-checkbox-text";
-export { MiActionDialog } from "./components/dialog/mi-action-dialog";
-export { MiFormDialog } from "./components/dialog/mi-form-dialog";
-export { MiInformationDialog } from "./components/dialog/mi-information-dialog";
 export {
   MiFloatingButton,
   SpFloatingButton,
