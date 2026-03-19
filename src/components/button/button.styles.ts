@@ -246,6 +246,9 @@ export const buttonStyles = css`
     color: var(--color);
     position: relative;
     cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    font: inherit;
 
     &:focus-visible {
       box-shadow:
@@ -262,7 +265,8 @@ export const buttonStyles = css`
       background-color: var(--background-color-active);
     }
 
-    &:disabled {
+    &:disabled,
+    &[aria-disabled="true"] {
       border-color: var(--border-color-disabled);
       background-color: var(--background-color-disabled);
       color: var(--color-disabled);

@@ -706,7 +706,7 @@
         {
           "kind": "variable",
           "name": "buttonStyles",
-          "default": "css` :host { display: inline-block; } .normal { &.primary { --border-color: transparent; --background-color: rgb(0 0 0 / 84%); --background-color-hover: rgb(0 0 0 / 90%); --background-color-active: #000; --color: #fff; } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --color: #315ce8; } } &.tertiary { --border-color: rgb(0 0 0 / 29%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: rgb(0 0 0 / 20%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.plane { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(49 92 232 / 8%); --background-color-active: rgb(49 92 232 / 12%); --color: #315ce8; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &.medium { padding-inline: 4px; padding-block: 0; min-height: auto; } &.large { padding-inline: 4px; min-height: auto; } &.x-large { padding-inline: 4px; min-height: auto; } } } .danger { &.primary { --border-color: transparent; --background-color: #db351f; --background-color-hover: #c92812; --background-color-active: #b02412; --color: #fff; } &.secondary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.tertiary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } /* .selected は danger テーマでは非サポート */ } .ai { &.primary { --angle: 0deg; border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; transition: --angle 0.5s; &:hover { --angle: 360deg; } &:disabled { border: 1px solid rgb(0 0 0 / 7%); background: transparent; color: rgb(0 0 0 / 35%); cursor: not-allowed; &:hover { border: 1px solid rgb(0 0 0 / 7%); background: transparent; } &.loading { border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; } } } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); } &.tertiary { --border-color: #7c3aed; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } /* .selected は ai テーマでは非サポート */ } .primary { --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 5%); --color-disabled: rgb(0 0 0 / 35%); } :is(.secondary, .tertiary) { --border-color-disabled: rgb(0 0 0 / 10%); --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .ghost { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .plane { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .base { display: inline-flex; justify-content: center; align-items: center; gap: 4px; width: 100%; flex-basis: 100%; padding-block: 2px; border: 1px solid var(--border-color); border-radius: 9999px; background-color: var(--background-color); color: var(--color); position: relative; cursor: pointer; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover); } &:active { background-color: var(--background-color-active); } &:disabled { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); color: var(--color-disabled); cursor: not-allowed; &:hover { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); } &.loading { color: rgb(0 0 0 / 84%); } } } .medium { min-height: 32px; padding-inline: 12px; font-size: 12px; } .large { min-height: 40px; padding-inline: 16px; font-size: 14px; } .x-large { min-height: 48px; padding-inline: 16px; font-size: 16px; } .icon { fill: currentcolor; } .text { line-height: 1.5; letter-spacing: 0.02em; &:is(.primary *, .secondary *) { font-weight: var(--font-weight-bold); } } `"
+          "default": "css` :host { display: inline-block; } .normal { &.primary { --border-color: transparent; --background-color: rgb(0 0 0 / 84%); --background-color-hover: rgb(0 0 0 / 90%); --background-color-active: #000; --color: #fff; } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --color: #315ce8; } } &.tertiary { --border-color: rgb(0 0 0 / 29%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --border-color: rgb(0 0 0 / 20%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } &.plane { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(49 92 232 / 8%); --background-color-active: rgb(49 92 232 / 12%); --color: #315ce8; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &.medium { padding-inline: 4px; padding-block: 0; min-height: auto; } &.large { padding-inline: 4px; min-height: auto; } &.x-large { padding-inline: 4px; min-height: auto; } } } .danger { &.primary { --border-color: transparent; --background-color: #db351f; --background-color-hover: #c92812; --background-color-active: #b02412; --color: #fff; } &.secondary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.tertiary { --border-color: #db351f; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #fff4f2; --background-color-active: #ffedeb; --color: #c92812; } /* .selected は danger テーマでは非サポート */ } .ai { &.primary { --angle: 0deg; border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; transition: --angle 0.5s; &:hover { --angle: 360deg; } &:disabled { border: 1px solid rgb(0 0 0 / 7%); background: transparent; color: rgb(0 0 0 / 35%); cursor: not-allowed; &:hover { border: 1px solid rgb(0 0 0 / 7%); background: transparent; } &.loading { border: 1px solid transparent; background: linear-gradient(white, white) padding-box padding-box, conic-gradient( from var(--angle) at 50% 50%, #2a2af7 5%, #2a2af7 22%, #47d4ff 30%, #ff2ed5 73%, #f72a48 80%, #f72a48 84%, #2a2af7 100% ) border-box border-box white; } } } &.secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 4%); --background-color-active: rgb(0 0 0 / 7%); --color: rgb(0 0 0 / 84%); } &.tertiary { --border-color: #7c3aed; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } &.ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: #ede9fe; --background-color-active: #ddd6fe; --color: #6d28d9; } /* .selected は ai テーマでは非サポート */ } .primary { --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 5%); --color-disabled: rgb(0 0 0 / 35%); } :is(.secondary, .tertiary) { --border-color-disabled: rgb(0 0 0 / 10%); --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .ghost { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .plane { --border-color-disabled: transparent; --background-color-disabled: transparent; --color-disabled: rgb(0 0 0 / 35%); } .base { display: inline-flex; justify-content: center; align-items: center; gap: 4px; width: 100%; flex-basis: 100%; padding-block: 2px; border: 1px solid var(--border-color); border-radius: 9999px; background-color: var(--background-color); color: var(--color); position: relative; cursor: pointer; box-sizing: border-box; text-decoration: none; font: inherit; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover); } &:active { background-color: var(--background-color-active); } &:disabled, &[aria-disabled=\"true\"] { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); color: var(--color-disabled); cursor: not-allowed; &:hover { border-color: var(--border-color-disabled); background-color: var(--background-color-disabled); } &.loading { color: rgb(0 0 0 / 84%); } } } .medium { min-height: 32px; padding-inline: 12px; font-size: 12px; } .large { min-height: 40px; padding-inline: 16px; font-size: 14px; } .x-large { min-height: 48px; padding-inline: 16px; font-size: 16px; } .icon { fill: currentcolor; } .text { line-height: 1.5; letter-spacing: 0.02em; &:is(.primary *, .secondary *) { font-weight: var(--font-weight-bold); } } `"
         }
       ],
       "exports": [
@@ -727,7 +727,7 @@
         {
           "kind": "variable",
           "name": "iconButtonStyles",
-          "default": "css` :host { display: inline-block; } .base { display: flex; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid var(--border-color, transparent); background-color: var(--background-color, transparent); color: var(--color, inherit); cursor: pointer; position: relative; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover, transparent); } &:active { background-color: var(--background-color-active, transparent); } &:disabled, &.loading { cursor: not-allowed; background-color: var(--background-color-disabled, transparent); border-color: var(--border-color-disabled, transparent); color: var(--color-disabled, rgb(0 0 0 / 35%)); &:hover { background-color: var(--background-color-disabled, transparent); } } } .icon { fill: currentcolor; display: block; } /* サイズ */ .small { width: 24px; height: 24px; padding: 2px; .icon { width: 18px; height: 18px; } } .medium { width: 32px; height: 32px; padding: 4px; .icon { width: 20px; height: 20px; } } .large { width: 40px; height: 40px; padding: 4px; .icon { width: 22px; height: 22px; } } /* バリアント */ .primary { --border-color: transparent; --background-color: #282828; --background-color-hover: #191919; --background-color-active: #000; --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 7%); --color: #fff; --color-disabled: rgb(0 0 0 / 35%); } .secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .tertiary { --border-color: rgb(0 0 0 / 20%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: rgb(0 0 0 / 10%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: transparent; --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } `"
+          "default": "css` :host { display: inline-block; } .base { display: flex; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid var(--border-color, transparent); background-color: var(--background-color, transparent); color: var(--color, inherit); cursor: pointer; position: relative; box-sizing: border-box; text-decoration: none; font: inherit; &:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #191919; outline: none; } &:hover { background-color: var(--background-color-hover, transparent); } &:active { background-color: var(--background-color-active, transparent); } &:disabled, &[aria-disabled=\"true\"], &.loading { cursor: not-allowed; background-color: var(--background-color-disabled, transparent); border-color: var(--border-color-disabled, transparent); color: var(--color-disabled, rgb(0 0 0 / 35%)); &:hover { background-color: var(--background-color-disabled, transparent); } } } .icon { fill: currentcolor; display: block; } /* サイズ */ .small { width: 24px; height: 24px; padding: 2px; .icon { width: 18px; height: 18px; } } .medium { width: 32px; height: 32px; padding: 4px; .icon { width: 20px; height: 20px; } } .large { width: 40px; height: 40px; padding: 4px; .icon { width: 22px; height: 22px; } } /* バリアント */ .primary { --border-color: transparent; --background-color: #282828; --background-color-hover: #191919; --background-color-active: #000; --border-color-disabled: transparent; --background-color-disabled: rgb(0 0 0 / 7%); --color: #fff; --color-disabled: rgb(0 0 0 / 35%); } .secondary { --border-color: rgb(0 0 0 / 84%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: #3f69f2; --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .tertiary { --border-color: rgb(0 0 0 / 20%); --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: rgb(0 0 0 / 7%); --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --border-color: rgb(0 0 0 / 10%); --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; --background-color-disabled: rgb(0 0 0 / 7%); --border-color-disabled: rgb(0 0 0 / 7%); } } .ghost { --border-color: transparent; --background-color: transparent; --background-color-hover: rgb(0 0 0 / 7%); --background-color-active: rgb(0 0 0 / 10%); --border-color-disabled: transparent; --background-color-disabled: transparent; --color: rgb(0 0 0 / 84%); --color-disabled: rgb(0 0 0 / 35%); &.selected { --background-color: #e8edff; --background-color-hover: #dbe4ff; --background-color-active: #d5dfff; } } `"
         }
       ],
       "exports": [
@@ -955,6 +955,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "#internals",
               "privacy": "private",
               "type": {
@@ -983,6 +1022,16 @@
             {
               "kind": "field",
               "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
               "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
@@ -1026,6 +1075,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
@@ -1042,6 +1110,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -1287,6 +1372,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "iconType",
               "type": {
                 "text": "string"
@@ -1327,6 +1451,16 @@
             {
               "kind": "field",
               "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
               "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
@@ -1398,6 +1532,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
@@ -1414,6 +1567,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -1742,6 +1912,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "iconType",
               "type": {
                 "text": "string"
@@ -1774,6 +1983,16 @@
                 }
               },
               "description": "継承クラスでオーバーライド可能（例: 非推奨の variants 属性の反映）",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
+              "privacy": "protected",
+              "readonly": true,
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -1818,6 +2037,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "handleClick",
               "privacy": "protected",
@@ -1826,6 +2064,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -2105,6 +2360,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "iconType",
               "type": {
                 "text": "string"
@@ -2130,6 +2424,16 @@
             {
               "kind": "field",
               "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
               "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
@@ -2201,6 +2505,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
@@ -2217,6 +2540,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -2459,6 +2799,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "iconType",
               "type": {
                 "text": "string"
@@ -2484,6 +2863,16 @@
             {
               "kind": "field",
               "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
               "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
@@ -2555,6 +2944,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
@@ -2571,6 +2979,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -2806,6 +3231,45 @@
             },
             {
               "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "設定するとボタンがリンク (`<a>`) としてレンダリングされる。\n`disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時のリンクターゲット。`href` がない場合は無視される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "rel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "`href` 指定時の rel 属性。`target=\"_blank\"` のとき自動で `\"noopener noreferrer\"` が付与される。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "iconType",
               "type": {
                 "text": "string"
@@ -2831,6 +3295,16 @@
             {
               "kind": "field",
               "name": "buttonClasses",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLink",
               "privacy": "protected",
               "readonly": true,
               "inheritedFrom": {
@@ -2902,6 +3376,25 @@
               }
             },
             {
+              "kind": "field",
+              "name": "effectiveRel",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "protected",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
@@ -2918,6 +3411,23 @@
                   "name": "event",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleLinkClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
                   }
                 }
               ],
@@ -5881,6 +6391,22 @@
             },
             {
               "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
               "name": "internals",
               "type": {
                 "text": "ElementInternals"
@@ -5914,6 +6440,19 @@
                   "name": "e",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
                   }
                 }
               ]
@@ -6059,6 +6598,30 @@
             },
             {
               "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "internals",
               "type": {
                 "text": "ElementInternals"
@@ -6104,6 +6667,23 @@
                   "name": "e",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
                   }
                 }
               ],
@@ -6273,6 +6853,22 @@
             },
             {
               "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
               "name": "internals",
               "type": {
                 "text": "ElementInternals"
@@ -6306,6 +6902,19 @@
                   "name": "e",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
                   }
                 }
               ]
@@ -6507,6 +7116,30 @@
             },
             {
               "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextFieldUnit",
+                "module": "src/components/text-field/text-field-unit/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextFieldUnit",
+                "module": "src/components/text-field/text-field-unit/index.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "internals",
               "type": {
                 "text": "ElementInternals"
@@ -6552,6 +7185,23 @@
                   "name": "e",
                   "type": {
                     "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextFieldUnit",
+                "module": "src/components/text-field/text-field-unit/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
                   }
                 }
               ],

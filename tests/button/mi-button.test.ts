@@ -12,6 +12,10 @@ function getButton(): HTMLButtonElement | undefined | null {
   return getMiButton().shadowRoot?.querySelector("button");
 }
 
+function getAnchor(): HTMLAnchorElement | undefined | null {
+  return getMiButton().shadowRoot?.querySelector("a");
+}
+
 function getLoading() {
   return getMiButton().shadowRoot?.querySelector("mi-loading");
 }
@@ -485,6 +489,166 @@ describe("mi-button", () => {
 
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);
+    });
+  });
+
+  describe("href属性（リンクとしてのレンダリング）", () => {
+    test("href属性を設定すると、<a>タグがレンダリングされ<button>はレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()).toBeTruthy();
+      expect(getButton()).toBeFalsy();
+    });
+
+    test("href属性を設定しない場合、<button>タグがレンダリングされ<a>はレンダリングされない", async () => {
+      document.body.innerHTML = `<mi-button>ボタン</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getButton()).toBeTruthy();
+      expect(getAnchor()).toBeFalsy();
+    });
+
+    test("href属性の値が<a>のhref属性に反映される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("href")).toBe("https://example.com");
+    });
+
+    test("href属性を更新すると、<a>のhref属性も更新される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      miButton.setAttribute("href", "https://other.com");
+      await miButton.updateComplete;
+
+      expect(getAnchor()?.getAttribute("href")).toBe("https://other.com");
+    });
+
+    test("target属性を設定すると、<a>のtarget属性に反映される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" target="_blank">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("target")).toBe("_blank");
+    });
+
+    test('target="_blank"の場合、rel="noopener noreferrer"が自動で付与される', async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" target="_blank">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("rel")).toBe("noopener noreferrer");
+    });
+
+    test("target属性を設定しない場合、rel属性は付与されない", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("rel")).toBeNull();
+    });
+
+    test("rel属性を明示的に設定すると、その値が使われる", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" target="_blank" rel="noopener">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("rel")).toBe("noopener");
+    });
+
+    test("<a>にはrole='button'が付与されない", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      expect(getAnchor()?.getAttribute("role")).toBeNull();
+    });
+
+    test("variant・sizeのクラスが<a>にも適用される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" variant="secondary" size="large">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.classList.contains("secondary")).toBe(true);
+      expect(anchor?.classList.contains("large")).toBe(true);
+    });
+
+    test("disabled時はhref属性が削除され、aria-disabled='true'が付与される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" disabled>リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.getAttribute("href")).toBeNull();
+      expect(anchor?.getAttribute("aria-disabled")).toBe("true");
+    });
+
+    test("loading時はhref属性が削除され、aria-disabled='true'とaria-busy='true'が付与される", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" loading>リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const anchor = getAnchor();
+      expect(anchor?.getAttribute("href")).toBeNull();
+      expect(anchor?.getAttribute("aria-disabled")).toBe("true");
+      expect(anchor?.getAttribute("aria-busy")).toBe("true");
+    });
+
+    test("disabled時にクリックしてもclickイベントが発火しない", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" disabled>リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      let clickCount = 0;
+      miButton.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(0);
+    });
+
+    test("loading時にクリックしてもclickイベントが発火しない", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com" loading>リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      let clickCount = 0;
+      miButton.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(0);
+    });
+
+    test("リンクボタンをクリックすると、clickイベントが1回だけ発火する", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      let clickCount = 0;
+      miButton.addEventListener("click", () => {
+        clickCount++;
+      });
+
+      getAnchor()?.click();
+      expect(clickCount).toBe(1);
+    });
+
+    test("消費者がpreventDefaultするとナビゲーションがキャンセルされる", async () => {
+      document.body.innerHTML = `<mi-button href="https://example.com">リンク</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const miButton = getMiButton();
+      miButton.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+
+      const anchor = getAnchor()!;
+      let defaultPrevented = false;
+      anchor.addEventListener("click", (e) => {
+        defaultPrevented = e.defaultPrevented;
+      });
+
+      anchor.click();
+      expect(defaultPrevented).toBe(true);
     });
   });
 

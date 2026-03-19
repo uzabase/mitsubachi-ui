@@ -19,6 +19,8 @@ export declare class MiTextFieldUnit extends LitElement {
     value: string;
     type: string;
     autocomplete: AutoFill;
+    autofocus: boolean;
+    submitOnEnter: boolean;
     private internals;
     constructor();
     protected updated(changedProperties: Map<string, unknown>): void;
