@@ -12,11 +12,11 @@ import type { MiRadioButtonText } from "../../src/components/radio-button/mi-rad
 
 const meta = {
   component: "mi-form-dialog",
-  title: "Components/Dialog/FormDialog",
+  title: "Dialog/mi-form-dialog",
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "!dev-only"],
   argTypes: {
     open: {
       control: false,

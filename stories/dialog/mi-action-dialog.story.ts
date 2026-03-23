@@ -10,11 +10,11 @@ import type { MiActionDialog } from "../../src/components/dialog/mi-action-dialo
 
 const meta = {
   component: "mi-action-dialog",
-  title: "Components/Dialog/ActionDialog",
+  title: "Dialog/mi-action-dialog",
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "!dev-only"],
   argTypes: {
     open: {
       control: false,

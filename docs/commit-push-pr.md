@@ -103,3 +103,4 @@ git push -u origin <ブランチ名>
 
 - **`dist/` はソース変更と合わせてコミットする**（`npm run build` 実行後、`dist/` をステージングに含める）
 - `docs/review-checklist.md` を参照し、PR前にセルフレビューを行うと良い
+- **Story を変更した場合**: `docs/storybook-autodocs.md` の「PR 提出前チェック（dev-only）」を確認する

@@ -8,7 +8,7 @@
 
 ## 手順
 
-1. `docs/component-guide.md` の「Storybook ストーリー」セクションを読み込む
+1. `docs/component-guide.md` と `docs/storybook-autodocs.md` を読み込む
 2. 対象コンポーネントのプロパティ・スロット・イベントを把握する
 3. 既存の `stories/` 配下のストーリーを参照し、プロジェクトの慣習に合わせる
 4. 以下のストーリーを作成する:

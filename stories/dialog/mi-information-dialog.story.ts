@@ -8,11 +8,11 @@ import type { MiInformationDialog } from "../../src/components/dialog/mi-informa
 
 const meta = {
   component: "mi-information-dialog",
-  title: "Components/Dialog/InformationDialog",
+  title: "Dialog/mi-information-dialog",
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "!dev-only"],
   argTypes: {
     open: {
       control: false,
