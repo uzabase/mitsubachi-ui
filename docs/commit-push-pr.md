@@ -101,6 +101,6 @@ git push -u origin <ブランチ名>
 
 ## 補足
 
-- **`dist/` はソース変更と合わせてコミットする**（`npm run build` 実行後、`dist/` をステージングに含める）
+- **`dist/` はソース変更と合わせてコミットする**（`npm run build` 実行後、`dist/` をステージングに含める）。理由は [contributing.md](./contributing.md#dist-を-git-で追跡する理由) 参照
 - `docs/review-checklist.md` を参照し、PR前にセルフレビューを行うと良い
 - **Story を変更した場合**: `docs/storybook-autodocs.md` の「PR 提出前チェック（dev-only）」を確認する

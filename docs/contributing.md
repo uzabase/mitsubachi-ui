@@ -112,6 +112,15 @@ fix(Tooltip): ホバー時の表示位置ずれを修正
 
 ## CI / リリース
 
+### dist/ を Git で追跡する理由
+
+一般的には npm に `dist/` 内のファイルをアップロードして配布するが、ミツバチは **リポジトリから直接インストール** する構成のため、リポジトリ内に `dist/` を置いている。そのため `dist/` は Git で追跡し、コミットに含める。
+
+### dist/ の運用
+
 - **`dist/` はソース変更と合わせてコミットする**（`npm run build` 後に `dist/` をステージング・コミットする。PRでビルド結果を確認できるようにする）
 - main への push 時、GitHub Action が不足分があれば `dist/` を更新してコミットする（バックアップ運用）
+
+### リリース
+
 - リリースは `npm run release:patch` / `npm run release:minor` / `npm run release:major`
