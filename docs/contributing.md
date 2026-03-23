@@ -59,6 +59,10 @@ npm run format:prettier:check  # フォーマットチェック
 npm run build
 ```
 
+## コミット・プッシュ・PRのワークフロー
+
+一連の作業手順は [docs/commit-push-pr.md](./commit-push-pr.md) を参照してください。
+
 ## PR前の確認
 
 PRを作成する前に、以下を実行してエラーがないことを確認してください。

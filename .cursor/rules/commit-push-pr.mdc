@@ -1,0 +1,22 @@
+---
+description: コミット・プッシュ・PR作成までの一連のワークフローを実行する
+alwaysApply: false
+---
+
+# コミット・プッシュ・PR作成
+
+## Use when:
+
+- ユーザーがコミット・プッシュ・PR作成を依頼した時
+- 「コミットして」「プッシュして」「PR作って」などと指示された時
+
+## 手順
+
+1. `docs/commit-push-pr.md` を読み込み、ワークフロー全体を把握する
+2. 以下の順で実行する：
+   - 変更内容の把握（`git status`, `git diff`）
+   - PR前の確認（lint, format, typecheck, test）
+   - コミット（`docs/contributing.md` のコミットルールに従う）
+   - プッシュ（`git push -u origin <ブランチ名>`）
+   - PR作成（`gh pr create`。本文は `docs/commit-push-pr.md` のフォーマットに従う）
+3. 作成したPRのURLを表示する
