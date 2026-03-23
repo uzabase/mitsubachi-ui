@@ -105,6 +105,62 @@
         },
         {
           "kind": "js",
+          "name": "MiActionDialog",
+          "declaration": {
+            "name": "MiActionDialog",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "formDialogSizes",
+          "declaration": {
+            "name": "formDialogSizes",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiFormDialog",
+          "declaration": {
+            "name": "MiFormDialog",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInformationDialog",
+          "declaration": {
+            "name": "MiInformationDialog",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "informationDialogSizes",
+          "declaration": {
+            "name": "informationDialogSizes",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FormDialogSize",
+          "declaration": {
+            "name": "FormDialogSize",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "InformationDialogSize",
+          "declaration": {
+            "name": "InformationDialogSize",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiCheckboxText",
           "declaration": {
             "name": "MiCheckboxText",
@@ -4206,26 +4262,12 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
+      "path": "src/components/dialog/base.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
+          "description": "モーダルダイアログの共通ベースクラス。\nmi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。",
+          "name": "DialogBase",
           "members": [
             {
               "kind": "field",
@@ -4234,11 +4276,158 @@
             },
             {
               "kind": "field",
-              "name": "loading",
+              "name": "open",
               "type": {
                 "text": "boolean"
               },
+              "default": "false",
+              "description": "開閉状態"
+            },
+            {
+              "kind": "field",
+              "name": "headerText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "ヘッダーに表示するタイトルテキスト"
+            },
+            {
+              "kind": "field",
+              "name": "cancelLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "キャンセル・閉じるボタンのラベル。省略時はキャンセルボタンを表示しない"
+            },
+            {
+              "kind": "field",
+              "name": "actionLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "アクションボタンのラベル"
+            },
+            {
+              "kind": "field",
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用"
+            },
+            {
+              "kind": "field",
+              "name": "_dialogEl",
+              "type": {
+                "text": "HTMLDialogElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_bodyEl",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
               "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_resizeObserver",
+              "type": {
+                "text": "ResizeObserver | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "dialogSize",
+              "type": {
+                "text": "DialogSize"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのサイズ",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "DialogVariant"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのバリアント（phone 時のスタイル用）",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "sizeClass",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_boundCheckScroll",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_checkScroll",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_handleOpenChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleClose",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleCancelClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_handleActionClick",
+              "privacy": "private"
             },
             {
               "kind": "method",
@@ -4249,84 +4438,1187 @@
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "mi-floating-button",
           "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "DialogBase",
+          "declaration": {
+            "name": "DialogBase",
+            "module": "src/components/dialog/base.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/dialog-backdrop.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/dialog.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "dialogStyles",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ unsafeCSS(backdropStyle), css` /* ========== Dialog ルート ========== */ .dialog-root { border: none; padding: 0; margin: 0; background: transparent; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; } /* ========== Viewport ========== */ /* React: position: fixed; inset: 0; padding: 24px; z-index: 2147483647 */ .viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: var(--spacing-2x-large, 24px); z-index: 2147483647; box-sizing: border-box; } /* ========== Popup (共通) ========== */ .popup { display: flex; flex-direction: column; box-sizing: border-box; background: var(--zabuton-regular, #ffffff); color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); border: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); border-radius: var(--border-radius-x-large, 12px); box-shadow: 0px 1px 2px 0px var(--neutral-neutral-50-alpha, rgba(0, 0, 0, 0.29)), 0px 8px 12px 3px var(--neutral-neutral-30-alpha, rgba(0, 0, 0, 0.13)); max-block-size: calc(100dvh - 48px); overflow: hidden; } /* ========== Size: small (560px) ========== */ .popup.size-small { inline-size: 100%; max-inline-size: var(--dialog-size-small, 560px); } /* ========== Size: medium (800px) ========== */ .popup.size-medium { inline-size: 100%; max-inline-size: var(--dialog-size-medium, 800px); } /* ========== Size: large (1280px, Form Dialog) ========== */ .popup.size-large { inline-size: 100%; max-inline-size: var(--dialog-size-large, 1280px); } /* ========== Form Dialog: Desktop padding (Figma: 32px horizontal, header pt 24px, footer pb 24px) ========== */ .popup[data-variant=\"form\"] .header { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-start: var(--spacing-2x-large, 24px); } .popup[data-variant=\"form\"] .body { padding-inline: var(--dialog-form-padding-inline, 32px); } .popup[data-variant=\"form\"] .footer { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-end: var(--spacing-2x-large, 24px); } /* ========== Header ========== */ .header { flex-shrink: 0; padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-medium, 8px); padding-inline: var(--spacing-2x-large, 24px); border-block-end: 1px solid transparent; transition: border-block-end-color 0s ease; } .header:has(+ .body[data-scrolled-from-top=\"true\"]) { border-block-end-color: var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .title { margin: 0; font-family: var(--typography-font-family, Arial, sans-serif); font-weight: var(--typography-font-weight-regular, 400); font-size: var(--typography-font-size-font-scale-60, 18px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } /* ========== Body ========== */ .body { flex: 1 1 auto; min-block-size: 0; overflow: auto; padding-block: var(--spacing-x-large, 16px); padding-inline: var(--spacing-2x-large, 24px); font-family: var(--typography-font-family, Arial, sans-serif); font-size: var(--typography-font-size-font-scale-40, 14px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } .body[data-scrolled-from-bottom=\"true\"] + .footer { border-block-start-color: var(--border-regular-default, rgba(0, 0, 0, 0.1)); } /* ========== Footer ========== */ .footer { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-medium, 8px); padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-x-large, 16px); padding-inline-start: var(--spacing-x-large, 16px); padding-inline-end: var(--spacing-2x-large, 24px); border-block-start: 1px solid transparent; transition: border-block-start-color 0s ease; } /* ========== Action Dialog: Phone ========== */ @media (max-width: 720px) { .viewport[data-variant=\"action\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"action\"] { max-block-size: min(80dvh, 560px); } } /* ========== Form Dialog: Phone (fullscreen) ========== */ @media (max-width: 720px) { .viewport[data-variant=\"form\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"form\"] { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } .popup[data-variant=\"form\"] .header { align-items: center; padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .body { padding: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .footer { flex-direction: column; align-items: stretch; justify-content: center; gap: var(--spacing-medium, 8px); padding: var(--spacing-x-large, 16px); border-block-start: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .popup[data-variant=\"form\"] .footer mi-neutral-button, .popup[data-variant=\"form\"] .footer mi-danger-button { inline-size: 100%; } } /* ========== Information Dialog: Phone medium (fullscreen) ========== */ @media (max-width: 720px) { .viewport[data-variant=\"information\"][data-size=\"medium\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"information\"].size-medium { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } } /* ========== Information Dialog: Phone small (modal style, not fullscreen) ========== */ /* Figma: 560px modal, rounded, centered. Footer: flex-col, justify-center, items-end, p 16px. Body: 16px font. */ @media (max-width: 720px) { .viewport[data-variant=\"information\"][data-size=\"small\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"information\"].size-small { max-inline-size: var(--dialog-size-small, 560px); } .popup[data-variant=\"information\"].size-small .header { align-items: center; } .popup[data-variant=\"information\"].size-small .body { font-size: var(--typography-font-size-font-scale-50, 16px); } .popup[data-variant=\"information\"].size-small .footer { flex-direction: column; justify-content: center; align-items: flex-end; padding: var(--spacing-x-large, 16px); } } `, ]",
+          "description": "Dialog 共通スタイル\n\nFigma デザイントークン（Base Component Speeda）を参照。\nブレイクポイント: 720px\nReact版（dialog.module.css）に準拠。"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "dialogStyles",
+          "declaration": {
+            "name": "dialogStyles",
+            "module": "src/components/dialog/dialog.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiActionDialog",
+          "declaration": {
+            "name": "MiActionDialog",
+            "module": "./mi-action-dialog"
+          }
         },
         {
+          "kind": "js",
+          "name": "formDialogSizes",
+          "declaration": {
+            "name": "formDialogSizes",
+            "module": "./mi-form-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiFormDialog",
+          "declaration": {
+            "name": "MiFormDialog",
+            "module": "./mi-form-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FormDialogSize",
+          "declaration": {
+            "name": "FormDialogSize",
+            "module": "./mi-form-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "informationDialogSizes",
+          "declaration": {
+            "name": "informationDialogSizes",
+            "module": "./mi-information-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInformationDialog",
+          "declaration": {
+            "name": "MiInformationDialog",
+            "module": "./mi-information-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "InformationDialogSize",
+          "declaration": {
+            "name": "InformationDialogSize",
+            "module": "./mi-information-dialog"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/mi-action-dialog.ts",
+      "declarations": [
+        {
           "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
+          "description": "Action Dialog\n\n確認や削除など、ユーザーの意思決定を求めるダイアログ。\nDesktop: size=small、Phone: 横に余白を持ち、高さは広がらない。",
+          "name": "MiActionDialog",
+          "slots": [
+            {
+              "description": "ダイアログ本文のコンテンツ",
+              "name": ""
+            }
+          ],
           "members": [
+            {
+              "kind": "field",
+              "name": "dialogSize",
+              "type": {
+                "text": "DialogSize"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのサイズ",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "DialogVariant"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのバリアント（phone 時のスタイル用）",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
             {
               "kind": "field",
               "name": "styles",
               "static": true,
               "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
               }
             },
             {
               "kind": "field",
-              "name": "loading",
+              "name": "open",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
+              "description": "開閉状態",
               "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "headerText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cancelLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "キャンセル・閉じるボタンのラベル。省略時はキャンセルボタンを表示しない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "アクションボタンのラベル",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_dialogEl",
+              "type": {
+                "text": "HTMLDialogElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_bodyEl",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_resizeObserver",
+              "type": {
+                "text": "ResizeObserver | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "sizeClass",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_boundCheckScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_checkScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_handleOpenChange",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleClose",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleCancelClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleActionClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
               }
             },
             {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
               }
             }
-          ]
+          ],
+          "events": [
+            {
+              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "name": "open-change"
+            },
+            {
+              "description": "キャンセルボタンがクリックされたとき",
+              "name": "cancel"
+            },
+            {
+              "description": "アクションボタンがクリックされたとき",
+              "name": "action"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "開閉状態",
+              "name": "open"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "name": "header-text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "キャンセル・閉じるボタンのラベル（省略時は非表示）",
+              "name": "cancel-label"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "アクションボタンのラベル",
+              "name": "action-label"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用",
+              "name": "danger"
+            }
+          ],
+          "superclass": {
+            "name": "DialogBase",
+            "module": "/src/components/dialog/base"
+          },
+          "tagName": "mi-action-dialog",
+          "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "MiFloatingButton",
+          "name": "MiActionDialog",
           "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
+            "name": "MiActionDialog",
+            "module": "src/components/dialog/mi-action-dialog.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-action-dialog",
+          "declaration": {
+            "name": "MiActionDialog",
+            "module": "src/components/dialog/mi-action-dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/mi-form-dialog.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "formDialogSizes",
+          "type": {
+            "text": "[\"small\", \"medium\", \"large\"]"
+          },
+          "default": "[\"small\", \"medium\", \"large\"]"
+        },
+        {
+          "kind": "class",
+          "description": "Form Dialog\n\nフォーム入力を行うダイアログ。\nDesktop: size=small(560px) / medium(800px) / large(1280px)。\nPhone: 横余白なし・画面端まで、高さも広がる（フルスクリーン）。",
+          "name": "MiFormDialog",
+          "slots": [
+            {
+              "description": "ダイアログ本文のコンテンツ（フォーム等）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "FormDialogSize"
+              },
+              "default": "\"medium\"",
+              "description": "ダイアログのサイズ（Desktop 時）"
+            },
+            {
+              "kind": "field",
+              "name": "dialogSize",
+              "type": {
+                "text": "DialogSize"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのサイズ",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "DialogVariant"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのバリアント（phone 時のスタイル用）",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "開閉状態",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "headerText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cancelLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "キャンセル・閉じるボタンのラベル。省略時はキャンセルボタンを表示しない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "アクションボタンのラベル",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_dialogEl",
+              "type": {
+                "text": "HTMLDialogElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_bodyEl",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_resizeObserver",
+              "type": {
+                "text": "ResizeObserver | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "sizeClass",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_boundCheckScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_checkScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_handleOpenChange",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleClose",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleCancelClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleActionClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "name": "open-change"
+            },
+            {
+              "description": "キャンセルボタンがクリックされたとき",
+              "name": "cancel"
+            },
+            {
+              "description": "アクションボタンがクリックされたとき",
+              "name": "action"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "開閉状態",
+              "name": "open"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ダイアログのサイズ（small | medium | large）",
+              "name": "size"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "name": "header-text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "キャンセル・閉じるボタンのラベル（省略時は非表示）",
+              "name": "cancel-label"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "アクションボタンのラベル",
+              "name": "action-label"
+            }
+          ],
+          "superclass": {
+            "name": "DialogBase",
+            "module": "/src/components/dialog/base"
+          },
+          "tagName": "mi-form-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "formDialogSizes",
+          "declaration": {
+            "name": "formDialogSizes",
+            "module": "src/components/dialog/mi-form-dialog.ts"
           }
         },
         {
           "kind": "js",
-          "name": "SpFloatingButton",
+          "name": "MiFormDialog",
           "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
+            "name": "MiFormDialog",
+            "module": "src/components/dialog/mi-form-dialog.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "mi-floating-button",
+          "name": "mi-form-dialog",
           "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
+            "name": "MiFormDialog",
+            "module": "src/components/dialog/mi-form-dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/mi-information-dialog.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "informationDialogSizes",
+          "type": {
+            "text": "[\"small\", \"medium\"]"
+          },
+          "default": "[\"small\", \"medium\"]"
+        },
+        {
+          "kind": "class",
+          "description": "Information Dialog\n\n利用規約など、重要な情報を表示するダイアログ。\nDesktop: size=small / medium。Phone: small は横余白ありのモーダル、medium はフルスクリーン。",
+          "name": "MiInformationDialog",
+          "slots": [
+            {
+              "description": "ダイアログ本文のコンテンツ",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "InformationDialogSize"
+              },
+              "default": "\"medium\"",
+              "description": "ダイアログのサイズ（Desktop 時）"
+            },
+            {
+              "kind": "field",
+              "name": "dialogSize",
+              "type": {
+                "text": "DialogSize"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのサイズ",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "DialogVariant"
+              },
+              "privacy": "protected",
+              "description": "継承クラスでオーバーライド: ダイアログのバリアント（phone 時のスタイル用）",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "開閉状態",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "headerText",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cancelLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "キャンセル・閉じるボタンのラベル。省略時はキャンセルボタンを表示しない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionLabel",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "アクションボタンのラベル",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "danger",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_dialogEl",
+              "type": {
+                "text": "HTMLDialogElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_bodyEl",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromTop",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_isScrolledFromBottom",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_resizeObserver",
+              "type": {
+                "text": "ResizeObserver | undefined"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "sizeClass",
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_boundCheckScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<PropertyKey, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_checkScroll",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_handleOpenChange",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleClose",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleCancelClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_handleActionClick",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "name": "open-change"
+            },
+            {
+              "description": "閉じるボタンがクリックされたとき",
+              "name": "action"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "開閉状態",
+              "name": "open"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ダイアログのサイズ（small | medium）",
+              "name": "size"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "ヘッダーに表示するタイトルテキスト",
+              "name": "header-text"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "閉じるボタンのラベル",
+              "name": "action-label"
+            }
+          ],
+          "superclass": {
+            "name": "DialogBase",
+            "module": "/src/components/dialog/base"
+          },
+          "tagName": "mi-information-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "informationDialogSizes",
+          "declaration": {
+            "name": "informationDialogSizes",
+            "module": "src/components/dialog/mi-information-dialog.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInformationDialog",
+          "declaration": {
+            "name": "MiInformationDialog",
+            "module": "src/components/dialog/mi-information-dialog.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-floating-button",
+          "name": "mi-information-dialog",
           "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
+            "name": "MiInformationDialog",
+            "module": "src/components/dialog/mi-information-dialog.ts"
           }
         }
       ]
@@ -4547,6 +5839,133 @@
           "declaration": {
             "name": "SpIcon",
             "module": "src/components/icon/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
           }
         }
       ]
@@ -5542,6 +6961,11 @@
               "name": "formResetCallback"
             },
             {
+              "kind": "field",
+              "name": "#handleInputChange",
+              "privacy": "private"
+            },
+            {
               "kind": "method",
               "name": "render"
             }
@@ -5687,6 +7111,15 @@
             {
               "kind": "method",
               "name": "formResetCallback",
+              "inheritedFrom": {
+                "name": "MiRadioButtonText",
+                "module": "src/components/radio-button/mi-radio-button-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#handleInputChange",
+              "privacy": "private",
               "inheritedFrom": {
                 "name": "MiRadioButtonText",
                 "module": "src/components/radio-button/mi-radio-button-text.ts"
@@ -5975,122 +7408,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -6753,6 +8070,122 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "superclass": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          },
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
+          "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiControlMenu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-control-menu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },

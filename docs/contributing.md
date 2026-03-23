@@ -72,6 +72,7 @@ npm run lint
 npm run format:prettier:check
 npm run typecheck
 npm run test
+npm run build
 ```
 
 ## コミットルール
@@ -109,5 +110,6 @@ fix(Tooltip): ホバー時の表示位置ずれを修正
 
 ## CI / リリース
 
-- `dist/` のコミットはGitHub Actionで自動実行される（手動コミット不要）
+- **`dist/` はソース変更と合わせてコミットする**（`npm run build` 後に `dist/` をステージング・コミットする。PRでビルド結果を確認できるようにする）
+- main への push 時、GitHub Action が不足分があれば `dist/` を更新してコミットする（バックアップ運用）
 - リリースは `npm run release:patch` / `npm run release:minor` / `npm run release:major`

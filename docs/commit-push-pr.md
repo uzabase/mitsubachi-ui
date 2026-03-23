@@ -12,19 +12,20 @@
 
 ### 2. PR前の確認
 
-PR作成前に以下を実行し、エラーがないことを確認する。
+PR作成前に以下を実行し、エラーがないことを確認する（`npm run build` で `dist/` を生成する）。
 
 ```bash
 npm run lint
 npm run format:prettier:check
 npm run typecheck
 npm run test
+npm run build
 ```
 
 ### 3. コミット
 
 - `docs/contributing.md` のコミットルールに従ってコミットメッセージを作成する
-- 変更ファイルをステージングし、コミットを実行する
+- 変更ファイルと **`dist/`**（PR前の確認でビルド済み）をステージングし、コミットを実行する
 
 #### コミットメッセージフォーマット
 
@@ -100,5 +101,5 @@ git push -u origin <ブランチ名>
 
 ## 補足
 
-- `dist/` のコミットは GitHub Action で自動実行されるため、手動でコミットしない
+- **`dist/` はソース変更と合わせてコミットする**（`npm run build` 実行後、`dist/` をステージングに含める）
 - `docs/review-checklist.md` を参照し、PR前にセルフレビューを行うと良い

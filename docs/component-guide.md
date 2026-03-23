@@ -27,3 +27,4 @@ tests/<kebab-case>/
 
 - 新コンポーネントは `src/index.ts` にエクスポートを追加する
 - 実装規約は [review-checklist.md](./review-checklist.md) を参照
+- コミット時は [commit-push-pr.md](./commit-push-pr.md) に従い、`npm run build` 実行後に `dist/` を含める

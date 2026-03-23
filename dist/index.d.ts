@@ -4,6 +4,7 @@ export { MiDangerButton } from './components/button/mi-danger-button';
 export { iconButtonSizes, iconButtonVariants, MiIconButton, } from './components/button/mi-icon-button';
 export { MiButton, MiNeutralButton, SpButton, } from './components/button/mi-neutral-button';
 export { MiCheckbox, SpCheckbox } from './components/checkbox/mi-checkbox';
+export { MiActionDialog, formDialogSizes, MiFormDialog, MiInformationDialog, informationDialogSizes, type FormDialogSize, type InformationDialogSize, } from './components/dialog';
 export { MiCheckboxText, SpCheckboxText, } from './components/checkbox/mi-checkbox-text';
 export { MiFloatingButton, SpFloatingButton, } from './components/floating-button/mi-floating-button';
 export { MiIcon, SpIcon } from './components/icon';
