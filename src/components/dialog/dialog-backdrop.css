@@ -3,5 +3,5 @@
  * .ts 内で ::backdrop を記述するとビルドエラーになるため分離
  */
 .dialog-root::backdrop {
-  background: var(--neutral-neutral-50-alpha, rgba(0, 0, 0, 0.29));
+  background: var(--neutral-neutral-50-alpha, rgb(0 0 0 / 29%));
 }
