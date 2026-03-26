@@ -15,6 +15,9 @@ export { MiLogo, SpLogo } from './components/logo';
 export { MiControlMenu, SpControlMenu } from './components/menu/control-menu';
 export { MiControlMenuItem, SpControlMenuItem, } from './components/menu/control-menu-item';
 export { MiRadioButtonText, SpRadioButtonText, } from './components/radio-button/mi-radio-button-text';
+export type { SnackbarSize } from './components/snackbar/mi-snackbar';
+export { MiSnackbar, snackbarSizes } from './components/snackbar/mi-snackbar';
+export { MiSnackbarViewport } from './components/snackbar/mi-snackbar-viewport';
 export { MiTextFieldUnit, SpTextFieldUnit, } from './components/text-field/text-field-unit';
 export { MiTooltip } from './components/tooltip/mi-tooltip';
 //# sourceMappingURL=index.d.ts.map

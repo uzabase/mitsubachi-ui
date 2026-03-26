@@ -1,11 +1,25 @@
 import "../../src/components/snackbar/mi-snackbar";
 
-import { afterEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import type { MiSnackbar } from "../../src/components/snackbar/mi-snackbar";
 
 function getSnackbar() {
   return document.querySelector("mi-snackbar") as MiSnackbar;
+}
+
+/** 次の `close` を待つ（固定 sleep より速く、未発火時はテストのタイムアウトで失敗する） */
+function nextCloseEvent(target: EventTarget): Promise<Event> {
+  return new Promise((resolve) => {
+    target.addEventListener("close", resolve as EventListener, { once: true });
+  });
+}
+
+function clickSnackbarClose(snackbar: MiSnackbar) {
+  snackbar
+    .shadowRoot!.querySelector("mi-icon-button")!
+    .shadowRoot!.querySelector("button")!
+    .click();
 }
 
 async function flush() {
@@ -100,47 +114,18 @@ describe("mi-snackbar", () => {
   });
 
   describe("close イベント", () => {
-    test("閉じるボタンで発火し、退出アニメーション後に届く", async () => {
+    test("閉じるボタンで発火し、bubbles と composed が true", async () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">メッセージ</mi-snackbar>`;
       await flush();
 
-      let fired = false;
-      getSnackbar().addEventListener("close", () => {
-        fired = true;
-      });
+      const el = getSnackbar();
+      const closePromise = nextCloseEvent(el);
+      clickSnackbarClose(el);
+      const e = await closePromise;
 
-      getSnackbar()
-        .shadowRoot!.querySelector("mi-icon-button")!
-        .shadowRoot!.querySelector("button")!
-        .click();
-
-      await new Promise((r) => setTimeout(r, 500));
-      expect(fired).toBe(true);
-    });
-
-    test("bubbles と composed が true", async () => {
-      document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
-      await flush();
-
-      let bubbles: boolean | undefined;
-      let composed: boolean | undefined;
-      getSnackbar().addEventListener(
-        "close",
-        (e) => {
-          bubbles = e.bubbles;
-          composed = e.composed;
-        },
-        { once: true },
-      );
-
-      getSnackbar()
-        .shadowRoot!.querySelector("mi-icon-button")!
-        .shadowRoot!.querySelector("button")!
-        .click();
-
-      await new Promise((r) => setTimeout(r, 500));
-      expect(bubbles).toBe(true);
-      expect(composed).toBe(true);
+      expect(e.type).toBe("close");
+      expect(e.bubbles).toBe(true);
+      expect(e.composed).toBe(true);
     });
 
     test("手動で閉じた場合は close が1回だけ", async () => {
@@ -152,13 +137,61 @@ describe("mi-snackbar", () => {
         count += 1;
       });
 
-      getSnackbar()
-        .shadowRoot!.querySelector("mi-icon-button")!
-        .shadowRoot!.querySelector("button")!
-        .click();
-
-      await new Promise((r) => setTimeout(r, 500));
+      clickSnackbarClose(getSnackbar());
+      await nextCloseEvent(getSnackbar());
       expect(count).toBe(1);
+    });
+
+    test("dismiss() で close が1回発火し、退出中は2回目は false", async () => {
+      document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
+      await flush();
+
+      const el = getSnackbar();
+      const closePromise = nextCloseEvent(el);
+      expect(el.dismiss()).toBe(true);
+      await closePromise;
+      expect(el.dismiss()).toBe(false);
+    });
+
+    describe("prefers-reduced-motion: reduce", () => {
+      beforeEach(() => {
+        vi.spyOn(window, "matchMedia").mockImplementation((query: string) => {
+          const list: Partial<MediaQueryList> & { matches: boolean } = {
+            matches: query === "(prefers-reduced-motion: reduce)",
+            media: query,
+            addEventListener: vi.fn(),
+            removeEventListener: vi.fn(),
+            dispatchEvent: vi.fn(),
+            addListener: vi.fn(),
+            removeListener: vi.fn(),
+            onchange: null,
+          };
+          return list as MediaQueryList;
+        });
+      });
+
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
+
+      test("閉じるボタン連打でも close は1回だけ", async () => {
+        document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
+        await flush();
+
+        let count = 0;
+        getSnackbar().addEventListener("close", () => {
+          count += 1;
+        });
+
+        const btn = getSnackbar()
+          .shadowRoot!.querySelector("mi-icon-button")!
+          .shadowRoot!.querySelector("button")!;
+        btn.click();
+        btn.click();
+
+        await Promise.resolve();
+        expect(count).toBe(1);
+      });
     });
   });
 
@@ -167,13 +200,10 @@ describe("mi-snackbar", () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="100">メッセージ</mi-snackbar>`;
       await flush();
 
-      let fired = false;
-      getSnackbar().addEventListener("close", () => {
-        fired = true;
+      const el = getSnackbar();
+      await expect(nextCloseEvent(el)).resolves.toMatchObject({
+        type: "close",
       });
-
-      await new Promise((r) => setTimeout(r, 600));
-      expect(fired).toBe(true);
     });
 
     test("0 のときは時間経過だけでは close しない", async () => {
@@ -185,7 +215,7 @@ describe("mi-snackbar", () => {
         fired = true;
       });
 
-      await new Promise((r) => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 100));
       expect(fired).toBe(false);
     });
 
@@ -193,16 +223,12 @@ describe("mi-snackbar", () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="5000">m</mi-snackbar>`;
       await flush();
 
-      let count = 0;
-      getSnackbar().addEventListener("close", () => {
-        count += 1;
-      });
+      const el = getSnackbar();
+      const closePromise = nextCloseEvent(el);
+      el.setAttribute("auto-hide-timeout", "150");
+      await el.updateComplete;
 
-      getSnackbar().setAttribute("auto-hide-timeout", "150");
-      await getSnackbar().updateComplete;
-
-      await new Promise((r) => setTimeout(r, 600));
-      expect(count).toBe(1);
+      await expect(closePromise).resolves.toMatchObject({ type: "close" });
     });
   });
 });

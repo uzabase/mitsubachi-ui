@@ -1,59 +1,58 @@
 import "../../src/components/snackbar/mi-snackbar";
+import "../../src/components/snackbar/mi-snackbar-viewport";
 
-import type { PropertyValues } from "@lit/reactive-element";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { css, html, LitElement, nothing, render } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
+import { action } from "storybook/actions";
 
 import {
+  MiSnackbar,
   type SnackbarSize,
   snackbarSizes,
 } from "../../src/components/snackbar/mi-snackbar";
 
-/** React 版 snackbar.module.css の .viewport と同一（表示領域は Portal = document.body 直下） */
-const SNACKBAR_STORY_VIEWPORT_STYLE_ID =
-  "mitsubachi-snackbar-story-viewport-style";
+/** Storybook 用: 全トリガーで共有する `mi-snackbar-viewport`（複数件は縦にずれて表示） */
+const SHARED_SNACKBAR_VIEWPORT_ID = "mitsubachi-snackbar-story-shared-viewport";
 
-function ensureSnackbarStoryViewportStyles() {
-  if (typeof document === "undefined") return;
-  if (document.getElementById(SNACKBAR_STORY_VIEWPORT_STYLE_ID)) return;
+/** 画面上に同時に出す Snackbar の上限（超えた分は古いものから DOM から外す） */
+const MAX_STORY_SNACKBARS = 5;
 
-  const el = document.createElement("style");
-  el.id = SNACKBAR_STORY_VIEWPORT_STYLE_ID;
-  el.textContent = `
-    .snackbar-story-viewport {
-      position: fixed;
-      z-index: 2147483647;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-small, 4px);
-      inset-block-start: var(--spacing-large, 12px);
-      inset-block-end: auto;
-      inset-inline-start: auto;
-      inset-inline-end: var(--spacing-large, 12px);
-    }
-    @media (max-width: 720px) {
-      .snackbar-story-viewport {
-        inset-block-start: auto;
-        inset-inline-end: auto;
-        inset-block-end: var(--spacing-large, 12px);
-        inset-inline-start: 50%;
-        transform: translateX(-50%);
-      }
-    }
-  `;
-  document.head.appendChild(el);
+/** 追加順（古いほど先頭）。全 `snackbar-story-trigger` で共有 */
+const storySnackbarMountOrder: HTMLElement[] = [];
+
+const storySnackMountToTrigger = new WeakMap<
+  HTMLElement,
+  SnackbarStoryTrigger
+>();
+
+/** Storybook Actions パネル用（`mi-snackbar` の `close`） */
+const logSnackbarClose = action("close");
+
+function getOrCreateSharedSnackbarStoryViewport(): HTMLElement {
+  if (typeof document === "undefined") {
+    throw new Error("document is not available");
+  }
+  let el = document.getElementById(SHARED_SNACKBAR_VIEWPORT_ID);
+  if (!el) {
+    el = document.createElement("mi-snackbar-viewport");
+    el.id = SHARED_SNACKBAR_VIEWPORT_ID;
+    document.body.appendChild(el);
+  }
+  return el;
 }
 
 /** ストーリー用の args 型（React 版 Snackbar.stories.tsx に準拠） */
 interface SnackbarStoryArgs {
   size: SnackbarSize;
-  text: string;
+  /** `mi-snackbar` の既定スロットに投影する文言（Controls 用。`text` 属性ではない） */
+  message: string;
 }
 
 /**
  * Snackbar を発火させるストーリー用トリガー（React 版 SnackbarTrigger に相当）。
- * Viewport は React の Toast.Portal と同様に document.body にマウントし、
+ * 共有の `mi-snackbar-viewport` へポータルし、クリックのたびに 1 件追加（連打で縦に積む）。
+ * 同時表示は最大 5 件で、それを超えた分は古いものから取り除く。
  * Storybook ラッパーの transform 等に引っ張られないよう fixed の基準をビューポートに揃える。
  */
 class SnackbarStoryTrigger extends LitElement {
@@ -76,68 +75,83 @@ class SnackbarStoryTrigger extends LitElement {
   size: SnackbarSize = "small";
 
   @property({ type: String })
-  text = "Message";
+  message = "Message";
 
-  @state()
-  private open = false;
+  /** 共有 viewport 内の Lit マウント点（クリックのたびに 1 つ追加） */
+  private readonly snackbarMounts: HTMLElement[] = [];
 
-  private portalHost: HTMLElement | null = null;
+  /** マウントを DOM から外し、グローバル順・WeakMap・該当トリガーの配列を同期する */
+  private static removeMountForAny(mount: HTMLElement) {
+    const run = () => {
+      const oi = storySnackbarMountOrder.indexOf(mount);
+      if (oi >= 0) storySnackbarMountOrder.splice(oi, 1);
+      const owner = storySnackMountToTrigger.get(mount);
+      storySnackMountToTrigger.delete(mount);
+      if (owner) {
+        const idx = owner.snackbarMounts.indexOf(mount);
+        if (idx >= 0) owner.snackbarMounts.splice(idx, 1);
+      }
+      render(nothing, mount);
+      mount.remove();
+    };
+    const doc = mount.ownerDocument as Document & {
+      startViewTransition?: (cb: () => void) => { finished: Promise<void> };
+    };
+    if (typeof doc.startViewTransition === "function") {
+      doc.startViewTransition(run);
+    } else {
+      run();
+    }
+  }
 
-  private readonly handleClose = () => {
-    this.open = false;
-  };
-
-  connectedCallback() {
-    super.connectedCallback();
-    ensureSnackbarStoryViewportStyles();
+  private removeMount(mount: HTMLElement) {
+    SnackbarStoryTrigger.removeMountForAny(mount);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.teardownPortal();
+    for (const mount of [...this.snackbarMounts]) {
+      this.removeMount(mount);
+    }
   }
 
-  protected updated(changed: PropertyValues<this>) {
-    super.updated(changed);
-    this.syncPortal();
-  }
-
-  private teardownPortal() {
-    if (!this.portalHost) return;
-    render(nothing, this.portalHost);
-    this.portalHost.remove();
-    this.portalHost = null;
-  }
-
-  private syncPortal() {
-    if (this.open) {
-      if (!this.portalHost) {
-        this.portalHost = document.createElement("div");
-        this.portalHost.className = "snackbar-story-viewport";
-        document.body.appendChild(this.portalHost);
+  private showSnackbar() {
+    const viewport = getOrCreateSharedSnackbarStoryViewport();
+    const mount = document.createElement("div");
+    mount.className = "snackbar-mount";
+    viewport.appendChild(mount);
+    storySnackbarMountOrder.push(mount);
+    storySnackMountToTrigger.set(mount, this);
+    this.snackbarMounts.push(mount);
+    render(
+      html`
+        <mi-snackbar
+          size=${this.size}
+          @close=${(e: Event) => {
+            logSnackbarClose(e);
+            this.removeMount(mount);
+          }}
+        >
+          ${this.message}
+        </mi-snackbar>
+      `,
+      mount,
+    );
+    while (storySnackbarMountOrder.length > MAX_STORY_SNACKBARS) {
+      const oldest = storySnackbarMountOrder[0];
+      const snack = oldest.querySelector("mi-snackbar") as MiSnackbar | null;
+      if (!snack) {
+        SnackbarStoryTrigger.removeMountForAny(oldest);
+        continue;
       }
-      render(
-        html`
-          <mi-snackbar size=${this.size} @close=${this.handleClose}>
-            ${this.text}
-          </mi-snackbar>
-        `,
-        this.portalHost,
-      );
-    } else {
-      this.teardownPortal();
+      if (!snack.dismiss()) break;
+      break;
     }
   }
 
   render() {
     return html`
-      <button
-        type="button"
-        class="trigger"
-        @click=${() => {
-          this.open = true;
-        }}
-      >
+      <button type="button" class="trigger" @click=${() => this.showSnackbar()}>
         Snackbarを表示
       </button>
     `;
@@ -155,29 +169,26 @@ function snackbarStorySlug(storyId: string) {
 }
 
 function escapeHtmlForSnippet(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 /** Show code / Code panel 用の `<mi-snackbar>` 利用例（args を反映） */
 function miSnackbarSnippetFromArgs(args: SnackbarStoryArgs): string {
   const size = args.size ?? "small";
-  const text = escapeHtmlForSnippet(args.text ?? "");
-  return `<mi-snackbar size="${size}">${text}</mi-snackbar>`;
+  const slotBody = escapeHtmlForSnippet(args.message ?? "");
+  return `<mi-snackbar size="${size}">${slotBody}</mi-snackbar>`;
 }
 
 function snackbarArgsFromContext(context: unknown): SnackbarStoryArgs {
   const args = (context as { args?: Partial<SnackbarStoryArgs> }).args;
-  if (!args) return { size: "small", text: "Message" };
+  if (!args) return { size: "small", message: "Message" };
   const size =
     typeof args.size === "string" &&
     (snackbarSizes as readonly string[]).includes(args.size)
       ? (args.size as SnackbarSize)
       : "small";
-  const text = typeof args.text === "string" ? args.text : "Message";
-  return { size, text };
+  const message = typeof args.message === "string" ? args.message : "Message";
+  return { size, message };
 }
 
 /** AllPatterns ストーリー専用（複数パターンを Show code に並べる） */
@@ -222,20 +233,22 @@ const meta: Meta<SnackbarStoryArgs> = {
           "Snackbar は、ユーザー操作に対する短いフィードバックを、既存 UI の上に重ねて表示する軽量な Overlay 通知コンポーネントです。\n\n" +
           "ユーザーの視線に入りやすい位置に、短時間だけ情報を提示し、操作フローを中断させずに状態を共有することを目的としています。\n\n" +
           "### 使い方のルール\n\n" +
+          "- **メッセージの渡し方** — `mi-snackbar` に **`text` 属性はありません**。本文は **既定スロット**（タグの子要素／スロット）に記述してください。\n" +
+          "- **イベント** — **`close`** が閉じる操作・自動非表示・表示上限による取下げのあとに発火します（`bubbles` / `composed`）。Canvas 下部の **Actions** タブでログを確認できます。\n" +
           "- **成功フィードバック専用** — Snackbar は成功時のみ使用します\n" +
           "- **重要な情報には使わない** — 短時間で自動消去されるため、見逃してほしくない情報のお知らせには適しません\n" +
           "- **失敗・警告・エラー** — `mi-inline-notification` 等の別コンポーネントを使用してください\n\n" +
           "### 本番での表示位置について\n\n" +
-          "`mi-snackbar` 自体は **画面の右上に固定するスタイルを内包していません**（配置はマウント先のレイアウトに従います）。デザインどおり **デスクトップでは右上・狭い画面では下中央** に重ね表示したい場合は、本ストーリーと同様に **`document.body` 直下など、ビューポート基準で `position: fixed` できるコンテナへポータルする**／**専用の viewport ラッパーで包む**ことを推奨します。祖先要素の `transform` などによっては `fixed` の基準がずれ、意図しない位置に見えることがあります。\n\n" +
+          "`mi-snackbar` 自体は **画面の右上に固定するスタイルを内包していません**（配置はマウント先のレイアウトに従います）。デザインどおり **デスクトップでは右上・狭い画面では下中央** に重ね表示したい場合は、**`mi-snackbar-viewport` を 1 つ置き、その子としてポータルする**のが簡単です（複数同時表示は **縦方向に `gap` でずれて** 並びます）。自前のコンテナを使う場合は、本ストーリーと同様に **`document.body` 直下など、ビューポート基準で `position: fixed` できる要素**にしてください。祖先要素の `transform` などによっては `fixed` の基準がずれ、意図しない位置に見えることがあります。\n\n" +
           "<details>\n<summary><strong>なぜ viewport ラッパーを `mi-snackbar` に組み込まないか</strong></summary>\n\n" +
           "- **責務の分離** — 通知の見た目・閉じる挙動・アニメに責務を絞り、**画面端への固定やポータル先**はアプリのレイアウトやフレームワークに合わせて載せ替えやすいようにしています。\n" +
           "- **利用側の差** — SSR・複数同時表示・既存の Toast 基盤・z-index の都合などで最適なマウント方法が異なり、**単一のポータル方針をライブラリに押し付けにくい**ためです。\n" +
           "- **既存設計との整合** — React 版でも Snackbar 本体と viewport／Provider 側を分ける想定に揃えています。\n" +
-          "- **拡張** — チーム方針で「常に同じ位置に出したい」が明確になった場合は、**viewport 用の別カスタム要素**や **オプション**で後から足す余地があります。\n\n" +
+          "- **拡張** — 複数件を同じ位置に縦にずらして出すには **`mi-snackbar-viewport`** を利用できます（`mi-snackbar` 本体には組み込まず、必要に応じてアプリ側で組み合わせます）。\n\n" +
           "</details>\n\n" +
           "<details>\n<summary><strong>Show code（コード表示）とキャンバス・プレビューの違い</strong></summary>\n\n" +
-          "- **Show code**（Canvas / Docs）には `<mi-snackbar>` の利用例の HTML が表示されます。Controls の `size` / `text` も反映されます（実装時にそのまま参考にできます）。\n" +
-          "- **キャンバス上のプレビュー**は `<snackbar-story-trigger>` がクリック後に `<mi-snackbar>` を `document.body` へポータルするデモです。Storybook のラッパー由来で `position: fixed` の見え方が崩れないようにするためのものです。\n" +
+          "- **Show code**（Canvas / Docs）には `<mi-snackbar>` の利用例の HTML が表示されます。Controls の `size` と **メッセージ（既定スロットの内容）** も反映されます（`text` 属性ではありません）。\n" +
+          "- **キャンバス上のプレビュー**は `<snackbar-story-trigger>` がクリック後に `<mi-snackbar>` を **共有の** `<mi-snackbar-viewport>` へポータルするデモです（複数トリガーで開くと縦に積みます）。Storybook のラッパー由来で `position: fixed` の見え方が崩れないようにするためのものです。\n" +
           "- 属性・slot・イベントの詳細は `mi-snackbar` の JSDoc（ソースの `mi-snackbar.ts`）を参照してください。\n\n" +
           "</details>",
       },
@@ -253,14 +266,15 @@ const meta: Meta<SnackbarStoryArgs> = {
       options: [...snackbarSizes],
       description: "Snackbarのサイズ",
     },
-    text: {
+    message: {
       control: { type: "text" },
-      description: "表示するメッセージ",
+      description:
+        "メッセージ本文（`mi-snackbar` の既定スロットに入る文字列。`text` 属性はコンポーネントに存在しません）",
     },
   },
   args: {
     size: "small",
-    text: "Message",
+    message: "Message",
   },
 };
 
@@ -272,12 +286,12 @@ type Story = StoryObj<SnackbarStoryArgs>;
 export const Small: Story = {
   args: {
     size: "small",
-    text: "Message",
+    message: "Message",
   },
   render: (args) => html`
     <snackbar-story-trigger
       size=${args.size}
-      text=${args.text}
+      message=${args.message}
     ></snackbar-story-trigger>
   `,
 };
@@ -286,12 +300,12 @@ export const Small: Story = {
 export const Medium: Story = {
   args: {
     size: "medium",
-    text: "Message",
+    message: "Message",
   },
   render: (args) => html`
     <snackbar-story-trigger
       size=${args.size}
-      text=${args.text}
+      message=${args.message}
     ></snackbar-story-trigger>
   `,
 };
@@ -300,12 +314,13 @@ export const Medium: Story = {
 export const SmallLongText: Story = {
   args: {
     size: "small",
-    text: "アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。",
+    message:
+      "アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。",
   },
   render: (args) => html`
     <snackbar-story-trigger
       size=${args.size}
-      text=${args.text}
+      message=${args.message}
     ></snackbar-story-trigger>
   `,
 };
@@ -314,12 +329,13 @@ export const SmallLongText: Story = {
 export const MediumLongText: Story = {
   args: {
     size: "medium",
-    text: "アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。",
+    message:
+      "アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。",
   },
   render: (args) => html`
     <snackbar-story-trigger
       size=${args.size}
-      text=${args.text}
+      message=${args.message}
     ></snackbar-story-trigger>
   `,
 };
@@ -331,7 +347,7 @@ export const MediumLongText: Story = {
 export const DesktopPosition: Story = {
   args: {
     size: "small",
-    text: "保存しました",
+    message: "保存しました",
   },
   parameters: {
     layout: "fullscreen",
@@ -351,7 +367,7 @@ export const DesktopPosition: Story = {
       </div>
       <snackbar-story-trigger
         size=${args.size}
-        text=${args.text}
+        message=${args.message}
       ></snackbar-story-trigger>
     </div>
   `,
@@ -364,7 +380,7 @@ export const DesktopPosition: Story = {
 export const MobilePosition: Story = {
   args: {
     size: "small",
-    text: "保存しました",
+    message: "保存しました",
   },
   parameters: {
     layout: "fullscreen",
@@ -384,7 +400,7 @@ export const MobilePosition: Story = {
       </div>
       <snackbar-story-trigger
         size=${args.size}
-        text=${args.text}
+        message=${args.message}
       ></snackbar-story-trigger>
     </div>
   `,
@@ -397,7 +413,7 @@ export const MobilePosition: Story = {
 export const AllPatterns: Story = {
   args: {
     size: "small",
-    text: "Message",
+    message: "Message",
   },
   parameters: {
     docs: {
@@ -417,7 +433,7 @@ export const AllPatterns: Story = {
         </h3>
         <snackbar-story-trigger
           size="small"
-          text=${args.text}
+          message=${args.message}
         ></snackbar-story-trigger>
       </div>
 
@@ -427,7 +443,7 @@ export const AllPatterns: Story = {
         </h3>
         <snackbar-story-trigger
           size="small"
-          text="アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。"
+          message="アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。"
         ></snackbar-story-trigger>
       </div>
 
@@ -437,7 +453,7 @@ export const AllPatterns: Story = {
         </h3>
         <snackbar-story-trigger
           size="medium"
-          text=${args.text}
+          message=${args.message}
         ></snackbar-story-trigger>
       </div>
 
@@ -447,7 +463,7 @@ export const AllPatterns: Story = {
         </h3>
         <snackbar-story-trigger
           size="medium"
-          text="アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。"
+          message="アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。"
         ></snackbar-story-trigger>
       </div>
     </div>

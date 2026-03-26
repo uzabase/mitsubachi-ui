@@ -32,8 +32,10 @@ export default css`
     font-weight: 400;
 
     transition:
-      opacity var(--snackbar-transition-duration, 200ms) ease-out,
-      transform var(--snackbar-transition-duration, 200ms) ease-out;
+      opacity var(--snackbar-transition-duration, 200ms)
+        cubic-bezier(0.4, 0, 0.2, 1),
+      transform var(--snackbar-transition-duration, 200ms)
+        cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* デスクトップ: 右からスライドイン／アウト（React 版 data-starting-style / data-ending-style に相当） */

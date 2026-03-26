@@ -24,7 +24,7 @@ function toSnackbarSize(value: unknown): SnackbarSize {
  *
  * @summary 成功フィードバック用の Snackbar
  *
- * @slot - メッセージ本文
+ * @slot - メッセージ本文（`text` のような属性ではなく、子要素／スロットで渡します）
  *
  * @fires close - 閉じる操作・自動非表示のいずれかの後、退出アニメーション完了時（またはアニメなし時）。`bubbles` と `composed` が true。
  *
@@ -32,6 +32,8 @@ function toSnackbarSize(value: unknown): SnackbarSize {
  * @cssprop --text-regular-default - テキスト色
  * @cssprop --snackbar-z-index - 重なり順（デフォルトは React 版 viewport と同程度の大きい値）
  * @cssprop --snackbar-transition-duration - 入退出アニメーションの時間（デフォルト 200ms）
+ *
+ * 複数件を同じ位置に縦に積む場合は `mi-snackbar-viewport` の子としてマウントしてください。
  *
  * @example
  * ```html
@@ -68,6 +70,9 @@ export class MiSnackbar extends LitElement {
   private exiting = false;
 
   private exitCloseDispatched = false;
+
+  /** 退出時に opacity / transform の transitionend を両方待つ（片方だけだとカクつきやすい） */
+  private readonly exitTransitionSeen = new Set<string>();
 
   private exitFallbackTimer: number | undefined;
 
@@ -153,9 +158,13 @@ export class MiSnackbar extends LitElement {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
+      // 退出アニメなしでも「閉じた」状態にして二重の close を防ぐ
+      this.exiting = true;
+      this.exitCloseDispatched = true;
       this.dispatchClose();
       return;
     }
+    this.exitTransitionSeen.clear();
     this.entering = false;
     this.exiting = true;
     this.exitCloseDispatched = false;
@@ -172,7 +181,10 @@ export class MiSnackbar extends LitElement {
     if (!this.exiting || this.exitCloseDispatched) return;
     const root = this.shadowRoot?.querySelector(".root");
     if (!root || e.target !== root) return;
-    if (e.propertyName !== "opacity") return;
+    if (e.propertyName !== "opacity" && e.propertyName !== "transform") return;
+    this.exitTransitionSeen.add(e.propertyName);
+    if (this.exitTransitionSeen.size < 2) return;
+    this.exitTransitionSeen.clear();
     this.exitCloseDispatched = true;
     if (this.exitFallbackTimer !== undefined) {
       clearTimeout(this.exitFallbackTimer);
@@ -183,6 +195,16 @@ export class MiSnackbar extends LitElement {
 
   private handleClose() {
     this.beginClose();
+  }
+
+  /**
+   * 閉じるボタンと同じ退出アニメーションを開始する（プログラムからの取下げ・キュー上限など）。
+   * 既に退出中のときは `false` を返す。
+   */
+  dismiss(): boolean {
+    if (this.exiting) return false;
+    this.beginClose();
+    return true;
   }
 
   render() {
