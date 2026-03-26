@@ -105,9 +105,33 @@
         },
         {
           "kind": "js",
-          "name": "MiActionDialog",
+          "name": "MiCheckboxText",
           "declaration": {
-            "name": "MiActionDialog",
+            "name": "MiCheckboxText",
+            "module": "./components/checkbox/mi-checkbox-text"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "./components/checkbox/mi-checkbox-text"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "DialogOpenChangeDetail",
+          "declaration": {
+            "name": "DialogOpenChangeDetail",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FormDialogSize",
+          "declaration": {
+            "name": "FormDialogSize",
             "module": "./components/dialog"
           }
         },
@@ -116,6 +140,30 @@
           "name": "formDialogSizes",
           "declaration": {
             "name": "formDialogSizes",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "InformationDialogSize",
+          "declaration": {
+            "name": "InformationDialogSize",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "informationDialogSizes",
+          "declaration": {
+            "name": "informationDialogSizes",
+            "module": "./components/dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiActionDialog",
+          "declaration": {
+            "name": "MiActionDialog",
             "module": "./components/dialog"
           }
         },
@@ -133,46 +181,6 @@
           "declaration": {
             "name": "MiInformationDialog",
             "module": "./components/dialog"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "informationDialogSizes",
-          "declaration": {
-            "name": "informationDialogSizes",
-            "module": "./components/dialog"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "FormDialogSize",
-          "declaration": {
-            "name": "FormDialogSize",
-            "module": "./components/dialog"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "InformationDialogSize",
-          "declaration": {
-            "name": "InformationDialogSize",
-            "module": "./components/dialog"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiCheckboxText",
-          "declaration": {
-            "name": "MiCheckboxText",
-            "module": "./components/checkbox/mi-checkbox-text"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpCheckboxText",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "./components/checkbox/mi-checkbox-text"
           }
         },
         {
@@ -1011,6 +1019,19 @@
             },
             {
               "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "href",
               "type": {
                 "text": "string"
@@ -1421,6 +1442,19 @@
                 "text": "\"button\" | \"submit\" | \"reset\""
               },
               "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -1968,6 +2002,19 @@
             },
             {
               "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "href",
               "type": {
                 "text": "string"
@@ -2416,6 +2463,19 @@
             },
             {
               "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "href",
               "type": {
                 "text": "string"
@@ -2855,6 +2915,19 @@
             },
             {
               "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "href",
               "type": {
                 "text": "string"
@@ -3280,6 +3353,19 @@
                 "text": "\"button\" | \"submit\" | \"reset\""
               },
               "default": "\"button\"",
+              "inheritedFrom": {
+                "name": "ButtonBase",
+                "module": "src/components/button/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。\nシャドウ外のフォームと紐付ける場合に指定する。",
               "inheritedFrom": {
                 "name": "ButtonBase",
                 "module": "src/components/button/base.ts"
@@ -4262,11 +4348,138 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dialog/base.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "モーダルダイアログの共通ベースクラス。\nmi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。",
+          "description": "モーダルダイアログの共通ベースクラス。\nmi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。\n\nカスタムイベント（各具象要素の `@fires` と一致）:\n- **open-change**: ネイティブ `<dialog>` の `close` かつフッターボタン由来でないとき（Esc・ホストの `open=false`・`dialog.close()` 等。オーバーレイクリックでは閉じない）。bubbles / composed。detail `{ open: false, reason: \"escape\" | null }`（Esc のみ `reason` が `\"escape\"`）。\n- **mi-cancel**: キャンセル（ghost）クリック時。非 cancelable。`open-change` は出さない。\n- **action**: アクション（primary/danger）クリック時。cancelable。`preventDefault()` で閉じ中止。閉じた場合も `open-change` は出さない。",
           "name": "DialogBase",
           "members": [
             {
@@ -4321,11 +4534,12 @@
             },
             {
               "kind": "field",
-              "name": "_dialogEl",
+              "name": "formId",
               "type": {
-                "text": "HTMLDialogElement"
+                "text": "string"
               },
-              "privacy": "private"
+              "default": "\"\"",
+              "description": "slot 内 `<form id=\"...\">` の id。フッターのアクションボタンに `form` 属性として渡す。\nmi-form-dialog で `actionButtonType` と組み合わせて Enter 送信を opt-in する。"
             },
             {
               "kind": "field",
@@ -4363,6 +4577,26 @@
             },
             {
               "kind": "field",
+              "name": "_closingFromFooterButton",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "フッターのキャンセル／アクションで閉じた直後の close では open-change を出さない"
+            },
+            {
+              "kind": "field",
+              "name": "_closeSource",
+              "type": {
+                "text": "\"escape\" | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。"
+            },
+            {
+              "kind": "field",
               "name": "dialogSize",
               "type": {
                 "text": "DialogSize"
@@ -4385,6 +4619,16 @@
               "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "actionButtonType",
+              "type": {
+                "text": "\"button\" | \"submit\""
+              },
+              "privacy": "protected",
+              "description": "フッターアクションボタンの `type`。mi-form-dialog は `form-id` 指定時に `submit` を返す。",
               "readonly": true
             },
             {
@@ -4416,8 +4660,23 @@
             },
             {
               "kind": "field",
+              "name": "_handleNativeDialogCancel",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
               "name": "_handleClose",
               "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_nativeDialog",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "HTMLDialogElement | null"
+                }
+              }
             },
             {
               "kind": "field",
@@ -4468,7 +4727,7 @@
           "type": {
             "text": "array"
           },
-          "default": "[ unsafeCSS(backdropStyle), css` /* ========== Dialog ルート ========== */ .dialog-root { border: none; padding: 0; margin: 0; background: transparent; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; } /* ========== Viewport ========== */ /* React: position: fixed; inset: 0; padding: 24px; z-index: 2147483647 */ .viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: var(--spacing-2x-large, 24px); z-index: 2147483647; box-sizing: border-box; } /* ========== Popup (共通) ========== */ .popup { display: flex; flex-direction: column; box-sizing: border-box; background: var(--zabuton-regular, #ffffff); color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); border: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); border-radius: var(--border-radius-x-large, 12px); box-shadow: 0px 1px 2px 0px var(--neutral-neutral-50-alpha, rgba(0, 0, 0, 0.29)), 0px 8px 12px 3px var(--neutral-neutral-30-alpha, rgba(0, 0, 0, 0.13)); max-block-size: calc(100dvh - 48px); overflow: hidden; } /* ========== Size: small (560px) ========== */ .popup.size-small { inline-size: 100%; max-inline-size: var(--dialog-size-small, 560px); } /* ========== Size: medium (800px) ========== */ .popup.size-medium { inline-size: 100%; max-inline-size: var(--dialog-size-medium, 800px); } /* ========== Size: large (1280px, Form Dialog) ========== */ .popup.size-large { inline-size: 100%; max-inline-size: var(--dialog-size-large, 1280px); } /* ========== Form Dialog: Desktop padding (Figma: 32px horizontal, header pt 24px, footer pb 24px) ========== */ .popup[data-variant=\"form\"] .header { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-start: var(--spacing-2x-large, 24px); } .popup[data-variant=\"form\"] .body { padding-inline: var(--dialog-form-padding-inline, 32px); } .popup[data-variant=\"form\"] .footer { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-end: var(--spacing-2x-large, 24px); } /* ========== Header ========== */ .header { flex-shrink: 0; padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-medium, 8px); padding-inline: var(--spacing-2x-large, 24px); border-block-end: 1px solid transparent; transition: border-block-end-color 0s ease; } .header:has(+ .body[data-scrolled-from-top=\"true\"]) { border-block-end-color: var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .title { margin: 0; font-family: var(--typography-font-family, Arial, sans-serif); font-weight: var(--typography-font-weight-regular, 400); font-size: var(--typography-font-size-font-scale-60, 18px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } /* ========== Body ========== */ .body { flex: 1 1 auto; min-block-size: 0; overflow: auto; padding-block: var(--spacing-x-large, 16px); padding-inline: var(--spacing-2x-large, 24px); font-family: var(--typography-font-family, Arial, sans-serif); font-size: var(--typography-font-size-font-scale-40, 14px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } .body[data-scrolled-from-bottom=\"true\"] + .footer { border-block-start-color: var(--border-regular-default, rgba(0, 0, 0, 0.1)); } /* ========== Footer ========== */ .footer { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-medium, 8px); padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-x-large, 16px); padding-inline-start: var(--spacing-x-large, 16px); padding-inline-end: var(--spacing-2x-large, 24px); border-block-start: 1px solid transparent; transition: border-block-start-color 0s ease; } /* ========== Action Dialog: Phone ========== */ @media (max-width: 720px) { .viewport[data-variant=\"action\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"action\"] { max-block-size: min(80dvh, 560px); } } /* ========== Form Dialog: Phone (fullscreen) ========== */ @media (max-width: 720px) { .viewport[data-variant=\"form\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"form\"] { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } .popup[data-variant=\"form\"] .header { align-items: center; padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .body { padding: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .footer { flex-direction: column; align-items: stretch; justify-content: center; gap: var(--spacing-medium, 8px); padding: var(--spacing-x-large, 16px); border-block-start: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .popup[data-variant=\"form\"] .footer mi-neutral-button, .popup[data-variant=\"form\"] .footer mi-danger-button { inline-size: 100%; } } /* ========== Information Dialog: Phone medium (fullscreen) ========== */ @media (max-width: 720px) { .viewport[data-variant=\"information\"][data-size=\"medium\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"information\"].size-medium { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } } /* ========== Information Dialog: Phone small (modal style, not fullscreen) ========== */ /* Figma: 560px modal, rounded, centered. Footer: flex-col, justify-center, items-end, p 16px. Body: 16px font. */ @media (max-width: 720px) { .viewport[data-variant=\"information\"][data-size=\"small\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"information\"].size-small { max-inline-size: var(--dialog-size-small, 560px); } .popup[data-variant=\"information\"].size-small .header { align-items: center; } .popup[data-variant=\"information\"].size-small .body { font-size: var(--typography-font-size-font-scale-50, 16px); } .popup[data-variant=\"information\"].size-small .footer { flex-direction: column; justify-content: center; align-items: flex-end; padding: var(--spacing-x-large, 16px); } } `, ]",
+          "default": "[ unsafeCSS(backdropStyle), css` /* ========== Dialog ルート ========== */ .dialog-root { border: none; padding: 0; margin: 0; background: transparent; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; } /* ========== Viewport ========== */ /* React: position: fixed; inset: 0; padding: 24px; z-index: 2147483647 */ .viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: var(--spacing-2x-large, 24px); z-index: 2147483647; box-sizing: border-box; } /* ========== Popup (共通) ========== */ .popup { display: flex; flex-direction: column; box-sizing: border-box; background: var(--zabuton-regular, #ffffff); color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); border: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); border-radius: var(--border-radius-x-large, 12px); box-shadow: 0px 1px 2px 0px var(--neutral-neutral-50-alpha, rgba(0, 0, 0, 0.29)), 0px 8px 12px 3px var(--neutral-neutral-30-alpha, rgba(0, 0, 0, 0.13)); max-block-size: calc(100dvh - 48px); overflow: hidden; } /* ========== Size: small (560px) ========== */ .popup.size-small { inline-size: 100%; max-inline-size: var(--dialog-size-small, 560px); } /* ========== Size: medium (800px) ========== */ .popup.size-medium { inline-size: 100%; max-inline-size: var(--dialog-size-medium, 800px); } /* ========== Size: large (1280px, Form Dialog) ========== */ .popup.size-large { inline-size: 100%; max-inline-size: var(--dialog-size-large, 1280px); } /* ========== Form Dialog: Desktop padding (Figma: 32px horizontal, header pt 24px, footer pb 24px) ========== */ .popup[data-variant=\"form\"] .header { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-start: var(--spacing-2x-large, 24px); } .popup[data-variant=\"form\"] .body { padding-inline: var(--dialog-form-padding-inline, 32px); } .popup[data-variant=\"form\"] .footer { padding-inline: var(--dialog-form-padding-inline, 32px); padding-block-end: var(--spacing-2x-large, 24px); } /* ========== Header ========== */ .header { flex-shrink: 0; padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-medium, 8px); padding-inline: var(--spacing-2x-large, 24px); border-block-end: 1px solid transparent; transition: border-block-end-color 0s ease; } .header:has(+ .body[data-scrolled-from-top=\"true\"]) { border-block-end-color: var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .title { margin: 0; font-family: var(--typography-font-family, Arial, sans-serif); font-weight: var(--typography-font-weight-regular, 400); font-size: var(--typography-font-size-font-scale-60, 18px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } /* ========== Body ========== */ .body { flex: 1 1 auto; min-block-size: 0; overflow: auto; padding-block: var(--spacing-x-large, 16px); padding-inline: var(--spacing-2x-large, 24px); font-family: var(--typography-font-family, Arial, sans-serif); font-size: var(--typography-font-size-font-scale-40, 14px); line-height: 1.5; letter-spacing: 0.02em; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); } .body[data-scrolled-from-bottom=\"true\"] + .footer { border-block-start-color: var( --border-regular-default, rgba(0, 0, 0, 0.1) ); } /* ========== Footer ========== */ .footer { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-medium, 8px); padding-block-start: var(--spacing-x-large, 16px); padding-block-end: var(--spacing-x-large, 16px); padding-inline-start: var(--spacing-x-large, 16px); padding-inline-end: var(--spacing-2x-large, 24px); border-block-start: 1px solid transparent; transition: border-block-start-color 0s ease; } /* ========== Phone (max-width: 720px) ========== */ @media (max-width: 720px) { /* Action Dialog */ .viewport[data-variant=\"action\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"action\"] { max-block-size: min(80dvh, 560px); } /* Form Dialog (fullscreen) */ .viewport[data-variant=\"form\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"form\"] { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } .popup[data-variant=\"form\"] .header { align-items: center; padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .body { padding: var(--spacing-x-large, 16px); } .popup[data-variant=\"form\"] .footer { flex-direction: column; align-items: stretch; justify-content: center; gap: var(--spacing-medium, 8px); padding: var(--spacing-x-large, 16px); border-block-start: 1px solid var(--border-regular-default, rgba(0, 0, 0, 0.1)); } .popup[data-variant=\"form\"] .footer .footer-action { inline-size: 100%; } /* Information Dialog medium (fullscreen) */ .viewport[data-variant=\"information\"][data-size=\"medium\"] { padding: 0; align-items: stretch; } .popup[data-variant=\"information\"].size-medium { max-inline-size: none; max-block-size: none; inline-size: 100%; block-size: 100%; border-radius: 0; border-width: 0; } /* Information Dialog small (modal style) */ .viewport[data-variant=\"information\"][data-size=\"small\"] { padding-inline: var(--spacing-x-large, 16px); } .popup[data-variant=\"information\"].size-small { max-inline-size: var(--dialog-size-small, 560px); } .popup[data-variant=\"information\"].size-small .header { align-items: center; } .popup[data-variant=\"information\"].size-small .body { font-size: var(--typography-font-size-font-scale-50, 16px); } .popup[data-variant=\"information\"].size-small .footer { flex-direction: column; justify-content: center; align-items: flex-end; padding: var(--spacing-x-large, 16px); } } `, ]",
           "description": "Dialog 共通スタイル\n\nFigma デザイントークン（Base Component Speeda）を参照。\nブレイクポイント: 720px\nReact版（dialog.module.css）に準拠。"
         }
       ],
@@ -4490,10 +4749,26 @@
       "exports": [
         {
           "kind": "js",
+          "name": "DialogOpenChangeDetail",
+          "declaration": {
+            "name": "DialogOpenChangeDetail",
+            "module": "./base"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiActionDialog",
           "declaration": {
             "name": "MiActionDialog",
             "module": "./mi-action-dialog"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FormDialogSize",
+          "declaration": {
+            "name": "FormDialogSize",
+            "module": "./mi-form-dialog"
           }
         },
         {
@@ -4514,10 +4789,10 @@
         },
         {
           "kind": "js",
-          "name": "FormDialogSize",
+          "name": "InformationDialogSize",
           "declaration": {
-            "name": "FormDialogSize",
-            "module": "./mi-form-dialog"
+            "name": "InformationDialogSize",
+            "module": "./mi-information-dialog"
           }
         },
         {
@@ -4533,14 +4808,6 @@
           "name": "MiInformationDialog",
           "declaration": {
             "name": "MiInformationDialog",
-            "module": "./mi-information-dialog"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "InformationDialogSize",
-          "declaration": {
-            "name": "InformationDialogSize",
             "module": "./mi-information-dialog"
           }
         }
@@ -4665,11 +4932,12 @@
             },
             {
               "kind": "field",
-              "name": "_dialogEl",
+              "name": "formId",
               "type": {
-                "text": "HTMLDialogElement"
+                "text": "string"
               },
-              "privacy": "private",
+              "default": "\"\"",
+              "description": "slot 内 `<form id=\"...\">` の id。フッターのアクションボタンに `form` 属性として渡す。\nmi-form-dialog で `actionButtonType` と組み合わせて Enter 送信を opt-in する。",
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -4727,8 +4995,50 @@
             },
             {
               "kind": "field",
+              "name": "_closingFromFooterButton",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "フッターのキャンセル／アクションで閉じた直後の close では open-change を出さない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_closeSource",
+              "type": {
+                "text": "\"escape\" | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionButtonType",
+              "type": {
+                "text": "\"button\" | \"submit\""
+              },
+              "privacy": "protected",
+              "description": "フッターアクションボタンの `type`。mi-form-dialog は `form-id` 指定時に `submit` を返す。",
               "readonly": true,
               "inheritedFrom": {
                 "name": "DialogBase",
@@ -4780,8 +5090,31 @@
             },
             {
               "kind": "field",
+              "name": "_handleNativeDialogCancel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "_handleClose",
               "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_nativeDialog",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "HTMLDialogElement | null"
+                }
+              },
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -4816,15 +5149,15 @@
           ],
           "events": [
             {
-              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターのキャンセル／アクションボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
               "name": "open-change"
             },
             {
-              "description": "キャンセルボタンがクリックされたとき",
-              "name": "cancel"
+              "description": "`cancel-label` があるときにキャンセル（ghost）ボタンがクリックされたとき。cancelable ではない。閉じたあと発火。このとき `open-change` は発火しない。",
+              "name": "mi-cancel"
             },
             {
-              "description": "アクションボタンがクリックされたとき",
+              "description": "アクション（primary / danger）ボタンがクリックされたとき。cancelable。`preventDefault()` すると閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
               "name": "action"
             }
           ],
@@ -4954,6 +5287,20 @@
             },
             {
               "kind": "field",
+              "name": "actionButtonType",
+              "type": {
+                "text": "\"button\" | \"submit\""
+              },
+              "privacy": "protected",
+              "description": "フッターアクションボタンの `type`。mi-form-dialog は `form-id` 指定時に `submit` を返す。",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "styles",
               "static": true,
               "inheritedFrom": {
@@ -5028,11 +5375,12 @@
             },
             {
               "kind": "field",
-              "name": "_dialogEl",
+              "name": "formId",
               "type": {
-                "text": "HTMLDialogElement"
+                "text": "string"
               },
-              "privacy": "private",
+              "default": "\"\"",
+              "description": "slot 内 `<form id=\"...\">` の id。フッターのアクションボタンに `form` 属性として渡す。\nmi-form-dialog で `actionButtonType` と組み合わせて Enter 送信を opt-in する。",
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -5083,6 +5431,34 @@
                 "text": "ResizeObserver | undefined"
               },
               "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_closingFromFooterButton",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "フッターのキャンセル／アクションで閉じた直後の close では open-change を出さない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_closeSource",
+              "type": {
+                "text": "\"escape\" | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -5143,8 +5519,31 @@
             },
             {
               "kind": "field",
+              "name": "_handleNativeDialogCancel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "_handleClose",
               "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_nativeDialog",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "HTMLDialogElement | null"
+                }
+              },
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -5179,15 +5578,15 @@
           ],
           "events": [
             {
-              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターのキャンセル／アクションボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
               "name": "open-change"
             },
             {
-              "description": "キャンセルボタンがクリックされたとき",
-              "name": "cancel"
+              "description": "`cancel-label` があるときにキャンセル（ghost）ボタンがクリックされたとき。cancelable ではない。閉じたあと発火。このとき `open-change` は発火しない。",
+              "name": "mi-cancel"
             },
             {
-              "description": "アクションボタンがクリックされたとき",
+              "description": "アクション（primary）ボタンがクリックされたとき。cancelable。バリデーション失敗時などは `preventDefault()` で閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
               "name": "action"
             }
           ],
@@ -5226,6 +5625,13 @@
               },
               "description": "アクションボタンのラベル",
               "name": "action-label"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Enter キーで送信を有効にしたいとき、slot 内の form 要素の id を指定する（省略時は Enter 送信なし）",
+              "name": "form-id"
             }
           ],
           "superclass": {
@@ -5399,11 +5805,12 @@
             },
             {
               "kind": "field",
-              "name": "_dialogEl",
+              "name": "formId",
               "type": {
-                "text": "HTMLDialogElement"
+                "text": "string"
               },
-              "privacy": "private",
+              "default": "\"\"",
+              "description": "slot 内 `<form id=\"...\">` の id。フッターのアクションボタンに `form` 属性として渡す。\nmi-form-dialog で `actionButtonType` と組み合わせて Enter 送信を opt-in する。",
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -5461,8 +5868,50 @@
             },
             {
               "kind": "field",
+              "name": "_closingFromFooterButton",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false",
+              "description": "フッターのキャンセル／アクションで閉じた直後の close では open-change を出さない",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_closeSource",
+              "type": {
+                "text": "\"escape\" | null"
+              },
+              "privacy": "private",
+              "default": "null",
+              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "actionButtonType",
+              "type": {
+                "text": "\"button\" | \"submit\""
+              },
+              "privacy": "protected",
+              "description": "フッターアクションボタンの `type`。mi-form-dialog は `form-id` 指定時に `submit` を返す。",
               "readonly": true,
               "inheritedFrom": {
                 "name": "DialogBase",
@@ -5514,8 +5963,31 @@
             },
             {
               "kind": "field",
+              "name": "_handleNativeDialogCancel",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "field",
               "name": "_handleClose",
               "privacy": "private",
+              "inheritedFrom": {
+                "name": "DialogBase",
+                "module": "src/components/dialog/base.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_nativeDialog",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "HTMLDialogElement | null"
+                }
+              },
               "inheritedFrom": {
                 "name": "DialogBase",
                 "module": "src/components/dialog/base.ts"
@@ -5550,11 +6022,11 @@
           ],
           "events": [
             {
-              "description": "開閉状態が変わったとき（detail: { open: boolean }）",
+              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターの閉じる（action）ボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
               "name": "open-change"
             },
             {
-              "description": "閉じるボタンがクリックされたとき",
+              "description": "閉じる（primary）ボタンがクリックされたとき。cancelable。`preventDefault()` すると閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
               "name": "action"
             }
           ],
@@ -5845,133 +6317,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-floating-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiFloatingButton",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpFloatingButton",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-floating-button",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-floating-button",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/icon-color/icon-color.css",
       "declarations": [],
       "exports": []
@@ -6114,96 +6459,6 @@
           "declaration": {
             "name": "MiIconColor",
             "module": "src/components/icon-color/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/inline-notification.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/inline-notification/inline-notification.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/mi-inline-notification.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "types",
-          "type": {
-            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
-          },
-          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiInlineNotification",
-          "slots": [
-            {
-              "description": "通知メッセージのコンテンツ",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "Type"
-              },
-              "default": "\"information\""
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-inline-notification",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "types",
-          "declaration": {
-            "name": "types",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiInlineNotification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-inline-notification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
           }
         }
       ]
@@ -6439,6 +6694,96 @@
       "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/inline-notification/inline-notification.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/inline-notification/inline-notification.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/inline-notification/mi-inline-notification.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "types",
+          "type": {
+            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
+          },
+          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiInlineNotification",
+          "slots": [
+            {
+              "description": "通知メッセージのコンテンツ",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "Type"
+              },
+              "default": "\"information\""
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-inline-notification",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "types",
+          "declaration": {
+            "name": "types",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInlineNotification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-inline-notification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
@@ -7411,6 +7756,122 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "superclass": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          },
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
+          "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiControlMenu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-control-menu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -8070,122 +8531,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },

@@ -1,7 +1,10 @@
 import "../../src/components/dialog/mi-form-dialog";
 
 import { describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
+import type { ButtonBase } from "../../src/components/button/base";
+import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import {
   formDialogSizes,
   type MiFormDialog,
@@ -21,10 +24,18 @@ function getPopup() {
   );
 }
 
-function getActionButton() {
-  const footer = getFormDialog().shadowRoot?.querySelector(
+function getFooter() {
+  return getFormDialog().shadowRoot?.querySelector(
     "[data-testid='dialog-footer']",
   );
+}
+
+function getCancelButton() {
+  return getFooter()?.querySelector("mi-neutral-button[variant='ghost']");
+}
+
+function getActionButton() {
+  const footer = getFooter();
   return (
     footer?.querySelector("mi-danger-button") ??
     footer?.querySelector("mi-neutral-button[variant='primary']")
@@ -66,7 +77,7 @@ describe("mi-form-dialog", () => {
 
   describe("size属性", () => {
     test.each(formDialogSizes)(
-      "size='%s' のとき popup に size-%s クラスが付与される",
+      "size='%s' のとき popup に対応する size クラスが付与される",
       async (size) => {
         document.body.innerHTML = `
           <mi-form-dialog
@@ -150,11 +161,8 @@ describe("mi-form-dialog", () => {
       `;
       await customElements.whenDefined("mi-form-dialog");
 
-      const cancelBtn = getFormDialog()
-        .shadowRoot?.querySelector("[data-testid='dialog-footer']")
-        ?.querySelector("mi-neutral-button[variant='ghost']");
-      expect(cancelBtn).toBeTruthy();
-      expect(cancelBtn?.textContent?.trim()).toBe("キャンセル");
+      expect(getCancelButton()).toBeTruthy();
+      expect(getCancelButton()?.textContent?.trim()).toBe("キャンセル");
     });
 
     test("action-label がアクションボタンに表示される", async () => {
@@ -168,6 +176,45 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       expect(getActionButton()?.textContent?.trim()).toBe("保存する");
+    });
+  });
+
+  describe("form-id属性", () => {
+    test("省略時はアクションボタンが type=button で form は空", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      await el.updateComplete;
+      const btn = getActionButton() as ButtonBase;
+
+      expect(btn.type).toBe("button");
+      expect(btn.form).toBe("");
+    });
+
+    test("指定時はアクションボタンが type=submit かつ form に id が渡る", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+          form-id="profile-form"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      await el.updateComplete;
+      const btn = getActionButton() as ButtonBase;
+
+      expect(btn.type).toBe("submit");
+      expect(btn.form).toBe("profile-form");
     });
   });
 
@@ -195,7 +242,7 @@ describe("mi-form-dialog", () => {
       expect(acted).toBe(true);
     });
 
-    test("閉じたときに open-change イベントが発火し open が false になる", async () => {
+    test("ネイティブ dialog.close() で閉じたとき open-change が発火し open が false になる", async () => {
       document.body.innerHTML = `
         <mi-form-dialog
           open
@@ -206,19 +253,169 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       const el = getFormDialog();
-      const openChangePromise = new Promise<{ open: boolean }>((resolve) => {
-        el.addEventListener(
-          "open-change",
-          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
-          { once: true },
-        );
+      const dialogEl = el.shadowRoot?.querySelector("dialog");
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      (dialogEl as HTMLDialogElement | undefined)?.close();
+      const detail = await openChangePromise;
+
+      expect(detail).toEqual({ open: false, reason: null });
+      expect(el.open).toBe(false);
+    });
+
+    test("action で preventDefault するとダイアログは開いたまま", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let actionCount = 0;
+      let openChangeCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", (e) => {
+        actionCount += 1;
+        e.preventDefault();
       });
 
       await el.updateComplete;
       (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(true);
+      expect(getDialogEl()).toBeTruthy();
+    });
+
+    test("アクションボタンで閉じたときは action のみで open-change は発火しない", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let openChangeCount = 0;
+      let actionCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", () => {
+        actionCount += 1;
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(false);
+    });
+
+    test("キャンセルボタンをクリックすると mi-cancel イベントが発火する", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          cancel-label="キャンセル"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let canceled = false;
+      el.addEventListener("mi-cancel", () => {
+        canceled = true;
+      });
+
+      await el.updateComplete;
+      (getCancelButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(canceled).toBe(true);
+    });
+
+    test("Esc キーで閉じたとき open-change の reason が escape になる", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      const dialog = getDialogEl() as HTMLDialogElement;
+      dialog.focus();
+      await userEvent.keyboard("{Escape}");
       const detail = await openChangePromise;
 
-      expect(detail).toEqual({ open: false });
+      expect(detail).toEqual({ open: false, reason: "escape" });
+      expect(el.open).toBe(false);
+    });
+
+    test("キャンセルボタンで閉じたときは mi-cancel のみで open-change は発火しない", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          cancel-label="キャンセル"
+          action-label="送信"
+        ></mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let openChangeCount = 0;
+      let cancelCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("mi-cancel", () => {
+        cancelCount += 1;
+      });
+
+      await el.updateComplete;
+      (getCancelButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(cancelCount).toBe(1);
+      expect(openChangeCount).toBe(0);
       expect(el.open).toBe(false);
     });
   });

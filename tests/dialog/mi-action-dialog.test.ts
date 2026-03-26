@@ -1,7 +1,9 @@
 import "../../src/components/dialog/mi-action-dialog";
 
 import { describe, expect, test } from "vitest";
+import { userEvent } from "vitest/browser";
 
+import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import type { MiActionDialog } from "../../src/components/dialog/mi-action-dialog";
 
 function getActionDialog() {
@@ -240,7 +242,7 @@ describe("mi-action-dialog", () => {
   });
 
   describe("イベント", () => {
-    test("キャンセルボタンをクリックすると cancel イベントが発火する", async () => {
+    test("キャンセルボタンをクリックすると mi-cancel イベントが発火する", async () => {
       document.body.innerHTML = `
         <mi-action-dialog
           open
@@ -253,7 +255,7 @@ describe("mi-action-dialog", () => {
 
       const el = getActionDialog();
       let canceled = false;
-      el.addEventListener("cancel", () => {
+      el.addEventListener("mi-cancel", () => {
         canceled = true;
       });
 
@@ -287,7 +289,7 @@ describe("mi-action-dialog", () => {
       expect(acted).toBe(true);
     });
 
-    test("閉じたときに open-change イベントが発火する", async () => {
+    test("ネイティブ dialog.close() で閉じたとき open-change が発火する", async () => {
       document.body.innerHTML = `
         <mi-action-dialog
           open
@@ -298,19 +300,144 @@ describe("mi-action-dialog", () => {
       await customElements.whenDefined("mi-action-dialog");
 
       const el = getActionDialog();
-      const openChangePromise = new Promise<{ open: boolean }>((resolve) => {
-        el.addEventListener(
-          "open-change",
-          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
-          { once: true },
-        );
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      (getDialogEl() as HTMLDialogElement | undefined)?.close();
+      const detail = await openChangePromise;
+
+      expect(detail).toEqual({ open: false, reason: null });
+      expect(el.open).toBe(false);
+    });
+
+    test("Esc キーで閉じたとき open-change の reason が escape になる", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      const dialog = getDialogEl() as HTMLDialogElement;
+      dialog.focus();
+      await userEvent.keyboard("{Escape}");
+      const detail = await openChangePromise;
+
+      expect(detail).toEqual({ open: false, reason: "escape" });
+      expect(el.open).toBe(false);
+    });
+
+    test("action で preventDefault するとダイアログは開いたまま", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      let actionCount = 0;
+      let openChangeCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", (e) => {
+        actionCount += 1;
+        e.preventDefault();
       });
 
       await el.updateComplete;
       (getActionButton() as HTMLElement | undefined)?.click();
-      const detail = await openChangePromise;
+      await el.updateComplete;
 
-      expect(detail).toEqual({ open: false });
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(true);
+      expect(getDialogEl()).toBeTruthy();
+    });
+
+    test("アクションボタンで閉じたときは action のみで open-change は発火しない", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      let openChangeCount = 0;
+      let actionCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", () => {
+        actionCount += 1;
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(false);
+    });
+
+    test("キャンセルボタンで閉じたときは mi-cancel のみで open-change は発火しない", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          cancel-label="キャンセル"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      let openChangeCount = 0;
+      let cancelCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("mi-cancel", () => {
+        cancelCount += 1;
+      });
+
+      await el.updateComplete;
+      (getCancelButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(cancelCount).toBe(1);
+      expect(openChangeCount).toBe(0);
       expect(el.open).toBe(false);
     });
   });

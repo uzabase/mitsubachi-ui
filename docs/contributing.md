@@ -75,7 +75,7 @@ npm run test
 npm run build
 ```
 
-**Story を追加・変更した場合**は、[storybook-autodocs.md](./storybook-autodocs.md) の「PR 提出前チェック（dev-only）」を確認し、すべてのストーリーに `tags: ["!dev-only"]` が含まれていること。
+**Story を追加・変更した場合**は、[storybook-autodocs.md](./storybook-autodocs.md) を確認する。`!dev-only` がすべてのストーリーに含まれていることに加え、コンポーネントがカスタムイベントを公開しているときは同ドキュメントの「イベント（カスタムイベント）の実装チェック」に沿って Storybook Actions との対応と動作確認を行うこと。
 
 ## コミットルール
 

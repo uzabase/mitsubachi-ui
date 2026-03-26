@@ -20,7 +20,7 @@ tests/<kebab-case>/
 
 - **コンポーネント**: `src/components/` 配下の既存実装を参照
 - **スタイル**: `*.styles.ts` に Lit の `css` タグで記述（CSS規約は [review-checklist.md](./review-checklist.md) の「8. CSS設計」参照）
-- **ストーリー**: `stories/` 配下の既存ストーリーを参照。[storybook-autodocs.md](./storybook-autodocs.md) で autodocs の利用ルールを確認
+- **ストーリー**: `stories/` 配下の既存ストーリーを参照。[storybook-autodocs.md](./storybook-autodocs.md) で autodocs の利用ルールと、カスタムイベントがある場合の Storybook Actions 連携チェックを確認
 - **テスト**: `tests/` 配下の既存テストを参照
 
 ## チェック

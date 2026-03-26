@@ -1,20 +1,37 @@
 import "../../src/components/dialog/mi-form-dialog";
 import "../../src/components/button/mi-neutral-button";
+import "../../src/components/label-unit";
+import "../../src/components/text-field/text-field";
 import "../../src/components/text-field/text-field-unit";
 import "../../src/components/radio-button/mi-radio-button-text";
 import "../../src/components/checkbox/mi-checkbox-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
+import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import type { MiFormDialog } from "../../src/components/dialog/mi-form-dialog";
 import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
+
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
+type MiFormDialogStory = MiFormDialog & {
+  onMiCancel?: (e: Event) => void;
+  onAction?: (e: Event) => void;
+  onOpenChange?: (e: CustomEvent<DialogOpenChangeDetail>) => void;
+};
 
 const meta = {
   component: "mi-form-dialog",
   title: "Dialog/mi-form-dialog",
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "フッターのキャンセル／確定で閉じたときは `mi-cancel` または `action` のみ。Esc・ホストが `open` を false にしたとき・`dialog.close()` などでは `open-change` のみ（その場合 `mi-cancel` / `action` は発火しません）。オーバーレイのクリックでは閉じません。",
+      },
+    },
   },
   tags: ["autodocs", "!dev-only"],
   argTypes: {
@@ -31,17 +48,37 @@ const meta = {
     headerText: { type: "string" },
     cancelLabel: { type: "string" },
     actionLabel: { type: "string" },
+    onMiCancel: {
+      action: "mi-cancel",
+      description: "キャンセル（ghost）ボタンが押されたとき",
+      table: { category: "Events" },
+    },
+    onAction: {
+      action: "action",
+      description:
+        "アクション（primary）ボタンが押されたとき（cancelable。バリデーション失敗時は `preventDefault()` で閉じない）",
+      table: { category: "Events" },
+    },
+    onOpenChange: {
+      action: "open-change",
+      description:
+        'フッターボタン以外で閉じたとき（Esc・`open` を false・`dialog.close()` 等。背景クリックでは閉じない）。detail: { open: false, reason: "escape" | null }（Esc は "escape"、それ以外は null）',
+      table: { category: "Events" },
+    },
   },
   args: {
     size: "medium",
     headerText: "新規作成",
     cancelLabel: "キャンセル",
     actionLabel: "作成する",
+    onMiCancel: action("mi-cancel"),
+    onAction: action("action"),
+    onOpenChange: action("open-change"),
   },
-} satisfies Meta<MiFormDialog>;
+} satisfies Meta<MiFormDialogStory>;
 
 export default meta;
-type Story = StoryObj<MiFormDialog>;
+type Story = StoryObj<MiFormDialogStory>;
 
 const openDialog = (e: Event) => {
   const container = (e.target as HTMLElement).closest(".story-container");
@@ -51,8 +88,15 @@ const openDialog = (e: Event) => {
 
 const handleOpenChange = (e: CustomEvent) => {
   const dialog = e.target as MiFormDialog;
-  dialog.open = e.detail.open;
+  dialog.open = false;
 };
+
+function bindOpenChange(args: Partial<MiFormDialogStory> | undefined) {
+  return (e: CustomEvent) => {
+    handleOpenChange(e);
+    args?.onOpenChange?.(e as CustomEvent<DialogOpenChangeDetail>);
+  };
+}
 
 /** Shadow DOM 内の radio はネイティブの相互排他が効かないため、1つ選択したら他を外す */
 const handleGenderChange = (e: Event) => {
@@ -117,8 +161,9 @@ export const Default: Story = {
         header-text=${args.headerText}
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("submit")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="form-dialog-form"
@@ -156,8 +201,9 @@ export const Small: Story = {
         header-text="新規作成"
         cancel-label="キャンセル"
         action-label="作成する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("submit")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="form-dialog-form-small"
@@ -190,8 +236,9 @@ export const Large: Story = {
         header-text="詳細入力"
         cancel-label="キャンセル"
         action-label="保存する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("save")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="form-dialog-form-large"
@@ -237,8 +284,9 @@ export const MultipleFields: Story = {
         header-text="プロフィール編集"
         cancel-label="キャンセル"
         action-label="保存する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("save")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="profile-form"
@@ -304,8 +352,9 @@ export const LongForm: Story = {
         header-text="ユーザー登録"
         cancel-label="キャンセル"
         action-label="登録する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("register")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="long-form"
@@ -410,8 +459,9 @@ export const PhoneDefault: Story = {
         header-text="新規作成"
         cancel-label="キャンセル"
         action-label="作成する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("submit")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="form-dialog-form-phone"
@@ -453,8 +503,9 @@ export const PhoneLongForm: Story = {
         header-text="ユーザー登録"
         cancel-label="キャンセル"
         action-label="登録する"
-        @open-change=${handleOpenChange}
-        @action=${() => console.log("register")}
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${args.onAction}
       >
         <form
           id="long-form-phone"
@@ -525,4 +576,48 @@ export const PhoneLongForm: Story = {
   parameters: {
     viewport: { defaultViewport: "mobile2" },
   },
+};
+
+/**
+ * form-id を指定することで Enter キーによる送信が有効になることを確認する Story。
+ * 1. 「ダイアログを開く」ボタンをクリック
+ * 2. テキスト入力欄に何か入力する
+ * 3. Enter キーを押す →「フォームが送信されました（Enter）」のアラートが表示されれば OK
+ * 4. 「送信」ボタンをクリック → 「送信ボタンが押されました」のアラートが表示されれば OK
+ */
+export const EnterSubmit: Story = {
+  render: (args) => html`
+    <div class="story-container">
+      <button type="button" @click=${openDialog}>ダイアログを開く</button>
+      <mi-form-dialog
+        form-id="demo-form"
+        header-text="Enter 送信デモ"
+        cancel-label="キャンセル"
+        action-label="送信"
+        @open-change=${bindOpenChange(args)}
+        @mi-cancel=${args.onMiCancel}
+        @action=${(e: Event) => {
+          args.onAction?.(e);
+          alert("送信ボタンが押されました");
+        }}
+      >
+        <form
+          id="demo-form"
+          @submit=${(e: SubmitEvent) => {
+            e.preventDefault();
+            alert("フォームが送信されました（Enter）");
+          }}
+        >
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <mi-label-unit text="テキスト"></mi-label-unit>
+            <mi-text-field
+              name="demo"
+              type="text"
+              ?submit-on-enter=${true}
+            ></mi-text-field>
+          </div>
+        </form>
+      </mi-form-dialog>
+    </div>
+  `,
 };

@@ -62,6 +62,7 @@ PRレビューやセルフチェックの際に参照してください。
 
 ### 9. Storybook（本番表示）
 - **dev-only タグ**: ストーリーの `tags` に `!dev-only` が含まれているか？ — 含まれないと本番 Storybook（GitHub Pages）でサイドバーに表示されない。[storybook-autodocs.md](./storybook-autodocs.md) 参照
+- **イベントと Actions の対応**: 公開カスタムイベントは `argTypes` の `action` と `args` の `action()` が実装のイベント名と一致しているか？ — ずれがあるとドキュメント上の挙動と実際の発火が食い違う。分岐がある場合はストーリーの説明文に記載されているか？ — [storybook-autodocs.md](./storybook-autodocs.md) の「イベント（カスタムイベント）の実装チェック」参照
 
 ### 10. テスト容易性
 - **テスタビリティ**: ユニットテストが書きやすい構造か？ — テストしにくい構造は品質低下に直結する

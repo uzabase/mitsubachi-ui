@@ -17,6 +17,7 @@ export {
   SpCheckboxText,
 } from "./components/checkbox/mi-checkbox-text";
 export {
+  type DialogOpenChangeDetail,
   type FormDialogSize,
   formDialogSizes,
   type InformationDialogSize,

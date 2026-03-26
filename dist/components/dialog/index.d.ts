@@ -1,4 +1,5 @@
+export type { DialogOpenChangeDetail } from './base';
 export { MiActionDialog } from './mi-action-dialog';
-export { formDialogSizes, MiFormDialog, type FormDialogSize, } from './mi-form-dialog';
-export { informationDialogSizes, MiInformationDialog, type InformationDialogSize, } from './mi-information-dialog';
+export { type FormDialogSize, formDialogSizes, MiFormDialog, } from './mi-form-dialog';
+export { type InformationDialogSize, informationDialogSizes, MiInformationDialog, } from './mi-information-dialog';
 //# sourceMappingURL=index.d.ts.map

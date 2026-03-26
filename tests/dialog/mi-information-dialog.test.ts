@@ -1,7 +1,9 @@
 import "../../src/components/dialog/mi-information-dialog";
 
 import { describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
+import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import {
   informationDialogSizes,
   type MiInformationDialog,
@@ -63,7 +65,7 @@ describe("mi-information-dialog", () => {
 
   describe("size属性", () => {
     test.each(informationDialogSizes)(
-      "size='%s' のとき popup に size-%s クラスが付与される",
+      "size='%s' のとき popup に対応する size クラスが付与される",
       async (size) => {
         document.body.innerHTML = `
           <mi-information-dialog
@@ -156,7 +158,7 @@ describe("mi-information-dialog", () => {
       expect(acted).toBe(true);
     });
 
-    test("閉じたときに open-change イベントが発火する", async () => {
+    test("ネイティブ dialog.close() で閉じたとき open-change が発火する", async () => {
       document.body.innerHTML = `
         <mi-information-dialog
           open
@@ -167,20 +169,116 @@ describe("mi-information-dialog", () => {
       await customElements.whenDefined("mi-information-dialog");
 
       const el = getInformationDialog();
-      const openChangePromise = new Promise<{ open: boolean }>((resolve) => {
-        el.addEventListener(
-          "open-change",
-          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
-          { once: true },
-        );
+      const dialogEl = el.shadowRoot?.querySelector("dialog");
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      (dialogEl as HTMLDialogElement | undefined)?.close();
+      const detail = await openChangePromise;
+
+      expect(detail).toEqual({ open: false, reason: null });
+      expect(el.open).toBe(false);
+    });
+
+    test("閉じるボタンで閉じたときは action のみで open-change は発火しない", async () => {
+      document.body.innerHTML = `
+        <mi-information-dialog
+          open
+          header-text="利用規約"
+          action-label="閉じる"
+        ></mi-information-dialog>
+      `;
+      await customElements.whenDefined("mi-information-dialog");
+
+      const el = getInformationDialog();
+      let openChangeCount = 0;
+      let actionCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", () => {
+        actionCount += 1;
       });
 
       await el.updateComplete;
       (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(false);
+    });
+
+    test("Esc キーで閉じたとき open-change の reason が escape になる", async () => {
+      document.body.innerHTML = `
+        <mi-information-dialog
+          open
+          header-text="利用規約"
+          action-label="閉じる"
+        ></mi-information-dialog>
+      `;
+      await customElements.whenDefined("mi-information-dialog");
+
+      const el = getInformationDialog();
+      const openChangePromise = new Promise<DialogOpenChangeDetail>(
+        (resolve) => {
+          el.addEventListener(
+            "open-change",
+            ((e: CustomEvent<DialogOpenChangeDetail>) =>
+              resolve(e.detail)) as EventListener,
+            { once: true },
+          );
+        },
+      );
+
+      await el.updateComplete;
+      const dialog = getDialogEl() as HTMLDialogElement;
+      dialog.focus();
+      await userEvent.keyboard("{Escape}");
       const detail = await openChangePromise;
 
-      expect(detail).toEqual({ open: false });
+      expect(detail).toEqual({ open: false, reason: "escape" });
       expect(el.open).toBe(false);
+    });
+
+    test("action で preventDefault するとダイアログは開いたまま", async () => {
+      document.body.innerHTML = `
+        <mi-information-dialog
+          open
+          header-text="利用規約"
+          action-label="閉じる"
+        ></mi-information-dialog>
+      `;
+      await customElements.whenDefined("mi-information-dialog");
+
+      const el = getInformationDialog();
+      let actionCount = 0;
+      let openChangeCount = 0;
+      el.addEventListener("open-change", () => {
+        openChangeCount += 1;
+      });
+      el.addEventListener("action", (e) => {
+        actionCount += 1;
+        e.preventDefault();
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(actionCount).toBe(1);
+      expect(openChangeCount).toBe(0);
+      expect(el.open).toBe(true);
+      expect(getDialogEl()).toBeTruthy();
     });
   });
 
