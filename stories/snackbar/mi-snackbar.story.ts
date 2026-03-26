@@ -154,6 +154,45 @@ function snackbarStorySlug(storyId: string) {
   return i === -1 ? storyId : storyId.slice(i + 2);
 }
 
+function escapeHtmlForSnippet(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/** Show code / Code panel 用の `<mi-snackbar>` 利用例（args を反映） */
+function miSnackbarSnippetFromArgs(args: SnackbarStoryArgs): string {
+  const size = args.size ?? "small";
+  const text = escapeHtmlForSnippet(args.text ?? "");
+  return `<mi-snackbar size="${size}">${text}</mi-snackbar>`;
+}
+
+function snackbarArgsFromContext(context: unknown): SnackbarStoryArgs {
+  const args = (context as { args?: Partial<SnackbarStoryArgs> }).args;
+  if (!args) return { size: "small", text: "Message" };
+  const size =
+    typeof args.size === "string" &&
+    (snackbarSizes as readonly string[]).includes(args.size)
+      ? (args.size as SnackbarSize)
+      : "small";
+  const text = typeof args.text === "string" ? args.text : "Message";
+  return { size, text };
+}
+
+/** AllPatterns ストーリー専用（複数パターンを Show code に並べる） */
+const ALL_PATTERNS_DOCS_SOURCE = `<!-- Small -->
+<mi-snackbar size="small">Message</mi-snackbar>
+
+<!-- Small（長文） -->
+<mi-snackbar size="small">アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。</mi-snackbar>
+
+<!-- Medium -->
+<mi-snackbar size="medium">Message</mi-snackbar>
+
+<!-- Medium（長文） -->
+<mi-snackbar size="medium">アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。</mi-snackbar>`;
+
 const meta: Meta<SnackbarStoryArgs> = {
   title: "Snackbar/mi-snackbar",
   parameters: {
@@ -185,7 +224,25 @@ const meta: Meta<SnackbarStoryArgs> = {
           "### 使い方のルール\n\n" +
           "- **成功フィードバック専用** — Snackbar は成功時のみ使用します\n" +
           "- **重要な情報には使わない** — 短時間で自動消去されるため、見逃してほしくない情報のお知らせには適しません\n" +
-          "- **失敗・警告・エラー** — `mi-inline-notification` 等の別コンポーネントを使用してください",
+          "- **失敗・警告・エラー** — `mi-inline-notification` 等の別コンポーネントを使用してください\n\n" +
+          "### 本番での表示位置について\n\n" +
+          "`mi-snackbar` 自体は **画面の右上に固定するスタイルを内包していません**（配置はマウント先のレイアウトに従います）。デザインどおり **デスクトップでは右上・狭い画面では下中央** に重ね表示したい場合は、本ストーリーと同様に **`document.body` 直下など、ビューポート基準で `position: fixed` できるコンテナへポータルする**／**専用の viewport ラッパーで包む**ことを推奨します。祖先要素の `transform` などによっては `fixed` の基準がずれ、意図しない位置に見えることがあります。\n\n" +
+          "<details>\n<summary><strong>なぜ viewport ラッパーを `mi-snackbar` に組み込まないか</strong></summary>\n\n" +
+          "- **責務の分離** — 通知の見た目・閉じる挙動・アニメに責務を絞り、**画面端への固定やポータル先**はアプリのレイアウトやフレームワークに合わせて載せ替えやすいようにしています。\n" +
+          "- **利用側の差** — SSR・複数同時表示・既存の Toast 基盤・z-index の都合などで最適なマウント方法が異なり、**単一のポータル方針をライブラリに押し付けにくい**ためです。\n" +
+          "- **既存設計との整合** — React 版でも Snackbar 本体と viewport／Provider 側を分ける想定に揃えています。\n" +
+          "- **拡張** — チーム方針で「常に同じ位置に出したい」が明確になった場合は、**viewport 用の別カスタム要素**や **オプション**で後から足す余地があります。\n\n" +
+          "</details>\n\n" +
+          "<details>\n<summary><strong>Show code（コード表示）とキャンバス・プレビューの違い</strong></summary>\n\n" +
+          "- **Show code**（Canvas / Docs）には `<mi-snackbar>` の利用例の HTML が表示されます。Controls の `size` / `text` も反映されます（実装時にそのまま参考にできます）。\n" +
+          "- **キャンバス上のプレビュー**は `<snackbar-story-trigger>` がクリック後に `<mi-snackbar>` を `document.body` へポータルするデモです。Storybook のラッパー由来で `position: fixed` の見え方が崩れないようにするためのものです。\n" +
+          "- 属性・slot・イベントの詳細は `mi-snackbar` の JSDoc（ソースの `mi-snackbar.ts`）を参照してください。\n\n" +
+          "</details>",
+      },
+      source: {
+        language: "html",
+        transform: (_code: string, context: unknown) =>
+          miSnackbarSnippetFromArgs(snackbarArgsFromContext(context)),
       },
     },
   },
@@ -341,6 +398,14 @@ export const AllPatterns: Story = {
   args: {
     size: "small",
     text: "Message",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: ALL_PATTERNS_DOCS_SOURCE,
+        language: "html",
+      },
+    },
   },
   render: (args) => html`
     <div
