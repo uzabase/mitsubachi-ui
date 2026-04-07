@@ -743,7 +743,7 @@ var Ye = ":host{width:1.28em;height:1.28em;display:inline-block}.icon{width:100%
 	"warning-fill": "<path d=\"M19.9175 16.385L10.6575 0.345C10.3875 -0.115 9.6275 -0.115 9.3575 0.345L0.0975 16.385C-0.0325 16.615 -0.0325 16.905 0.0975 17.135C0.2275 17.365 0.4775 17.515 0.7475 17.515H19.2675C19.5375 17.515 19.7875 17.375 19.9175 17.135C20.0475 16.905 20.0475 16.615 19.9175 16.385ZM9.2475 5.685H10.7475V11.685H9.2475V5.685ZM10.8275 14.885H9.1675V13.165H10.8275V14.885Z\"/>"
 };
 //#endregion
-//#region \0@oxc-project+runtime@0.121.0/helpers/decorate.js
+//#region \0@oxc-project+runtime@0.122.0/helpers/decorate.js
 function P(e, t, n, r) {
 	var i = arguments.length, a = i < 3 ? t : r === null ? r = Object.getOwnPropertyDescriptor(t, n) : r, o;
 	if (typeof Reflect == "object" && typeof Reflect.decorate == "function") a = Reflect.decorate(e, t, n, r);
