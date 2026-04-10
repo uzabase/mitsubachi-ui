@@ -121,14 +121,6 @@
         },
         {
           "kind": "js",
-          "name": "DialogOpenChangeDetail",
-          "declaration": {
-            "name": "DialogOpenChangeDetail",
-            "module": "./components/dialog"
-          }
-        },
-        {
-          "kind": "js",
           "name": "FormDialogSize",
           "declaration": {
             "name": "FormDialogSize",
@@ -4479,7 +4471,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "モーダルダイアログの共通ベースクラス。\nmi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。\n\nカスタムイベント（各具象要素の `@fires` と一致）:\n- **open-change**: ネイティブ `<dialog>` の `close` かつフッターボタン由来でないとき（Esc・ホストの `open=false`・`dialog.close()` 等。オーバーレイクリックでは閉じない）。bubbles / composed。detail `{ open: false, reason: \"escape\" | null }`（Esc のみ `reason` が `\"escape\"`）。\n- **mi-cancel**: キャンセル（ghost）クリック時。非 cancelable。`open-change` は出さない。\n- **action**: アクション（primary/danger）クリック時。cancelable。`preventDefault()` で閉じ中止。閉じた場合も `open-change` は出さない。",
+          "description": "モーダルダイアログの共通ベースクラス。\nmi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。\n\nイベント:\n- **close**: ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。",
           "name": "DialogBase",
           "members": [
             {
@@ -4587,16 +4579,6 @@
             },
             {
               "kind": "field",
-              "name": "_closeSource",
-              "type": {
-                "text": "\"escape\" | null"
-              },
-              "privacy": "private",
-              "default": "null",
-              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。"
-            },
-            {
-              "kind": "field",
               "name": "dialogSize",
               "type": {
                 "text": "DialogSize"
@@ -4656,11 +4638,6 @@
             {
               "kind": "method",
               "name": "_handleOpenChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "_handleNativeDialogCancel",
               "privacy": "private"
             },
             {
@@ -4747,14 +4724,6 @@
       "path": "src/components/dialog/index.ts",
       "declarations": [],
       "exports": [
-        {
-          "kind": "js",
-          "name": "DialogOpenChangeDetail",
-          "declaration": {
-            "name": "DialogOpenChangeDetail",
-            "module": "./base"
-          }
-        },
         {
           "kind": "js",
           "name": "MiActionDialog",
@@ -5009,20 +4978,6 @@
             },
             {
               "kind": "field",
-              "name": "_closeSource",
-              "type": {
-                "text": "\"escape\" | null"
-              },
-              "privacy": "private",
-              "default": "null",
-              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
               "readonly": true,
@@ -5090,15 +5045,6 @@
             },
             {
               "kind": "field",
-              "name": "_handleNativeDialogCancel",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "_handleClose",
               "privacy": "private",
               "inheritedFrom": {
@@ -5149,16 +5095,8 @@
           ],
           "events": [
             {
-              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターのキャンセル／アクションボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
-              "name": "open-change"
-            },
-            {
-              "description": "`cancel-label` があるときにキャンセル（ghost）ボタンがクリックされたとき。cancelable ではない。閉じたあと発火。このとき `open-change` は発火しない。",
-              "name": "mi-cancel"
-            },
-            {
-              "description": "アクション（primary / danger）ボタンがクリックされたとき。cancelable。`preventDefault()` すると閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
-              "name": "action"
+              "description": "ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。",
+              "name": "close"
             }
           ],
           "attributes": [
@@ -5452,20 +5390,6 @@
             },
             {
               "kind": "field",
-              "name": "_closeSource",
-              "type": {
-                "text": "\"escape\" | null"
-              },
-              "privacy": "private",
-              "default": "null",
-              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
               "readonly": true,
@@ -5511,15 +5435,6 @@
             {
               "kind": "method",
               "name": "_handleOpenChange",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_handleNativeDialogCancel",
               "privacy": "private",
               "inheritedFrom": {
                 "name": "DialogBase",
@@ -5578,16 +5493,8 @@
           ],
           "events": [
             {
-              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターのキャンセル／アクションボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
-              "name": "open-change"
-            },
-            {
-              "description": "`cancel-label` があるときにキャンセル（ghost）ボタンがクリックされたとき。cancelable ではない。閉じたあと発火。このとき `open-change` は発火しない。",
-              "name": "mi-cancel"
-            },
-            {
-              "description": "アクション（primary）ボタンがクリックされたとき。cancelable。バリデーション失敗時などは `preventDefault()` で閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
-              "name": "action"
+              "description": "ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。`form-id` 指定時はフォームのバリデーションが失敗すると閉じない（`close` も発火しない）。",
+              "name": "close"
             }
           ],
           "attributes": [
@@ -5882,20 +5789,6 @@
             },
             {
               "kind": "field",
-              "name": "_closeSource",
-              "type": {
-                "text": "\"escape\" | null"
-              },
-              "privacy": "private",
-              "default": "null",
-              "description": "ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。\n合成イベントは無視（`close()` 経由の誤検知を避ける）。",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "sizeClass",
               "privacy": "protected",
               "readonly": true,
@@ -5963,15 +5856,6 @@
             },
             {
               "kind": "field",
-              "name": "_handleNativeDialogCancel",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "DialogBase",
-                "module": "src/components/dialog/base.ts"
-              }
-            },
-            {
-              "kind": "field",
               "name": "_handleClose",
               "privacy": "private",
               "inheritedFrom": {
@@ -6022,12 +5906,8 @@
           ],
           "events": [
             {
-              "description": "ネイティブ `<dialog>` の `close` が走り、かつフッターの閉じる（action）ボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: \"escape\" | null }`。`reason` はユーザーが Esc で閉じたときのみ `\"escape\"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。",
-              "name": "open-change"
-            },
-            {
-              "description": "閉じる（primary）ボタンがクリックされたとき。cancelable。`preventDefault()` すると閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。",
-              "name": "action"
+              "description": "ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。",
+              "name": "close"
             }
           ],
           "attributes": [
@@ -6465,6 +6345,96 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/inline-notification/inline-notification.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/inline-notification/inline-notification.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/inline-notification/mi-inline-notification.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "types",
+          "type": {
+            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
+          },
+          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiInlineNotification",
+          "slots": [
+            {
+              "description": "通知メッセージのコンテンツ",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "Type"
+              },
+              "default": "\"information\""
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-inline-notification",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "types",
+          "declaration": {
+            "name": "types",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiInlineNotification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-inline-notification",
+          "declaration": {
+            "name": "MiInlineNotification",
+            "module": "src/components/inline-notification/mi-inline-notification.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/label-unit/index.ts",
       "declarations": [
         {
@@ -6694,96 +6664,6 @@
       "path": "src/components/label-unit/styles.css",
       "declarations": [],
       "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/inline-notification.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/inline-notification/inline-notification.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/inline-notification/mi-inline-notification.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "types",
-          "type": {
-            "text": "[\"information\", \"success\", \"warning\", \"error\"]"
-          },
-          "default": "[\"information\", \"success\", \"warning\", \"error\"]"
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiInlineNotification",
-          "slots": [
-            {
-              "description": "通知メッセージのコンテンツ",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "Type"
-              },
-              "default": "\"information\""
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-inline-notification",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "types",
-          "declaration": {
-            "name": "types",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiInlineNotification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-inline-notification",
-          "declaration": {
-            "name": "MiInlineNotification",
-            "module": "src/components/inline-notification/mi-inline-notification.ts"
-          }
-        }
-      ]
     },
     {
       "kind": "javascript-module",
@@ -7756,122 +7636,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -8090,12 +7854,18 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/index.ts",
+      "path": "src/components/menu/control-menu/index.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "MiTextField",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -8103,391 +7873,55 @@
               "static": true
             },
             {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\""
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\""
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "submitOnEnter",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#handleKeyDown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
               "kind": "method",
               "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
             }
           ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "summary": "テキストフィールドです。",
-          "tagName": "mi-text-field",
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
           "customElement": true
         },
         {
           "kind": "class",
           "description": "",
-          "name": "SpTextField",
+          "name": "SpControlMenu",
           "superclass": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           },
-          "deprecated": "代わりに MiTextField を使用してください",
-          "tagName": "sp-text-field",
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
           "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
           "members": [
             {
               "kind": "field",
               "name": "styles",
               "static": true,
               "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "submitOnEnter",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleKeyDown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
               }
             },
             {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
               }
             }
           ]
@@ -8496,41 +7930,41 @@
       "exports": [
         {
           "kind": "js",
-          "name": "MiTextField",
+          "name": "MiControlMenu",
           "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "js",
-          "name": "SpTextField",
+          "name": "SpControlMenu",
           "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "mi-text-field",
+          "name": "mi-control-menu",
           "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-text-field",
+          "name": "sp-control-menu",
           "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/styles.css",
+      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
@@ -9037,6 +8471,452 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキストフィールドです。",
+          "tagName": "mi-text-field",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "superclass": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          },
+          "deprecated": "代わりに MiTextField を使用してください",
+          "tagName": "sp-text-field",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTextField",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-text-field",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-text-field",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },

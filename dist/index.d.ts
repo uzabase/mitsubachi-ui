@@ -5,7 +5,7 @@ export { iconButtonSizes, iconButtonVariants, MiIconButton, } from './components
 export { MiButton, MiNeutralButton, SpButton, } from './components/button/mi-neutral-button';
 export { MiCheckbox, SpCheckbox } from './components/checkbox/mi-checkbox';
 export { MiCheckboxText, SpCheckboxText, } from './components/checkbox/mi-checkbox-text';
-export { type DialogOpenChangeDetail, type FormDialogSize, formDialogSizes, type InformationDialogSize, informationDialogSizes, MiActionDialog, MiFormDialog, MiInformationDialog, } from './components/dialog';
+export { type FormDialogSize, formDialogSizes, type InformationDialogSize, informationDialogSizes, MiActionDialog, MiFormDialog, MiInformationDialog, } from './components/dialog';
 export { MiFloatingButton, SpFloatingButton, } from './components/floating-button/mi-floating-button';
 export { MiIcon, SpIcon } from './components/icon';
 export { MiIconColor } from './components/icon-color';

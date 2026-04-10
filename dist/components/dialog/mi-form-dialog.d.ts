@@ -17,9 +17,7 @@ export type FormDialogSize = (typeof formDialogSizes)[number];
  * @attr {string} action-label - アクションボタンのラベル
  * @attr {string} form-id - Enter キーで送信を有効にしたいとき、slot 内の form 要素の id を指定する（省略時は Enter 送信なし）
  *
- * @fires open-change - ネイティブ `<dialog>` の `close` が走り、かつフッターのキャンセル／アクションボタン由来でないとき。bubbles / composed は true。detail は `{ open: false, reason: "escape" | null }`。`reason` はユーザーが Esc で閉じたときのみ `"escape"`（信頼できるネイティブ `cancel` の直後の close）。ホストが `open` を false にしたとき・スクリプトで `dialog.close()` したときなどは `null`。オーバーレイ領域のクリックでは閉じない（背景クリックで閉じる経路はない）。
- * @fires mi-cancel - `cancel-label` があるときにキャンセル（ghost）ボタンがクリックされたとき。cancelable ではない。閉じたあと発火。このとき `open-change` は発火しない。
- * @fires action - アクション（primary）ボタンがクリックされたとき。cancelable。バリデーション失敗時などは `preventDefault()` で閉じない（そのとき `open-change` も発火しない）。阻止されず閉じた場合も `open-change` は発火しない。
+ * @fires close - ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。`form-id` 指定時はフォームのバリデーションが失敗すると閉じない（`close` も発火しない）。
  */
 export declare class MiFormDialog extends DialogBase {
     /** ダイアログのサイズ（Desktop 時） */
