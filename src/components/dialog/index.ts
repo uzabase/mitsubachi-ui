@@ -1,4 +1,3 @@
-export type { DialogOpenChangeDetail } from "./base";
 export { MiActionDialog } from "./mi-action-dialog";
 export {
   type FormDialogSize,

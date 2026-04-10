@@ -5,13 +5,11 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import type { MiInformationDialog } from "../../src/components/dialog/mi-information-dialog";
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiInformationDialogStory = MiInformationDialog & {
-  onAction?: (e: Event) => void;
-  onOpenChange?: (e: CustomEvent<DialogOpenChangeDetail>) => void;
+  onClose?: (e: Event) => void;
 };
 
 const meta = {
@@ -22,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "フッターの閉じるボタンで閉じたときは `action` のみ。`mi-cancel` はありません。Esc・ホストが `open` を false にしたとき・`dialog.close()` などでは `open-change` のみ（その場合 `action` は発火しません）。オーバーレイのクリックでは閉じません。",
+          "ダイアログが閉じたときに `close` イベントが発火します。ネイティブ `<dialog>` の `close` イベントを再発火しています。",
       },
     },
   },
@@ -40,16 +38,9 @@ const meta = {
     },
     headerText: { type: "string" },
     actionLabel: { type: "string" },
-    onAction: {
-      action: "action",
-      description:
-        "閉じるボタンが押されたとき（cancelable。`preventDefault()` で閉じない）",
-      table: { category: "Events" },
-    },
-    onOpenChange: {
-      action: "open-change",
-      description:
-        '閉じるボタン以外で閉じたとき（Esc・`open` を false・`dialog.close()` 等。背景クリックでは閉じない）。detail: { open: false, reason: "escape" | null }（Esc は "escape"、それ以外は null）',
+    onClose: {
+      action: "close",
+      description: "ダイアログが閉じたとき",
       table: { category: "Events" },
     },
   },
@@ -57,8 +48,7 @@ const meta = {
     size: "medium",
     headerText: "利用規約",
     actionLabel: "閉じる",
-    onAction: action("action"),
-    onOpenChange: action("open-change"),
+    onClose: action("close"),
   },
 } satisfies Meta<MiInformationDialogStory>;
 
@@ -73,15 +63,15 @@ const openDialog = (e: Event) => {
   if (dialog) dialog.open = true;
 };
 
-const handleOpenChange = (e: CustomEvent) => {
+const handleClose = (e: CustomEvent) => {
   const dialog = e.target as MiInformationDialog;
   dialog.open = false;
 };
 
-function bindOpenChange(args: Partial<MiInformationDialogStory> | undefined) {
-  return (e: CustomEvent) => {
-    handleOpenChange(e);
-    args?.onOpenChange?.(e as CustomEvent<DialogOpenChangeDetail>);
+function bindClose(args: Partial<MiInformationDialogStory> | undefined) {
+  return (e: Event) => {
+    handleClose(e as CustomEvent);
+    args?.onClose?.(e);
   };
 }
 
@@ -98,8 +88,7 @@ export const Default: Story = {
         size=${args.size}
         header-text=${args.headerText}
         action-label=${args.actionLabel}
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p>
           ここに利用規約の本文が入ります。重要な情報を表示するダイアログです。
@@ -128,8 +117,7 @@ export const Small: Story = {
         size=${args.size}
         header-text="お知らせ"
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p>短いお知らせ内容がここに表示されます。</p>
       </mi-information-dialog>
@@ -152,8 +140,7 @@ export const Medium: Story = {
         size=${args.size}
         header-text="プライバシーポリシー"
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p>プライバシーポリシーの本文がここに表示されます。</p>
         <p>中程度の長さの情報を表示するのに適したサイズです。</p>
@@ -282,8 +269,7 @@ export const LongContent: Story = {
         size=${args.size}
         header-text="サービス利用規約"
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         ${longTermsContent}
       </mi-information-dialog>
@@ -303,8 +289,7 @@ export const PhoneDefault: Story = {
         size=${args.size}
         header-text="利用規約"
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p>
           ここに利用規約の本文が入ります。重要な情報を表示するダイアログです。
@@ -335,8 +320,7 @@ export const PhoneLongContent: Story = {
         size=${args.size}
         header-text="サービス利用規約"
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         ${longTermsContent}
       </mi-information-dialog>

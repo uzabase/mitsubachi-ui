@@ -14,21 +14,12 @@ import { dialogStyles } from "./dialog.styles";
 export type DialogSize = "small" | "medium" | "large";
 export type DialogVariant = "action" | "information" | "form";
 
-/** フッター以外で閉じたときの `open-change` の detail（`open` は常に false） */
-export type DialogOpenChangeDetail = {
-  open: false;
-  /** Esc で閉じたとき `"escape"`。ホストが `open` を false にした場合・`dialog.close()` などでは `null`（オーバーレイクリックでは閉じない） */
-  reason: "escape" | null;
-};
-
 /**
  * モーダルダイアログの共通ベースクラス。
  * mi-action-dialog / mi-form-dialog / mi-information-dialog が継承する。
  *
- * カスタムイベント（各具象要素の `@fires` と一致）:
- * - **open-change**: ネイティブ `<dialog>` の `close` かつフッターボタン由来でないとき（Esc・ホストの `open=false`・`dialog.close()` 等。オーバーレイクリックでは閉じない）。bubbles / composed。detail `{ open: false, reason: "escape" | null }`（Esc のみ `reason` が `"escape"`）。
- * - **mi-cancel**: キャンセル（ghost）クリック時。非 cancelable。`open-change` は出さない。
- * - **action**: アクション（primary/danger）クリック時。cancelable。`preventDefault()` で閉じ中止。閉じた場合も `open-change` は出さない。
+ * イベント:
+ * - **close**: ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。
  */
 export abstract class DialogBase extends LitElement {
   static styles = makeStyles(...dialogStyles);
@@ -73,12 +64,6 @@ export abstract class DialogBase extends LitElement {
 
   /** フッターのキャンセル／アクションで閉じた直後の close では open-change を出さない */
   private _closingFromFooterButton = false;
-
-  /**
-   * ネイティブ `cancel`（Esc）のあと続く `close` で `open-change` の reason を付ける。
-   * 合成イベントは無視（`close()` 経由の誤検知を避ける）。
-   */
-  private _closeSource: "escape" | null = null;
 
   /** 継承クラスでオーバーライド: ダイアログのサイズ */
   protected abstract get dialogSize(): DialogSize;
@@ -140,25 +125,15 @@ export abstract class DialogBase extends LitElement {
     }
   }
 
-  private _handleNativeDialogCancel = (e: Event) => {
-    if (!e.isTrusted) return;
-    this._closeSource = "escape";
-  };
-
   private _handleClose = () => {
-    const reason = this._closeSource;
-    this._closeSource = null;
-    this.open = false;
     if (this._closingFromFooterButton) {
+      this.open = false;
       return;
     }
-    this.dispatchEvent(
-      new CustomEvent<DialogOpenChangeDetail>("open-change", {
-        detail: { open: false, reason },
-        bubbles: true,
-        composed: true,
-      }),
-    );
+    // イベントを先にディスパッチしてから open を変更する
+    // （Lit の更新サイクルがイベント処理に干渉しないようにするため）
+    this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
+    this.open = false;
   };
 
   private _nativeDialog(): HTMLDialogElement | null {
@@ -169,28 +144,28 @@ export abstract class DialogBase extends LitElement {
     this._closingFromFooterButton = true;
     this._nativeDialog()?.close();
     this._closingFromFooterButton = false;
-    this.dispatchEvent(
-      new Event("mi-cancel", { bubbles: true, composed: true }),
-    );
-    // `close` イベントの `_handleClose` でも `open` は false になるが、
     // 環境によっては同期がずれるため、フッター経路では明示して確実に閉じ状態に揃える。
     this.open = false;
+    this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
   };
 
   private _handleActionClick = () => {
-    const actionEvent = new Event("action", {
-      bubbles: true,
-      composed: true,
-      cancelable: true,
-    });
-    if (!this.dispatchEvent(actionEvent)) {
-      return;
+    // form-id 指定時はフォームのバリデーションを確認
+    if (this.formId) {
+      const form = document.getElementById(
+        this.formId,
+      ) as HTMLFormElement | null;
+      if (form && !form.checkValidity()) {
+        form.reportValidity();
+        return; // バリデーション失敗時は閉じない
+      }
     }
     this._closingFromFooterButton = true;
     this._nativeDialog()?.close();
     this._closingFromFooterButton = false;
-    // 同上（キャンセルと同じくフッター確定で `open` を確実に false にする）
+    // キャンセルと同じくフッター確定で `open` を確実に false にする
     this.open = false;
+    this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
   };
 
   render() {
@@ -198,7 +173,6 @@ export abstract class DialogBase extends LitElement {
     return html`
       <dialog
         class="dialog-root"
-        @cancel=${this._handleNativeDialogCancel}
         @close=${this._handleClose}
         role="dialog"
         aria-modal="true"

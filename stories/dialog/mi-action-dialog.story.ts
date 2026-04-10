@@ -7,14 +7,11 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import type { MiActionDialog } from "../../src/components/dialog/mi-action-dialog";
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiActionDialogStory = MiActionDialog & {
-  onMiCancel?: (e: Event) => void;
-  onAction?: (e: Event) => void;
-  onOpenChange?: (e: CustomEvent<DialogOpenChangeDetail>) => void;
+  onClose?: (e: Event) => void;
 };
 
 const meta = {
@@ -25,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "フッターのキャンセル／確定で閉じたときは `mi-cancel` または `action` のみ。Esc・ホストが `open` を false にしたとき・`dialog.close()` などでは `open-change` のみ（その場合 `mi-cancel` / `action` は発火しません）。オーバーレイのクリックでは閉じません。",
+          "ダイアログが閉じたときに `close` イベントが発火します。ネイティブ `<dialog>` の `close` イベントを再発火しています。",
       },
     },
   },
@@ -43,21 +40,9 @@ const meta = {
       control: "boolean",
       description: "破壊的アクション（削除等）の場合は true",
     },
-    onMiCancel: {
-      action: "mi-cancel",
-      description: "キャンセル（ghost）ボタンが押されたとき",
-      table: { category: "Events" },
-    },
-    onAction: {
-      action: "action",
-      description:
-        "アクション（primary / danger）ボタンが押されたとき（cancelable。`preventDefault()` で閉じない）",
-      table: { category: "Events" },
-    },
-    onOpenChange: {
-      action: "open-change",
-      description:
-        'フッターボタン以外で閉じたとき（Esc・`open` を false・`dialog.close()` 等。背景クリックでは閉じない）。detail: { open: false, reason: "escape" | null }（Esc は "escape"、それ以外は null）',
+    onClose: {
+      action: "close",
+      description: "ダイアログが閉じたとき",
       table: { category: "Events" },
     },
   },
@@ -65,9 +50,7 @@ const meta = {
     headerText: "操作の確認",
     cancelLabel: "キャンセル",
     actionLabel: "実行する",
-    onMiCancel: action("mi-cancel"),
-    onAction: action("action"),
-    onOpenChange: action("open-change"),
+    onClose: action("close"),
   },
 } satisfies Meta<MiActionDialogStory>;
 
@@ -80,19 +63,16 @@ const openDialog = (e: Event) => {
   if (dialog) dialog.open = true;
 };
 
-const handleOpenChange = (e: CustomEvent) => {
+const handleClose = (e: CustomEvent) => {
   const dialog = e.target as MiActionDialog;
   dialog.open = false;
 };
 
-/** open の同期後に Storybook Actions 用ハンドラを呼ぶ */
-function bindOpenChange(
-  args: Partial<MiActionDialogStory> | undefined,
-  sync: (e: CustomEvent) => void = handleOpenChange,
-) {
-  return (e: CustomEvent) => {
-    sync(e);
-    args?.onOpenChange?.(e as CustomEvent<DialogOpenChangeDetail>);
+/** close イベントを処理し、Storybook Actions に転送 */
+function bindClose(args: Partial<MiActionDialogStory> | undefined) {
+  return (e: Event) => {
+    handleClose(e as CustomEvent);
+    args?.onClose?.(e);
   };
 }
 
@@ -109,9 +89,7 @@ export const Default: Story = {
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
         ?danger=${args.danger}
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         この操作を実行してもよろしいですか？
       </mi-action-dialog>
@@ -138,9 +116,7 @@ export const StatusDelete: Story = {
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
         ?danger=${args.danger}
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p style="margin: 0 0 8px 0; font-weight: 700; font-size: 16px;">
           「{ステータス名}」を削除しますか？
@@ -166,9 +142,7 @@ export const CloseOnly: Story = {
         header-text="お知らせ"
         cancel-label=${args.cancelLabel}
         action-label="閉じる"
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         処理が完了しました。
       </mi-action-dialog>
@@ -193,9 +167,7 @@ export const AdministratorAdd: Story = {
         header-text=${args.headerText}
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p style="margin: 0 0 24px 0; font-size: 14px;">
           管理者権限を付与すると、スピーダの利用に関する権限設定やユーザーの各種設定変更を行うことができます。<br />
@@ -233,9 +205,7 @@ export const ProfileImageDelete: Story = {
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
         ?danger=${args.danger}
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <div style="display: flex; flex-direction: column; gap: 16px;">
           <div>
@@ -271,9 +241,7 @@ export const LongContent: Story = {
         header-text="管理者権限付与の確認"
         cancel-label="キャンセル"
         action-label="付与する"
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p style="margin-top: 0">
           管理者権限を付与すると、スピーダの利用に関する権限設定やユーザーの各種設定変更を行うことができます。<br />
@@ -345,9 +313,7 @@ export const PhoneDefault: Story = {
         cancel-label=${args.cancelLabel}
         action-label=${args.actionLabel}
         ?danger=${args.danger}
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         この操作を実行してもよろしいですか？
       </mi-action-dialog>
@@ -370,9 +336,7 @@ export const PhoneLongContent: Story = {
         header-text="管理者権限付与の確認"
         cancel-label="キャンセル"
         action-label="付与する"
-        @open-change=${bindOpenChange(args)}
-        @mi-cancel=${args.onMiCancel}
-        @action=${args.onAction}
+        @close=${bindClose(args)}
       >
         <p style="margin-top: 0">
           管理者権限を付与すると、スピーダの利用に関する権限設定やユーザーの各種設定変更を行うことができます。<br />

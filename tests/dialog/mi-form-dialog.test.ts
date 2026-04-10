@@ -4,7 +4,6 @@ import { describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import type { ButtonBase } from "../../src/components/button/base";
-import type { DialogOpenChangeDetail } from "../../src/components/dialog/base";
 import {
   formDialogSizes,
   type MiFormDialog,
@@ -216,10 +215,68 @@ describe("mi-form-dialog", () => {
       expect(btn.type).toBe("submit");
       expect(btn.form).toBe("profile-form");
     });
+
+    test("form-id 指定時、フォームが invalid なら閉じない", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+          form-id="test-form"
+        >
+          <form id="test-form">
+            <input type="text" name="name" required />
+          </form>
+        </mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let closeCount = 0;
+      el.addEventListener("close", () => {
+        closeCount += 1;
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(closeCount).toBe(0);
+      expect(el.open).toBe(true);
+    });
+
+    test("form-id 指定時、フォームが valid なら閉じる", async () => {
+      document.body.innerHTML = `
+        <mi-form-dialog
+          open
+          header-text="フォーム"
+          action-label="送信"
+          form-id="test-form"
+        >
+          <form id="test-form">
+            <input type="text" name="name" value="テスト" required />
+          </form>
+        </mi-form-dialog>
+      `;
+      await customElements.whenDefined("mi-form-dialog");
+
+      const el = getFormDialog();
+      let closed = false;
+      el.addEventListener("close", () => {
+        closed = true;
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(closed).toBe(true);
+      expect(el.open).toBe(false);
+    });
   });
 
   describe("イベント", () => {
-    test("アクションボタンをクリックすると action イベントが発火する", async () => {
+    test("アクションボタンをクリックすると close イベントが発火する", async () => {
       document.body.innerHTML = `
         <mi-form-dialog
           open
@@ -230,110 +287,20 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       const el = getFormDialog();
-      let acted = false;
-      el.addEventListener("action", () => {
-        acted = true;
+      let closed = false;
+      el.addEventListener("close", () => {
+        closed = true;
       });
 
       await el.updateComplete;
       (getActionButton() as HTMLElement | undefined)?.click();
       await el.updateComplete;
 
-      expect(acted).toBe(true);
-    });
-
-    test("ネイティブ dialog.close() で閉じたとき open-change が発火し open が false になる", async () => {
-      document.body.innerHTML = `
-        <mi-form-dialog
-          open
-          header-text="フォーム"
-          action-label="送信"
-        ></mi-form-dialog>
-      `;
-      await customElements.whenDefined("mi-form-dialog");
-
-      const el = getFormDialog();
-      const dialogEl = el.shadowRoot?.querySelector("dialog");
-      const openChangePromise = new Promise<DialogOpenChangeDetail>(
-        (resolve) => {
-          el.addEventListener(
-            "open-change",
-            ((e: CustomEvent<DialogOpenChangeDetail>) =>
-              resolve(e.detail)) as EventListener,
-            { once: true },
-          );
-        },
-      );
-
-      await el.updateComplete;
-      (dialogEl as HTMLDialogElement | undefined)?.close();
-      const detail = await openChangePromise;
-
-      expect(detail).toEqual({ open: false, reason: null });
+      expect(closed).toBe(true);
       expect(el.open).toBe(false);
     });
 
-    test("action で preventDefault するとダイアログは開いたまま", async () => {
-      document.body.innerHTML = `
-        <mi-form-dialog
-          open
-          header-text="フォーム"
-          action-label="送信"
-        ></mi-form-dialog>
-      `;
-      await customElements.whenDefined("mi-form-dialog");
-
-      const el = getFormDialog();
-      let actionCount = 0;
-      let openChangeCount = 0;
-      el.addEventListener("open-change", () => {
-        openChangeCount += 1;
-      });
-      el.addEventListener("action", (e) => {
-        actionCount += 1;
-        e.preventDefault();
-      });
-
-      await el.updateComplete;
-      (getActionButton() as HTMLElement | undefined)?.click();
-      await el.updateComplete;
-
-      expect(actionCount).toBe(1);
-      expect(openChangeCount).toBe(0);
-      expect(el.open).toBe(true);
-      expect(getDialogEl()).toBeTruthy();
-    });
-
-    test("アクションボタンで閉じたときは action のみで open-change は発火しない", async () => {
-      document.body.innerHTML = `
-        <mi-form-dialog
-          open
-          header-text="フォーム"
-          action-label="送信"
-        ></mi-form-dialog>
-      `;
-      await customElements.whenDefined("mi-form-dialog");
-
-      const el = getFormDialog();
-      let openChangeCount = 0;
-      let actionCount = 0;
-      el.addEventListener("open-change", () => {
-        openChangeCount += 1;
-      });
-      el.addEventListener("action", () => {
-        actionCount += 1;
-      });
-
-      await el.updateComplete;
-      (getActionButton() as HTMLElement | undefined)?.click();
-      await el.updateComplete;
-
-      expect(actionCount).toBe(1);
-      expect(openChangeCount).toBe(0);
-      expect(el.open).toBe(false);
-    });
-
-    test("キャンセルボタンをクリックすると mi-cancel イベントが発火する", async () => {
+    test("キャンセルボタンをクリックすると close イベントが発火する", async () => {
       document.body.innerHTML = `
         <mi-form-dialog
           open
@@ -345,19 +312,20 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       const el = getFormDialog();
-      let canceled = false;
-      el.addEventListener("mi-cancel", () => {
-        canceled = true;
+      let closed = false;
+      el.addEventListener("close", () => {
+        closed = true;
       });
 
       await el.updateComplete;
       (getCancelButton() as HTMLElement | undefined)?.click();
       await el.updateComplete;
 
-      expect(canceled).toBe(true);
+      expect(closed).toBe(true);
+      expect(el.open).toBe(false);
     });
 
-    test("Esc キーで閉じたとき open-change の reason が escape になる", async () => {
+    test("Esc キーで閉じたとき close イベントが発火する", async () => {
       document.body.innerHTML = `
         <mi-form-dialog
           open
@@ -368,28 +336,21 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       const el = getFormDialog();
-      const openChangePromise = new Promise<DialogOpenChangeDetail>(
-        (resolve) => {
-          el.addEventListener(
-            "open-change",
-            ((e: CustomEvent<DialogOpenChangeDetail>) =>
-              resolve(e.detail)) as EventListener,
-            { once: true },
-          );
-        },
-      );
+      let closed = false;
+      el.addEventListener("close", () => {
+        closed = true;
+      });
 
       await el.updateComplete;
       const dialog = getDialogEl() as HTMLDialogElement;
       dialog.focus();
       await userEvent.keyboard("{Escape}");
-      const detail = await openChangePromise;
 
-      expect(detail).toEqual({ open: false, reason: "escape" });
+      expect(closed).toBe(true);
       expect(el.open).toBe(false);
     });
 
-    test("キャンセルボタンで閉じたときは mi-cancel のみで open-change は発火しない", async () => {
+    test("どの方法で閉じても close イベントは1回だけ発火する", async () => {
       document.body.innerHTML = `
         <mi-form-dialog
           open
@@ -401,21 +362,16 @@ describe("mi-form-dialog", () => {
       await customElements.whenDefined("mi-form-dialog");
 
       const el = getFormDialog();
-      let openChangeCount = 0;
-      let cancelCount = 0;
-      el.addEventListener("open-change", () => {
-        openChangeCount += 1;
-      });
-      el.addEventListener("mi-cancel", () => {
-        cancelCount += 1;
+      let closeCount = 0;
+      el.addEventListener("close", () => {
+        closeCount += 1;
       });
 
       await el.updateComplete;
       (getCancelButton() as HTMLElement | undefined)?.click();
       await el.updateComplete;
 
-      expect(cancelCount).toBe(1);
-      expect(openChangeCount).toBe(0);
+      expect(closeCount).toBe(1);
       expect(el.open).toBe(false);
     });
   });
