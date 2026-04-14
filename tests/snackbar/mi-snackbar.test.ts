@@ -8,10 +8,23 @@ function getSnackbar() {
   return document.querySelector("mi-snackbar") as MiSnackbar;
 }
 
-/** 次の `close` を待つ（固定 sleep より速く、未発火時はテストのタイムアウトで失敗する） */
-function nextCloseEvent(target: EventTarget): Promise<Event> {
+/** 要素が DOM から削除されるのを待つ */
+function waitForRemoval(el: HTMLElement): Promise<void> {
   return new Promise((resolve) => {
-    target.addEventListener("close", resolve as EventListener, { once: true });
+    if (!el.isConnected) {
+      resolve();
+      return;
+    }
+    const observer = new MutationObserver(() => {
+      if (!el.isConnected) {
+        observer.disconnect();
+        resolve();
+      }
+    });
+    observer.observe(el.parentElement ?? document.body, {
+      childList: true,
+      subtree: true,
+    });
   });
 }
 
@@ -113,44 +126,29 @@ describe("mi-snackbar", () => {
     );
   });
 
-  describe("close イベント", () => {
-    test("閉じるボタンで発火し、bubbles と composed が true", async () => {
+  describe("自動削除", () => {
+    test("閉じるボタンをクリックすると DOM から削除される", async () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">メッセージ</mi-snackbar>`;
       await flush();
 
       const el = getSnackbar();
-      const closePromise = nextCloseEvent(el);
+      const removalPromise = waitForRemoval(el);
       clickSnackbarClose(el);
-      const e = await closePromise;
+      await removalPromise;
 
-      expect(e.type).toBe("close");
-      expect(e.bubbles).toBe(true);
-      expect(e.composed).toBe(true);
+      expect(el.isConnected).toBe(false);
     });
 
-    test("手動で閉じた場合は close が1回だけ", async () => {
-      document.body.innerHTML = `<mi-snackbar auto-hide-timeout="60000">m</mi-snackbar>`;
-      await flush();
-
-      let count = 0;
-      getSnackbar().addEventListener("close", () => {
-        count += 1;
-      });
-
-      clickSnackbarClose(getSnackbar());
-      await nextCloseEvent(getSnackbar());
-      expect(count).toBe(1);
-    });
-
-    test("dismiss() で close が1回発火し、退出中は2回目は false", async () => {
+    test("dismiss() で退出を開始し、退出中は2回目は false を返す", async () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
       await flush();
 
       const el = getSnackbar();
-      const closePromise = nextCloseEvent(el);
+      const removalPromise = waitForRemoval(el);
       expect(el.dismiss()).toBe(true);
-      await closePromise;
       expect(el.dismiss()).toBe(false);
+      await removalPromise;
+      expect(el.isConnected).toBe(false);
     });
 
     describe("prefers-reduced-motion: reduce", () => {
@@ -174,49 +172,40 @@ describe("mi-snackbar", () => {
         vi.restoreAllMocks();
       });
 
-      test("閉じるボタン連打でも close は1回だけ", async () => {
+      test("閉じるボタン連打でも削除は1回だけ", async () => {
         document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
         await flush();
 
-        let count = 0;
-        getSnackbar().addEventListener("close", () => {
-          count += 1;
-        });
-
-        const btn = getSnackbar()
+        const el = getSnackbar();
+        const btn = el
           .shadowRoot!.querySelector("mi-icon-button")!
           .shadowRoot!.querySelector("button")!;
         btn.click();
         btn.click();
 
         await Promise.resolve();
-        expect(count).toBe(1);
+        expect(el.isConnected).toBe(false);
       });
     });
   });
 
   describe("auto-hide-timeout", () => {
-    test("経過後に close が発火する", async () => {
+    test("経過後に DOM から削除される", async () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="100">メッセージ</mi-snackbar>`;
       await flush();
 
       const el = getSnackbar();
-      await expect(nextCloseEvent(el)).resolves.toMatchObject({
-        type: "close",
-      });
+      await waitForRemoval(el);
+      expect(el.isConnected).toBe(false);
     });
 
-    test("0 のときは時間経過だけでは close しない", async () => {
+    test("0 のときは時間経過だけでは削除されない", async () => {
       document.body.innerHTML = `<mi-snackbar auto-hide-timeout="0">m</mi-snackbar>`;
       await flush();
 
-      let fired = false;
-      getSnackbar().addEventListener("close", () => {
-        fired = true;
-      });
-
+      const el = getSnackbar();
       await new Promise((r) => setTimeout(r, 100));
-      expect(fired).toBe(false);
+      expect(el.isConnected).toBe(true);
     });
 
     test("属性を更新すると新しい時間で再スケジュールされる", async () => {
@@ -224,11 +213,12 @@ describe("mi-snackbar", () => {
       await flush();
 
       const el = getSnackbar();
-      const closePromise = nextCloseEvent(el);
+      const removalPromise = waitForRemoval(el);
       el.setAttribute("auto-hide-timeout", "150");
       await el.updateComplete;
 
-      await expect(closePromise).resolves.toMatchObject({ type: "close" });
+      await removalPromise;
+      expect(el.isConnected).toBe(false);
     });
   });
 });

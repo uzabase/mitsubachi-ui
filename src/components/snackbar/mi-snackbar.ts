@@ -26,14 +26,25 @@ function toSnackbarSize(value: unknown): SnackbarSize {
  *
  * @slot - メッセージ本文（`text` のような属性ではなく、子要素／スロットで渡します）
  *
- * @fires close - 閉じる操作・自動非表示のいずれかの後、退出アニメーション完了時（またはアニメなし時）。`bubbles` と `composed` が true。
- *
  * @cssprop --surface-success - 背景色
  * @cssprop --text-regular-default - テキスト色
  * @cssprop --snackbar-z-index - 重なり順（デフォルトは React 版 viewport と同程度の大きい値）
  * @cssprop --snackbar-transition-duration - 入退出アニメーションの時間（デフォルト 200ms）
  *
- * 複数件を同じ位置に縦に積む場合は `mi-snackbar-viewport` の子としてマウントしてください。
+ * ## 配置について
+ *
+ * `mi-snackbar` 自体は画面端に固定するスタイルを内包していません（配置はマウント先のレイアウトに従います）。
+ * デザインどおり「デスクトップでは右上・狭い画面では下中央」に重ね表示したい場合は、
+ * `mi-snackbar-viewport` を 1 つ置き、その子としてポータルしてください（複数同時表示は縦方向に gap でずれて並びます）。
+ *
+ * 自前のコンテナを使う場合は `document.body` 直下など、ビューポート基準で `position: fixed` できる要素にしてください。
+ * 祖先要素の `transform` などによっては `fixed` の基準がずれ、意図しない位置に見えることがあります。
+ *
+ * ### なぜ viewport ラッパーを組み込まないか
+ *
+ * - **責務の分離**: 通知の見た目・閉じる挙動・アニメに責務を絞り、画面端への固定やポータル先はアプリのレイアウトやフレームワークに合わせて載せ替えやすくしています。
+ * - **利用側の差**: SSR・複数同時表示・既存の Toast 基盤・z-index の都合などで最適なマウント方法が異なり、単一のポータル方針をライブラリに押し付けにくいためです。
+ * - **既存設計との整合**: React 版でも Snackbar 本体と viewport／Provider 側を分ける想定に揃えています。
  *
  * @example
  * ```html
@@ -69,7 +80,7 @@ export class MiSnackbar extends LitElement {
   @state()
   private exiting = false;
 
-  private exitCloseDispatched = false;
+  private exitRemoved = false;
 
   /** 退出時に opacity / transform の transitionend を両方待つ（片方だけだとカクつきやすい） */
   private readonly exitTransitionSeen = new Set<string>();
@@ -143,11 +154,9 @@ export class MiSnackbar extends LitElement {
     });
   }
 
-  private dispatchClose() {
+  private removeSelf() {
     if (!this.isConnected) return;
-    this.dispatchEvent(
-      new CustomEvent("close", { bubbles: true, composed: true }),
-    );
+    this.remove();
   }
 
   private beginClose() {
@@ -158,39 +167,39 @@ export class MiSnackbar extends LitElement {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      // 退出アニメなしでも「閉じた」状態にして二重の close を防ぐ
+      // 退出アニメなしでも即座に DOM から削除
       this.exiting = true;
-      this.exitCloseDispatched = true;
-      this.dispatchClose();
+      this.exitRemoved = true;
+      this.removeSelf();
       return;
     }
     this.exitTransitionSeen.clear();
     this.entering = false;
     this.exiting = true;
-    this.exitCloseDispatched = false;
+    this.exitRemoved = false;
     this.exitFallbackTimer = window.setTimeout(() => {
-      if (this.exiting && !this.exitCloseDispatched) {
-        this.exitCloseDispatched = true;
-        this.dispatchClose();
+      if (this.exiting && !this.exitRemoved) {
+        this.exitRemoved = true;
+        this.removeSelf();
       }
     }, 350);
   }
 
   private handleRootTransitionEnd(e: TransitionEvent) {
     if (!this.isConnected) return;
-    if (!this.exiting || this.exitCloseDispatched) return;
+    if (!this.exiting || this.exitRemoved) return;
     const root = this.shadowRoot?.querySelector(".root");
     if (!root || e.target !== root) return;
     if (e.propertyName !== "opacity" && e.propertyName !== "transform") return;
     this.exitTransitionSeen.add(e.propertyName);
     if (this.exitTransitionSeen.size < 2) return;
     this.exitTransitionSeen.clear();
-    this.exitCloseDispatched = true;
+    this.exitRemoved = true;
     if (this.exitFallbackTimer !== undefined) {
       clearTimeout(this.exitFallbackTimer);
       this.exitFallbackTimer = undefined;
     }
-    this.dispatchClose();
+    this.removeSelf();
   }
 
   private handleClose() {

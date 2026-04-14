@@ -12,6 +12,9 @@ import {
   snackbarSizes,
 } from "../../src/components/snackbar/mi-snackbar";
 
+/** Storybook Actions パネル用 */
+const logClick = action("click");
+
 /** Storybook 用: 全トリガーで共有する `mi-snackbar-viewport`（複数件は縦にずれて表示） */
 const SHARED_SNACKBAR_VIEWPORT_ID = "mitsubachi-snackbar-story-shared-viewport";
 
@@ -25,9 +28,6 @@ const storySnackMountToTrigger = new WeakMap<
   HTMLElement,
   SnackbarStoryTrigger
 >();
-
-/** Storybook Actions パネル用（`mi-snackbar` の `close`） */
-const logSnackbarClose = action("close");
 
 function getOrCreateSharedSnackbarStoryViewport(): HTMLElement {
   if (typeof document === "undefined") {
@@ -125,18 +125,21 @@ class SnackbarStoryTrigger extends LitElement {
     this.snackbarMounts.push(mount);
     render(
       html`
-        <mi-snackbar
-          size=${this.size}
-          @close=${(e: Event) => {
-            logSnackbarClose(e);
-            this.removeMount(mount);
-          }}
+        <mi-snackbar size=${this.size} @click=${logClick}
+          >${this.message}</mi-snackbar
         >
-          ${this.message}
-        </mi-snackbar>
       `,
       mount,
     );
+    // mi-snackbar は閉じると自動で DOM から削除されるので、MutationObserver で検知してマウントを掃除
+    const observer = new MutationObserver(() => {
+      if (!mount.querySelector("mi-snackbar")) {
+        observer.disconnect();
+        this.removeMount(mount);
+      }
+    });
+    observer.observe(mount, { childList: true, subtree: true });
+
     while (storySnackbarMountOrder.length > MAX_STORY_SNACKBARS) {
       const oldest = storySnackbarMountOrder[0];
       const snack = oldest.querySelector("mi-snackbar") as MiSnackbar | null;
@@ -230,27 +233,10 @@ const meta: Meta<SnackbarStoryArgs> = {
     docs: {
       description: {
         component:
-          "Snackbar は、ユーザー操作に対する短いフィードバックを、既存 UI の上に重ねて表示する軽量な Overlay 通知コンポーネントです。\n\n" +
-          "ユーザーの視線に入りやすい位置に、短時間だけ情報を提示し、操作フローを中断させずに状態を共有することを目的としています。\n\n" +
-          "### 使い方のルール\n\n" +
-          "- **メッセージの渡し方** — `mi-snackbar` に **`text` 属性はありません**。本文は **既定スロット**（タグの子要素／スロット）に記述してください。\n" +
-          "- **イベント** — **`close`** が閉じる操作・自動非表示・表示上限による取下げのあとに発火します（`bubbles` / `composed`）。Canvas 下部の **Actions** タブでログを確認できます。\n" +
-          "- **成功フィードバック専用** — Snackbar は成功時のみ使用します\n" +
-          "- **重要な情報には使わない** — 短時間で自動消去されるため、見逃してほしくない情報のお知らせには適しません\n" +
-          "- **失敗・警告・エラー** — `mi-inline-notification` 等の別コンポーネントを使用してください\n\n" +
-          "### 本番での表示位置について\n\n" +
-          "`mi-snackbar` 自体は **画面の右上に固定するスタイルを内包していません**（配置はマウント先のレイアウトに従います）。デザインどおり **デスクトップでは右上・狭い画面では下中央** に重ね表示したい場合は、**`mi-snackbar-viewport` を 1 つ置き、その子としてポータルする**のが簡単です（複数同時表示は **縦方向に `gap` でずれて** 並びます）。自前のコンテナを使う場合は、本ストーリーと同様に **`document.body` 直下など、ビューポート基準で `position: fixed` できる要素**にしてください。祖先要素の `transform` などによっては `fixed` の基準がずれ、意図しない位置に見えることがあります。\n\n" +
-          "<details>\n<summary><strong>なぜ viewport ラッパーを `mi-snackbar` に組み込まないか</strong></summary>\n\n" +
-          "- **責務の分離** — 通知の見た目・閉じる挙動・アニメに責務を絞り、**画面端への固定やポータル先**はアプリのレイアウトやフレームワークに合わせて載せ替えやすいようにしています。\n" +
-          "- **利用側の差** — SSR・複数同時表示・既存の Toast 基盤・z-index の都合などで最適なマウント方法が異なり、**単一のポータル方針をライブラリに押し付けにくい**ためです。\n" +
-          "- **既存設計との整合** — React 版でも Snackbar 本体と viewport／Provider 側を分ける想定に揃えています。\n" +
-          "- **拡張** — 複数件を同じ位置に縦にずらして出すには **`mi-snackbar-viewport`** を利用できます（`mi-snackbar` 本体には組み込まず、必要に応じてアプリ側で組み合わせます）。\n\n" +
-          "</details>\n\n" +
-          "<details>\n<summary><strong>Show code（コード表示）とキャンバス・プレビューの違い</strong></summary>\n\n" +
-          "- **Show code**（Canvas / Docs）には `<mi-snackbar>` の利用例の HTML が表示されます。Controls の `size` と **メッセージ（既定スロットの内容）** も反映されます（`text` 属性ではありません）。\n" +
-          "- **キャンバス上のプレビュー**は `<snackbar-story-trigger>` がクリック後に `<mi-snackbar>` を **共有の** `<mi-snackbar-viewport>` へポータルするデモです（複数トリガーで開くと縦に積みます）。Storybook のラッパー由来で `position: fixed` の見え方が崩れないようにするためのものです。\n" +
-          "- 属性・slot・イベントの詳細は `mi-snackbar` の JSDoc（ソースの `mi-snackbar.ts`）を参照してください。\n\n" +
-          "</details>",
+          "Snackbar は、ユーザー操作に対する短いフィードバックを表示する軽量な通知コンポーネントです。成功時のフィードバック専用で、短時間で自動消去されます。\n\n" +
+          "- メッセージは既定スロット（タグの子要素）に記述（`text` 属性はありません）\n" +
+          "- 画面端への配置には `mi-snackbar-viewport` を使用\n" +
+          "- 失敗・警告・エラーには `mi-inline-notification` を使用してください",
       },
       source: {
         language: "html",
