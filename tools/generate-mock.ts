@@ -2,7 +2,8 @@
  * テスト用モックコンポーネントの生成スクリプト
  *
  * dist/custom-elements.json から dist/mock.js を生成します。
- * コンポーネントが slot を持つ場合、Shadow DOM 付きのモックを生成します。
+ * 各コンポーネントはタグ名を表示する共通の視覚的モック表現を持ち、
+ * Selenide の visible チェック等で検出可能です。
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -66,6 +67,23 @@ function resolveComponents(manifest: Manifest): ComponentInfo[] {
     });
 }
 
+function toJSString(html: string): string {
+  return html
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\n\s*/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+const MOCK_STYLE = toJSString(`
+  :host { display: inline-block; }
+  .m { display: inline-flex; align-items: center; gap: 4px;
+       border: 1px dashed #ccc; border-radius: 4px; padding: 4px 8px;
+       background: #fafafa; font: 11px monospace; color: #999;
+       min-height: 20px; box-sizing: border-box; }
+`);
+
 function buildSlotHtml(slots: Slot[]): string {
   return slots
     .map((s) => (s.name ? `<slot name="${s.name}"></slot>` : "<slot></slot>"))
@@ -73,15 +91,14 @@ function buildSlotHtml(slots: Slot[]): string {
 }
 
 function generateMockClass(info: ComponentInfo): string {
-  if (info.slots.length === 0) {
-    return `    customElements.define("${info.tagName}", class extends HTMLElement {});`;
-  }
   const slotHtml = buildSlotHtml(info.slots);
+  const innerHTML = `<style>${MOCK_STYLE}</style><div class=\\"m\\">${info.tagName}${slotHtml}</div>`;
+
   return [
     `    customElements.define("${info.tagName}", class extends HTMLElement {`,
     `      constructor() {`,
     `        super();`,
-    `        this.attachShadow({ mode: "open" }).innerHTML = "${slotHtml}";`,
+    `        this.attachShadow({ mode: "open" }).innerHTML = "${innerHTML}";`,
     `      }`,
     `    });`,
   ].join("\n");
