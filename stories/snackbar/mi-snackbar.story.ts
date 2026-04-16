@@ -94,14 +94,7 @@ class SnackbarStoryTrigger extends LitElement {
       render(nothing, mount);
       mount.remove();
     };
-    const doc = mount.ownerDocument as Document & {
-      startViewTransition?: (cb: () => void) => { finished: Promise<void> };
-    };
-    if (typeof doc.startViewTransition === "function") {
-      doc.startViewTransition(run);
-    } else {
-      run();
-    }
+    run();
   }
 
   private removeMount(mount: HTMLElement) {
@@ -175,11 +168,22 @@ function escapeHtmlForSnippet(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-/** Show code / Code panel 用の `<mi-snackbar>` 利用例（args を反映） */
+/** Show code / Code panel 用の実装例（args を反映） */
 function miSnackbarSnippetFromArgs(args: SnackbarStoryArgs): string {
   const size = args.size ?? "small";
   const slotBody = escapeHtmlForSnippet(args.message ?? "");
-  return `<mi-snackbar size="${size}">${slotBody}</mi-snackbar>`;
+  return `<!-- viewport をアプリのルート付近に1つ配置 -->
+<mi-snackbar-viewport id="snackbar-viewport"></mi-snackbar-viewport>
+
+<!-- 任意のタイミングで snackbar を viewport に追加 -->
+<script>
+const viewport = document.getElementById('snackbar-viewport');
+const snackbar = document.createElement('mi-snackbar');
+snackbar.size = '${size}';
+snackbar.textContent = '${slotBody}';
+viewport.appendChild(snackbar);
+// → 自動で表示され、${args.size === "small" ? "5秒後" : "5秒後"}に自動で消えます
+</script>`;
 }
 
 function snackbarArgsFromContext(context: unknown): SnackbarStoryArgs {
@@ -195,17 +199,30 @@ function snackbarArgsFromContext(context: unknown): SnackbarStoryArgs {
 }
 
 /** AllPatterns ストーリー専用（複数パターンを Show code に並べる） */
-const ALL_PATTERNS_DOCS_SOURCE = `<!-- Small -->
-<mi-snackbar size="small">Message</mi-snackbar>
+const ALL_PATTERNS_DOCS_SOURCE = `<!-- viewport をアプリのルート付近に1つ配置 -->
+<mi-snackbar-viewport id="snackbar-viewport"></mi-snackbar-viewport>
+
+<script>
+function showSnackbar(size, message) {
+  const viewport = document.getElementById('snackbar-viewport');
+  const snackbar = document.createElement('mi-snackbar');
+  snackbar.size = size;
+  snackbar.textContent = message;
+  viewport.appendChild(snackbar);
+}
+</script>
+
+<!-- Small -->
+<button onclick="showSnackbar('small', 'Message')">Small</button>
 
 <!-- Small（長文） -->
-<mi-snackbar size="small">アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。</mi-snackbar>
+<button onclick="showSnackbar('small', 'アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。')">Small（長文）</button>
 
 <!-- Medium -->
-<mi-snackbar size="medium">Message</mi-snackbar>
+<button onclick="showSnackbar('medium', 'Message')">Medium</button>
 
 <!-- Medium（長文） -->
-<mi-snackbar size="medium">アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。</mi-snackbar>`;
+<button onclick="showSnackbar('medium', 'アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。')">Medium（長文）</button>`;
 
 const meta: Meta<SnackbarStoryArgs> = {
   title: "Snackbar/mi-snackbar",
@@ -234,8 +251,26 @@ const meta: Meta<SnackbarStoryArgs> = {
       description: {
         component:
           "Snackbar は、ユーザー操作に対する短いフィードバックを表示する軽量な通知コンポーネントです。成功時のフィードバック専用で、短時間で自動消去されます。\n\n" +
+          "## 使い方\n\n" +
+          "1. `<mi-snackbar-viewport>` をアプリのルート付近に **1つだけ** 配置します（画面右上に固定表示されます）\n" +
+          "2. 任意のタイミングで `<mi-snackbar>` 要素を作成し、viewport に `appendChild` します\n" +
+          "3. snackbar は自動で入場アニメーション → 一定時間後に退場アニメーション → DOM から自動削除されます\n\n" +
+          "```html\n" +
+          "<!-- アプリのルート付近に1つ配置 -->\n" +
+          "<mi-snackbar-viewport id=\"snackbar-viewport\"></mi-snackbar-viewport>\n\n" +
+          "<!-- 任意のタイミングで snackbar を追加 -->\n" +
+          "<script>\n" +
+          "function showSnackbar(message) {\n" +
+          "  const viewport = document.getElementById('snackbar-viewport');\n" +
+          "  const snackbar = document.createElement('mi-snackbar');\n" +
+          "  snackbar.size = 'small';\n" +
+          "  snackbar.textContent = message;\n" +
+          "  viewport.appendChild(snackbar);\n" +
+          "}\n" +
+          "</script>\n\n" +
+          "<button onclick=\"showSnackbar('保存しました')\">保存</button>\n" +
+          "```\n\n" +
           "- メッセージは既定スロット（タグの子要素）に記述（`text` 属性はありません）\n" +
-          "- 画面端への配置には `mi-snackbar-viewport` を使用\n" +
           "- 失敗・警告・エラーには `mi-inline-notification` を使用してください",
       },
       source: {
