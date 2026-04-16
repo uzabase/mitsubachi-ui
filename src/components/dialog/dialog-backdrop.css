@@ -1,0 +1,7 @@
+/**
+ * Dialog バックドロップ（::backdrop 擬似要素）
+ * .ts 内で ::backdrop を記述するとビルドエラーになるため分離
+ */
+.dialog-root::backdrop {
+  background: var(--neutral-neutral-50-alpha, rgb(0 0 0 / 29%));
+}

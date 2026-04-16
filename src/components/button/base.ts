@@ -96,6 +96,13 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   type: "button" | "submit" | "reset" = "button";
 
   /**
+   * 所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。
+   * シャドウ外のフォームと紐付ける場合に指定する。
+   */
+  @property({ type: String })
+  form = "";
+
+  /**
    * 設定するとボタンがリンク (`<a>`) としてレンダリングされる。
    * `disabled` / `loading` 時はリンクとして機能しない（`aria-disabled` で表現）。
    */
@@ -224,6 +231,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
         name="${this.name || nothing}"
         value="${this.value || nothing}"
         type="${this.type}"
+        form="${this.form || nothing}"
         aria-pressed="${this.toggle
           ? this.selected
             ? "true"
