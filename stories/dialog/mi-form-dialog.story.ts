@@ -46,6 +46,7 @@ const meta = {
     cancelLabel: { type: "string" },
     actionLabel: { type: "string" },
     onClose: {
+      name: "close",
       action: "close",
       description: "ダイアログが閉じたとき",
       table: { category: "Events" },

@@ -41,6 +41,7 @@ const meta = {
       description: "破壊的アクション（削除等）の場合は true",
     },
     onClose: {
+      name: "close",
       action: "close",
       description: "ダイアログが閉じたとき",
       table: { category: "Events" },
