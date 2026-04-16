@@ -44,6 +44,9 @@ export {
   MiRadioButtonText,
   SpRadioButtonText,
 } from "./components/radio-button/mi-radio-button-text";
+export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
+export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
+export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
 export {
   MiTextFieldUnit,
   SpTextFieldUnit,
