@@ -25,6 +25,7 @@
     "test": "vitest",
     "fetch-icons": "tsx tools/fetch-icons.ts",
     "fetch-icon-colors": "tsx tools/fetch-icon-colors.ts",
+    "fetch-logos": "tsx tools/fetch-logos.ts",
     "release:patch": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
     "release:major": "npm version major && git push && git push --tags"
