@@ -31,7 +31,7 @@ describe("mi-icon", () => {
     }
   });
 
-  test("pointer-eventsがnoneである", async () => {
+  test("クリックイベントが親要素に伝播する", async () => {
     document.body.innerHTML = `<mi-icon type="error-fill"></mi-icon>`;
     await customElements.whenDefined("mi-icon");
 
