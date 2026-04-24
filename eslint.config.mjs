@@ -1,6 +1,6 @@
 import pluginJs from "@eslint/js";
 import prettier from "eslint-config-prettier";
-import pluginImport from "eslint-plugin-import";
+import pluginImport from "eslint-plugin-import-x";
 import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 import {configs}  from "eslint-plugin-wc";
 import globals from "globals";
@@ -24,7 +24,8 @@ export default [
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "import/no-unresolved": "off", // FIXME: 正しいインポート文でも警告が表示されることがあるので一旦無効化
+      "import-x/no-unresolved": "off", // FIXME: 正しいインポート文でも警告が表示されることがあるので一旦無効化
+      "import-x/default": "off",
     },
   },
   prettier,

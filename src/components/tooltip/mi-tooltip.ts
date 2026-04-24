@@ -65,8 +65,7 @@ export class MiTooltip extends LitElement {
     super.connectedCallback();
     this._descEl = document.createElement("span");
     this._descEl.id = this._descId;
-    this._descEl.style.cssText =
-      "position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;";
+    this._descEl.hidden = true;
     this._descEl.textContent = this.text;
     this.appendChild(this._descEl);
     this.addEventListener("mouseenter", this._handleMouseEnter);

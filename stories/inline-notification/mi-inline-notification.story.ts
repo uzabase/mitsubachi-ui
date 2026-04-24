@@ -10,6 +10,7 @@ import {
 
 const meta: Meta<MiInlineNotification> = {
   component: "mi-inline-notification",
+  title: "InlineNotification/mi-inline-notification",
   args: {
     type: "information",
   },
@@ -19,7 +20,7 @@ const meta: Meta<MiInlineNotification> = {
       options: ["information", "success", "warning", "error"],
     },
   },
-  tags: [],
+  tags: ["!dev-only"],
 };
 export default meta;
 
