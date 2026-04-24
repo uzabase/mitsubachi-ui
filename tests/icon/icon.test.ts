@@ -31,6 +31,15 @@ describe("mi-icon", () => {
     }
   });
 
+  test("クリックイベントが親要素に伝播する", async () => {
+    document.body.innerHTML = `<mi-icon type="error-fill"></mi-icon>`;
+    await customElements.whenDefined("mi-icon");
+
+    const icon = document.querySelector("mi-icon")!;
+    const style = getComputedStyle(icon);
+    expect(style.pointerEvents).toBe("none");
+  });
+
   test("type=error-fillである場合、アイコンの色を要素の外のcolorで変更できる", async () => {
     document.body.innerHTML = `<mi-icon type="error-fill"></mi-icon>`;
     await customElements.whenDefined("mi-icon");
