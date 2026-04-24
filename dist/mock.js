@@ -1,38 +1,8 @@
-  if (!customElements.get("mi-checkbox-text")) {
-    customElements.define("mi-checkbox-text", class extends HTMLElement {});
+  if (!customElements.get("mi-avatar")) {
+    customElements.define("mi-avatar", class extends HTMLElement {});
   }
-  if (!customElements.get("sp-checkbox-text")) {
-    customElements.define("sp-checkbox-text", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-checkbox")) {
-    customElements.define("mi-checkbox", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-checkbox")) {
-    customElements.define("sp-checkbox", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-action-dialog")) {
-    customElements.define("mi-action-dialog", class extends HTMLElement {
-      constructor() {
-        super();
-        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
-      }
-    });
-  }
-  if (!customElements.get("mi-form-dialog")) {
-    customElements.define("mi-form-dialog", class extends HTMLElement {
-      constructor() {
-        super();
-        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
-      }
-    });
-  }
-  if (!customElements.get("mi-information-dialog")) {
-    customElements.define("mi-information-dialog", class extends HTMLElement {
-      constructor() {
-        super();
-        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
-      }
-    });
+  if (!customElements.get("sp-avatar")) {
+    customElements.define("sp-avatar", class extends HTMLElement {});
   }
   if (!customElements.get("mi-ai-button")) {
     customElements.define("mi-ai-button", class extends HTMLElement {
@@ -77,11 +47,53 @@
       }
     });
   }
+  if (!customElements.get("mi-checkbox-text")) {
+    customElements.define("mi-checkbox-text", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-checkbox-text")) {
+    customElements.define("sp-checkbox-text", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-checkbox")) {
+    customElements.define("mi-checkbox", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-checkbox")) {
+    customElements.define("sp-checkbox", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-action-dialog")) {
+    customElements.define("mi-action-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-form-dialog")) {
+    customElements.define("mi-form-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-information-dialog")) {
+    customElements.define("mi-information-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
   if (!customElements.get("mi-floating-button")) {
     customElements.define("mi-floating-button", class extends HTMLElement {});
   }
   if (!customElements.get("sp-floating-button")) {
     customElements.define("sp-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon")) {
+    customElements.define("mi-icon", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-icon")) {
+    customElements.define("sp-icon", class extends HTMLElement {});
   }
   if (!customElements.get("mi-icon-color")) {
     customElements.define("mi-icon-color", class extends HTMLElement {});
@@ -93,12 +105,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-icon")) {
-    customElements.define("mi-icon", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-icon")) {
-    customElements.define("sp-icon", class extends HTMLElement {});
   }
   if (!customElements.get("mi-label-unit")) {
     customElements.define("mi-label-unit", class extends HTMLElement {});
@@ -147,12 +153,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-avatar")) {
-    customElements.define("mi-avatar", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-avatar")) {
-    customElements.define("sp-avatar", class extends HTMLElement {});
   }
   if (!customElements.get("mi-control-menu")) {
     customElements.define("mi-control-menu", class extends HTMLElement {
