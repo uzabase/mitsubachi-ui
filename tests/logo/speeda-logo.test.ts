@@ -21,8 +21,8 @@ describe("mi-speeda-logo", () => {
     expect(svg).toBeDefined();
   });
 
-  test("type=ai-agentのときAI Agentロゴが表示される", async () => {
-    document.body.innerHTML = `<mi-speeda-logo type="ai-agent"></mi-speeda-logo>`;
+  test("sub-brand=ai-agentのときAI Agentロゴが表示される", async () => {
+    document.body.innerHTML = `<mi-speeda-logo sub-brand="ai-agent"></mi-speeda-logo>`;
     await customElements.whenDefined("mi-speeda-logo");
     const svg = document
       .querySelector("mi-speeda-logo")
@@ -30,8 +30,8 @@ describe("mi-speeda-logo", () => {
     expect(svg).toBeDefined();
   });
 
-  test("type=expert-researchのときExpert Researchロゴが表示される", async () => {
-    document.body.innerHTML = `<mi-speeda-logo type="expert-research"></mi-speeda-logo>`;
+  test("sub-brand=expert-researchのときExpert Researchロゴが表示される", async () => {
+    document.body.innerHTML = `<mi-speeda-logo sub-brand="expert-research"></mi-speeda-logo>`;
     await customElements.whenDefined("mi-speeda-logo");
     const svg = document
       .querySelector("mi-speeda-logo")

@@ -9,13 +9,13 @@ import { type MiSpeedaLogo } from "../../src/components/logo";
 const meta = {
   component: "mi-speeda-logo",
   args: {
-    type: null,
+    subBrand: null,
     inverse: false,
     noSymbol: false,
     logoLanguage: "en",
   },
   argTypes: {
-    type: {
+    subBrand: {
       options: [null, "ai-agent", "expert-research"],
       control: { type: "select" },
     },
@@ -37,9 +37,9 @@ export default meta;
 type Story = StoryObj<MiSpeedaLogo>;
 
 export const Default: Story = {
-  render: ({ type, inverse, noSymbol, logoLanguage }) => {
+  render: ({ subBrand, inverse, noSymbol, logoLanguage }) => {
     return html`<mi-speeda-logo
-      type=${ifDefined(type)}
+      sub-brand=${ifDefined(subBrand)}
       ?inverse=${inverse}
       ?no-symbol=${noSymbol}
       logo-language=${logoLanguage}
@@ -48,22 +48,32 @@ export const Default: Story = {
 };
 
 const allPropsCombinations = [
-  { type: null, inverse: false, noSymbol: true, logoLanguage: "en" },
-  { type: null, inverse: false, noSymbol: false, logoLanguage: "en" },
-  { type: null, inverse: false, noSymbol: true, logoLanguage: "zh" },
-  { type: "ai-agent", inverse: false, noSymbol: false, logoLanguage: "en" },
+  { subBrand: null, inverse: false, noSymbol: true, logoLanguage: "en" },
+  { subBrand: null, inverse: false, noSymbol: false, logoLanguage: "en" },
+  { subBrand: null, inverse: false, noSymbol: true, logoLanguage: "zh" },
   {
-    type: "expert-research",
+    subBrand: "ai-agent",
     inverse: false,
     noSymbol: false,
     logoLanguage: "en",
   },
-  { type: null, inverse: true, noSymbol: true, logoLanguage: "en" },
-  { type: null, inverse: true, noSymbol: false, logoLanguage: "en" },
-  { type: null, inverse: true, noSymbol: true, logoLanguage: "zh" },
-  { type: "ai-agent", inverse: true, noSymbol: false, logoLanguage: "en" },
   {
-    type: "expert-research",
+    subBrand: "expert-research",
+    inverse: false,
+    noSymbol: false,
+    logoLanguage: "en",
+  },
+  { subBrand: null, inverse: true, noSymbol: true, logoLanguage: "en" },
+  { subBrand: null, inverse: true, noSymbol: false, logoLanguage: "en" },
+  { subBrand: null, inverse: true, noSymbol: true, logoLanguage: "zh" },
+  {
+    subBrand: "ai-agent",
+    inverse: true,
+    noSymbol: false,
+    logoLanguage: "en",
+  },
+  {
+    subBrand: "expert-research",
     inverse: true,
     noSymbol: false,
     logoLanguage: "en",
@@ -97,13 +107,15 @@ const renderTableRow = (logo: (typeof allPropsCombinations)[number]) => {
     <tr style="background: ${bgColor}; color: ${textColor}; height: 4rem;">
       <td style="${cellStyle} border-color: ${borderColor}; min-width: 280px;">
         <mi-speeda-logo
-          type=${ifDefined(logo.type)}
+          sub-brand=${ifDefined(logo.subBrand)}
           ?inverse=${logo.inverse}
           ?no-symbol=${logo.noSymbol}
           logo-language=${logo.logoLanguage}
         ></mi-speeda-logo>
       </td>
-      <td style="${cellStyle} border-color: ${borderColor};">${logo.type}</td>
+      <td style="${cellStyle} border-color: ${borderColor};">
+        ${logo.subBrand}
+      </td>
       <td style="${cellStyle} border-color: ${borderColor};">
         ${String(logo.inverse)}
       </td>
@@ -136,7 +148,7 @@ export const All: Story = {
           <thead>
             <tr>
               <th style="${headerStyle}">logo</th>
-              <th style="${headerStyle}">type</th>
+              <th style="${headerStyle}">sub-brand</th>
               <th style="${headerStyle}">inverse</th>
               <th style="${headerStyle}">no-symbol</th>
               <th style="${headerStyle}">logo-language</th>

@@ -1,8 +1,9 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../styles";
+import { SPEEDA_LABEL, UZABASE_LABEL } from "./constants";
 import { speedaEn, speedaJa, speedaZh } from "./speeda";
 import { uzabase } from "./uzabase";
 
@@ -24,6 +25,17 @@ export class MiLogo extends LitElement {
   @property({ type: String, reflect: true })
   brand = "";
 
+  @property({ type: String })
+  label = "";
+
+  override updated() {
+    this.setAttribute("role", "img");
+    this.setAttribute(
+      "aria-label",
+      this.label || (this.brand === "uzabase" ? UZABASE_LABEL : SPEEDA_LABEL),
+    );
+  }
+
   #getLogoContent() {
     if (this.brand === "uzabase") {
       return uzabase;
@@ -40,7 +52,7 @@ export class MiLogo extends LitElement {
     if (logo) {
       return html`${unsafeHTML(logo)}`;
     }
-    return html``;
+    return nothing;
   }
 }
 

@@ -71,8 +71,8 @@ const convertSpeedaProps = (
     ...rest
   } = props;
 
-  const type = subBrand && subBrand !== "null" ? subBrand : "null";
-  return { type, "logo-language": logoLanguage, ...rest };
+  const brand = subBrand && subBrand !== "null" ? subBrand : "null";
+  return { "sub-brand": brand, "logo-language": logoLanguage, ...rest };
 };
 
 const convertUzabaseProps = (
@@ -163,7 +163,7 @@ async function main() {
     props: convertSpeedaProps(l.rawProps),
     svg: l.svg,
   }));
-  const speedaPropKeys = ["type", "inverse", "symbol", "logo-language"];
+  const speedaPropKeys = ["sub-brand", "inverse", "symbol", "logo-language"];
 
   const uzabaseLogos: LogoVariant[] = uzabaseResult.logos.map((l) => ({
     props: convertUzabaseProps(l.rawProps),
