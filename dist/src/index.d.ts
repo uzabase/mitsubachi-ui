@@ -12,7 +12,7 @@ export { MiIconColor } from './components/icon-color';
 export { MiInlineNotification } from './components/inline-notification/mi-inline-notification';
 export { MiLabelUnit, SpLabelUnit } from './components/label-unit';
 export { MiLoading, SpLoading } from './components/loading/mi-loading';
-export { MiLogo, SpLogo } from './components/logo';
+export { MiLogo, MiSpeedaLogo, MiUzabaseLogo, SpLogo } from './components/logo';
 export { MiControlMenu, SpControlMenu } from './components/menu/control-menu';
 export { MiControlMenuItem, SpControlMenuItem, } from './components/menu/control-menu-item';
 export { MiRadioButtonText, SpRadioButtonText, } from './components/radio-button/mi-radio-button-text';
