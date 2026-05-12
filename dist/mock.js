@@ -59,12 +59,6 @@
   if (!customElements.get("sp-checkbox")) {
     customElements.define("sp-checkbox", class extends HTMLElement {});
   }
-  if (!customElements.get("mi-floating-button")) {
-    customElements.define("mi-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-floating-button")) {
-    customElements.define("sp-floating-button", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-action-dialog")) {
     customElements.define("mi-action-dialog", class extends HTMLElement {
       constructor() {
@@ -88,6 +82,12 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
+  }
+  if (!customElements.get("mi-floating-button")) {
+    customElements.define("mi-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-floating-button")) {
+    customElements.define("sp-floating-button", class extends HTMLElement {});
   }
   if (!customElements.get("mi-icon")) {
     customElements.define("mi-icon", class extends HTMLElement {});
@@ -170,12 +170,6 @@
       }
     });
   }
-  if (!customElements.get("mi-control-menu-item")) {
-    customElements.define("mi-control-menu-item", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-control-menu-item")) {
-    customElements.define("sp-control-menu-item", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-control-menu")) {
     customElements.define("mi-control-menu", class extends HTMLElement {
       constructor() {
@@ -191,6 +185,12 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
+  }
+  if (!customElements.get("mi-control-menu-item")) {
+    customElements.define("mi-control-menu-item", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-control-menu-item")) {
+    customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
   if (!customElements.get("mi-text-field")) {
     customElements.define("mi-text-field", class extends HTMLElement {});
