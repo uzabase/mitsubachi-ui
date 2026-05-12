@@ -257,7 +257,7 @@ const meta: Meta<SnackbarStoryArgs> = {
           "3. snackbar は自動で入場アニメーション → 一定時間後に退場アニメーション → DOM から自動削除されます\n\n" +
           "```html\n" +
           "<!-- アプリのルート付近に1つ配置 -->\n" +
-          "<mi-snackbar-viewport id=\"snackbar-viewport\"></mi-snackbar-viewport>\n\n" +
+          '<mi-snackbar-viewport id="snackbar-viewport"></mi-snackbar-viewport>\n\n' +
           "<!-- 任意のタイミングで snackbar を追加 -->\n" +
           "<script>\n" +
           "function showSnackbar(message) {\n" +
