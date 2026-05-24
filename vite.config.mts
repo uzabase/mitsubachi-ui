@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import dts from 'unplugin-dts/vite'
 
 
 export default defineConfig({
@@ -12,5 +12,6 @@ export default defineConfig({
       fileName:()=> 'index.js'
     },
   },
-  plugins: [dts({ tsconfigPath: './tsconfig-build.json' })]
+  plugins: [dts({ tsconfigPath: './tsconfig-build.json'})],
+
 })

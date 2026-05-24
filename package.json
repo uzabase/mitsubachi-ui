@@ -1,8 +1,8 @@
 {
   "name": "mitsubachi-ui",
-  "version": "2.4.0",
+  "version": "2.4.1-alpha.0",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
     "./mock": "./dist/mock.js",
@@ -69,8 +69,8 @@
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.0",
+    "unplugin-dts": "^1.0.1",
     "vite": "^8.0.2",
-    "vite-plugin-dts": "^5.0.0-beta.6",
     "vitest": "^4.1.1",
     "yakuhanjp": "^4.1.1"
   },

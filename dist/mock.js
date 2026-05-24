@@ -95,9 +95,6 @@
   if (!customElements.get("sp-icon")) {
     customElements.define("sp-icon", class extends HTMLElement {});
   }
-  if (!customElements.get("mi-icon-color")) {
-    customElements.define("mi-icon-color", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-inline-notification")) {
     customElements.define("mi-inline-notification", class extends HTMLElement {
       constructor() {
@@ -111,6 +108,9 @@
   }
   if (!customElements.get("sp-label-unit")) {
     customElements.define("sp-label-unit", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon-color")) {
+    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-loading")) {
     customElements.define("mi-loading", class extends HTMLElement {});
@@ -192,17 +192,17 @@
   if (!customElements.get("sp-control-menu-item")) {
     customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
-  if (!customElements.get("mi-text-field")) {
-    customElements.define("mi-text-field", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-text-field")) {
-    customElements.define("sp-text-field", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-text-field-unit")) {
     customElements.define("mi-text-field-unit", class extends HTMLElement {});
   }
   if (!customElements.get("sp-text-field-unit")) {
     customElements.define("sp-text-field-unit", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-text-field")) {
+    customElements.define("mi-text-field", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-text-field")) {
+    customElements.define("sp-text-field", class extends HTMLElement {});
   }
   if (!customElements.get("mi-text-field-error-text")) {
     customElements.define("mi-text-field-error-text", class extends HTMLElement {});
