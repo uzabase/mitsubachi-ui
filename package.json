@@ -4,7 +4,10 @@
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./mock": "./dist/mock.js",
     "./custom-elements.json": "./dist/custom-elements.json"
   },
