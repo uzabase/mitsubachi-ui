@@ -47,7 +47,7 @@ export {
 export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
 export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
 export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
-export { MiTextField,SpTextField } from "./components/text-field/text-field";
+export { MiTextField, SpTextField } from "./components/text-field/text-field";
 export {
   MiTextFieldErrorText,
   SpTextFieldErrorText,

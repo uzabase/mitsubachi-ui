@@ -112,6 +112,12 @@
       }
     });
   }
+  if (!customElements.get("mi-loading")) {
+    customElements.define("mi-loading", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-loading")) {
+    customElements.define("sp-loading", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-logo")) {
     customElements.define("mi-logo", class extends HTMLElement {});
   }
@@ -123,12 +129,6 @@
   }
   if (!customElements.get("mi-uzabase-logo")) {
     customElements.define("mi-uzabase-logo", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-loading")) {
-    customElements.define("mi-loading", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-loading")) {
-    customElements.define("sp-loading", class extends HTMLElement {});
   }
   if (!customElements.get("mi-radio-button-text")) {
     customElements.define("mi-radio-button-text", class extends HTMLElement {
