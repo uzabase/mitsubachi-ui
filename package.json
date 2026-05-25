@@ -2,12 +2,9 @@
   "name": "mitsubachi-ui",
   "version": "2.4.1",
   "main": "dist/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/index.js"
-    },
+    ".": "./dist/index.js",
     "./mock": "./dist/mock.js",
     "./custom-elements.json": "./dist/custom-elements.json"
   },
@@ -15,10 +12,11 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "npm run build:vite && npm run build:manifest && npm run build:mock",
+    "build": "npm run build:vite && npm run build:manifest && npm run build:mock && npm run build:typedec",
     "build:vite": "vite build",
     "build:manifest": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
     "build:mock": "tsx tools/generate-mock.ts",
+    "build:typedec": "tsc --noEmit --allowJs --skipLibCheck false --ignoreConfig dist/index.d.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "npm run format:prettier && npm run format:lint",
@@ -43,6 +41,7 @@
   "license": "ISC",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
+    "@microsoft/api-extractor": "^7.58.7",
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.2"
   },
   "devDependencies": {
