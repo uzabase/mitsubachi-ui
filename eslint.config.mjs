@@ -1,6 +1,6 @@
 import pluginJs from "@eslint/js";
 import prettier from "eslint-config-prettier";
-import pluginImport from "eslint-plugin-import-x";
+import {flatConfigs } from "eslint-plugin-import-x";
 import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 import {configs}  from "eslint-plugin-wc";
 import globals from "globals";
@@ -16,7 +16,7 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   configs["flat/best-practice"],
-  pluginImport.flatConfigs.recommended,
+  flatConfigs.recommended,
   {
     plugins: {
       "simple-import-sort": pluginSimpleImportSort,
