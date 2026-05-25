@@ -1,10 +1,3 @@
-export {
-  MiTextFieldErrorText,
-  SpTextFieldErrorText,
-} from "./components/text-field/text-field/error-text";
-
-export { SpTextField, MiTextField } from "./components/text-field/text-field";
-
 export { MiAvatar, SpAvatar } from "./components/avatar/mi-avatar";
 export { MiAiButton } from "./components/button/mi-ai-button";
 export { MiDangerButton } from "./components/button/mi-danger-button";
@@ -54,6 +47,11 @@ export {
 export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
 export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
 export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
+export { MiTextField,SpTextField } from "./components/text-field/text-field";
+export {
+  MiTextFieldErrorText,
+  SpTextFieldErrorText,
+} from "./components/text-field/text-field/error-text";
 export {
   MiTextFieldUnit,
   SpTextFieldUnit,
