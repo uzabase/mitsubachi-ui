@@ -12,6 +12,6 @@ export default defineConfig({
       fileName:()=> 'index.js'
     },
   },
-  plugins: [dts({ tsconfigPath: './tsconfig-build.json'})],
+  plugins: [dts({ tsconfigPath: './tsconfig-build.json', bundleTypes: true})],
 
 })
