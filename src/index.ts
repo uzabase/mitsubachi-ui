@@ -1,3 +1,7 @@
+export { MiTextFieldErrorText, SpTextFieldErrorText } from "./components/text-field/text-field/error-text";
+
+export {  SpTextField, MiTextField } from "./components/text-field/text-field";
+
 export { MiAvatar, SpAvatar } from "./components/avatar/mi-avatar";
 export { MiAiButton } from "./components/button/mi-ai-button";
 export { MiDangerButton } from "./components/button/mi-danger-button";
