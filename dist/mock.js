@@ -47,12 +47,6 @@
       }
     });
   }
-  if (!customElements.get("mi-floating-button")) {
-    customElements.define("mi-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-floating-button")) {
-    customElements.define("sp-floating-button", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-checkbox-text")) {
     customElements.define("mi-checkbox-text", class extends HTMLElement {});
   }
@@ -89,11 +83,20 @@
       }
     });
   }
+  if (!customElements.get("mi-floating-button")) {
+    customElements.define("mi-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-floating-button")) {
+    customElements.define("sp-floating-button", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-icon")) {
     customElements.define("mi-icon", class extends HTMLElement {});
   }
   if (!customElements.get("sp-icon")) {
     customElements.define("sp-icon", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon-color")) {
+    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-inline-notification")) {
     customElements.define("mi-inline-notification", class extends HTMLElement {
@@ -108,9 +111,6 @@
   }
   if (!customElements.get("sp-label-unit")) {
     customElements.define("sp-label-unit", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-icon-color")) {
-    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-loading")) {
     customElements.define("mi-loading", class extends HTMLElement {});
@@ -170,12 +170,6 @@
       }
     });
   }
-  if (!customElements.get("mi-control-menu-item")) {
-    customElements.define("mi-control-menu-item", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-control-menu-item")) {
-    customElements.define("sp-control-menu-item", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-control-menu")) {
     customElements.define("mi-control-menu", class extends HTMLElement {
       constructor() {
@@ -191,6 +185,12 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
+  }
+  if (!customElements.get("mi-control-menu-item")) {
+    customElements.define("mi-control-menu-item", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-control-menu-item")) {
+    customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
   if (!customElements.get("mi-text-field")) {
     customElements.define("mi-text-field", class extends HTMLElement {});
