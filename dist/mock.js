@@ -59,6 +59,21 @@
   if (!customElements.get("sp-checkbox")) {
     customElements.define("sp-checkbox", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-floating-button")) {
+    customElements.define("mi-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-floating-button")) {
+    customElements.define("sp-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon")) {
+    customElements.define("mi-icon", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-icon")) {
+    customElements.define("sp-icon", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon-color")) {
+    customElements.define("mi-icon-color", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-action-dialog")) {
     customElements.define("mi-action-dialog", class extends HTMLElement {
       constructor() {
@@ -82,21 +97,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-floating-button")) {
-    customElements.define("mi-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-floating-button")) {
-    customElements.define("sp-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-icon")) {
-    customElements.define("mi-icon", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-icon")) {
-    customElements.define("sp-icon", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-icon-color")) {
-    customElements.define("mi-icon-color", class extends HTMLElement {});
   }
   if (!customElements.get("mi-inline-notification")) {
     customElements.define("mi-inline-notification", class extends HTMLElement {
