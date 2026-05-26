@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -41,10 +41,10 @@
   "license": "ISC",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
-    "@microsoft/api-extractor": "^7.58.7",
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.2"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.7",
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@eslint/js": "^10.0.1",
     "@storybook/addon-docs": "^10.3.3",
