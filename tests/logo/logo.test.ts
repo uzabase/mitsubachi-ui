@@ -11,7 +11,7 @@ describe("mi-logo", () => {
       ?.shadowRoot?.querySelector("svg");
     expect(isUzabaseLogo(logo)).toBeTruthy();
   });
-  test("brandがspeeda, language=jaのときスピーダの英語のロゴが表示される", async () => {
+  test("brandがspeeda, language=enのときスピーダの英語のロゴが表示される", async () => {
     document.body.innerHTML = `<mi-logo brand="speeda" language="en"></mi-logo>`;
     await customElements.whenDefined("mi-logo");
     const logo = document

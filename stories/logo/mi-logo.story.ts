@@ -6,6 +6,7 @@ import { html } from "lit";
 import { type MiLogo } from "../../src/components/logo";
 
 const meta = {
+  title: "logo/mi-logo [Deprecated]",
   component: "mi-logo",
   args: {
     language: "ja",
@@ -22,6 +23,14 @@ const meta = {
     },
   },
   tags: ["!dev-only"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "**⚠️ 非推奨**: 代わりに `mi-speeda-logo` または `mi-uzabase-logo` を使用してください。",
+      },
+    },
+  },
 } satisfies Meta<MiLogo>;
 
 export default meta;

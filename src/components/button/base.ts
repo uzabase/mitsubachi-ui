@@ -44,8 +44,10 @@ function isValidIconType(value: string): boolean {
 
 /**
  * ボタン共通ベースクラス。mi-neutral-button / mi-danger-button / mi-ai-button / mi-icon-button が継承する。
- * @internal
  * @typeParam S - size プロパティの型。サブクラスが独自のサイズ体系を持つ場合にオーバーライドする。
+ *
+ * internalとstripInternalを併用すると、npm run buildの実行中に@microsoft/api-extractorが内部エラーになりました。
+ * stripInternalを使わずにinternalを指定するとButtonBaseがindex.d.tsに出力されなくなり、index.d.tsでコンパイルエラーになります。
  */
 export class ButtonBase<S extends string = Size> extends LitElement {
   static styles = makeStyles(buttonStyles);
@@ -94,6 +96,13 @@ export class ButtonBase<S extends string = Size> extends LitElement {
 
   @property({ type: String })
   type: "button" | "submit" | "reset" = "button";
+
+  /**
+   * 所属する `<form>` の id（`form` 属性）。省略時は祖先の form にのみ所属。
+   * シャドウ外のフォームと紐付ける場合に指定する。
+   */
+  @property({ type: String })
+  form = "";
 
   /**
    * 設定するとボタンがリンク (`<a>`) としてレンダリングされる。
@@ -224,6 +233,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
         name="${this.name || nothing}"
         value="${this.value || nothing}"
         type="${this.type}"
+        form="${this.form || nothing}"
         aria-pressed="${this.toggle
           ? this.selected
             ? "true"

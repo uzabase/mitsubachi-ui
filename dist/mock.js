@@ -59,6 +59,30 @@
   if (!customElements.get("sp-checkbox")) {
     customElements.define("sp-checkbox", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-action-dialog")) {
+    customElements.define("mi-action-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-form-dialog")) {
+    customElements.define("mi-form-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-information-dialog")) {
+    customElements.define("mi-information-dialog", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
   if (!customElements.get("mi-floating-button")) {
     customElements.define("mi-floating-button", class extends HTMLElement {});
   }
@@ -100,6 +124,12 @@
   if (!customElements.get("sp-logo")) {
     customElements.define("sp-logo", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-speeda-logo")) {
+    customElements.define("mi-speeda-logo", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-uzabase-logo")) {
+    customElements.define("mi-uzabase-logo", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-radio-button-text")) {
     customElements.define("mi-radio-button-text", class extends HTMLElement {
       constructor() {
@@ -110,6 +140,22 @@
   }
   if (!customElements.get("sp-radio-button-text")) {
     customElements.define("sp-radio-button-text", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-snackbar-viewport")) {
+    customElements.define("mi-snackbar-viewport", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-snackbar")) {
+    customElements.define("mi-snackbar", class extends HTMLElement {
       constructor() {
         super();
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";

@@ -59,6 +59,10 @@ npm run format:prettier:check  # フォーマットチェック
 npm run build
 ```
 
+## コミット・プッシュ・PRのワークフロー
+
+一連の作業手順は [docs/commit-push-pr.md](./commit-push-pr.md) を参照してください。
+
 ## PR前の確認
 
 PRを作成する前に、以下を実行してエラーがないことを確認してください。
@@ -68,7 +72,10 @@ npm run lint
 npm run format:prettier:check
 npm run typecheck
 npm run test
+npm run build
 ```
+
+**Story を追加・変更した場合**は、[storybook-autodocs.md](./storybook-autodocs.md) を確認する。`!dev-only` がすべてのストーリーに含まれていることに加え、コンポーネントがカスタムイベントを公開しているときは同ドキュメントの「イベント（カスタムイベント）の実装チェック」に沿って Storybook Actions との対応と動作確認を行うこと。
 
 ## コミットルール
 
@@ -105,5 +112,15 @@ fix(Tooltip): ホバー時の表示位置ずれを修正
 
 ## CI / リリース
 
-- `dist/` のコミットはGitHub Actionで自動実行される（手動コミット不要）
+### dist/ を Git で追跡する理由
+
+一般的には npm に `dist/` 内のファイルをアップロードして配布するが、ミツバチは **リポジトリから直接インストール** する構成のため、リポジトリ内に `dist/` を置いている。そのため `dist/` は Git で追跡し、コミットに含める。
+
+### dist/ の運用
+
+- **`dist/` はソース変更と合わせてコミットする**（`npm run build` 後に `dist/` をステージング・コミットする。PRでビルド結果を確認できるようにする）
+- main への push 時、GitHub Action が不足分があれば `dist/` を更新してコミットする（バックアップ運用）
+
+### リリース
+
 - リリースは `npm run release:patch` / `npm run release:minor` / `npm run release:major`

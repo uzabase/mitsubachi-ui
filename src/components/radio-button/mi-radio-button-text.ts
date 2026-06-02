@@ -43,6 +43,12 @@ export class MiRadioButtonText extends LitElement {
     this.checked = this.hasAttribute("checked");
   }
 
+  #handleInputChange = (e: Event) => {
+    const input = e.target as HTMLInputElement;
+    this.checked = input.checked;
+    this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+  };
+
   render() {
     return html`
       <label class="base">
@@ -54,6 +60,7 @@ export class MiRadioButtonText extends LitElement {
           .name=${this.name}
           .checked=${this.checked}
           .disabled=${this.disabled}
+          @change=${this.#handleInputChange}
         />
         <span class="radio" aria-hidden="true"></span>
         <span class="text" id="${this.#uniqueId}" aria-hidden="true">

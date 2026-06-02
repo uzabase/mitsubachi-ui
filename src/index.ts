@@ -17,6 +17,15 @@ export {
   SpCheckboxText,
 } from "./components/checkbox/mi-checkbox-text";
 export {
+  type FormDialogSize,
+  formDialogSizes,
+  type InformationDialogSize,
+  informationDialogSizes,
+  MiActionDialog,
+  MiFormDialog,
+  MiInformationDialog,
+} from "./components/dialog";
+export {
   MiFloatingButton,
   SpFloatingButton,
 } from "./components/floating-button/mi-floating-button";
@@ -25,7 +34,7 @@ export { MiIconColor } from "./components/icon-color";
 export { MiInlineNotification } from "./components/inline-notification/mi-inline-notification";
 export { MiLabelUnit, SpLabelUnit } from "./components/label-unit";
 export { MiLoading, SpLoading } from "./components/loading/mi-loading";
-export { MiLogo, SpLogo } from "./components/logo";
+export { MiLogo, MiSpeedaLogo, MiUzabaseLogo, SpLogo } from "./components/logo";
 export { MiControlMenu, SpControlMenu } from "./components/menu/control-menu";
 export {
   MiControlMenuItem,
@@ -35,6 +44,14 @@ export {
   MiRadioButtonText,
   SpRadioButtonText,
 } from "./components/radio-button/mi-radio-button-text";
+export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
+export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
+export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
+export { MiTextField, SpTextField } from "./components/text-field/text-field";
+export {
+  MiTextFieldErrorText,
+  SpTextFieldErrorText,
+} from "./components/text-field/text-field/error-text";
 export {
   MiTextFieldUnit,
   SpTextFieldUnit,
