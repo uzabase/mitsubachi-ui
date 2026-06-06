@@ -1,0 +1,1 @@
+{"version":3,"file":"mi-table-body.d.ts","sourceRoot":"","sources":["../../../../src/components/table/mi-table-body.ts"],"names":[],"mappings":"AAAA,OAAO,EAAa,UAAU,EAAE,MAAM,KAAK,CAAC;AAI5C;;GAEG;AACH,qBAAa,WAAY,SAAQ,UAAU;IACzC,MAAM,CAAC,MAAM,4BAMX;IAEF,iBAAiB;IAOjB,MAAM;CAGP;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAC7B,eAAe,EAAE,WAAW,CAAC;KAC9B;CACF"}

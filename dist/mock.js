@@ -59,6 +59,12 @@
   if (!customElements.get("sp-checkbox")) {
     customElements.define("sp-checkbox", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-floating-button")) {
+    customElements.define("mi-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-floating-button")) {
+    customElements.define("sp-floating-button", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-action-dialog")) {
     customElements.define("mi-action-dialog", class extends HTMLElement {
       constructor() {
@@ -82,12 +88,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-floating-button")) {
-    customElements.define("mi-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-floating-button")) {
-    customElements.define("sp-floating-button", class extends HTMLElement {});
   }
   if (!customElements.get("mi-icon")) {
     customElements.define("mi-icon", class extends HTMLElement {});
@@ -161,6 +161,27 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
+  }
+  if (!customElements.get("mi-table-body-cell")) {
+    customElements.define("mi-table-body-cell", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table-body")) {
+    customElements.define("mi-table-body", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table-col")) {
+    customElements.define("mi-table-col", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table-head")) {
+    customElements.define("mi-table-head", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table-header-cell")) {
+    customElements.define("mi-table-header-cell", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table-row")) {
+    customElements.define("mi-table-row", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-table")) {
+    customElements.define("mi-table", class extends HTMLElement {});
   }
   if (!customElements.get("mi-tooltip")) {
     customElements.define("mi-tooltip", class extends HTMLElement {

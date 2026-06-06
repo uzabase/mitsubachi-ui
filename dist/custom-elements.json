@@ -369,6 +369,102 @@
         },
         {
           "kind": "js",
+          "name": "MiTable",
+          "declaration": {
+            "name": "MiTable",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableBody",
+          "declaration": {
+            "name": "MiTableBody",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableBodyCell",
+          "declaration": {
+            "name": "MiTableBodyCell",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableCol",
+          "declaration": {
+            "name": "MiTableCol",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableHead",
+          "declaration": {
+            "name": "MiTableHead",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableHeaderCell",
+          "declaration": {
+            "name": "MiTableHeaderCell",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableRow",
+          "declaration": {
+            "name": "MiTableRow",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableBodyCellContentType",
+          "declaration": {
+            "name": "TableBodyCellContentType",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableHeaderCellContentType",
+          "declaration": {
+            "name": "TableHeaderCellContentType",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableHeaderMenuItem",
+          "declaration": {
+            "name": "TableHeaderMenuItem",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableSortState",
+          "declaration": {
+            "name": "TableSortState",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableView",
+          "declaration": {
+            "name": "TableView",
+            "module": "./components/table"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiTextField",
           "declaration": {
             "name": "MiTextField",
@@ -4702,6 +4798,133 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dialog/base.ts",
       "declarations": [
         {
@@ -6206,133 +6429,6 @@
           "declaration": {
             "name": "MiInformationDialog",
             "module": "src/components/dialog/mi-information-dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-floating-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiFloatingButton",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpFloatingButton",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-floating-button",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-floating-button",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
           }
         }
       ]
@@ -8482,6 +8578,721 @@
           "name": "default",
           "declaration": {
             "module": "src/components/snackbar/snackbar.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTable",
+          "declaration": {
+            "name": "MiTable",
+            "module": "./mi-table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableView",
+          "declaration": {
+            "name": "TableView",
+            "module": "./mi-table"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableHead",
+          "declaration": {
+            "name": "MiTableHead",
+            "module": "./mi-table-head"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableBody",
+          "declaration": {
+            "name": "MiTableBody",
+            "module": "./mi-table-body"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableRow",
+          "declaration": {
+            "name": "MiTableRow",
+            "module": "./mi-table-row"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableCol",
+          "declaration": {
+            "name": "MiTableCol",
+            "module": "./mi-table-col"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableHeaderCell",
+          "declaration": {
+            "name": "MiTableHeaderCell",
+            "module": "./mi-table-header-cell"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableHeaderCellContentType",
+          "declaration": {
+            "name": "TableHeaderCellContentType",
+            "module": "./mi-table-header-cell"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableHeaderMenuItem",
+          "declaration": {
+            "name": "TableHeaderMenuItem",
+            "module": "./mi-table-header-cell"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableSortState",
+          "declaration": {
+            "name": "TableSortState",
+            "module": "./mi-table-header-cell"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiTableBodyCell",
+          "declaration": {
+            "name": "MiTableBodyCell",
+            "module": "./mi-table-body-cell"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "TableBodyCellContentType",
+          "declaration": {
+            "name": "TableBodyCellContentType",
+            "module": "./mi-table-body-cell"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-body-cell.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableBodyCell",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "contentType",
+              "type": {
+                "text": "TableBodyCellContentType"
+              },
+              "default": "\"text\"",
+              "description": "セルのコンテンツタイプ"
+            },
+            {
+              "kind": "field",
+              "name": "_isEmpty",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "_onSlotChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルのボディセル。`<td>` に相当。\n\nコンテンツが空（テキストなし・要素なし）の場合、セル中央にダッシュ（–）を自動表示する。\n`0` は有効な値として通常表示される。",
+          "tagName": "mi-table-body-cell",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableBodyCell",
+          "declaration": {
+            "name": "MiTableBodyCell",
+            "module": "src/components/table/mi-table-body-cell.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-body-cell",
+          "declaration": {
+            "name": "MiTableBodyCell",
+            "module": "src/components/table/mi-table-body-cell.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-body.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableBody",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルボディ。`<tbody>` に相当。",
+          "tagName": "mi-table-body",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableBody",
+          "declaration": {
+            "name": "MiTableBody",
+            "module": "src/components/table/mi-table-body.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-body",
+          "declaration": {
+            "name": "MiTableBody",
+            "module": "src/components/table/mi-table-body.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-col.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableCol",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "width",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "カラム幅（CSS値: \"40px\", \"20%\" など）。省略時はブラウザに委ねる"
+            },
+            {
+              "kind": "field",
+              "name": "minWidth",
+              "type": {
+                "text": "number | undefined"
+              },
+              "description": "リサイズ時の最小幅（px）。省略時は 40"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルカラム幅指定。`<col>` に相当。\n\n`mi-table` の直接の子として配置して使用する。",
+          "tagName": "mi-table-col",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableCol",
+          "declaration": {
+            "name": "MiTableCol",
+            "module": "src/components/table/mi-table-col.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-col",
+          "declaration": {
+            "name": "MiTableCol",
+            "module": "src/components/table/mi-table-col.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-head.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableHead",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルヘッダー。`<thead>` に相当。",
+          "tagName": "mi-table-head",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableHead",
+          "declaration": {
+            "name": "MiTableHead",
+            "module": "src/components/table/mi-table-head.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-head",
+          "declaration": {
+            "name": "MiTableHead",
+            "module": "src/components/table/mi-table-head.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-header-cell.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableHeaderCell",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "contentType",
+              "type": {
+                "text": "TableHeaderCellContentType"
+              },
+              "default": "\"text\"",
+              "description": "セルのコンテンツタイプ"
+            },
+            {
+              "kind": "field",
+              "name": "sortState",
+              "type": {
+                "text": "TableSortState | undefined"
+              },
+              "description": "ソート状態。設定すると自動でソートボタンが表示される。",
+              "default": "undefined（ソート不可）"
+            },
+            {
+              "kind": "field",
+              "name": "menuItems",
+              "type": {
+                "text": "TableHeaderMenuItem[]"
+              },
+              "default": "[]",
+              "description": "カラムアクションメニューの項目（JS プロパティで設定）"
+            },
+            {
+              "kind": "field",
+              "name": "resizable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "カラム幅のリサイズを許可"
+            },
+            {
+              "kind": "field",
+              "name": "_menuOpen",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_menuDropdown",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_menuButton",
+              "type": {
+                "text": "HTMLButtonElement | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_boundHandleOutsideClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_toAriaSortValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "\"ascending\" | \"descending\" | undefined"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_handleSortClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_handleOutsideClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleMenuKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleMenuItemClick",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "TableHeaderMenuItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_handleResizeMouseDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_getCellIndex",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "number"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_renderSortIcon",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_renderMenu",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "TemplateResult | typeof nothing"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "sort-change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "ソート状態が変更されたとき。`detail.sortState` に新しい状態を含む。"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルのヘッダーセル。`<th>` に相当。\n\nソート機能、カラムアクションメニュー、カラムリサイズに対応。",
+          "tagName": "mi-table-header-cell",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableHeaderCell",
+          "declaration": {
+            "name": "MiTableHeaderCell",
+            "module": "src/components/table/mi-table-header-cell.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-header-cell",
+          "declaration": {
+            "name": "MiTableHeaderCell",
+            "module": "src/components/table/mi-table-header-cell.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table-row.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTableRow",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "parameters": [
+                {
+                  "name": "changed",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブル行。`<tr>` に相当。選択状態とホバー状態を管理する。",
+          "tagName": "mi-table-row",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTableRow",
+          "declaration": {
+            "name": "MiTableRow",
+            "module": "src/components/table/mi-table-row.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table-row",
+          "declaration": {
+            "name": "MiTableRow",
+            "module": "src/components/table/mi-table-row.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/mi-table.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTable",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "view",
+              "type": {
+                "text": "TableView"
+              },
+              "default": "\"grid\"",
+              "description": "テーブルのビューモード"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "テーブルのアクセシブルラベル"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テーブルのルートコンポーネント。view をCSS変数経由で子コンポーネントに配信する。",
+          "tagName": "mi-table",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTable",
+          "declaration": {
+            "name": "MiTable",
+            "module": "src/components/table/mi-table.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-table",
+          "declaration": {
+            "name": "MiTable",
+            "module": "src/components/table/mi-table.ts"
           }
         }
       ]
