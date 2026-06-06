@@ -157,6 +157,11 @@ export declare type InformationDialogSize = (typeof informationDialogSizes)[numb
 
 export declare const informationDialogSizes: readonly ["small", "medium"];
 
+export declare interface InputChipItem {
+    id: string;
+    label: string;
+}
+
 /**
  * Action Dialog
  *
@@ -431,6 +436,46 @@ export declare class MiInlineNotification extends LitElement {
     type: Type;
     static styles: CSSResult[];
     render(): TemplateResult<1>;
+}
+
+/**
+ * @summary ユーザーが入力した内容を要素ごとに整理して表示するための Chip コンポーネントです。
+ * 企業やユーザーアカウントの入力などで利用され、×ボタンで入力内容を削除できます。
+ *
+ * @example
+ * ```html
+ * <mi-input-chip label="Apple"></mi-input-chip>
+ * ```
+ *
+ * @fires remove - 削除ボタンがクリックされたときに発火します。
+ */
+export declare class MiInputChip extends LitElement {
+    static styles: CSSResult[];
+    /** Chip に表示するテキスト。 */
+    label: string;
+    render(): TemplateResult<1>;
+    private handleRemove;
+}
+
+/**
+ * @summary 複数の mi-input-chip をまとめて表示するグループコンポーネントです。
+ * ユーザーが入力した内容を要素ごとに整理して表示し、個別に削除できます。
+ *
+ * @example
+ * ```html
+ * <mi-input-chip-group
+ *   aria-label="選択された項目"
+ * ></mi-input-chip-group>
+ * ```
+ *
+ * @fires remove - Chip の削除ボタンがクリックされたときに発火します。detail に削除対象の id を含みます。
+ */
+export declare class MiInputChipGroup extends LitElement {
+    static styles: CSSResult[];
+    /** 表示する Chip アイテムの配列。 */
+    items: InputChipItem[];
+    render(): TemplateResult<1>;
+    private handleRemove;
 }
 
 /**
@@ -830,6 +875,21 @@ export { }
 
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-icon-button": MiIconButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-label-unit": MiLabelUnit;
+        "sp-label-unit": SpLabelUnit;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
         "mi-tooltip": MiTooltip;
     }
 }
@@ -837,8 +897,14 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-avatar": MiAvatar;
-        "sp-avatar": SpAvatar;
+        "mi-snackbar": MiSnackbar;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-input-chip-group": MiInputChipGroup;
     }
 }
 
@@ -852,14 +918,39 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-danger-button": MiDangerButton;
+        "mi-snackbar-viewport": MiSnackbarViewport;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-icon-button": MiIconButton;
+        "mi-checkbox-text": MiCheckboxText;
+        "sp-checkbox-text": SpCheckboxText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field-error-text": MiTextFieldErrorText;
+        "sp-text-field-error-text": SpTextFieldErrorText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu": MiControlMenu;
+        "sp-control-menu": SpControlMenu;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field": MiTextField;
+        "sp-text-field": SpTextField;
     }
 }
 
@@ -875,47 +966,7 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-checkbox": MiCheckbox;
-        "sp-checkbox": SpCheckbox;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-checkbox-text": MiCheckboxText;
-        "sp-checkbox-text": SpCheckboxText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-icon": MiIcon;
-        "sp-icon": SpIcon;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
         "mi-icon-color": MiIconColor;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-floating-button": MiFloatingButton;
-        "sp-floating-button": SpFloatingButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-label-unit": MiLabelUnit;
-        "sp-label-unit": SpLabelUnit;
     }
 }
 
@@ -930,54 +981,8 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-control-menu": MiControlMenu;
-        "sp-control-menu": SpControlMenu;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-control-menu-item": MiControlMenuItem;
-        "sp-control-menu-item": SpControlMenuItem;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-radio-button-text": MiRadioButtonText;
-        "sp-radio-button-text": SpRadioButtonText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar": MiSnackbar;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar-viewport": MiSnackbarViewport;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field": MiTextField;
-        "sp-text-field": SpTextField;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-error-text": MiTextFieldErrorText;
-        "sp-text-field-error-text": SpTextFieldErrorText;
+        "mi-floating-button": MiFloatingButton;
+        "sp-floating-button": SpFloatingButton;
     }
 }
 
@@ -992,21 +997,54 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-action-dialog": MiActionDialog;
+        "mi-icon": MiIcon;
+        "sp-icon": SpIcon;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-form-dialog": MiFormDialog;
+        "mi-avatar": MiAvatar;
+        "sp-avatar": SpAvatar;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-information-dialog": MiInformationDialog;
+        "mi-radio-button-text": MiRadioButtonText;
+        "sp-radio-button-text": SpRadioButtonText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-danger-button": MiDangerButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu-item": MiControlMenuItem;
+        "sp-control-menu-item": SpControlMenuItem;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-checkbox": MiCheckbox;
+        "sp-checkbox": SpCheckbox;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-input-chip": MiInputChip;
     }
 }
 
@@ -1029,5 +1067,26 @@ declare global {
 declare global {
     interface HTMLElementTagNameMap {
         "mi-speeda-logo": MiSpeedaLogo;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-form-dialog": MiFormDialog;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-action-dialog": MiActionDialog;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-information-dialog": MiInformationDialog;
     }
 }

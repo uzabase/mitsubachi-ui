@@ -16,6 +16,11 @@ export {
   MiCheckboxText,
   SpCheckboxText,
 } from "./components/checkbox/mi-checkbox-text";
+export { MiInputChip } from "./components/chip/mi-input-chip";
+export {
+  type InputChipItem,
+  MiInputChipGroup,
+} from "./components/chip/mi-input-chip-group";
 export {
   type FormDialogSize,
   formDialogSizes,
