@@ -3897,8 +3897,370 @@ I([N({
 var ri = class extends ni {};
 customElements.get("mi-radio-button-text") || customElements.define("mi-radio-button-text", ni), customElements.get("sp-radio-button-text") || customElements.define("sp-radio-button-text", ri);
 //#endregion
-//#region src/components/snackbar/snackbar.styles.ts
+//#region src/components/segmented-control/segment.styles.ts
 var ii = o`
+  :host {
+    display: contents;
+
+    --color-border-semi-strong-default: rgba(0, 0, 0, 0.2);
+    --color-surface-regular-default: #ffffff;
+    --color-text-regular-default: rgba(0, 0, 0, 0.84);
+    --color-surface-overlay-hover: rgba(0, 0, 0, 0.04);
+    --color-surface-overlay-active: rgba(0, 0, 0, 0.07);
+    --color-surface-selected-default: #e8edff;
+    --color-surface-selected-hover: #dce3ff;
+    --color-surface-selected-active: #d0d9ff;
+    --color-surface-regular-disabled: rgba(0, 0, 0, 0.03);
+    --color-text-disabled: rgba(0, 0, 0, 0.35);
+    --color-border-disabled: rgba(0, 0, 0, 0.07);
+    --color-object-regular-default: rgba(0, 0, 0, 0.84);
+    --color-object-regular-disabled: rgba(0, 0, 0, 0.35);
+    --color-focus-ring-default: #191919;
+    --border-radius-medium: 6px;
+    --spacing-small: 4px;
+    --spacing-medium: 8px;
+    --spacing-large: 12px;
+  }
+
+  /* ==============================
+     セグメントの基本スタイル
+     ============================== */
+
+  .segment {
+    all: unset;
+    box-sizing: border-box;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-block-size: 32px;
+    padding-block: var(--spacing-small);
+
+    border: 1px solid var(--color-border-semi-strong-default);
+    margin-inline-start: -1px;
+
+    background-color: var(--color-surface-regular-default);
+    color: var(--color-text-regular-default);
+
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  /* ==============================
+     ポジション（角丸）
+     ============================== */
+
+  :host(:first-child) .segment {
+    border-start-start-radius: var(--border-radius-medium);
+    border-end-start-radius: var(--border-radius-medium);
+  }
+
+  :host(:last-child) .segment {
+    border-start-end-radius: var(--border-radius-medium);
+    border-end-end-radius: var(--border-radius-medium);
+  }
+
+  /* ==============================
+     未選択のインタラクション
+     ============================== */
+
+  :host(:not([selected]):not([disabled])) .segment:hover {
+    background-color: var(--color-surface-regular-default);
+    background-image: linear-gradient(
+      var(--color-surface-overlay-hover),
+      var(--color-surface-overlay-hover)
+    );
+    z-index: 1;
+  }
+
+  :host(:not([selected]):not([disabled])) .segment:active {
+    background-color: var(--color-surface-regular-default);
+    background-image: linear-gradient(
+      var(--color-surface-overlay-active),
+      var(--color-surface-overlay-active)
+    );
+    z-index: 1;
+  }
+
+  /* ==============================
+     選択状態
+     ============================== */
+
+  :host([selected]) .segment {
+    background-color: var(--color-surface-selected-default);
+    border-color: var(--color-border-semi-strong-default);
+    z-index: 1;
+  }
+
+  :host([selected]:not([disabled])) .segment:hover {
+    background-color: var(--color-surface-selected-hover);
+  }
+
+  :host([selected]:not([disabled])) .segment:active {
+    background-color: var(--color-surface-selected-active);
+  }
+
+  /* ==============================
+     フォーカス
+     ============================== */
+
+  .segment:focus-visible {
+    z-index: 2;
+    box-shadow:
+      0 0 0 2px var(--color-surface-regular-default),
+      0 0 0 4px var(--color-focus-ring-default);
+  }
+
+  /* ==============================
+     無効化状態
+     ============================== */
+
+  :host([disabled]) .segment {
+    background-color: var(--color-surface-regular-disabled);
+    color: var(--color-text-disabled);
+    border-color: var(--color-border-disabled);
+    cursor: not-allowed;
+  }
+
+  :host([selected][disabled]) .segment {
+    background-color: var(--color-surface-regular-disabled);
+    border-color: var(--color-border-disabled);
+    color: var(--color-text-disabled);
+  }
+
+  /* ==============================
+     チェックマークアイコン
+     ============================== */
+
+  .check-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    inline-size: 18px;
+    block-size: 18px;
+    color: var(--color-object-regular-default);
+  }
+
+  :host([selected]) .check-icon {
+    display: inline-flex;
+  }
+
+  :host([disabled]) .check-icon {
+    color: var(--color-object-regular-disabled);
+  }
+
+  /* ==============================
+     バリアント: text
+     ============================== */
+
+  .text-variant {
+    min-inline-size: 56px;
+    padding-inline: var(--spacing-large);
+  }
+
+  :host([selected]) .text-variant {
+    padding-inline-start: var(--spacing-medium);
+  }
+
+  /* ==============================
+     バリアント: icon
+     ============================== */
+
+  .icon-variant {
+    min-inline-size: 48px;
+    padding-inline: var(--spacing-medium);
+  }
+
+  :host([selected]) .icon-variant {
+    padding-inline-start: var(--spacing-small);
+  }
+
+  /* ==============================
+     ラベル
+     ============================== */
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .icon-variant .label {
+    inline-size: 18px;
+    block-size: 18px;
+  }
+
+  /* ==============================
+     スマホ対応
+     ============================== */
+
+  @media (max-width: 720px) {
+    .segment {
+      min-block-size: 36px;
+      font-size: 14px;
+    }
+
+    .check-icon {
+      inline-size: 20px;
+      block-size: 20px;
+    }
+  }
+`, ai = ["text", "icon"], oi = class extends M {
+	constructor(...e) {
+		super(...e), this.value = "", this.variant = "text", this.disabled = !1, this.selected = !1;
+	}
+	static {
+		this.styles = P(ii);
+	}
+	render() {
+		return O`
+      <div
+        class="segment ${this.variant === "icon" ? "icon-variant" : "text-variant"}"
+        role="radio"
+        aria-checked="${this.selected}"
+        aria-disabled="${this.disabled}"
+        tabindex="${this.disabled ? -1 : this.selected ? 0 : -1}"
+        @keydown="${this.#e}"
+      >
+        <span class="check-icon" aria-hidden="true">
+          <mi-icon type="check-small"></mi-icon>
+        </span>
+        <span class="label">
+          <slot></slot>
+        </span>
+      </div>
+    `;
+	}
+	#e(e) {
+		(e.key === " " || e.key === "Enter") && (e.preventDefault(), this.click());
+	}
+};
+I([N({
+	type: String,
+	reflect: !0
+})], oi.prototype, "value", void 0), I([N({
+	type: String,
+	reflect: !0
+})], oi.prototype, "variant", void 0), I([N({
+	type: Boolean,
+	reflect: !0
+})], oi.prototype, "disabled", void 0), I([N({
+	type: Boolean,
+	reflect: !0
+})], oi.prototype, "selected", void 0), customElements.get("mi-segment") || customElements.define("mi-segment", oi);
+//#endregion
+//#region src/components/segmented-control/segmented-control.styles.ts
+var si = o`
+  :host {
+    display: inline-flex;
+    max-inline-size: 100%;
+  }
+
+  [role="radiogroup"] {
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    max-inline-size: 100%;
+    /* mi-segment の margin-inline-start: -1px による最初のセグメントのずれを補正 */
+    padding-inline-start: 1px;
+  }
+`, ci = class extends M {
+	constructor(...e) {
+		super(...e), this.value = "", this.disabled = !1, this.#e = /* @__PURE__ */ new WeakMap(), this.#r = () => {
+			this.#n();
+		}, this.#i = (e) => {
+			let t = e.target.closest("mi-segment");
+			!t || t.disabled || t.selected || (this.value = t.value, this.#n(), this.dispatchEvent(new CustomEvent("change", {
+				bubbles: !0,
+				composed: !0,
+				detail: { value: t.value }
+			})));
+		}, this.#a = (e) => {
+			let t = this.#t().filter((e) => !e.disabled);
+			if (t.length === 0) return;
+			let n = e.target.closest("mi-segment"), r = t.indexOf(n);
+			if (r === -1) return;
+			let i;
+			switch (e.key) {
+				case "ArrowRight":
+				case "ArrowDown":
+					e.preventDefault(), i = (r + 1) % t.length;
+					break;
+				case "ArrowLeft":
+				case "ArrowUp":
+					e.preventDefault(), i = (r - 1 + t.length) % t.length;
+					break;
+				case "Home":
+					e.preventDefault(), i = 0;
+					break;
+				case "End":
+					e.preventDefault(), i = t.length - 1;
+					break;
+			}
+			if (i !== void 0) {
+				let e = t[i];
+				e.shadowRoot?.querySelector(".segment")?.focus(), e.click();
+			}
+		};
+	}
+	static {
+		this.styles = P(si);
+	}
+	connectedCallback() {
+		super.connectedCallback(), this.addEventListener("click", this.#i), this.addEventListener("keydown", this.#a);
+	}
+	disconnectedCallback() {
+		super.disconnectedCallback(), this.removeEventListener("click", this.#i), this.removeEventListener("keydown", this.#a);
+	}
+	updated(e) {
+		super.updated(e), (e.has("value") || e.has("disabled")) && this.#n();
+	}
+	firstUpdated() {
+		this.#n();
+	}
+	render() {
+		return O`
+      <div
+        role="radiogroup"
+        aria-label="${this.getAttribute("aria-label") ?? A}"
+      >
+        <slot @slotchange="${this.#r}"></slot>
+      </div>
+    `;
+	}
+	#e;
+	#t() {
+		return Array.from(this.querySelectorAll("mi-segment"));
+	}
+	#n() {
+		for (let e of this.#t()) e.selected = e.value === this.value, this.#e.has(e) || this.#e.set(e, e.disabled), e.disabled = this.disabled || this.#e.get(e);
+	}
+	#r;
+	#i;
+	#a;
+};
+I([N({
+	type: String,
+	reflect: !0
+})], ci.prototype, "value", void 0), I([N({
+	type: Boolean,
+	reflect: !0
+})], ci.prototype, "disabled", void 0), customElements.get("mi-segmented-control") || customElements.define("mi-segmented-control", ci);
+//#endregion
+//#region src/components/snackbar/snackbar.styles.ts
+var li = o`
   :host {
     display: block;
     box-sizing: border-box;
@@ -4025,16 +4387,16 @@ var ii = o`
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-`, ai = ["small", "medium"];
-function oi(e) {
-	return typeof e == "string" && ai.includes(e) ? e : "small";
+`, ui = ["small", "medium"];
+function di(e) {
+	return typeof e == "string" && ui.includes(e) ? e : "small";
 }
-var si = class extends M {
+var fi = class extends M {
 	constructor(...e) {
 		super(...e), this.size = "small", this.autoHideTimeout = 5e3, this.entering = !0, this.exiting = !1, this.exitRemoved = !1, this.exitTransitionSeen = /* @__PURE__ */ new Set();
 	}
 	static {
-		this.styles = P(ii);
+		this.styles = P(li);
 	}
 	clearAutoHideTimer() {
 		this.autoHideTimerId !== void 0 && (clearTimeout(this.autoHideTimerId), this.autoHideTimerId = void 0);
@@ -4088,7 +4450,7 @@ var si = class extends M {
 		return this.exiting ? !1 : (this.beginClose(), !0);
 	}
 	render() {
-		let e = oi(this.size), t = e === "small" ? "cross-small" : "cross", n = e === "small" ? "small" : "medium";
+		let e = di(this.size), t = e === "small" ? "cross-small" : "cross", n = e === "small" ? "small" : "medium";
 		return O`
       <div
         class="root ${e}"
@@ -4117,13 +4479,13 @@ var si = class extends M {
 I([N({
 	type: String,
 	reflect: !0
-})], si.prototype, "size", void 0), I([N({
+})], fi.prototype, "size", void 0), I([N({
 	type: Number,
 	attribute: "auto-hide-timeout"
-})], si.prototype, "autoHideTimeout", void 0), I([Fe()], si.prototype, "entering", void 0), I([Fe()], si.prototype, "exiting", void 0), customElements.get("mi-snackbar") || customElements.define("mi-snackbar", si);
+})], fi.prototype, "autoHideTimeout", void 0), I([Fe()], fi.prototype, "entering", void 0), I([Fe()], fi.prototype, "exiting", void 0), customElements.get("mi-snackbar") || customElements.define("mi-snackbar", fi);
 //#endregion
 //#region src/components/snackbar/snackbar-viewport.styles.ts
-var ci = o`
+var pi = o`
   :host {
     display: flex;
     flex-direction: column;
@@ -4171,23 +4533,23 @@ var ci = o`
       align-self: center;
     }
   }
-`, li = class extends M {
+`, mi = class extends M {
 	static {
-		this.styles = P(ci);
+		this.styles = P(pi);
 	}
 	render() {
 		return O`<slot></slot>`;
 	}
 };
-customElements.get("mi-snackbar-viewport") || customElements.define("mi-snackbar-viewport", li);
+customElements.get("mi-snackbar-viewport") || customElements.define("mi-snackbar-viewport", mi);
 //#endregion
 //#region src/components/text-field/text-field/error-text/styles.css?inline
-var ui = ":host .container{color:#c92812;align-items:center;gap:2px;padding-top:8px;display:flex}:host .container>.text{font-weight:var(--font-weight-normal);font-size:14px}:host .container .icon{width:21px;height:21px}:host .container.none{display:none}", di = class extends M {
+var hi = ":host .container{color:#c92812;align-items:center;gap:2px;padding-top:8px;display:flex}:host .container>.text{font-weight:var(--font-weight-normal);font-size:14px}:host .container .icon{width:21px;height:21px}:host .container.none{display:none}", gi = class extends M {
 	constructor(...e) {
 		super(...e), this.text = "";
 	}
 	static {
-		this.styles = P(a(ui));
+		this.styles = P(a(hi));
 	}
 	#e() {
 		return jr({
@@ -4207,14 +4569,14 @@ var ui = ":host .container{color:#c92812;align-items:center;gap:2px;padding-top:
 I([N({
 	type: String,
 	reflect: !0
-})], di.prototype, "text", void 0);
-var fi = class extends di {};
-customElements.get("mi-text-field-error-text") || customElements.define("mi-text-field-error-text", di), customElements.get("sp-text-field-error-text") || customElements.define("sp-text-field-error-text", fi);
+})], gi.prototype, "text", void 0);
+var _i = class extends gi {};
+customElements.get("mi-text-field-error-text") || customElements.define("mi-text-field-error-text", gi), customElements.get("sp-text-field-error-text") || customElements.define("sp-text-field-error-text", _i);
 //#endregion
 //#region src/components/text-field/text-field/styles.css?inline
-var pi = ".input{box-sizing:border-box;width:100%;height:48px;font-weight:var(--font-weight-normal);background:#fff;border:1px solid #b6b6b6;border-radius:6px;padding:4px 12px;font-size:16px;line-height:24}.input::placeholder{color:#0000008a}.input[disabled]{color:#000000ad;background-color:#0000000d;border-color:#e5e5e5}.input[disabled]::placeholder{color:#00000059}.input[disabled]:hover{border-color:#e5e5e5}.input:hover{border-color:#0000008f}.input:focus-visible{outline-offset:1px;outline:3px solid canvastext;box-shadow:0 0 0 2px #fff,0 0 0 4px #282828}.input.error{border-color:#db351f}", Q = class extends M {
+var vi = ".input{box-sizing:border-box;width:100%;height:48px;font-weight:var(--font-weight-normal);background:#fff;border:1px solid #b6b6b6;border-radius:6px;padding:4px 12px;font-size:16px;line-height:24}.input::placeholder{color:#0000008a}.input[disabled]{color:#000000ad;background-color:#0000000d;border-color:#e5e5e5}.input[disabled]::placeholder{color:#00000059}.input[disabled]:hover{border-color:#e5e5e5}.input:hover{border-color:#0000008f}.input:focus-visible{outline-offset:1px;outline:3px solid canvastext;box-shadow:0 0 0 2px #fff,0 0 0 4px #282828}.input.error{border-color:#db351f}", Q = class extends M {
 	static {
-		this.styles = P(a(pi));
+		this.styles = P(a(vi));
 	}
 	static {
 		this.formAssociated = !0;
@@ -4294,13 +4656,13 @@ I([N({
 	attribute: "submit-on-enter",
 	reflect: !0
 })], Q.prototype, "submitOnEnter", void 0);
-var mi = class extends Q {};
-customElements.get("mi-text-field") || customElements.define("mi-text-field", Q), customElements.get("sp-text-field") || customElements.define("sp-text-field", mi);
+var yi = class extends Q {};
+customElements.get("mi-text-field") || customElements.define("mi-text-field", Q), customElements.get("sp-text-field") || customElements.define("sp-text-field", yi);
 //#endregion
 //#region src/components/text-field/text-field-unit/styles.css?inline
-var hi = ":host .label{text-align:left;margin-bottom:8px}:host .label.none{display:none}", $ = class extends M {
+var bi = ":host .label{text-align:left;margin-bottom:8px}:host .label.none{display:none}", $ = class extends M {
 	static {
-		this.styles = P(a(hi));
+		this.styles = P(a(bi));
 	}
 	static {
 		this.formAssociated = !0;
@@ -4387,7 +4749,7 @@ I([N({
 	attribute: "submit-on-enter",
 	reflect: !0
 })], $.prototype, "submitOnEnter", void 0);
-var gi = class extends $ {};
-customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", $), customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", gi);
+var xi = class extends $ {};
+customElements.get("mi-text-field-unit") || customElements.define("mi-text-field-unit", $), customElements.get("sp-text-field-unit") || customElements.define("sp-text-field-unit", xi);
 //#endregion
-export { pr as MiActionDialog, gt as MiAiButton, L as MiAvatar, ar as MiButton, Y as MiCheckbox, X as MiCheckboxText, Xr as MiControlMenu, $r as MiControlMenuItem, _t as MiDangerButton, xr as MiFloatingButton, gr as MiFormDialog, $e as MiIcon, rr as MiIconButton, Dr as MiIconColor, yr as MiInformationDialog, Ar as MiInlineNotification, Nr as MiLabelUnit, ct as MiLoading, Vr as MiLogo, ir as MiNeutralButton, ni as MiRadioButtonText, si as MiSnackbar, li as MiSnackbarViewport, Gr as MiSpeedaLogo, Q as MiTextField, di as MiTextFieldErrorText, $ as MiTextFieldUnit, $n as MiTooltip, Jr as MiUzabaseLogo, ot as SpAvatar, or as SpButton, lr as SpCheckbox, dr as SpCheckboxText, Zr as SpControlMenu, ei as SpControlMenuItem, Sr as SpFloatingButton, et as SpIcon, Pr as SpLabelUnit, lt as SpLoading, Hr as SpLogo, ri as SpRadioButtonText, mi as SpTextField, fi as SpTextFieldErrorText, gi as SpTextFieldUnit, mr as formDialogSizes, nr as iconButtonSizes, tr as iconButtonVariants, _r as informationDialogSizes, ai as snackbarSizes };
+export { pr as MiActionDialog, gt as MiAiButton, L as MiAvatar, ar as MiButton, Y as MiCheckbox, X as MiCheckboxText, Xr as MiControlMenu, $r as MiControlMenuItem, _t as MiDangerButton, xr as MiFloatingButton, gr as MiFormDialog, $e as MiIcon, rr as MiIconButton, Dr as MiIconColor, yr as MiInformationDialog, Ar as MiInlineNotification, Nr as MiLabelUnit, ct as MiLoading, Vr as MiLogo, ir as MiNeutralButton, ni as MiRadioButtonText, oi as MiSegment, ci as MiSegmentedControl, fi as MiSnackbar, mi as MiSnackbarViewport, Gr as MiSpeedaLogo, Q as MiTextField, gi as MiTextFieldErrorText, $ as MiTextFieldUnit, $n as MiTooltip, Jr as MiUzabaseLogo, ot as SpAvatar, or as SpButton, lr as SpCheckbox, dr as SpCheckboxText, Zr as SpControlMenu, ei as SpControlMenuItem, Sr as SpFloatingButton, et as SpIcon, Pr as SpLabelUnit, lt as SpLoading, Hr as SpLogo, ri as SpRadioButtonText, yi as SpTextField, _i as SpTextFieldErrorText, xi as SpTextFieldUnit, mr as formDialogSizes, nr as iconButtonSizes, tr as iconButtonVariants, _r as informationDialogSizes, ai as segmentVariants, ui as snackbarSizes };

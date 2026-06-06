@@ -522,6 +522,66 @@ export declare class MiRadioButtonText extends LitElement {
 }
 
 /**
+ * SegmentedControl 内の個別セグメントです。
+ * mi-segmented-control の直接の子として配置して使用します。
+ *
+ * @summary セグメントコントロールの個別セグメント
+ *
+ * @slot - セグメントに表示するコンテンツ（テキストまたはアイコン）
+ *
+ * @example
+ * ```html
+ * <mi-segment value="tab1" variant="text">タブ1</mi-segment>
+ * ```
+ */
+export declare class MiSegment extends LitElement {
+    #private;
+    static styles: CSSResult[];
+    /** セグメントの値（mi-segmented-control の選択制御に使用） */
+    value: string;
+    /** セグメントの表示バリアント */
+    variant: SegmentVariant;
+    /** 無効化状態 */
+    disabled: boolean;
+    /** 選択状態（mi-segmented-control から制御される） */
+    selected: boolean;
+    render(): TemplateResult<1>;
+}
+
+/**
+ * 排他的な単一選択のセグメントグループです。
+ * mi-segment コンポーネントを子として配置して使用します。
+ *
+ * @summary セグメントコントロール
+ *
+ * @slot - mi-segment コンポーネント群
+ *
+ * @fires change - セグメントの選択が変更されたとき。detail: { value: string }
+ *
+ * @example
+ * ```html
+ * <mi-segmented-control value="tab1" aria-label="表示切り替え">
+ *   <mi-segment value="tab1" variant="text">タブ1</mi-segment>
+ *   <mi-segment value="tab2" variant="text">タブ2</mi-segment>
+ *   <mi-segment value="tab3" variant="text">タブ3</mi-segment>
+ * </mi-segmented-control>
+ * ```
+ */
+export declare class MiSegmentedControl extends LitElement {
+    #private;
+    static styles: CSSResult[];
+    /** 現在選択されているセグメントの値 */
+    value: string;
+    /** 無効化状態（全セグメントを無効化） */
+    disabled: boolean;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    protected updated(changedProperties: Map<string, unknown>): void;
+    protected firstUpdated(): void;
+    render(): TemplateResult<1>;
+}
+
+/**
  * ユーザー操作に対する成功時の短いフィードバックを表示するオーバーレイ通知です。
  * 失敗・警告・エラーは `mi-inline-notification` 等で伝えてください。
  *
@@ -743,6 +803,10 @@ declare type Placement = (typeof placements)[number];
 
 declare const placements: readonly ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"];
 
+export declare type SegmentVariant = (typeof segmentVariants)[number];
+
+export declare const segmentVariants: readonly ["text", "icon"];
+
 declare type Size = (typeof sizes)[number];
 
 declare const size: readonly ["small", "medium", "large", "x-large", "2x-large"];
@@ -830,7 +894,32 @@ export { }
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-tooltip": MiTooltip;
+        "mi-danger-button": MiDangerButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-neutral-button": MiNeutralButton;
+        "mi-button": MiButton;
+        "sp-button": SpButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-label-unit": MiLabelUnit;
+        "sp-label-unit": SpLabelUnit;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-checkbox-text": MiCheckboxText;
+        "sp-checkbox-text": SpCheckboxText;
     }
 }
 
@@ -852,39 +941,7 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-danger-button": MiDangerButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-loading": MiLoading;
-        "sp-loading": SpLoading;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-control-menu": MiControlMenu;
-        "sp-control-menu": SpControlMenu;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-control-menu-item": MiControlMenuItem;
-        "sp-control-menu-item": SpControlMenuItem;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-radio-button-text": MiRadioButtonText;
-        "sp-radio-button-text": SpRadioButtonText;
+        "mi-tooltip": MiTooltip;
     }
 }
 
@@ -892,77 +949,6 @@ declare global {
 declare global {
     interface HTMLElementTagNameMap {
         "mi-snackbar": MiSnackbar;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar-viewport": MiSnackbarViewport;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field": MiTextField;
-        "sp-text-field": SpTextField;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-error-text": MiTextFieldErrorText;
-        "sp-text-field-error-text": SpTextFieldErrorText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-unit": MiTextFieldUnit;
-        "sp-text-field-unit": SpTextFieldUnit;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-neutral-button": MiNeutralButton;
-        "mi-button": MiButton;
-        "sp-button": SpButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-icon-button": MiIconButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-checkbox": MiCheckbox;
-        "sp-checkbox": SpCheckbox;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-icon": MiIcon;
-        "sp-icon": SpIcon;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-checkbox-text": MiCheckboxText;
-        "sp-checkbox-text": SpCheckboxText;
     }
 }
 
@@ -977,6 +963,30 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-loading": MiLoading;
+        "sp-loading": SpLoading;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-icon": MiIcon;
+        "sp-icon": SpIcon;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-radio-button-text": MiRadioButtonText;
+        "sp-radio-button-text": SpRadioButtonText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
         "mi-icon-color": MiIconColor;
     }
 }
@@ -984,37 +994,76 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-label-unit": MiLabelUnit;
-        "sp-label-unit": SpLabelUnit;
+        "mi-segment": MiSegment;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-uzabase-logo": MiUzabaseLogo;
+        "mi-text-field-unit": MiTextFieldUnit;
+        "sp-text-field-unit": SpTextFieldUnit;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-speeda-logo": MiSpeedaLogo;
+        "mi-text-field-error-text": MiTextFieldErrorText;
+        "sp-text-field-error-text": SpTextFieldErrorText;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-logo": MiLogo;
-        "sp-logo": SpLogo;
+        "mi-text-field": MiTextField;
+        "sp-text-field": SpTextField;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-information-dialog": MiInformationDialog;
+        "mi-icon-button": MiIconButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu": MiControlMenu;
+        "sp-control-menu": SpControlMenu;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-checkbox": MiCheckbox;
+        "sp-checkbox": SpCheckbox;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-segmented-control": MiSegmentedControl;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-snackbar-viewport": MiSnackbarViewport;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu-item": MiControlMenuItem;
+        "sp-control-menu-item": SpControlMenuItem;
     }
 }
 
@@ -1029,5 +1078,34 @@ declare global {
 declare global {
     interface HTMLElementTagNameMap {
         "mi-form-dialog": MiFormDialog;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-information-dialog": MiInformationDialog;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-speeda-logo": MiSpeedaLogo;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-uzabase-logo": MiUzabaseLogo;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-logo": MiLogo;
+        "sp-logo": SpLogo;
     }
 }

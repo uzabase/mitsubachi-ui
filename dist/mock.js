@@ -146,6 +146,22 @@
       }
     });
   }
+  if (!customElements.get("mi-segment")) {
+    customElements.define("mi-segment", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-segmented-control")) {
+    customElements.define("mi-segmented-control", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
   if (!customElements.get("mi-snackbar-viewport")) {
     customElements.define("mi-snackbar-viewport", class extends HTMLElement {
       constructor() {

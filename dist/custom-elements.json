@@ -337,6 +337,38 @@
         },
         {
           "kind": "js",
+          "name": "MiSegment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SegmentVariant",
+          "declaration": {
+            "name": "SegmentVariant",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "segmentVariants",
+          "declaration": {
+            "name": "segmentVariants",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSegmentedControl",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "./components/segmented-control/mi-segmented-control"
+          }
+        },
+        {
+          "kind": "js",
           "name": "SnackbarSize",
           "declaration": {
             "name": "SnackbarSize",
@@ -8163,6 +8195,283 @@
           "name": "default",
           "declaration": {
             "module": "src/components/radio-button/radio-button-text.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/mi-segment.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "segmentVariants",
+          "type": {
+            "text": "[\"text\", \"icon\"]"
+          },
+          "default": "[\"text\", \"icon\"]"
+        },
+        {
+          "kind": "class",
+          "description": "SegmentedControl 内の個別セグメントです。\nmi-segmented-control の直接の子として配置して使用します。",
+          "name": "MiSegment",
+          "slots": [
+            {
+              "description": "セグメントに表示するコンテンツ（テキストまたはアイコン）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "セグメントの値（mi-segmented-control の選択制御に使用）"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SegmentVariant"
+              },
+              "default": "\"text\"",
+              "description": "セグメントの表示バリアント"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "無効化状態"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態（mi-segmented-control から制御される）"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeydown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "セグメントコントロールの個別セグメント",
+          "tagName": "mi-segment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "segmentVariants",
+          "declaration": {
+            "name": "segmentVariants",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSegment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-segment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/mi-segmented-control.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "排他的な単一選択のセグメントグループです。\nmi-segment コンポーネントを子として配置して使用します。",
+          "name": "MiSegmentedControl",
+          "slots": [
+            {
+              "description": "mi-segment コンポーネント群",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "現在選択されているセグメントの値"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "無効化状態（全セグメントを無効化）"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "firstUpdated",
+              "privacy": "protected"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "#originalDisabledMap",
+              "privacy": "private",
+              "default": "new WeakMap<MiSegment, boolean>()"
+            },
+            {
+              "kind": "method",
+              "name": "#getSegments",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "MiSegment[]"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#syncSegments",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleKeydown",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "description": "セグメントの選択が変更されたとき。detail: { value: string }",
+              "name": "change"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "セグメントコントロール",
+          "tagName": "mi-segmented-control",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiSegmentedControl",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "src/components/segmented-control/mi-segmented-control.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-segmented-control",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "src/components/segmented-control/mi-segmented-control.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/segment.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/segmented-control/segment.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/segmented-control.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/segmented-control/segmented-control.styles.ts"
           }
         }
       ]
