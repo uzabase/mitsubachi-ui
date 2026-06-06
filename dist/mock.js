@@ -192,6 +192,9 @@
   if (!customElements.get("sp-control-menu-item")) {
     customElements.define("sp-control-menu-item", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-search-box")) {
+    customElements.define("mi-search-box", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-text-field")) {
     customElements.define("mi-text-field", class extends HTMLElement {});
   }
