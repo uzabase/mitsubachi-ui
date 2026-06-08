@@ -59,6 +59,18 @@
   if (!customElements.get("sp-checkbox")) {
     customElements.define("sp-checkbox", class extends HTMLElement {});
   }
+  if (!customElements.get("mi-floating-button")) {
+    customElements.define("mi-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-floating-button")) {
+    customElements.define("sp-floating-button", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-icon")) {
+    customElements.define("mi-icon", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-icon")) {
+    customElements.define("sp-icon", class extends HTMLElement {});
+  }
   if (!customElements.get("mi-action-dialog")) {
     customElements.define("mi-action-dialog", class extends HTMLElement {
       constructor() {
@@ -82,18 +94,6 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
-  }
-  if (!customElements.get("mi-floating-button")) {
-    customElements.define("mi-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-floating-button")) {
-    customElements.define("sp-floating-button", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-icon")) {
-    customElements.define("mi-icon", class extends HTMLElement {});
-  }
-  if (!customElements.get("sp-icon")) {
-    customElements.define("sp-icon", class extends HTMLElement {});
   }
   if (!customElements.get("mi-icon-color")) {
     customElements.define("mi-icon-color", class extends HTMLElement {});
@@ -129,6 +129,70 @@
   }
   if (!customElements.get("mi-uzabase-logo")) {
     customElements.define("mi-uzabase-logo", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-action-menu-item")) {
+    customElements.define("mi-action-menu-item", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot><slot name="icon"></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-link-menu-item")) {
+    customElements.define("mi-link-menu-item", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot><slot name="icon"></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-menu-dropdown")) {
+    customElements.define("mi-menu-dropdown", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-menu-group")) {
+    customElements.define("mi-menu-group", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-menu-radio-group")) {
+    customElements.define("mi-menu-radio-group", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-menu")) {
+    customElements.define("mi-menu", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot name="trigger"></slot><slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-select-menu-item")) {
+    customElements.define("mi-select-menu-item", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot><slot name="icon"></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-sub-menu-item")) {
+    customElements.define("mi-sub-menu-item", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot><slot name="icon"></slot><slot name="submenu"></slot>";
+      }
+    });
   }
   if (!customElements.get("mi-radio-button-text")) {
     customElements.define("mi-radio-button-text", class extends HTMLElement {
