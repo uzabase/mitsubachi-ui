@@ -103,8 +103,6 @@ export class MiSegmentedControl extends LitElement {
     this.#syncSegments();
     this.dispatchEvent(
       new CustomEvent("change", {
-        bubbles: true,
-        composed: true,
         detail: { value: segment.value },
       }),
     );
