@@ -14,9 +14,8 @@ export type SearchBoxVariant = "primary" | "secondary";
  * @attr {boolean} disabled - 無効化するかどうか。
  * @attr {string} autocomplete - autocomplete 属性。
  * @attr {boolean} autofocus - 自動フォーカスするかどうか。
- * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで `composed: true` として再発火します。
+ * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。
  * @fires change - 内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。
- * @fires clear - クリアボタンが押されたときに発火します。
  */
 export declare class MiSearchBox extends LitElement {
     #private;
@@ -24,7 +23,7 @@ export declare class MiSearchBox extends LitElement {
     static shadowRootOptions: {
         delegatesFocus: boolean;
         clonable?: boolean;
-        customElementRegistry?: CustomElementRegistry;
+        customElementRegistry?: CustomElementRegistry | null;
         mode: ShadowRootMode;
         serializable?: boolean;
         slotAssignment?: SlotAssignmentMode;

@@ -23,9 +23,8 @@ export type SearchBoxVariant = "primary" | "secondary";
  * @attr {boolean} disabled - 無効化するかどうか。
  * @attr {string} autocomplete - autocomplete 属性。
  * @attr {boolean} autofocus - 自動フォーカスするかどうか。
- * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで `composed: true` として再発火します。
+ * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。
  * @fires change - 内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。
- * @fires clear - クリアボタンが押されたときに発火します。
  */
 export class MiSearchBox extends LitElement {
   static styles = makeStyles(unsafeCSS(searchBoxStyle));
@@ -97,7 +96,7 @@ export class MiSearchBox extends LitElement {
       this.dispatchEvent(
         new InputEvent("input", {
           ...e,
-          composed: true,
+          composed: false,
         }),
       );
     }
@@ -112,9 +111,9 @@ export class MiSearchBox extends LitElement {
     if (!e.composed) {
       this.dispatchEvent(
         new Event("change", {
-          bubbles: e.bubbles,
+          bubbles: false,
           cancelable: e.cancelable,
-          composed: true,
+          composed: false,
         }),
       );
     }
@@ -127,14 +126,11 @@ export class MiSearchBox extends LitElement {
     }
     this.dispatchEvent(
       new InputEvent("input", {
-        bubbles: true,
-        composed: true,
+        bubbles: false,
+        composed: false,
         data: null,
         inputType: "deleteContentBackward",
       }),
-    );
-    this.dispatchEvent(
-      new CustomEvent("clear", { bubbles: true, composed: true }),
     );
     this.inputEl?.focus();
   }
