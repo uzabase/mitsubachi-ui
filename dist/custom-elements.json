@@ -4702,6 +4702,133 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dialog/base.ts",
       "declarations": [
         {
@@ -6206,133 +6333,6 @@
           "declaration": {
             "name": "MiInformationDialog",
             "module": "src/components/dialog/mi-information-dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-floating-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiFloatingButton",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpFloatingButton",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-floating-button",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-floating-button",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
           }
         }
       ]
@@ -8169,6 +8169,660 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/search-box/mi-search-box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiSearchBox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SearchBoxVariant"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "内部の `input` に設定する aria-label。"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "inputEl",
+              "type": {
+                "text": "HTMLInputElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#containerClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。"
+            },
+            {
+              "kind": "method",
+              "name": "#handleClear",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。"
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
+              "name": "variant"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "入力値の文字列。",
+              "name": "value"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "プレースホルダー。",
+              "name": "placeholder"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "フォームの name。",
+              "name": "name"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "内部の input に設定する aria-label。",
+              "name": "label"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "無効化するかどうか。",
+              "name": "disabled"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "autocomplete 属性。",
+              "name": "autocomplete"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "自動フォーカスするかどうか。",
+              "name": "autofocus"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ユーザーが必要な情報を素早く見つけるための入力コンポーネントです。\nキーワードの入力に応じて、候補表示や検索実行を行い、コンテンツ探索の効率を高めます。\n\nラベル（LabelUnit）と併用して「何を」検索するのかを明示することが望ましいです。\nラベルの併用が難しい場合は、プレースホルダーで補足してください。",
+          "tagName": "mi-search-box",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpSearchBox",
+          "superclass": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          },
+          "deprecated": "代わりに MiSearchBox を使用してください",
+          "tagName": "sp-search-box",
+          "customElement": true,
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
+              "name": "variant",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "入力値の文字列。",
+              "name": "value",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "プレースホルダー。",
+              "name": "placeholder",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "フォームの name。",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "内部の input に設定する aria-label。",
+              "name": "label",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "無効化するかどうか。",
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "autocomplete 属性。",
+              "name": "autocomplete",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "自動フォーカスするかどうか。",
+              "name": "autofocus",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SearchBoxVariant"
+              },
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "内部の `input` に設定する aria-label。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputEl",
+              "type": {
+                "text": "HTMLInputElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#containerClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleClear",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiSearchBox",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpSearchBox",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-search-box",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-search-box",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/search-box/search-box.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/snackbar/mi-snackbar-viewport.ts",
       "declarations": [
         {
@@ -8712,758 +9366,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/search-box/mi-search-box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiSearchBox",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "SearchBoxVariant"
-              },
-              "default": "\"primary\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "inputId",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "内部の `input` に付与する id（`<label for>` と紐づける場合に指定）。"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\""
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "inputEl",
-              "type": {
-                "text": "HTMLInputElement"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#containerClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。"
-            },
-            {
-              "kind": "method",
-              "name": "#handleClear",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。"
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
-              "name": "variant"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "入力値の文字列。",
-              "name": "value"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "プレースホルダー。",
-              "name": "placeholder"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "フォームの name。",
-              "name": "name"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "無効化するかどうか。",
-              "name": "disabled"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "autocomplete 属性。",
-              "name": "autocomplete"
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "自動フォーカスするかどうか。",
-              "name": "autofocus"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ユーザーが必要な情報を素早く見つけるための入力コンポーネントです。\nキーワードの入力に応じて、候補表示や検索実行を行い、コンテンツ探索の効率を高めます。\n\nラベル（LabelUnit）と併用して「何を」検索するのかを明示することが望ましいです。\nラベルの併用が難しい場合は、プレースホルダーで補足してください。",
-          "tagName": "mi-search-box",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpSearchBox",
-          "superclass": {
-            "name": "MiSearchBox",
-            "module": "src/components/search-box/mi-search-box.ts"
-          },
-          "deprecated": "代わりに MiSearchBox を使用してください",
-          "tagName": "sp-search-box",
-          "customElement": true,
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
-              "name": "variant",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "入力値の文字列。",
-              "name": "value",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "プレースホルダー。",
-              "name": "placeholder",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "フォームの name。",
-              "name": "name",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "無効化するかどうか。",
-              "name": "disabled",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "autocomplete 属性。",
-              "name": "autocomplete",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "type": {
-                "text": "boolean"
-              },
-              "description": "自動フォーカスするかどうか。",
-              "name": "autofocus",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "object"
-              },
-              "static": true,
-              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "SearchBoxVariant"
-              },
-              "default": "\"primary\"",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inputId",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "内部の `input` に付与する id（`<label for>` と紐づける場合に指定）。",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\"",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inputEl",
-              "type": {
-                "text": "HTMLInputElement"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#containerClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleClear",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "Event"
-              },
-              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。",
-              "inheritedFrom": {
-                "name": "MiSearchBox",
-                "module": "src/components/search-box/mi-search-box.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiSearchBox",
-          "declaration": {
-            "name": "MiSearchBox",
-            "module": "src/components/search-box/mi-search-box.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpSearchBox",
-          "declaration": {
-            "name": "SpSearchBox",
-            "module": "src/components/search-box/mi-search-box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-search-box",
-          "declaration": {
-            "name": "MiSearchBox",
-            "module": "src/components/search-box/mi-search-box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-search-box",
-          "declaration": {
-            "name": "SpSearchBox",
-            "module": "src/components/search-box/mi-search-box.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/search-box/search-box.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -9682,12 +9584,18 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/index.ts",
+      "path": "src/components/menu/control-menu/index.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "MiTextField",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -9695,391 +9603,55 @@
               "static": true
             },
             {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\""
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\""
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "submitOnEnter",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "#handleKeyDown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
               "kind": "method",
               "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              }
             }
           ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "summary": "テキストフィールドです。",
-          "tagName": "mi-text-field",
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
           "customElement": true
         },
         {
           "kind": "class",
           "description": "",
-          "name": "SpTextField",
+          "name": "SpControlMenu",
           "superclass": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           },
-          "deprecated": "代わりに MiTextField を使用してください",
-          "tagName": "sp-text-field",
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
           "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
           "members": [
             {
               "kind": "field",
               "name": "styles",
               "static": true,
               "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "error",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autocomplete",
-              "type": {
-                "text": "AutoFill"
-              },
-              "default": "\"off\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"text\"",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "autofocus",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "submitOnEnter",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#inputClasses",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleInput",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleKeyDown",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
               }
             },
             {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "InputEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiTextField",
-                "module": "src/components/text-field/text-field/index.ts"
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
               }
             }
           ]
@@ -10088,41 +9660,41 @@
       "exports": [
         {
           "kind": "js",
-          "name": "MiTextField",
+          "name": "MiControlMenu",
           "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "js",
-          "name": "SpTextField",
+          "name": "SpControlMenu",
           "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "mi-text-field",
+          "name": "mi-control-menu",
           "declaration": {
-            "name": "MiTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-text-field",
+          "name": "sp-control-menu",
           "declaration": {
-            "name": "SpTextField",
-            "module": "src/components/text-field/text-field/index.ts"
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/text-field/text-field/styles.css",
+      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
@@ -10629,6 +10201,452 @@
     {
       "kind": "javascript-module",
       "path": "src/components/text-field/text-field-unit/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiTextField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\""
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキストフィールドです。",
+          "tagName": "mi-text-field",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpTextField",
+          "superclass": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          },
+          "deprecated": "代わりに MiTextField を使用してください",
+          "tagName": "sp-text-field",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "error",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"text\"",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "submitOnEnter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#inputClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiTextField",
+                "module": "src/components/text-field/text-field/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiTextField",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpTextField",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-text-field",
+          "declaration": {
+            "name": "MiTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-text-field",
+          "declaration": {
+            "name": "SpTextField",
+            "module": "src/components/text-field/text-field/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/text-field/text-field/styles.css",
       "declarations": [],
       "exports": []
     },

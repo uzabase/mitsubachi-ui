@@ -46,11 +46,11 @@ describe("mi-search-box", () => {
     expect(getInput()?.name).toBe("q");
   });
 
-  test("input-id が内部 input の id になる", async () => {
-    document.body.innerHTML = `<mi-search-box input-id="search-field"></mi-search-box>`;
+  test("label 属性が内部 input の aria-label になる", async () => {
+    document.body.innerHTML = `<mi-search-box label="検索"></mi-search-box>`;
     await customElements.whenDefined("mi-search-box");
 
-    expect(getInput()?.id).toBe("search-field");
+    expect(getInput()?.getAttribute("aria-label")).toBe("検索");
   });
 
   test("value があるときクリアボタンが表示され、押下で値が空になる", async () => {

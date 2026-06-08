@@ -20,7 +20,7 @@ const meta = {
     value: { type: "string" },
     name: { type: "string" },
     autocomplete: { type: "string" },
-    inputId: { type: "string" },
+    label: { type: "string", description: "aria-label" },
   },
   args: {
     placeholder: "Placeholder",
@@ -29,7 +29,7 @@ const meta = {
     value: "",
     name: "",
     autocomplete: "off",
-    inputId: "",
+    label: "",
   },
   decorators: [(story) => html`<div style="width: 256px;">${story()}</div>`],
   tags: ["!dev-only"],
@@ -47,7 +47,7 @@ export const Default: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -56,7 +56,7 @@ export const Default: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -74,7 +74,7 @@ export const WithText: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -83,7 +83,7 @@ export const WithText: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -101,7 +101,7 @@ export const Secondary: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -110,7 +110,7 @@ export const Secondary: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -128,7 +128,7 @@ export const SecondaryWithText: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -137,7 +137,7 @@ export const SecondaryWithText: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -156,7 +156,7 @@ export const PrimaryDisabled: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -165,7 +165,7 @@ export const PrimaryDisabled: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -184,7 +184,7 @@ export const PrimaryDisabledWithText: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -193,7 +193,7 @@ export const PrimaryDisabledWithText: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
@@ -212,7 +212,7 @@ export const SecondaryDisabled: Story = {
     value,
     name,
     autocomplete,
-    inputId,
+    label,
   }) => html`
     <mi-search-box
       placeholder=${placeholder || nothing}
@@ -221,13 +221,13 @@ export const SecondaryDisabled: Story = {
       value=${value}
       name=${name || nothing}
       autocomplete=${autocomplete}
-      input-id=${inputId || nothing}
+      label=${label || nothing}
     ></mi-search-box>
   `,
 };
 
 /**
- * `input` / `change` / `clear` を Actions に記録します。
+ * `input` / `change` を Actions に記録します。
  * - `change` はフィールドからフォーカスが外れたとき（値の確定時）に発火します。
  */
 export const Events: Story = {
@@ -236,7 +236,6 @@ export const Events: Story = {
       placeholder="入力・blur・クリアで確認"
       @input=${action("input")}
       @change=${action("change")}
-      @clear=${action("clear")}
     ></mi-search-box>
   `,
 };
@@ -271,7 +270,7 @@ export const FormSubmit: Story = {
   `,
 };
 
-/** LabelUnit と併用（input-id でラベルと紐づけ可能） */
+/** LabelUnit と併用（label 属性で aria-label を設定） */
 export const WithLabel: Story = {
   decorators: [
     () => html`
@@ -280,7 +279,7 @@ export const WithLabel: Story = {
       >
         <mi-label-unit text="競合企業"></mi-label-unit>
         <mi-search-box
-          input-id="search-competitor"
+          label="競合企業"
           placeholder="企業を検索"
           variant="secondary"
         ></mi-search-box>

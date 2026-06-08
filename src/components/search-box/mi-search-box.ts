@@ -20,6 +20,7 @@ export type SearchBoxVariant = "primary" | "secondary";
  * @attr {string} value - 入力値の文字列。
  * @attr {string} placeholder - プレースホルダー。
  * @attr {string} name - フォームの name。
+ * @attr {string} label - 内部の input に設定する aria-label。
  * @attr {boolean} disabled - 無効化するかどうか。
  * @attr {string} autocomplete - autocomplete 属性。
  * @attr {boolean} autofocus - 自動フォーカスするかどうか。
@@ -48,9 +49,9 @@ export class MiSearchBox extends LitElement {
   @property({ type: String, reflect: true })
   name = "";
 
-  /** 内部の `input` に付与する id（`<label for>` と紐づける場合に指定）。 */
-  @property({ type: String, attribute: "input-id", reflect: true })
-  inputId = "";
+  /** 内部の `input` に設定する aria-label。 */
+  @property({ type: String, reflect: true })
+  label = "";
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
@@ -147,7 +148,7 @@ export class MiSearchBox extends LitElement {
         <input
           class="input"
           type="search"
-          id="${this.inputId || nothing}"
+          aria-label="${this.label || nothing}"
           name="${this.name || nothing}"
           placeholder="${this.placeholder || nothing}"
           autocomplete="${this.autocomplete}"
