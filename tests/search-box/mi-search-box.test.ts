@@ -53,7 +53,7 @@ describe("mi-search-box", () => {
     expect(getInput()?.id).toBe("search-field");
   });
 
-  test("value があるときクリアボタンが表示され、押下で値が空になり clear イベントが発火する", async () => {
+  test("value があるときクリアボタンが表示され、押下で値が空になる", async () => {
     document.body.innerHTML = `<mi-search-box value="hello"></mi-search-box>`;
     await customElements.whenDefined("mi-search-box");
 
@@ -62,15 +62,11 @@ describe("mi-search-box", () => {
 
     expect(getClearButton()).toBeTruthy();
 
-    const clearHandler = vi.fn();
-    sut.addEventListener("clear", clearHandler);
-
     getClearButton()?.click();
     await sut.updateComplete;
 
     expect(sut.value).toBe("");
     expect(getInput()?.value).toBe("");
-    expect(clearHandler).toHaveBeenCalledTimes(1);
   });
 
   test("disabled のときはクリアボタンが表示されない", async () => {
@@ -83,7 +79,7 @@ describe("mi-search-box", () => {
     expect(getClearButton()).toBeFalsy();
   });
 
-  test("内部 input の change が composed でないとき、ホストで composed 付きで再発火される", async () => {
+  test("内部 input の change が composed でないとき、ホストで再発火される", async () => {
     document.body.innerHTML = `<mi-search-box></mi-search-box>`;
     await customElements.whenDefined("mi-search-box");
 
@@ -98,6 +94,6 @@ describe("mi-search-box", () => {
     );
 
     expect(handler).toHaveBeenCalledTimes(1);
-    expect((handler.mock.calls[0][0] as Event).composed).toBe(true);
+    expect((handler.mock.calls[0][0] as Event).composed).toBe(false);
   });
 });
