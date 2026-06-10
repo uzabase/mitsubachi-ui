@@ -54,6 +54,16 @@ export {
   MiRadioButtonText,
   SpRadioButtonText,
 } from "./components/radio-button/mi-radio-button-text";
+export {
+  MiSearchBox,
+  SpSearchBox,
+} from "./components/search-box/mi-search-box";
+export {
+  MiSegment,
+  type SegmentVariant,
+  segmentVariants,
+} from "./components/segmented-control/mi-segment";
+export { MiSegmentedControl } from "./components/segmented-control/mi-segmented-control";
 export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
 export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
 export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
