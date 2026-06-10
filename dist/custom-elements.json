@@ -337,6 +337,22 @@
         },
         {
           "kind": "js",
+          "name": "MiSearchBox",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "./components/search-box/mi-search-box"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpSearchBox",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "./components/search-box/mi-search-box"
+          }
+        },
+        {
+          "kind": "js",
           "name": "MiSegment",
           "declaration": {
             "name": "MiSegment",
@@ -773,6 +789,676 @@
           "declaration": {
             "name": "SpAvatar",
             "module": "src/components/avatar/mi-avatar.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox-text.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkmark.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/mi-checkbox-text.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiCheckboxText",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキスト付きチェックボックスです。",
+          "tagName": "mi-checkbox-text",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckboxText",
+          "superclass": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          },
+          "deprecated": "代わりに MiCheckboxText を使用してください",
+          "tagName": "sp-checkbox-text",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiCheckboxText",
+          "declaration": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-checkbox-text",
+          "declaration": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox-text",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/mi-checkbox.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiCheckbox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "チェックボックスです。",
+          "tagName": "mi-checkbox",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckbox",
+          "superclass": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          },
+          "deprecated": "代わりに MiCheckbox を使用してください",
+          "tagName": "sp-checkbox",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiCheckbox",
+          "declaration": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-checkbox",
+          "declaration": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
           }
         }
       ]
@@ -4058,676 +4744,6 @@
           "declaration": {
             "name": "SpButton",
             "module": "src/components/button/mi-neutral-button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox-text.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkmark.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/mi-checkbox-text.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiCheckboxText",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "テキスト付きチェックボックスです。",
-          "tagName": "mi-checkbox-text",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpCheckboxText",
-          "superclass": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          },
-          "deprecated": "代わりに MiCheckboxText を使用してください",
-          "tagName": "sp-checkbox-text",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiCheckboxText",
-          "declaration": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpCheckboxText",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-checkbox-text",
-          "declaration": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-checkbox-text",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/mi-checkbox.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiCheckbox",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "チェックボックスです。",
-          "tagName": "mi-checkbox",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpCheckbox",
-          "superclass": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
-          },
-          "deprecated": "代わりに MiCheckbox を使用してください",
-          "tagName": "sp-checkbox",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiCheckbox",
-          "declaration": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpCheckbox",
-          "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-checkbox",
-          "declaration": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-checkbox",
-          "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
           }
         }
       ]
@@ -9675,122 +9691,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -10004,6 +9904,122 @@
     {
       "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "superclass": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          },
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
+          "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiControlMenu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-control-menu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },

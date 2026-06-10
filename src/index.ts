@@ -44,6 +44,7 @@ export {
   MiRadioButtonText,
   SpRadioButtonText,
 } from "./components/radio-button/mi-radio-button-text";
+export { MiSearchBox, SpSearchBox } from "./components/search-box/mi-search-box";
 export {
   MiSegment,
   type SegmentVariant,
