@@ -514,366 +514,33 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox-text.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkmark.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/mi-checkbox-text.ts",
+      "path": "src/components/avatar/avatar.styles.ts",
       "declarations": [
         {
-          "kind": "class",
-          "description": "",
-          "name": "MiCheckboxText",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "テキスト付きチェックボックスです。",
-          "tagName": "mi-checkbox-text",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpCheckboxText",
-          "superclass": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          },
-          "deprecated": "代わりに MiCheckboxText を使用してください",
-          "tagName": "sp-checkbox-text",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiCheckboxText",
-                "module": "src/components/checkbox/mi-checkbox-text.ts"
-              }
-            }
-          ]
+          "kind": "variable",
+          "name": "avatarStyles",
+          "default": "css` :host { display: inline-block; --palette-plum: #910091; --palette-violet: #3e31d5; --palette-blue: #214dde; --palette-viridian: #0d8282; --palette-green: #008744; --palette-brown: #ae6022; --palette-red: #d30030; } .base { display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; background-color: rgb(0 0 0 / 5%); color: rgb(0 0 0 / 84%); font-weight: var(--font-weight-bold); position: relative; } .inactive { filter: grayscale(100%); } .image { width: 100%; height: 100%; object-fit: cover; } .initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; } .icon { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: rgb(0 0 0 / 84%); } mi-icon, sp-icon { fill: currentcolor; display: flex; align-items: center; justify-content: center; } .size-small { width: 24px; height: 24px; .initials { font-size: 10px; } mi-icon, sp-icon { font-size: 15.625px; /* 20px / 1.28 */ } } .size-medium { width: 32px; height: 32px; .initials { font-size: 12px; } mi-icon, sp-icon { font-size: 18.75px; /* 24px / 1.28 */ } } .size-large { width: 40px; height: 40px; .initials { font-size: 14px; } mi-icon, sp-icon { font-size: 25px; /* 32px / 1.28 */ } } .size-x-large { width: 80px; height: 80px; .initials { font-size: 32px; } mi-icon, sp-icon { font-size: 50px; /* 64px / 1.28 */ } } .size-2x-large { width: 96px; height: 96px; .initials { font-size: 40px; } mi-icon, sp-icon { font-size: 62.5px; /* 80px / 1.28 */ } } /* カラーバリエーション */ .color-plum { background-color: var(--palette-plum); color: #fff; } .color-violet { background-color: var(--palette-violet); color: #fff; } .color-blue { background-color: var(--palette-blue); color: #fff; } .color-viridian { background-color: var(--palette-viridian); color: #fff; } .color-green { background-color: var(--palette-green); color: #fff; } .color-brown { background-color: var(--palette-brown); color: #fff; } .color-red { background-color: var(--palette-red); color: #fff; } [class*=\"color-\"] { &.inactive { background-color: #ededed; color: rgb(0 0 0 / 35%); } } `"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "MiCheckboxText",
+          "name": "avatarStyles",
           "declaration": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpCheckboxText",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-checkbox-text",
-          "declaration": {
-            "name": "MiCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-checkbox-text",
-          "declaration": {
-            "name": "SpCheckboxText",
-            "module": "src/components/checkbox/mi-checkbox-text.ts"
+            "name": "avatarStyles",
+            "module": "src/components/avatar/avatar.styles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/checkbox/mi-checkbox.ts",
+      "path": "src/components/avatar/mi-avatar.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "MiCheckbox",
+          "name": "MiAvatar",
           "members": [
             {
               "kind": "field",
@@ -882,16 +549,7 @@
             },
             {
               "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "field",
-              "name": "value",
+              "name": "src",
               "type": {
                 "text": "string"
               },
@@ -899,7 +557,7 @@
             },
             {
               "kind": "field",
-              "name": "name",
+              "name": "alt",
               "type": {
                 "text": "string"
               },
@@ -907,7 +565,31 @@
             },
             {
               "kind": "field",
-              "name": "checked",
+              "name": "initials",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "AvatarSize"
+              },
+              "default": "\"medium\""
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "AvatarColor | \"\""
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "inactive",
               "type": {
                 "text": "boolean"
               },
@@ -915,85 +597,44 @@
             },
             {
               "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
+              "name": "#avatarClasses",
+              "privacy": "private",
+              "readonly": true
             },
             {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
+              "kind": "method",
+              "name": "#handleImageError",
               "privacy": "private"
             },
             {
-              "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleChange",
+              "kind": "field",
+              "name": "#displayContent",
               "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
+              "readonly": true
             },
             {
               "kind": "method",
               "name": "render"
             }
           ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "summary": "チェックボックスです。",
-          "tagName": "mi-checkbox",
+          "summary": "アバターです。",
+          "tagName": "mi-avatar",
           "customElement": true
         },
         {
           "kind": "class",
           "description": "",
-          "name": "SpCheckbox",
+          "name": "SpAvatar",
           "superclass": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
+            "name": "MiAvatar",
+            "module": "src/components/avatar/mi-avatar.ts"
           },
-          "deprecated": "代わりに MiCheckbox を使用してください",
-          "tagName": "sp-checkbox",
+          "deprecated": "代わりに MiAvatar を使用してください",
+          "tagName": "sp-avatar",
           "customElement": true,
           "members": [
             {
@@ -1001,147 +642,117 @@
               "name": "styles",
               "static": true,
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "value",
+              "name": "src",
               "type": {
                 "text": "string"
               },
               "default": "\"\"",
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "field",
-              "name": "name",
+              "name": "alt",
               "type": {
                 "text": "string"
               },
               "default": "\"\"",
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "field",
-              "name": "checked",
+              "name": "initials",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "AvatarSize"
+              },
+              "default": "\"medium\"",
+              "inheritedFrom": {
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "AvatarColor | \"\""
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inactive",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "internals",
-              "type": {
-                "text": "ElementInternals"
-              },
+              "name": "#avatarClasses",
               "privacy": "private",
+              "readonly": true,
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "method",
-              "name": "updated",
-              "privacy": "protected",
-              "parameters": [
-                {
-                  "name": "changedProperties",
-                  "type": {
-                    "text": "Map<string, unknown>"
-                  }
-                }
-              ],
+              "name": "#handleImageError",
+              "privacy": "private",
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
-              "kind": "method",
-              "name": "handleChange",
+              "kind": "field",
+              "name": "#displayContent",
               "privacy": "private",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ],
+              "readonly": true,
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             },
             {
               "kind": "method",
               "name": "render",
               "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "MiCheckbox",
-                "module": "src/components/checkbox/mi-checkbox.ts"
+                "name": "MiAvatar",
+                "module": "src/components/avatar/mi-avatar.ts"
               }
             }
           ]
@@ -1150,34 +761,34 @@
       "exports": [
         {
           "kind": "js",
-          "name": "MiCheckbox",
+          "name": "MiAvatar",
           "declaration": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
+            "name": "MiAvatar",
+            "module": "src/components/avatar/mi-avatar.ts"
           }
         },
         {
           "kind": "js",
-          "name": "SpCheckbox",
+          "name": "SpAvatar",
           "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
+            "name": "SpAvatar",
+            "module": "src/components/avatar/mi-avatar.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "mi-checkbox",
+          "name": "mi-avatar",
           "declaration": {
-            "name": "MiCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
+            "name": "MiAvatar",
+            "module": "src/components/avatar/mi-avatar.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sp-checkbox",
+          "name": "sp-avatar",
           "declaration": {
-            "name": "SpCheckbox",
-            "module": "src/components/checkbox/mi-checkbox.ts"
+            "name": "SpAvatar",
+            "module": "src/components/avatar/mi-avatar.ts"
           }
         }
       ]
@@ -4469,6 +4080,676 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox-text.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkmark.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/mi-checkbox-text.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiCheckboxText",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "テキスト付きチェックボックスです。",
+          "tagName": "mi-checkbox-text",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckboxText",
+          "superclass": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          },
+          "deprecated": "代わりに MiCheckboxText を使用してください",
+          "tagName": "sp-checkbox-text",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiCheckboxText",
+                "module": "src/components/checkbox/mi-checkbox-text.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiCheckboxText",
+          "declaration": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckboxText",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-checkbox-text",
+          "declaration": {
+            "name": "MiCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox-text",
+          "declaration": {
+            "name": "SpCheckboxText",
+            "module": "src/components/checkbox/mi-checkbox-text.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/mi-checkbox.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiCheckbox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "チェックボックスです。",
+          "tagName": "mi-checkbox",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpCheckbox",
+          "superclass": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          },
+          "deprecated": "代わりに MiCheckbox を使用してください",
+          "tagName": "sp-checkbox",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "MiCheckbox",
+                "module": "src/components/checkbox/mi-checkbox.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiCheckbox",
+          "declaration": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpCheckbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-checkbox",
+          "declaration": {
+            "name": "MiCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-checkbox",
+          "declaration": {
+            "name": "SpCheckbox",
+            "module": "src/components/checkbox/mi-checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dialog/base.ts",
       "declarations": [
         {
@@ -5979,6 +6260,281 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/floating-button/floating-button.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/floating-button/floating-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/floating-button/mi-floating-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiFloatingButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "mi-floating-button",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpFloatingButton",
+          "superclass": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          },
+          "deprecated": "代わりに MiFloatingButton を使用してください",
+          "tagName": "sp-floating-button",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiFloatingButton",
+                "module": "src/components/floating-button/mi-floating-button.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiFloatingButton",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpFloatingButton",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-floating-button",
+          "declaration": {
+            "name": "MiFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-floating-button",
+          "declaration": {
+            "name": "SpFloatingButton",
+            "module": "src/components/floating-button/mi-floating-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/icon-color.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/icons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "iconColorTypes",
+          "type": {
+            "text": "[\n  \"error\",\n  \"information\",\n  \"success\",\n  \"warning\",\n]"
+          },
+          "default": "[ \"error\", \"information\", \"success\", \"warning\", ]"
+        },
+        {
+          "kind": "variable",
+          "name": "iconColorPaths",
+          "default": "{ 'error': '<rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" fill=\"white\"/><path d=\"M21.28 7.845L16.15 2.715C16.01 2.575 15.82 2.495 15.62 2.495H8.37C8.17 2.495 7.98 2.575 7.84 2.715L2.72 7.845C2.58 7.985 2.5 8.175 2.5 8.375V15.625C2.5 15.825 2.58 16.015 2.72 16.155L7.85 21.285C7.99 21.425 8.18 21.505 8.38 21.505H15.63C15.83 21.505 16.02 21.425 16.16 21.285L21.29 16.155C21.43 16.015 21.51 15.825 21.51 15.625V8.375C21.51 8.175 21.43 7.985 21.29 7.845H21.28ZM16.81 15.745L15.75 16.805L12 13.055L8.25 16.805L7.19 15.745L10.94 11.995L7.19 8.245L8.25 7.185L12 10.935L15.75 7.185L16.81 8.245L13.06 11.995L16.81 15.745Z\" fill=\"#C92812\"/>', 'information': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12.75 16.86H11.25V10.36H12.75V16.86ZM12.83 8.86H11.17V7.14H12.83V8.86Z\" fill=\"#315CE8\"/>', 'success': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2.02002C6.49 2.02002 2 6.51002 2 12.02C2 17.53 6.49 22.02 12 22.02C17.51 22.02 22 17.53 22 12.02C22 6.51002 17.52 2.02002 12 2.02002ZM10.83 15.5L7.22 11.9L8.28 10.84L10.83 13.38L15.73 8.49002L16.79 9.55002L10.83 15.49V15.5Z\" fill=\"#00783C\"/>', 'warning': '<rect x=\"10\" y=\"8\" width=\"4\" height=\"11\" fill=\"black\" fill-opacity=\"0.84\"/><path d=\"M21.92 19.3601L12.66 3.3201C12.39 2.8601 11.63 2.8601 11.36 3.3201L2.1 19.3601C1.97 19.5901 1.97 19.8801 2.1 20.1101C2.23 20.3401 2.48 20.4901 2.75 20.4901H21.27C21.54 20.4901 21.79 20.3501 21.92 20.1101C22.05 19.8801 22.05 19.5901 21.92 19.3601ZM11.25 8.6601H12.75V14.6601H11.25V8.6601ZM12.83 17.8601H11.17V16.1401H12.83V17.8601Z\" fill=\"#F0C800\"/>', } satisfies {[key in IconColorType]: string}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconColorTypes",
+          "declaration": {
+            "name": "iconColorTypes",
+            "module": "src/components/icon-color/icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconColorPaths",
+          "declaration": {
+            "name": "iconColorPaths",
+            "module": "src/components/icon-color/icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/icon-color/index.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "isIconColorType",
+          "return": {
+            "type": {
+              "text": "type is IconColorType"
+            }
+          },
+          "parameters": [
+            {
+              "name": "type",
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "description": "カラーアイコンです。",
+          "name": "MiIconColor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"information\""
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "カラーアイコンの画像を定義します。",
+              "name": "type"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "カラーアイコンです。",
+          "tagName": "mi-icon-color",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "IconColorType",
+          "declaration": {
+            "name": "IconColorType",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "iconColorTypes",
+          "declaration": {
+            "name": "iconColorTypes",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isIconColorType",
+          "declaration": {
+            "name": "isIconColorType",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiIconColor",
+          "declaration": {
+            "name": "MiIconColor",
+            "module": "src/components/icon-color/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-icon-color",
+          "declaration": {
+            "name": "MiIconColor",
+            "module": "src/components/icon-color/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/icon/icon.css",
       "declarations": [],
       "exports": []
@@ -6193,154 +6749,6 @@
           "declaration": {
             "name": "SpIcon",
             "module": "src/components/icon/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/icon-color/icon-color.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/icon-color/icons.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "iconColorTypes",
-          "type": {
-            "text": "[\n  \"error\",\n  \"information\",\n  \"success\",\n  \"warning\",\n]"
-          },
-          "default": "[ \"error\", \"information\", \"success\", \"warning\", ]"
-        },
-        {
-          "kind": "variable",
-          "name": "iconColorPaths",
-          "default": "{ 'error': '<rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" fill=\"white\"/><path d=\"M21.28 7.845L16.15 2.715C16.01 2.575 15.82 2.495 15.62 2.495H8.37C8.17 2.495 7.98 2.575 7.84 2.715L2.72 7.845C2.58 7.985 2.5 8.175 2.5 8.375V15.625C2.5 15.825 2.58 16.015 2.72 16.155L7.85 21.285C7.99 21.425 8.18 21.505 8.38 21.505H15.63C15.83 21.505 16.02 21.425 16.16 21.285L21.29 16.155C21.43 16.015 21.51 15.825 21.51 15.625V8.375C21.51 8.175 21.43 7.985 21.29 7.845H21.28ZM16.81 15.745L15.75 16.805L12 13.055L8.25 16.805L7.19 15.745L10.94 11.995L7.19 8.245L8.25 7.185L12 10.935L15.75 7.185L16.81 8.245L13.06 11.995L16.81 15.745Z\" fill=\"#C92812\"/>', 'information': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12.75 16.86H11.25V10.36H12.75V16.86ZM12.83 8.86H11.17V7.14H12.83V8.86Z\" fill=\"#315CE8\"/>', 'success': '<rect x=\"6\" y=\"5\" width=\"12\" height=\"14\" fill=\"white\"/><path d=\"M12 2.02002C6.49 2.02002 2 6.51002 2 12.02C2 17.53 6.49 22.02 12 22.02C17.51 22.02 22 17.53 22 12.02C22 6.51002 17.52 2.02002 12 2.02002ZM10.83 15.5L7.22 11.9L8.28 10.84L10.83 13.38L15.73 8.49002L16.79 9.55002L10.83 15.49V15.5Z\" fill=\"#00783C\"/>', 'warning': '<rect x=\"10\" y=\"8\" width=\"4\" height=\"11\" fill=\"black\" fill-opacity=\"0.84\"/><path d=\"M21.92 19.3601L12.66 3.3201C12.39 2.8601 11.63 2.8601 11.36 3.3201L2.1 19.3601C1.97 19.5901 1.97 19.8801 2.1 20.1101C2.23 20.3401 2.48 20.4901 2.75 20.4901H21.27C21.54 20.4901 21.79 20.3501 21.92 20.1101C22.05 19.8801 22.05 19.5901 21.92 19.3601ZM11.25 8.6601H12.75V14.6601H11.25V8.6601ZM12.83 17.8601H11.17V16.1401H12.83V17.8601Z\" fill=\"#F0C800\"/>', } satisfies {[key in IconColorType]: string}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "iconColorTypes",
-          "declaration": {
-            "name": "iconColorTypes",
-            "module": "src/components/icon-color/icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "iconColorPaths",
-          "declaration": {
-            "name": "iconColorPaths",
-            "module": "src/components/icon-color/icons.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/icon-color/index.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "isIconColorType",
-          "return": {
-            "type": {
-              "text": "type is IconColorType"
-            }
-          },
-          "parameters": [
-            {
-              "name": "type",
-              "type": {
-                "text": "string"
-              }
-            }
-          ]
-        },
-        {
-          "kind": "class",
-          "description": "カラーアイコンです。",
-          "name": "MiIconColor",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"information\""
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "attributes": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "カラーアイコンの画像を定義します。",
-              "name": "type"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "カラーアイコンです。",
-          "tagName": "mi-icon-color",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "IconColorType",
-          "declaration": {
-            "name": "IconColorType",
-            "module": "src/components/icon-color/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "iconColorTypes",
-          "declaration": {
-            "name": "iconColorTypes",
-            "module": "src/components/icon-color/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "isIconColorType",
-          "declaration": {
-            "name": "isIconColorType",
-            "module": "src/components/icon-color/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MiIconColor",
-          "declaration": {
-            "name": "MiIconColor",
-            "module": "src/components/icon-color/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-icon-color",
-          "declaration": {
-            "name": "MiIconColor",
-            "module": "src/components/icon-color/index.ts"
           }
         }
       ]
@@ -6835,414 +7243,6 @@
           "declaration": {
             "name": "SpLoading",
             "module": "src/components/loading/mi-loading.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/avatar/avatar.styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "avatarStyles",
-          "default": "css` :host { display: inline-block; --palette-plum: #910091; --palette-violet: #3e31d5; --palette-blue: #214dde; --palette-viridian: #0d8282; --palette-green: #008744; --palette-brown: #ae6022; --palette-red: #d30030; } .base { display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; background-color: rgb(0 0 0 / 5%); color: rgb(0 0 0 / 84%); font-weight: var(--font-weight-bold); position: relative; } .inactive { filter: grayscale(100%); } .image { width: 100%; height: 100%; object-fit: cover; } .initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; } .icon { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: rgb(0 0 0 / 84%); } mi-icon, sp-icon { fill: currentcolor; display: flex; align-items: center; justify-content: center; } .size-small { width: 24px; height: 24px; .initials { font-size: 10px; } mi-icon, sp-icon { font-size: 15.625px; /* 20px / 1.28 */ } } .size-medium { width: 32px; height: 32px; .initials { font-size: 12px; } mi-icon, sp-icon { font-size: 18.75px; /* 24px / 1.28 */ } } .size-large { width: 40px; height: 40px; .initials { font-size: 14px; } mi-icon, sp-icon { font-size: 25px; /* 32px / 1.28 */ } } .size-x-large { width: 80px; height: 80px; .initials { font-size: 32px; } mi-icon, sp-icon { font-size: 50px; /* 64px / 1.28 */ } } .size-2x-large { width: 96px; height: 96px; .initials { font-size: 40px; } mi-icon, sp-icon { font-size: 62.5px; /* 80px / 1.28 */ } } /* カラーバリエーション */ .color-plum { background-color: var(--palette-plum); color: #fff; } .color-violet { background-color: var(--palette-violet); color: #fff; } .color-blue { background-color: var(--palette-blue); color: #fff; } .color-viridian { background-color: var(--palette-viridian); color: #fff; } .color-green { background-color: var(--palette-green); color: #fff; } .color-brown { background-color: var(--palette-brown); color: #fff; } .color-red { background-color: var(--palette-red); color: #fff; } [class*=\"color-\"] { &.inactive { background-color: #ededed; color: rgb(0 0 0 / 35%); } } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "avatarStyles",
-          "declaration": {
-            "name": "avatarStyles",
-            "module": "src/components/avatar/avatar.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/avatar/mi-avatar.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiAvatar",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "src",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "alt",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "initials",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "AvatarSize"
-              },
-              "default": "\"medium\""
-            },
-            {
-              "kind": "field",
-              "name": "color",
-              "type": {
-                "text": "AvatarColor | \"\""
-              },
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "inactive",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "#avatarClasses",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "#handleImageError",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "#displayContent",
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "アバターです。",
-          "tagName": "mi-avatar",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpAvatar",
-          "superclass": {
-            "name": "MiAvatar",
-            "module": "src/components/avatar/mi-avatar.ts"
-          },
-          "deprecated": "代わりに MiAvatar を使用してください",
-          "tagName": "sp-avatar",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "src",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "alt",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "initials",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "AvatarSize"
-              },
-              "default": "\"medium\"",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "color",
-              "type": {
-                "text": "AvatarColor | \"\""
-              },
-              "default": "\"\"",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inactive",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#avatarClasses",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#handleImageError",
-              "privacy": "private",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "#displayContent",
-              "privacy": "private",
-              "readonly": true,
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiAvatar",
-                "module": "src/components/avatar/mi-avatar.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiAvatar",
-          "declaration": {
-            "name": "MiAvatar",
-            "module": "src/components/avatar/mi-avatar.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpAvatar",
-          "declaration": {
-            "name": "SpAvatar",
-            "module": "src/components/avatar/mi-avatar.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-avatar",
-          "declaration": {
-            "name": "MiAvatar",
-            "module": "src/components/avatar/mi-avatar.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-avatar",
-          "declaration": {
-            "name": "SpAvatar",
-            "module": "src/components/avatar/mi-avatar.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/floating-button.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/components/floating-button/floating-button.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/floating-button/mi-floating-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiFloatingButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "mi-floating-button",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpFloatingButton",
-          "superclass": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          },
-          "deprecated": "代わりに MiFloatingButton を使用してください",
-          "tagName": "sp-floating-button",
-          "customElement": true,
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loading",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiFloatingButton",
-                "module": "src/components/floating-button/mi-floating-button.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiFloatingButton",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpFloatingButton",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-floating-button",
-          "declaration": {
-            "name": "MiFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-floating-button",
-          "declaration": {
-            "name": "SpFloatingButton",
-            "module": "src/components/floating-button/mi-floating-button.ts"
           }
         }
       ]
@@ -9691,6 +9691,122 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/index.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiControlMenu",
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
+          "tagName": "mi-control-menu",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpControlMenu",
+          "superclass": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          },
+          "deprecated": "代わりに MiControlMenu を使用してください",
+          "tagName": "sp-control-menu",
+          "customElement": true,
+          "slots": [
+            {
+              "description": "メニュー項目（mi-control-menu-item）",
+              "name": "",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiControlMenu",
+                "module": "src/components/menu/control-menu/index.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiControlMenu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpControlMenu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-control-menu",
+          "declaration": {
+            "name": "MiControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-control-menu",
+          "declaration": {
+            "name": "SpControlMenu",
+            "module": "src/components/menu/control-menu/index.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/menu/control-menu/styles.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/index.ts",
       "declarations": [
         {
@@ -9904,122 +10020,6 @@
     {
       "kind": "javascript-module",
       "path": "src/components/menu/control-menu-item/styles.css",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/index.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiControlMenu",
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。",
-          "tagName": "mi-control-menu",
-          "customElement": true
-        },
-        {
-          "kind": "class",
-          "description": "",
-          "name": "SpControlMenu",
-          "superclass": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          },
-          "deprecated": "代わりに MiControlMenu を使用してください",
-          "tagName": "sp-control-menu",
-          "customElement": true,
-          "slots": [
-            {
-              "description": "メニュー項目（mi-control-menu-item）",
-              "name": "",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true,
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "render",
-              "inheritedFrom": {
-                "name": "MiControlMenu",
-                "module": "src/components/menu/control-menu/index.ts"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiControlMenu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SpControlMenu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-control-menu",
-          "declaration": {
-            "name": "MiControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "sp-control-menu",
-          "declaration": {
-            "name": "SpControlMenu",
-            "module": "src/components/menu/control-menu/index.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/menu/control-menu/styles.css",
       "declarations": [],
       "exports": []
     },
