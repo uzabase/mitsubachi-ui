@@ -946,15 +946,54 @@ export { }
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-tooltip": MiTooltip;
+        "mi-label-unit": MiLabelUnit;
+        "sp-label-unit": SpLabelUnit;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-label-unit": MiLabelUnit;
-        "sp-label-unit": SpLabelUnit;
+        "mi-avatar": MiAvatar;
+        "sp-avatar": SpAvatar;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-ai-button": MiAiButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-danger-button": MiDangerButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-icon-button": MiIconButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-neutral-button": MiNeutralButton;
+        "mi-button": MiButton;
+        "sp-button": SpButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-checkbox": MiCheckbox;
+        "sp-checkbox": SpCheckbox;
     }
 }
 
@@ -969,7 +1008,8 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-segmented-control": MiSegmentedControl;
+        "mi-floating-button": MiFloatingButton;
+        "sp-floating-button": SpFloatingButton;
     }
 }
 
@@ -991,31 +1031,6 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-floating-button": MiFloatingButton;
-        "sp-floating-button": SpFloatingButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-avatar": MiAvatar;
-        "sp-avatar": SpAvatar;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-neutral-button": MiNeutralButton;
-        "mi-button": MiButton;
-        "sp-button": SpButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
         "mi-segment": MiSegment;
     }
 }
@@ -1031,67 +1046,8 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-icon-button": MiIconButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-ai-button": MiAiButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
         "mi-control-menu": MiControlMenu;
         "sp-control-menu": SpControlMenu;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-radio-button-text": MiRadioButtonText;
-        "sp-radio-button-text": SpRadioButtonText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar-viewport": MiSnackbarViewport;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar": MiSnackbar;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-checkbox": MiCheckbox;
-        "sp-checkbox": SpCheckbox;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-error-text": MiTextFieldErrorText;
-        "sp-text-field-error-text": SpTextFieldErrorText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-danger-button": MiDangerButton;
     }
 }
 
@@ -1106,8 +1062,8 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-text-field": MiTextField;
-        "sp-text-field": SpTextField;
+        "mi-radio-button-text": MiRadioButtonText;
+        "sp-radio-button-text": SpRadioButtonText;
     }
 }
 
@@ -1122,6 +1078,43 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-snackbar-viewport": MiSnackbarViewport;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-segmented-control": MiSegmentedControl;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-snackbar": MiSnackbar;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field-error-text": MiTextFieldErrorText;
+        "sp-text-field-error-text": SpTextFieldErrorText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field": MiTextField;
+        "sp-text-field": SpTextField;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
         "mi-text-field-unit": MiTextFieldUnit;
         "sp-text-field-unit": SpTextFieldUnit;
     }
@@ -1130,7 +1123,7 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-form-dialog": MiFormDialog;
+        "mi-tooltip": MiTooltip;
     }
 }
 
@@ -1144,14 +1137,14 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-action-dialog": MiActionDialog;
+        "mi-form-dialog": MiFormDialog;
     }
 }
 
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-uzabase-logo": MiUzabaseLogo;
+        "mi-action-dialog": MiActionDialog;
     }
 }
 
@@ -1160,6 +1153,13 @@ declare global {
     interface HTMLElementTagNameMap {
         "mi-logo": MiLogo;
         "sp-logo": SpLogo;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-uzabase-logo": MiUzabaseLogo;
     }
 }
 
