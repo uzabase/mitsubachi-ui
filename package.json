@@ -44,9 +44,9 @@
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.2"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.58.7",
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@eslint/js": "^10.0.1",
+    "@microsoft/api-extractor": "^7.58.8",
     "@storybook/addon-docs": "^10.3.3",
     "@storybook/web-components-vite": "^10.3.3",
     "@testing-library/user-event": "^14.6.1",
