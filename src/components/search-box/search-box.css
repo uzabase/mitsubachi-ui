@@ -1,0 +1,215 @@
+/* ==============================
+   SearchBox コンポーネントスタイル
+   ============================== */
+
+:host {
+  display: block;
+  inline-size: 100%;
+  box-sizing: border-box;
+}
+
+/* コンテナ（共通） */
+.container {
+  display: flex;
+  gap: var(--spacing-x-small, 4px);
+  align-items: center;
+  min-block-size: 40px;
+  padding-block: 2px;
+  padding-inline: var(--spacing-small, 8px) var(--spacing-x-small, 4px);
+  border-radius: var(--radius-medium, 6px);
+  box-sizing: border-box;
+  inline-size: 100%;
+}
+
+/* テキスト入力済み → 右パディングを拡大 */
+.container.has-value {
+  padding-inline-end: var(--spacing-small, 8px);
+}
+
+/* ==============================
+   バリアント: primary
+   ============================== */
+
+.primary {
+  background-color: var(--surface-semi-strong-default, #ededed);
+  border: none;
+}
+
+/* primary: disabled */
+.primary:has(:disabled) {
+  background-color: var(--surface-regular-disabled, rgb(0 0 0 / 3%));
+}
+
+/* primary: hover */
+.primary:hover:not(:has(:disabled), :has(:focus-visible)) {
+  background-color: var(--surface-semi-strong-hover, #e5e5e5);
+}
+
+/* ==============================
+   バリアント: secondary
+   ============================== */
+
+.secondary {
+  background-color: var(--surface-regular-default, #fff);
+  border: 1px solid var(--border-semi-strong-default, rgb(0 0 0 / 20%));
+}
+
+/* secondary: disabled */
+.secondary:has(:disabled) {
+  background-color: var(--surface-regular-disabled, rgb(0 0 0 / 3%));
+  border-color: transparent;
+}
+
+/* secondary: hover */
+.secondary:hover:not(:has(:disabled), :has(:focus-visible)) {
+  border-color: var(--border-semi-strong-hover, rgb(0 0 0 / 35%));
+}
+
+/* ==============================
+   フォーカス状態（共通）
+   ============================== */
+
+.container:has(.input:focus-visible) {
+  outline: none;
+  overflow: clip;
+  box-shadow:
+    0 0 0 2px var(--surface-regular-default, #fff),
+    0 0 0 4px var(--focus-ring-default, #191919);
+}
+
+/* ==============================
+   検索アイコン
+   ============================== */
+
+.search-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 20px;
+  block-size: 20px;
+  color: var(--object-weak-default, rgb(0 0 0 / 54%));
+}
+
+.search-icon mi-icon {
+  display: block;
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.container:has(:disabled) .search-icon {
+  color: var(--text-disabled, rgb(0 0 0 / 35%));
+}
+
+/* ==============================
+   入力フィールド
+   ============================== */
+
+.input {
+  flex: 1 0 0;
+  min-inline-size: 1px;
+  min-block-size: 1px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding-block: 0;
+  padding-inline: 0;
+
+  /* タイポグラフィ */
+  font-family: var(--typography-font-family, Arial, sans-serif);
+  font-weight: var(--typography-font-weight-regular, 400);
+  font-size: var(--font-scale-40, 14px);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--text-regular-default, rgb(0 0 0 / 84%));
+
+  /* テキスト省略 */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.input::placeholder {
+  color: var(--text-weak-default, rgb(0 0 0 / 54%));
+}
+
+.input:disabled {
+  color: var(--text-disabled, rgb(0 0 0 / 35%));
+  cursor: not-allowed;
+}
+
+.input:disabled::placeholder {
+  color: var(--text-disabled, rgb(0 0 0 / 35%));
+}
+
+/* ネイティブの検索クリアボタンを非表示 */
+.input::-webkit-search-cancel-button {
+  appearance: none;
+  display: none;
+}
+
+/* ==============================
+   クリアボタン
+   ============================== */
+
+.clear-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 24px;
+  block-size: 24px;
+  padding-block: 2px;
+  padding-inline: 2px;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  background-color: transparent;
+  color: var(--object-regular-default, rgb(0 0 0 / 84%));
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* hover */
+.clear-button:hover {
+  background-color: var(--surface-overlay-hover, rgb(0 0 0 / 7%));
+}
+
+/* active */
+.clear-button:active {
+  background-color: var(--surface-overlay-active, rgb(0 0 0 / 10%));
+}
+
+/* focus-visible */
+.clear-button:focus-visible {
+  background-color: var(--surface-regular-focus, rgb(255 255 255 / 0%));
+  box-shadow:
+    0 0 0 2px var(--surface-regular-default, #fff),
+    0 0 0 4px var(--focus-ring-default, #191919);
+}
+
+.clear-button mi-icon {
+  display: block;
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+/* ==============================
+   レスポンシブ: phone
+   ============================== */
+
+@media (width <= 720px) {
+  .search-icon {
+    inline-size: 22px;
+    block-size: 22px;
+  }
+
+  .search-icon mi-icon {
+    inline-size: 22px;
+    block-size: 22px;
+  }
+
+  .input {
+    font-size: var(--font-scale-50, 16px);
+  }
+}
