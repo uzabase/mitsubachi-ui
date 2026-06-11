@@ -27,6 +27,13 @@ export default css`
     background-color: #fcf6d4;
   }
 
+  .base[data-variant="secondary"][data-type="information"],
+  .base[data-variant="secondary"][data-type="warning"] {
+    padding: 8px;
+    background-color: #ededed;
+    color: #0000008a;
+  }
+
   .icon {
     display: inline-block;
     min-width: 20px;
