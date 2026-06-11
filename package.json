@@ -1,5 +1,5 @@
 {
-  "name": "mitsubachi-ui",
+  "name": "@uzabase/mitsubachi-ui",
   "version": "2.7.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,9 @@
     "fetch-logos": "tsx tools/fetch-logos.ts",
     "release:patch": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
-    "release:major": "npm version major && git push && git push --tags"
+    "release:major": "npm version major && git push && git push --tags",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
