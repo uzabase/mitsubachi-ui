@@ -10,7 +10,7 @@ import { makeStyles } from "../styles";
  * グループ内で1つだけ選択できる（Single-select）。
  *
  * @slot - mi-select-menu-item 要素
- * @fires change - 選択値が変更されたとき。`detail.value` に新しい値を含む。
+ * @fires change - 選択値が変更されたとき。新しい値は `event.target.value` で取得する。
  */
 export class MiMenuRadioGroup extends LitElement {
   static styles = makeStyles(css`
@@ -26,18 +26,12 @@ export class MiMenuRadioGroup extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute("role", "group");
-    this.addEventListener(
-      "select-menu-item-click",
-      this._handleItemClick as EventListener,
-    );
+    this.addEventListener("click", this._handleItemClick);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener(
-      "select-menu-item-click",
-      this._handleItemClick as EventListener,
-    );
+    this.removeEventListener("click", this._handleItemClick);
   }
 
   updated(changed: Map<string, unknown>) {
@@ -47,17 +41,15 @@ export class MiMenuRadioGroup extends LitElement {
     }
   }
 
-  private _handleItemClick = (e: CustomEvent<{ value: string }>) => {
-    const newValue = e.detail.value;
+  private _handleItemClick = (e: Event) => {
+    const item = (e.target as Element).closest("mi-select-menu-item") as
+      | (HTMLElement & { value: string; disabled: boolean })
+      | null;
+    if (!item || item.disabled) return;
+    const newValue = item.value;
     if (this.value !== newValue) {
       this.value = newValue;
-      this.dispatchEvent(
-        new CustomEvent("change", {
-          bubbles: true,
-          composed: true,
-          detail: { value: newValue },
-        }),
-      );
+      this.dispatchEvent(new Event("change"));
     }
   };
 

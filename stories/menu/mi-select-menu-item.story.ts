@@ -6,6 +6,7 @@ import "../../src/components/button/mi-neutral-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 import type { MiSelectMenuItem } from "../../src/components/menu/mi-select-menu-item";
 
@@ -114,10 +115,9 @@ export const AllStates: Story = {
 export const MenuWithTrigger: Story = {
   render: () => {
     const handleChange = (e: Event) => {
-      const detail = (e as CustomEvent<{ value: string }>).detail;
-      const group = e.target as HTMLElement;
+      const group = e.target as HTMLElement & { value: string };
       const selected = group.querySelector(
-        `mi-select-menu-item[value="${detail.value}"]`,
+        `mi-select-menu-item[value="${group.value}"]`,
       );
       const trigger = group
         .closest("mi-menu")
@@ -162,5 +162,24 @@ export const MenuWithTriggerOptional: Story = {
         </mi-menu-radio-group>
       </mi-menu-dropdown>
     </mi-menu>
+  `,
+};
+
+/**
+ * mi-menu-radio-group の `change` イベントを Actions パネルで確認できます。
+ * 項目をクリックすると `detail.value` に選択された値が記録されます。
+ */
+export const Events: Story = {
+  render: () => html`
+    <mi-menu-radio-group value="sales" @change=${action("change")}>
+      <mi-select-menu-item value="sales">営業</mi-select-menu-item>
+      <mi-select-menu-item value="marketing">
+        マーケティング・広報
+      </mi-select-menu-item>
+      <mi-select-menu-item value="engineering">
+        エンジニアリング
+      </mi-select-menu-item>
+      <mi-select-menu-item value="hr">人事</mi-select-menu-item>
+    </mi-menu-radio-group>
   `,
 };

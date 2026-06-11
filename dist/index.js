@@ -3821,7 +3821,7 @@ var ri = o`
 			}
 			this.dispatchEvent(new Event("menu-item-activate", {
 				bubbles: !0,
-				composed: !0
+				composed: !1
 			}));
 		}, this._handleKeyDown = (e) => {
 			this.disabled || (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
@@ -3915,7 +3915,7 @@ var oi = class extends A {
 		super(...e), this.href = "", this.newWindow = !1, this.supportText = "", this._hasIcon = !1, this._handleClick = () => {
 			this.dispatchEvent(new Event("menu-item-activate", {
 				bubbles: !0,
-				composed: !0
+				composed: !1
 			}));
 		}, this._handleKeyDown = (e) => {
 			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), (this.shadowRoot?.querySelector("a"))?.click());
@@ -4277,12 +4277,10 @@ F([j({ type: String })], ui.prototype, "label", void 0), customElements.get("mi-
 var di = class extends A {
 	constructor(...e) {
 		super(...e), this.value = "", this._handleItemClick = (e) => {
-			let t = e.detail.value;
-			this.value !== t && (this.value = t, this.dispatchEvent(new CustomEvent("change", {
-				bubbles: !0,
-				composed: !0,
-				detail: { value: t }
-			})));
+			let t = e.target.closest("mi-select-menu-item");
+			if (!t || t.disabled) return;
+			let n = t.value;
+			this.value !== n && (this.value = n, this.dispatchEvent(new Event("change")));
 		};
 	}
 	static {
@@ -4293,10 +4291,10 @@ var di = class extends A {
   `);
 	}
 	connectedCallback() {
-		super.connectedCallback(), this.setAttribute("role", "group"), this.addEventListener("select-menu-item-click", this._handleItemClick);
+		super.connectedCallback(), this.setAttribute("role", "group"), this.addEventListener("click", this._handleItemClick);
 	}
 	disconnectedCallback() {
-		super.disconnectedCallback(), this.removeEventListener("select-menu-item-click", this._handleItemClick);
+		super.disconnectedCallback(), this.removeEventListener("click", this._handleItemClick);
 	}
 	updated(e) {
 		super.updated(e), e.has("value") && this._updateChildren();
@@ -4318,18 +4316,14 @@ F([j({
 //#region src/components/menu/mi-select-menu-item.ts
 var fi = class extends A {
 	constructor(...e) {
-		super(...e), this.value = "", this.disabled = !1, this.supportText = "", this._handleClick = (e) => {
+		super(...e), this.value = "", this.disabled = !1, this.supportText = "", this._hasIcon = !1, this._handleClick = (e) => {
 			if (this.disabled) {
 				e.preventDefault(), e.stopPropagation();
 				return;
 			}
-			this.dispatchEvent(new CustomEvent("select-menu-item-click", {
+			this.dispatchEvent(new Event("menu-item-activate", {
 				bubbles: !0,
-				composed: !0,
-				detail: { value: this.value }
-			})), this.dispatchEvent(new Event("menu-item-activate", {
-				bubbles: !0,
-				composed: !0
+				composed: !1
 			}));
 		}, this._handleKeyDown = (e) => {
 			this.disabled || (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
@@ -4427,12 +4421,20 @@ var fi = class extends A {
 	updated() {
 		this.selected ? (this.setAttribute("selected", ""), this.setAttribute("aria-checked", "true")) : (this.removeAttribute("selected"), this.setAttribute("aria-checked", "false"));
 	}
+	_onIconSlotChange(e) {
+		let t = e.target;
+		this._hasIcon = t.assignedElements().length > 0;
+	}
 	render() {
 		return E`
       <span class="item-layout">
-        ${this.querySelector("[slot='icon']") === null ? O : E`<span class="icon-wrapper" aria-hidden="true">
-              <slot name="icon"></slot>
-            </span>`}
+        ${this._hasIcon ? E`<span class="icon-wrapper" aria-hidden="true">
+              <slot name="icon" @slotchange=${this._onIconSlotChange}></slot>
+            </span>` : E`<slot
+              name="icon"
+              @slotchange=${this._onIconSlotChange}
+              hidden
+            ></slot>`}
         <span class="text-area">
           <span class="label"><slot></slot></span>
           ${this.supportText ? E`<span class="support-text">${this.supportText}</span>` : O}
@@ -4453,7 +4455,7 @@ F([j({
 })], fi.prototype, "disabled", void 0), F([j({
 	type: String,
 	attribute: "support-text"
-})], fi.prototype, "supportText", void 0), customElements.get("mi-select-menu-item") || customElements.define("mi-select-menu-item", fi);
+})], fi.prototype, "supportText", void 0), F([M()], fi.prototype, "_hasIcon", void 0), customElements.get("mi-select-menu-item") || customElements.define("mi-select-menu-item", fi);
 //#endregion
 //#region src/components/menu/mi-sub-menu-item.ts
 var pi = class extends A {

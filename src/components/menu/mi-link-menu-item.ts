@@ -14,6 +14,8 @@ import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
  *
  * @slot - メニュー項目のラベル
  * @slot icon - ラベルの先頭に表示するアイコン
+ *
+ * @fires menu-item-activate - メニュー項目がアクティブになったとき。mi-menu がメニューを閉じるために使用する。
  */
 export class MiLinkMenuItem extends LitElement {
   static styles = makeStyles(
@@ -100,8 +102,10 @@ export class MiLinkMenuItem extends LitElement {
   }
 
   private _handleClick = () => {
+    // 内部通信用イベント: mi-menu がメニューを閉じるために使用する
+    // bubbles: true — Light DOM の子要素から mi-menu までバブリングさせるために必要
     this.dispatchEvent(
-      new Event("menu-item-activate", { bubbles: true, composed: true }),
+      new Event("menu-item-activate", { bubbles: true, composed: false }),
     );
   };
 

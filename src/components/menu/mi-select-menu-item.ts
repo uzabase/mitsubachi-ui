@@ -1,7 +1,7 @@
 import "../icon";
 
 import { css, html, LitElement, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
@@ -14,6 +14,8 @@ import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
  *
  * @slot - メニュー項目のラベル
  * @slot icon - ラベルの先頭に表示するアイコン
+ *
+ * @fires menu-item-activate - メニュー項目がアクティブになったとき。mi-menu がメニューを閉じるために使用する。
  */
 export class MiSelectMenuItem extends LitElement {
   static styles = makeStyles(
@@ -113,6 +115,9 @@ export class MiSelectMenuItem extends LitElement {
   @property({ type: String, attribute: "support-text" })
   supportText = "";
 
+  @state()
+  private _hasIcon = false;
+
   /** 選択状態（mi-menu-radio-group から自動設定） */
   get selected(): boolean {
     const group = this.closest("mi-menu-radio-group");
@@ -150,15 +155,10 @@ export class MiSelectMenuItem extends LitElement {
       e.stopPropagation();
       return;
     }
+    // 内部通信用イベント: mi-menu がメニューを閉じるために使用する
+    // bubbles: true — Light DOM の子要素から mi-menu までバブリングさせるために必要
     this.dispatchEvent(
-      new CustomEvent("select-menu-item-click", {
-        bubbles: true,
-        composed: true,
-        detail: { value: this.value },
-      }),
-    );
-    this.dispatchEvent(
-      new Event("menu-item-activate", { bubbles: true, composed: true }),
+      new Event("menu-item-activate", { bubbles: true, composed: false }),
     );
   };
 
@@ -170,16 +170,23 @@ export class MiSelectMenuItem extends LitElement {
     }
   };
 
-  render() {
-    const hasIcon = this.querySelector("[slot='icon']") !== null;
+  private _onIconSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    this._hasIcon = slot.assignedElements().length > 0;
+  }
 
+  render() {
     return html`
       <span class="item-layout">
-        ${hasIcon
+        ${this._hasIcon
           ? html`<span class="icon-wrapper" aria-hidden="true">
-              <slot name="icon"></slot>
+              <slot name="icon" @slotchange=${this._onIconSlotChange}></slot>
             </span>`
-          : nothing}
+          : html`<slot
+              name="icon"
+              @slotchange=${this._onIconSlotChange}
+              hidden
+            ></slot>`}
         <span class="text-area">
           <span class="label"><slot></slot></span>
           ${this.supportText
