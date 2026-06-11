@@ -38,6 +38,8 @@
     "url": "git+https://github.com/uzabase/mitsubachi-ui.git"
   },
   "files": [
+    "LICENSE",
+    "README.md",
     "dist"
   ],
   "license": "ISC",
