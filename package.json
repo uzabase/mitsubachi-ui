@@ -1,6 +1,6 @@
 {
-  "name": "mitsubachi-ui",
-  "version": "2.7.0",
+  "name": "@uzabase/mitsubachi-ui",
+  "version": "2.8.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -29,16 +29,20 @@
     "fetch-logos": "tsx tools/fetch-logos.ts",
     "release:patch": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
-    "release:major": "npm version major && git push && git push --tags"
+    "release:major": "npm version major && git push && git push --tags",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uzabase/mitsubachi-ui.git"
   },
   "files": [
+    "LICENSE",
+    "README.md",
     "dist"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
     "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.2"
