@@ -1,15 +1,7 @@
-import "./mi-input-chip";
-
 import { html, LitElement } from "lit";
-import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import { inputChipGroupStyles } from "./input-chip-group.styles";
-
-export interface InputChipItem {
-  id: string;
-  label: string;
-}
 
 /**
  * @summary 複数の mi-input-chip をまとめて表示するグループコンポーネントです。
@@ -17,45 +9,23 @@ export interface InputChipItem {
  *
  * @example
  * ```html
- * <mi-input-chip-group
- *   aria-label="選択された項目"
- * ></mi-input-chip-group>
+ * <mi-input-chip-group aria-label="選択された項目">
+ *   <mi-input-chip label="Apple"></mi-input-chip>
+ *   <mi-input-chip label="Banana"></mi-input-chip>
+ * </mi-input-chip-group>
  * ```
  *
- * @fires remove - Chip の削除ボタンがクリックされたときに発火します。detail に削除対象の id を含みます。
+ * @slot - mi-input-chip 要素を配置します。
  */
 export class MiInputChipGroup extends LitElement {
   static override styles = makeStyles(inputChipGroupStyles);
 
-  /** 表示する Chip アイテムの配列。 */
-  @property({ type: Array })
-  items: InputChipItem[] = [];
-
   override render() {
     return html`
       <div class="container" role="list">
-        ${this.items.map(
-          (item) => html`
-            <div class="item" role="listitem">
-              <mi-input-chip
-                label=${item.label}
-                @remove=${() => this.handleRemove(item.id)}
-              ></mi-input-chip>
-            </div>
-          `,
-        )}
+        <slot></slot>
       </div>
     `;
-  }
-
-  private handleRemove(id: string) {
-    this.dispatchEvent(
-      new CustomEvent("remove", {
-        bubbles: false,
-        composed: false,
-        detail: { id },
-      }),
-    );
   }
 }
 
