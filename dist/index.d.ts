@@ -157,11 +157,6 @@ export declare type InformationDialogSize = (typeof informationDialogSizes)[numb
 
 export declare const informationDialogSizes: readonly ["small", "medium"];
 
-export declare interface InputChipItem {
-    id: string;
-    label: string;
-}
-
 /**
  * Action Dialog
  *
@@ -463,19 +458,17 @@ export declare class MiInputChip extends LitElement {
  *
  * @example
  * ```html
- * <mi-input-chip-group
- *   aria-label="選択された項目"
- * ></mi-input-chip-group>
+ * <mi-input-chip-group aria-label="選択された項目">
+ *   <mi-input-chip label="Apple"></mi-input-chip>
+ *   <mi-input-chip label="Banana"></mi-input-chip>
+ * </mi-input-chip-group>
  * ```
  *
- * @fires remove - Chip の削除ボタンがクリックされたときに発火します。detail に削除対象の id を含みます。
+ * @slot - mi-input-chip 要素を配置します。
  */
 export declare class MiInputChipGroup extends LitElement {
     static styles: CSSResult[];
-    /** 表示する Chip アイテムの配列。 */
-    items: InputChipItem[];
     render(): TemplateResult<1>;
-    private handleRemove;
 }
 
 /**
@@ -563,6 +556,112 @@ export declare class MiRadioButtonText extends LitElement {
     constructor();
     protected updated(changedProperties: Map<string, unknown>): void;
     formResetCallback(): void;
+    render(): TemplateResult<1>;
+}
+
+/**
+ * @summary ユーザーが必要な情報を素早く見つけるための入力コンポーネントです。
+ * キーワードの入力に応じて、候補表示や検索実行を行い、コンテンツ探索の効率を高めます。
+ *
+ * ラベル（LabelUnit）と併用して「何を」検索するのかを明示することが望ましいです。
+ * ラベルの併用が難しい場合は、プレースホルダーで補足してください。
+ *
+ * @attr {string} variant - 見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。
+ * @attr {string} value - 入力値の文字列。
+ * @attr {string} placeholder - プレースホルダー。
+ * @attr {string} name - フォームの name。
+ * @attr {string} label - 内部の input に設定する aria-label。
+ * @attr {boolean} disabled - 無効化するかどうか。
+ * @attr {string} autocomplete - autocomplete 属性。
+ * @attr {boolean} autofocus - 自動フォーカスするかどうか。
+ * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。
+ * @fires change - 内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。
+ */
+export declare class MiSearchBox extends LitElement {
+    #private;
+    static styles: CSSResult[];
+    static shadowRootOptions: {
+        delegatesFocus: boolean;
+        clonable?: boolean;
+        customElementRegistry?: CustomElementRegistry | null;
+        mode: ShadowRootMode;
+        serializable?: boolean;
+        slotAssignment?: SlotAssignmentMode;
+    };
+    static formAssociated: boolean;
+    variant: SearchBoxVariant;
+    value: string;
+    placeholder: string;
+    name: string;
+    /** 内部の `input` に設定する aria-label。 */
+    label: string;
+    disabled: boolean;
+    autocomplete: AutoFill;
+    autofocus: boolean;
+    private inputEl;
+    private internals;
+    constructor();
+    protected updated(changedProperties: Map<string, unknown>): void;
+    render(): TemplateResult<1>;
+}
+
+/**
+ * SegmentedControl 内の個別セグメントです。
+ * mi-segmented-control の直接の子として配置して使用します。
+ *
+ * @summary セグメントコントロールの個別セグメント
+ *
+ * @slot - セグメントに表示するコンテンツ（テキストまたはアイコン）
+ *
+ * @example
+ * ```html
+ * <mi-segment value="tab1" variant="text">タブ1</mi-segment>
+ * ```
+ */
+export declare class MiSegment extends LitElement {
+    #private;
+    static styles: CSSResult[];
+    /** セグメントの値（mi-segmented-control の選択制御に使用） */
+    value: string;
+    /** セグメントの表示バリアント */
+    variant: SegmentVariant;
+    /** 無効化状態 */
+    disabled: boolean;
+    /** 選択状態（mi-segmented-control から制御される） */
+    selected: boolean;
+    render(): TemplateResult<1>;
+}
+
+/**
+ * 排他的な単一選択のセグメントグループです。
+ * mi-segment コンポーネントを子として配置して使用します。
+ *
+ * @summary セグメントコントロール
+ *
+ * @slot - mi-segment コンポーネント群
+ *
+ * @fires change - セグメントの選択が変更されたとき。detail: { value: string }
+ *
+ * @example
+ * ```html
+ * <mi-segmented-control value="tab1" aria-label="表示切り替え">
+ *   <mi-segment value="tab1" variant="text">タブ1</mi-segment>
+ *   <mi-segment value="tab2" variant="text">タブ2</mi-segment>
+ *   <mi-segment value="tab3" variant="text">タブ3</mi-segment>
+ * </mi-segmented-control>
+ * ```
+ */
+export declare class MiSegmentedControl extends LitElement {
+    #private;
+    static styles: CSSResult[];
+    /** 現在選択されているセグメントの値 */
+    value: string;
+    /** 無効化状態（全セグメントを無効化） */
+    disabled: boolean;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    protected updated(changedProperties: Map<string, unknown>): void;
+    protected firstUpdated(): void;
     render(): TemplateResult<1>;
 }
 
@@ -788,6 +887,12 @@ declare type Placement = (typeof placements)[number];
 
 declare const placements: readonly ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"];
 
+declare type SearchBoxVariant = "primary" | "secondary";
+
+export declare type SegmentVariant = (typeof segmentVariants)[number];
+
+export declare const segmentVariants: readonly ["text", "icon"];
+
 declare type Size = (typeof sizes)[number];
 
 declare const size: readonly ["small", "medium", "large", "x-large", "2x-large"];
@@ -850,6 +955,10 @@ export declare class SpLogo extends MiLogo {
 export declare class SpRadioButtonText extends MiRadioButtonText {
 }
 
+/** @deprecated 代わりに MiSearchBox を使用してください */
+export declare class SpSearchBox extends MiSearchBox {
+}
+
 /** @deprecated 代わりに MiTextField を使用してください */
 export declare class SpTextField extends MiTextField {
 }
@@ -875,130 +984,9 @@ export { }
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-icon-button": MiIconButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-label-unit": MiLabelUnit;
-        "sp-label-unit": SpLabelUnit;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-tooltip": MiTooltip;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar": MiSnackbar;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-input-chip-group": MiInputChipGroup;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-ai-button": MiAiButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-snackbar-viewport": MiSnackbarViewport;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-checkbox-text": MiCheckboxText;
-        "sp-checkbox-text": SpCheckboxText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-error-text": MiTextFieldErrorText;
-        "sp-text-field-error-text": SpTextFieldErrorText;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-control-menu": MiControlMenu;
-        "sp-control-menu": SpControlMenu;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field": MiTextField;
-        "sp-text-field": SpTextField;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
         "mi-neutral-button": MiNeutralButton;
         "mi-button": MiButton;
         "sp-button": SpButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-icon-color": MiIconColor;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-loading": MiLoading;
-        "sp-loading": SpLoading;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-floating-button": MiFloatingButton;
-        "sp-floating-button": SpFloatingButton;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-text-field-unit": MiTextFieldUnit;
-        "sp-text-field-unit": SpTextFieldUnit;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "mi-icon": MiIcon;
-        "sp-icon": SpIcon;
     }
 }
 
@@ -1013,8 +1001,7 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-radio-button-text": MiRadioButtonText;
-        "sp-radio-button-text": SpRadioButtonText;
+        "mi-ai-button": MiAiButton;
     }
 }
 
@@ -1028,8 +1015,23 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-control-menu-item": MiControlMenuItem;
-        "sp-control-menu-item": SpControlMenuItem;
+        "mi-checkbox-text": MiCheckboxText;
+        "sp-checkbox-text": SpCheckboxText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-loading": MiLoading;
+        "sp-loading": SpLoading;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-icon-button": MiIconButton;
     }
 }
 
@@ -1044,7 +1046,136 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
+        "mi-floating-button": MiFloatingButton;
+        "sp-floating-button": SpFloatingButton;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-label-unit": MiLabelUnit;
+        "sp-label-unit": SpLabelUnit;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
         "mi-input-chip": MiInputChip;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-snackbar": MiSnackbar;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu": MiControlMenu;
+        "sp-control-menu": SpControlMenu;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-icon": MiIcon;
+        "sp-icon": SpIcon;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field": MiTextField;
+        "sp-text-field": SpTextField;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-icon-color": MiIconColor;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-segment": MiSegment;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-radio-button-text": MiRadioButtonText;
+        "sp-radio-button-text": SpRadioButtonText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field-error-text": MiTextFieldErrorText;
+        "sp-text-field-error-text": SpTextFieldErrorText;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-segmented-control": MiSegmentedControl;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-snackbar-viewport": MiSnackbarViewport;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-text-field-unit": MiTextFieldUnit;
+        "sp-text-field-unit": SpTextFieldUnit;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-tooltip": MiTooltip;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-input-chip-group": MiInputChipGroup;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-control-menu-item": MiControlMenuItem;
+        "sp-control-menu-item": SpControlMenuItem;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-search-box": MiSearchBox;
+        "sp-search-box": SpSearchBox;
     }
 }
 
@@ -1073,13 +1204,6 @@ declare global {
 
 declare global {
     interface HTMLElementTagNameMap {
-        "mi-form-dialog": MiFormDialog;
-    }
-}
-
-
-declare global {
-    interface HTMLElementTagNameMap {
         "mi-action-dialog": MiActionDialog;
     }
 }
@@ -1088,5 +1212,12 @@ declare global {
 declare global {
     interface HTMLElementTagNameMap {
         "mi-information-dialog": MiInformationDialog;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "mi-form-dialog": MiFormDialog;
     }
 }

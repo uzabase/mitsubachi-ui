@@ -129,14 +129,6 @@
         },
         {
           "kind": "js",
-          "name": "InputChipItem",
-          "declaration": {
-            "name": "InputChipItem",
-            "module": "./components/chip/mi-input-chip-group"
-          }
-        },
-        {
-          "kind": "js",
           "name": "MiInputChipGroup",
           "declaration": {
             "name": "MiInputChipGroup",
@@ -357,6 +349,54 @@
           "declaration": {
             "name": "SpRadioButtonText",
             "module": "./components/radio-button/mi-radio-button-text"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSearchBox",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "./components/search-box/mi-search-box"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpSearchBox",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "./components/search-box/mi-search-box"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSegment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SegmentVariant",
+          "declaration": {
+            "name": "SegmentVariant",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "segmentVariants",
+          "declaration": {
+            "name": "segmentVariants",
+            "module": "./components/segmented-control/mi-segment"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSegmentedControl",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "./components/segmented-control/mi-segmented-control"
           }
         },
         {
@@ -4726,196 +4766,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/chip/input-chip-group.styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "inputChipGroupStyles",
-          "default": "css` :host { display: block; } .container { display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-start; align-content: flex-start; } .item { flex: 0 1 auto; max-width: 100%; min-width: 0; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "inputChipGroupStyles",
-          "declaration": {
-            "name": "inputChipGroupStyles",
-            "module": "src/components/chip/input-chip-group.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/chip/input-chip.styles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "inputChipStyles",
-          "default": "css` :host { display: inline-block; max-width: 100%; min-width: 0; } .chip { display: inline-flex; align-items: center; gap: 2px; max-width: 100%; padding-inline-start: var(--spacing-large, 12px); padding-inline-end: var(--spacing-small, 4px); padding-block: 2px; min-block-size: 28px; border-radius: 9999px; background-color: #e8edff; box-sizing: border-box; } .label { font-size: 12px; font-weight: normal; line-height: 1.5; letter-spacing: 0.12px; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; } @media (max-width: 720px) { .chip { min-block-size: 32px; } .label { font-size: var(--font-scale-40, 14px); letter-spacing: 0.14px; } } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "inputChipStyles",
-          "declaration": {
-            "name": "inputChipStyles",
-            "module": "src/components/chip/input-chip.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/chip/mi-input-chip-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiInputChipGroup",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "items",
-              "type": {
-                "text": "InputChipItem[]"
-              },
-              "default": "[]",
-              "description": "表示する Chip アイテムの配列。"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "method",
-              "name": "handleRemove",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "id",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "remove",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Chip の削除ボタンがクリックされたときに発火します。detail に削除対象の id を含みます。"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "複数の mi-input-chip をまとめて表示するグループコンポーネントです。\nユーザーが入力した内容を要素ごとに整理して表示し、個別に削除できます。",
-          "tagName": "mi-input-chip-group",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiInputChipGroup",
-          "declaration": {
-            "name": "MiInputChipGroup",
-            "module": "src/components/chip/mi-input-chip-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-input-chip-group",
-          "declaration": {
-            "name": "MiInputChipGroup",
-            "module": "src/components/chip/mi-input-chip-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/chip/mi-input-chip.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "MiInputChip",
-          "members": [
-            {
-              "kind": "field",
-              "name": "styles",
-              "static": true
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Chip に表示するテキスト。"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            },
-            {
-              "kind": "method",
-              "name": "handleRemove",
-              "privacy": "private"
-            }
-          ],
-          "events": [
-            {
-              "name": "remove",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "削除ボタンがクリックされたときに発火します。"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "summary": "ユーザーが入力した内容を要素ごとに整理して表示するための Chip コンポーネントです。\n企業やユーザーアカウントの入力などで利用され、×ボタンで入力内容を削除できます。",
-          "tagName": "mi-input-chip",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MiInputChip",
-          "declaration": {
-            "name": "MiInputChip",
-            "module": "src/components/chip/mi-input-chip.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "mi-input-chip",
-          "declaration": {
-            "name": "MiInputChip",
-            "module": "src/components/chip/mi-input-chip.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/dialog/base.ts",
       "declarations": [
         {
@@ -6420,6 +6270,171 @@
           "declaration": {
             "name": "MiInformationDialog",
             "module": "src/components/dialog/mi-information-dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/chip/input-chip-group.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "inputChipGroupStyles",
+          "default": "css` :host { display: block; } .container { display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-start; align-content: flex-start; } .item { flex: 0 1 auto; max-width: 100%; min-width: 0; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "inputChipGroupStyles",
+          "declaration": {
+            "name": "inputChipGroupStyles",
+            "module": "src/components/chip/input-chip-group.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/chip/input-chip.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "inputChipStyles",
+          "default": "css` :host { display: inline-block; max-width: 100%; min-width: 0; } .chip { display: inline-flex; align-items: center; gap: 2px; max-width: 100%; padding-inline-start: var(--spacing-large, 12px); padding-inline-end: var(--spacing-small, 4px); padding-block: 2px; min-block-size: 28px; border-radius: 9999px; background-color: #e8edff; box-sizing: border-box; } .label { font-size: 12px; font-weight: normal; line-height: 1.5; letter-spacing: 0.12px; color: var(--text-regular-default, rgba(0, 0, 0, 0.84)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; } @media (max-width: 720px) { .chip { min-block-size: 32px; } .label { font-size: var(--font-scale-40, 14px); letter-spacing: 0.14px; } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "inputChipStyles",
+          "declaration": {
+            "name": "inputChipStyles",
+            "module": "src/components/chip/input-chip.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/chip/mi-input-chip-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiInputChipGroup",
+          "slots": [
+            {
+              "description": "mi-input-chip 要素を配置します。",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "複数の mi-input-chip をまとめて表示するグループコンポーネントです。\nユーザーが入力した内容を要素ごとに整理して表示し、個別に削除できます。",
+          "tagName": "mi-input-chip-group",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiInputChipGroup",
+          "declaration": {
+            "name": "MiInputChipGroup",
+            "module": "src/components/chip/mi-input-chip-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-input-chip-group",
+          "declaration": {
+            "name": "MiInputChipGroup",
+            "module": "src/components/chip/mi-input-chip-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/chip/mi-input-chip.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiInputChip",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Chip に表示するテキスト。"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "handleRemove",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "name": "remove",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "削除ボタンがクリックされたときに発火します。"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ユーザーが入力した内容を要素ごとに整理して表示するための Chip コンポーネントです。\n企業やユーザーアカウントの入力などで利用され、×ボタンで入力内容を削除できます。",
+          "tagName": "mi-input-chip",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiInputChip",
+          "declaration": {
+            "name": "MiInputChip",
+            "module": "src/components/chip/mi-input-chip.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-input-chip",
+          "declaration": {
+            "name": "MiInputChip",
+            "module": "src/components/chip/mi-input-chip.ts"
           }
         }
       ]
@@ -8377,6 +8392,937 @@
           "name": "default",
           "declaration": {
             "module": "src/components/radio-button/radio-button-text.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/search-box/mi-search-box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MiSearchBox",
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SearchBoxVariant"
+              },
+              "default": "\"primary\""
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "内部の `input` に設定する aria-label。"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\""
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "inputEl",
+              "type": {
+                "text": "HTMLInputElement"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#containerClasses",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。"
+            },
+            {
+              "kind": "method",
+              "name": "#handleClear",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。"
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
+              "name": "variant"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "入力値の文字列。",
+              "name": "value"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "プレースホルダー。",
+              "name": "placeholder"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "フォームの name。",
+              "name": "name"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "内部の input に設定する aria-label。",
+              "name": "label"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "無効化するかどうか。",
+              "name": "disabled"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "autocomplete 属性。",
+              "name": "autocomplete"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "自動フォーカスするかどうか。",
+              "name": "autofocus"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "ユーザーが必要な情報を素早く見つけるための入力コンポーネントです。\nキーワードの入力に応じて、候補表示や検索実行を行い、コンテンツ探索の効率を高めます。\n\nラベル（LabelUnit）と併用して「何を」検索するのかを明示することが望ましいです。\nラベルの併用が難しい場合は、プレースホルダーで補足してください。",
+          "tagName": "mi-search-box",
+          "customElement": true
+        },
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SpSearchBox",
+          "superclass": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          },
+          "deprecated": "代わりに MiSearchBox を使用してください",
+          "tagName": "sp-search-box",
+          "customElement": true,
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。",
+              "name": "variant",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "入力値の文字列。",
+              "name": "value",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "プレースホルダー。",
+              "name": "placeholder",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "フォームの name。",
+              "name": "name",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "内部の input に設定する aria-label。",
+              "name": "label",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "無効化するかどうか。",
+              "name": "disabled",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "autocomplete 属性。",
+              "name": "autocomplete",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "自動フォーカスするかどうか。",
+              "name": "autofocus",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ ...LitElement.shadowRootOptions, delegatesFocus: true, }",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SearchBoxVariant"
+              },
+              "default": "\"primary\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "内部の `input` に設定する aria-label。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
+              "type": {
+                "text": "AutoFill"
+              },
+              "default": "\"off\"",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autofocus",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputEl",
+              "type": {
+                "text": "HTMLInputElement"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "internals",
+              "type": {
+                "text": "ElementInternals"
+              },
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#containerClasses",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleInput",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleChange",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ],
+              "description": "React の SearchBox が渡す `onChange` はテキスト入力ではキー入力のたびに呼ばれる（ネイティブの `input` に近い）一方、\nネイティブ DOM の `change` は主にフォーカス喪失時など値が確定したときに発火する。\nシャドウ内の `change` は `composed` が付かないことが多いため、ホストまで届くよう再発火する。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#handleClear",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "InputEvent"
+              },
+              "description": "内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "Event"
+              },
+              "description": "内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。",
+              "inheritedFrom": {
+                "name": "MiSearchBox",
+                "module": "src/components/search-box/mi-search-box.ts"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiSearchBox",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SpSearchBox",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-search-box",
+          "declaration": {
+            "name": "MiSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sp-search-box",
+          "declaration": {
+            "name": "SpSearchBox",
+            "module": "src/components/search-box/mi-search-box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/search-box/search-box.css",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/mi-segment.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "segmentVariants",
+          "type": {
+            "text": "[\"text\", \"icon\"]"
+          },
+          "default": "[\"text\", \"icon\"]"
+        },
+        {
+          "kind": "class",
+          "description": "SegmentedControl 内の個別セグメントです。\nmi-segmented-control の直接の子として配置して使用します。",
+          "name": "MiSegment",
+          "slots": [
+            {
+              "description": "セグメントに表示するコンテンツ（テキストまたはアイコン）",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "セグメントの値（mi-segmented-control の選択制御に使用）"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "SegmentVariant"
+              },
+              "default": "\"text\"",
+              "description": "セグメントの表示バリアント"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "無効化状態"
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "選択状態（mi-segmented-control から制御される）"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeydown",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "セグメントコントロールの個別セグメント",
+          "tagName": "mi-segment",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "segmentVariants",
+          "declaration": {
+            "name": "segmentVariants",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MiSegment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-segment",
+          "declaration": {
+            "name": "MiSegment",
+            "module": "src/components/segmented-control/mi-segment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/mi-segmented-control.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "排他的な単一選択のセグメントグループです。\nmi-segment コンポーネントを子として配置して使用します。",
+          "name": "MiSegmentedControl",
+          "slots": [
+            {
+              "description": "mi-segment コンポーネント群",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "現在選択されているセグメントの値"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "無効化状態（全セグメントを無効化）"
+            },
+            {
+              "kind": "method",
+              "name": "updated",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "changedProperties",
+                  "type": {
+                    "text": "Map<string, unknown>"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "firstUpdated",
+              "privacy": "protected"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "#originalDisabledMap",
+              "privacy": "private",
+              "default": "new WeakMap<MiSegment, boolean>()"
+            },
+            {
+              "kind": "method",
+              "name": "#getSegments",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "MiSegment[]"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "#syncSegments",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#handleKeydown",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "description": "セグメントの選択が変更されたとき。detail: { value: string }",
+              "name": "change"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "summary": "セグメントコントロール",
+          "tagName": "mi-segmented-control",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MiSegmentedControl",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "src/components/segmented-control/mi-segmented-control.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "mi-segmented-control",
+          "declaration": {
+            "name": "MiSegmentedControl",
+            "module": "src/components/segmented-control/mi-segmented-control.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/segment.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/segmented-control/segment.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/segmented-control/segmented-control.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/components/segmented-control/segmented-control.styles.ts"
           }
         }
       ]

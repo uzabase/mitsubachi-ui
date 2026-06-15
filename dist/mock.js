@@ -59,12 +59,6 @@
       }
     });
   }
-  if (!customElements.get("mi-input-chip-group")) {
-    customElements.define("mi-input-chip-group", class extends HTMLElement {});
-  }
-  if (!customElements.get("mi-input-chip")) {
-    customElements.define("mi-input-chip", class extends HTMLElement {});
-  }
   if (!customElements.get("mi-action-dialog")) {
     customElements.define("mi-action-dialog", class extends HTMLElement {
       constructor() {
@@ -88,6 +82,17 @@
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
       }
     });
+  }
+  if (!customElements.get("mi-input-chip-group")) {
+    customElements.define("mi-input-chip-group", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-input-chip")) {
+    customElements.define("mi-input-chip", class extends HTMLElement {});
   }
   if (!customElements.get("mi-floating-button")) {
     customElements.define("mi-floating-button", class extends HTMLElement {});
@@ -146,6 +151,28 @@
   }
   if (!customElements.get("sp-radio-button-text")) {
     customElements.define("sp-radio-button-text", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-search-box")) {
+    customElements.define("mi-search-box", class extends HTMLElement {});
+  }
+  if (!customElements.get("sp-search-box")) {
+    customElements.define("sp-search-box", class extends HTMLElement {});
+  }
+  if (!customElements.get("mi-segment")) {
+    customElements.define("mi-segment", class extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
+      }
+    });
+  }
+  if (!customElements.get("mi-segmented-control")) {
+    customElements.define("mi-segmented-control", class extends HTMLElement {
       constructor() {
         super();
         this.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>";
