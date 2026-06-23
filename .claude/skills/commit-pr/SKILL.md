@@ -1,9 +1,10 @@
 ---
 name: commit-pr
 description: >
-  変更をコミットし、リモートにプッシュして、プルリクエストを作成する一連の作業を
-  docs/commit-push-pr.md の手順に従って実行する。ユーザーがコミット・プッシュ・
-  PR作成を求めたとき、または実装とレビューが一通り終わったときに使う。
+  変更を確認・コミットし、push して PR を作成する（PR前チェック→コミット→push→PR）。
+  Trigger on「コミットして」「PR作って」「プッシュして」「これで上げて」「変更を反映して」
+  など、変更を確定して共有する依頼。新規実装・レビューそのものは使わない
+  （/new-component・/review-component）。
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Bash
 ---
