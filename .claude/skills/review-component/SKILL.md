@@ -1,10 +1,10 @@
 ---
 name: review-component
 description: >
-  実装済みの mi- Web Component を docs/review-checklist.md の観点でレビューする。
-  Trigger on「このコンポーネントをレビューして」「実装をチェック」「Figma と合ってる？」
-  「テストの観点出して」など、既存実装の確認・レビュー・チェックの依頼。
-  新規実装そのものの依頼は使わない（/new-component）。
+  実装済みの mi- Web Component を多角的にレビューする。デザインの Figma 照合、
+  docs/review-checklist.md に基づくコードレビュー、Storybook の網羅性確認、
+  テストの観点出しを行う。ユーザーがコンポーネントのレビュー・確認・チェックを
+  求めたとき、または実装が一通り終わったときに使う。
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Bash
 ---
