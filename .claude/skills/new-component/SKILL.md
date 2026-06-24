@@ -7,27 +7,18 @@ description: >
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Write, Bash, Task
 hooks:
-  # このスキルが動いている間だけ有効なスコープ付きフック。
-  # サブエージェント完了時に、作業ツリーが変わっていれば（＝Generator 後）
-  # typecheck/lint/test を決定的に実行し、結果を $WORKDIR/latest-checks.txt に記録する。
   SubagentStop:
     - hooks:
         - type: command
           command: "bash .claude/skills/new-component/scripts/run-checks.sh"
 ---
 
-# New Component（Orchestrator）
+# New Component
 
 新しい `mi-` コンポーネントを **実装→評価の自動ループ** で作る。
-このスキルを実行するあなたは **Orchestrator（調整役）**。**自分では実装も評価もしない。**
+このスキルを実行するあなたは Orchestrator。**自分では実装も評価もしない。**
 実装は Generator サブエージェント、評価は Evaluator サブエージェントに委譲する。
-
-## なぜこの形か
-
-実装したのと同じ文脈でレビューすると自己レビューバイアスがかかる。実装と評価を
-**独立したコンテキストのサブエージェント**に分けることで、評価は観点に純粋に照らせる。
-中間生成物はファイルに書き、会話には**パスと短い要約だけ**を流す（トークン肥大と
-情報欠落の回避）。これは Anthropic の Evaluator–Optimizer / Orchestrator–Workers に準拠する。
+中間生成物はファイルに書き、会話には**パスと短い要約だけ**を流す。
 
 ## 全体ルール
 
@@ -80,7 +71,7 @@ mkdir -p "$WORKDIR"
 
 **B. 差分の確定と自動検証**: `git status` / `git diff` で変更ファイルを把握する。
 Generator が完了した時点で **SubagentStop フックが自動で `typecheck`/`lint`/`test` を実行**し、
-結果を `${TMPDIR:-/tmp}/mitsubachi-agent-loop/latest-checks.txt` に書く（決定的な客観検証）。
+結果を `${TMPDIR:-/tmp}/mitsubachi-agent-loop/latest-checks.txt` に書く。
 この内容を round の記録として `$WORKDIR/checks-round-<round>.txt` にコピーしておく。
 （`build` は重いのでループでは走らせない。コミット時に `/commit-pr` が検証する。）
 
@@ -98,7 +89,7 @@ Generator が完了した時点で **SubagentStop フックが自動で `typeche
 - **round == 3** → 終了（未解決の高 finding を残す）。
 - **新規の高 finding が出ない（収束 or 手詰まり）** → 終了。
 
-> 高 finding が1つでもあれば FAIL。中/低 finding は報告のみでループは止めない（過剰反復を防ぐ）。
+> 高 finding が1つでもあれば FAIL。中/低 finding は報告のみでループは止めない。
 
 ### 5. 登録とレポート
 
