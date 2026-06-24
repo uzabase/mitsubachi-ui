@@ -1,6 +1,6 @@
 # mi- コンポーネント評価ルーブリック
 
-`new-component`（Orchestrator）から起動された Evaluator が、変更を1項目ずつ採点するための正典。
+`new-component-v2`（Orchestrator）から起動された Evaluator が、変更を1項目ずつ採点するための正典。
 観点の出典は `docs/` であり、ここに勝手な観点を足さない。
 
 ## 列の見方
