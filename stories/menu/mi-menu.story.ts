@@ -25,6 +25,9 @@ const meta = {
       },
     },
   },
+  decorators: [
+    (story) => html`<div style="padding-bottom: 200px;">${story()}</div>`,
+  ],
   tags: ["autodocs", "!dev-only"],
   argTypes: {
     open: {

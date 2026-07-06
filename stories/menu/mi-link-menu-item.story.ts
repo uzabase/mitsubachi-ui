@@ -121,6 +121,9 @@ export const SlotContent: Story = {
 
 /** トリガー付き実例 */
 export const MenuWithTrigger: Story = {
+  decorators: [
+    (story) => html`<div style="padding-bottom: 200px;">${story()}</div>`,
+  ],
   render: () => html`
     <mi-menu>
       <mi-neutral-button slot="trigger">リンクメニュー</mi-neutral-button>
