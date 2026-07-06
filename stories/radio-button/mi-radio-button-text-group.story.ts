@@ -6,7 +6,6 @@ import { action } from "storybook/actions";
 
 import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/mi-radio-button-text-group";
 
-/** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiRadioButtonTextGroupStory = MiRadioButtonTextGroup & {
   onChange?: (e: Event) => void;
 };
@@ -49,4 +48,4 @@ const meta = {
 
 export default meta;
 
-export const Basic: StoryObj<MiRadioButtonTextGroupStory> = {};
+export const Basic: StoryObj<MiRadioButtonTextGroupStory> = {tags: ["!dev-only"]};
