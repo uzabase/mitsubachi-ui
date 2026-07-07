@@ -1,9 +1,8 @@
 import "../../label-unit";
 import "../radio-button-text-group";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
 import type { MiRadioButtonTextGroup } from "../radio-button-text-group";
@@ -40,13 +39,6 @@ export class MiRadioButtonTextGroupUnit extends LitElement {
     this.value = this.#initialValue;
   }
 
-  #labelClasses() {
-    return classMap({
-      label: true,
-      none: !this.text,
-    });
-  }
-
   #handleChange = (e: Event) => {
     const group = e.target as MiRadioButtonTextGroup;
     this.value = group.value;
@@ -54,10 +46,12 @@ export class MiRadioButtonTextGroupUnit extends LitElement {
 
   render() {
     return html`
-      <mi-label-unit
-        class="${this.#labelClasses()}"
-        text="${this.text}"
-      ></mi-label-unit>
+      ${this.text
+        ? html`<mi-label-unit
+            class="label"
+            text="${this.text}"
+          ></mi-label-unit>`
+        : nothing}
       <mi-radio-button-text-group
         name="${this.name}"
         .value="${this.value}"

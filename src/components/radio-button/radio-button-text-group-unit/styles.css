@@ -2,9 +2,5 @@
     .label {
         margin-bottom: 8px;
         text-align: left;
-
-        &.none {
-            display: none;
-        }
     }
 }
