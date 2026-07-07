@@ -46,9 +46,8 @@ export {
   MiRadioButtonText,
   SpRadioButtonText,
 } from "./components/radio-button/radio-button-text";
-export {
-  MiRadioButtonTextGroup,
-} from "./components/radio-button/radio-button-text-group";
+export { MiRadioButtonTextGroup } from "./components/radio-button/radio-button-text-group";
+export { MiRadioButtonTextGroupUnit } from "./components/radio-button/radio-button-text-group-unit";
 export {
   MiSearchBox,
   SpSearchBox,

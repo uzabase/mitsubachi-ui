@@ -63,7 +63,8 @@ async function setup(html: string) {
 
 describe("mi-radio-button-text-group", () => {
   test("radio-button-textを後から追加すると、nameとcheckedが同期される", async () => {
-    const group = await setup(`<mi-radio-button-text-group name="group1" value="option2">
+    const group =
+      await setup(`<mi-radio-button-text-group name="group1" value="option2">
       <mi-radio-button-text value="option1">Option 1</mi-radio-button-text>
     </mi-radio-button-text-group>`);
     const slot = getSlot();

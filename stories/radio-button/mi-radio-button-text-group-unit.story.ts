@@ -1,18 +1,23 @@
-import "../../src/components/radio-button/radio-button-text-group";
+import "../../src/components/radio-button/radio-button-text-group-unit";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/radio-button-text-group";
+import type { MiRadioButtonTextGroupUnit } from "../../src/components/radio-button/radio-button-text-group-unit";
 
-type MiRadioButtonTextGroupStory = MiRadioButtonTextGroup & {
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
+type MiRadioButtonTextGroupUnitStory = MiRadioButtonTextGroupUnit & {
   onChange?: (e: Event) => void;
 };
 
 const meta = {
-  component: "mi-radio-button-text-group",
+  component: "mi-radio-button-text-group-unit",
   argTypes: {
+    text: {
+      control: "text",
+      description: "ラジオボタングループを説明するテキスト",
+    },
     value: {
       control: "text",
       description: "現在選択されているラジオボタンの値",
@@ -29,12 +34,14 @@ const meta = {
     },
   },
   args: {
+    text: "性別",
     value: "option1",
     name: "options",
     onChange: action("change"),
   },
   render: (args) => html`
-    <mi-radio-button-text-group
+    <mi-radio-button-text-group-unit
+      text="${args.text}"
       value="${args.value}"
       name="${args.name}"
       @change="${args.onChange}"
@@ -42,12 +49,12 @@ const meta = {
       <mi-radio-button-text value="option1">Option 1</mi-radio-button-text>
       <mi-radio-button-text value="option2">Option 2</mi-radio-button-text>
       <mi-radio-button-text value="option3">Option 3</mi-radio-button-text>
-    </mi-radio-button-text-group>
+    </mi-radio-button-text-group-unit>
   `,
-} satisfies Meta<MiRadioButtonTextGroupStory>;
+} satisfies Meta<MiRadioButtonTextGroupUnitStory>;
 
 export default meta;
 
-export const Basic: StoryObj<MiRadioButtonTextGroupStory> = {
+export const Basic: StoryObj<MiRadioButtonTextGroupUnitStory> = {
   tags: ["!dev-only"],
 };
