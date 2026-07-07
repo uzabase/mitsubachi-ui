@@ -34,7 +34,7 @@ const meta = {
     },
   },
   args: {
-    text: "性別",
+    text: "Label",
     value: "option1",
     name: "options",
     onChange: action("change"),

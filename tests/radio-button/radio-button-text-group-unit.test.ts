@@ -64,29 +64,29 @@ async function setup(html: string) {
 describe("mi-radio-button-text-group-unit", () => {
   test("text属性を指定すると、mi-label-unitに反映される", async () => {
     await setup(
-      `<mi-radio-button-text-group-unit text="性別"></mi-radio-button-text-group-unit>`,
+      `<mi-radio-button-text-group-unit text="選ぶなら？"></mi-radio-button-text-group-unit>`,
     );
 
-    expect(getLabelUnit().getAttribute("text")).toBe("性別");
+    expect(getLabelUnit().getAttribute("text")).toBe("選ぶなら？");
   });
 
   test("name/value属性が、slot越しに子のmi-radio-button-textに同期される", async () => {
-    await setup(`<mi-radio-button-text-group-unit name="gender" value="option2">
-      <mi-radio-button-text value="option1">Option 1</mi-radio-button-text>
-      <mi-radio-button-text value="option2">Option 2</mi-radio-button-text>
+    await setup(`<mi-radio-button-text-group-unit name="choice" value="option2">
+      <mi-radio-button-text value="option1">きのこの山</mi-radio-button-text>
+      <mi-radio-button-text value="option2">たけのこの里</mi-radio-button-text>
     </mi-radio-button-text-group-unit>`);
 
     const radioButtonTexts = getRadioButtonTexts();
-    expect(radioButtonTexts[0].name).toBe("gender");
+    expect(radioButtonTexts[0].name).toBe("choice");
     expect(radioButtonTexts[0].checked).toBe(false);
-    expect(radioButtonTexts[1].name).toBe("gender");
+    expect(radioButtonTexts[1].name).toBe("choice");
     expect(radioButtonTexts[1].checked).toBe(true);
   });
 
   test("ラジオボタンをクリックすると、valueが更新されchangeイベントがunit自体で受け取れる", async () => {
     const unit = await setup(`<mi-radio-button-text-group-unit value="option1">
-      <mi-radio-button-text value="option1">Option 1</mi-radio-button-text>
-      <mi-radio-button-text value="option2">Option 2</mi-radio-button-text>
+      <mi-radio-button-text value="option1">きのこの山</mi-radio-button-text>
+      <mi-radio-button-text value="option2">たけのこの里</mi-radio-button-text>
     </mi-radio-button-text-group-unit>`);
 
     const changeSpy = vi.fn();
@@ -104,8 +104,8 @@ describe("mi-radio-button-text-group-unit", () => {
   test("フォームをリセットすると、valueが初期値に戻る", async () => {
     const unit = await setup(`<form>
       <mi-radio-button-text-group-unit name="choice" value="option1">
-        <mi-radio-button-text value="option1">Option 1</mi-radio-button-text>
-        <mi-radio-button-text value="option2">Option 2</mi-radio-button-text>
+        <mi-radio-button-text value="option1">きのこの山</mi-radio-button-text>
+        <mi-radio-button-text value="option2">たけのこの里</mi-radio-button-text>
       </mi-radio-button-text-group-unit>
     </form>`);
 
