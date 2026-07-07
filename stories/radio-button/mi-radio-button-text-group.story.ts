@@ -1,10 +1,10 @@
-import "../../src/components/radio-button/mi-radio-button-text-group";
+import "../../src/components/radio-button/radio-button-text-group";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/mi-radio-button-text-group";
+import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/radio-button-text-group";
 
 type MiRadioButtonTextGroupStory = MiRadioButtonTextGroup & {
   onChange?: (e: Event) => void;

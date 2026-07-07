@@ -45,10 +45,10 @@ export {
 export {
   MiRadioButtonText,
   SpRadioButtonText,
-} from "./components/radio-button/mi-radio-button-text";
+} from "./components/radio-button/radio-button-text";
 export {
   MiRadioButtonTextGroup,
-} from "./components/radio-button/mi-radio-button-text-group";
+} from "./components/radio-button/radio-button-text-group";
 export {
   MiSearchBox,
   SpSearchBox,

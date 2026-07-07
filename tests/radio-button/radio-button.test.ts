@@ -1,9 +1,9 @@
-import "../../src/components/radio-button/mi-radio-button-text";
+import "../../src/components/radio-button/radio-button-text";
 
 import { screen } from "shadow-dom-testing-library";
 import { describe, expect, test } from "vitest";
 
-import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
+import type { MiRadioButtonText } from "../../src/components/radio-button/radio-button-text";
 
 function getSpRadioButton() {
   return document.querySelector("mi-radio-button-text") as MiRadioButtonText;

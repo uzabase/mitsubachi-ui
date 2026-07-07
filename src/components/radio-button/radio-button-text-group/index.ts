@@ -1,9 +1,9 @@
-import "./mi-radio-button-text";
+import "../radio-button-text";
 
 import { html, LitElement } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 
-import type { MiRadioButtonText } from "./mi-radio-button-text";
+import type { MiRadioButtonText } from "../radio-button-text";
 
 export class MiRadioButtonTextGroup extends LitElement {
   static formAssociated = true;
@@ -15,6 +15,9 @@ export class MiRadioButtonTextGroup extends LitElement {
   value = "";
 
   #initialValue = "";
+
+  @query("slot")
+  private slotEl!: HTMLSlotElement;
 
   connectedCallback() {
     super.connectedCallback();
@@ -48,7 +51,10 @@ export class MiRadioButtonTextGroup extends LitElement {
   }
 
   #getRadioButtonTexts(): MiRadioButtonText[] {
-    return Array.from(this.querySelectorAll("mi-radio-button-text"));
+    const assigned = this.slotEl?.assignedElements({ flatten: true }) ?? [];
+    return assigned.filter(
+      (el) => el.tagName.toLowerCase() === "mi-radio-button-text",
+    ) as MiRadioButtonText[];
   }
 
   #syncRadioButtonTexts() {

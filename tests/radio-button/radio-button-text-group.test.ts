@@ -1,10 +1,10 @@
-import "../../src/components/radio-button/mi-radio-button-text";
-import "../../src/components/radio-button/mi-radio-button-text-group";
+import "../../src/components/radio-button/radio-button-text";
+import "../../src/components/radio-button/radio-button-text-group";
 
 import { describe, expect, test, vi } from "vitest";
 
-import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
-import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/mi-radio-button-text-group";
+import type { MiRadioButtonText } from "../../src/components/radio-button/radio-button-text";
+import type { MiRadioButtonTextGroup } from "../../src/components/radio-button/radio-button-text-group";
 
 function getRadioButtonTextGroup() {
   const radioButtonTextGroup = document.querySelector(
