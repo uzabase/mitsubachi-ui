@@ -10,8 +10,14 @@ import "../../src/components/button/mi-neutral-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 import type { MiMenu } from "../../src/components/menu/mi-menu";
+
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
+type MiMenuStory = MiMenu & {
+  onChange?: (e: Event) => void;
+};
 
 const meta = {
   component: "mi-menu",
@@ -34,11 +40,20 @@ const meta = {
       control: "boolean",
       description: "開閉状態",
     },
+    onChange: {
+      name: "change",
+      action: "change",
+      description: "ラジオグループの選択値が変更されたとき",
+      table: { category: "Events" },
+    },
   },
-} satisfies Meta<MiMenu>;
+  args: {
+    onChange: action("change"),
+  },
+} satisfies Meta<MiMenuStory>;
 
 export default meta;
-type Story = StoryObj<MiMenu>;
+type Story = StoryObj<MiMenuStory>;
 
 /** 基本的なメニュー */
 export const Default: Story = {
@@ -136,11 +151,11 @@ export const WithSubMenu: Story = {
 
 /** ラジオグループ（単一選択） */
 export const WithRadioGroup: Story = {
-  render: () => html`
+  render: (args) => html`
     <mi-menu>
       <mi-neutral-button slot="trigger">部署を選択</mi-neutral-button>
       <mi-menu-dropdown>
-        <mi-menu-radio-group value="sales">
+        <mi-menu-radio-group value="sales" @change=${args.onChange}>
           <mi-select-menu-item value="sales">営業</mi-select-menu-item>
           <mi-select-menu-item value="marketing">
             マーケティング・広報
@@ -157,11 +172,11 @@ export const WithRadioGroup: Story = {
 
 /** 任意選択ラジオグループ（「指定なし」付き） */
 export const WithOptionalRadioGroup: Story = {
-  render: () => html`
+  render: (args) => html`
     <mi-menu>
       <mi-neutral-button slot="trigger">部署を選択</mi-neutral-button>
       <mi-menu-dropdown>
-        <mi-menu-radio-group value="">
+        <mi-menu-radio-group value="" @change=${args.onChange}>
           <mi-select-menu-item value="">指定なし</mi-select-menu-item>
           <mi-select-menu-item value="sales">営業</mi-select-menu-item>
           <mi-select-menu-item value="marketing">

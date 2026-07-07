@@ -6,6 +6,7 @@ import "../../src/components/icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
+import { action } from "storybook/actions";
 
 import { iconTypes } from "../../src/components/icon/icons";
 import type { MiActionMenuItem } from "../../src/components/menu/mi-action-menu-item";
@@ -14,6 +15,7 @@ import type { MiActionMenuItem } from "../../src/components/menu/mi-action-menu-
 type MiActionMenuItemStory = MiActionMenuItem & {
   label?: string;
   iconType?: string;
+  onClick?: (e: Event) => void;
 };
 
 const meta = {
@@ -53,6 +55,12 @@ const meta = {
       description: "アイコンの種類",
       name: "icon-type",
     },
+    onClick: {
+      name: "click",
+      action: "click",
+      description: "メニュー項目がクリックされたとき",
+      table: { category: "Events" },
+    },
   },
   args: {
     variant: "neutral",
@@ -60,6 +68,7 @@ const meta = {
     supportText: "",
     label: "編集",
     iconType: "(なし)",
+    onClick: action("click"),
   },
 } satisfies Meta<MiActionMenuItemStory>;
 
@@ -75,6 +84,7 @@ export const Default: Story = {
         variant=${args.variant}
         ?disabled=${args.disabled}
         support-text=${args.supportText || ""}
+        @click=${args.onClick}
       >
         ${hasIcon
           ? html`<mi-icon slot="icon" type=${args.iconType}></mi-icon>`
@@ -156,23 +166,23 @@ export const MenuWithTrigger: Story = {
   decorators: [
     (story) => html`<div style="padding-bottom: 200px;">${story()}</div>`,
   ],
-  render: () => html`
+  render: (args) => html`
     <mi-menu>
       <mi-neutral-button slot="trigger">その他の操作</mi-neutral-button>
       <mi-menu-dropdown>
-        <mi-action-menu-item>
+        <mi-action-menu-item @click=${args.onClick}>
           <mi-icon slot="icon" type="pencil-square"></mi-icon>
           編集
         </mi-action-menu-item>
-        <mi-action-menu-item>
+        <mi-action-menu-item @click=${args.onClick}>
           <mi-icon slot="icon" type="copy"></mi-icon>
           複製
         </mi-action-menu-item>
-        <mi-action-menu-item disabled>
+        <mi-action-menu-item disabled @click=${args.onClick}>
           <mi-icon slot="icon" type="download"></mi-icon>
           アーカイブ
         </mi-action-menu-item>
-        <mi-action-menu-item variant="danger">
+        <mi-action-menu-item variant="danger" @click=${args.onClick}>
           <mi-icon slot="icon" type="cross"></mi-icon>
           削除
         </mi-action-menu-item>
