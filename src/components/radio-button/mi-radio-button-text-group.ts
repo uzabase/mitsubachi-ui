@@ -6,11 +6,15 @@ import { property } from "lit/decorators.js";
 import type { MiRadioButtonText } from "./mi-radio-button-text";
 
 export class MiRadioButtonTextGroup extends LitElement {
+  static formAssociated = true;
+
   @property({ type: String, reflect: true })
   name = "";
 
   @property({ type: String, reflect: true })
   value = "";
+
+  #initialValue = "";
 
   connectedCallback() {
     super.connectedCallback();
@@ -22,6 +26,11 @@ export class MiRadioButtonTextGroup extends LitElement {
     this.removeEventListener("change", this.#handleChange, true);
   }
 
+  protected firstUpdated() {
+    this.#initialValue = this.value;
+    this.#syncRadioButtonTexts();
+  }
+
   protected updated(changedProperties: Map<string, unknown>) {
     super.updated(changedProperties);
     if (changedProperties.has("value") || changedProperties.has("name")) {
@@ -29,8 +38,13 @@ export class MiRadioButtonTextGroup extends LitElement {
     }
   }
 
-  protected firstUpdated() {
+  formResetCallback() {
+    this.value = this.#initialValue;
     this.#syncRadioButtonTexts();
+  }
+
+  render() {
+    return html`<slot @slotchange="${this.#handleSlotChange}"></slot>`;
   }
 
   #getRadioButtonTexts(): MiRadioButtonText[] {
@@ -39,9 +53,7 @@ export class MiRadioButtonTextGroup extends LitElement {
 
   #syncRadioButtonTexts() {
     for (const radioButtonText of this.#getRadioButtonTexts()) {
-      if (this.name) {
-        radioButtonText.name = this.name;
-      }
+      radioButtonText.name = this.name;
       radioButtonText.checked = radioButtonText.value === this.value;
     }
   }
@@ -49,10 +61,6 @@ export class MiRadioButtonTextGroup extends LitElement {
   #handleSlotChange = () => {
     this.#syncRadioButtonTexts();
   };
-
-  render() {
-    return html`<slot @slotchange="${this.#handleSlotChange}"></slot>`;
-  }
 
   #handleChange = (e: Event) => {
     const radioButtonText = (e.target as Element).closest(
@@ -70,6 +78,8 @@ export class MiRadioButtonTextGroup extends LitElement {
     this.dispatchEvent(
       new CustomEvent("change", {
         detail: { value: radioButtonText.value },
+        bubbles: true,
+        composed: true,
       }),
     );
   };
