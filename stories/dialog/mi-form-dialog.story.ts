@@ -3,7 +3,7 @@ import "../../src/components/button/mi-neutral-button";
 import "../../src/components/label-unit";
 import "../../src/components/text-field/text-field";
 import "../../src/components/text-field/text-field-unit";
-import "../../src/components/radio-button/mi-radio-button-text";
+import "../../src/components/radio-button/radio-button-text";
 import "../../src/components/checkbox/mi-checkbox-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
@@ -11,7 +11,7 @@ import { html } from "lit";
 import { action } from "storybook/actions";
 
 import type { MiFormDialog } from "../../src/components/dialog/mi-form-dialog";
-import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
+import type { MiRadioButtonText } from "../../src/components/radio-button/radio-button-text";
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiFormDialogStory = MiFormDialog & {

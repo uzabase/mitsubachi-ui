@@ -1,9 +1,9 @@
-import "../../src/components/radio-button/mi-radio-button-text";
+import "../../src/components/radio-button/radio-button-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
+import type { MiRadioButtonText } from "../../src/components/radio-button/radio-button-text";
 
 const meta = {
   component: "mi-radio-button-text",
