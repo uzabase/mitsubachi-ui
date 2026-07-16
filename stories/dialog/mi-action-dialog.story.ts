@@ -11,7 +11,7 @@ import type { MiActionDialog } from "../../src/components/dialog/mi-action-dialo
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiActionDialogStory = MiActionDialog & {
-  onClose?: (e: Event) => void;
+  onClose?: (...args: unknown[]) => void;
 };
 
 const meta = {
@@ -42,8 +42,8 @@ const meta = {
     },
     onClose: {
       name: "close",
-      action: "close",
-      description: "ダイアログが閉じたとき",
+      description:
+        "ダイアログが閉じたとき。`returnValue`: アクションボタン → `\"action\"` / キャンセルボタン → `\"cancel\"` / Esc → `\"\"`",
       table: { category: "Events" },
     },
   },
@@ -69,11 +69,12 @@ const handleClose = (e: CustomEvent) => {
   dialog.open = false;
 };
 
-/** close イベントを処理し、Storybook Actions に転送 */
+/** close イベントを処理し、returnValue 付きで Storybook Actions に転送 */
 function bindClose(args: Partial<MiActionDialogStory> | undefined) {
   return (e: Event) => {
     handleClose(e as CustomEvent);
-    args?.onClose?.(e);
+    const dialog = e.target as MiActionDialog;
+    args?.onClose?.({ returnValue: dialog.returnValue });
   };
 }
 
