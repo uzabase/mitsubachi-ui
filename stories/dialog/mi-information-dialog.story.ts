@@ -9,7 +9,7 @@ import type { MiInformationDialog } from "../../src/components/dialog/mi-informa
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiInformationDialogStory = MiInformationDialog & {
-  onClose?: (e: Event) => void;
+  onClose?: (...args: unknown[]) => void;
 };
 
 const meta = {
@@ -40,8 +40,8 @@ const meta = {
     actionLabel: { type: "string" },
     onClose: {
       name: "close",
-      action: "close",
-      description: "ダイアログが閉じたとき",
+      description:
+        'ダイアログが閉じたとき。`returnValue`: アクションボタン → `"action"` / Esc → `""`',
       table: { category: "Events" },
     },
   },
@@ -69,10 +69,12 @@ const handleClose = (e: CustomEvent) => {
   dialog.open = false;
 };
 
+/** close イベントを処理し、returnValue 付きで Storybook Actions に転送 */
 function bindClose(args: Partial<MiInformationDialogStory> | undefined) {
   return (e: Event) => {
     handleClose(e as CustomEvent);
-    args?.onClose?.(e);
+    const dialog = e.target as MiInformationDialog;
+    args?.onClose?.({ returnValue: dialog.returnValue });
   };
 }
 
