@@ -41,7 +41,7 @@ const meta = {
     onClose: {
       name: "close",
       description:
-        "ダイアログが閉じたとき。`returnValue`: アクションボタン → `\"action\"` / Esc → `\"\"`",
+        'ダイアログが閉じたとき。`returnValue`: アクションボタン → `"action"` / Esc → `""`',
       table: { category: "Events" },
     },
   },
