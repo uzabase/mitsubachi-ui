@@ -350,6 +350,163 @@ describe("mi-form-dialog", () => {
       expect(el.open).toBe(false);
     });
 
+    describe("backdrop がクリックされたとき", async () => {
+      test("ダイアログの内側がクリックされたとき close イベントは発火しない", async () => {
+        document.body.innerHTML = `
+          <mi-form-dialog
+            open
+            header-text="フォーム"
+            action-label="送信"
+          ></mi-form-dialog>
+        `;
+        await customElements.whenDefined("mi-form-dialog");
+
+        const el = getFormDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const popup = getPopup() as HTMLDivElement;
+        const rect = popup.getBoundingClientRect();
+        popup.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            composed: true,
+            clientX: (rect.left + rect.right) / 2,
+            clientY: (rect.top + rect.bottom) / 2,
+          }),
+        );
+
+        expect(closed).toBe(false);
+        expect(el.open).toBe(true);
+      });
+
+      test("ダイアログの左側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-form-dialog
+            open
+            header-text="フォーム"
+            action-label="送信"
+          ></mi-form-dialog>
+        `;
+        await customElements.whenDefined("mi-form-dialog");
+
+        const el = getFormDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const popup = getPopup() as HTMLDivElement;
+        const rect = popup.getBoundingClientRect();
+        popup.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            composed: true,
+            clientX: rect.left - 1,
+            clientY: (rect.top + rect.bottom) / 2,
+          }),
+        );
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの右側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-form-dialog
+            open
+            header-text="フォーム"
+            action-label="送信"
+          ></mi-form-dialog>
+        `;
+        await customElements.whenDefined("mi-form-dialog");
+
+        const el = getFormDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const popup = getPopup() as HTMLDivElement;
+        const rect = popup.getBoundingClientRect();
+        popup.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            composed: true,
+            clientX: rect.right + 1,
+            clientY: (rect.top + rect.bottom) / 2,
+          }),
+        );
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの上側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-form-dialog
+            open
+            header-text="フォーム"
+            action-label="送信"
+          ></mi-form-dialog>
+        `;
+        await customElements.whenDefined("mi-form-dialog");
+
+        const el = getFormDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const popup = getPopup() as HTMLDivElement;
+        const rect = popup.getBoundingClientRect();
+        popup.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            composed: true,
+            clientX: (rect.left + rect.right) / 2,
+            clientY: rect.top - 1,
+          }),
+        );
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの下側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-form-dialog
+            open
+            header-text="フォーム"
+            action-label="送信"
+          ></mi-form-dialog>
+        `;
+        await customElements.whenDefined("mi-form-dialog");
+
+        const el = getFormDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const popup = getPopup() as HTMLDivElement;
+        const rect = popup.getBoundingClientRect();
+        popup.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            composed: true,
+            clientX: (rect.left + rect.right) / 2,
+            clientY: rect.bottom + 1,
+          }),
+        );
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+    });
+
     test("どの方法で閉じても close イベントは1回だけ発火する", async () => {
       document.body.innerHTML = `
         <mi-form-dialog

@@ -316,6 +316,32 @@ describe("mi-action-dialog", () => {
     });
 
     describe("backdrop がクリックされたとき", async () => {
+      test("ダイアログの内側がクリックされたとき close イベントは発火しない", async () => {
+        document.body.innerHTML = `
+          <mi-action-dialog
+            open
+            header-text="確認"
+            action-label="実行"
+          ></mi-action-dialog>
+        `;
+        await customElements.whenDefined("mi-action-dialog");
+
+        const el = getActionDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const dialog = getPopup() as HTMLDivElement;
+        // 画面の中央をクリックしたら、ダイアログの中央をクリックしたことになる
+        const windowDisplayWidth = window.innerWidth;
+        const windowDisplayHeight = window.innerHeight;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: windowDisplayWidth / 2, clientY: windowDisplayHeight / 2 }));
+
+        expect(closed).toBe(false);
+        expect(el.open).toBe(true);
+      });
+
       test("ダイアログの左側のbackdropがクリックされたとき close イベントが発火する", async () => {
         document.body.innerHTML = `
           <mi-action-dialog
@@ -332,8 +358,81 @@ describe("mi-action-dialog", () => {
           closed = true;
         });
         await el.updateComplete;
-        const dialog = getDialogEl() as HTMLDialogElement;
-        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: 0, clientY: 0 }));
+        const dialog = getPopup() as HTMLDivElement;
+        const windowDisplayHeight = window.innerHeight;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: 0, clientY: windowDisplayHeight / 2 }));
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの右側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-action-dialog
+            open
+            header-text="確認"
+            action-label="実行"
+          ></mi-action-dialog>
+        `;
+        await customElements.whenDefined("mi-action-dialog");
+
+        const el = getActionDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const dialog = getPopup() as HTMLDivElement;
+        const windowDisplayHeight = window.innerHeight;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: 10000, clientY: windowDisplayHeight / 2 }));
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの上側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-action-dialog
+            open
+            header-text="確認"
+            action-label="実行"
+          ></mi-action-dialog>
+        `;
+        await customElements.whenDefined("mi-action-dialog");
+
+        const el = getActionDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const dialog = getPopup() as HTMLDivElement;
+        const windowDisplayWidth = window.innerWidth;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: windowDisplayWidth / 2, clientY: 0 }));
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+
+      test("ダイアログの下側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-action-dialog
+            open
+            header-text="確認"
+            action-label="実行"
+          ></mi-action-dialog>
+        `;
+        await customElements.whenDefined("mi-action-dialog");
+
+        const el = getActionDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const dialog = getPopup() as HTMLDivElement;
+        const windowDisplayWidth = window.innerWidth;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: windowDisplayWidth / 2, clientY: 10000 }));
 
         expect(closed).toBe(true);
         expect(el.open).toBe(false);

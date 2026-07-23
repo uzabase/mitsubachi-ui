@@ -176,8 +176,6 @@ export abstract class DialogBase extends LitElement {
   private _handleBackDropClick = (e: MouseEvent) => {
     // backdrop がクリックされた場合はダイアログを閉じる
     const rect = this.shadowRoot!.querySelector(".popup")!.getBoundingClientRect();
-    console.log(rect);
-    console.log(e.clientX, e.clientY);
     if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
       this._handleClose();
     }
