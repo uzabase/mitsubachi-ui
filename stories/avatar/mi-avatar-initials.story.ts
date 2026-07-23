@@ -8,7 +8,7 @@ import { type MiAvatar } from "../../src/components/avatar/mi-avatar";
 
 const meta = {
   component: "mi-avatar",
-  title: "Avatar/mi-avatar/WithInitials",
+  title: "Components/Avatar/mi-avatar/WithInitials",
   tags: ["!dev-only"],
   argTypes: {
     src: {

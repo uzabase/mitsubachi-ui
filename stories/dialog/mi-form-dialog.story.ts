@@ -20,7 +20,7 @@ type MiFormDialogStory = MiFormDialog & {
 
 const meta = {
   component: "mi-form-dialog",
-  title: "Dialog/mi-form-dialog",
+  title: "Components/Dialog/mi-form-dialog",
   parameters: {
     layout: "centered",
     docs: {

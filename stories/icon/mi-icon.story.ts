@@ -32,6 +32,8 @@ const recommendedIcons = iconTypes.filter(
 );
 
 const meta = {
+  component: "mi-icon",
+  title: "Components/Icon/mi-icon",
   args: {
     type: recommendedIcons[0],
   },

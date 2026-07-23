@@ -21,7 +21,7 @@ type MiMenuStory = MiMenu & {
 
 const meta = {
   component: "mi-menu",
-  title: "Menu/mi-menu",
+  title: "Components/Menu/mi-menu",
   parameters: {
     layout: "centered",
     docs: {

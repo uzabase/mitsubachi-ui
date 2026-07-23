@@ -129,56 +129,11 @@ export const buttonStyles = css`
 
   .ai {
     &.primary {
-      --angle: 0deg;
-
-      border: 1px solid transparent;
-      background:
-        linear-gradient(white, white) padding-box padding-box,
-        conic-gradient(
-            from var(--angle) at 50% 50%,
-            #2a2af7 5%,
-            #2a2af7 22%,
-            #47d4ff 30%,
-            #ff2ed5 73%,
-            #f72a48 80%,
-            #f72a48 84%,
-            #2a2af7 100%
-          )
-          border-box border-box white;
-      transition: --angle 0.5s;
-
-      &:hover {
-        --angle: 360deg;
-      }
-
-      &:disabled {
-        border: 1px solid rgb(0 0 0 / 7%);
-        background: transparent;
-        color: rgb(0 0 0 / 35%);
-        cursor: not-allowed;
-
-        &:hover {
-          border: 1px solid rgb(0 0 0 / 7%);
-          background: transparent;
-        }
-
-        &.loading {
-          border: 1px solid transparent;
-          background:
-            linear-gradient(white, white) padding-box padding-box,
-            conic-gradient(
-                from var(--angle) at 50% 50%,
-                #2a2af7 5%,
-                #2a2af7 22%,
-                #47d4ff 30%,
-                #ff2ed5 73%,
-                #f72a48 80%,
-                #f72a48 84%,
-                #2a2af7 100%
-              )
-              border-box border-box white;
-        }
-      }
+      --border-color: transparent;
+      --background-color: #282828;
+      --background-color-hover: #191919;
+      --background-color-active: #000;
+      --color: #fff;
     }
 
     &.secondary {

@@ -12,7 +12,7 @@ import type { MiSelectMenuItem } from "../../src/components/menu/mi-select-menu-
 
 const meta = {
   component: "mi-select-menu-item",
-  title: "Menu/mi-select-menu-item",
+  title: "Components/Menu/mi-select-menu-item",
   parameters: {
     layout: "centered",
     docs: {

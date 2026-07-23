@@ -6,7 +6,7 @@ import { html } from "lit";
 import { type MiLogo } from "../../src/components/logo";
 
 const meta = {
-  title: "logo/mi-logo [Deprecated]",
+  title: "Components/logo/mi-logo [Deprecated]",
   component: "mi-logo",
   args: {
     language: "ja",

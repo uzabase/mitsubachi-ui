@@ -16,7 +16,7 @@ type MiActionDialogStory = MiActionDialog & {
 
 const meta = {
   component: "mi-action-dialog",
-  title: "Dialog/mi-action-dialog",
+  title: "Components/Dialog/mi-action-dialog",
   parameters: {
     layout: "centered",
     docs: {

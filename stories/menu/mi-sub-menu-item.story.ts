@@ -11,7 +11,7 @@ import type { MiSubMenuItem } from "../../src/components/menu/mi-sub-menu-item";
 
 const meta = {
   component: "mi-sub-menu-item",
-  title: "Menu/mi-sub-menu-item",
+  title: "Components/Menu/mi-sub-menu-item",
   parameters: {
     layout: "centered",
     docs: {

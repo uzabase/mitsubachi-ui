@@ -20,7 +20,7 @@ type MiActionMenuItemStory = MiActionMenuItem & {
 
 const meta = {
   component: "mi-action-menu-item",
-  title: "Menu/mi-action-menu-item",
+  title: "Components/Menu/mi-action-menu-item",
   parameters: {
     layout: "centered",
     docs: {

@@ -7,6 +7,7 @@ import type { MiTextFieldUnit } from "../../src/components/text-field/text-field
 
 const meta = {
   component: "mi-text-field-unit",
+  title: "Components/TextField/mi-text-field-unit",
   argTypes: {
     text: { type: "string" },
     error: { type: "string" },

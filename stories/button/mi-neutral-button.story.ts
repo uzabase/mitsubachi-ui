@@ -13,7 +13,7 @@ import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
   component: "mi-neutral-button",
-  title: "Button/mi-neutral-button",
+  title: "Components/Button/mi-neutral-button",
   parameters: {
     docs: {
       description: {

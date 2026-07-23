@@ -9,6 +9,8 @@ import {
 } from "../../src/components/icon-color";
 
 const meta = {
+  component: "mi-icon-color",
+  title: "Components/Icon/mi-icon-color",
   args: {
     type: "information",
   },

@@ -10,6 +10,7 @@ import type { MiControlMenuItem } from "../../src/components/menu/control-menu-i
  */
 const meta = {
   component: "mi-control-menu-item",
+  title: "Components/Menu/mi-control-menu-item",
   argTypes: {
     text: { type: "string" },
     selected: { type: "boolean" },

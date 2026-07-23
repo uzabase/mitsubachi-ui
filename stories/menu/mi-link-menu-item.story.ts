@@ -18,7 +18,7 @@ type MiLinkMenuItemStory = MiLinkMenuItem & {
 
 const meta = {
   component: "mi-link-menu-item",
-  title: "Menu/mi-link-menu-item",
+  title: "Components/Menu/mi-link-menu-item",
   parameters: {
     layout: "centered",
     docs: {

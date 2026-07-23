@@ -12,7 +12,7 @@ import { placements } from "../../src/components/tooltip/mi-tooltip";
 
 const meta = {
   component: "mi-icon-button",
-  title: "Button/mi-icon-button",
+  title: "Components/Button/mi-icon-button",
   parameters: {
     docs: {
       description: {

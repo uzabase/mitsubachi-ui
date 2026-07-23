@@ -8,7 +8,7 @@ import type { MiInputChip } from "../../src/components/chip/mi-input-chip";
 
 const meta = {
   component: "mi-input-chip",
-  title: "Chip/mi-input-chip",
+  title: "Components/Chip/mi-input-chip",
   parameters: {
     docs: {
       description: {

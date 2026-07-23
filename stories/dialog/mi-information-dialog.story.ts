@@ -14,7 +14,7 @@ type MiInformationDialogStory = MiInformationDialog & {
 
 const meta = {
   component: "mi-information-dialog",
-  title: "Dialog/mi-information-dialog",
+  title: "Components/Dialog/mi-information-dialog",
   parameters: {
     layout: "centered",
     docs: {

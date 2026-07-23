@@ -7,6 +7,7 @@ import type { MiRadioButtonText } from "../../src/components/radio-button/radio-
 
 const meta = {
   component: "mi-radio-button-text",
+  title: "Components/RadioButton/mi-radio-button-text",
   argTypes: {
     slot: { type: "string" },
     value: { type: "string" },

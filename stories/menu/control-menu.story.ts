@@ -11,6 +11,7 @@ import type { MiControlMenu } from "../../src/components/menu/control-menu";
  */
 const meta = {
   component: "mi-control-menu",
+  title: "Components/Menu/mi-control-menu",
   args: {},
   parameters: {
     docs: {

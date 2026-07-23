@@ -7,6 +7,7 @@ import type { MiTextField } from "../../src/components/text-field/text-field";
 
 const meta = {
   component: "mi-text-field",
+  title: "Components/TextField/mi-text-field",
   argTypes: {
     error: { type: "string" },
     placeholder: { type: "string" },

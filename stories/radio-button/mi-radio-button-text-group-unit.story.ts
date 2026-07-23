@@ -13,6 +13,7 @@ type MiRadioButtonTextGroupUnitStory = MiRadioButtonTextGroupUnit & {
 
 const meta = {
   component: "mi-radio-button-text-group-unit",
+  title: "Components/RadioButton/mi-radio-button-text-group-unit",
   argTypes: {
     text: {
       control: "text",
