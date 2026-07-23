@@ -257,7 +257,7 @@ export const buttonStyles = css`
   }
 
   .icon {
-    fill: currentcolor;
+    fill: currentColor;
   }
 
   .text {

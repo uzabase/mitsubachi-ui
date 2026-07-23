@@ -1,6 +1,7 @@
 {
   "extends" : "stylelint-config-standard",
   "rules": {
+    "value-keyword-case": null,
     "selector-class-pattern": null,
     "selector-pseudo-class-no-unknown": [
       true,
