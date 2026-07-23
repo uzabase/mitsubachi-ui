@@ -315,6 +315,31 @@ describe("mi-action-dialog", () => {
       expect(el.open).toBe(false);
     });
 
+    describe("backdrop がクリックされたとき", async () => {
+      test("ダイアログの左側のbackdropがクリックされたとき close イベントが発火する", async () => {
+        document.body.innerHTML = `
+          <mi-action-dialog
+            open
+            header-text="確認"
+            action-label="実行"
+          ></mi-action-dialog>
+        `;
+        await customElements.whenDefined("mi-action-dialog");
+
+        const el = getActionDialog();
+        let closed = false;
+        el.addEventListener("close", () => {
+          closed = true;
+        });
+        await el.updateComplete;
+        const dialog = getDialogEl() as HTMLDialogElement;
+        dialog.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, clientX: 0, clientY: 0 }));
+
+        expect(closed).toBe(true);
+        expect(el.open).toBe(false);
+      });
+    });
+
     test("どの方法で閉じても close イベントは1回だけ発火する", async () => {
       document.body.innerHTML = `
         <mi-action-dialog
