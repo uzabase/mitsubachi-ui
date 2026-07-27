@@ -10,6 +10,7 @@ const meta = {
   title: "Components/TextField/mi-text-field",
   argTypes: {
     error: { type: "string" },
+    errors: { control: { type: "object" } },
     placeholder: { type: "string" },
     disabled: { type: "boolean" },
     name: { type: "string" },
@@ -53,6 +54,27 @@ export const Default: Story = {
       error=${error}
       type=${type}
       autocomplete=${autocomplete || nothing}
+    >
+    </mi-text-field>`;
+  },
+};
+
+export const MultipleErrors: Story = {
+  render: ({ placeholder, disabled, name, value, type }) => {
+    const errors = [
+      "エラーテキストが入ります",
+      "エラーテキストが入ります",
+      "エラーテキストが入ります",
+      "エラーテキストが入ります",
+      "エラーテキストが入ります",
+    ];
+    return html`<mi-text-field
+      placeholder=${placeholder || nothing}
+      ?disabled=${disabled}
+      name=${name}
+      value=${value}
+      type=${type}
+      .errors=${errors}
     >
     </mi-text-field>`;
   },

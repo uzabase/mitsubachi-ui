@@ -1,22 +1,28 @@
 import "./error-text";
+import "../../helper-text/mi-helper-text";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
-import textFieldStyle from "./styles.css?inline";
+import style from "./text-field.styles";
 
 /**
  * @summary テキストフィールドです。
  */
 export class MiTextField extends LitElement {
-  static styles = makeStyles(unsafeCSS(textFieldStyle));
+  static styles = makeStyles(style);
 
   static formAssociated = true;
 
+  /** 単一のエラーメッセージ。後方互換のために維持。複数表示する場合は `errors` を使用 */
   @property({ type: String, reflect: true })
   error = "";
+
+  /** 複数のエラーメッセージ。`error` と併用した場合は `error` が先頭に表示される */
+  @property({ type: Array })
+  errors: string[] = [];
 
   @property({ type: String, reflect: true })
   placeholder = "";
@@ -57,10 +63,28 @@ export class MiTextField extends LitElement {
     }
   }
 
+  get #hasError() {
+    return !this.disabled && (!!this.error || this.errors.length > 0);
+  }
+
+  get #errorMessages(): string[] {
+    if (this.disabled) return [];
+    const messages: string[] = [];
+    if (this.error) messages.push(this.error);
+    messages.push(...this.errors);
+    return messages;
+  }
+
+  #errorIdPrefix = "error";
+
+  get #errorIds(): string[] {
+    return this.#errorMessages.map((_, i) => `${this.#errorIdPrefix}-${i}`);
+  }
+
   #inputClasses() {
     return classMap({
       input: true,
-      error: this.error && !this.disabled,
+      error: this.#hasError,
     });
   }
 
@@ -104,13 +128,20 @@ export class MiTextField extends LitElement {
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
-        aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
+        aria-invalid="${this.#hasError ? "true" : "false"}"
+        aria-describedby="${this.#hasError ? this.#errorIds.join(" ") : ""}"
         @input="${this.#handleInput}"
         @keydown="${this.#handleKeyDown}"
       />
-      <mi-text-field-error-text
-        text="${this.disabled ? "" : this.error}"
-      ></mi-text-field-error-text>
+      ${this.#errorMessages.map(
+        (msg, i) =>
+          html`<mi-helper-text
+            id="${this.#errorIdPrefix}-${i}"
+            status="error"
+            size="medium"
+            >${msg}</mi-helper-text
+          >`,
+      )}
     `;
   }
 }

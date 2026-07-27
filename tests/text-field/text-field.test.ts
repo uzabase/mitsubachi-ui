@@ -94,4 +94,60 @@ describe("mi-text-field", () => {
 
     expect(submitHandler).not.toHaveBeenCalled();
   });
+
+  test("errorsプロパティで複数のエラーメッセージが表示される", async () => {
+    document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    sut.errors = ["エラー1", "エラー2", "エラー3"];
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(3);
+  });
+
+  test("errorとerrorsを併用した場合、errorが先頭に表示される", async () => {
+    document.body.innerHTML = `<mi-text-field error="単一エラー"></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    sut.errors = ["追加エラー1", "追加エラー2"];
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(3);
+    expect(helperTexts?.[0]?.textContent?.trim()).toBe("単一エラー");
+    expect(helperTexts?.[1]?.textContent?.trim()).toBe("追加エラー1");
+  });
+
+  test("disabled時はerrorsが表示されない", async () => {
+    document.body.innerHTML = `<mi-text-field disabled></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    sut.errors = ["エラー1", "エラー2"];
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(0);
+  });
+
+  test("errorsがあるとき、inputにaria-describedbyが設定される", async () => {
+    document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    sut.errors = ["エラー1", "エラー2"];
+    await sut.updateComplete;
+
+    const input = sut.shadowRoot?.querySelector("input");
+    const describedby = input?.getAttribute("aria-describedby");
+    expect(describedby).toBe("error-0 error-1");
+
+    const ids = describedby!.split(" ");
+    for (const id of ids) {
+      expect(sut.shadowRoot?.getElementById(id)).toBeTruthy();
+    }
+  });
 });
