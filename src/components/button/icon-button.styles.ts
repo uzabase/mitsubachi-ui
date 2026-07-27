@@ -49,7 +49,7 @@ export const iconButtonStyles = css`
   }
 
   .icon {
-    fill: currentcolor;
+    fill: currentColor;
     display: block;
   }
 

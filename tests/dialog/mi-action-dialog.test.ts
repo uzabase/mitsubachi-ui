@@ -339,6 +339,126 @@ describe("mi-action-dialog", () => {
       expect(closeCount).toBe(1);
       expect(el.open).toBe(false);
     });
+
+    test("アクションボタンで閉じると returnValue が 'action' になる", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      const events: string[] = [];
+      el.addEventListener("close", () => {
+        events.push(el.returnValue);
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(events).toEqual(["action"]);
+    });
+
+    test("キャンセルボタンで閉じると returnValue が 'cancel' になる", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          cancel-label="キャンセル"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      const events: string[] = [];
+      el.addEventListener("close", () => {
+        events.push(el.returnValue);
+      });
+
+      await el.updateComplete;
+      (getCancelButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(events).toEqual(["cancel"]);
+    });
+
+    test("Esc で閉じると returnValue が空文字になる", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      const events: string[] = [];
+      el.addEventListener("close", () => {
+        events.push(el.returnValue);
+      });
+
+      await el.updateComplete;
+      const dialog = getDialogEl() as HTMLDialogElement;
+      dialog.focus();
+      await userEvent.keyboard("{Escape}");
+
+      expect(events).toEqual([""]);
+    });
+
+    test("アクションボタンで close が1回だけ発火する", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          cancel-label="キャンセル"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      let closeCount = 0;
+      el.addEventListener("close", () => {
+        closeCount += 1;
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+
+      expect(closeCount).toBe(1);
+    });
+
+    test("ネイティブ close が非同期で発火しても close は1回だけ・returnValue は維持される", async () => {
+      document.body.innerHTML = `
+        <mi-action-dialog
+          open
+          header-text="確認"
+          cancel-label="キャンセル"
+          action-label="実行"
+        ></mi-action-dialog>
+      `;
+      await customElements.whenDefined("mi-action-dialog");
+
+      const el = getActionDialog();
+      const events: string[] = [];
+      el.addEventListener("close", () => {
+        events.push(el.returnValue);
+      });
+
+      await el.updateComplete;
+      (getActionButton() as HTMLElement | undefined)?.click();
+      await el.updateComplete;
+      await new Promise((r) => setTimeout(r, 50));
+
+      expect(events).toEqual(["action"]);
+    });
   });
 
   describe("アクセシビリティ", () => {

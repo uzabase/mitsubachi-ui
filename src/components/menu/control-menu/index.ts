@@ -7,6 +7,8 @@ import spControlMenuLitStyle from "./styles.css?inline";
  * @summary ドロップダウンメニューのコンポーネントです。<mi-control-menu><mi-control-menu-item><mi-control-menu-item></mi-control-menu>のように使います。
  *
  * @slot - メニュー項目（mi-control-menu-item）
+ *
+ * @deprecated 廃止予定です。代わりに mi-menu を使用してください。
  */
 export class MiControlMenu extends LitElement {
   static styles = makeStyles(unsafeCSS(spControlMenuLitStyle));

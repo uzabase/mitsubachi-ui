@@ -3,7 +3,7 @@ import "../../src/components/button/mi-neutral-button";
 import "../../src/components/label-unit";
 import "../../src/components/text-field/text-field";
 import "../../src/components/text-field/text-field-unit";
-import "../../src/components/radio-button/mi-radio-button-text";
+import "../../src/components/radio-button/radio-button-text";
 import "../../src/components/checkbox/mi-checkbox-text";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
@@ -11,16 +11,16 @@ import { html } from "lit";
 import { action } from "storybook/actions";
 
 import type { MiFormDialog } from "../../src/components/dialog/mi-form-dialog";
-import type { MiRadioButtonText } from "../../src/components/radio-button/mi-radio-button-text";
+import type { MiRadioButtonText } from "../../src/components/radio-button/radio-button-text";
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiFormDialogStory = MiFormDialog & {
-  onClose?: (e: Event) => void;
+  onClose?: (...args: unknown[]) => void;
 };
 
 const meta = {
   component: "mi-form-dialog",
-  title: "Dialog/mi-form-dialog",
+  title: "Components/Dialog/mi-form-dialog",
   parameters: {
     layout: "centered",
     docs: {
@@ -47,8 +47,8 @@ const meta = {
     actionLabel: { type: "string" },
     onClose: {
       name: "close",
-      action: "close",
-      description: "ダイアログが閉じたとき",
+      description:
+        'ダイアログが閉じたとき。`returnValue`: アクションボタン → `"action"` / キャンセルボタン → `"cancel"` / Esc → `""`',
       table: { category: "Events" },
     },
   },
@@ -75,10 +75,12 @@ const handleClose = (e: CustomEvent) => {
   dialog.open = false;
 };
 
+/** close イベントを処理し、returnValue 付きで Storybook Actions に転送 */
 function bindClose(args: Partial<MiFormDialogStory> | undefined) {
   return (e: Event) => {
     handleClose(e as CustomEvent);
-    args?.onClose?.(e);
+    const dialog = e.target as MiFormDialog;
+    args?.onClose?.({ returnValue: dialog.returnValue });
   };
 }
 

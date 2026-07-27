@@ -225,7 +225,7 @@ function showSnackbar(size, message) {
 <button onclick="showSnackbar('medium', 'アップロードしたファイルの名寄せが完了しました。結果はダウンロードページから確認できます。')">Medium（長文）</button>`;
 
 const meta: Meta<SnackbarStoryArgs> = {
-  title: "Snackbar/mi-snackbar",
+  title: "Components/Snackbar/mi-snackbar",
   parameters: {
     layout: "centered",
     options: {

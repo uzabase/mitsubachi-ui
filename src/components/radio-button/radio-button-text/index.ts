@@ -1,8 +1,8 @@
 import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
-import { makeStyles } from "../styles";
-import styles from "./radio-button-text.styles";
+import { makeStyles } from "../../styles";
+import styles from "./styles";
 
 /**
  * @slot - ラジオボタンのラベルテキスト

@@ -14,6 +14,7 @@ const SIZE_OPTIONS = [
 
 const meta: Meta = {
   component: "mi-loading",
+  title: "Components/Loading/mi-loading",
   tags: ["!dev-only"],
 };
 

@@ -13,7 +13,7 @@ type MiSegmentedControlStory = MiSegmentedControl & {
 
 const meta = {
   component: "mi-segmented-control",
-  title: "SegmentedControl/mi-segmented-control",
+  title: "Components/SegmentedControl/mi-segmented-control",
   tags: ["!dev-only"],
   parameters: {
     docs: {

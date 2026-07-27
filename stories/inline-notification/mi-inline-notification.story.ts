@@ -11,7 +11,7 @@ import {
 
 const meta: Meta<MiInlineNotification> = {
   component: "mi-inline-notification",
-  title: "InlineNotification/mi-inline-notification",
+  title: "Components/InlineNotification/mi-inline-notification",
   args: {
     type: "information",
     variant: "primary",

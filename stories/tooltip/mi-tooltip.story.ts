@@ -11,6 +11,7 @@ import {
 
 const meta = {
   component: "mi-tooltip",
+  title: "Components/Tooltip/mi-tooltip",
   argTypes: {
     text: { type: "string" },
     placement: {

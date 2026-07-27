@@ -14,6 +14,8 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  * @attr {boolean} selected - 項目が選択されていることを示します。属性があるときはチェックマークが表示されます。
  *
  * @attr {boolean} disabled - 項目が無効であることを示します。属性があれば、灰色で項目が表示されます。
+ *
+ * @deprecated 廃止予定です。代わりに mi-action-menu-item / mi-select-menu-item を使用してください。
  */
 export class MiControlMenuItem extends LitElement {
   static styles = makeStyles(unsafeCSS(spControlMenuItemLitStyle));

@@ -34,7 +34,7 @@ PRレビューやセルフチェックの際に参照してください。
 ### 5. Web Standards / Lit のベストプラクティス
 - **Shadow DOMのカプセル化**: 外部CSSが意図せず侵入・漏洩していないか？ — カプセル化の破壊はデザインの一貫性を損なう
 - **スロットの設計**: デフォルトスロット・名前付きスロットの使い分けが適切か？ — スロットはコンポーネントの拡張ポイントであり、設計がcomposabilityを左右する
-- **カスタムイベント**: `CustomEvent` の `bubbles` / `composed` 設定が適切か？ — `composed: true` がないとShadow DOM外にイベントが伝播しない
+- **カスタムイベント**: `bubbles` / `composed` は基本 `false` か？カスタムイベントは原則定義していないか？ — [event-architecture.md](./event-architecture.md) 参照。`true` にする場合はチームで議論して判断する
 - **`attributeChangedCallback` の考慮**: リフレクション（`reflect: true`）が必要なプロパティに設定されているか？ — CSSの `:host([attr])` セレクタやDOM APIでの属性取得に必要
 - **`connectedCallback` / `disconnectedCallback`**: イベントリスナーの登録・解除が適切か？ — 解除漏れはメモリリークや意図しない動作の原因になる
 - **スタイルの定義方法**: `*.styles.ts` に Lit の `css` タグドテンプレートリテラルで記述しているか？ — `css` タグはLitの共有スタイル機構と型チェックの恩恵を受けられる

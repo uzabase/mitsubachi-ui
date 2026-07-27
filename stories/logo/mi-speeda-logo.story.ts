@@ -8,6 +8,7 @@ import { type MiSpeedaLogo } from "../../src/components/logo";
 
 const meta = {
   component: "mi-speeda-logo",
+  title: "Components/Logo/mi-speeda-logo",
   args: {
     subBrand: null,
     inverse: false,

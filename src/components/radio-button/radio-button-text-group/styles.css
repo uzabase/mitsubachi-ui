@@ -1,0 +1,6 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--spacing-medium, 8px);
+}

@@ -42,10 +42,22 @@ export {
   MiControlMenuItem,
   SpControlMenuItem,
 } from "./components/menu/control-menu-item";
+export type { ActionMenuItemVariant } from "./components/menu/mi-action-menu-item";
+export { MiActionMenuItem } from "./components/menu/mi-action-menu-item";
+export { MiLinkMenuItem } from "./components/menu/mi-link-menu-item";
+export type { MenuAlign, MenuSide } from "./components/menu/mi-menu";
+export { MiMenu } from "./components/menu/mi-menu";
+export { MiMenuDropdown } from "./components/menu/mi-menu-dropdown";
+export { MiMenuGroup } from "./components/menu/mi-menu-group";
+export { MiMenuRadioGroup } from "./components/menu/mi-menu-radio-group";
+export { MiSelectMenuItem } from "./components/menu/mi-select-menu-item";
+export { MiSubMenuItem } from "./components/menu/mi-sub-menu-item";
 export {
   MiRadioButtonText,
   SpRadioButtonText,
-} from "./components/radio-button/mi-radio-button-text";
+} from "./components/radio-button/radio-button-text";
+export { MiRadioButtonTextGroup } from "./components/radio-button/radio-button-text-group";
+export { MiRadioButtonTextGroupUnit } from "./components/radio-button/radio-button-text-group-unit";
 export {
   MiSearchBox,
   SpSearchBox,

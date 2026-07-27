@@ -13,6 +13,7 @@ import { dialogStyles } from "./dialog.styles";
 
 export type DialogSize = "small" | "medium" | "large";
 export type DialogVariant = "action" | "information" | "form";
+export type DialogReturnValue = "action" | "cancel" | "";
 
 /**
  * モーダルダイアログの共通ベースクラス。
@@ -22,6 +23,7 @@ export type DialogVariant = "action" | "information" | "form";
  * - **close**: ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。
  */
 export abstract class DialogBase extends LitElement {
+  returnValue: DialogReturnValue = "";
   static styles = makeStyles(...dialogStyles);
 
   /** 開閉状態 */
@@ -126,10 +128,11 @@ export abstract class DialogBase extends LitElement {
   }
 
   private _handleClose = () => {
-    if (this._closingFromFooterButton) {
+    if (this._closingFromFooterButton || !this.open) {
       this.open = false;
       return;
     }
+    this.returnValue = "";
     // イベントを先にディスパッチしてから open を変更する
     // （Lit の更新サイクルがイベント処理に干渉しないようにするため）
     this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
@@ -145,8 +148,9 @@ export abstract class DialogBase extends LitElement {
     this._nativeDialog()?.close();
     this._closingFromFooterButton = false;
     // 環境によっては同期がずれるため、フッター経路では明示して確実に閉じ状態に揃える。
-    this.open = false;
+    this.returnValue = "cancel";
     this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
+    this.open = false;
   };
 
   private _handleActionClick = () => {
@@ -164,8 +168,9 @@ export abstract class DialogBase extends LitElement {
     this._nativeDialog()?.close();
     this._closingFromFooterButton = false;
     // キャンセルと同じくフッター確定で `open` を確実に false にする
-    this.open = false;
+    this.returnValue = "action";
     this.dispatchEvent(new Event("close", { bubbles: false, composed: false }));
+    this.open = false;
   };
 
   render() {

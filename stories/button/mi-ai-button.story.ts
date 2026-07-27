@@ -7,7 +7,7 @@ import { aiVariants, sizes } from "../../src/components/button/mi-ai-button";
 
 const meta = {
   component: "mi-ai-button",
-  title: "Button/mi-ai-button",
+  title: "Components/Button/mi-ai-button",
   parameters: {
     docs: {
       description: {

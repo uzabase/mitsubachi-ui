@@ -53,7 +53,7 @@ export const avatarStyles = css`
 
   mi-icon,
   sp-icon {
-    fill: currentcolor;
+    fill: currentColor;
     display: flex;
     align-items: center;
     justify-content: center;

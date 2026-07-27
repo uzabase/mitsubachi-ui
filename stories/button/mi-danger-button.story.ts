@@ -11,7 +11,7 @@ import { iconTypes } from "../../src/components/icon/icons";
 
 const meta = {
   component: "mi-danger-button",
-  title: "Button/mi-danger-button",
+  title: "Components/Button/mi-danger-button",
   parameters: {
     docs: {
       description: {

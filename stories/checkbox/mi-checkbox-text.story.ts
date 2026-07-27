@@ -8,6 +8,7 @@ import type { MiCheckboxText } from "../../src/components/checkbox/mi-checkbox-t
 
 const meta: Meta = {
   component: "mi-checkbox-text",
+  title: "Components/Checkbox/mi-checkbox-text",
   argTypes: {
     text: { type: "string" },
     value: { type: "string" },

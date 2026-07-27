@@ -3,6 +3,7 @@ import { css } from "lit";
 export default css`
   :host {
     display: inline-block;
+    flex-shrink: 0;
 
     --color-semantic-text-regular: #000000d6;
     --color-semantic-surface-regular-default: #ffffff;
@@ -65,6 +66,7 @@ export default css`
     padding-block: 3px;
     padding-inline: 4px;
     cursor: pointer;
+    white-space: nowrap;
   }
 
   .input:checked + .radio::after {

@@ -3,17 +3,6 @@ import { property } from "lit/decorators.js";
 
 import { ButtonBase, type ButtonTheme, type Size, sizes } from "./base";
 
-try {
-  CSS.registerProperty({
-    name: "--angle",
-    syntax: "<angle>",
-    initialValue: "0deg",
-    inherits: false,
-  });
-} catch {
-  // すでに登録済みの場合は無視
-}
-
 export const aiVariants = ["primary", "secondary"] as const;
 export type AiVariant = (typeof aiVariants)[number];
 
@@ -47,10 +36,7 @@ export class MiAiButton extends ButtonBase {
   }
 
   protected override renderLoading() {
-    return html`<mi-loading
-      size="${this.loadingSize}"
-      ?ai="${this.variant === "primary"}"
-    ></mi-loading>`;
+    return html`<mi-loading size="${this.loadingSize}"></mi-loading>`;
   }
 }
 

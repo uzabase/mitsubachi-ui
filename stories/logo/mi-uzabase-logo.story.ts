@@ -7,6 +7,7 @@ import { type MiUzabaseLogo } from "../../src/components/logo";
 
 const meta = {
   component: "mi-uzabase-logo",
+  title: "Components/Logo/mi-uzabase-logo",
   args: {
     inverse: false,
   },

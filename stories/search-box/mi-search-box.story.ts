@@ -9,6 +9,7 @@ import type { MiSearchBox } from "../../src/components/search-box/mi-search-box"
 
 const meta = {
   component: "mi-search-box",
+  title: "Components/SearchBox/mi-search-box",
   argTypes: {
     variant: {
       control: "select",

@@ -7,6 +7,7 @@ import { type MiLabelUnit } from "../../src/components/label-unit";
 
 const meta = {
   component: "mi-label-unit",
+  title: "Components/LabelUnit/mi-label-unit",
   argTypes: {
     text: { type: "string" },
     supportText: { type: "string" },
