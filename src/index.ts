@@ -52,6 +52,7 @@ export { MiMenuGroup } from "./components/menu/mi-menu-group";
 export { MiMenuRadioGroup } from "./components/menu/mi-menu-radio-group";
 export { MiSelectMenuItem } from "./components/menu/mi-select-menu-item";
 export { MiSubMenuItem } from "./components/menu/mi-sub-menu-item";
+export { MiMenuButton } from "./components/menu-button/mi-menu-button";
 export {
   MiRadioButtonText,
   SpRadioButtonText,
