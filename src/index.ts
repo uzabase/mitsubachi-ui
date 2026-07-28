@@ -67,6 +67,7 @@ export type {
   SelectBoxVariant,
 } from "./components/select-box/mi-select-box";
 export { MiSelectBox } from "./components/select-box/mi-select-box";
+export { MiSelectBoxUnit } from "./components/select-box/mi-select-box-unit";
 export {
   MiSegment,
   type SegmentVariant,
