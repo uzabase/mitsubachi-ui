@@ -50,10 +50,7 @@ export class MiLabelUnit extends LitElement {
 
   render() {
     return html`
-      <span class=${this.#labelClasses()}>
-        ${this.text}
-        ${this.required ? html`<span class="required">必須</span>` : nothing}
-      </span>
+      <span class=${this.#labelClasses()}>${this.text}${this.required ? html`<span class="required">必須</span>` : nothing}</span>
       <span class=${this.#supportClasses()}>${this.supportText}</span>
     `;
   }
