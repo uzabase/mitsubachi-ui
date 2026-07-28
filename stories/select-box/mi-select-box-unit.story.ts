@@ -25,7 +25,7 @@ const meta = {
     },
     required: {
       control: "boolean",
-      description: "必須かどうか",
+      description: "必須バッジを表示するかどうか",
     },
     variant: {
       control: "select",

@@ -24,7 +24,7 @@ export class MiSelectBoxUnit extends LitElement {
   @property({ type: String, reflect: true })
   text = "";
 
-  /** 必須かどうか */
+  /** 必須バッジを表示するかどうか */
   @property({ type: Boolean, reflect: true })
   required = false;
 
@@ -65,6 +65,7 @@ export class MiSelectBoxUnit extends LitElement {
         <mi-label-unit
           class="${this.#labelClasses()}"
           text="${this.text}"
+          ?required="${this.required}"
         ></mi-label-unit>
         <mi-select-box
           variant="${this.variant}"

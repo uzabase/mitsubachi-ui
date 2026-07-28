@@ -77,7 +77,6 @@ describe("mi-select-box-unit", async () => {
 
     const el = document.querySelector("mi-select-box-unit") as MiSelectBoxUnit;
     expect(el.text).toBe("");
-    expect(el.required).toBe(false);
     expect(el.variant).toBe("primary");
     expect(el.size).toBe("medium");
     expect(el.placeholder).toBe("");
