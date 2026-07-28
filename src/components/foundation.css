@@ -1,10 +1,12 @@
-
 :host {
   --font-weight-normal: 400;
-  --font-weight-bold: 700;
+  --font-weight-bold: 600;
 
-  &, * {
-    font-family: Arial, YakuHanJPs, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans JP", sans-serif;
+  &,
+  * {
+    font-family:
+      Arial, YakuHanJPs, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo,
+      "Noto Sans JP", sans-serif;
     font-weight: var(--font-weight-normal);
     overflow-wrap: anywhere;
     line-break: strict;
@@ -21,9 +23,10 @@
   }
 
   :lang(zh) {
-    font-family: Arial, YakuHanJPs, 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', "Microsoft JhengHei", sans-serif;
+    font-family:
+      Arial, YakuHanJPs, "PingFang SC", "Microsoft YaHei", "PingFang TC",
+      "Microsoft JhengHei", sans-serif;
   }
-
 }
 
 :where(:focus-visible) {
