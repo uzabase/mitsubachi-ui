@@ -62,18 +62,18 @@ export {
   MiSearchBox,
   SpSearchBox,
 } from "./components/search-box/mi-search-box";
-export type {
-  SelectBoxSize,
-  SelectBoxVariant,
-} from "./components/select-box/mi-select-box";
-export { MiSelectBox } from "./components/select-box/mi-select-box";
-export { MiSelectBoxUnit } from "./components/select-box/mi-select-box-unit";
 export {
   MiSegment,
   type SegmentVariant,
   segmentVariants,
 } from "./components/segmented-control/mi-segment";
 export { MiSegmentedControl } from "./components/segmented-control/mi-segmented-control";
+export type {
+  SelectBoxSize,
+  SelectBoxVariant,
+} from "./components/select-box/mi-select-box";
+export { MiSelectBox } from "./components/select-box/mi-select-box";
+export { MiSelectBoxUnit } from "./components/select-box/mi-select-box-unit";
 export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
 export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
 export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
