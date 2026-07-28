@@ -62,6 +62,11 @@ export {
   MiSearchBox,
   SpSearchBox,
 } from "./components/search-box/mi-search-box";
+export type {
+  SelectBoxSize,
+  SelectBoxVariant,
+} from "./components/select-box/mi-select-box";
+export { MiSelectBox } from "./components/select-box/mi-select-box";
 export {
   MiSegment,
   type SegmentVariant,
