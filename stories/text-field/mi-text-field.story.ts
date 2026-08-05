@@ -1,8 +1,8 @@
 import "../../src/components/text-field/text-field";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
-import { html, nothing } from "lit";
 import type { TemplateResult } from "lit";
+import { html, nothing } from "lit";
 
 import type { MiTextField } from "../../src/components/text-field/text-field";
 
