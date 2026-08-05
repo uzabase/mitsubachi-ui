@@ -63,9 +63,7 @@ export const Default: Story = {
       autocomplete=${autocomplete || nothing}
       type=${type}
     >
-      ${error
-        ? html`<span slot="error">${error}</span>`
-        : nothing}
+      ${error ? html`<span slot="error">${error}</span>` : nothing}
     </mi-text-field-unit>`;
   },
 };

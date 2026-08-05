@@ -64,7 +64,9 @@ export class MiTextField extends LitElement {
   }
 
   get #hasError() {
-    return !this.disabled && (!!this.error || this._slottedErrorHtml.length > 0);
+    return (
+      !this.disabled && (!!this.error || this._slottedErrorHtml.length > 0)
+    );
   }
 
   #handleErrorSlotChange(e: Event) {

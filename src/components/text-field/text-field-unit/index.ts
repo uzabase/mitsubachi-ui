@@ -132,9 +132,7 @@ export class MiTextFieldUnit extends LitElement {
           @input="${this.#handleInput}"
           @keydown="${this.#handleKeyDown}"
         >
-          ${this.error
-            ? html`<span slot="error">${this.error}</span>`
-            : ""}
+          ${this.error ? html`<span slot="error">${this.error}</span>` : ""}
           ${this._slottedErrors.map(
             (msg) => html`<span slot="error">${msg}</span>`,
           )}
