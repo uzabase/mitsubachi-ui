@@ -95,24 +95,33 @@ describe("mi-text-field", () => {
     expect(submitHandler).not.toHaveBeenCalled();
   });
 
-  test("errorsプロパティで複数のエラーメッセージが表示される", async () => {
-    document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+  test("slot=errorで複数のエラーメッセージが表示される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+        <span slot="error">エラー3</span>
+      </mi-text-field>`;
     await customElements.whenDefined("mi-text-field");
 
     const sut = document.querySelector("mi-text-field")!;
-    sut.errors = ["エラー1", "エラー2", "エラー3"];
+    await sut.updateComplete;
     await sut.updateComplete;
 
     const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
     expect(helperTexts?.length).toBe(3);
   });
 
-  test("errorとerrorsを併用した場合、errorが先頭に表示される", async () => {
-    document.body.innerHTML = `<mi-text-field error="単一エラー"></mi-text-field>`;
+  test("error属性とslot=errorを併用した場合、error属性が先頭に表示される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field error="単一エラー">
+        <span slot="error">追加エラー1</span>
+        <span slot="error">追加エラー2</span>
+      </mi-text-field>`;
     await customElements.whenDefined("mi-text-field");
 
     const sut = document.querySelector("mi-text-field")!;
-    sut.errors = ["追加エラー1", "追加エラー2"];
+    await sut.updateComplete;
     await sut.updateComplete;
 
     const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
@@ -121,24 +130,49 @@ describe("mi-text-field", () => {
     expect(helperTexts?.[1]?.textContent?.trim()).toBe("追加エラー1");
   });
 
-  test("disabled時はerrorsが表示されない", async () => {
-    document.body.innerHTML = `<mi-text-field disabled></mi-text-field>`;
+  test("disabled時はslot=errorが表示されない", async () => {
+    document.body.innerHTML = `
+      <mi-text-field disabled>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+      </mi-text-field>`;
     await customElements.whenDefined("mi-text-field");
 
     const sut = document.querySelector("mi-text-field")!;
-    sut.errors = ["エラー1", "エラー2"];
+    await sut.updateComplete;
     await sut.updateComplete;
 
     const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
     expect(helperTexts?.length).toBe(0);
   });
 
-  test("errorsがあるとき、inputにaria-describedbyが設定される", async () => {
-    document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+  test("slot=errorのHTML構造が保持される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">詳しくは<a href="/help">こちら</a></span>
+      </mi-text-field>`;
     await customElements.whenDefined("mi-text-field");
 
     const sut = document.querySelector("mi-text-field")!;
-    sut.errors = ["エラー1", "エラー2"];
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const helperText = sut.shadowRoot?.querySelector("mi-helper-text");
+    const link = helperText?.querySelector("a");
+    expect(link).toBeTruthy();
+    expect(link?.getAttribute("href")).toBe("/help");
+  });
+
+  test("slot=errorがあるとき、inputにaria-describedbyが設定される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
     await sut.updateComplete;
 
     const input = sut.shadowRoot?.querySelector("input");

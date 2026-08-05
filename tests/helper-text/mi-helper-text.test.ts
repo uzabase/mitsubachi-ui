@@ -62,7 +62,7 @@ describe("mi-helper-text", () => {
     },
   );
 
-  test('size属性を指定しなかった場合、"small" がデフォルトとして適用される', async () => {
+  test('size属性を指定しなかった場合、"medium" がデフォルトとして適用される', async () => {
     document.body.innerHTML = `
       <mi-helper-text>ヘルパーテキスト</mi-helper-text>
     `;
@@ -70,7 +70,7 @@ describe("mi-helper-text", () => {
 
     const element = document.querySelector("mi-helper-text");
     const base = element?.shadowRoot?.querySelector(".base");
-    expect(base?.getAttribute("data-size")).toBe("small");
+    expect(base?.getAttribute("data-size")).toBe("medium");
   });
 
   test('status="error" の場合、エラー色のテキストが適用される', async () => {

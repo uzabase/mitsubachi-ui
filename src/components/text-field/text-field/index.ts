@@ -1,9 +1,10 @@
 import "./error-text";
 import "../../helper-text/mi-helper-text";
 
-import { html, LitElement } from "lit";
-import { property } from "lit/decorators.js";
+import { html, LitElement, nothing } from "lit";
+import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../../styles";
 import style from "./text-field.styles";
@@ -16,13 +17,9 @@ export class MiTextField extends LitElement {
 
   static formAssociated = true;
 
-  /** 単一のエラーメッセージ。後方互換のために維持。複数表示する場合は `errors` を使用 */
+  /** @deprecated 代わりに `slot="error"` を使用してください */
   @property({ type: String, reflect: true })
   error = "";
-
-  /** 複数のエラーメッセージ。`error` と併用した場合は `error` が先頭に表示される */
-  @property({ type: Array })
-  errors: string[] = [];
 
   @property({ type: String, reflect: true })
   placeholder = "";
@@ -48,6 +45,9 @@ export class MiTextField extends LitElement {
   @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
   submitOnEnter = false;
 
+  @state()
+  private _slottedErrorHtml: string[] = [];
+
   private internals: ElementInternals;
 
   constructor() {
@@ -64,21 +64,31 @@ export class MiTextField extends LitElement {
   }
 
   get #hasError() {
-    return !this.disabled && (!!this.error || this.errors.length > 0);
+    return !this.disabled && (!!this.error || this._slottedErrorHtml.length > 0);
   }
 
-  get #errorMessages(): string[] {
-    if (this.disabled) return [];
-    const messages: string[] = [];
-    if (this.error) messages.push(this.error);
-    messages.push(...this.errors);
-    return messages;
+  #handleErrorSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    this._slottedErrorHtml = slot
+      .assignedElements()
+      .map((el) => el.innerHTML)
+      .filter((h) => h.trim() !== "");
   }
 
   #errorIdPrefix = "error";
 
+  get #errorCount(): number {
+    if (this.disabled) return 0;
+    let count = this._slottedErrorHtml.length;
+    if (this.error) count++;
+    return count;
+  }
+
   get #errorIds(): string[] {
-    return this.#errorMessages.map((_, i) => `${this.#errorIdPrefix}-${i}`);
+    return Array.from(
+      { length: this.#errorCount },
+      (_, i) => `${this.#errorIdPrefix}-${i}`,
+    );
   }
 
   #inputClasses() {
@@ -133,15 +143,30 @@ export class MiTextField extends LitElement {
         @input="${this.#handleInput}"
         @keydown="${this.#handleKeyDown}"
       />
-      ${this.#errorMessages.map(
-        (msg, i) =>
-          html`<mi-helper-text
-            id="${this.#errorIdPrefix}-${i}"
+      <slot
+        name="error"
+        @slotchange=${this.#handleErrorSlotChange}
+        hidden
+      ></slot>
+      ${!this.disabled && this.error
+        ? html`<mi-helper-text
+            id="${this.#errorIdPrefix}-0"
             status="error"
             size="medium"
-            >${msg}</mi-helper-text
-          >`,
-      )}
+            >${this.error}</mi-helper-text
+          >`
+        : nothing}
+      ${!this.disabled
+        ? this._slottedErrorHtml.map((content, i) => {
+            const idx = this.error ? i + 1 : i;
+            return html`<mi-helper-text
+              id="${this.#errorIdPrefix}-${idx}"
+              status="error"
+              size="medium"
+              >${unsafeHTML(content)}</mi-helper-text
+            >`;
+          })
+        : nothing}
     `;
   }
 }

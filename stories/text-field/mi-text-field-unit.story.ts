@@ -5,6 +5,8 @@ import { html, nothing } from "lit";
 
 import type { MiTextFieldUnit } from "../../src/components/text-field/text-field-unit";
 
+type StoryArgs = MiTextFieldUnit & { error: string };
+
 const meta = {
   component: "mi-text-field-unit",
   title: "Components/TextField/mi-text-field-unit",
@@ -34,10 +36,10 @@ const meta = {
     autocomplete: "",
   },
   tags: ["!dev-only"],
-} satisfies Meta<MiTextFieldUnit>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
-type Story = StoryObj<MiTextFieldUnit>;
+type Story = StoryObj<StoryArgs>;
 
 export const Default: Story = {
   render: ({
@@ -58,10 +60,12 @@ export const Default: Story = {
       name=${name}
       support-text=${supportText}
       value=${value}
-      error=${error}
       autocomplete=${autocomplete || nothing}
       type=${type}
     >
+      ${error
+        ? html`<span slot="error">${error}</span>`
+        : nothing}
     </mi-text-field-unit>`;
   },
 };

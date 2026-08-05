@@ -2,15 +2,33 @@ import "../../src/components/text-field/text-field";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
+import type { TemplateResult } from "lit";
 
 import type { MiTextField } from "../../src/components/text-field/text-field";
+
+type StoryArgs = MiTextField & { errorSlot: TemplateResult | typeof nothing };
 
 const meta = {
   component: "mi-text-field",
   title: "Components/TextField/mi-text-field",
   argTypes: {
-    error: { type: "string" },
-    errors: { control: { type: "object" } },
+    errorSlot: {
+      name: 'slot="error"',
+      control: "radio",
+      options: ["none", "text", "withLink", "multiple"],
+      mapping: {
+        none: nothing,
+        text: html`<span slot="error">エラーテキストが入ります</span>`,
+        withLink: html`<span slot="error"
+          >エラーが発生しました。詳しくは<a href="#">こちら</a
+          >をご覧ください。</span
+        >`,
+        multiple: html`<span slot="error">エラーテキストが入ります</span>
+          <span slot="error">エラーテキストが入ります</span>
+          <span slot="error">エラーテキストが入ります</span>`,
+      },
+      table: { category: "Slots" },
+    },
     placeholder: { type: "string" },
     disabled: { type: "boolean" },
     name: { type: "string" },
@@ -22,60 +40,39 @@ const meta = {
     autocomplete: { type: "string" },
   },
   args: {
-    error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
     disabled: false,
     name: "surname",
     value: "Yamada",
     type: "text",
     autocomplete: undefined,
+    errorSlot: "none" as unknown as TemplateResult,
   },
   tags: ["!dev-only"],
-} satisfies Meta<MiTextField>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
-type Story = StoryObj<MiTextField>;
+type Story = StoryObj<StoryArgs>;
 
 export const Default: Story = {
   render: ({
     type,
-    error,
     placeholder,
     disabled,
     name,
     value,
     autocomplete,
+    errorSlot,
   }) => {
     return html`<mi-text-field
       placeholder=${placeholder || nothing}
       ?disabled=${disabled}
       name=${name}
       value=${value}
-      error=${error}
       type=${type}
       autocomplete=${autocomplete || nothing}
     >
-    </mi-text-field>`;
-  },
-};
-
-export const MultipleErrors: Story = {
-  render: ({ placeholder, disabled, name, value, type }) => {
-    const errors = [
-      "エラーテキストが入ります",
-      "エラーテキストが入ります",
-      "エラーテキストが入ります",
-      "エラーテキストが入ります",
-      "エラーテキストが入ります",
-    ];
-    return html`<mi-text-field
-      placeholder=${placeholder || nothing}
-      ?disabled=${disabled}
-      name=${name}
-      value=${value}
-      type=${type}
-      .errors=${errors}
-    >
+      ${errorSlot}
     </mi-text-field>`;
   },
 };

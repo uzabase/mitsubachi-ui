@@ -2,7 +2,7 @@ import "../../label-unit";
 import "../text-field";
 
 import { html, LitElement, unsafeCSS } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { makeStyles } from "../../styles";
@@ -24,8 +24,12 @@ export class MiTextFieldUnit extends LitElement {
   @property({ type: String, reflect: true })
   text = "";
 
+  /** @deprecated 代わりに `slot="error"` を使用してください */
   @property({ type: String, reflect: true })
   error = "";
+
+  @state()
+  private _slottedErrors: string[] = [];
 
   @property({ type: String, reflect: true })
   placeholder = "";
@@ -81,6 +85,14 @@ export class MiTextFieldUnit extends LitElement {
     this.value = target.value;
   }
 
+  #handleErrorSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    this._slottedErrors = slot
+      .assignedElements()
+      .map((el) => el.textContent?.trim() ?? "")
+      .filter((text) => text !== "");
+  }
+
   /*
    * 子コンポーネントであるmi-text-fieldにもsubmit-on-enter属性があるので、移譲すれば良さそうに見えるが、
    * このコンポーネント自体がform-associated custom elementであるため、子コンポーネントの方ではformのサブミット処理が起動しない模様。
@@ -110,7 +122,6 @@ export class MiTextFieldUnit extends LitElement {
           support-text="${this.supportText}"
         ></mi-label-unit>
         <mi-text-field
-          error="${this.error}"
           placeholder="${this.placeholder}"
           ?disabled="${this.disabled}"
           name="${this.name}"
@@ -120,7 +131,19 @@ export class MiTextFieldUnit extends LitElement {
           ?autofocus="${this.autofocus}"
           @input="${this.#handleInput}"
           @keydown="${this.#handleKeyDown}"
-        ></mi-text-field>
+        >
+          ${this.error
+            ? html`<span slot="error">${this.error}</span>`
+            : ""}
+          ${this._slottedErrors.map(
+            (msg) => html`<span slot="error">${msg}</span>`,
+          )}
+        </mi-text-field>
+        <slot
+          name="error"
+          @slotchange=${this.#handleErrorSlotChange}
+          hidden
+        ></slot>
       </fieldset>
     `;
   }

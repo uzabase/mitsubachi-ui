@@ -23,7 +23,7 @@ export class MiHelperText extends LitElement {
   status: Status = "error";
 
   @property({ type: String, reflect: true })
-  size: Size = "small";
+  size: Size = "medium";
 
   static styles = makeStyles(style);
 

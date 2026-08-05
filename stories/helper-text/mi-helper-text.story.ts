@@ -14,7 +14,7 @@ const meta: Meta<MiHelperText> = {
   title: "Components/HelperText/mi-helper-text",
   args: {
     status: "error",
-    size: "small",
+    size: "medium",
   },
   argTypes: {
     status: {
