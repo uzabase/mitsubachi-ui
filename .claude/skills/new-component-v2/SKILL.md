@@ -112,3 +112,4 @@ Generator が完了した時点で **SubagentStop フックが自動で `typeche
 - サブエージェントには `eval-round-*.md` の**全文ではなくパスを渡す**。会話に貼ると round を重ねるほどトークンが膨らむ。
 - PASS 判定は「**高 finding = 0**」であって「指摘ゼロ」ではない。中/低 が残っていてもループは PASS で抜ける。
 - 3ラウンドで PASS しないまま終わるのは異常ではない。未解決の高 finding を**正直にレポートに残す**（隠して PASS 扱いにしない）。
+- コミット前に **biome だけでなく `prettier --check` と `eslint` も実行する**。CI では `npm run format:prettier:check`（prettier）と `npm run lint`（eslint）が別途走り、import ソート（`simple-import-sort/imports`）やフォーマット差分で落ちることがある。
