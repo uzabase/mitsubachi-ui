@@ -1,4 +1,8 @@
 import "../../src/components/select-box/mi-select-box-unit";
+import "../../src/components/menu/mi-menu";
+import "../../src/components/menu/mi-menu-dropdown";
+import "../../src/components/menu/mi-menu-radio-group";
+import "../../src/components/menu/mi-select-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -170,4 +174,50 @@ export const WithoutLabel: Story = {
       ></mi-select-box-unit>
     </div>
   `,
+};
+
+/** 選択肢付きの使用例 */
+export const WithMenu: Story = {
+  decorators: [
+    (story) => html`<div style="padding-bottom: 200px;">${story()}</div>`,
+  ],
+  render: () => {
+    const handleChange = (e: Event) => {
+      const group = e.target as HTMLElement & { value: string };
+      const selected = group.querySelector(
+        `mi-select-menu-item[value="${group.value}"]`,
+      );
+      const unit = group
+        .closest("mi-menu")
+        ?.querySelector("mi-select-box-unit");
+      if (unit && selected) {
+        (unit as HTMLElement & { value: string }).value =
+          selected.textContent?.trim() ?? "";
+      }
+    };
+
+    return html`
+      <div style="width: 240px;">
+        <mi-menu>
+          <mi-select-box-unit
+            slot="trigger"
+            text="部署"
+            placeholder="選択してください"
+          ></mi-select-box-unit>
+          <mi-menu-dropdown>
+            <mi-menu-radio-group value="" @change=${handleChange}>
+              <mi-select-menu-item value="sales">営業</mi-select-menu-item>
+              <mi-select-menu-item value="marketing">
+                マーケティング・広報
+              </mi-select-menu-item>
+              <mi-select-menu-item value="engineering">
+                エンジニアリング
+              </mi-select-menu-item>
+              <mi-select-menu-item value="hr">人事</mi-select-menu-item>
+            </mi-menu-radio-group>
+          </mi-menu-dropdown>
+        </mi-menu>
+      </div>
+    `;
+  },
 };
