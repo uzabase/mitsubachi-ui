@@ -48,6 +48,15 @@ export class MiMenuDropdown extends LitElement {
   width = 200;
 
   /**
+   * ドロップダウンの ARIA ロール。
+   * メニューとして使う場合は "menu"（デフォルト）、
+   * セレクトボックスの選択肢として使う場合は "listbox" を指定する。
+   * @default 'menu'
+   */
+  @property({ type: String, attribute: "popup-role" })
+  popupRole: "menu" | "listbox" = "menu";
+
+  /**
    * position 計算を無効にし、インラインに描画する。
    * Storybook の静的表示など、フロー内に配置したい場合に使用
    * @default false
@@ -118,7 +127,7 @@ export class MiMenuDropdown extends LitElement {
     return html`
       <div
         class="popup"
-        role="menu"
+        role="${this.popupRole}"
         tabindex="-1"
         style="inline-size: ${inlineSize}"
         @keydown=${this._handleKeyDown}

@@ -46,6 +46,40 @@ export class MiSelectBox extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this._parentMenu = this.closest("mi-menu");
+    this._parentMenu?.addEventListener("change", this._handleChange, true);
+    this._setDropdownRole();
+  }
+
+  private _setDropdownRole() {
+    const dropdown = this._parentMenu?.querySelector("mi-menu-dropdown");
+    if (dropdown) {
+      dropdown.setAttribute("popup-role", "listbox");
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._parentMenu?.removeEventListener("change", this._handleChange, true);
+    this._parentMenu = null;
+  }
+
+  private _parentMenu: Element | null = null;
+
+  private _handleChange = (e: Event) => {
+    const radioGroup = e.target as HTMLElement & { value?: string };
+    if (radioGroup.tagName?.toLowerCase() !== "mi-menu-radio-group") return;
+    const selectedValue = radioGroup.value ?? "";
+    const selectedItem = radioGroup.querySelector(
+      `mi-select-menu-item[value="${selectedValue}"]`,
+    );
+    if (selectedItem) {
+      this.value = selectedItem.textContent?.trim() ?? "";
+    }
+  };
+
   get #effectiveSize(): SelectBoxSize {
     return this.variant === "primary" ? "medium" : this.size;
   }
