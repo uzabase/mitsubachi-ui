@@ -1,4 +1,4 @@
-import "../../src/components/menu-button/mi-menu-button";
+import "../../src/components/menu/mi-menu-button";
 
 import { describe, expect, test } from "vitest";
 

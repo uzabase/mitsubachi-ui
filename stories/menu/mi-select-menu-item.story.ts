@@ -2,7 +2,7 @@ import "../../src/components/menu/mi-menu";
 import "../../src/components/menu/mi-menu-dropdown";
 import "../../src/components/menu/mi-select-menu-item";
 import "../../src/components/menu/mi-menu-radio-group";
-import "../../src/components/button/mi-neutral-button";
+import "../../src/components/menu/mi-menu-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -129,7 +129,7 @@ export const MenuWithTrigger: Story = {
 
     return html`
       <mi-menu>
-        <mi-neutral-button slot="trigger">営業</mi-neutral-button>
+        <mi-menu-button slot="trigger">営業</mi-menu-button>
         <mi-menu-dropdown>
           <mi-menu-radio-group value="sales" @change=${handleChange}>
             <mi-select-menu-item value="sales">営業</mi-select-menu-item>
@@ -151,7 +151,7 @@ export const MenuWithTrigger: Story = {
 export const MenuWithTriggerOptional: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">職種を選択</mi-neutral-button>
+      <mi-menu-button slot="trigger">職種を選択</mi-menu-button>
       <mi-menu-dropdown>
         <mi-menu-radio-group value="">
           <mi-select-menu-item value="">指定なし</mi-select-menu-item>

@@ -1,4 +1,4 @@
-import "../../src/components/menu-button/mi-menu-button";
+import "../../src/components/menu/mi-menu-button";
 import "../../src/components/menu/mi-menu";
 import "../../src/components/menu/mi-menu-dropdown";
 import "../../src/components/menu/mi-action-menu-item";
@@ -11,11 +11,11 @@ import {
   type MiMenuButton,
   sizes,
   variants,
-} from "../../src/components/menu-button/mi-menu-button";
+} from "../../src/components/menu/mi-menu-button";
 
 const meta = {
   component: "mi-menu-button",
-  title: "Components/Button/mi-menu-button",
+  title: "Components/Menu/mi-menu-button",
   parameters: {
     docs: {
       description: {

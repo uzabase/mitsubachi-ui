@@ -47,12 +47,12 @@ export { MiActionMenuItem } from "./components/menu/mi-action-menu-item";
 export { MiLinkMenuItem } from "./components/menu/mi-link-menu-item";
 export type { MenuAlign, MenuSide } from "./components/menu/mi-menu";
 export { MiMenu } from "./components/menu/mi-menu";
+export { MiMenuButton } from "./components/menu/mi-menu-button";
 export { MiMenuDropdown } from "./components/menu/mi-menu-dropdown";
 export { MiMenuGroup } from "./components/menu/mi-menu-group";
 export { MiMenuRadioGroup } from "./components/menu/mi-menu-radio-group";
 export { MiSelectMenuItem } from "./components/menu/mi-select-menu-item";
 export { MiSubMenuItem } from "./components/menu/mi-sub-menu-item";
-export { MiMenuButton } from "./components/menu-button/mi-menu-button";
 export {
   MiRadioButtonText,
   SpRadioButtonText,
