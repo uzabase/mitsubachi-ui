@@ -20,7 +20,7 @@ const meta = {
         none: nothing,
         text: html`<span slot="error">エラーテキストが入ります</span>`,
         withLink: html`<span slot="error"
-          >エラーが発生しました。詳しくは<a href="#">こちら</a
+          >エラーが発生しました。詳しくは<a href="#">こちら</
           >をご覧ください。</span
         >`,
         multiple: html`<span slot="error">エラーテキストが入ります</span>

@@ -42,6 +42,17 @@ export const Default: Story = {
   },
 };
 
+/** リンク付き */
+export const WithLink: Story = {
+  render: ({ status, size }) => {
+    return html`
+      <mi-helper-text status=${status} size=${size}>
+        エラーが発生しました。詳しくは<a href="#">こちら</a>をご覧ください。
+      </mi-helper-text>
+    `;
+  },
+};
+
 export const All: Story = {
   render: () => {
     return html`

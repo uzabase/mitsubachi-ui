@@ -29,6 +29,15 @@ export default css`
     letter-spacing: 0.32px;
   }
 
+  ::slotted(a) {
+    text-decoration: none;
+    color: var(--text-link, #315ce8);
+  }
+
+  ::slotted(a:hover) {
+    text-decoration: underline;
+  }
+
   .icon[data-size="small"] {
     display: inline-block;
     min-inline-size: 18px;
