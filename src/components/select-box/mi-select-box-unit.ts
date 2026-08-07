@@ -40,9 +40,13 @@ export class MiSelectBoxUnit extends LitElement {
   @property({ type: String, reflect: true })
   placeholder = "";
 
-  /** 選択中の値（表示テキスト） */
+  /** 選択中の値（option の value 属性に対応する識別子） */
   @property({ type: String, reflect: true })
   value = "";
+
+  /** 選択中の表示テキスト（value に対応する option のラベル） */
+  @property({ type: String, attribute: "display-text", reflect: true })
+  displayText = "";
 
   /** エラーメッセージ（空でなければエラー状態） */
   @property({ type: String, reflect: true })
@@ -72,6 +76,7 @@ export class MiSelectBoxUnit extends LitElement {
           size="${this.size}"
           placeholder="${this.placeholder}"
           .value="${this.value}"
+          .displayText="${this.displayText}"
           error="${this.error}"
           ?disabled="${this.disabled}"
         ></mi-select-box>

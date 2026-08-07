@@ -10,7 +10,7 @@ import { makeStyles } from "../styles";
  * グループ内で1つだけ選択できる（Single-select）。
  *
  * @slot - mi-select-menu-item 要素
- * @fires change - 選択値が変更されたとき。新しい値は `event.target.value` で取得する。
+ * @fires change - 選択値が変更されたとき（bubbles: true）。新しい値は `event.target.value` で取得する。mi-select-box 内で使用する場合は mi-select-box が stopPropagation() で止め、自身の change として再発火する。
  */
 export class MiMenuRadioGroup extends LitElement {
   static styles = makeStyles(css`
@@ -49,7 +49,7 @@ export class MiMenuRadioGroup extends LitElement {
     const newValue = item.value;
     if (this.value !== newValue) {
       this.value = newValue;
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new Event("change", { bubbles: true }));
     }
   };
 

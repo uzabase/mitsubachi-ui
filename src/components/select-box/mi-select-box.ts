@@ -18,6 +18,8 @@ export type SelectBoxSize = "small" | "medium";
  * クリックで選択肢を含む Menu を展開し、ユーザーが1つを選択します。
  *
  * @summary セレクトボックスのトリガーコンポーネントです。
+ *
+ * @fires change - 選択値が変更されたとき。`event.target.value` で選択された識別子、`event.target.displayText` で表示テキストを取得できる。
  */
 export class MiSelectBox extends LitElement {
   static styles = makeStyles(selectBoxStyles);
@@ -34,9 +36,13 @@ export class MiSelectBox extends LitElement {
   @property({ type: String, reflect: true })
   placeholder = "";
 
-  /** 選択中の値（表示テキスト） */
+  /** 選択中の値（option の value 属性に対応する識別子） */
   @property({ type: String, reflect: true })
   value = "";
+
+  /** 選択中の表示テキスト（value に対応する option のラベル） */
+  @property({ type: String, attribute: "display-text", reflect: true })
+  displayText = "";
 
   /** エラーメッセージ（空でなければエラー状態） */
   @property({ type: String, reflect: true })
@@ -49,7 +55,7 @@ export class MiSelectBox extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._parentMenu = this.closest("mi-menu");
-    this._parentMenu?.addEventListener("change", this._handleChange, true);
+    this._parentMenu?.addEventListener("change", this._handleChange);
     this._setDropdownRole();
   }
 
@@ -62,7 +68,7 @@ export class MiSelectBox extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this._parentMenu?.removeEventListener("change", this._handleChange, true);
+    this._parentMenu?.removeEventListener("change", this._handleChange);
     this._parentMenu = null;
   }
 
@@ -71,13 +77,14 @@ export class MiSelectBox extends LitElement {
   private _handleChange = (e: Event) => {
     const radioGroup = e.target as HTMLElement & { value?: string };
     if (radioGroup.tagName?.toLowerCase() !== "mi-menu-radio-group") return;
+    e.stopPropagation();
     const selectedValue = radioGroup.value ?? "";
     const selectedItem = radioGroup.querySelector(
-      `mi-select-menu-item[value="${selectedValue}"]`,
+      `mi-select-menu-item[value="${CSS.escape(selectedValue)}"]`,
     );
-    if (selectedItem) {
-      this.value = selectedItem.textContent?.trim() ?? "";
-    }
+    this.value = selectedValue;
+    this.displayText = selectedItem?.textContent?.trim() ?? "";
+    this.dispatchEvent(new Event("change", { bubbles: true }));
   };
 
   get #effectiveSize(): SelectBoxSize {
@@ -96,12 +103,12 @@ export class MiSelectBox extends LitElement {
   #textClasses() {
     return classMap({
       text: true,
-      placeholder: !this.value,
+      placeholder: !this.displayText,
     });
   }
 
-  #displayText() {
-    return this.value || this.placeholder;
+  get #displayLabel() {
+    return this.displayText || this.placeholder;
   }
 
   render() {
@@ -113,7 +120,7 @@ export class MiSelectBox extends LitElement {
         aria-haspopup="listbox"
         aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
       >
-        <span class="${this.#textClasses()}">${this.#displayText()}</span>
+        <span class="${this.#textClasses()}">${this.#displayLabel}</span>
         <mi-icon class="chevron" type="chevron-down-small"></mi-icon>
       </button>
       ${this.error && !this.disabled

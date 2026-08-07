@@ -41,7 +41,7 @@ type Story = StoryObj<MiSelectMenuItem>;
 /** 未選択 */
 export const Default: Story = {
   render: (args) => html`
-    <mi-menu-radio-group value="">
+    <mi-menu-radio-group value="" @change=${action("change")}>
       <mi-select-menu-item
         value="item"
         ?disabled=${args.disabled}
@@ -56,7 +56,7 @@ export const Default: Story = {
 /** 選択済み */
 export const Selected: Story = {
   render: (args) => html`
-    <mi-menu-radio-group value="item">
+    <mi-menu-radio-group value="item" @change=${action("change")}>
       <mi-select-menu-item
         value="item"
         ?disabled=${args.disabled}

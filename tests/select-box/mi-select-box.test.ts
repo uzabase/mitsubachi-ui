@@ -1,6 +1,10 @@
 import "../../src/components/select-box/mi-select-box";
+import "../../src/components/menu/mi-menu";
+import "../../src/components/menu/mi-menu-dropdown";
+import "../../src/components/menu/mi-menu-radio-group";
+import "../../src/components/menu/mi-select-menu-item";
 
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import type { MiSelectBox } from "../../src/components/select-box/mi-select-box";
 
@@ -32,9 +36,9 @@ describe("mi-select-box", async () => {
     expect(text.classList.contains("placeholder")).toBe(true);
   });
 
-  test("valueがあるときvalueが表示される", async () => {
+  test("displayTextがあるときdisplayTextが表示される", async () => {
     document.body.innerHTML = `
-      <mi-select-box value="営業" placeholder="選択してください"></mi-select-box>
+      <mi-select-box display-text="営業" placeholder="選択してください"></mi-select-box>
     `;
     await customElements.whenDefined("mi-select-box");
 
@@ -164,5 +168,35 @@ describe("mi-select-box", async () => {
 
     const button = el.shadowRoot!.querySelector("button") as HTMLButtonElement;
     expect(button.classList.contains("small")).toBe(true);
+  });
+
+  test("選択時にchangeイベントが1回だけ発行される", async () => {
+    document.body.innerHTML = `
+      <mi-menu>
+        <mi-select-box slot="trigger" placeholder="選択"></mi-select-box>
+        <mi-menu-dropdown>
+          <mi-menu-radio-group value="">
+            <mi-select-menu-item value="a">項目A</mi-select-menu-item>
+            <mi-select-menu-item value="b">項目B</mi-select-menu-item>
+          </mi-menu-radio-group>
+        </mi-menu-dropdown>
+      </mi-menu>
+    `;
+    await customElements.whenDefined("mi-select-box");
+    await customElements.whenDefined("mi-menu");
+    await customElements.whenDefined("mi-select-menu-item");
+
+    const selectBox = document.querySelector("mi-select-box") as MiSelectBox;
+    await selectBox.updateComplete;
+
+    const handler = vi.fn();
+    selectBox.addEventListener("change", handler);
+
+    const itemB = document.querySelectorAll("mi-select-menu-item")[1];
+    itemB.click();
+
+    expect(handler).toHaveBeenCalledTimes(1);
+    expect(selectBox.value).toBe("b");
+    expect(selectBox.displayText).toBe("項目B");
   });
 });

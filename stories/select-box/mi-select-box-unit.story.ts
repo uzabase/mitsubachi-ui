@@ -6,6 +6,7 @@ import "../../src/components/menu/mi-select-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 import type { MiSelectBoxUnit } from "../../src/components/select-box/mi-select-box-unit";
 
@@ -47,7 +48,12 @@ const meta = {
     },
     value: {
       control: "text",
-      description: "選択中の値（表示テキスト）",
+      description: "選択中の値（option の value に対応する識別子）",
+    },
+    displayText: {
+      control: "text",
+      name: "display-text",
+      description: "選択中の表示テキスト",
     },
     error: {
       control: "text",
@@ -65,6 +71,7 @@ const meta = {
     size: "medium",
     placeholder: "選択してください",
     value: "",
+    displayText: "",
     error: "",
     disabled: false,
   },
@@ -84,6 +91,7 @@ export const Default: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box-unit>
@@ -94,7 +102,8 @@ export const Default: Story = {
 /** 値が選択されている状態 */
 export const WithValue: Story = {
   args: {
-    value: "営業",
+    value: "sales",
+    displayText: "営業",
   },
   render: (args) => html`
     <div style="width: 240px;">
@@ -105,6 +114,7 @@ export const WithValue: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box-unit>
@@ -126,6 +136,7 @@ export const Error: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box-unit>
@@ -137,7 +148,8 @@ export const Error: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    value: "営業",
+    value: "sales",
+    displayText: "営業",
   },
   render: (args) => html`
     <div style="width: 240px;">
@@ -148,6 +160,7 @@ export const Disabled: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box-unit>
@@ -169,6 +182,7 @@ export const WithoutLabel: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box-unit>
@@ -189,10 +203,16 @@ export const WithMenu: Story = {
       );
       const unit = group
         .closest("mi-menu")
-        ?.querySelector("mi-select-box-unit");
+        ?.querySelector("mi-select-box-unit") as
+        | (HTMLElement & { value: string; displayText: string })
+        | null;
       if (unit && selected) {
-        (unit as HTMLElement & { value: string }).value =
-          selected.textContent?.trim() ?? "";
+        unit.value = group.value;
+        unit.displayText = selected.textContent?.trim() ?? "";
+        action("change")({
+          value: unit.value,
+          displayText: unit.displayText,
+        });
       }
     };
 

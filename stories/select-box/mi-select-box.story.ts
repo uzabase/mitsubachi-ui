@@ -6,6 +6,7 @@ import "../../src/components/menu/mi-select-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 import type { MiSelectBox } from "../../src/components/select-box/mi-select-box";
 
@@ -43,7 +44,12 @@ const meta = {
     },
     value: {
       control: "text",
-      description: "選択中の値（表示テキスト）",
+      description: "選択中の値（option の value に対応する識別子）",
+    },
+    displayText: {
+      control: "text",
+      name: "display-text",
+      description: "選択中の表示テキスト",
     },
     error: {
       control: "text",
@@ -59,6 +65,7 @@ const meta = {
     size: "medium",
     placeholder: "選択してください",
     value: "",
+    displayText: "",
     error: "",
     disabled: false,
   },
@@ -83,6 +90,7 @@ export const Default: Story = {
           size="${args.size}"
           placeholder="${args.placeholder}"
           value="${args.value}"
+          display-text="${args.displayText}"
           error="${args.error}"
           ?disabled="${args.disabled}"
         ></mi-select-box>
@@ -94,7 +102,8 @@ export const Default: Story = {
 /** 値が選択されている状態 */
 export const WithValue: Story = {
   args: {
-    value: "営業",
+    value: "sales",
+    displayText: "営業",
   },
   render: (args) => html`
     <div style="width: 240px;">
@@ -103,6 +112,7 @@ export const WithValue: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box>
@@ -114,7 +124,8 @@ export const WithValue: Story = {
 export const Secondary: Story = {
   args: {
     variant: "secondary",
-    value: "営業",
+    value: "sales",
+    displayText: "営業",
   },
   render: (args) => html`
     <mi-select-box
@@ -122,6 +133,7 @@ export const Secondary: Story = {
       size="${args.size}"
       placeholder="${args.placeholder}"
       value="${args.value}"
+      display-text="${args.displayText}"
       error="${args.error}"
       ?disabled="${args.disabled}"
     ></mi-select-box>
@@ -133,7 +145,8 @@ export const Small: Story = {
   args: {
     variant: "secondary",
     size: "small",
-    value: "エンジニアリング",
+    value: "engineering",
+    displayText: "エンジニアリング",
   },
   render: (args) => html`
     <mi-select-box
@@ -141,6 +154,7 @@ export const Small: Story = {
       size="${args.size}"
       placeholder="${args.placeholder}"
       value="${args.value}"
+      display-text="${args.displayText}"
       error="${args.error}"
       ?disabled="${args.disabled}"
     ></mi-select-box>
@@ -188,7 +202,8 @@ export const ErrorSecondary: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    value: "営業",
+    value: "sales",
+    displayText: "営業",
   },
   render: (args) => html`
     <div style="width: 240px;">
@@ -197,6 +212,7 @@ export const Disabled: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box>
@@ -207,7 +223,8 @@ export const Disabled: Story = {
 /** 長いテキスト（省略表示） */
 export const LongText: Story = {
   args: {
-    value:
+    value: "long",
+    displayText:
       "とても長いテキストが入る場合は省略されて表示されます。テキストオーバーフローの確認用です。",
   },
   render: (args) => html`
@@ -217,6 +234,7 @@ export const LongText: Story = {
         size="${args.size}"
         placeholder="${args.placeholder}"
         value="${args.value}"
+        display-text="${args.displayText}"
         error="${args.error}"
         ?disabled="${args.disabled}"
       ></mi-select-box>
@@ -229,7 +247,20 @@ export const WithMenu: Story = {
   render: () => html`
     <div style="width: 240px;">
       <mi-menu>
-        <mi-select-box slot="trigger" placeholder="部署を選択"></mi-select-box>
+        <mi-select-box
+          slot="trigger"
+          placeholder="部署を選択"
+          @change=${(e: Event) => {
+            const el = e.target as HTMLElement & {
+              value: string;
+              displayText: string;
+            };
+            action("change")({
+              value: el.value,
+              displayText: el.displayText,
+            });
+          }}
+        ></mi-select-box>
         <mi-menu-dropdown>
           <mi-menu-radio-group value="">
             <mi-select-menu-item value="sales">営業</mi-select-menu-item>
@@ -259,7 +290,7 @@ export const AllVariants: Story = {
         <mi-select-box
           variant="primary"
           size="medium"
-          value="営業"
+          display-text="営業"
         ></mi-select-box>
       </div>
       <div>
@@ -269,7 +300,7 @@ export const AllVariants: Story = {
         <mi-select-box
           variant="primary"
           size="small"
-          value="該当なし（primary は常に medium）"
+          display-text="該当なし（primary は常に medium）"
         ></mi-select-box>
       </div>
       <div>
@@ -279,7 +310,7 @@ export const AllVariants: Story = {
         <mi-select-box
           variant="secondary"
           size="medium"
-          value="営業"
+          display-text="営業"
         ></mi-select-box>
       </div>
       <div>
@@ -289,7 +320,7 @@ export const AllVariants: Story = {
         <mi-select-box
           variant="secondary"
           size="small"
-          value="営業"
+          display-text="営業"
         ></mi-select-box>
       </div>
     </div>
