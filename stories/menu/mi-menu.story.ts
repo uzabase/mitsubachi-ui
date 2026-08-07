@@ -6,7 +6,7 @@ import "../../src/components/menu/mi-link-menu-item";
 import "../../src/components/menu/mi-select-menu-item";
 import "../../src/components/menu/mi-menu-radio-group";
 import "../../src/components/menu/mi-sub-menu-item";
-import "../../src/components/button/mi-neutral-button";
+import "../../src/components/menu/mi-menu-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -59,7 +59,7 @@ type Story = StoryObj<MiMenuStory>;
 export const Default: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Actions</mi-neutral-button>
+      <mi-menu-button slot="trigger">Actions</mi-menu-button>
       <mi-menu-dropdown>
         <mi-action-menu-item>編集</mi-action-menu-item>
         <mi-action-menu-item>複製</mi-action-menu-item>
@@ -73,7 +73,7 @@ export const Default: Story = {
 export const WithGroups: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Actions</mi-neutral-button>
+      <mi-menu-button slot="trigger">Actions</mi-menu-button>
       <mi-menu-dropdown>
         <mi-menu-group>
           <mi-action-menu-item>編集</mi-action-menu-item>
@@ -91,7 +91,7 @@ export const WithGroups: Story = {
 export const WithGroupLabels: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Actions</mi-neutral-button>
+      <mi-menu-button slot="trigger">Actions</mi-menu-button>
       <mi-menu-dropdown>
         <mi-menu-group label="編集操作">
           <mi-action-menu-item>編集</mi-action-menu-item>
@@ -110,7 +110,7 @@ export const WithGroupLabels: Story = {
 export const MixedItems: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">ユーザーメニュー</mi-neutral-button>
+      <mi-menu-button slot="trigger">ユーザーメニュー</mi-menu-button>
       <mi-menu-dropdown .width=${240}>
         <mi-menu-group>
           <mi-link-menu-item href="/settings">設定</mi-link-menu-item>
@@ -132,7 +132,7 @@ export const MixedItems: Story = {
 export const WithSubMenu: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Actions</mi-neutral-button>
+      <mi-menu-button slot="trigger">Actions</mi-menu-button>
       <mi-menu-dropdown>
         <mi-action-menu-item>編集</mi-action-menu-item>
         <mi-sub-menu-item>
@@ -153,7 +153,7 @@ export const WithSubMenu: Story = {
 export const WithRadioGroup: Story = {
   render: (args) => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">部署を選択</mi-neutral-button>
+      <mi-menu-button slot="trigger">部署を選択</mi-menu-button>
       <mi-menu-dropdown>
         <mi-menu-radio-group value="sales" @change=${args.onChange}>
           <mi-select-menu-item value="sales">営業</mi-select-menu-item>
@@ -174,7 +174,7 @@ export const WithRadioGroup: Story = {
 export const WithOptionalRadioGroup: Story = {
   render: (args) => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">部署を選択</mi-neutral-button>
+      <mi-menu-button slot="trigger">部署を選択</mi-menu-button>
       <mi-menu-dropdown>
         <mi-menu-radio-group value="" @change=${args.onChange}>
           <mi-select-menu-item value="">指定なし</mi-select-menu-item>
@@ -195,7 +195,7 @@ export const WithOptionalRadioGroup: Story = {
 export const LongList: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Long list</mi-neutral-button>
+      <mi-menu-button slot="trigger">Long list</mi-menu-button>
       <mi-menu-dropdown>
         ${Array.from(
           { length: 20 },
