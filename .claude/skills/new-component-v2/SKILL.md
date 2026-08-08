@@ -27,6 +27,7 @@ hooks:
 - 参照元（CLAUDE.md の通り）:
   - **API 設計 = React 版と対等に揃える**（両方にある機能はプロパティ名・型・イベント名・デフォルト値を一致させる。片方にしか無い機能はその版を正とし、無理に揃えない）
   - **実装規約 = 既存の `mi-` コンポーネント**（`src/components/` 配下に倣う）
+- **プロパティの型制約**: `@property` に `type: Array` / `type: Object` を使わない。HTML属性は文字列しか扱えないため、素のHTMLだけで使えなくなる。複数の値を渡したい場合は slot や子要素で組み立てる。
 - **実装↔評価ループは自動**で回す（各ラウンドの修正前に承認を挟まない）。
 - **commit / push / PR は承認制**。ループ後にレポートを提示し、`/commit-pr` へ繋ぐ。
 
@@ -111,3 +112,4 @@ Generator が完了した時点で **SubagentStop フックが自動で `typeche
 - サブエージェントには `eval-round-*.md` の**全文ではなくパスを渡す**。会話に貼ると round を重ねるほどトークンが膨らむ。
 - PASS 判定は「**高 finding = 0**」であって「指摘ゼロ」ではない。中/低 が残っていてもループは PASS で抜ける。
 - 3ラウンドで PASS しないまま終わるのは異常ではない。未解決の高 finding を**正直にレポートに残す**（隠して PASS 扱いにしない）。
+- コミット前に **biome だけでなく `prettier --check` と `eslint` も実行する**。CI では `npm run format:prettier:check`（prettier）と `npm run lint`（eslint）が別途走り、import ソート（`simple-import-sort/imports`）やフォーマット差分で落ちることがある。

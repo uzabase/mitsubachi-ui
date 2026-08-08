@@ -31,6 +31,7 @@ export {
   MiFloatingButton,
   SpFloatingButton,
 } from "./components/floating-button/mi-floating-button";
+export { MiHelperText } from "./components/helper-text/mi-helper-text";
 export { MiIcon, SpIcon } from "./components/icon";
 export { MiIconColor } from "./components/icon-color";
 export { MiInlineNotification } from "./components/inline-notification/mi-inline-notification";
