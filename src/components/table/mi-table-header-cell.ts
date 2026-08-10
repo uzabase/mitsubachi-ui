@@ -21,10 +21,10 @@ const SORT_NEXT_STATE: Record<TableSortState, TableSortState> = {
 
 /** aria-sort に変換 */
 function toAriaSortValue(
-  sortState: TableSortState,
+  sort: TableSortState,
 ): "ascending" | "descending" | undefined {
-  if (sortState === "ascending") return "ascending";
-  if (sortState === "descending") return "descending";
+  if (sort === "ascending") return "ascending";
+  if (sort === "descending") return "descending";
   return undefined;
 }
 
@@ -32,11 +32,11 @@ function toAriaSortValue(
  * @summary テーブルのヘッダーセル。
  *
  * ソート機能、チェックボックス、アイコンボタンなどのコンテンツタイプに対応。
- * `sort-state` を設定するとソートボタンを表示し、クリックで `sort-change` イベントを発火する。
+ * `sort` を設定するとソートボタンを表示し、クリックで `sort-change` イベントを発火する。
  *
  * @slot - セルのコンテンツ
  *
- * @fires sort-change - ソートボタンクリック時。detail: { sortState: TableSortState }。
+ * @fires sort-change - ソートボタンクリック時。detail: { sort: TableSortState }。
  * ソート状態変更を通知するネイティブイベントは存在しないため、カスタムイベントとして定義。
  * bubbles: false, composed: false で最小スコープ（event-architecture.md 準拠）。
  */
@@ -50,15 +50,19 @@ export class MiTableHeaderCell extends LitElement {
   /**
    * ソート状態。設定するとソートボタンを表示する。
    * undefined の場合はソート不可。
+   *
+   * ソートボタンクリック時に自動更新はされない。
+   * `sort-change` イベントをリスンし、`detail.sort` で次の状態を受け取って更新すること。
+   *
+   * @example
+   * ```js
+   * cell.addEventListener("sort-change", (e) => {
+   *   cell.sort = e.detail.sort;
+   * });
+   * ```
    */
-  @property({ type: String, reflect: true, attribute: "sort-state" })
-  sortState?: TableSortState;
-
-  /**
-   * リサイズ可能。初回スコープ外。
-   */
-  @property({ type: Boolean, reflect: true })
-  resizable = false;
+  @property({ type: String, reflect: true })
+  sort?: TableSortState;
 
   connectedCallback() {
     super.connectedCallback();
@@ -68,14 +72,14 @@ export class MiTableHeaderCell extends LitElement {
 
   updated(changed: Map<string, unknown>) {
     super.updated(changed);
-    if (changed.has("sortState")) {
+    if (changed.has("sort")) {
       this.#updateAriaSort();
     }
   }
 
   #updateAriaSort() {
-    if (this.sortState !== undefined) {
-      const ariaSort = toAriaSortValue(this.sortState);
+    if (this.sort !== undefined) {
+      const ariaSort = toAriaSortValue(this.sort);
       if (ariaSort) {
         this.setAttribute("aria-sort", ariaSort);
       } else {
@@ -87,11 +91,11 @@ export class MiTableHeaderCell extends LitElement {
   }
 
   #handleSortClick() {
-    if (this.sortState === undefined) return;
-    const nextState = SORT_NEXT_STATE[this.sortState];
+    if (this.sort === undefined) return;
+    const nextState = SORT_NEXT_STATE[this.sort];
     this.dispatchEvent(
       new CustomEvent("sort-change", {
-        detail: { sortState: nextState },
+        detail: { sort: nextState },
         bubbles: false,
         composed: false,
       }),
@@ -99,7 +103,7 @@ export class MiTableHeaderCell extends LitElement {
   }
 
   render() {
-    const sortable = this.sortState !== undefined;
+    const sortable = this.sort !== undefined;
 
     if (this.contentType === "text" && sortable) {
       return html`
@@ -131,7 +135,7 @@ export class MiTableHeaderCell extends LitElement {
 
   /** ソート状態に対応するアイコンタイプ */
   get #sortIconType(): string {
-    switch (this.sortState) {
+    switch (this.sort) {
       case "ascending":
         return "arrow-up";
       case "descending":

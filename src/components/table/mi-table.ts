@@ -1,7 +1,8 @@
 import { css, html, LitElement, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
+import type { MiTableCol } from "./mi-table-col";
 
 /** テーブルのビューモード */
 export type TableView = "grid" | "list";
@@ -81,16 +82,56 @@ export class MiTable extends LitElement {
   @property({ type: String, reflect: true })
   view: TableView = "grid";
 
-  /** テーブルの aria-label */
+  /** テーブルの aria-label（必須。スクリーンリーダーがテーブルを識別するために使用） */
   @property({ type: String })
   label = "";
+
+  /** Shadow DOM 内に生成するネイティブ <col> の幅リスト */
+  @state()
+  private _colWidths: string[] = [];
+
+  /** col スロットの変更を監視する MutationObserver */
+  private _colObserver?: MutationObserver;
+
+  /** mi-table-col の width 変更を収集して _colWidths を更新する */
+  syncColWidths() {
+    const cols = this.querySelectorAll<MiTableCol>(":scope > mi-table-col");
+    this._colWidths = Array.from(cols, (col) => col.width || "");
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // mi-table-col の追加・削除・width 変更を監視
+    this._colObserver = new MutationObserver(() => this.syncColWidths());
+    this._colObserver.observe(this, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["width"],
+    });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._colObserver?.disconnect();
+  }
+
+  firstUpdated() {
+    this.syncColWidths();
+  }
 
   render() {
     return html`
       <table class="table" role="table" aria-label="${this.label || nothing}">
-        <colgroup>
-          <slot name="col"></slot>
-        </colgroup>
+        ${this._colWidths.length > 0
+          ? html`<colgroup>
+              ${this._colWidths.map(
+                (w) =>
+                  html`<col style="${w ? `inline-size:${w}` : nothing}" />`,
+              )}
+            </colgroup>`
+          : nothing}
         <slot></slot>
       </table>
     `;

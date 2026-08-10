@@ -48,7 +48,7 @@ export const tableHeaderCellStyles = css`
     padding-inline: var(--spacing-large, 12px);
   }
 
-  :host([sort-state]:hover) {
+  :host([sort]:hover) {
     background-color: var(--_table-header-hover-bg);
   }
 
@@ -81,8 +81,8 @@ export const tableHeaderCellStyles = css`
     align-items: center;
   }
 
-  :host([sort-state="ascending"]),
-  :host([sort-state="descending"]) {
+  :host([sort="ascending"]),
+  :host([sort="descending"]) {
     color: var(--text-selected, #315ce8);
   }
 
@@ -102,8 +102,8 @@ export const tableHeaderCellStyles = css`
     color: var(--object-weak-default, rgba(0, 0, 0, 0.54));
   }
 
-  :host([sort-state="ascending"]) .sort-icon,
-  :host([sort-state="descending"]) .sort-icon {
+  :host([sort="ascending"]) .sort-icon,
+  :host([sort="descending"]) .sort-icon {
     color: inherit;
   }
 

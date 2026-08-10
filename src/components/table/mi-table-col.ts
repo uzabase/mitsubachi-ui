@@ -7,6 +7,7 @@ import { makeStyles } from "../styles";
  * @summary テーブルのカラム幅指定。
  *
  * `<col>` に相当する。`mi-table` の直接の子として配置し、カラム幅を指定する。
+ * 実際のネイティブ `<col>` は親の `mi-table` が Shadow DOM 内に生成する。
  *
  * @example
  * ```html
@@ -19,36 +20,13 @@ import { makeStyles } from "../styles";
 export class MiTableCol extends LitElement {
   static styles = makeStyles(css`
     :host {
-      display: table-column;
+      display: none;
     }
   `);
 
   /** カラム幅（CSS値: "40px", "20%" など） */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   width = "";
-
-  /** リサイズ時の最小幅（px）。初回スコープ外 */
-  @property({ type: Number, attribute: "min-width" })
-  minWidth?: number;
-
-  connectedCallback() {
-    super.connectedCallback();
-    // mi-table の colgroup スロットに自動配置
-    if (!this.hasAttribute("slot")) {
-      this.setAttribute("slot", "col");
-    }
-  }
-
-  updated(changed: Map<string, unknown>) {
-    super.updated(changed);
-    if (changed.has("width")) {
-      if (this.width) {
-        this.style.inlineSize = this.width;
-      } else {
-        this.style.removeProperty("inline-size");
-      }
-    }
-  }
 }
 
 declare global {

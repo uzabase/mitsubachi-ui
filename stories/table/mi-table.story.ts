@@ -29,7 +29,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "テーブルコンポーネント群。`view` プロパティで Grid / List ビューを切り替えられる。ソート可能なヘッダーセルは `sort-state` を設定すると有効になる。",
+          "テーブルコンポーネント群。`view` プロパティで Grid / List ビューを切り替えられる。ソート可能なヘッダーセルは `sort` を設定すると有効になる。",
       },
     },
   },
@@ -78,37 +78,37 @@ export const Grid: Story = {
             文字列
             <mi-icon-button
               slot="action"
-              icon-type="menu"
+              icon-type="kebab-menu"
               variant="ghost"
               size="small"
               aria-label="カラムメニュー"
             ></mi-icon-button>
           </mi-table-header-cell>
           <mi-table-header-cell
-            sort-state="descending"
+            sort="descending"
             @sort-change="${args.onSortChange}"
           >
             営業利益
             <mi-icon-button
               slot="action"
-              icon-type="menu"
+              icon-type="kebab-menu"
               variant="ghost"
               size="small"
               aria-label="カラムメニュー"
             ></mi-icon-button>
           </mi-table-header-cell>
           <mi-table-header-cell
-            sort-state="default"
+            sort="default"
             @sort-change="${args.onSortChange}"
             >数字</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="default"
+            sort="default"
             @sort-change="${args.onSortChange}"
             >日付</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="default"
+            sort="default"
             @sort-change="${args.onSortChange}"
             >長い文字列長い文字列長い文字列長い文字列長い文字列長い文字列</mi-table-header-cell
           >
@@ -278,7 +278,7 @@ export const List: Story = {
       <mi-table-head>
         <mi-table-row>
           <mi-table-header-cell
-            sort-state="ascending"
+            sort="ascending"
             @sort-change="${args.onSortChange}"
             >名前</mi-table-header-cell
           >
@@ -315,7 +315,7 @@ export const WithCheckbox: Story = {
             <mi-checkbox></mi-checkbox>
           </mi-table-header-cell>
           <mi-table-header-cell
-            sort-state="default"
+            sort="default"
             @sort-change="${args.onSortChange}"
             >名前</mi-table-header-cell
           >
@@ -372,6 +372,76 @@ export const EmptyCells: Story = {
   `,
 };
 
+/** カラム幅の指定 */
+export const ColumnWidths: Story = {
+  render: (args) => html`
+    <h4>px 指定</h4>
+    <mi-table view="${args.view}" label="px指定">
+      <mi-table-col width="80px"></mi-table-col>
+      <mi-table-col width="200px"></mi-table-col>
+      <mi-table-col></mi-table-col>
+      <mi-table-head>
+        <mi-table-row>
+          <mi-table-header-cell>ID (80px)</mi-table-header-cell>
+          <mi-table-header-cell>名前 (200px)</mi-table-header-cell>
+          <mi-table-header-cell>備考 (auto)</mi-table-header-cell>
+        </mi-table-row>
+      </mi-table-head>
+      <mi-table-body>
+        <mi-table-row>
+          <mi-table-body-cell>1</mi-table-body-cell>
+          <mi-table-body-cell>田中太郎</mi-table-body-cell>
+          <mi-table-body-cell>エンジニアリング部所属</mi-table-body-cell>
+        </mi-table-row>
+        <mi-table-row>
+          <mi-table-body-cell>2</mi-table-body-cell>
+          <mi-table-body-cell>鈴木花子</mi-table-body-cell>
+          <mi-table-body-cell>マーケティング部所属</mi-table-body-cell>
+        </mi-table-row>
+      </mi-table-body>
+    </mi-table>
+
+    <h4>% 指定</h4>
+    <mi-table view="${args.view}" label="パーセント指定">
+      <mi-table-col width="10%"></mi-table-col>
+      <mi-table-col width="40%"></mi-table-col>
+      <mi-table-col width="50%"></mi-table-col>
+      <mi-table-head>
+        <mi-table-row>
+          <mi-table-header-cell>ID (10%)</mi-table-header-cell>
+          <mi-table-header-cell>名前 (40%)</mi-table-header-cell>
+          <mi-table-header-cell>備考 (50%)</mi-table-header-cell>
+        </mi-table-row>
+      </mi-table-head>
+      <mi-table-body>
+        <mi-table-row>
+          <mi-table-body-cell>1</mi-table-body-cell>
+          <mi-table-body-cell>田中太郎</mi-table-body-cell>
+          <mi-table-body-cell>エンジニアリング部所属</mi-table-body-cell>
+        </mi-table-row>
+      </mi-table-body>
+    </mi-table>
+
+    <h4>mi-table-col なし（均等幅）</h4>
+    <mi-table view="${args.view}" label="均等幅">
+      <mi-table-head>
+        <mi-table-row>
+          <mi-table-header-cell>ID</mi-table-header-cell>
+          <mi-table-header-cell>名前</mi-table-header-cell>
+          <mi-table-header-cell>備考</mi-table-header-cell>
+        </mi-table-row>
+      </mi-table-head>
+      <mi-table-body>
+        <mi-table-row>
+          <mi-table-body-cell>1</mi-table-body-cell>
+          <mi-table-body-cell>田中太郎</mi-table-body-cell>
+          <mi-table-body-cell>エンジニアリング部所属</mi-table-body-cell>
+        </mi-table-row>
+      </mi-table-body>
+    </mi-table>
+  `,
+};
+
 /** ソート状態の切り替え */
 export const SortStates: Story = {
   render: (args) => html`
@@ -382,17 +452,17 @@ export const SortStates: Story = {
       <mi-table-head>
         <mi-table-row>
           <mi-table-header-cell
-            sort-state="default"
+            sort="default"
             @sort-change="${args.onSortChange}"
             >未ソート</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="ascending"
+            sort="ascending"
             @sort-change="${args.onSortChange}"
             >昇順</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="descending"
+            sort="descending"
             @sort-change="${args.onSortChange}"
             >降順</mi-table-header-cell
           >

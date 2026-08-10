@@ -12,14 +12,30 @@ import { action } from "storybook/actions";
 
 import type { MiTableHeaderCell } from "../../src/components/table/mi-table-header-cell";
 
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
+type MiTableHeaderCellStory = MiTableHeaderCell & {
+  onSortChange?: (e: Event) => void;
+};
+
 const meta = {
   component: "mi-table-header-cell",
   title: "Components/Table/mi-table-header-cell",
   tags: ["!dev-only"],
-} satisfies Meta<MiTableHeaderCell>;
+  argTypes: {
+    onSortChange: {
+      name: "sort-change",
+      action: "sort-change",
+      description: "ソートボタンクリック時",
+      table: { category: "Events" },
+    },
+  },
+  args: {
+    onSortChange: action("sort-change"),
+  },
+} satisfies Meta<MiTableHeaderCellStory>;
 
 export default meta;
-type Story = StoryObj<MiTableHeaderCell>;
+type Story = StoryObj<MiTableHeaderCellStory>;
 
 /** テキスト（ソートなし） */
 export const Default: Story = {
@@ -39,7 +55,7 @@ export const Default: Story = {
 
 /** ソート状態（default / ascending / descending） */
 export const SortStates: Story = {
-  render: () => html`
+  render: (args) => html`
     <mi-table view="grid" label="ソート状態">
       <mi-table-col></mi-table-col>
       <mi-table-col></mi-table-col>
@@ -47,18 +63,18 @@ export const SortStates: Story = {
       <mi-table-head>
         <mi-table-row>
           <mi-table-header-cell
-            sort-state="default"
-            @sort-change=${action("sort-change")}
+            sort="default"
+            @sort-change="${args.onSortChange}"
             >Default</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="ascending"
-            @sort-change=${action("sort-change")}
+            sort="ascending"
+            @sort-change="${args.onSortChange}"
             >Ascending</mi-table-header-cell
           >
           <mi-table-header-cell
-            sort-state="descending"
-            @sort-change=${action("sort-change")}
+            sort="descending"
+            @sort-change="${args.onSortChange}"
             >Descending</mi-table-header-cell
           >
         </mi-table-row>
@@ -78,7 +94,7 @@ export const ViewComparison: Story = {
           <mi-table-col></mi-table-col>
           <mi-table-head>
             <mi-table-row>
-              <mi-table-header-cell sort-state="ascending"
+              <mi-table-header-cell sort="ascending"
                 >Title</mi-table-header-cell
               >
               <mi-table-header-cell>Title</mi-table-header-cell>
@@ -93,7 +109,7 @@ export const ViewComparison: Story = {
           <mi-table-col></mi-table-col>
           <mi-table-head>
             <mi-table-row>
-              <mi-table-header-cell sort-state="ascending"
+              <mi-table-header-cell sort="ascending"
                 >Title</mi-table-header-cell
               >
               <mi-table-header-cell>Title</mi-table-header-cell>

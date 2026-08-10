@@ -10,6 +10,7 @@ import { describe, expect, test, vi } from "vitest";
 
 import type { MiTable } from "../../src/components/table/mi-table";
 import type { MiTableBodyCell } from "../../src/components/table/mi-table-body-cell";
+import type { MiTableCol } from "../../src/components/table/mi-table-col";
 import type { MiTableHeaderCell } from "../../src/components/table/mi-table-header-cell";
 import type { MiTableRow } from "../../src/components/table/mi-table-row";
 
@@ -46,6 +47,66 @@ describe("mi-table", async () => {
     const table = document.querySelector("mi-table") as MiTable;
     expect(table.view).toBe("grid");
     expect(table.getAttribute("view")).toBe("grid");
+  });
+
+  test("mi-table-col の width が colgroup > col に反映される", async () => {
+    document.body.innerHTML = `
+      <mi-table label="テスト">
+        <mi-table-col width="80px"></mi-table-col>
+        <mi-table-col width="30%"></mi-table-col>
+        <mi-table-col></mi-table-col>
+      </mi-table>
+    `;
+    await customElements.whenDefined("mi-table");
+    await customElements.whenDefined("mi-table-col");
+    const table = document.querySelector("mi-table") as MiTable;
+    await table.updateComplete;
+
+    const cols =
+      table.shadowRoot?.querySelectorAll<HTMLElement>("colgroup > col");
+    expect(cols?.length).toBe(3);
+    expect(cols?.[0].style.inlineSize).toBe("80px");
+    expect(cols?.[1].style.inlineSize).toBe("30%");
+    expect(cols?.[2].style.inlineSize).toBe("");
+  });
+
+  test("mi-table-col の width 変更が col に同期される", async () => {
+    document.body.innerHTML = `
+      <mi-table label="テスト">
+        <mi-table-col width="100px"></mi-table-col>
+      </mi-table>
+    `;
+    await customElements.whenDefined("mi-table");
+    await customElements.whenDefined("mi-table-col");
+    const table = document.querySelector("mi-table") as MiTable;
+    await table.updateComplete;
+
+    const col = document.querySelector("mi-table-col") as MiTableCol;
+    col.width = "200px";
+    await col.updateComplete;
+    await table.updateComplete;
+
+    const nativeCol =
+      table.shadowRoot?.querySelector<HTMLElement>("colgroup > col");
+    expect(nativeCol?.style.inlineSize).toBe("200px");
+  });
+
+  test("mi-table-col がなければ colgroup が生成されない", async () => {
+    document.body.innerHTML = `
+      <mi-table label="テスト">
+        <mi-table-head>
+          <mi-table-row>
+            <mi-table-header-cell>名前</mi-table-header-cell>
+          </mi-table-row>
+        </mi-table-head>
+      </mi-table>
+    `;
+    await customElements.whenDefined("mi-table");
+    const table = document.querySelector("mi-table") as MiTable;
+    await table.updateComplete;
+
+    const colgroup = table.shadowRoot?.querySelector("colgroup");
+    expect(colgroup).toBeNull();
   });
 });
 
@@ -100,8 +161,8 @@ describe("mi-table-header-cell", async () => {
     expect(cell.getAttribute("role")).toBe("columnheader");
   });
 
-  test("sort-state が ascending のとき aria-sort='ascending' が設定される", async () => {
-    document.body.innerHTML = `<mi-table-header-cell sort-state="ascending">名前</mi-table-header-cell>`;
+  test("sort が ascending のとき aria-sort='ascending' が設定される", async () => {
+    document.body.innerHTML = `<mi-table-header-cell sort="ascending">名前</mi-table-header-cell>`;
     await customElements.whenDefined("mi-table-header-cell");
     const cell = document.querySelector(
       "mi-table-header-cell",
@@ -110,8 +171,8 @@ describe("mi-table-header-cell", async () => {
     expect(cell.getAttribute("aria-sort")).toBe("ascending");
   });
 
-  test("sort-state が default のとき aria-sort がない", async () => {
-    document.body.innerHTML = `<mi-table-header-cell sort-state="default">名前</mi-table-header-cell>`;
+  test("sort が default のとき aria-sort がない", async () => {
+    document.body.innerHTML = `<mi-table-header-cell sort="default">名前</mi-table-header-cell>`;
     await customElements.whenDefined("mi-table-header-cell");
     const cell = document.querySelector(
       "mi-table-header-cell",
@@ -121,7 +182,7 @@ describe("mi-table-header-cell", async () => {
   });
 
   test("sort-change イベントが発火する", async () => {
-    document.body.innerHTML = `<mi-table-header-cell sort-state="default">名前</mi-table-header-cell>`;
+    document.body.innerHTML = `<mi-table-header-cell sort="default">名前</mi-table-header-cell>`;
     await customElements.whenDefined("mi-table-header-cell");
     const cell = document.querySelector(
       "mi-table-header-cell",
@@ -138,11 +199,11 @@ describe("mi-table-header-cell", async () => {
 
     expect(handler).toHaveBeenCalledTimes(1);
     const detail = (handler.mock.calls[0][0] as CustomEvent).detail;
-    expect(detail.sortState).toBe("ascending");
+    expect(detail.sort).toBe("ascending");
   });
 
   test("sort-change の遷移: default→ascending→descending→default", async () => {
-    document.body.innerHTML = `<mi-table-header-cell sort-state="default">名前</mi-table-header-cell>`;
+    document.body.innerHTML = `<mi-table-header-cell sort="default">名前</mi-table-header-cell>`;
     await customElements.whenDefined("mi-table-header-cell");
     const cell = document.querySelector(
       "mi-table-header-cell",
@@ -152,8 +213,8 @@ describe("mi-table-header-cell", async () => {
     const states: string[] = [];
     cell.addEventListener("sort-change", (e) => {
       const detail = (e as CustomEvent).detail;
-      states.push(detail.sortState);
-      cell.sortState = detail.sortState;
+      states.push(detail.sort);
+      cell.sort = detail.sort;
     });
 
     const getButton = () =>
@@ -193,6 +254,20 @@ describe("mi-table-body-cell", async () => {
 
     const nullValue = cell.shadowRoot?.querySelector(".null-value");
     expect(nullValue?.textContent).toBe("\u2013");
+  });
+
+  test("コンテンツがある場合はダッシュが表示されない", async () => {
+    document.body.innerHTML = `<mi-table-body-cell>テスト</mi-table-body-cell>`;
+    await customElements.whenDefined("mi-table-body-cell");
+    const cell = document.querySelector(
+      "mi-table-body-cell",
+    ) as MiTableBodyCell;
+    // slotchange による _isEmpty 更新後の再レンダリングを待つ
+    await cell.updateComplete;
+    await cell.updateComplete;
+
+    const nullValue = cell.shadowRoot?.querySelector(".null-value");
+    expect(nullValue).toBeNull();
   });
 
   test("content-type が reflect される", async () => {
