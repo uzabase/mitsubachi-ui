@@ -2,7 +2,7 @@ import "../../src/components/menu/mi-menu";
 import "../../src/components/menu/mi-menu-dropdown";
 import "../../src/components/menu/mi-action-menu-item";
 import "../../src/components/menu/mi-sub-menu-item";
-import "../../src/components/button/mi-neutral-button";
+import "../../src/components/menu/mi-menu-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -51,7 +51,7 @@ export const Disabled: Story = {
 export const MenuWithTrigger: Story = {
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">Actions</mi-neutral-button>
+      <mi-menu-button slot="trigger">Actions</mi-menu-button>
       <mi-menu-dropdown>
         <mi-action-menu-item>編集</mi-action-menu-item>
         <mi-action-menu-item>複製</mi-action-menu-item>

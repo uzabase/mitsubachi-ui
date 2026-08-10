@@ -1,20 +1,23 @@
 import "./error-text";
+import "../../helper-text/mi-helper-text";
 
-import { html, LitElement, unsafeCSS } from "lit";
-import { property } from "lit/decorators.js";
+import { html, LitElement, nothing } from "lit";
+import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 import { makeStyles } from "../../styles";
-import textFieldStyle from "./styles.css?inline";
+import style from "./text-field.styles";
 
 /**
  * @summary テキストフィールドです。
  */
 export class MiTextField extends LitElement {
-  static styles = makeStyles(unsafeCSS(textFieldStyle));
+  static styles = makeStyles(style);
 
   static formAssociated = true;
 
+  /** @deprecated 代わりに `slot="error"` を使用してください */
   @property({ type: String, reflect: true })
   error = "";
 
@@ -42,6 +45,9 @@ export class MiTextField extends LitElement {
   @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
   submitOnEnter = false;
 
+  @state()
+  private _slottedErrorHtml: string[] = [];
+
   private internals: ElementInternals;
 
   constructor() {
@@ -57,10 +63,40 @@ export class MiTextField extends LitElement {
     }
   }
 
+  get #hasError() {
+    return (
+      !this.disabled && (!!this.error || this._slottedErrorHtml.length > 0)
+    );
+  }
+
+  #handleErrorSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    this._slottedErrorHtml = slot
+      .assignedElements()
+      .map((el) => el.innerHTML)
+      .filter((h) => h.trim() !== "");
+  }
+
+  #errorIdPrefix = "error";
+
+  get #errorCount(): number {
+    if (this.disabled) return 0;
+    let count = this._slottedErrorHtml.length;
+    if (this.error) count++;
+    return count;
+  }
+
+  get #errorIds(): string[] {
+    return Array.from(
+      { length: this.#errorCount },
+      (_, i) => `${this.#errorIdPrefix}-${i}`,
+    );
+  }
+
   #inputClasses() {
     return classMap({
       input: true,
-      error: this.error && !this.disabled,
+      error: this.#hasError,
     });
   }
 
@@ -104,13 +140,35 @@ export class MiTextField extends LitElement {
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
-        aria-invalid="${this.error && !this.disabled ? "true" : "false"}"
+        aria-invalid="${this.#hasError ? "true" : "false"}"
+        aria-describedby="${this.#hasError ? this.#errorIds.join(" ") : ""}"
         @input="${this.#handleInput}"
         @keydown="${this.#handleKeyDown}"
       />
-      <mi-text-field-error-text
-        text="${this.disabled ? "" : this.error}"
-      ></mi-text-field-error-text>
+      <slot
+        name="error"
+        @slotchange=${this.#handleErrorSlotChange}
+        hidden
+      ></slot>
+      ${!this.disabled && this.error
+        ? html`<mi-helper-text
+            id="${this.#errorIdPrefix}-0"
+            status="error"
+            size="medium"
+            >${this.error}</mi-helper-text
+          >`
+        : nothing}
+      ${!this.disabled
+        ? this._slottedErrorHtml.map((content, i) => {
+            const idx = this.error ? i + 1 : i;
+            return html`<mi-helper-text
+              id="${this.#errorIdPrefix}-${idx}"
+              status="error"
+              size="medium"
+              >${unsafeHTML(content)}</mi-helper-text
+            >`;
+          })
+        : nothing}
     `;
   }
 }

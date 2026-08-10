@@ -1,7 +1,7 @@
 import "../../src/components/menu/mi-menu";
 import "../../src/components/menu/mi-menu-dropdown";
 import "../../src/components/menu/mi-link-menu-item";
-import "../../src/components/button/mi-neutral-button";
+import "../../src/components/menu/mi-menu-button";
 import "../../src/components/icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
@@ -126,7 +126,7 @@ export const MenuWithTrigger: Story = {
   ],
   render: () => html`
     <mi-menu>
-      <mi-neutral-button slot="trigger">リンクメニュー</mi-neutral-button>
+      <mi-menu-button slot="trigger">リンクメニュー</mi-menu-button>
       <mi-menu-dropdown .width=${240}>
         <mi-link-menu-item href="/settings">
           <mi-icon slot="icon" type="gear"></mi-icon>

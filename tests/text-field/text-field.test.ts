@@ -94,4 +94,94 @@ describe("mi-text-field", () => {
 
     expect(submitHandler).not.toHaveBeenCalled();
   });
+
+  test("slot=errorで複数のエラーメッセージが表示される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+        <span slot="error">エラー3</span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(3);
+  });
+
+  test("error属性とslot=errorを併用した場合、error属性が先頭に表示される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field error="単一エラー">
+        <span slot="error">追加エラー1</span>
+        <span slot="error">追加エラー2</span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(3);
+    expect(helperTexts?.[0]?.textContent?.trim()).toBe("単一エラー");
+    expect(helperTexts?.[1]?.textContent?.trim()).toBe("追加エラー1");
+  });
+
+  test("disabled時はslot=errorが表示されない", async () => {
+    document.body.innerHTML = `
+      <mi-text-field disabled>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const helperTexts = sut.shadowRoot?.querySelectorAll("mi-helper-text");
+    expect(helperTexts?.length).toBe(0);
+  });
+
+  test("slot=errorのHTML構造が保持される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">詳しくは<a href="/help">こちら</a></span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const helperText = sut.shadowRoot?.querySelector("mi-helper-text");
+    const link = helperText?.querySelector("a");
+    expect(link).toBeTruthy();
+    expect(link?.getAttribute("href")).toBe("/help");
+  });
+
+  test("slot=errorがあるとき、inputにaria-describedbyが設定される", async () => {
+    document.body.innerHTML = `
+      <mi-text-field>
+        <span slot="error">エラー1</span>
+        <span slot="error">エラー2</span>
+      </mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+    await sut.updateComplete;
+
+    const input = sut.shadowRoot?.querySelector("input");
+    const describedby = input?.getAttribute("aria-describedby");
+    expect(describedby).toBe("error-0 error-1");
+
+    const ids = describedby!.split(" ");
+    for (const id of ids) {
+      expect(sut.shadowRoot?.getElementById(id)).toBeTruthy();
+    }
+  });
 });

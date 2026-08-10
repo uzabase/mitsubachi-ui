@@ -31,6 +31,7 @@ export {
   MiFloatingButton,
   SpFloatingButton,
 } from "./components/floating-button/mi-floating-button";
+export { MiHelperText } from "./components/helper-text/mi-helper-text";
 export { MiIcon, SpIcon } from "./components/icon";
 export { MiIconColor } from "./components/icon-color";
 export { MiInlineNotification } from "./components/inline-notification/mi-inline-notification";
@@ -47,6 +48,7 @@ export { MiActionMenuItem } from "./components/menu/mi-action-menu-item";
 export { MiLinkMenuItem } from "./components/menu/mi-link-menu-item";
 export type { MenuAlign, MenuSide } from "./components/menu/mi-menu";
 export { MiMenu } from "./components/menu/mi-menu";
+export { MiMenuButton } from "./components/menu/mi-menu-button";
 export { MiMenuDropdown } from "./components/menu/mi-menu-dropdown";
 export { MiMenuGroup } from "./components/menu/mi-menu-group";
 export { MiMenuRadioGroup } from "./components/menu/mi-menu-radio-group";
