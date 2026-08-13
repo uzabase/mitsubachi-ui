@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
-    "@sp-design/recet.css": "git+https://github.com/uzabase/sp-design-reset.css#semver:^1.0.2"
+    "@uzabase/reset.css": "^1.0.3"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
