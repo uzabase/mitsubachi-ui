@@ -4,9 +4,11 @@ import {
   ButtonBase,
   type ButtonTheme,
   isValidVariant,
+  normalizeVariant,
   type Size,
   sizes,
   type Variant,
+  type VariantCompat,
   variants,
 } from "./base";
 
@@ -27,10 +29,10 @@ export class MiNeutralButton extends ButtonBase {
    * @deprecated このプロパティは非推奨です。代わりに `variant` を使用してください。
    */
   @property({ type: String })
-  variants: Variant | null = null;
+  variants: VariantCompat | null = null;
 
   @property({ type: String })
-  override variant: Variant = "primary";
+  override variant: VariantCompat = "primary";
 
   protected override getTheme(): ButtonTheme {
     return this.danger ? "danger" : "normal";
@@ -42,11 +44,11 @@ export class MiNeutralButton extends ButtonBase {
     if (!validVariant) {
       console.warn(`${value}は無効なvariant属性です。`);
     }
-    return validVariant ? value : variants[0];
+    return validVariant ? normalizeVariant(value) : variants[0];
   }
 }
 
-export type { Size, Variant };
+export type { Size, Variant, VariantCompat };
 export { sizes, variants };
 
 /** @deprecated 代わりに MiNeutralButton を使用してください。後方互換のため別クラスとして登録しています。 */

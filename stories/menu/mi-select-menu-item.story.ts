@@ -2,8 +2,7 @@ import "../../src/components/menu/mi-menu";
 import "../../src/components/menu/mi-menu-dropdown";
 import "../../src/components/menu/mi-select-menu-item";
 import "../../src/components/menu/mi-menu-radio-group";
-import "../../src/components/button/mi-neutral-button";
-import "../../src/components/select-box/mi-select-box";
+import "../../src/components/menu/mi-menu-button";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -41,7 +40,7 @@ type Story = StoryObj<MiSelectMenuItem>;
 /** 未選択 */
 export const Default: Story = {
   render: (args) => html`
-    <mi-menu-radio-group value="" @change=${action("change")}>
+    <mi-menu-radio-group value="">
       <mi-select-menu-item
         value="item"
         ?disabled=${args.disabled}
@@ -56,7 +55,7 @@ export const Default: Story = {
 /** 選択済み */
 export const Selected: Story = {
   render: (args) => html`
-    <mi-menu-radio-group value="item" @change=${action("change")}>
+    <mi-menu-radio-group value="item">
       <mi-select-menu-item
         value="item"
         ?disabled=${args.disabled}
@@ -112,37 +111,27 @@ export const AllStates: Story = {
   `,
 };
 
-/**
- * トリガーのラベルは固定で、チェックマークで現在の選択状態を示すパターン。
- * 言語切り替えやフィルタ設定など、「現在どれが有効か」を伝える用途に使います。
- */
-export const FixedTriggerLabel: Story = {
-  render: () => html`
-    <mi-menu>
-      <mi-neutral-button slot="trigger">言語</mi-neutral-button>
-      <mi-menu-dropdown>
-        <mi-menu-radio-group value="ja">
-          <mi-select-menu-item value="ja">日本語</mi-select-menu-item>
-          <mi-select-menu-item value="en">English</mi-select-menu-item>
-          <mi-select-menu-item value="zh">中文</mi-select-menu-item>
-        </mi-menu-radio-group>
-      </mi-menu-dropdown>
-    </mi-menu>
-  `,
-};
+/** トリガー付き実例（選択必須・トリガーラベル連動） */
+export const MenuWithTrigger: Story = {
+  render: () => {
+    const handleChange = (e: Event) => {
+      const group = e.target as HTMLElement & { value: string };
+      const selected = group.querySelector(
+        `mi-select-menu-item[value="${group.value}"]`,
+      );
+      const trigger = group
+        .closest("mi-menu")
+        ?.querySelector("[slot='trigger']");
+      if (trigger && selected) {
+        trigger.textContent = selected.textContent?.trim() ?? "";
+      }
+    };
 
-/**
- * 選択した値をトリガーに表示するパターン。
- * 値の選択が目的の場合は mi-select-box と組み合わせて使います。
- * mi-select-box は選択結果を自動でトリガーに反映します。
- */
-export const ValueReflectedToTrigger: Story = {
-  render: () => html`
-    <div style="width: 240px;">
+    return html`
       <mi-menu>
-        <mi-select-box slot="trigger" placeholder="部署を選択"></mi-select-box>
+        <mi-menu-button slot="trigger">営業</mi-menu-button>
         <mi-menu-dropdown>
-          <mi-menu-radio-group value="">
+          <mi-menu-radio-group value="sales" @change=${handleChange}>
             <mi-select-menu-item value="sales">営業</mi-select-menu-item>
             <mi-select-menu-item value="marketing">
               マーケティング・広報
@@ -150,10 +139,29 @@ export const ValueReflectedToTrigger: Story = {
             <mi-select-menu-item value="engineering">
               エンジニアリング
             </mi-select-menu-item>
+            <mi-select-menu-item value="hr">人事</mi-select-menu-item>
           </mi-menu-radio-group>
         </mi-menu-dropdown>
       </mi-menu>
-    </div>
+    `;
+  },
+};
+
+/** トリガー付き実例（任意選択） */
+export const MenuWithTriggerOptional: Story = {
+  render: () => html`
+    <mi-menu>
+      <mi-menu-button slot="trigger">職種を選択</mi-menu-button>
+      <mi-menu-dropdown>
+        <mi-menu-radio-group value="">
+          <mi-select-menu-item value="">指定なし</mi-select-menu-item>
+          <mi-select-menu-item value="sales">営業</mi-select-menu-item>
+          <mi-select-menu-item value="marketing">
+            マーケティング・広報
+          </mi-select-menu-item>
+        </mi-menu-radio-group>
+      </mi-menu-dropdown>
+    </mi-menu>
   `,
 };
 

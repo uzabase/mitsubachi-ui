@@ -16,17 +16,31 @@ export const variants = [
   "secondary",
   "tertiary",
   "ghost",
-  "plane",
+  "plain",
 ] as const;
 export type Variant = (typeof variants)[number];
+
+/** @deprecated `"plane"` は `"plain"` のタイポです。後方互換のため受け付けますが、新規利用では `"plain"` を使用してください。 */
+export type VariantCompat = Variant | "plane";
 
 export const sizes = ["medium", "large", "xLarge"] as const;
 export type Size = (typeof sizes)[number];
 
 export type ButtonTheme = "normal" | "danger" | "ai";
 
-export function isValidVariant(value: string): value is Variant {
-  return variants.some((variant) => variant === value);
+export function isValidVariant(value: string): value is Variant | "plane" {
+  return value === "plane" || variants.some((variant) => variant === value);
+}
+
+/** `"plane"` を `"plain"` に正規化する。それ以外はそのまま返す。 */
+export function normalizeVariant(value: Variant | "plane"): Variant {
+  if (value === "plane") {
+    console.warn(
+      'variant="plane" は非推奨です。代わりに variant="plain" を使用してください。',
+    );
+    return "plain";
+  }
+  return value;
 }
 
 export function isValidSize(value: string): value is Size {
@@ -83,7 +97,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
   toggle = false;
 
   @property({ type: String, reflect: true })
-  variant: Variant = "primary";
+  variant: VariantCompat = "primary";
 
   @property({ type: String, reflect: true })
   size: S = "medium" as S;
@@ -135,7 +149,7 @@ export class ButtonBase<S extends string = Size> extends LitElement {
     if (!validVariant) {
       console.warn(`${this.variant}は無効なvariant属性です。`);
     }
-    return validVariant ? this.variant : variants[0];
+    return validVariant ? normalizeVariant(this.variant) : variants[0];
   }
 
   protected get buttonClasses() {

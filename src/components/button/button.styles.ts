@@ -59,7 +59,7 @@ export const buttonStyles = css`
       }
     }
 
-    &.plane {
+    &.plain {
       --border-color: transparent;
       --background-color: transparent;
       --background-color-hover: rgb(49 92 232 / 8%);
@@ -181,7 +181,7 @@ export const buttonStyles = css`
     --color-disabled: rgb(0 0 0 / 35%);
   }
 
-  .plane {
+  .plain {
     --border-color-disabled: transparent;
     --background-color-disabled: transparent;
     --color-disabled: rgb(0 0 0 / 35%);

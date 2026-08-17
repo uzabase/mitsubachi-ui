@@ -250,6 +250,23 @@ describe("mi-button", () => {
       expect(button?.classList.contains("primary")).toBe(true);
       expect(button?.classList.contains("invalid")).toBe(false);
     });
+
+    test('variant="plain"を設定すると、plainクラスが適用される', async () => {
+      document.body.innerHTML = `<mi-button variant="plain">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("plain")).toBe(true);
+    });
+
+    test('variant="plane"を設定すると、後方互換でplainクラスが適用される', async () => {
+      document.body.innerHTML = `<mi-button variant="plane">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("plain")).toBe(true);
+      expect(button?.classList.contains("plane")).toBe(false);
+    });
   });
 
   describe("size属性", () => {
@@ -489,6 +506,15 @@ describe("mi-button", () => {
 
       const button = getButton();
       expect(button?.classList.contains("tertiary")).toBe(true);
+    });
+
+    test('variants="plane"を設定すると、後方互換でplainクラスが適用される', async () => {
+      document.body.innerHTML = `<mi-button variants="plane">ダウンロード</mi-button>`;
+      await customElements.whenDefined("mi-button");
+
+      const button = getButton();
+      expect(button?.classList.contains("plain")).toBe(true);
+      expect(button?.classList.contains("plane")).toBe(false);
     });
   });
 

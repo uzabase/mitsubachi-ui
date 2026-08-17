@@ -38,14 +38,14 @@ npm run build
 
 #### type（タイプ）
 
-| type | 用途 |
-| --- | --- |
-| refactor | UIの見た目が変わらない変更 |
-| fix | UIの見た目が変わる変更、バグ修正 |
-| feat | 新機能追加 |
-| docs | ドキュメントのみの変更 |
-| test | テストの追加・修正 |
-| chore | ビルド・設定の変更 |
+| type     | 用途                             |
+| -------- | -------------------------------- |
+| refactor | UIの見た目が変わらない変更       |
+| fix      | UIの見た目が変わる変更、バグ修正 |
+| feat     | 新機能追加                       |
+| docs     | ドキュメントのみの変更           |
+| test     | テストの追加・修正               |
+| chore    | ビルド・設定の変更               |
 
 #### 例
 
@@ -103,3 +103,4 @@ git push -u origin <ブランチ名>
 
 - `docs/review-checklist.md` を参照し、PR前にセルフレビューを行うと良い
 - **Story を変更した場合**: `docs/storybook-autodocs.md` の「PR 提出前チェック（dev-only）」を確認する
+- **カスタムイベントを追加した場合**: PR の「変更内容」にイベント名・用途・`bubbles`/`composed` の値を明記する（レビュワーが `docs/event-architecture.md` に照らして判断できるようにするため）

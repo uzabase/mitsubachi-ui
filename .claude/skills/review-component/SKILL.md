@@ -65,6 +65,7 @@ Figma URL が渡されたら、実装と Figma の差分を洗い出す。**こ�
 - **二重発火**: 二重発火が起きる場合は `stopPropagation()` で止めてからコンポーネント側で再発火しているか
 - **@fires JSDoc**: イベントを発火するコンポーネントに `@fires` JSDoc が記載されているか
 - **ネイティブ互換・内部イベント漏洩防止・querySelector の安全性**: `docs/event-architecture.md` の該当セクションを参照
+- **PR申し送り**: カスタムイベントを追加した場合、PR の「変更内容」にイベント名・用途・`bubbles`/`composed` の値が明記されているか確認する（`docs/commit-push-pr.md` 参照）
 
 ---
 
