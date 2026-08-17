@@ -1,4 +1,4 @@
-import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
+import resetStyle from "@uzabase/reset.css?inline";
 import { css, type CSSResult, unsafeCSS } from "lit";
 
 import foundationStyle from "./foundation.css?inline";
