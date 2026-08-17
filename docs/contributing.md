@@ -114,4 +114,7 @@ fix(Tooltip): ホバー時の表示位置ずれを修正
 
 ### リリース
 
-- リリースは `npm run release:patch` / `npm run release:minor` / `npm run release:major`
+- GitHub Actions の [Publish package to npm](../.github/workflows/publish.yml) を main ブランチで手動実行する
+- 公開したいバージョンを `2.15.0` のような形式で入力する（npm 上の最新より新しい安定版のみ）
+- npm への公開が成功したあとに、そのバージョンの `package.json` を持つcommitへ `v2.15.0` の注釈付きタグが付く
+- main ブランチの `package.json` のバージョンは更新しない（npm が正本）

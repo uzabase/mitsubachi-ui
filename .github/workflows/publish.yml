@@ -1,0 +1,144 @@
+name: Publish package to npm
+
+run-name: npmへ v${{ inputs.version }} を公開（@${{ github.actor }}）
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 公開するバージョン（例：1.2.3）
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: 24.16.0
+
+jobs:
+  verify:
+    name: テストして公開ファイルを作成
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    outputs:
+      artifact-name: ${{ steps.prepare.outputs.artifact-name }}
+      package-file: ${{ steps.prepare.outputs.package-file }}
+    steps:
+      - name: ソースコードを取得
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          ref: ${{ github.sha }}
+
+      - name: Node.jsを準備
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+
+      - name: セキュリティ確認・公開ファイル作成
+        id: prepare
+        uses: ./.github/actions/prepare-release
+        with:
+          version: ${{ inputs.version }}
+
+      - name: 検査済みの公開ファイルを一時保存
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ${{ steps.prepare.outputs.artifact-name }}
+          path: ${{ runner.temp }}/release/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
+      - name: 結果を表示
+        env:
+          PACKAGE_FILE: ${{ steps.prepare.outputs.package-file }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          {
+            echo "### npmへの公開準備が完了しました"
+            echo
+            echo "- バージョン: \`$VERSION\`"
+            echo "- npmへ公開するファイル: \`$PACKAGE_FILE\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  publish:
+    name: npmへ公開
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/@uzabase/mitsubachi-ui/v/${{ inputs.version }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Node.jsを準備
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: 検査済みの公開ファイルを取得
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: ${{ needs.verify.outputs.artifact-name }}
+          path: ${{ runner.temp }}/release
+
+      - name: npmへ公開
+        env:
+          PACKAGE_FILE: ${{ needs.verify.outputs.package-file }}
+          RELEASE_DIR: ${{ runner.temp }}/release
+        run: |
+          npm publish "$RELEASE_DIR/$PACKAGE_FILE" \
+            --access public \
+            --ignore-scripts
+
+  tag:
+    name: 公開バージョンのGitタグを作成
+    needs:
+      - verify
+      - publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: 公開元のソースコードを取得
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+
+      - name: 公開したバージョン情報を取得
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: ${{ needs.verify.outputs.artifact-name }}
+          path: ${{ runner.temp }}/release
+
+      - name: タグ専用commitとGitタグを作成
+        uses: ./.github/actions/tag-release
+        with:
+          version: ${{ inputs.version }}
+          release-directory: ${{ runner.temp }}/release
+
+      - name: 結果を表示
+        env:
+          TAG: v${{ inputs.version }}
+        run: |
+          {
+            echo "### npmへの公開記録をGitへ保存しました"
+            echo
+            echo "- Gitタグ: \`$TAG\`"
+            echo "- 公開元commit: \`$GITHUB_SHA\`"
+          } >> "$GITHUB_STEP_SUMMARY"

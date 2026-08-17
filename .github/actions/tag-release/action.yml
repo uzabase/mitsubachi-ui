@@ -1,0 +1,57 @@
+name: Tag release
+description: Create an annotated tag on a release-only version commit
+
+inputs:
+  version:
+    description: Published version
+    required: true
+  release-directory:
+    description: Directory containing the release metadata
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: 同じGitタグがないか確認
+      id: existing-tag
+      shell: bash
+      env:
+        TAG: v${{ inputs.version }}
+      run: |
+        set -euo pipefail
+        if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+          echo "::notice::$TAG はすでにあるため、タグ作成をスキップします。"
+          echo "exists=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "exists=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: タグ専用commitとGitタグを作成
+      if: steps.existing-tag.outputs.exists != 'true'
+      shell: bash
+      env:
+        RELEASE_DIR: ${{ inputs.release-directory }}
+        TAG: v${{ inputs.version }}
+      run: |
+        set -euo pipefail
+
+        cp \
+          "$RELEASE_DIR/git-metadata/package.json" \
+          "$RELEASE_DIR/git-metadata/package-lock.json" \
+          .
+
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add package.json package-lock.json
+        # mainのバージョンがすでに一致している場合は、mainのcommitへ直接タグを付ける
+        if ! git diff --cached --quiet; then
+          git commit -m "chore(release): $TAG"
+        fi
+
+        git tag --annotate "$TAG" --file=- <<EOF
+        $TAG をnpmへ公開しました
+
+        公開元commit: $GITHUB_SHA
+        EOF
+
+        git push origin "refs/tags/$TAG"
