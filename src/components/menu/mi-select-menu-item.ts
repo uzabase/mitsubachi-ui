@@ -5,6 +5,9 @@ import { property, state } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
 import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
+import type { MiMenuDropdown } from "./mi-menu-dropdown";
+import type { MiMenuRadioGroup } from "./mi-menu-radio-group";
+import { closestThroughSlots } from "./slot-traversal";
 
 /**
  * @summary 選択状態を持つメニュー項目。
@@ -120,12 +123,32 @@ export class MiSelectMenuItem extends LitElement {
 
   /** 選択状態（mi-menu-radio-group から自動設定） */
   get selected(): boolean {
-    const group = this.closest("mi-menu-radio-group");
+    // mi-select-box のように slot 経由で差し込まれる場合があるため、slot をまたいで探す
+    const group = closestThroughSlots(
+      this,
+      "mi-menu-radio-group",
+    ) as MiMenuRadioGroup | null;
     return group ? group.value === this.value : false;
+  }
+
+  /**
+   * 親ドロップダウンの popup-role に応じた role を返す。
+   *
+   * ARIA では listbox の子は option、menu の子は menuitemradio と決まっている。
+   * popup-role="listbox"（mi-select-box）のときだけ option にし、
+   * それ以外（従来の mi-menu 用途）は menuitemradio のままにする。
+   */
+  get #itemRole(): "option" | "menuitemradio" {
+    const dropdown = closestThroughSlots(
+      this,
+      "mi-menu-dropdown",
+    ) as MiMenuDropdown | null;
+    return dropdown?.popupRole === "listbox" ? "option" : "menuitemradio";
   }
 
   connectedCallback() {
     super.connectedCallback();
+    // 初期値。描画後に updated() で親の popup-role を見て確定させる
     this.setAttribute("role", "menuitemradio");
     this.setAttribute("tabindex", "-1");
     this.addEventListener("click", this._handleClick);
@@ -139,13 +162,19 @@ export class MiSelectMenuItem extends LitElement {
   }
 
   updated() {
-    // selected 状態を属性とARIAに反映
+    const role = this.#itemRole;
+    this.setAttribute("role", role);
+
+    // listbox の子は aria-selected、menu の子は aria-checked で選択状態を表す
+    const selectedAttr = role === "option" ? "aria-selected" : "aria-checked";
+    const unusedAttr = role === "option" ? "aria-checked" : "aria-selected";
+    this.removeAttribute(unusedAttr);
+    this.setAttribute(selectedAttr, this.selected ? "true" : "false");
+
     if (this.selected) {
       this.setAttribute("selected", "");
-      this.setAttribute("aria-checked", "true");
     } else {
       this.removeAttribute("selected");
-      this.setAttribute("aria-checked", "false");
     }
   }
 

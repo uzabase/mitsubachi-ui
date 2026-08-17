@@ -4,6 +4,7 @@ import { property } from "lit/decorators.js";
 import { makeStyles } from "../styles";
 import { menuDropdownStyles } from "./menu-dropdown.styles";
 import type { MenuAlign, MenuSide } from "./mi-menu";
+import { querySelectorAllThroughSlots } from "./slot-traversal";
 
 /**
  * @summary メニューのドロップダウンコンポーネント。
@@ -41,7 +42,7 @@ export class MiMenuDropdown extends LitElement {
   sideOffset = 4;
 
   /**
-   * ドロップダウンの幅（px）
+   * ドロップダウンの幅（px）。`0` を指定すると中身に合わせた幅になる。
    * @default 200
    */
   @property({ type: Number })
@@ -73,10 +74,10 @@ export class MiMenuDropdown extends LitElement {
 
   /** メニュー項目一覧を取得（キーボードナビ用） */
   private _getMenuItems(): HTMLElement[] {
-    return Array.from(
-      this.querySelectorAll(
-        "mi-action-menu-item:not([disabled]), mi-link-menu-item:not([disabled]), mi-select-menu-item:not([disabled]), mi-sub-menu-item:not([disabled])",
-      ),
+    // mi-select-box のように slot 経由で差し込まれる場合があるため、slot をまたいで集める
+    return querySelectorAllThroughSlots(
+      this,
+      "mi-action-menu-item:not([disabled]), mi-link-menu-item:not([disabled]), mi-select-menu-item:not([disabled]), mi-sub-menu-item:not([disabled])",
     );
   }
 
@@ -84,10 +85,9 @@ export class MiMenuDropdown extends LitElement {
     const items = this._getMenuItems();
     if (items.length === 0) return;
 
-    const currentIndex = items.indexOf(
-      (this.getRootNode() as Document | ShadowRoot).activeElement?.closest(
-        "mi-action-menu-item, mi-link-menu-item, mi-select-menu-item, mi-sub-menu-item",
-      ) as HTMLElement,
+    // 項目が別のツリー（slot の差し込み元）にある場合でも判定できるよう :focus-within で探す
+    const currentIndex = items.findIndex((item) =>
+      item.matches(":focus-within"),
     );
 
     switch (e.key) {
@@ -122,7 +122,8 @@ export class MiMenuDropdown extends LitElement {
   render() {
     if (!this.open) return nothing;
 
-    const inlineSize = this.width === 0 ? "fit-content" : `${this.width}px`;
+    const fitContent = this.width === 0;
+    const inlineSize = fitContent ? "fit-content" : `${this.width}px`;
 
     return html`
       <div
@@ -130,6 +131,7 @@ export class MiMenuDropdown extends LitElement {
         role="${this.popupRole}"
         tabindex="-1"
         style="inline-size: ${inlineSize}"
+        ?data-fit-content=${fitContent}
         @keydown=${this._handleKeyDown}
       >
         <slot></slot>

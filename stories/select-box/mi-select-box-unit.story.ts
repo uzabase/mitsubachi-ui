@@ -1,7 +1,4 @@
 import "../../src/components/select-box/mi-select-box-unit";
-import "../../src/components/menu/mi-menu";
-import "../../src/components/menu/mi-menu-dropdown";
-import "../../src/components/menu/mi-menu-radio-group";
 import "../../src/components/menu/mi-select-menu-item";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
@@ -10,18 +7,43 @@ import { action } from "storybook/actions";
 
 import type { MiSelectBoxUnit } from "../../src/components/select-box/mi-select-box-unit";
 
+/** Storybook の Actions / ドキュメント表示用（コンポーネントの公開 API 外） */
+type MiSelectBoxUnitStory = MiSelectBoxUnit & {
+  onChange?: (...args: unknown[]) => void;
+  /** Events テーブルに載せるためだけの項目（プロパティではない） */
+  nativeEvents?: unknown;
+};
+
+/** args に登録されたハンドラ（既定は Actions パネルへのログ出力）へ橋渡しする */
+const onChangeOf =
+  (args: { onChange?: (...args: unknown[]) => void }) => (e: Event) => {
+    const el = e.target as MiSelectBoxUnit;
+    args.onChange?.({ value: el.value, displayText: el.displayText });
+  };
+
+const options = html`
+  <mi-select-menu-item value="sales">営業</mi-select-menu-item>
+  <mi-select-menu-item value="marketing">マーケティング</mi-select-menu-item>
+  <mi-select-menu-item value="engineering"
+    >エンジニアリング</mi-select-menu-item
+  >
+`;
+
 const meta = {
   component: "mi-select-box-unit",
   title: "Components/SelectBox/mi-select-box-unit",
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: {
       description: {
         component:
-          "ラベル付きセレクトボックス。mi-label-unit と mi-select-box を組み合わせたラッパーコンポーネントです。",
+          "ラベル付きセレクトボックス。mi-label-unit と mi-select-box を組み合わせたラッパーコンポーネントです。選択肢は mi-select-menu-item を直接の子として並べます。",
       },
     },
   },
+  decorators: [
+    (story) => html`<div style="padding-bottom: 240px;">${story()}</div>`,
+  ],
   tags: ["autodocs", "!dev-only"],
   argTypes: {
     text: {
@@ -48,12 +70,12 @@ const meta = {
     },
     value: {
       control: "text",
-      description: "選択中の値（option の value に対応する識別子）",
+      description:
+        "選択中の値（mi-select-menu-item の value に対応する識別子）",
     },
-    displayText: {
+    name: {
       control: "text",
-      name: "display-text",
-      description: "選択中の表示テキスト",
+      description: "フォーム送信時の名前",
     },
     error: {
       control: "text",
@@ -63,6 +85,33 @@ const meta = {
       control: "boolean",
       description: "無効状態",
     },
+    displayText: {
+      table: { disable: true },
+    },
+    onChange: {
+      name: "change",
+      description: [
+        "選択値が変更されたときに発火します。**利用側が使う公開イベントはこれだけです。**",
+        "",
+        "内部の `mi-select-box` が発火した `change` を、このコンポーネントが受け取って発火し直しています。",
+        "`bubbles: false` / `composed: false` のため祖先要素では拾えません。`mi-select-box-unit` 自身にリスナーを付けてください。",
+        "",
+        "```js",
+        "unit.addEventListener('change', (e) => {",
+        "  e.target.value;       // 'sales'",
+        "  e.target.displayText; // '営業'",
+        "});",
+        "```",
+      ].join("\n"),
+      table: { category: "Events", type: { summary: "Event" } },
+    },
+    nativeEvents: {
+      name: "click / mousedown / focusin / keydown など",
+      control: false,
+      description:
+        "ブラウザ標準のイベントです。`composed: true` のため Shadow DOM を越えてそのまま届きます。",
+      table: { category: "Events", type: { summary: "ネイティブ" } },
+    },
   },
   args: {
     text: "部署",
@@ -71,173 +120,56 @@ const meta = {
     size: "medium",
     placeholder: "選択してください",
     value: "",
-    displayText: "",
+    name: "department",
     error: "",
     disabled: false,
+    onChange: action("change"),
   },
-} satisfies Meta<MiSelectBoxUnit>;
+  render: (args) => html`
+    <mi-select-box-unit
+      text="${args.text}"
+      ?required="${args.required}"
+      variant="${args.variant}"
+      size="${args.size}"
+      placeholder="${args.placeholder}"
+      .value="${args.value}"
+      name="${args.name}"
+      error="${args.error}"
+      ?disabled="${args.disabled}"
+      @change=${onChangeOf(args)}
+    >
+      ${options}
+    </mi-select-box-unit>
+  `,
+} satisfies Meta<MiSelectBoxUnitStory>;
 
 export default meta;
-type Story = StoryObj<MiSelectBoxUnit>;
+type Story = StoryObj<MiSelectBoxUnitStory>;
 
 /** デフォルト */
-export const Default: Story = {
-  render: (args) => html`
-    <div style="width: 240px;">
-      <mi-select-box-unit
-        text="${args.text}"
-        ?required="${args.required}"
-        variant="${args.variant}"
-        size="${args.size}"
-        placeholder="${args.placeholder}"
-        value="${args.value}"
-        display-text="${args.displayText}"
-        error="${args.error}"
-        ?disabled="${args.disabled}"
-      ></mi-select-box-unit>
-    </div>
-  `,
-};
+export const Default: Story = {};
 
 /** 値が選択されている状態 */
 export const WithValue: Story = {
-  args: {
-    value: "sales",
-    displayText: "営業",
-  },
-  render: (args) => html`
-    <div style="width: 240px;">
-      <mi-select-box-unit
-        text="${args.text}"
-        ?required="${args.required}"
-        variant="${args.variant}"
-        size="${args.size}"
-        placeholder="${args.placeholder}"
-        value="${args.value}"
-        display-text="${args.displayText}"
-        error="${args.error}"
-        ?disabled="${args.disabled}"
-      ></mi-select-box-unit>
-    </div>
-  `,
+  args: { value: "sales" },
+};
+
+/** 必須バッジ付き */
+export const Required: Story = {
+  args: { required: true },
 };
 
 /** エラー状態 */
-export const Error: Story = {
-  args: {
-    error: "選択は必須です",
-  },
-  render: (args) => html`
-    <div style="width: 240px;">
-      <mi-select-box-unit
-        text="${args.text}"
-        ?required="${args.required}"
-        variant="${args.variant}"
-        size="${args.size}"
-        placeholder="${args.placeholder}"
-        value="${args.value}"
-        display-text="${args.displayText}"
-        error="${args.error}"
-        ?disabled="${args.disabled}"
-      ></mi-select-box-unit>
-    </div>
-  `,
+export const WithError: Story = {
+  args: { required: true, error: "部署を選択してください" },
 };
 
 /** 無効状態 */
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    value: "sales",
-    displayText: "営業",
-  },
-  render: (args) => html`
-    <div style="width: 240px;">
-      <mi-select-box-unit
-        text="${args.text}"
-        ?required="${args.required}"
-        variant="${args.variant}"
-        size="${args.size}"
-        placeholder="${args.placeholder}"
-        value="${args.value}"
-        display-text="${args.displayText}"
-        error="${args.error}"
-        ?disabled="${args.disabled}"
-      ></mi-select-box-unit>
-    </div>
-  `,
+  args: { disabled: true, value: "sales" },
 };
 
 /** ラベルなし */
 export const WithoutLabel: Story = {
-  args: {
-    text: "",
-  },
-  render: (args) => html`
-    <div style="width: 240px;">
-      <mi-select-box-unit
-        text="${args.text}"
-        ?required="${args.required}"
-        variant="${args.variant}"
-        size="${args.size}"
-        placeholder="${args.placeholder}"
-        value="${args.value}"
-        display-text="${args.displayText}"
-        error="${args.error}"
-        ?disabled="${args.disabled}"
-      ></mi-select-box-unit>
-    </div>
-  `,
-};
-
-/** 選択肢付きの使用例 */
-export const WithMenu: Story = {
-  decorators: [
-    (story) => html`<div style="padding-bottom: 200px;">${story()}</div>`,
-  ],
-  render: () => {
-    const handleChange = (e: Event) => {
-      const group = e.target as HTMLElement & { value: string };
-      const selected = group.querySelector(
-        `mi-select-menu-item[value="${group.value}"]`,
-      );
-      const unit = group
-        .closest("mi-menu")
-        ?.querySelector("mi-select-box-unit") as
-        | (HTMLElement & { value: string; displayText: string })
-        | null;
-      if (unit && selected) {
-        unit.value = group.value;
-        unit.displayText = selected.textContent?.trim() ?? "";
-        action("change")({
-          value: unit.value,
-          displayText: unit.displayText,
-        });
-      }
-    };
-
-    return html`
-      <div style="width: 240px;">
-        <mi-menu>
-          <mi-select-box-unit
-            slot="trigger"
-            text="部署"
-            placeholder="選択してください"
-          ></mi-select-box-unit>
-          <mi-menu-dropdown>
-            <mi-menu-radio-group value="" @change=${handleChange}>
-              <mi-select-menu-item value="sales">営業</mi-select-menu-item>
-              <mi-select-menu-item value="marketing">
-                マーケティング・広報
-              </mi-select-menu-item>
-              <mi-select-menu-item value="engineering">
-                エンジニアリング
-              </mi-select-menu-item>
-              <mi-select-menu-item value="hr">人事</mi-select-menu-item>
-            </mi-menu-radio-group>
-          </mi-menu-dropdown>
-        </mi-menu>
-      </div>
-    `;
-  },
+  args: { text: "" },
 };

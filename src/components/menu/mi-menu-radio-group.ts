@@ -2,6 +2,7 @@ import { css, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
+import { querySelectorAllThroughSlots } from "./slot-traversal";
 
 /**
  * @summary SelectMenuItem のラジオグループ。
@@ -55,9 +56,12 @@ export class MiMenuRadioGroup extends LitElement {
 
   /** 子の mi-select-menu-item に再レンダリングを通知 */
   private _updateChildren() {
-    this.querySelectorAll("mi-select-menu-item").forEach((item) => {
-      (item as LitElement).requestUpdate();
-    });
+    // mi-select-box のように slot 経由で差し込まれる場合があるため、slot をまたいで集める
+    querySelectorAllThroughSlots(this, "mi-select-menu-item").forEach(
+      (item) => {
+        (item as LitElement).requestUpdate();
+      },
+    );
   }
 
   render() {

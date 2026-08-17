@@ -5,21 +5,30 @@ export const selectBoxStyles = css`
     display: inline-block;
   }
 
+  /* primary はコンテナいっぱいに広がる（Figma の指定） */
   :host([variant="primary"]) {
     display: block;
-    width: 100%;
+  }
+
+  /*
+   * mi-menu の既定は inline-block（中身に合わせて縮む）。
+   * ここでホストの display を引き継がせることで、利用側が
+   * mi-select-box に display: block を指定するだけで全幅にできる。
+   */
+  .menu {
+    display: inherit;
   }
 
   .select-box {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    width: 100%;
+    inline-size: 100%;
     box-sizing: border-box;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius-medium, 6px);
     background: transparent;
-    color: rgb(0 0 0 / 84%);
+    color: var(--text-regular-default, rgb(0 0 0 / 84%));
     font: inherit;
     font-size: 14px;
     line-height: 1.5;
@@ -30,22 +39,22 @@ export const selectBoxStyles = css`
 
   /* --- variant: primary --- */
   .select-box.primary {
-    border: 1px solid rgb(0 0 0 / 20%);
-    background: #fff;
+    border: 1px solid var(--border-semi-strong-default, rgb(0 0 0 / 20%));
+    background: var(--surface-regular-default, #fff);
     padding-inline: 8px;
 
     &:hover:not(:disabled) {
-      border-color: rgb(0 0 0 / 56%);
+      border-color: var(--border-semi-strong-hover, rgb(0 0 0 / 35%));
     }
 
     &:active:not(:disabled) {
-      border-color: rgb(0 0 0 / 84%);
+      border-color: var(--border-semi-strong-active, rgb(0 0 0 / 54%));
     }
 
     &:disabled {
-      background: rgb(0 0 0 / 5%);
-      border-color: rgb(0 0 0 / 10%);
-      color: rgb(0 0 0 / 35%);
+      background: var(--surface-regular-disabled, rgb(0 0 0 / 3%));
+      border-color: var(--border-disabled, rgb(0 0 0 / 7%));
+      color: var(--text-disabled, rgb(0 0 0 / 35%));
       cursor: not-allowed;
     }
   }
@@ -56,49 +65,61 @@ export const selectBoxStyles = css`
     padding-inline-end: 4px;
 
     &:hover:not(:disabled) {
-      background: rgb(0 0 0 / 4%);
+      background: var(--surface-overlay-hover, rgb(0 0 0 / 7%));
     }
 
     &:active:not(:disabled) {
-      background: rgb(0 0 0 / 7%);
+      background: var(--surface-overlay-active, rgb(0 0 0 / 10%));
     }
 
     &:disabled {
-      color: rgb(0 0 0 / 35%);
+      color: var(--text-disabled, rgb(0 0 0 / 35%));
       cursor: not-allowed;
     }
   }
 
   /* --- size --- */
   .select-box.medium {
-    min-height: 40px;
+    min-block-size: 40px;
   }
 
   .select-box.small {
-    min-height: 32px;
+    min-block-size: 32px;
   }
 
   /* --- focus --- */
   .select-box:focus-visible {
     box-shadow:
-      0 0 0 2px #fff,
-      0 0 0 4px #282828;
+      0 0 0 2px var(--surface-regular-default, #fff),
+      0 0 0 4px var(--focus-ring-default, #191919);
     outline: none;
   }
 
   /* --- error --- */
   .select-box.primary.error:not(:disabled) {
-    border-color: #db351f;
+    border-color: var(--border-error-default, #db351f);
   }
 
   .select-box.secondary.error:not(:disabled) {
-    border: 1px solid #db351f;
+    border: 1px solid var(--border-error-default, #db351f);
+  }
+
+  /*
+   * エラー中の hover / active。背景は variant ごとの通常ルールがそのまま効く。
+   * focus はエラー中も通常のフォーカスリングのままなので、追加のルールは不要（Figma 準拠）。
+   */
+  .select-box.error:hover:not(:disabled) {
+    border-color: var(--border-error-hover, #b02412);
+  }
+
+  .select-box.error:active:not(:disabled) {
+    border-color: var(--border-error-active, #6e160b);
   }
 
   /* --- text --- */
   .text {
     flex: 1;
-    min-width: 0;
+    min-inline-size: 0;
     text-align: start;
     overflow: hidden;
     white-space: nowrap;
@@ -106,44 +127,24 @@ export const selectBoxStyles = css`
   }
 
   .text.placeholder {
-    color: rgb(0 0 0 / 54%);
+    color: var(--text-weak-default, rgb(0 0 0 / 54%));
   }
 
   :host([disabled]) .text.placeholder {
-    color: rgb(0 0 0 / 35%);
+    color: var(--text-disabled, rgb(0 0 0 / 35%));
   }
 
   /* --- chevron icon --- */
   .chevron {
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    inline-size: 20px;
+    block-size: 20px;
     color: currentColor;
   }
 
   /* --- error text --- */
   .error-text {
-    display: flex;
-    align-items: center;
-    gap: 2px;
     padding-block-start: 4px;
-    color: #c92812;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .error-text.hidden {
-    display: none;
-  }
-
-  .error-icon {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-  }
-
-  .error-message {
-    font-weight: var(--font-weight-normal);
   }
 
   /* --- responsive: phone --- */
@@ -154,12 +155,12 @@ export const selectBoxStyles = css`
     }
 
     .select-box.small {
-      min-height: 40px;
+      min-block-size: 40px;
     }
 
     .chevron {
-      width: 22px;
-      height: 22px;
+      inline-size: 22px;
+      block-size: 22px;
     }
   }
 `;
