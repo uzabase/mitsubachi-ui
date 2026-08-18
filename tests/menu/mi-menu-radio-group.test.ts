@@ -67,7 +67,7 @@ describe("mi-menu-radio-group", async () => {
     itemB.click();
 
     const event = handler.mock.calls[0][0] as Event;
-    expect(event.bubbles).toBe(false);
+    expect(event.bubbles).toBe(true);
     expect(event.composed).toBe(false);
   });
 

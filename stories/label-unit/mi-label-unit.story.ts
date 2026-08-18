@@ -11,10 +11,12 @@ const meta = {
   argTypes: {
     text: { type: "string" },
     supportText: { type: "string" },
+    required: { type: "boolean" },
   },
   args: {
     text: "ラベル",
     supportText: "サポートテキスト",
+    required: false,
   },
   tags: ["!dev-only"],
 } satisfies Meta<MiLabelUnit>;
@@ -23,9 +25,13 @@ export default meta;
 type Story = StoryObj<MiLabelUnit>;
 
 export const Default: Story = {
-  render: ({ text, supportText }) => {
+  render: ({ text, supportText, required }) => {
     return html`
-      <mi-label-unit text=${text} support-text=${supportText}></mi-label-unit>
+      <mi-label-unit
+        text=${text}
+        support-text=${supportText}
+        ?required=${required}
+      ></mi-label-unit>
     `;
   },
 };

@@ -1,4 +1,4 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -19,6 +19,10 @@ export class MiLabelUnit extends LitElement {
 
   @property({ type: String, reflect: true })
   text = "";
+
+  /** 必須バッジを表示するかどうか */
+  @property({ type: Boolean, reflect: true })
+  required = false;
 
   @property({ type: String, attribute: "support-text", reflect: true })
   supportText = "";
@@ -46,7 +50,11 @@ export class MiLabelUnit extends LitElement {
 
   render() {
     return html`
-      <span class=${this.#labelClasses()}>${this.text}</span>
+      <span class=${this.#labelClasses()}
+        >${this.text}${this.required
+          ? html`<span class="required">必須</span>`
+          : nothing}</span
+      >
       <span class=${this.#supportClasses()}>${this.supportText}</span>
     `;
   }

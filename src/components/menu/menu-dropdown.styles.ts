@@ -26,11 +26,28 @@ export const menuDropdownStyles = css`
     box-shadow:
       0px 8px 16px 0px var(--elevation-regular, rgba(0, 0, 0, 0.13)),
       0px 0px 6px 0px var(--elevation-semi-weak, rgba(0, 0, 0, 0.1));
-    min-inline-size: 120px;
+    /*
+     * --menu-dropdown-min-inline-size を渡すと、その幅以上に広がる。
+     * mi-select-box がトリガーの実測幅を渡し、ドロップダウンが
+     * トリガーより狭くならないようにするために使う（ネイティブの select と同じ考え方）。
+     */
+    min-inline-size: max(120px, var(--menu-dropdown-min-inline-size, 0px));
     max-block-size: calc(100dvh - 32px);
     overflow: auto;
     padding-block: var(--spacing-medium, 8px);
     outline: none;
+  }
+
+  /*
+   * 幅を中身に合わせる場合（width=0）のみ上限を設ける。
+   * 選択肢が長いと横に広がりすぎるため。
+   * 明示的に幅を指定した場合は、その値を尊重して上限をかけない。
+   */
+  .popup[data-fit-content] {
+    max-inline-size: min(
+      var(--menu-dropdown-max-inline-size, 320px),
+      calc(100dvw - 32px)
+    );
   }
 
   /* ==============================

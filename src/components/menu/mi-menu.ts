@@ -113,7 +113,10 @@ export class MiMenu extends LitElement {
   };
 
   private _handleOutsideClick = (e: MouseEvent) => {
-    if (!this.contains(e.target as Node)) {
+    // contains() は実 DOM ツリーしか辿らないため、slot 経由で差し込まれた項目を
+    // 「外側」と誤判定してしまう（mi-select-box は Light DOM の選択肢を
+    // Shadow DOM 内のこの menu に差し込む）。composedPath なら差し込み先も辿れる。
+    if (!e.composedPath().includes(this)) {
       this.open = false;
     }
   };

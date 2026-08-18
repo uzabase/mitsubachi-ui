@@ -16,6 +16,16 @@ DOM Living Standard のイベント設計ガイドに従い、以下の4つを�
 - `click` / `focus` などブラウザが `composed: true` で定義しているイベントは自動で Shadow DOM の外に届くため、再発火不要
 - 二重発火が起きる場合 → `stopPropagation()` で止めてコンポーネント側で再発火
 
+## ネイティブ互換
+
+ネイティブHTML要素と同等の機能を持つコンポーネント（例: `mi-select-box` ↔ `<select>`）は、対応するネイティブイベント（`change` 等）を同じ振る舞いで発行する。`value` プロパティの意味もネイティブに揃える。
+
+内部コンポーネント間のイベント（例: radio-group の `change`）が外に漏れないよう、`stopPropagation()` で止めてから親コンポーネントが自身のイベントとして再発火する（Adobe Spectrum 方式）。
+
+## querySelector の安全性
+
+イベントハンドラ内で `querySelector` に動的な値を埋め込む場合、`CSS.escape()` で特殊文字をエスケープする。
+
 ## カスタムイベントについて
 
 カスタムイベントは原則定義しない。どうしても必要な場合はチームで議論して判断する。
