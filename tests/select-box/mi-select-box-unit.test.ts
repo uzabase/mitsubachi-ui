@@ -171,6 +171,48 @@ describe("mi-select-box-unit", async () => {
       expect(element.displayText).toBe("マーケティング");
     });
 
+    test("change はネイティブの select と同じ bubbles / composed を持つ", async () => {
+      const { element, items } = await setup();
+
+      const handler = vi.fn();
+      element.addEventListener("change", handler);
+
+      items[0].click();
+
+      const event = handler.mock.calls[0][0] as Event;
+      expect(event.bubbles).toBe(true);
+      expect(event.composed).toBe(false);
+    });
+
+    test("外側に届く change は unit 自身のものだけ（内側の select-box は漏れない）", async () => {
+      document.body.innerHTML = `
+        <div id="outer">
+          <mi-select-box-unit text="部署">
+            <mi-select-menu-item value="sales">営業</mi-select-menu-item>
+          </mi-select-box-unit>
+        </div>
+      `;
+      await customElements.whenDefined("mi-select-box-unit");
+      await customElements.whenDefined("mi-select-menu-item");
+
+      const element = document.querySelector(
+        "mi-select-box-unit",
+      ) as MiSelectBoxUnit;
+      await element.updateComplete;
+      await element.shadowRoot!.querySelector("mi-select-box")!.updateComplete;
+
+      const outerHandler = vi.fn();
+      document
+        .querySelector("#outer")!
+        .addEventListener("change", outerHandler);
+
+      document.querySelector("mi-select-menu-item")!.click();
+
+      // 内側の change を止めずにいると 2 回発火してしまう
+      expect(outerHandler).toHaveBeenCalledTimes(1);
+      expect(outerHandler.mock.calls[0][0].target).toBe(element);
+    });
+
     test("内部連絡用の menu-item-activate が外に漏れない", async () => {
       const { element, selectBox, items } = await setup();
 

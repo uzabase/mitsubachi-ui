@@ -7,11 +7,9 @@ import { action } from "storybook/actions";
 
 import type { MiSelectBoxUnit } from "../../src/components/select-box/mi-select-box-unit";
 
-/** Storybook の Actions / ドキュメント表示用（コンポーネントの公開 API 外） */
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiSelectBoxUnitStory = MiSelectBoxUnit & {
   onChange?: (...args: unknown[]) => void;
-  /** Events テーブルに載せるためだけの項目（プロパティではない） */
-  nativeEvents?: unknown;
 };
 
 /** args に登録されたハンドラ（既定は Actions パネルへのログ出力）へ橋渡しする */
@@ -91,10 +89,7 @@ const meta = {
     onChange: {
       name: "change",
       description: [
-        "選択値が変更されたときに発火します。**利用側が使う公開イベントはこれだけです。**",
-        "",
-        "内部の `mi-select-box` が発火した `change` を、このコンポーネントが受け取って発火し直しています。",
-        "`bubbles: false` / `composed: false` のため祖先要素では拾えません。`mi-select-box-unit` 自身にリスナーを付けてください。",
+        "選択値が変更されたときに発火します。",
         "",
         "```js",
         "unit.addEventListener('change', (e) => {",
@@ -104,13 +99,6 @@ const meta = {
         "```",
       ].join("\n"),
       table: { category: "Events", type: { summary: "Event" } },
-    },
-    nativeEvents: {
-      name: "click / mousedown / focusin / keydown など",
-      control: false,
-      description:
-        "ブラウザ標準のイベントです。`composed: true` のため Shadow DOM を越えてそのまま届きます。",
-      table: { category: "Events", type: { summary: "ネイティブ" } },
     },
   },
   args: {

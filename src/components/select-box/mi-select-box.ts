@@ -36,7 +36,8 @@ export type SelectBoxSize = "small" | "medium";
  *
  * @slot - 選択肢（mi-select-menu-item）
  *
- * @fires change - 選択値が変更されたとき。`event.target.value` で選択された識別子、`event.target.displayText` で表示テキストを取得できる。
+ * @fires change - 選択値が変更されたとき。ネイティブの `<select>` と同じく `bubbles: true` / `composed: false`。
+ *                 `event.target.value` で選択された識別子、`event.target.displayText` で表示テキストを取得できる。
  */
 export class MiSelectBox extends LitElement {
   static styles = makeStyles(selectBoxStyles);
@@ -202,8 +203,9 @@ export class MiSelectBox extends LitElement {
   /**
    * 内部の mi-menu-radio-group が発火する change を受け取り、自身の change として再発火する。
    *
-   * radio-group の change は composed: false なので現状 Shadow DOM の外には出ないが、
-   * docs/event-architecture.md の方針どおり明示的に止めてから発火し直す。
+   * 内部イベントは明示的に止めてから発火し直す（docs/event-architecture.md）。
+   * bubbles / composed はネイティブの <select> の change と同じ値にする。
+   * ネイティブも祖先までバブリングし、Shadow DOM の外には出ない（composed: false）。
    */
   #handleGroupChange(e: Event) {
     e.stopPropagation();
@@ -211,7 +213,7 @@ export class MiSelectBox extends LitElement {
     this.value = group.value;
     // change のリスナーが displayText を同期的に読めるよう、発火前に確定させる
     this._displayText = this.#resolveDisplayText();
-    this.dispatchEvent(new Event("change"));
+    this.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   get #effectiveSize(): SelectBoxSize {

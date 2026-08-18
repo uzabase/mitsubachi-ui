@@ -408,7 +408,8 @@ describe("mi-select-box", () => {
       expect(element.value).toBe("marketing");
     });
 
-    test("change は bubbles / composed とも false", async () => {
+    // ネイティブの <select> の change と同じ値にする（bubbles: true / composed: false）
+    test("change はネイティブの select と同じ bubbles / composed を持つ", async () => {
       const { element, items } = await setup(withItems());
 
       const handler = vi.fn();
@@ -417,8 +418,25 @@ describe("mi-select-box", () => {
       items[0].click();
 
       const event = handler.mock.calls[0][0] as Event;
-      expect(event.bubbles).toBe(false);
+      expect(event.bubbles).toBe(true);
       expect(event.composed).toBe(false);
+    });
+
+    test("change は祖先要素でも受け取れる", async () => {
+      document.body.innerHTML = `<form id="outer">${withItems()}</form>`;
+      await customElements.whenDefined("mi-select-box");
+      await customElements.whenDefined("mi-select-menu-item");
+
+      const element = document.querySelector("mi-select-box") as MiSelectBox;
+      await element.updateComplete;
+
+      const formHandler = vi.fn();
+      document.querySelector("#outer")!.addEventListener("change", formHandler);
+
+      document.querySelectorAll("mi-select-menu-item")[0].click();
+
+      // ネイティブの <select> と同じく、form でまとめて拾える
+      expect(formHandler).toHaveBeenCalledTimes(1);
     });
 
     test("同じ値を選び直したときは change が発火しない", async () => {
@@ -459,16 +477,17 @@ describe("mi-select-box", () => {
       expect(outerHandler).not.toHaveBeenCalled();
     });
 
-    test("内部の radio-group の change が外に漏れない", async () => {
-      const { items } = await setup(withItems());
+    test("外側に届く change は mi-select-box 自身のものだけ（内部の radio-group は漏れない）", async () => {
+      const { element, items } = await setup(withItems());
 
-      // ホストより外側で受け取れるのは mi-select-box 自身の change だけ
       const outerHandler = vi.fn();
       document.body.addEventListener("change", outerHandler);
 
       items[0].click();
 
-      expect(outerHandler).not.toHaveBeenCalled();
+      // radio-group の change も止めずにいると 2 回発火してしまう
+      expect(outerHandler).toHaveBeenCalledTimes(1);
+      expect(outerHandler.mock.calls[0][0].target).toBe(element);
       document.body.removeEventListener("change", outerHandler);
     });
   });

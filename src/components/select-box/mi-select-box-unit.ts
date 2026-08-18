@@ -30,7 +30,8 @@ import { selectBoxUnitStyles } from "./select-box-unit.styles";
  *
  * @slot - 選択肢（mi-select-menu-item）
  *
- * @fires change - 選択値が変更されたとき。`event.target.value` で選択された識別子を取得できる。
+ * @fires change - 選択値が変更されたとき。ネイティブの `<select>` と同じく `bubbles: true` / `composed: false`。
+ *                 `event.target.value` で選択された識別子を取得できる。
  */
 export class MiSelectBoxUnit extends LitElement {
   static styles = makeStyles(selectBoxUnitStyles);
@@ -98,13 +99,16 @@ export class MiSelectBoxUnit extends LitElement {
   }
 
   /**
-   * mi-select-box の change は composed: false のため Shadow DOM の外に出ない。
-   * docs/event-architecture.md の方針に従い、ホスト要素から発火し直す。
+   * 内側の mi-select-box が発火する change を受け取り、自身の change として再発火する。
+   *
+   * 内部イベントは明示的に止めてから発火し直す（docs/event-architecture.md）。
+   * bubbles / composed はネイティブの <select> の change と同じ値にする。
    */
   #handleChange(e: Event) {
+    e.stopPropagation();
     const selectBox = e.target as MiSelectBox;
     this.value = selectBox.value;
-    this.dispatchEvent(new Event("change"));
+    this.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   #labelClasses() {

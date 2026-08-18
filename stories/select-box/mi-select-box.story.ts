@@ -7,12 +7,9 @@ import { action } from "storybook/actions";
 
 import type { MiSelectBox } from "../../src/components/select-box/mi-select-box";
 
-/** Storybook の Actions / ドキュメント表示用（コンポーネントの公開 API 外） */
+/** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiSelectBoxStory = MiSelectBox & {
   onChange?: (...args: unknown[]) => void;
-  /** Events テーブルに載せるためだけの項目（プロパティではない） */
-  nativeEvents?: unknown;
-  internalEvents?: unknown;
 };
 
 /** args に登録されたハンドラ（既定は Actions パネルへのログ出力）へ橋渡しする */
@@ -85,9 +82,7 @@ const meta = {
     onChange: {
       name: "change",
       description: [
-        "選択値が変更されたときに発火します。**利用側が使う公開イベントはこれだけです。**",
-        "",
-        "`bubbles: false` / `composed: false` のため祖先要素では拾えません。`mi-select-box` 自身にリスナーを付けてください。",
+        "選択値が変更されたときに発火します。",
         "",
         "```js",
         "selectBox.addEventListener('change', (e) => {",
@@ -97,20 +92,6 @@ const meta = {
         "```",
       ].join("\n"),
       table: { category: "Events", type: { summary: "Event" } },
-    },
-    nativeEvents: {
-      name: "click / mousedown / focusin / keydown など",
-      control: false,
-      description:
-        "ブラウザ標準のイベントです。`composed: true` のため Shadow DOM を越えてそのまま届きます。選択肢をクリックした場合、`event.target` は `mi-select-menu-item` になります。",
-      table: { category: "Events", type: { summary: "ネイティブ" } },
-    },
-    internalEvents: {
-      name: "menu-item-activate（内部用）",
-      control: false,
-      description:
-        "メニューを閉じるための内部連絡用イベントです。`mi-select-box` が外へ漏らさないよう止めているため、**利用側には届きません**。`mi-select-menu-item` を `mi-menu` と直接組み合わせて使う場合のみ観測できます。",
-      table: { category: "Events", type: { summary: "内部用" } },
     },
   },
   args: {
@@ -188,7 +169,6 @@ export const Disabled: Story = {
  */
 export const Interactive: Story = {
   render: (args) => {
-    // change は bubbles: false のため、mi-select-box 自身で受け取る
     const showResult = (e: Event) => {
       onChangeOf(args)(e);
       const el = e.target as MiSelectBox;
