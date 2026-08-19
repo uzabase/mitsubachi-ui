@@ -30,6 +30,7 @@ const meta = {
       table: { category: "Slots" },
     },
     placeholder: { type: "string" },
+    required: { type: "boolean" },
     disabled: { type: "boolean" },
     name: { type: "string" },
     value: { type: "string" },
@@ -41,6 +42,7 @@ const meta = {
   },
   args: {
     placeholder: "プレースホルダー",
+    required: false,
     disabled: false,
     name: "surname",
     value: "Yamada",
@@ -58,6 +60,7 @@ export const Default: Story = {
   render: ({
     type,
     placeholder,
+    required,
     disabled,
     name,
     value,
@@ -66,6 +69,7 @@ export const Default: Story = {
   }) => {
     return html`<mi-text-field
       placeholder=${placeholder || nothing}
+      ?required=${required}
       ?disabled=${disabled}
       name=${name}
       value=${value}

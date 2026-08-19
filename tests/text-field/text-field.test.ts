@@ -184,4 +184,26 @@ describe("mi-text-field", () => {
       expect(sut.shadowRoot?.getElementById(id)).toBeTruthy();
     }
   });
+
+  test("required属性を指定すると、inputにaria-required=trueが設定される", async () => {
+    document.body.innerHTML = `<mi-text-field required></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+
+    const input = sut.shadowRoot?.querySelector("input");
+    expect(input?.getAttribute("aria-required")).toBe("true");
+  });
+
+  test("required属性を指定しないと、inputにaria-required=falseが設定される", async () => {
+    document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+    await customElements.whenDefined("mi-text-field");
+
+    const sut = document.querySelector("mi-text-field")!;
+    await sut.updateComplete;
+
+    const input = sut.shadowRoot?.querySelector("input");
+    expect(input?.getAttribute("aria-required")).toBe("false");
+  });
 });

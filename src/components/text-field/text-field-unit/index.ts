@@ -15,6 +15,8 @@ import textFieldUnitStyle from "./styles.css?inline";
  * @attr {string} text - テキストフィールドを説明するテキストです。テキストフィールドの上に表示されます。
  *
  * @attr {string} support-text - テキストフィールドを補足するテキストです。textで指定したテキストの下、テキストフィールドの上に表示されます。
+ *
+ * @attr {boolean} required - ラベルに「必須」バッジを表示し、入力欄に `aria-required` を付与します。
  */
 export class MiTextFieldUnit extends LitElement {
   static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
@@ -23,6 +25,9 @@ export class MiTextFieldUnit extends LitElement {
 
   @property({ type: String, reflect: true })
   text = "";
+
+  @property({ type: Boolean, reflect: true })
+  required = false;
 
   /** @deprecated 代わりに `slot="error"` を使用してください */
   @property({ type: String, reflect: true })
@@ -120,9 +125,11 @@ export class MiTextFieldUnit extends LitElement {
           class="${this.#labelClasses()}"
           text="${this.text}"
           support-text="${this.supportText}"
+          ?required="${this.required}"
         ></mi-label-unit>
         <mi-text-field
           placeholder="${this.placeholder}"
+          ?required="${this.required}"
           ?disabled="${this.disabled}"
           name="${this.name}"
           .value="${this.value}"
