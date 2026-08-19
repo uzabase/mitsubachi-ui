@@ -30,6 +30,9 @@ export class MiTextField extends LitElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
+  @property({ type: Boolean, reflect: true })
+  required = false;
+
   @property({ type: String, reflect: true })
   name = "";
 
@@ -140,6 +143,7 @@ export class MiTextField extends LitElement {
         ?disabled="${this.disabled}"
         name="${this.name}"
         .value="${this.value}"
+        aria-required="${this.required ? "true" : "false"}"
         aria-invalid="${this.#hasError ? "true" : "false"}"
         aria-describedby="${this.#hasError ? this.#errorIds.join(" ") : ""}"
         @input="${this.#handleInput}"

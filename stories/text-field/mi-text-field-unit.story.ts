@@ -15,6 +15,7 @@ const meta = {
     error: { type: "string" },
     placeholder: { type: "string" },
     supportText: { type: "string" },
+    required: { type: "boolean" },
     disabled: { type: "boolean" },
     name: { type: "string" },
     value: { type: "string" },
@@ -29,6 +30,7 @@ const meta = {
     error: "エラーテキストが入ります",
     placeholder: "プレースホルダー",
     supportText: "サポートテキスト",
+    required: false,
     disabled: false,
     name: "surname",
     value: "Yamada",
@@ -47,6 +49,7 @@ export const Default: Story = {
     type,
     error,
     supportText,
+    required,
     placeholder,
     disabled,
     name,
@@ -56,6 +59,7 @@ export const Default: Story = {
     return html`<mi-text-field-unit
       placeholder=${placeholder}
       text=${text}
+      ?required=${required}
       ?disabled=${disabled}
       name=${name}
       support-text=${supportText}

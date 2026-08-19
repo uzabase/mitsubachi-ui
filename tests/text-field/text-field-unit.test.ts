@@ -48,6 +48,34 @@ describe("mi-text-field-unit", () => {
     expect(input?.hasAttribute("autofocus")).toBe(true);
   });
 
+  test(`required属性を指定すると、mi-label-unitに必須バッジが表示される`, async () => {
+    document.body.innerHTML = `<mi-text-field-unit text="ラベル" required></mi-text-field-unit>`;
+    await customElements.whenDefined("mi-label-unit");
+    await customElements.whenDefined("mi-text-field-unit");
+
+    const labelUnit = document
+      .querySelector("mi-text-field-unit")
+      ?.shadowRoot?.querySelector("mi-label-unit");
+    await labelUnit?.updateComplete;
+
+    expect(labelUnit?.shadowRoot?.querySelector(".required")?.textContent).toBe(
+      "必須",
+    );
+  });
+
+  test(`required属性を指定しないと、mi-label-unitに必須バッジは表示されない`, async () => {
+    document.body.innerHTML = `<mi-text-field-unit text="ラベル"></mi-text-field-unit>`;
+    await customElements.whenDefined("mi-label-unit");
+    await customElements.whenDefined("mi-text-field-unit");
+
+    const labelUnit = document
+      .querySelector("mi-text-field-unit")
+      ?.shadowRoot?.querySelector("mi-label-unit");
+    await labelUnit?.updateComplete;
+
+    expect(labelUnit?.shadowRoot?.querySelector(".required")).toBeNull();
+  });
+
   test(`submitOnEnter属性を指定すると、Enterキーでフォームが送信される`, async () => {
     document.body.innerHTML = `
       <form id="form">
