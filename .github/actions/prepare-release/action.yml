@@ -1,0 +1,115 @@
+name: Prepare release
+description: Scan, build, and create the file to publish to npm
+
+inputs:
+  version:
+    description: Version to publish
+    required: true
+
+outputs:
+  artifact-name:
+    description: Name of the temporary GitHub artifact
+    value: ${{ steps.package.outputs.artifact-name }}
+  package-file:
+    description: File to publish to npm
+    value: ${{ steps.package.outputs.package-file }}
+
+runs:
+  using: composite
+  steps:
+    - name: Betterleaksを準備
+      shell: bash
+      env:
+        BETTERLEAKS_SHA256: ea9ed6a4aa2845ac2e00c0eafbc841057631321d53c061d5a435cf33e6e9ddaf
+        BETTERLEAKS_VERSION: 1.7.2
+      run: |
+        set -euo pipefail
+        archive="betterleaks_${BETTERLEAKS_VERSION}_linux_x64.tar.gz"
+        archive_path="$RUNNER_TEMP/$archive"
+        install_dir="$RUNNER_TEMP/betterleaks"
+
+        curl --fail --location --proto '=https' --show-error --silent \
+          "https://github.com/betterleaks/betterleaks/releases/download/v${BETTERLEAKS_VERSION}/$archive" \
+          --output "$archive_path"
+        printf '%s  %s\n' "$BETTERLEAKS_SHA256" "$archive_path" | sha256sum --check -
+        mkdir -p "$install_dir"
+        tar -xzf "$archive_path" -C "$install_dir"
+        echo "$install_dir" >> "$GITHUB_PATH"
+
+    - name: ソースコードに秘密情報がないことを確認
+      shell: bash
+      run: |
+        set -euo pipefail
+        source_tree="$RUNNER_TEMP/source-tree"
+        mkdir -p "$source_tree"
+        git archive --format=tar "$GITHUB_SHA" | tar -xf - -C "$source_tree"
+        betterleaks dir "$source_tree" \
+          --no-banner \
+          --no-color \
+          --redact \
+          --timeout 120
+
+    - name: 公開バージョンを確認・反映
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+      run: |
+        set -euo pipefail
+        published_versions="$RUNNER_TEMP/published-versions.json"
+
+        npm view . versions --json > "$published_versions"
+        node tools/validate-release.mjs "$VERSION" "$published_versions"
+
+        npm version "$VERSION" \
+          --allow-same-version \
+          --ignore-scripts \
+          --no-git-tag-version
+
+    - name: 依存関係をインストール
+      shell: bash
+      run: npm ci
+
+    - name: 依存関係の署名と安全性を確認
+      shell: bash
+      run: |
+        npm audit signatures
+        # 公開するのはdistのみなので、利用者がインストールする本番依存だけを見る
+        npm audit --omit=dev --audit-level=high
+
+    - name: ビルド
+      shell: bash
+      run: npm run build
+
+    - name: npmへ公開するファイルを作成
+      id: package
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+      run: |
+        set -euo pipefail
+        release_dir="$RUNNER_TEMP/release"
+        packed_tree="$RUNNER_TEMP/packed-package"
+        manifest="$release_dir/pack.json"
+        metadata_dir="$release_dir/git-metadata"
+
+        mkdir -p "$release_dir" "$packed_tree" "$metadata_dir"
+        npm pack \
+          --ignore-scripts \
+          --json \
+          --pack-destination "$release_dir" > "$manifest"
+
+        package_file="$(node -e \
+          'const fs = require("fs"); console.log(JSON.parse(fs.readFileSync(process.argv[1], "utf8"))[0].filename)' \
+          "$manifest")"
+
+        tar -xzf "$release_dir/$package_file" -C "$packed_tree"
+        betterleaks dir "$packed_tree/package" \
+          --no-banner \
+          --no-color \
+          --redact \
+          --timeout 120
+
+        cp package.json package-lock.json "$metadata_dir/"
+
+        echo "artifact-name=package-$VERSION" >> "$GITHUB_OUTPUT"
+        echo "package-file=$package_file" >> "$GITHUB_OUTPUT"
