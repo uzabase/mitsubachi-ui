@@ -1,6 +1,6 @@
 import "../../src/components/text-area/mi-text-area-unit";
 
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeAll, describe, expect, test, vi } from "vitest";
 import { page } from "vitest/browser";
 
 import type { MiTextAreaUnit } from "../../src/components/text-area/mi-text-area-unit";
@@ -37,12 +37,13 @@ const settle = async (element: MiTextAreaUnit) => {
  * ブラウザモードの既定の viewport は 414px（= 720px 以下）なので、
  * 指定しないとスマートフォン用スタイルで動いてしまう。
  * mi-text-area.test.ts と同じく、既定は desktop 幅で検証する。
+ * viewport の変更は副作用のある操作なので beforeAll で1回だけ呼ぶ。
  */
 const DESKTOP_WIDTH = 1280;
 const VIEWPORT_HEIGHT = 900;
 
 describe("mi-text-area-unit", () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await page.viewport(DESKTOP_WIDTH, VIEWPORT_HEIGHT);
   });
   describe("ラベル", () => {

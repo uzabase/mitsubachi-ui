@@ -1,6 +1,14 @@
 import "../../src/components/text-area/mi-text-area";
 
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { page } from "vitest/browser";
 
 import type { MiTextArea } from "../../src/components/text-area/mi-text-area";
@@ -23,13 +31,16 @@ const setup = async (html: string) => {
  * 何も指定しないと `@media (width <= 720px)` のスマートフォン用スタイルで動いてしまう。
  * このリポジトリの実装規約は PC ファースト（ブレイクポイントは 720px の1箇所）なので、
  * 既定は desktop 幅で検証し、スマートフォン幅は該当の describe で明示的に切り替える。
+ *
+ * viewport の変更はブラウザに対する副作用のある操作なので、テストごと（beforeEach）ではなく
+ * ファイル/describe 単位（beforeAll）で最小回数だけ呼ぶ。
  */
 const DESKTOP_WIDTH = 1280;
 const PHONE_WIDTH = 414;
 const VIEWPORT_HEIGHT = 900;
 
 describe("mi-text-area", () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await page.viewport(DESKTOP_WIDTH, VIEWPORT_HEIGHT);
   });
 
@@ -451,8 +462,13 @@ describe("mi-text-area", () => {
   });
 
   describe("スマートフォン幅（720px 以下）", () => {
-    beforeEach(async () => {
+    beforeAll(async () => {
       await page.viewport(PHONE_WIDTH, VIEWPORT_HEIGHT);
+    });
+
+    // 後続の describe が desktop 前提で動くよう必ず戻す
+    afterAll(async () => {
+      await page.viewport(DESKTOP_WIDTH, VIEWPORT_HEIGHT);
     });
 
     test("2行分の高さがタッチ操作向けに大きくなる", async () => {
