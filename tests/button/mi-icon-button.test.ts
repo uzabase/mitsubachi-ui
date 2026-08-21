@@ -404,7 +404,10 @@ describe("mi-icon-button", () => {
 
       const el = getMiIconButton();
       let clickCount = 0;
-      el.addEventListener("click", () => {
+      el.addEventListener("click", (e) => {
+        // preventDefault しないとテスト用の iframe が href 先へ遷移し、
+        // Vitest が iframe との接続を失って実行全体が中断する
+        e.preventDefault();
         clickCount++;
       });
 

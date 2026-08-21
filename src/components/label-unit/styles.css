@@ -9,6 +9,9 @@
     gap: 8px;
     font-weight: var(--font-weight-bold);
     font-size: 14px;
+
+    /* line-height を明示しないと normal（フォント依存）になり、環境によって高さが変わる */
+    line-height: 1.5;
     color: #000000d6;
 
     &.none {
@@ -34,6 +37,9 @@
   .support {
     font-weight: var(--font-weight-normal);
     font-size: 12px;
+
+    /* 小さいサイズ向けの 130%（typography.md）。12px × 1.3 = 15.6px */
+    line-height: 1.3;
     color: #0000008a;
 
     &.none {
