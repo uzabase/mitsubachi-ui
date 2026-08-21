@@ -650,7 +650,10 @@ describe("mi-button", () => {
 
       const miButton = getMiButton();
       let clickCount = 0;
-      miButton.addEventListener("click", () => {
+      miButton.addEventListener("click", (e) => {
+        // preventDefault しないとテスト用の iframe が href 先へ遷移し、
+        // Vitest が iframe との接続を失って実行全体が中断する
+        e.preventDefault();
         clickCount++;
       });
 
