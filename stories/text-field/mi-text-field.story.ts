@@ -80,3 +80,124 @@ export const Default: Story = {
     </mi-text-field>`;
   },
 };
+
+/** `slot="error"` に渡した要素が、テキストフィールドの下にエラーメッセージとして表示されます。 */
+export const WithError: Story = {
+  render: () => html`
+    <mi-text-field placeholder="プレースホルダー" name="surname">
+      <span slot="error">エラーテキストが入ります</span>
+    </mi-text-field>
+  `,
+};
+
+/**
+ * `slot="error"` は複数渡せます。要素ごとに1件のエラーとして、渡した順に表示されます。
+ */
+export const WithMultipleErrors: Story = {
+  render: () => html`
+    <mi-text-field placeholder="プレースホルダー" name="surname" value="やまだ">
+      <span slot="error">姓を入力してください</span>
+      <span slot="error">全角文字は使用できません</span>
+      <span slot="error">20文字以内で入力してください</span>
+    </mi-text-field>
+  `,
+};
+
+/** エラーメッセージ内の HTML 構造は保持されるため、リンクを含められます。 */
+export const WithErrorLink: Story = {
+  render: () => html`
+    <mi-text-field placeholder="プレースホルダー" name="surname">
+      <span slot="error"
+        >エラーが発生しました。詳しくは<a href="#">こちら</a
+        >をご覧ください。</span
+      >
+    </mi-text-field>
+  `,
+};
+
+/**
+ * `required` を指定すると入力欄に `aria-required="true"` が付きます。
+ * このコンポーネント自体はラベルを持たないため見た目は変わりません。
+ * 「必須」バッジを表示する場合は `mi-text-field-unit` を使用してください。
+ */
+export const Required: Story = {
+  render: () => html`
+    <mi-text-field
+      placeholder="プレースホルダー"
+      name="surname"
+      required
+    ></mi-text-field>
+  `,
+};
+
+/** `disabled` を指定すると入力できません。エラーがあっても表示されません。 */
+export const Disabled: Story = {
+  render: () => html`
+    <mi-text-field name="surname" value="入力できません" disabled>
+      <span slot="error">disabled のときはエラーを表示しません</span>
+    </mi-text-field>
+  `,
+};
+
+/** `type="password"` を指定すると入力内容が伏せ字になります。 */
+export const Password: Story = {
+  render: () => html`
+    <mi-text-field
+      type="password"
+      placeholder="パスワード"
+      name="password"
+      value="password1234"
+      autocomplete="current-password"
+    ></mi-text-field>
+  `,
+};
+
+export const All: Story = {
+  render: () => html`
+    <div
+      style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;"
+    >
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">通常</p>
+        <mi-text-field placeholder="プレースホルダー"></mi-text-field>
+      </div>
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">
+          エラー（1件）
+        </p>
+        <mi-text-field placeholder="プレースホルダー">
+          <span slot="error">エラーテキストが入ります</span>
+        </mi-text-field>
+      </div>
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">
+          エラー（複数件）
+        </p>
+        <mi-text-field placeholder="プレースホルダー">
+          <span slot="error">姓を入力してください</span>
+          <span slot="error">全角文字は使用できません</span>
+          <span slot="error">20文字以内で入力してください</span>
+        </mi-text-field>
+      </div>
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">
+          エラー（リンクあり）
+        </p>
+        <mi-text-field placeholder="プレースホルダー">
+          <span slot="error"
+            >エラーが発生しました。詳しくは<a href="#">こちら</a
+            >をご覧ください。</span
+          >
+        </mi-text-field>
+      </div>
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">password</p>
+        <mi-text-field type="password" value="password1234"></mi-text-field>
+      </div>
+      <div>
+        <p style="margin: 0 0 4px; font-size: 12px; color: #666;">disabled</p>
+        <mi-text-field value="入力できません" disabled></mi-text-field>
+      </div>
+    </div>
+  `,
+};
