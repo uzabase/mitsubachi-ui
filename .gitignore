@@ -5,3 +5,4 @@ tests/**/__screenshots__
 *.log
 .vscode
 dist
+.vitest-attachments
