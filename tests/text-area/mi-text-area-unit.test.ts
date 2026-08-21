@@ -368,16 +368,14 @@ describe("mi-text-area-unit", () => {
       expect(heightOf(element)).toBe(108);
     });
 
-    test("desktop / large（補足テキストあり）の全体高さ", async () => {
-      // Figma は 137px（label 41 + 間隔 8 + テキストエリア 88）だが実装は 139px。
-      // 差の 2px は mi-label-unit の .support に line-height の指定がなく
-      // 補足テキストが 16px ではなく 18px になっているため（別課題）。
+    test("desktop / large（補足テキストあり）の全体高さが Figma の 137px と一致する", async () => {
+      // Figma: label 41（ラベル21 + 間隔4 + 補足15.6）+ 間隔 8 + テキストエリア 88
       const { element, labelUnit } = await setup(
         `<div style="width:256px"><mi-text-area-unit text="ラベル" support-text="補足" size="large" min-rows="3"></mi-text-area-unit></div>`,
       );
       await labelUnit.updateComplete;
 
-      expect(heightOf(element)).toBe(139);
+      expect(heightOf(element)).toBe(137);
     });
   });
 
