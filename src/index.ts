@@ -94,6 +94,9 @@ export {
   MiTableHeaderCell,
   MiTableRow,
 } from "./components/table";
+export type { TextAreaSize } from "./components/text-area/mi-text-area";
+export { MiTextArea } from "./components/text-area/mi-text-area";
+export { MiTextAreaUnit } from "./components/text-area/mi-text-area-unit";
 export { MiTextField, SpTextField } from "./components/text-field/text-field";
 export {
   MiTextFieldErrorText,
