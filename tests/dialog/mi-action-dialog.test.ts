@@ -461,6 +461,107 @@ describe("mi-action-dialog", () => {
     });
   });
 
+  describe("loading", () => {
+    const setup = async (attrs: string) => {
+      document.body.innerHTML = `
+        <mi-action-dialog open header-text="削除しますか？" cancel-label="キャンセル" action-label="削除する" ${attrs}>
+          本文
+        </mi-action-dialog>`;
+      await customElements.whenDefined("mi-action-dialog");
+      const dialog = getActionDialog();
+      await dialog.updateComplete;
+      return dialog;
+    };
+
+    test("loading を指定するとアクションボタンがローディング表示になる", async () => {
+      await setup("loading");
+
+      expect(getActionButton()?.hasAttribute("loading")).toBe(true);
+    });
+
+    test("loading を指定するとキャンセルボタンが無効化される", async () => {
+      // 処理中にキャンセルできると、非同期処理が走ったままダイアログだけ閉じてしまう
+      await setup("loading");
+
+      expect(getCancelButton()?.hasAttribute("disabled")).toBe(true);
+    });
+
+    test("loading を指定しない場合はどちらも通常状態", async () => {
+      await setup("");
+
+      expect(getActionButton()?.hasAttribute("loading")).toBe(false);
+      expect(getCancelButton()?.hasAttribute("disabled")).toBe(false);
+    });
+
+    test("danger のときもアクションボタンがローディング表示になる", async () => {
+      await setup("danger loading");
+
+      const actionButton = getActionButton()!;
+      expect(actionButton.tagName.toLowerCase()).toBe("mi-danger-button");
+      expect(actionButton.hasAttribute("loading")).toBe(true);
+    });
+
+    test("loading 中はアクションボタンを押しても close が発火しない", async () => {
+      const dialog = await setup("loading");
+
+      let closeCount = 0;
+      dialog.addEventListener("close", () => {
+        closeCount++;
+      });
+
+      const button = getActionButton() as HTMLElement & {
+        updateComplete: Promise<unknown>;
+      };
+      await button.updateComplete;
+      button.shadowRoot?.querySelector("button")?.click();
+
+      expect(closeCount).toBe(0);
+      expect(dialog.open).toBe(true);
+    });
+
+    test("form-id がない場合、slot 内フォームの送信は止めない", async () => {
+      // Enter 送信は form-id による opt-in の仕組み。利用側が自分で置いたフォームの
+      // 送信を横から止めるのは行き過ぎになるため、対象外にしている
+      document.body.innerHTML = `
+        <mi-action-dialog open header-text="確認" action-label="実行する" loading>
+          <form id="own"><input id="own-input" name="a" /></form>
+        </mi-action-dialog>`;
+      await customElements.whenDefined("mi-action-dialog");
+      const dialog = getActionDialog();
+      await dialog.updateComplete;
+
+      const form = document.getElementById("own") as HTMLFormElement;
+      let submitCount = 0;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitCount++;
+      });
+
+      form.requestSubmit();
+
+      expect(submitCount).toBe(1);
+    });
+
+    test("loading を解除するとアクションボタンが押せるようになる", async () => {
+      const dialog = await setup("loading");
+      dialog.loading = false;
+      await dialog.updateComplete;
+
+      let closeCount = 0;
+      dialog.addEventListener("close", () => {
+        closeCount++;
+      });
+
+      const button = getActionButton() as HTMLElement & {
+        updateComplete: Promise<unknown>;
+      };
+      await button.updateComplete;
+      button.shadowRoot?.querySelector("button")?.click();
+
+      expect(closeCount).toBe(1);
+    });
+  });
+
   describe("アクセシビリティ", () => {
     test("dialog に role='dialog' と aria-modal='true' が設定される", async () => {
       document.body.innerHTML = `

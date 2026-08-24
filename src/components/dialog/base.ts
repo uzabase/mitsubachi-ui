@@ -47,6 +47,21 @@ export abstract class DialogBase extends LitElement {
   danger = false;
 
   /**
+   * アクション実行中の状態。
+   *
+   * アクションボタンをローディング表示にし、キャンセルボタンを無効化する。
+   * `form-id` 指定時は Enter による暗黙送信も止める（二重送信の防止）。
+   *
+   * フッターのボタンは Shadow DOM 内で組み立てているため利用側から直接触れない。
+   * 状態はこのプロパティ経由で渡す。
+   *
+   * 閉じる操作（Esc）は止めない。処理中に閉じられると困る場合は利用側で `close` を見て対処する。
+   * ダイアログ自身に `aria-busy` は付けない（変化するのはボタンだけで、そちらに付くため）。
+   */
+  @property({ type: Boolean, reflect: true })
+  loading = false;
+
+  /**
    * slot 内 `<form id="...">` の id。フッターのアクションボタンに `form` 属性として渡す。
    * mi-form-dialog で `actionButtonType` と組み合わせて Enter 送信を opt-in する。
    */
@@ -84,8 +99,30 @@ export abstract class DialogBase extends LitElement {
 
   private _boundCheckScroll = () => this._checkScroll();
 
+  /**
+   * loading 中の暗黙送信（入力欄での Enter）を止める。
+   *
+   * `form-id` は Enter 送信を opt-in する仕組みで、その経路はこのコンポーネントが
+   * 用意している。アクションボタンを無効化しても Enter では送信されてしまうため、
+   * loading 中はここで止める（利用側の `submit` ハンドラまで届かせない）。
+   *
+   * `form-id` を指定していない場合は対象外。利用側が自分で置いたフォームの送信を
+   * 横から止めるのは行き過ぎになるため。
+   */
+  private _handleSubmitCapture = (e: Event) => {
+    if (!this.loading || !this.formId) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  };
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener("submit", this._handleSubmitCapture, true);
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.removeEventListener("submit", this._handleSubmitCapture, true);
     this._bodyEl?.removeEventListener("scroll", this._boundCheckScroll);
     this._resizeObserver?.disconnect();
   }
@@ -222,6 +259,7 @@ export abstract class DialogBase extends LitElement {
                       class="footer-action"
                       variant="ghost"
                       size="large"
+                      ?disabled=${this.loading}
                       @click=${this._handleCancelClick}
                     >
                       ${this.cancelLabel}
@@ -236,6 +274,7 @@ export abstract class DialogBase extends LitElement {
                       size="large"
                       type=${this.actionButtonType}
                       form=${this.formId || nothing}
+                      ?loading=${this.loading}
                       @click=${this._handleActionClick}
                     >
                       ${this.actionLabel}
@@ -248,6 +287,7 @@ export abstract class DialogBase extends LitElement {
                       size="large"
                       type=${this.actionButtonType}
                       form=${this.formId || nothing}
+                      ?loading=${this.loading}
                       @click=${this._handleActionClick}
                     >
                       ${this.actionLabel}

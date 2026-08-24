@@ -32,6 +32,11 @@ const meta = {
   },
   tags: ["autodocs", "!dev-only"],
   argTypes: {
+    loading: {
+      control: "boolean",
+      description:
+        "アクション実行中。アクションボタンをローディング表示にし、キャンセルボタンを無効化します。Enter による暗黙送信も止まります",
+    },
     open: {
       control: false,
       table: { disable: true },
@@ -174,6 +179,48 @@ export const Default: Story = {
 /**
  * 小サイズ（560px）のフォームダイアログ。
  */
+/**
+ * 非同期処理の実行中を表す状態です。
+ *
+ * フッターのボタンはダイアログが内部で組み立てているため利用側から直接触れません。
+ * `loading` を渡すと、アクションボタンがローディング表示になり、キャンセルボタンが無効化されます。
+ * `form-id` 指定時は入力欄での Enter による暗黙送信も止まるため、二重送信を防げます。
+ *
+ * なお Esc キーによるクローズは止まりません（ローディング状態と「閉じてよいか」は別の関心事として扱っています）。
+ */
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+  render: (args) => html`
+    <div class="story-container">
+      ${formLayoutStyle}
+      <button type="button" @click=${openDialog}>新規作成</button>
+      <mi-form-dialog
+        size=${args.size}
+        header-text=${args.headerText}
+        cancel-label=${args.cancelLabel}
+        action-label=${args.actionLabel}
+        form-id="form-dialog-loading-form"
+        ?loading=${args.loading}
+        @close=${bindClose(args)}
+      >
+        <form
+          id="form-dialog-loading-form"
+          class="form-layout"
+          @submit=${(e: Event) => e.preventDefault()}
+        >
+          <mi-text-field-unit
+            text="タイトル"
+            name="title"
+            placeholder="タイトルを入力"
+          ></mi-text-field-unit>
+        </form>
+      </mi-form-dialog>
+    </div>
+  `,
+};
+
 export const Small: Story = {
   args: { size: "small" },
   render: (args) => html`

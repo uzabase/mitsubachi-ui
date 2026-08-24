@@ -26,6 +26,8 @@ function isValidFormSize(value: string): value is FormDialogSize {
  * @attr {string} action-label - アクションボタンのラベル
  * @attr {string} form-id - Enter キーで送信を有効にしたいとき、slot 内の form 要素の id を指定する（省略時は Enter 送信なし）
  *
+ * @attr {boolean} loading - アクション実行中。アクションボタンをローディング表示にし、キャンセルボタンを無効化する
+ *
  * @fires close - ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。`form-id` 指定時はフォームのバリデーションが失敗すると閉じない（`close` も発火しない）。
  */
 export class MiFormDialog extends DialogBase {

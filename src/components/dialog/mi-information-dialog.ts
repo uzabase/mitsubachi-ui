@@ -23,6 +23,8 @@ function isValidSize(value: string): value is InformationDialogSize {
  * @attr {string} header-text - ヘッダーに表示するタイトルテキスト
  * @attr {string} action-label - 閉じるボタンのラベル
  *
+ * @attr {boolean} loading - 閉じるボタンをローディング表示にする（閉じる操作が非同期のとき）
+ *
  * @fires close - ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。
  */
 export class MiInformationDialog extends DialogBase {

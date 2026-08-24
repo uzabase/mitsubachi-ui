@@ -15,6 +15,8 @@ import { DialogBase } from "./base";
  * @attr {string} action-label - アクションボタンのラベル
  * @attr {boolean} danger - 破壊的アクション（削除等）の場合は true。アクションボタンに mi-danger-button を使用
  *
+ * @attr {boolean} loading - アクション実行中。アクションボタンをローディング表示にし、キャンセルボタンを無効化する
+ *
  * @fires close - ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。
  */
 export class MiActionDialog extends DialogBase {

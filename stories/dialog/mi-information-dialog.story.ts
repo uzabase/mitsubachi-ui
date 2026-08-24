@@ -38,6 +38,11 @@ const meta = {
     },
     headerText: { type: "string" },
     actionLabel: { type: "string" },
+    loading: {
+      control: "boolean",
+      description:
+        "閉じるボタンをローディング表示にします（閉じる処理が非同期のとき）",
+    },
     onClose: {
       name: "close",
       description:

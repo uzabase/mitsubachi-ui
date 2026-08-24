@@ -30,6 +30,26 @@ function getActionButton() {
 }
 
 describe("mi-information-dialog", () => {
+  describe("loading", () => {
+    const setup = async (attrs: string) => {
+      document.body.innerHTML = `
+        <mi-information-dialog open header-text="お知らせ" action-label="閉じる" ${attrs}>
+          本文
+        </mi-information-dialog>`;
+      await customElements.whenDefined("mi-information-dialog");
+      const dialog = getInformationDialog();
+      await dialog.updateComplete;
+      return dialog;
+    };
+
+    test("loading を指定すると閉じるボタンがローディング表示になる", async () => {
+      // loading は DialogBase にあるため information-dialog にも効く
+      await setup("loading");
+
+      expect(getActionButton()?.hasAttribute("loading")).toBe(true);
+    });
+  });
+
   describe("open属性", () => {
     test("open=false のときダイアログは DOM に存在しない", async () => {
       document.body.innerHTML = `

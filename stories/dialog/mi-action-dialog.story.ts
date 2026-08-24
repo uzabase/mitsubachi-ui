@@ -40,6 +40,11 @@ const meta = {
       control: "boolean",
       description: "破壊的アクション（削除等）の場合は true",
     },
+    loading: {
+      control: "boolean",
+      description:
+        "アクション実行中。アクションボタンをローディング表示にし、キャンセルボタンを無効化します",
+    },
     onClose: {
       name: "close",
       description:
@@ -103,6 +108,34 @@ export const Default: Story = {
  * ステータス削除の確認ダイアログ。
  * Figma _status-delete サンプルに準拠。破壊的アクションのため mi-danger-button を使用。
  */
+/**
+ * 非同期処理の実行中を表す状態です。
+ *
+ * フッターのボタンはダイアログが内部で組み立てているため利用側から直接触れません。
+ * `loading` を渡すと、アクションボタンがローディング表示になり、
+ * あわせてキャンセルボタンが無効化されます（処理中にダイアログだけ閉じるのを防ぐため）。
+ */
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+  render: (args) => html`
+    <div class="story-container">
+      <button type="button" @click=${openDialog}>開く</button>
+      <mi-action-dialog
+        header-text=${args.headerText}
+        cancel-label=${args.cancelLabel}
+        action-label=${args.actionLabel}
+        ?danger=${args.danger}
+        ?loading=${args.loading}
+        @close=${bindClose(args)}
+      >
+        この操作を実行してもよろしいですか？
+      </mi-action-dialog>
+    </div>
+  `,
+};
+
 export const StatusDelete: Story = {
   args: {
     headerText: "ステータスの削除",

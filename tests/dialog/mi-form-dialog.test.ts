@@ -1,7 +1,7 @@
 import "../../src/components/dialog/mi-form-dialog";
 
 import { describe, expect, test, vi } from "vitest";
-import { userEvent } from "vitest/browser";
+import { page, userEvent } from "vitest/browser";
 
 import type { ButtonBase } from "../../src/components/button/base";
 import {
@@ -272,6 +272,62 @@ describe("mi-form-dialog", () => {
 
       expect(closed).toBe(true);
       expect(el.open).toBe(false);
+    });
+  });
+
+  describe("loading", () => {
+    const setup = async (attrs: string) => {
+      document.body.innerHTML = `
+        <mi-form-dialog open header-text="新規作成" cancel-label="キャンセル" action-label="作成する" form-id="f" ${attrs}>
+          <form id="f"><input id="i" name="a" /></form>
+        </mi-form-dialog>`;
+      await customElements.whenDefined("mi-form-dialog");
+      const dialog = getFormDialog();
+      await dialog.updateComplete;
+      return dialog;
+    };
+
+    test("アクションボタンがローディング表示、キャンセルボタンが無効になる", async () => {
+      await setup("loading");
+
+      expect(getActionButton()?.hasAttribute("loading")).toBe(true);
+      expect(getCancelButton()?.hasAttribute("disabled")).toBe(true);
+    });
+
+    test("loading 中は Enter による暗黙送信も止まる", async () => {
+      // アクションボタンを無効化しても、slot 内のフォームは Enter で送信されてしまうため
+      const dialog = await setup("loading");
+
+      let submitCount = 0;
+      document.getElementById("f")!.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitCount++;
+      });
+
+      const input = document.getElementById("i") as HTMLInputElement;
+      await page.elementLocator(input).fill("x");
+      await userEvent.keyboard("{Enter}");
+      await dialog.updateComplete;
+
+      expect(submitCount).toBe(0);
+      expect(dialog.open).toBe(true);
+    });
+
+    test("loading を解除すると Enter で送信できる", async () => {
+      const dialog = await setup("");
+
+      let submitCount = 0;
+      document.getElementById("f")!.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitCount++;
+      });
+
+      const input = document.getElementById("i") as HTMLInputElement;
+      await page.elementLocator(input).fill("x");
+      await userEvent.keyboard("{Enter}");
+      await dialog.updateComplete;
+
+      expect(submitCount).toBe(1);
     });
   });
 
