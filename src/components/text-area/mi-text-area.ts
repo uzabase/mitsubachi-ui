@@ -17,7 +17,7 @@ export type TextAreaSize = (typeof sizes)[number];
  * 文字数をスクリーンリーダーに読み上げるまでの待ち時間（ミリ秒）。
  *
  * 入力のたびに読み上げるとキー入力を妨げるほど冗長になるため、入力が止まってから通知する。
- * GOV.UK Design System は 500ms、SmartHR Design System は 1000ms を採用している。
+ * 500〜1000ms 程度が一般的で、ここでは 1000ms を採用している。
  */
 const SR_COUNT_ANNOUNCE_DELAY_MS = 1000;
 
@@ -26,11 +26,11 @@ const SR_COUNT_ANNOUNCE_DELAY_MS = 1000;
  *
  * `String.length` は UTF-16 コード単位を数えるため、絵文字（😀）が2文字になってしまう。
  * ユーザーの見た目に近づけるため、コードポイント単位で数える。
- * SmartHR がサロゲートペアを引き算しているのと同じ結果になる。
+ * サロゲートペアを引き算するのと同じ結果になる。
  *
  * ただし ZWJ で連結された絵文字（👨‍👩‍👧‍👦 は7）や結合文字（か+濁点の「が」は2）は
  * 見た目どおりにならない。完全に一致させるには `Intl.Segmenter`（書記素）が必要だが、
- * 採用しているデザインシステムが無く、tsconfig の lib 変更も伴うため見送っている。
+ * 採用例が少なく、tsconfig の lib 変更も伴うため見送っている。
  */
 const countCharacters = (value: string): number => [...value].length;
 
