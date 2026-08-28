@@ -63,6 +63,11 @@ export {
 } from "./components/radio-button/radio-button-text";
 export { MiRadioButtonTextGroup } from "./components/radio-button/radio-button-text-group";
 export { MiRadioButtonTextGroupUnit } from "./components/radio-button/radio-button-text-group-unit";
+export type { ReadOnlyTagType } from "./components/read-only-tag/mi-read-only-tag";
+export {
+  MiReadOnlyTag,
+  readOnlyTagTypes,
+} from "./components/read-only-tag/mi-read-only-tag";
 export {
   MiSearchBox,
   SpSearchBox,
