@@ -1,5 +1,4 @@
 import "../../src/components/tag/mi-read-only-tag";
-import "../../src/components/icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -36,6 +35,11 @@ const meta: Meta<MiReadOnlyTag> = {
       options: [...readOnlyTagTypes],
       description: "タグの意味（色）",
     },
+    iconType: {
+      control: { type: "text" },
+      description:
+        "ラベルの先頭に表示するアイコンの種類（mi-icon の type）。未指定なら表示しません",
+    },
   },
 };
 export default meta;
@@ -61,9 +65,9 @@ export const Types: Story = {
 };
 
 export const WithIcon: Story = {
-  render: ({ type }) => html`
-    <mi-read-only-tag type=${type}>
-      <mi-icon slot="icon" type="arrow-up-small"></mi-icon>
+  args: { iconType: "arrow-up-small" },
+  render: ({ type, iconType }) => html`
+    <mi-read-only-tag type=${type} icon-type=${iconType}>
       アイコン付き
     </mi-read-only-tag>
   `,
@@ -90,8 +94,7 @@ export const UsageExamples: Story = {
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         ${labels.map(
           (label) => html`
-            <mi-read-only-tag type=${type}>
-              <mi-icon slot="icon" type=${icon}></mi-icon>
+            <mi-read-only-tag type=${type} icon-type=${icon}>
               ${label}
             </mi-read-only-tag>
           `,

@@ -1,6 +1,7 @@
-import { html, LitElement } from "lit";
-import { property, state } from "lit/decorators.js";
+import { html, LitElement, nothing } from "lit";
+import { property } from "lit/decorators.js";
 
+import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./read-only-tag.styles";
 
@@ -13,6 +14,14 @@ export const readOnlyTagTypes = [
 
 export type ReadOnlyTagType = (typeof readOnlyTagTypes)[number];
 
+function isValidIconType(value: string): boolean {
+  if (isIconType(value)) {
+    return true;
+  }
+  console.warn(`${value}は無効なicon-type属性です。`);
+  return false;
+}
+
 /**
  * @summary 情報の分類・属性・状態を示す表示専用のタグです。
  *
@@ -23,8 +32,9 @@ export type ReadOnlyTagType = (typeof readOnlyTagTypes)[number];
  * `type` の違いは色でしか表現されないため、色が判別できないユーザーにも意味が伝わるよう、
  * ラベル文言だけで意味が分かるようにしてください（例: 「終了」「エラー」）。
  *
+ * スクリーンリーダー向けに `role="mark"` を付与します（参照のために目立たせたインラインのラベル）。
+ *
  * @slot - タグのラベルテキスト
- * @slot icon - ラベルの先頭に表示するアイコン（任意）
  *
  * @cssprop --surface-semi-strong-default - neutral の背景色
  * @cssprop --text-regular-default - neutral の文字色
@@ -39,11 +49,7 @@ export type ReadOnlyTagType = (typeof readOnlyTagTypes)[number];
  * ```html
  * <mi-read-only-tag>下書き</mi-read-only-tag>
  * <mi-read-only-tag type="positive">承認済み</mi-read-only-tag>
- *
- * <mi-read-only-tag type="negative">
- *   <mi-icon slot="icon" type="check"></mi-icon>
- *   差し戻し
- * </mi-read-only-tag>
+ * <mi-read-only-tag type="negative" icon-type="arrow-down-small">減収</mi-read-only-tag>
  * ```
  */
 export class MiReadOnlyTag extends LitElement {
@@ -56,12 +62,24 @@ export class MiReadOnlyTag extends LitElement {
   @property({ type: String, reflect: true })
   type: ReadOnlyTagType = "neutral";
 
-  @state()
-  private _hasIcon = false;
+  /**
+   * ラベルの先頭に表示するアイコンの種類（`mi-icon` の `type`）。
+   * 未指定または無効な値のときはアイコンを表示しません。
+   * アイコンは装飾として扱うため、意味はラベル文言で伝えてください。
+   * @default ""
+   */
+  @property({ type: String, attribute: "icon-type" })
+  iconType = "";
 
-  private _onIconSlotChange(e: Event) {
-    const slot = e.target as HTMLSlotElement;
-    this._hasIcon = slot.assignedElements().length > 0;
+  connectedCallback() {
+    super.connectedCallback();
+    // 参照のために目立たせたインラインのラベル、という役割を伝える。
+    // ボタンやリンクのロールは付けない（操作できると誤解させるため）。
+    this.setAttribute("role", "mark");
+  }
+
+  private get _showIcon() {
+    return !!this.iconType && isValidIconType(this.iconType);
   }
 
   render() {
@@ -69,15 +87,13 @@ export class MiReadOnlyTag extends LitElement {
 
     return html`
       <span class="base" data-type=${type}>
-        ${this._hasIcon
-          ? html`<span class="icon" aria-hidden="true">
-              <slot name="icon" @slotchange=${this._onIconSlotChange}></slot>
-            </span>`
-          : html`<slot
-              name="icon"
-              @slotchange=${this._onIconSlotChange}
-              hidden
-            ></slot>`}
+        ${this._showIcon
+          ? html`<mi-icon
+              class="icon"
+              type=${this.iconType}
+              aria-hidden="true"
+            ></mi-icon>`
+          : nothing}
         <span class="label"><slot></slot></span>
       </span>
     `;

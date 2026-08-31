@@ -55,14 +55,9 @@ export default css`
     color: var(--text-negative, #c92812);
   }
 
-  /* アイコンの色は文字色に追従させる（slot 内の mi-icon が currentColor を拾う） */
+  /* 色は文字色に追従させる（mi-icon の svg が currentColor を拾う） */
   .icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     flex-shrink: 0;
-    inline-size: 18px;
-    block-size: 18px;
     color: inherit;
   }
 

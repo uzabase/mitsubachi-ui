@@ -1,7 +1,7 @@
 import "../../src/components/tag/mi-read-only-tag";
 import "../../src/components/icon";
 
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import type { MiReadOnlyTag } from "../../src/components/tag/mi-read-only-tag";
 
@@ -76,59 +76,52 @@ describe("mi-read-only-tag", () => {
       expect(slot.assignedNodes()[0]?.textContent).toBe("ラベル");
     });
 
-    test("icon スロットが空のときはアイコン領域を表示しない", async () => {
+    test("icon-type を指定しない場合はアイコンを表示しない", async () => {
       const { element } = await setup(
         `<mi-read-only-tag>ラベル</mi-read-only-tag>`,
       );
 
-      expect(element.shadowRoot!.querySelector(".icon")).toBeNull();
+      expect(element.shadowRoot!.querySelector("mi-icon")).toBeNull();
     });
 
-    test("icon スロットに要素があるときだけアイコン領域を表示する", async () => {
+    test("icon-type を指定するとアイコンを表示する", async () => {
       const { element } = await setup(
-        `<mi-read-only-tag>
-           <mi-icon slot="icon" type="check"></mi-icon>
-           ラベル
-         </mi-read-only-tag>`,
+        `<mi-read-only-tag icon-type="arrow-up-small">ラベル</mi-read-only-tag>`,
       );
 
-      const icon = element.shadowRoot!.querySelector(".icon");
+      const icon = element.shadowRoot!.querySelector("mi-icon");
       expect(icon).not.toBeNull();
+      expect(icon!.getAttribute("type")).toBe("arrow-up-small");
       // アイコンは装飾なのでスクリーンリーダーから隠す
       expect(icon!.getAttribute("aria-hidden")).toBe("true");
     });
 
-    test("後からアイコンを追加すると表示される", async () => {
+    test("無効な icon-type を指定した場合はアイコンを表示しない", async () => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+      const { element } = await setup(
+        `<mi-read-only-tag icon-type="not-exist">ラベル</mi-read-only-tag>`,
+      );
+
+      expect(element.shadowRoot!.querySelector("mi-icon")).toBeNull();
+      expect(warn).toHaveBeenCalled();
+
+      warn.mockRestore();
+    });
+
+    test("icon-type を後から設定・解除するとアイコンが出入りする", async () => {
       const { element } = await setup(
         `<mi-read-only-tag>ラベル</mi-read-only-tag>`,
       );
-      expect(element.shadowRoot!.querySelector(".icon")).toBeNull();
+      expect(element.shadowRoot!.querySelector("mi-icon")).toBeNull();
 
-      const icon = document.createElement("mi-icon");
-      icon.setAttribute("slot", "icon");
-      icon.setAttribute("type", "check");
-      element.append(icon);
-      // slotchange が @state を更新し、その更新が描画されるまで待つ
+      element.iconType = "arrow-up-small";
       await element.updateComplete;
+      expect(element.shadowRoot!.querySelector("mi-icon")).not.toBeNull();
+
+      element.iconType = "";
       await element.updateComplete;
-
-      expect(element.shadowRoot!.querySelector(".icon")).not.toBeNull();
-    });
-
-    test("後からアイコンを削除すると表示されなくなる", async () => {
-      const { element } = await setup(
-        `<mi-read-only-tag>
-           <mi-icon slot="icon" type="check"></mi-icon>
-           ラベル
-         </mi-read-only-tag>`,
-      );
-      expect(element.shadowRoot!.querySelector(".icon")).not.toBeNull();
-
-      element.querySelector("mi-icon")!.remove();
-      await element.updateComplete;
-      await element.updateComplete;
-
-      expect(element.shadowRoot!.querySelector(".icon")).toBeNull();
+      expect(element.shadowRoot!.querySelector("mi-icon")).toBeNull();
     });
 
     test("角丸からはみ出さないよう overflow を隠す", async () => {
@@ -147,23 +140,28 @@ describe("mi-read-only-tag", () => {
       expect(getComputedStyle(withoutIcon).gap).toBe("normal");
 
       const { base: withIcon } = await setup(
-        `<mi-read-only-tag>
-           <mi-icon slot="icon" type="check"></mi-icon>
-           ラベル
-         </mi-read-only-tag>`,
+        `<mi-read-only-tag icon-type="arrow-up-small">ラベル</mi-read-only-tag>`,
       );
       expect(getComputedStyle(withIcon).gap).toBe("normal");
     });
   });
 
   describe("アクセシビリティ", () => {
-    test("操作できない表示専用の要素なので role を持たない", async () => {
+    test('role="mark" を持つ', async () => {
       const { element } = await setup(
         `<mi-read-only-tag>ラベル</mi-read-only-tag>`,
       );
 
-      expect(element.getAttribute("role")).toBeNull();
-      expect(element.shadowRoot!.querySelector("[role]")).toBeNull();
+      expect(element.getAttribute("role")).toBe("mark");
+    });
+
+    test("操作できる要素のロール（button / link）は持たない", async () => {
+      const { element } = await setup(
+        `<mi-read-only-tag>ラベル</mi-read-only-tag>`,
+      );
+
+      // 押せると誤解させないため、Shadow DOM 内にも操作系の要素を置かない
+      expect(element.shadowRoot!.querySelector("button, a")).toBeNull();
     });
   });
 
@@ -181,21 +179,6 @@ describe("mi-read-only-tag", () => {
       expect(style.paddingBlockEnd).toBe("2px");
       expect(style.fontSize).toBe("12px");
       expect(style.letterSpacing).toBe("0.12px");
-    });
-
-    test("アイコン領域は 18px 四方になる", async () => {
-      const { element } = await setup(
-        `<mi-read-only-tag>
-           <mi-icon slot="icon" type="check"></mi-icon>
-           ラベル
-         </mi-read-only-tag>`,
-      );
-
-      const style = getComputedStyle(
-        element.shadowRoot!.querySelector<HTMLElement>(".icon")!,
-      );
-      expect(style.inlineSize).toBe("18px");
-      expect(style.blockSize).toBe("18px");
     });
 
     test.each([
