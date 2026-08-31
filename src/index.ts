@@ -36,9 +36,6 @@ export { MiIcon, SpIcon } from "./components/icon";
 export { MiIconColor } from "./components/icon-color";
 export { MiInlineNotification } from "./components/inline-notification/mi-inline-notification";
 export { MiLabelUnit, SpLabelUnit } from "./components/label-unit";
-export type { LinkTagSize } from "./components/link-tag/mi-link-tag";
-export { linkTagSizes, MiLinkTag } from "./components/link-tag/mi-link-tag";
-export { MiLinkTagGroup } from "./components/link-tag/mi-link-tag-group";
 export { MiLoading, SpLoading } from "./components/loading/mi-loading";
 export { MiLogo, MiSpeedaLogo, MiUzabaseLogo, SpLogo } from "./components/logo";
 export { MiControlMenu, SpControlMenu } from "./components/menu/control-menu";
@@ -63,11 +60,6 @@ export {
 } from "./components/radio-button/radio-button-text";
 export { MiRadioButtonTextGroup } from "./components/radio-button/radio-button-text-group";
 export { MiRadioButtonTextGroupUnit } from "./components/radio-button/radio-button-text-group-unit";
-export type { ReadOnlyTagType } from "./components/read-only-tag/mi-read-only-tag";
-export {
-  MiReadOnlyTag,
-  readOnlyTagTypes,
-} from "./components/read-only-tag/mi-read-only-tag";
 export {
   MiSearchBox,
   SpSearchBox,
@@ -102,6 +94,14 @@ export {
   MiTableHeaderCell,
   MiTableRow,
 } from "./components/table";
+export type { LinkTagSize } from "./components/tag/mi-link-tag";
+export { linkTagSizes, MiLinkTag } from "./components/tag/mi-link-tag";
+export { MiLinkTagGroup } from "./components/tag/mi-link-tag-group";
+export type { ReadOnlyTagType } from "./components/tag/mi-read-only-tag";
+export {
+  MiReadOnlyTag,
+  readOnlyTagTypes,
+} from "./components/tag/mi-read-only-tag";
 export type { TextAreaSize } from "./components/text-area/mi-text-area";
 export { MiTextArea } from "./components/text-area/mi-text-area";
 export { MiTextAreaUnit } from "./components/text-area/mi-text-area-unit";

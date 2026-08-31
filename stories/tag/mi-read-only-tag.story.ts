@@ -1,4 +1,4 @@
-import "../../src/components/read-only-tag/mi-read-only-tag";
+import "../../src/components/tag/mi-read-only-tag";
 import "../../src/components/icon";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
@@ -7,11 +7,11 @@ import { html } from "lit";
 import {
   type MiReadOnlyTag,
   readOnlyTagTypes,
-} from "../../src/components/read-only-tag/mi-read-only-tag";
+} from "../../src/components/tag/mi-read-only-tag";
 
 const meta: Meta<MiReadOnlyTag> = {
   component: "mi-read-only-tag",
-  title: "Components/ReadOnlyTag/mi-read-only-tag",
+  title: "Components/Tag/mi-read-only-tag",
   parameters: {
     docs: {
       description: {

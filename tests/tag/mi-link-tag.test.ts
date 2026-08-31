@@ -1,9 +1,9 @@
-import "../../src/components/link-tag/mi-link-tag";
+import "../../src/components/tag/mi-link-tag";
 
 import { afterEach, describe, expect, test } from "vitest";
 import { page } from "vitest/browser";
 
-import type { MiLinkTag } from "../../src/components/link-tag/mi-link-tag";
+import type { MiLinkTag } from "../../src/components/tag/mi-link-tag";
 
 function getLinkTag() {
   return document.querySelector("mi-link-tag") as MiLinkTag;

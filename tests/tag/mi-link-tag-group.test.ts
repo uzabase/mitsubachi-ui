@@ -1,9 +1,9 @@
-import "../../src/components/link-tag/mi-link-tag";
-import "../../src/components/link-tag/mi-link-tag-group";
+import "../../src/components/tag/mi-link-tag";
+import "../../src/components/tag/mi-link-tag-group";
 
 import { afterEach, describe, expect, test } from "vitest";
 
-import type { MiLinkTagGroup } from "../../src/components/link-tag/mi-link-tag-group";
+import type { MiLinkTagGroup } from "../../src/components/tag/mi-link-tag-group";
 
 function getGroup() {
   return document.querySelector("mi-link-tag-group") as MiLinkTagGroup;

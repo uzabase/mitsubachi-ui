@@ -1,4 +1,4 @@
-import "../../src/components/link-tag/mi-link-tag";
+import "../../src/components/tag/mi-link-tag";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
@@ -6,11 +6,11 @@ import { html } from "lit";
 import {
   linkTagSizes,
   type MiLinkTag,
-} from "../../src/components/link-tag/mi-link-tag";
+} from "../../src/components/tag/mi-link-tag";
 
 const meta: Meta<MiLinkTag> = {
   component: "mi-link-tag",
-  title: "Components/LinkTag/mi-link-tag",
+  title: "Components/Tag/mi-link-tag",
   parameters: {
     docs: {
       description: {

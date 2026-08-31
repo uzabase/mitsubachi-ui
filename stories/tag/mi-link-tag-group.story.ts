@@ -1,10 +1,10 @@
-import "../../src/components/link-tag/mi-link-tag-group";
+import "../../src/components/tag/mi-link-tag-group";
 
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 
-import { linkTagSizes } from "../../src/components/link-tag/mi-link-tag";
-import type { MiLinkTagGroup } from "../../src/components/link-tag/mi-link-tag-group";
+import { linkTagSizes } from "../../src/components/tag/mi-link-tag";
+import type { MiLinkTagGroup } from "../../src/components/tag/mi-link-tag-group";
 
 const labels = [
   "金融",
@@ -25,7 +25,7 @@ const tags = labels.map(
 
 const meta = {
   component: "mi-link-tag-group",
-  title: "Components/LinkTag/mi-link-tag-group",
+  title: "Components/Tag/mi-link-tag-group",
   parameters: {
     docs: {
       description: {

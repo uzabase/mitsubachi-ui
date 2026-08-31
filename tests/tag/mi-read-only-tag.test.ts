@@ -1,9 +1,9 @@
-import "../../src/components/read-only-tag/mi-read-only-tag";
+import "../../src/components/tag/mi-read-only-tag";
 import "../../src/components/icon";
 
 import { beforeEach, describe, expect, test } from "vitest";
 
-import type { MiReadOnlyTag } from "../../src/components/read-only-tag/mi-read-only-tag";
+import type { MiReadOnlyTag } from "../../src/components/tag/mi-read-only-tag";
 
 const setup = async (html: string) => {
   document.body.innerHTML = html;
