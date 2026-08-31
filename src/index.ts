@@ -60,6 +60,11 @@ export {
 } from "./components/radio-button/radio-button-text";
 export { MiRadioButtonTextGroup } from "./components/radio-button/radio-button-text-group";
 export { MiRadioButtonTextGroupUnit } from "./components/radio-button/radio-button-text-group-unit";
+export type { ReportHeadingLevel } from "./components/report-heading/mi-report-heading";
+export {
+  MiReportHeading,
+  reportHeadingLevels,
+} from "./components/report-heading/mi-report-heading";
 export {
   MiSearchBox,
   SpSearchBox,
