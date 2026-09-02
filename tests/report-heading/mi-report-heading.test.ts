@@ -293,6 +293,77 @@ describe("mi-report-heading", () => {
     });
   });
 
+  describe("appearance-level（見た目の上書き）", () => {
+    const fontSizeOf = (level: number) =>
+      `${desktopTypography.find((t) => t.level === level)!.fontSize}px`;
+
+    test("指定しなければ level と同じ見た目になる", async () => {
+      const { heading } = await setup(
+        `<mi-report-heading level="3">見出し</mi-report-heading>`,
+      );
+
+      expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(3));
+    });
+
+    test("指定すると見た目だけ変わり、見出し要素は level のまま", async () => {
+      const { heading } = await setup(
+        `<mi-report-heading level="1" appearance-level="2">見出し</mi-report-heading>`,
+      );
+
+      // 文書構造は level に従う
+      expect(heading.tagName).toBe("H1");
+      // 見た目は appearance-level に従う
+      expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(2));
+    });
+
+    test("装飾（level 3 のバー）も appearance-level に従う", async () => {
+      const { element } = await setup(
+        `<mi-report-heading level="2" appearance-level="3">見出し</mi-report-heading>`,
+      );
+
+      expect(element.shadowRoot!.querySelector(".heading")!.tagName).toBe("H2");
+      expect(element.shadowRoot!.querySelector(".bar")).not.toBeNull();
+    });
+
+    test("装飾（level 2 の下線）も appearance-level に従う", async () => {
+      const { row, heading } = await setup(
+        `<mi-report-heading level="4" appearance-level="2">見出し</mi-report-heading>`,
+      );
+
+      expect(heading.tagName).toBe("H4");
+      expect(getComputedStyle(row).borderBlockEndWidth).toBe("1px");
+    });
+
+    test.each(["0", "7", "abc"])(
+      'appearance-level="%s" のような範囲外の値は level の見た目になる',
+      async (appearanceLevel) => {
+        const { heading } = await setup(
+          `<mi-report-heading level="4" appearance-level="${appearanceLevel}">見出し</mi-report-heading>`,
+        );
+
+        expect(heading.tagName).toBe("H4");
+        expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(4));
+      },
+    );
+
+    test("appearance-level を後から変更・解除すると見た目が追従する", async () => {
+      const { element, heading } = await setup(
+        `<mi-report-heading level="1">見出し</mi-report-heading>`,
+      );
+      expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(1));
+
+      element.appearanceLevel = 5;
+      await element.updateComplete;
+      expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(5));
+      // 構造は変わらない
+      expect(element.shadowRoot!.querySelector(".heading")!.tagName).toBe("H1");
+
+      element.appearanceLevel = null;
+      await element.updateComplete;
+      expect(getComputedStyle(heading).fontSize).toBe(fontSizeOf(1));
+    });
+  });
+
   describe("レベル固有の装飾", () => {
     test("level=3 のときだけ左のバーが描画され、装飾として隠される", async () => {
       const { element } = await setup(

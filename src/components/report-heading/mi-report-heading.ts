@@ -24,8 +24,8 @@ const headingTags = {
   6: literal`h6`,
 } as const;
 
-/** 左に赤いバーを表示するレベル */
-const LEVEL_WITH_BAR = 3;
+/** 左に赤いバーを表示する見た目のレベル */
+const APPEARANCE_LEVEL_WITH_BAR = 3;
 
 /**
  * @summary レポートや記事などの読み物コンテンツの中で、内容の区切りや構造を示す見出しです。
@@ -39,6 +39,9 @@ const LEVEL_WITH_BAR = 3;
  * 文書構造が崩れ、スクリーンリーダーの見出しナビゲーションを妨げます。
  * どのレベルを使うかは利用側の責務です（見た目だけを理由にレベルを選ばないでください）。
  *
+ * **見出しレベルと見た目は揃っているのが原則です。** 文書構造と見た目が一致しない配置でのみ、
+ * `appearance-level` で見た目だけを差し替えられます。
+ *
  * @slot - 見出しのテキスト
  * @slot action - 見出しの右端に表示するアクション領域（任意）。ボタン等の要素を配置します
  *   （テキストノードだけを入れた場合は表示されません）
@@ -51,6 +54,9 @@ const LEVEL_WITH_BAR = 3;
  * @example
  * ```html
  * <mi-report-heading level="2">市場環境の変化</mi-report-heading>
+ *
+ * <!-- 例外: ページに他の h1 が無いので構造は h1、見た目は level 2 にする -->
+ * <mi-report-heading level="1" appearance-level="2">市場環境の変化</mi-report-heading>
  *
  * <!-- 見出しの右端にアクションを置く -->
  * <mi-report-heading level="2">
@@ -70,12 +76,38 @@ export class MiReportHeading extends LitElement {
   @property({ type: Number, reflect: true })
   level: ReportHeadingLevel = 1;
 
+  /**
+   * 見た目だけを別のレベルに差し替える逃げ道。**通常は指定しないでください。**
+   *
+   * 未指定なら `level` と同じ見た目になります（見出しレベルと見た目は揃っているのが原則）。
+   * 文書構造と見た目が一致しない配置でのみ使います。
+   * 例: ページに他の `<h1>` が無いため構造上は `<h1>` にしたいが、見た目は level 2 にしたい場合
+   * → `level="1" appearance-level="2"`
+   *
+   * 範囲外の値を指定した場合は `level` と同じ見た目として扱います。
+   * @default null（level と同じ）
+   */
+  @property({
+    type: Number,
+    attribute: "appearance-level",
+    reflect: true,
+  })
+  appearanceLevel: ReportHeadingLevel | null = null;
+
   @state()
   private _hasAction = false;
 
-  /** 範囲外の値を弾いた、実際に描画に使うレベル */
+  /** 範囲外の値を弾いた、実際に描画に使うレベル（文書構造） */
   private get _level(): ReportHeadingLevel {
     return reportHeadingLevels.includes(this.level) ? this.level : 1;
+  }
+
+  /** 実際に描画に使う見た目のレベル。未指定・範囲外なら文書構造のレベルに従う */
+  private get _appearanceLevel(): ReportHeadingLevel {
+    const appearanceLevel = this.appearanceLevel as ReportHeadingLevel;
+    return reportHeadingLevels.includes(appearanceLevel)
+      ? appearanceLevel
+      : this._level;
   }
 
   private _onActionSlotChange(e: Event) {
@@ -106,14 +138,14 @@ export class MiReportHeading extends LitElement {
    * 見出し要素の内側に置くと、そのラベルが見出しの読み上げに合流してしまう。
    */
   render() {
-    const level = this._level;
-    const tag = headingTags[level];
+    const tag = headingTags[this._level];
+    const appearanceLevel = this._appearanceLevel;
 
     return staticHtml`
-      <div class="row" data-level=${level}>
+      <div class="row" data-appearance-level=${appearanceLevel}>
         <${tag} class="heading">
           ${
-            level === LEVEL_WITH_BAR
+            appearanceLevel === APPEARANCE_LEVEL_WITH_BAR
               ? html`<span class="bar" aria-hidden="true"></span>`
               : nothing
           }
