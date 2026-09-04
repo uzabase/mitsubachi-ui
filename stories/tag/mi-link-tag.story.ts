@@ -64,13 +64,20 @@ export const Sizes: Story = {
   `,
 };
 
-/** ラベルが幅に収まらない場合は末尾を省略記号で切り詰めます。 */
+/**
+ * ラベルが幅に収まらない場合は末尾を省略記号で切り詰めます。
+ * 収まるタグはそのまま表示されます。
+ */
 export const LongText: Story = {
   render: ({ href, size }) => html`
-    <div style="inline-size: 160px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 4px; inline-size: 160px;">
       <mi-link-tag href=${href} size=${size}>
         非常に長いカテゴリ名が入った場合のタグ
       </mi-link-tag>
+      <mi-link-tag href=${href} size=${size}>そんな</mi-link-tag>
+      <mi-link-tag href=${href} size=${size}>長く</mi-link-tag>
+      <mi-link-tag href=${href} size=${size}>ない</mi-link-tag>
+      <mi-link-tag href=${href} size=${size}>タグ</mi-link-tag>
     </div>
   `,
 };
