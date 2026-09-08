@@ -77,33 +77,21 @@ npm run build
 
 **Story を追加・変更した場合**は、[storybook-autodocs.md](./storybook-autodocs.md) を確認する。`!dev-only` がすべてのストーリーに含まれていることに加え、コンポーネントがカスタムイベントを公開しているときは同ドキュメントの「イベント（カスタムイベント）の実装チェック」に沿って Storybook Actions との対応と動作確認を行うこと。
 
-## コミットルール
+## PRタイトルとマージ
 
-### フォーマット
+PR作成者は通常どおり変更内容を説明する。作業中のコミットメッセージは自由で、リリース用のファイル追加やバージョン更新は不要。
+メンテナーがマージ前にPRタイトルを次の形式へ整え、**Squash and merge** する。最終コミットのタイトルがrelease-pleaseの判定に使われるため、マージ画面でも確認する。
 
-```
-<type>(<scope>): <概要>
-```
+| タイトル                                                                  | 次回リリースへの影響              |
+| ------------------------------------------------------------------------- | --------------------------------- |
+| `fix: ボタンの表示崩れを修正`                                             | patch（不具合修正）               |
+| `feat: テキストエリアを追加`                                              | minor（互換性を保った機能追加）   |
+| `feat!: TextFieldの属性を変更`                                            | major（利用側の修正が必要な変更） |
+| `docs: 開発手順を更新`                                                    | 公開不要                          |
+| `chore: CI設定を更新` / `test: テストを追加` / `refactor: 内部実装を整理` | 通常は公開不要                    |
 
-- `type` と `scope` は英語
-- `概要` は日本語で、変更内容を端的な1文にまとめる
-
-### type（タイプ）
-
-- refactor: UIの見た目が変わらない変更
-- fix: UIの見た目が変わる変更、バグ修正
-- feat: 新機能追加
-- docs: ドキュメントのみの変更
-- test: テストの追加・修正
-- chore: ビルド・設定の変更
-
-### 例
-
-```
-feat(Dialog): ActionDialogコンポーネントを追加
-refactor(Button): デザイントークンをCSS変数に置き換え
-fix(Tooltip): ホバー時の表示位置ずれを修正
-```
+`fix(Button): ...` のような英語のscopeは任意。説明は日本語でよい。破壊的変更は `fix!:` や `refactor!:` のようにどのtypeでも `!` を付け、PR本文に影響と移行方法を書く。互換性の判断が難しければ技術担当者に確認する。
+本番依存の更新など、利用者へ公開する必要がある変更は内容に応じて `fix:` / `feat:` とする。
 
 ## レスポンシブ対応
 
@@ -114,7 +102,18 @@ fix(Tooltip): ホバー時の表示位置ずれを修正
 
 ### リリース
 
-- GitHub Actions の [Publish package to npm](../.github/workflows/publish.yml) を main ブランチで手動実行する
-- 公開したいバージョンを `2.15.0` のような形式で入力する（npm 上の最新より新しい安定版のみ）
-- npm への公開が成功したあとに、そのバージョンの `package.json` を持つcommitへ `v2.15.0` の注釈付きタグが付く
-- main ブランチの `package.json` のバージョンは更新しない（npm が正本）
+1. メンテナーが変更PRのタイトルを整えてmainへSquash mergeする。
+2. [Release package](../.github/workflows/publish.yml) がrelease-pleaseを実行し、リリースPRを自動作成・更新する。複数の変更PRをまとめて1回のリリースにできる。
+3. リリースPRのバージョン・CHANGELOGを確認し、公開したいタイミングでマージする。`package.json`、`package-lock.json`、`.release-please-manifest.json` はこのPRで更新される。リリースPR専用のマージ前CIは実行しない。
+4. Gitタグ（`v2.18.0`形式）とGitHub Releaseが作られ、そのタグのソースを自動で検査・テスト・ビルドする。失敗した場合はnpm公開へ進まない。
+5. environment `npm` の公開承認後、検査済みの成果物をnpm Trusted Publishing（OIDC）で公開する。
+
+通常の変更PRのマージではnpmへ公開しない。公開時にバージョンを書き換えたり、mainへcommitをpushしたりする処理はない。
+GitHub Releaseの作成とnpm公開は別の段階なので、GitHub Releaseが存在してもnpmへ公開済みとは限らない。Actionsの結果とnpmで確認する。
+
+### 公開に失敗した場合
+
+- Actionsで失敗したジョブを再実行する。
+- コード修正が必要なら変更PRと次のリリースPRを作る。公開済みタグの付け替えやnpm版の上書きはしない。
+
+公式資料：[release-please](https://github.com/googleapis/release-please)、[GitHub Action](https://github.com/googleapis/release-please-action)。
