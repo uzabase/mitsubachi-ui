@@ -111,9 +111,6 @@ jobs:
     needs: [github_release, prepare_npm_publish]
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: npm
-      url: https://www.npmjs.com/package/@uzabase/mitsubachi-ui/v/${{ needs.github_release.outputs.version }}
     permissions:
       contents: read
       id-token: write
