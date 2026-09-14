@@ -1,14 +1,8 @@
-name: Publish package to npm
-
-run-name: npmへ v${{ inputs.version }} を公開（@${{ github.actor }}）
+name: Release package
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 公開するバージョン（例：1.2.3）
-        required: true
-        type: string
+  push:
+    branches: [main]
 
 permissions: {}
 
@@ -20,125 +14,122 @@ env:
   NODE_VERSION: 24.16.0
 
 jobs:
-  verify:
-    name: テストして公開ファイルを作成
+  github_release:
+    name: GitHub Releaseを作成
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      release-created: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - name: release-pleaseを実行
+        id: release
+        uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071
+        with:
+          target-branch: main
+
+  prepare_npm_publish:
+    name: npm公開を準備
+    needs: github_release
+    if: needs.github_release.outputs.release-created == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
-    outputs:
-      artifact-name: ${{ steps.prepare.outputs.artifact-name }}
-      package-file: ${{ steps.prepare.outputs.package-file }}
     steps:
       - name: ソースコードを取得
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           fetch-depth: 1
           persist-credentials: false
-          ref: ${{ github.sha }}
+          ref: ${{ needs.github_release.outputs.tag }}
 
       - name: Node.jsを準備
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: ${{ env.NODE_VERSION }}
           package-manager-cache: false
 
-      - name: セキュリティ確認・公開ファイル作成
-        id: prepare
-        uses: ./.github/actions/prepare-release
-        with:
-          version: ${{ inputs.version }}
+      - name: タグとパッケージのバージョンを確認
+        env:
+          VERSION: ${{ needs.github_release.outputs.version }}
+        run: test "$(node -p 'require("./package.json").version')" = "$VERSION"
+
+      - name: 依存関係をインストール・ビルド
+        run: npm ci
+
+      - name: 依存関係を検査
+        run: |
+          npm audit signatures
+          npm audit --omit=dev --audit-level=high
+
+      - name: テスト
+        run: |
+          npx playwright install chromium --with-deps
+          npm test -- --run
+
+      - name: 公開するパッケージを作成
+        run: |
+          mkdir -p "$RUNNER_TEMP/pack" "$RUNNER_TEMP/unpacked"
+          npm pack --ignore-scripts --pack-destination "$RUNNER_TEMP/pack"
+          mv "$RUNNER_TEMP"/pack/*.tgz "$RUNNER_TEMP/package.tgz"
+          tar -xzf "$RUNNER_TEMP/package.tgz" -C "$RUNNER_TEMP/unpacked"
+
+      - name: Betterleaksを準備
+        env:
+          BETTERLEAKS_SHA256: ea9ed6a4aa2845ac2e00c0eafbc841057631321d53c061d5a435cf33e6e9ddaf
+          BETTERLEAKS_VERSION: 1.7.2
+        run: |
+          archive="betterleaks_${BETTERLEAKS_VERSION}_linux_x64.tar.gz"
+          curl --fail --location --proto '=https' --show-error --silent \
+            "https://github.com/betterleaks/betterleaks/releases/download/v${BETTERLEAKS_VERSION}/$archive" \
+            --output "$RUNNER_TEMP/$archive"
+          printf '%s  %s\n' "$BETTERLEAKS_SHA256" "$RUNNER_TEMP/$archive" | sha256sum --check -
+          mkdir -p "$RUNNER_TEMP/betterleaks"
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/betterleaks"
+          echo "$RUNNER_TEMP/betterleaks" >> "$GITHUB_PATH"
+
+      - name: 公開するパッケージに秘密情報がないことを確認
+        run: betterleaks dir "$RUNNER_TEMP/unpacked/package" --no-banner --no-color --redact --timeout 120
 
       - name: 検査済みの公開ファイルを一時保存
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ${{ steps.prepare.outputs.artifact-name }}
-          path: ${{ runner.temp }}/release/
+          name: npm-package
+          path: ${{ runner.temp }}/package.tgz
           if-no-files-found: error
           retention-days: 1
           compression-level: 0
 
-      - name: 結果を表示
-        env:
-          PACKAGE_FILE: ${{ steps.prepare.outputs.package-file }}
-          VERSION: ${{ inputs.version }}
-        run: |
-          {
-            echo "### npmへの公開準備が完了しました"
-            echo
-            echo "- バージョン: \`$VERSION\`"
-            echo "- npmへ公開するファイル: \`$PACKAGE_FILE\`"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-  publish:
+  npm_publish:
     name: npmへ公開
-    needs: verify
+    needs: [github_release, prepare_npm_publish]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
       name: npm
-      url: https://www.npmjs.com/package/@uzabase/mitsubachi-ui/v/${{ inputs.version }}
+      url: https://www.npmjs.com/package/@uzabase/mitsubachi-ui/v/${{ needs.github_release.outputs.version }}
     permissions:
       contents: read
       id-token: write
     steps:
       - name: Node.jsを準備
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
       - name: 検査済みの公開ファイルを取得
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
         with:
-          name: ${{ needs.verify.outputs.artifact-name }}
+          name: npm-package
           path: ${{ runner.temp }}/release
 
       - name: npmへ公開
-        env:
-          PACKAGE_FILE: ${{ needs.verify.outputs.package-file }}
-          RELEASE_DIR: ${{ runner.temp }}/release
-        run: |
-          npm publish "$RELEASE_DIR/$PACKAGE_FILE" \
-            --access public \
-            --ignore-scripts
-
-  tag:
-    name: 公開バージョンのGitタグを作成
-    needs:
-      - verify
-      - publish
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-    steps:
-      - name: 公開元のソースコードを取得
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-        with:
-          fetch-depth: 1
-          ref: ${{ github.sha }}
-
-      - name: 公開したバージョン情報を取得
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
-        with:
-          name: ${{ needs.verify.outputs.artifact-name }}
-          path: ${{ runner.temp }}/release
-
-      - name: タグ専用commitとGitタグを作成
-        uses: ./.github/actions/tag-release
-        with:
-          version: ${{ inputs.version }}
-          release-directory: ${{ runner.temp }}/release
-
-      - name: 結果を表示
-        env:
-          TAG: v${{ inputs.version }}
-        run: |
-          {
-            echo "### npmへの公開記録をGitへ保存しました"
-            echo
-            echo "- Gitタグ: \`$TAG\`"
-            echo "- 公開元commit: \`$GITHUB_SHA\`"
-          } >> "$GITHUB_STEP_SUMMARY"
+        run: npm publish "$RUNNER_TEMP/release/package.tgz" --access public --ignore-scripts

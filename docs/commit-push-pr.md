@@ -24,36 +24,9 @@ npm run build
 
 ### 3. コミット
 
-- `docs/contributing.md` のコミットルールに従ってコミットメッセージを作成する
-- 変更ファイルをステージングし、コミットを実行する
-
-#### コミットメッセージフォーマット
-
-```
-<type>(<scope>): <概要>
-```
-
-- `type` と `scope` は英語
-- `概要` は日本語で、変更内容を端的な1文にまとめる
-
-#### type（タイプ）
-
-| type     | 用途                             |
-| -------- | -------------------------------- |
-| refactor | UIの見た目が変わらない変更       |
-| fix      | UIの見た目が変わる変更、バグ修正 |
-| feat     | 新機能追加                       |
-| docs     | ドキュメントのみの変更           |
-| test     | テストの追加・修正               |
-| chore    | ビルド・設定の変更               |
-
-#### 例
-
-```
-feat(Dialog): ActionDialogコンポーネントを追加
-refactor(Button): デザイントークンをCSS変数に置き換え
-fix(Tooltip): ホバー時の表示位置ずれを修正
-```
+- 変更ファイルをステージングし、コミットを実行する。作業中のコミットメッセージは自由。
+- リリースの分類はメンテナーがマージ前にPRタイトルで指定する。具体例は [contributing.md](./contributing.md#prタイトルとマージ) を参照する。
+- `package.json`のバージョン更新はrelease-pleaseのリリースPRに任せる。
 
 ### 4. プッシュ
 
@@ -67,7 +40,7 @@ git push -u origin <ブランチ名>
 
 - `git diff main...HEAD` と `git log main..HEAD` で全体の変更を把握する
 - 以下のフォーマットに従ってPR本文を構成し、`gh pr create` で直接PRを作成する
-- PRタイトルは `docs/contributing.md` のコミットルール形式に準拠する
+- PRタイトルは変更内容が分かるものにする。メンテナーがマージ前に `docs/contributing.md` の形式に整えてSquash mergeする
 - ベースブランチは `main` とする
 - 作成したPRのURLを表示する
 
