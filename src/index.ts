@@ -94,6 +94,14 @@ export {
   MiTableHeaderCell,
   MiTableRow,
 } from "./components/table";
+export type { LinkTagSize } from "./components/tag/mi-link-tag";
+export { linkTagSizes, MiLinkTag } from "./components/tag/mi-link-tag";
+export { MiLinkTagGroup } from "./components/tag/mi-link-tag-group";
+export type { ReadOnlyTagType } from "./components/tag/mi-read-only-tag";
+export {
+  MiReadOnlyTag,
+  readOnlyTagTypes,
+} from "./components/tag/mi-read-only-tag";
 export type { TextAreaSize } from "./components/text-area/mi-text-area";
 export { MiTextArea } from "./components/text-area/mi-text-area";
 export { MiTextAreaUnit } from "./components/text-area/mi-text-area-unit";
