@@ -1,4 +1,22 @@
-# sp-design-components-web-components
+# mitsubachi-ui
+
+## インストール
+
+```bash
+npm install @uzabase/mitsubachi-ui@<version>
+```
+
+## 使い方
+
+コンポーネントは Web Components として利用できます。ライブラリの読み込み方法は利用環境に合わせて選択してください。以下は TypeScript から読み込む例です。
+
+```ts
+import "@uzabase/mitsubachi-ui";
+```
+
+```html
+<mi-neutral-button>送信</mi-neutral-button>
+```
 
 ## storybook
 
@@ -16,6 +34,3 @@
 
 ### アイコン
 本プロジェクトに含まれるアイコンの著作権は株式会社ユーザベースに帰属します。
-
-## Model Context Protocol (MCP) server
-非公式のModel Context Protocol server, [mitsubachi-ui-mcp](https://github.com/uzabase/mitsubachi-ui-mcp)があります。
