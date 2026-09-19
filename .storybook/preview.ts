@@ -1,7 +1,8 @@
 import "yakuhanjp/dist/css/yakuhanjp_s.css";
 
 import type { Preview } from "@storybook/web-components-vite";
-import dedent from "dedent";
+import prettier from "prettier/standalone";
+import htmlPlugin from "prettier/plugins/html";
 
 const preview: Preview = {
   parameters: {
@@ -15,8 +16,16 @@ const preview: Preview = {
     },
     docs: {
       source: {
-        transform: (src: string) => {
-          return dedent(src);
+        transform: async (src: string) => {
+          if (!src.trimStart().startsWith("<")) {
+            return src;
+          }
+
+          return prettier.format(src, {
+            parser: "html",
+            plugins: [htmlPlugin],
+            htmlWhitespaceSensitivity: "ignore",
+          });
         },
       },
     },
