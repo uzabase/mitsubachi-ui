@@ -1,5 +1,6 @@
-import { css, html, LitElement } from "lit";
+import { css, html } from "lit";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 
 /**
@@ -9,7 +10,7 @@ import { makeStyles } from "../styles";
  *
  * @slot - mi-table-row
  */
-export class MiTableBody extends LitElement {
+export class MiTableBody extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: table-row-group;

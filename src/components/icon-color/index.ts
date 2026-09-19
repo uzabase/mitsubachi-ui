@@ -1,7 +1,8 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import iconColorStyle from "./icon-color.css?inline";
 import { iconColorPaths, type IconColorType, iconColorTypes } from "./icons";
@@ -20,7 +21,7 @@ export function isIconColorType(type: string): type is IconColorType {
  *
  * @attr {string} type - カラーアイコンの画像を定義します。
  */
-export class MiIconColor extends LitElement {
+export class MiIconColor extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(iconColorStyle));
 
   @property({ type: String, reflect: true })

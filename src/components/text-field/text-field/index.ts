@@ -1,18 +1,19 @@
 import "./error-text";
 import "../../helper-text/mi-helper-text";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import style from "./text-field.styles";
 
 /**
  * @summary テキストフィールドです。
  */
-export class MiTextField extends LitElement {
+export class MiTextField extends MitsubachiElement {
   static styles = makeStyles(style);
 
   static formAssociated = true;

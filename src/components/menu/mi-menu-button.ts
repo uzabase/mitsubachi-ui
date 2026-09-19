@@ -1,8 +1,9 @@
 import "../loading/mi-loading";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import { menuButtonStyles } from "./menu-button.styles";
@@ -26,7 +27,7 @@ function isValidSize(value: string): value is Size {
  *
  * @slot - ボタンのラベルテキスト
  */
-export class MiMenuButton extends LitElement {
+export class MiMenuButton extends MitsubachiElement {
   static styles = makeStyles(menuButtonStyles);
 
   /** ボタンのバリアント */

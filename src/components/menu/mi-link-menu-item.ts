@@ -1,8 +1,9 @@
 import "../icon";
 
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
 
@@ -17,7 +18,7 @@ import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
  *
  * @fires menu-item-activate - メニュー項目がアクティブになったとき。mi-menu がメニューを閉じるために使用する。
  */
-export class MiLinkMenuItem extends LitElement {
+export class MiLinkMenuItem extends MitsubachiElement {
   static styles = makeStyles(
     menuItemRootStyles,
     menuItemLayoutStyles,

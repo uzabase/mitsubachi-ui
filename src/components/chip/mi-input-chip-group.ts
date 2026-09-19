@@ -1,5 +1,6 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { inputChipGroupStyles } from "./input-chip-group.styles";
 
@@ -17,7 +18,7 @@ import { inputChipGroupStyles } from "./input-chip-group.styles";
  *
  * @slot - mi-input-chip 要素を配置します。
  */
-export class MiInputChipGroup extends LitElement {
+export class MiInputChipGroup extends MitsubachiElement {
   static override styles = makeStyles(inputChipGroupStyles);
 
   override render() {

@@ -1,6 +1,6 @@
 import "../tooltip/mi-tooltip";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
 import { makeStyles } from "../styles";
@@ -37,7 +37,7 @@ export class MiIconButton extends ButtonBase<IconButtonSize> {
   static override styles = makeStyles(iconButtonStyles);
 
   static override shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...ButtonBase.shadowRootOptions,
     delegatesFocus: true,
   };
 

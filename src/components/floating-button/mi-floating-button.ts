@@ -1,13 +1,14 @@
 import "../icon";
 import "../loading/mi-loading";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import styles from "./floating-button.styles";
 
-export class MiFloatingButton extends LitElement {
+export class MiFloatingButton extends MitsubachiElement {
   static styles = makeStyles(styles);
 
   @property({ type: Boolean })

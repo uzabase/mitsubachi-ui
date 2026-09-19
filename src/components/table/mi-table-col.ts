@@ -1,6 +1,7 @@
-import { css, LitElement } from "lit";
+import { css } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 
 /**
@@ -17,7 +18,7 @@ import { makeStyles } from "../styles";
  * </mi-table>
  * ```
  */
-export class MiTableCol extends LitElement {
+export class MiTableCol extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: none;

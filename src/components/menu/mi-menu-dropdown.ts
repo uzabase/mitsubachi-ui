@@ -1,6 +1,7 @@
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { menuDropdownStyles } from "./menu-dropdown.styles";
 import type { MenuAlign, MenuSide } from "./mi-menu";
@@ -13,7 +14,7 @@ import { querySelectorAllThroughSlots } from "./slot-traversal";
  *
  * @slot - メニュー項目（mi-action-menu-item, mi-menu-group 等）
  */
-export class MiMenuDropdown extends LitElement {
+export class MiMenuDropdown extends MitsubachiElement {
   static styles = makeStyles(menuDropdownStyles);
 
   /** 開閉状態（mi-menu から制御される） */

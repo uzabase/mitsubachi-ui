@@ -1,6 +1,7 @@
-import { css, html, LitElement } from "lit";
+import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 
 /**
@@ -10,7 +11,7 @@ import { makeStyles } from "../styles";
  *
  * @slot - mi-table-header-cell または mi-table-body-cell
  */
-export class MiTableRow extends LitElement {
+export class MiTableRow extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: table-row;

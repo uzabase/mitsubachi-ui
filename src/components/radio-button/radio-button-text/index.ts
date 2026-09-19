@@ -1,13 +1,14 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import styles from "./styles";
 
 /**
  * @slot - ラジオボタンのラベルテキスト
  */
-export class MiRadioButtonText extends LitElement {
+export class MiRadioButtonText extends MitsubachiElement {
   static styles = makeStyles(styles);
 
   @property({ type: String, reflect: true })

@@ -1,6 +1,7 @@
-import { css, html, LitElement } from "lit";
+import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { querySelectorAllThroughSlots } from "./slot-traversal";
 
@@ -13,7 +14,7 @@ import { querySelectorAllThroughSlots } from "./slot-traversal";
  * @slot - mi-select-menu-item 要素
  * @fires change - 選択値が変更されたとき（bubbles: true）。新しい値は `event.target.value` で取得する。mi-select-box 内で使用する場合は mi-select-box が stopPropagation() で止め、自身の change として再発火する。
  */
-export class MiMenuRadioGroup extends LitElement {
+export class MiMenuRadioGroup extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: contents;
@@ -59,7 +60,7 @@ export class MiMenuRadioGroup extends LitElement {
     // mi-select-box のように slot 経由で差し込まれる場合があるため、slot をまたいで集める
     querySelectorAllThroughSlots(this, "mi-select-menu-item").forEach(
       (item) => {
-        (item as LitElement).requestUpdate();
+        (item as MitsubachiElement).requestUpdate();
       },
     );
   }

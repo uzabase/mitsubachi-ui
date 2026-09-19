@@ -1,10 +1,11 @@
 import "../label-unit";
 import "./mi-text-area";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import {
   type MiTextArea,
@@ -33,13 +34,13 @@ import style from "./text-area-unit.styles";
  * @fires change - 入力が確定したとき。ネイティブの `<textarea>` と同じく `bubbles: true` / `composed: false`。
  *                 新しい値は `event.target.value` で取得する。
  */
-export class MiTextAreaUnit extends LitElement {
+export class MiTextAreaUnit extends MitsubachiElement {
   static styles = makeStyles(style);
 
   static formAssociated = true;
 
   static shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...MitsubachiElement.shadowRootOptions,
     delegatesFocus: true,
   };
 

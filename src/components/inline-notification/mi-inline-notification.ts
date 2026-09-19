@@ -1,8 +1,9 @@
 import "../icon-color";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./inline-notification.styles";
 
@@ -16,7 +17,7 @@ export const variants = ["primary", "secondary"] as const;
 /**
  * @slot - 通知メッセージのコンテンツ
  */
-export class MiInlineNotification extends LitElement {
+export class MiInlineNotification extends MitsubachiElement {
   @property({ type: String, reflect: true })
   type: Type = "information";
 

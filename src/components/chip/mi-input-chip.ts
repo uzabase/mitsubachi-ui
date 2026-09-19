@@ -1,8 +1,9 @@
 import "../button/mi-icon-button";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { inputChipStyles } from "./input-chip.styles";
 
@@ -17,7 +18,7 @@ import { inputChipStyles } from "./input-chip.styles";
  *
  * @fires remove - 削除ボタンがクリックされたときに発火します。
  */
-export class MiInputChip extends LitElement {
+export class MiInputChip extends MitsubachiElement {
   static override styles = makeStyles(inputChipStyles);
 
   /** Chip に表示するテキスト。 */

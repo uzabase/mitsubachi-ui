@@ -1,5 +1,6 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import spControlMenuLitStyle from "./styles.css?inline";
 
@@ -10,7 +11,7 @@ import spControlMenuLitStyle from "./styles.css?inline";
  *
  * @deprecated 廃止予定です。代わりに mi-menu を使用してください。
  */
-export class MiControlMenu extends LitElement {
+export class MiControlMenu extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(spControlMenuLitStyle));
 
   render() {

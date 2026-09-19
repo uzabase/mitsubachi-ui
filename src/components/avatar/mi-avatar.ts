@@ -1,8 +1,9 @@
 import "../icon/index";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { avatarStyles } from "./avatar.styles";
 
@@ -38,7 +39,7 @@ function isValidColor(value: string): value is AvatarColor {
 /**
  * @summary アバターです。
  */
-export class MiAvatar extends LitElement {
+export class MiAvatar extends MitsubachiElement {
   static styles = makeStyles(avatarStyles);
 
   @property({ type: String })

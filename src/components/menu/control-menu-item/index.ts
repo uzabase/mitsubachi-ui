@@ -1,8 +1,9 @@
 import "../../icon";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import spControlMenuItemLitStyle from "./styles.css?inline";
 
@@ -17,7 +18,7 @@ import spControlMenuItemLitStyle from "./styles.css?inline";
  *
  * @deprecated 廃止予定です。代わりに mi-action-menu-item / mi-select-menu-item を使用してください。
  */
-export class MiControlMenuItem extends LitElement {
+export class MiControlMenuItem extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(spControlMenuItemLitStyle));
 
   @property({ type: String, reflect: true })

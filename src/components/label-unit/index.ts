@@ -1,7 +1,8 @@
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./styles.css?inline";
 
@@ -14,7 +15,7 @@ import style from "./styles.css?inline";
  *
  * @attr {string} support-text - ラベルの下に灰色で表示されるテキストです。textを補足します。
  */
-export class MiLabelUnit extends LitElement {
+export class MiLabelUnit extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(style));
 
   @property({ type: String, reflect: true })

@@ -1,6 +1,7 @@
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import style from "./read-only-tag.styles";
@@ -52,7 +53,7 @@ function isValidIconType(value: string): boolean {
  * <mi-read-only-tag type="negative" icon-type="arrow-down-small">減収</mi-read-only-tag>
  * ```
  */
-export class MiReadOnlyTag extends LitElement {
+export class MiReadOnlyTag extends MitsubachiElement {
   static styles = makeStyles(style);
 
   /**

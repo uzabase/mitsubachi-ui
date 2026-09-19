@@ -4,9 +4,10 @@
  */
 import "../loading/mi-loading";
 
-import { html, LitElement, nothing, type TemplateResult } from "lit";
+import { html, nothing, type TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { isIconType } from "../icon";
 import { makeStyles } from "../styles";
 import { buttonStyles } from "./button.styles";
@@ -63,7 +64,7 @@ function isValidIconType(value: string): boolean {
  * internalとstripInternalを併用すると、npm run buildの実行中に@microsoft/api-extractorが内部エラーになりました。
  * stripInternalを使わずにinternalを指定するとButtonBaseがindex.d.tsに出力されなくなり、index.d.tsでコンパイルエラーになります。
  */
-export class ButtonBase<S extends string = Size> extends LitElement {
+export class ButtonBase<S extends string = Size> extends MitsubachiElement {
   static styles = makeStyles(buttonStyles);
 
   static formAssociated = true;

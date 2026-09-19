@@ -1,10 +1,11 @@
 import "../label-unit";
 import "./mi-select-box";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import type {
   MiSelectBox,
@@ -33,7 +34,7 @@ import { selectBoxUnitStyles } from "./select-box-unit.styles";
  * @fires change - 選択値が変更されたとき。ネイティブの `<select>` と同じく `bubbles: true` / `composed: false`。
  *                 `event.target.value` で選択された識別子を取得できる。
  */
-export class MiSelectBoxUnit extends LitElement {
+export class MiSelectBoxUnit extends MitsubachiElement {
   static styles = makeStyles(selectBoxUnitStyles);
 
   static formAssociated = true;
