@@ -1,8 +1,8 @@
 import "yakuhanjp/dist/css/yakuhanjp_s.css";
 
 import type { Preview } from "@storybook/web-components-vite";
-import prettier from "prettier/standalone";
 import htmlPlugin from "prettier/plugins/html";
+import prettier from "prettier/standalone";
 
 const preview: Preview = {
   parameters: {
