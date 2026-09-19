@@ -4,6 +4,7 @@ import {
   flip,
   offset,
   shift,
+  size,
 } from "@floating-ui/dom";
 import { css, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
@@ -155,6 +156,12 @@ export class MiMenu extends LitElement {
           offset(sideOffset),
           flip({ padding: 16 }),
           shift({ padding: 16 }),
+          size({
+            padding: 16,
+            apply({ availableHeight, elements }) {
+              elements.floating.style.maxBlockSize = `${availableHeight}px`;
+            },
+          }),
         ],
       });
       if (!popupEl) return;
