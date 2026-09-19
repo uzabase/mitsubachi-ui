@@ -1,7 +1,8 @@
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { UZABASE_LABEL } from "./constants";
 import { resolveLogo } from "./uzabase-logos";
@@ -11,7 +12,7 @@ import { resolveLogo } from "./uzabase-logos";
  *
  * @attr {boolean} inverse - 反転表示（暗い背景用）
  */
-export class MiUzabaseLogo extends LitElement {
+export class MiUzabaseLogo extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: flex;

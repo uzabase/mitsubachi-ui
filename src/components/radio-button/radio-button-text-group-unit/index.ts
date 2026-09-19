@@ -1,9 +1,10 @@
 import "../../label-unit";
 import "../radio-button-text-group";
 
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, nothing, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import type { MiRadioButtonTextGroup } from "../radio-button-text-group";
 import radioButtonTextGroupUnitStyle from "./styles.css?inline";
@@ -15,7 +16,7 @@ import radioButtonTextGroupUnitStyle from "./styles.css?inline";
  *
  * @slot - ラジオボタンの選択肢（mi-radio-button-text）
  */
-export class MiRadioButtonTextGroupUnit extends LitElement {
+export class MiRadioButtonTextGroupUnit extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(radioButtonTextGroupUnitStyle));
 
   static formAssociated = true;

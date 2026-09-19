@@ -2,9 +2,10 @@ import "../button/mi-icon-button";
 import "../icon-color";
 
 import type { PropertyValues } from "@lit/reactive-element";
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./snackbar.styles";
 
@@ -54,7 +55,7 @@ function toSnackbarSize(value: unknown): SnackbarSize {
  * <mi-snackbar auto-hide-timeout="0">メッセージ</mi-snackbar>
  * ```
  */
-export class MiSnackbar extends LitElement {
+export class MiSnackbar extends MitsubachiElement {
   static styles = makeStyles(style);
 
   /**

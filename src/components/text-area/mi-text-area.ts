@@ -1,11 +1,12 @@
 import "../helper-text/mi-helper-text";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./text-area.styles";
 
@@ -65,13 +66,13 @@ export const normalizeRows = (
  *                 ネイティブの `<textarea>` と同じく `bubbles: true` / `composed: false`。
  *                 新しい値は `event.target.value` で取得する。
  */
-export class MiTextArea extends LitElement {
+export class MiTextArea extends MitsubachiElement {
   static styles = makeStyles(style);
 
   static formAssociated = true;
 
   static shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...MitsubachiElement.shadowRootOptions,
     delegatesFocus: true,
   };
 

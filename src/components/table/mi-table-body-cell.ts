@@ -1,6 +1,7 @@
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { tableBodyCellStyles } from "./table-body-cell.styles";
 
@@ -25,7 +26,7 @@ const NULL_DISPLAY = "\u2013";
  * @slot - セルのコンテンツ
  * @slot icon - 先頭アイコン用
  */
-export class MiTableBodyCell extends LitElement {
+export class MiTableBodyCell extends MitsubachiElement {
   static styles = makeStyles(tableBodyCellStyles);
 
   /** コンテンツタイプ */

@@ -1,8 +1,9 @@
 import "../icon";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { tableHeaderCellStyles } from "./table-header-cell.styles";
 
@@ -40,7 +41,7 @@ function toAriaSortValue(
  * ソート状態変更を通知するネイティブイベントは存在しないため、カスタムイベントとして定義。
  * bubbles: false, composed: false で最小スコープ（event-architecture.md 準拠）。
  */
-export class MiTableHeaderCell extends LitElement {
+export class MiTableHeaderCell extends MitsubachiElement {
   static styles = makeStyles(tableHeaderCellStyles);
 
   /** コンテンツタイプ */

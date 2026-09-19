@@ -1,6 +1,7 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./link-tag-group.styles";
 import { type LinkTagSize, linkTagSizes, type MiLinkTag } from "./mi-link-tag";
@@ -31,7 +32,7 @@ function toLinkTagSize(value: unknown): LinkTagSize {
  * </mi-link-tag-group>
  * ```
  */
-export class MiLinkTagGroup extends LitElement {
+export class MiLinkTagGroup extends MitsubachiElement {
   static styles = makeStyles(style);
 
   /**

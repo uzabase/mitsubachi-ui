@@ -1,8 +1,9 @@
 import "../icon";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./loading.css?inline";
 
@@ -19,7 +20,7 @@ type Size = (typeof size)[number];
 /**
  * @summary ローディングスピナーです。
  */
-export class MiLoading extends LitElement {
+export class MiLoading extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(style));
 
   @property({ type: Boolean })

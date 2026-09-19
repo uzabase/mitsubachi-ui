@@ -5,9 +5,10 @@
 import "../button/mi-danger-button";
 import "../button/mi-neutral-button";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { dialogStyles } from "./dialog.styles";
 
@@ -22,7 +23,7 @@ export type DialogReturnValue = "action" | "cancel" | "";
  * イベント:
  * - **close**: ダイアログが閉じたとき。ネイティブ `<dialog>` の `close` イベントを再発火。bubbles / composed は false。
  */
-export abstract class DialogBase extends LitElement {
+export abstract class DialogBase extends MitsubachiElement {
   returnValue: DialogReturnValue = "";
   static styles = makeStyles(...dialogStyles);
 

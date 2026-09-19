@@ -1,9 +1,10 @@
 import "../icon";
 
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, nothing, unsafeCSS } from "lit";
 import { property, query } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import searchBoxStyle from "./search-box.css?inline";
 
@@ -27,11 +28,11 @@ export type SearchBoxVariant = "primary" | "secondary";
  * @fires input - 内部の `input` と同様。シャドウ内で `composed` が付かない場合、ホストで再発火します。
  * @fires change - 内部の `change`（値の確定、主にフォーカスが外れたとき）と同様。シャドウを越えて受け取れるよう必要時に再発火します。
  */
-export class MiSearchBox extends LitElement {
+export class MiSearchBox extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(searchBoxStyle));
 
   static shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...MitsubachiElement.shadowRootOptions,
     delegatesFocus: true,
   };
 

@@ -1,5 +1,6 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./snackbar-viewport.styles";
 
@@ -15,7 +16,7 @@ import style from "./snackbar-viewport.styles";
  * @cssprop --snackbar-stack-gap - 縦積み時の間隔（デフォルト 16px）
  * @cssprop --snackbar-viewport-inset - 画面上端・右端からの余白（デフォルト 16px。`inset-block-start` / `inset-inline-end` に共通）
  */
-export class MiSnackbarViewport extends LitElement {
+export class MiSnackbarViewport extends MitsubachiElement {
   static styles = makeStyles(style);
 
   render() {

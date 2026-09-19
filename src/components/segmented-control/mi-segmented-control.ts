@@ -1,8 +1,9 @@
 import "./mi-segment";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import type { MiSegment } from "./mi-segment";
 import styles from "./segmented-control.styles";
@@ -26,7 +27,7 @@ import styles from "./segmented-control.styles";
  * </mi-segmented-control>
  * ```
  */
-export class MiSegmentedControl extends LitElement {
+export class MiSegmentedControl extends MitsubachiElement {
   static styles = makeStyles(styles);
 
   /** 現在選択されているセグメントの値 */

@@ -5,9 +5,10 @@ import {
   offset,
   shift,
 } from "@floating-ui/dom";
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { tooltipStyles } from "./tooltip.styles";
 
@@ -36,7 +37,7 @@ function isValidPlacement(value: string): value is Placement {
  *
  * @slot - ツールチップのトリガーとなる要素
  */
-export class MiTooltip extends LitElement {
+export class MiTooltip extends MitsubachiElement {
   static styles = makeStyles(tooltipStyles);
 
   private static _idCounter = 0;
