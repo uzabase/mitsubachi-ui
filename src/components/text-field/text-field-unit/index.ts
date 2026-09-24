@@ -69,7 +69,7 @@ export class MiTextFieldUnit extends LitElement {
     | "tel"
     | "search"
     | "email"
-    | "url" = "text";
+    | "url" | undefined = undefined;
 
   @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
   submitOnEnter = false;
