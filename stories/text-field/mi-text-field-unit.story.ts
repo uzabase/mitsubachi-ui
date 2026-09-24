@@ -23,7 +23,21 @@ const meta = {
       options: ["text", "password"],
       control: { type: "select" },
     },
+    inputmode: {
+      options: [
+        "none",
+        "text",
+        "decimal",
+        "numeric",
+        "tel",
+        "search",
+        "email",
+        "url",
+      ],
+      control: { type: "select" },
+    },
     autocomplete: { type: "string" },
+    autofocus: { type: "boolean" },
   },
   args: {
     text: "ラベル",
@@ -35,7 +49,9 @@ const meta = {
     name: "surname",
     value: "Yamada",
     type: "text",
+    inputmode: "text",
     autocomplete: "",
+    autofocus: false,
   },
   tags: ["!dev-only"],
 } satisfies Meta<StoryArgs>;
@@ -54,7 +70,9 @@ export const Default: Story = {
     disabled,
     name,
     value,
+    inputmode,
     autocomplete,
+    autofocus,
   }) => {
     return html`<mi-text-field-unit
       placeholder=${placeholder}
@@ -66,6 +84,8 @@ export const Default: Story = {
       value=${value}
       autocomplete=${autocomplete || nothing}
       type=${type}
+      inputmode=${inputmode}
+      ?autofocus=${autofocus}
     >
       ${error ? html`<span slot="error">${error}</span>` : nothing}
     </mi-text-field-unit>`;
@@ -123,6 +143,36 @@ export const Disabled: Story = {
     <mi-text-field-unit text="姓" value="入力できません" disabled>
       <span slot="error">disabled のときはエラーを表示しません</span>
     </mi-text-field-unit>
+  `,
+};
+
+/**
+ * `inputmode` を指定すると、ブラウザーで表示される仮想キーボードの種類が変わります。
+ */
+export const Inputmode: Story = {
+  render: () => html`
+    <div
+      style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;"
+    >
+      <mi-text-field-unit
+        text="郵便番号"
+        inputmode="numeric"
+        placeholder="1000001"
+        name="postal-code"
+      ></mi-text-field-unit>
+      <mi-text-field-unit
+        text="電話番号"
+        inputmode="tel"
+        placeholder="09012345678"
+        name="tel"
+      ></mi-text-field-unit>
+      <mi-text-field-unit
+        text="メールアドレス"
+        inputmode="email"
+        placeholder="mitsubachi@example.com"
+        name="email"
+      ></mi-text-field-unit>
+    </div>
   `,
 };
 
