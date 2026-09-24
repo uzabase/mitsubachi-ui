@@ -114,4 +114,10 @@ export {
   MiTextFieldUnit,
   SpTextFieldUnit,
 } from "./components/text-field/text-field-unit";
+export {
+  MiTimeline,
+  MiTimelineItem,
+  type TimelineItemSpacing,
+  timelineItemSpacings,
+} from "./components/timeline";
 export { MiTooltip } from "./components/tooltip/mi-tooltip";
