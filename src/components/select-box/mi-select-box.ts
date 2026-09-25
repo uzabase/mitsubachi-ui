@@ -4,10 +4,11 @@ import "../menu/mi-menu";
 import "../menu/mi-menu-dropdown";
 import "../menu/mi-menu-radio-group";
 
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import type { MiMenu } from "../menu/mi-menu";
 import type { MiMenuDropdown } from "../menu/mi-menu-dropdown";
 import type { MiMenuRadioGroup } from "../menu/mi-menu-radio-group";
@@ -39,7 +40,7 @@ export type SelectBoxSize = "small" | "medium";
  * @fires change - 選択値が変更されたとき。ネイティブの `<select>` と同じく `bubbles: true` / `composed: false`。
  *                 `event.target.value` で選択された識別子、`event.target.displayText` で表示テキストを取得できる。
  */
-export class MiSelectBox extends LitElement {
+export class MiSelectBox extends MitsubachiElement {
   static styles = makeStyles(selectBoxStyles);
 
   static formAssociated = true;

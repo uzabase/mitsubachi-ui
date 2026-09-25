@@ -1,10 +1,11 @@
 import "../../label-unit";
 import "../text-field";
 
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, nothing, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import type { MiTextField } from "../text-field";
 import textFieldUnitStyle from "./styles.css?inline";
@@ -18,7 +19,7 @@ import textFieldUnitStyle from "./styles.css?inline";
  *
  * @attr {boolean} required - ラベルに「必須」バッジを表示し、入力欄に `aria-required` を付与します。
  */
-export class MiTextFieldUnit extends LitElement {
+export class MiTextFieldUnit extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(textFieldUnitStyle));
 
   static formAssociated = true;

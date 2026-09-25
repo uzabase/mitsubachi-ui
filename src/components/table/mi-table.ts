@@ -1,6 +1,7 @@
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import type { MiTableCol } from "./mi-table-col";
 
@@ -31,7 +32,7 @@ export type TableView = "grid" | "list";
  * </mi-table>
  * ```
  */
-export class MiTable extends LitElement {
+export class MiTable extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: block;

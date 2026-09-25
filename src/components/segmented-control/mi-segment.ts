@@ -1,8 +1,9 @@
 import "../icon";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import styles from "./segment.styles";
 
@@ -22,7 +23,7 @@ export type SegmentVariant = (typeof segmentVariants)[number];
  * <mi-segment value="tab1" variant="text">タブ1</mi-segment>
  * ```
  */
-export class MiSegment extends LitElement {
+export class MiSegment extends MitsubachiElement {
   static styles = makeStyles(styles);
 
   /** セグメントの値（mi-segmented-control の選択制御に使用） */

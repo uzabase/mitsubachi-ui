@@ -7,9 +7,10 @@ import {
   offset,
   shift,
 } from "@floating-ui/dom";
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
 
@@ -25,7 +26,7 @@ import { menuItemLayoutStyles, menuItemRootStyles } from "./menu-item.styles";
  * @slot icon - ラベルの先頭に表示するアイコン
  * @slot submenu - サブメニューのドロップダウン（mi-menu-dropdown）
  */
-export class MiSubMenuItem extends LitElement {
+export class MiSubMenuItem extends MitsubachiElement {
   static styles = makeStyles(
     menuItemRootStyles,
     menuItemLayoutStyles,
@@ -187,10 +188,10 @@ export class MiSubMenuItem extends LitElement {
   };
 
   private async _positionSubmenu(submenuDropdown: HTMLElement) {
-    await (submenuDropdown as LitElement).updateComplete;
-    const popupEl = (submenuDropdown as LitElement).shadowRoot?.querySelector(
-      ".popup",
-    ) as HTMLElement | null;
+    await (submenuDropdown as MitsubachiElement).updateComplete;
+    const popupEl = (
+      submenuDropdown as MitsubachiElement
+    ).shadowRoot?.querySelector(".popup") as HTMLElement | null;
     if (!popupEl) return;
 
     this._cleanup?.();

@@ -1,16 +1,17 @@
 import "../../../icon";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+import { MitsubachiElement } from "../../../../mitsubachi-element";
 import { makeStyles } from "../../../styles";
 import textFieldErrorTextStyle from "./styles.css?inline";
 
 /**
  * @summary テキストフィールドのエラーテキストコンポーネントです。
  */
-export class MiTextFieldErrorText extends LitElement {
+export class MiTextFieldErrorText extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(textFieldErrorTextStyle));
 
   @property({ type: String, reflect: true })

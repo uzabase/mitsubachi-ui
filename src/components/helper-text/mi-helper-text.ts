@@ -1,8 +1,9 @@
 import "../icon-color";
 
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import style from "./helper-text.styles";
 
@@ -18,7 +19,7 @@ export const sizes = ["small", "medium", "large"] as const;
  *
  * @slot - ヘルパーテキストのコンテンツ
  */
-export class MiHelperText extends LitElement {
+export class MiHelperText extends MitsubachiElement {
   @property({ type: String, reflect: true })
   status: Status = "error";
 

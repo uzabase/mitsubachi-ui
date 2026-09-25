@@ -6,9 +6,10 @@ import {
   shift,
   size,
 } from "@floating-ui/dom";
-import { css, html, LitElement } from "lit";
+import { css, html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import type { MiMenuDropdown } from "./mi-menu-dropdown";
 
@@ -26,7 +27,7 @@ export type MenuAlign = "start" | "center" | "end";
  * @slot trigger - メニューを開閉するトリガー要素
  * @slot - メニューのドロップダウン（mi-menu-dropdown）
  */
-export class MiMenu extends LitElement {
+export class MiMenu extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: inline-block;

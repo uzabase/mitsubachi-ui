@@ -1,13 +1,14 @@
 import "../radio-button-text";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property, query } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../../mitsubachi-element";
 import { makeStyles } from "../../styles";
 import type { MiRadioButtonText } from "../radio-button-text";
 import radioButtonTextGroupStyle from "./styles.css?inline";
 
-export class MiRadioButtonTextGroup extends LitElement {
+export class MiRadioButtonTextGroup extends MitsubachiElement {
   static styles = makeStyles(unsafeCSS(radioButtonTextGroupStyle));
 
   static formAssociated = true;

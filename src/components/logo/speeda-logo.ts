@@ -1,7 +1,8 @@
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { SPEEDA_LABEL } from "./constants";
 import { resolveLogo } from "./speeda-logos";
@@ -14,7 +15,7 @@ import { resolveLogo } from "./speeda-logos";
  * @attr {boolean} no-symbol - シンボルを非表示にする
  * @attr {string} logo-language - ロゴの言語。en, zh
  */
-export class MiSpeedaLogo extends LitElement {
+export class MiSpeedaLogo extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: flex;

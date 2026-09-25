@@ -1,6 +1,7 @@
-import { css, html, LitElement, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 
 /**
@@ -11,7 +12,7 @@ import { makeStyles } from "../styles";
  *
  * @slot - メニュー項目
  */
-export class MiMenuGroup extends LitElement {
+export class MiMenuGroup extends MitsubachiElement {
   static styles = makeStyles(css`
     :host {
       display: block;

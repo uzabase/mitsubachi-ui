@@ -1,7 +1,8 @@
-import { html, LitElement, nothing } from "lit";
+import { html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { SPEEDA_LABEL, UZABASE_LABEL } from "./constants";
 import { speedaEn, speedaJa, speedaZh } from "./speeda";
@@ -16,7 +17,7 @@ import { uzabase } from "./uzabase";
  *
  * @attr {string} language - スピーダのロゴ内の文字の言語を指定します。brand属性がspeedaのときのみ有効です。language=jaであれば日本語, language=enであれば英語, zhであれば簡体字です。
  */
-export class MiLogo extends LitElement {
+export class MiLogo extends MitsubachiElement {
   static styles = makeStyles();
 
   @property({ type: String, reflect: true })

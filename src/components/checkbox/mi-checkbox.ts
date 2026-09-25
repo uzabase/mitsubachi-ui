@@ -1,6 +1,7 @@
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, unsafeCSS } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import checkboxStyle from "./checkbox.css?inline";
 import checkmarkStyle from "./checkmark.css?inline";
@@ -8,7 +9,7 @@ import checkmarkStyle from "./checkmark.css?inline";
 /**
  * @summary チェックボックスです。
  */
-export class MiCheckbox extends LitElement {
+export class MiCheckbox extends MitsubachiElement {
   static styles = makeStyles(
     unsafeCSS(checkmarkStyle),
     unsafeCSS(checkboxStyle),
