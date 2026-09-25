@@ -45,6 +45,18 @@ export class MiTextField extends LitElement {
   @property({ type: Boolean, reflect: true })
   autofocus = false;
 
+  @property({ type: String, reflect: true })
+  inputmode:
+    | "none"
+    | "text"
+    | "decimal"
+    | "numeric"
+    | "tel"
+    | "search"
+    | "email"
+    | "url"
+    | undefined = undefined;
+
   @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
   submitOnEnter = false;
 
@@ -139,6 +151,7 @@ export class MiTextField extends LitElement {
         type="${this.type}"
         placeholder="${this.placeholder}"
         autocomplete="${this.autocomplete}"
+        inputmode="${this.inputmode ?? nothing}"
         ?autofocus="${this.autofocus}"
         ?disabled="${this.disabled}"
         name="${this.name}"

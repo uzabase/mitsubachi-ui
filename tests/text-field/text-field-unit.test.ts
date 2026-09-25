@@ -48,6 +48,36 @@ describe("mi-text-field-unit", () => {
     expect(input?.hasAttribute("autofocus")).toBe(true);
   });
 
+  describe("inputmode属性", () => {
+    test("属性を指定できる", async () => {
+      document.body.innerHTML = `<mi-text-field-unit inputmode="numeric"></mi-text-field-unit>`;
+      await customElements.whenDefined("mi-text-field");
+      await customElements.whenDefined("mi-text-field-unit");
+
+      const miTextField = document
+        .querySelector("mi-text-field-unit")
+        ?.shadowRoot?.querySelector("mi-text-field");
+
+      const input = miTextField?.shadowRoot?.querySelector("input");
+
+      expect(input?.getAttribute("inputmode")).toBe("numeric");
+    });
+
+    test("属性を指定しない場合は、inputタグに現れない", async () => {
+      document.body.innerHTML = `<mi-text-field-unit></mi-text-field-unit>`;
+      await customElements.whenDefined("mi-text-field");
+      await customElements.whenDefined("mi-text-field-unit");
+
+      const miTextField = document
+        .querySelector("mi-text-field-unit")
+        ?.shadowRoot?.querySelector("mi-text-field");
+
+      const input = miTextField?.shadowRoot?.querySelector("input");
+
+      expect(input?.hasAttribute("inputmode")).toBe(false);
+    });
+  });
+
   test(`required属性を指定すると、mi-label-unitに必須バッジが表示される`, async () => {
     document.body.innerHTML = `<mi-text-field-unit text="ラベル" required></mi-text-field-unit>`;
     await customElements.whenDefined("mi-label-unit");

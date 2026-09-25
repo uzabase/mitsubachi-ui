@@ -47,6 +47,30 @@ describe("mi-text-field", () => {
     expect(input?.hasAttribute("autofocus")).toBe(true);
   });
 
+  describe("inputmode属性", () => {
+    test("属性を指定できる", async () => {
+      document.body.innerHTML = `<mi-text-field inputmode="numeric"></mi-text-field>`;
+      await customElements.whenDefined("mi-text-field");
+
+      const sut = document.querySelector("mi-text-field");
+
+      const input = sut?.shadowRoot?.querySelector("input");
+
+      expect(input?.getAttribute("inputmode")).toBe("numeric");
+    });
+
+    test("属性を指定しない場合は、inputタグに現れない", async () => {
+      document.body.innerHTML = `<mi-text-field></mi-text-field>`;
+      await customElements.whenDefined("mi-text-field");
+
+      const sut = document.querySelector("mi-text-field");
+
+      const input = sut?.shadowRoot?.querySelector("input");
+
+      expect(input?.hasAttribute("inputmode")).toBe(false);
+    });
+  });
+
   test("submitOnEnter属性を指定すると、Enterキーでフォームが送信される", async () => {
     document.body.innerHTML = `
       <form id="form">

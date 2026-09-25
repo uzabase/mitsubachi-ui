@@ -1,7 +1,7 @@
 import "../../label-unit";
 import "../text-field";
 
-import { html, LitElement, unsafeCSS } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -59,6 +59,18 @@ export class MiTextFieldUnit extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   autofocus = false;
+
+  @property({ type: String, reflect: true })
+  inputmode:
+    | "none"
+    | "text"
+    | "decimal"
+    | "numeric"
+    | "tel"
+    | "search"
+    | "email"
+    | "url"
+    | undefined = undefined;
 
   @property({ type: Boolean, attribute: "submit-on-enter", reflect: true })
   submitOnEnter = false;
@@ -136,6 +148,7 @@ export class MiTextFieldUnit extends LitElement {
           type="${this.type}"
           autocomplete="${this.autocomplete}"
           ?autofocus="${this.autofocus}"
+          inputmode="${this.inputmode ?? nothing}"
           @input="${this.#handleInput}"
           @keydown="${this.#handleKeyDown}"
         >
