@@ -38,7 +38,21 @@ const meta = {
       options: ["text", "password"],
       control: { type: "select" },
     },
+    inputmode: {
+      options: [
+        "none",
+        "text",
+        "decimal",
+        "numeric",
+        "tel",
+        "search",
+        "email",
+        "url",
+      ],
+      control: { type: "select" },
+    },
     autocomplete: { type: "string" },
+    autofocus: { type: "boolean" },
   },
   args: {
     placeholder: "プレースホルダー",
@@ -47,7 +61,9 @@ const meta = {
     name: "surname",
     value: "Yamada",
     type: "text",
+    inputmode: "text",
     autocomplete: undefined,
+    autofocus: false,
     errorSlot: "none" as unknown as TemplateResult,
   },
   tags: ["!dev-only"],
@@ -64,7 +80,9 @@ export const Default: Story = {
     disabled,
     name,
     value,
+    inputmode,
     autocomplete,
+    autofocus,
     errorSlot,
   }) => {
     return html`<mi-text-field
@@ -74,7 +92,9 @@ export const Default: Story = {
       name=${name}
       value=${value}
       type=${type}
+      inputmode=${inputmode}
       autocomplete=${autocomplete || nothing}
+      ?autofocus=${autofocus}
     >
       ${errorSlot}
     </mi-text-field>`;
@@ -149,6 +169,33 @@ export const Password: Story = {
       value="password1234"
       autocomplete="current-password"
     ></mi-text-field>
+  `,
+};
+
+/**
+ * `inputmode` を指定すると、ブラウザーで表示される仮想キーボードの種類が変わります。
+ */
+export const Inputmode: Story = {
+  render: () => html`
+    <div
+      style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;"
+    >
+      <mi-text-field
+        inputmode="numeric"
+        placeholder="1000001"
+        name="postal-code"
+      ></mi-text-field>
+      <mi-text-field
+        inputmode="tel"
+        placeholder="09012345678"
+        name="tel"
+      ></mi-text-field>
+      <mi-text-field
+        inputmode="email"
+        placeholder="mitsubachi@example.com"
+        name="email"
+      ></mi-text-field>
+    </div>
   `,
 };
 
