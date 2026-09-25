@@ -17,10 +17,6 @@ const preview: Preview = {
     docs: {
       source: {
         transform: async (src: string) => {
-          if (!src.trimStart().startsWith("<")) {
-            return src;
-          }
-
           return prettier.format(src, {
             parser: "html",
             plugins: [htmlPlugin],
