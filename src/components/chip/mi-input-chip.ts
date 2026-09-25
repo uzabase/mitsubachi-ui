@@ -20,6 +20,16 @@ import { inputChipStyles } from "./input-chip.styles";
 export class MiInputChip extends LitElement {
   static override styles = makeStyles(inputChipStyles);
 
+  /**
+   * ホスト自身はフォーカスを受け取れないため、Shadow DOM 内の削除ボタンへ委譲する。
+   * これが無いと `chip.focus()` が何もせず、削除後にフォーカスを隣のチップへ戻す
+   * といった制御が利用側から書けない。
+   */
+  static override shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
   /** Chip に表示するテキスト。 */
   @property({ type: String })
   label = "";
