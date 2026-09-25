@@ -1,20 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2021",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "lib": ["es2021", "dom"],
-    "declaration": true,
-    "declarationMap": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "outDir": "dist",
-    "skipLibCheck": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
+  "extends": "./tsconfig.json",
   "include": ["src"]
 }
