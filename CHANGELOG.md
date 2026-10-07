@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.20.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.19.0...v2.20.0) (2026-09-25)
+
+
+### Features
+
+* 定義されたコンポーネントのバージョンがブラウザ上でわかるようにする ([#120](https://github.com/uzabase/mitsubachi-ui/issues/120)) ([2095c6b](https://github.com/uzabase/mitsubachi-ui/commit/2095c6b243c11118ea8e98ae7a5f7d9e8c5ae530))
+
 ## [2.19.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.18.1...v2.19.0) (2026-09-25)
 
 
