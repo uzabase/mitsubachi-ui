@@ -79,6 +79,8 @@ export { MiSelectBoxUnit } from "./components/select-box/mi-select-box-unit";
 export type { SnackbarSize } from "./components/snackbar/mi-snackbar";
 export { MiSnackbar, snackbarSizes } from "./components/snackbar/mi-snackbar";
 export { MiSnackbarViewport } from "./components/snackbar/mi-snackbar-viewport";
+export { MiSuggestionItem } from "./components/suggestion-search-box/mi-suggestion-item";
+export { MiSuggestionSearchBox } from "./components/suggestion-search-box/mi-suggestion-search-box";
 export type {
   TableBodyCellContentType,
   TableHeaderCellContentType,
