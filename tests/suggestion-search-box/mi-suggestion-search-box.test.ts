@@ -131,6 +131,42 @@ function dispatchComposingKey(key: string) {
   return event;
 }
 
+async function imeCompose(text: string) {
+  await cdp().send("Input.imeSetComposition", {
+    text,
+    selectionStart: text.length,
+    selectionEnd: text.length,
+  });
+  await settle();
+}
+
+async function imeCommit(text: string) {
+  await cdp().send("Input.insertText", { text });
+  await settle();
+}
+
+/**
+ * Safari 26 以前のイベント順（WebKit bug 165004）を再現する。
+ * 変換を確定する Enter の keydown が compositionend の後に、
+ * isComposing=false・keyCode=229 で届く。
+ */
+function dispatchSafariCommitEnter() {
+  const init = { bubbles: true, composed: true };
+  getInput().dispatchEvent(new CompositionEvent("compositionstart", init));
+  getInput().dispatchEvent(
+    new CompositionEvent("compositionend", { ...init, data: "" }),
+  );
+  const enter = new KeyboardEvent("keydown", {
+    ...init,
+    key: "Enter",
+    keyCode: 229,
+    isComposing: false,
+    cancelable: true,
+  });
+  getInput().dispatchEvent(enter);
+  return enter;
+}
+
 describe("mi-suggestion-search-box", () => {
   describe("構造と役割", () => {
     test("内部の input は role=combobox と aria-autocomplete=list を持つ", async () => {
@@ -360,7 +396,7 @@ describe("mi-suggestion-search-box", () => {
       expectClosed();
     });
 
-    test("強調がないときの Enter は候補を選ばない", async () => {
+    test("強調がないときの Enter は候補を選ばず、開いたまま", async () => {
       await setup();
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -386,7 +422,7 @@ describe("mi-suggestion-search-box", () => {
       keydown.dispose();
     });
 
-    test("閉じているときの Esc はネイティブの動きを妨げない", async () => {
+    test("閉じているときの Esc は既定動作（入力欄の文字の消去）を妨げない", async () => {
       await setup({ value: "トヨ" });
       await focusInput();
       await press("{Escape}");
@@ -412,9 +448,14 @@ describe("mi-suggestion-search-box", () => {
       expect(select).not.toHaveBeenCalled();
     });
 
-    test.each(["ArrowLeft", "ArrowRight", "Home", "End"])(
+    test.each([
+      ["←", "ArrowLeft"],
+      ["→", "ArrowRight"],
+      ["Home", "Home"],
+      ["End", "End"],
+    ])(
       "強調中に %s を押すと強調が外れ、カーソル移動は妨げない",
-      async (key) => {
+      async (_label, key) => {
         await setup({ value: "トヨ" });
         await focusInput();
         await press("{ArrowDown}");
@@ -428,7 +469,9 @@ describe("mi-suggestion-search-box", () => {
         keydown.dispose();
       },
     );
+  });
 
+  describe("候補の入れ替え", () => {
     test("候補が入れ替わると強調が外れる", async () => {
       await setup();
       await focusInput();
@@ -672,53 +715,139 @@ describe("mi-suggestion-search-box", () => {
     });
   });
 
-  describe("IME", () => {
-    test("変換中のキー操作は無視する（↓ で強調せず、Enter で選ばない）", async () => {
-      await setup();
-      const select = vi.fn();
-      getSut().addEventListener("select", select);
+  describe("IME（変換中は候補に何も影響を与えず、確定時に反映する）", () => {
+    test.each([
+      ["↓", "ArrowDown"],
+      ["↑", "ArrowUp"],
+      ["Enter", "Enter"],
+      ["Esc", "Escape"],
+    ])(
+      "変換中の %s は無視し、強調・開閉・選択を変えず、既定動作も妨げない",
+      async (_label, key) => {
+        await setup();
+        const select = vi.fn();
+        getSut().addEventListener("select", select);
+        await focusInput();
+        await press("{ArrowDown}");
+
+        const event = dispatchComposingKey(key);
+        await settle();
+
+        expect(getActiveItem()).toBe(getItems()[0]);
+        expectOpen();
+        expect(select).not.toHaveBeenCalled();
+        expect(event.defaultPrevented).toBe(false);
+      },
+    );
+
+    test("変換中は input を発火せず value も変えない。確定時に input が1回だけ発火する", async () => {
+      await setup({ items: [] });
+      const valuesOnInput: string[] = [];
+      getSut().addEventListener("input", () =>
+        valuesOnInput.push(getSut().value),
+      );
       await focusInput();
 
-      const arrowDown = dispatchComposingKey("ArrowDown");
-      await settle();
-      expect(getActiveItem()).toBeNull();
-      expect(arrowDown.defaultPrevented).toBe(false);
+      await imeCompose("と");
+      await imeCompose("とよ");
 
+      expect(valuesOnInput).toEqual([]);
+      expect(getSut().value).toBe("");
+
+      await imeCommit("トヨ");
+
+      expect(valuesOnInput).toEqual(["トヨ"]);
+      expect(getSut().value).toBe("トヨ");
+      expect(getInput().value).toBe("トヨ");
+    });
+
+    test("変換中に候補が変わっても、強調・開閉・読み上げは確定まで変わらない", async () => {
+      await setup();
+      await focusInput();
       await press("{ArrowDown}");
-      const enter = dispatchComposingKey("Enter");
+      const [first] = getItems();
+
+      await imeCompose("と");
+      appendItem("豊田自動織機", "id-3");
       await settle();
-      expect(select).not.toHaveBeenCalled();
-      expect(enter.defaultPrevented).toBe(false);
+
+      expect(getActiveItem()).toBe(first);
+      expectOpen();
+      expect(getStatus()?.textContent?.trim()).toBe("3件の候補があります");
+
+      await imeCommit("と");
+
+      expect(getActiveItem()).toBeNull();
+      expectOpen();
+      expect(getStatus()?.textContent?.trim()).toBe("4件の候補があります");
+    });
+
+    test("変換中に候補が0件になっても閉じず、確定時に閉じる", async () => {
+      await setup();
+      await focusInput();
+
+      await imeCompose("あ");
+      getItems().forEach((item) => item.remove());
+      await settle();
+
+      expectOpen();
+
+      await imeCommit("あ");
+
+      expectClosed();
+    });
+
+    test("Esc で閉じた後、変換中は開かず、確定時に開く", async () => {
+      await setup();
+      await focusInput();
+      await press("{Escape}");
+
+      await imeCompose("と");
+
+      expectClosed();
+
+      await imeCommit("と");
+
       expectOpen();
     });
 
-    test("変換中に候補が開いても、フォーカスは入力欄から動かず変換が崩れない", async () => {
+    test("確定時の input で候補が追加されると開き、フォーカスは入力欄から動かず変換も崩れない", async () => {
       await setup({ items: [] });
       getSut().addEventListener("input", () => {
         if (getItems().length === 0) appendItem("ソニーグループ", "id-sony");
       });
       await focusInput();
-      const session = cdp();
 
-      await session.send("Input.imeSetComposition", {
-        text: "ソ",
-        selectionStart: 1,
-        selectionEnd: 1,
-      });
-      await settle();
-      expectOpen();
+      await imeCompose("ソ");
+      await imeCompose("ソニ");
+
+      expectClosed();
       expect(isFocusInInput()).toBe(true);
 
-      await session.send("Input.imeSetComposition", {
-        text: "ソニ",
-        selectionStart: 2,
-        selectionEnd: 2,
-      });
-      await session.send("Input.insertText", { text: "ソニー" });
-      await settle();
+      await imeCommit("ソニー");
 
+      expectOpen();
       expect(getInput().value).toBe("ソニー");
       expect(isFocusInInput()).toBe(true);
+    });
+
+    test("変換を確定する Enter では候補を選ばない（Safari 26 以前のイベント順でも）", async () => {
+      await setup();
+      const select = vi.fn();
+      getSut().addEventListener("select", select);
+      await focusInput();
+      await press("{ArrowDown}");
+
+      const enter = dispatchSafariCommitEnter();
+      await settle();
+
+      expect(select).not.toHaveBeenCalled();
+      expect(enter.defaultPrevented).toBe(false);
+
+      // 確定後の通常の Enter では選べる（無視しすぎていない）
+      await press("{Enter}");
+
+      expect(select).toHaveBeenCalledTimes(1);
     });
   });
 });
