@@ -1,6 +1,7 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { property } from "lit/decorators.js";
 
+import { MitsubachiElement } from "../../mitsubachi-element";
 import { makeStyles } from "../styles";
 import { suggestionItemStyles } from "./suggestion-item.styles";
 
@@ -12,7 +13,7 @@ import { suggestionItemStyles } from "./suggestion-item.styles";
  * @attr {string} value - 候補の識別子。選ばれると親の `select` イベントの `detail.value` に入ります。
  * @slot - 表示名
  */
-export class MiSuggestionItem extends LitElement {
+export class MiSuggestionItem extends MitsubachiElement {
   static styles = makeStyles(suggestionItemStyles);
 
   @property({ type: String, reflect: true })
