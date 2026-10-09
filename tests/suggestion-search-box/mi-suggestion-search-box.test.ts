@@ -485,6 +485,43 @@ describe("mi-suggestion-search-box", () => {
     });
   });
 
+  describe("候補リストの表示位置", () => {
+    test("候補リストは入力欄の直下に表示される（ホストが flex で縦に引き伸ばされても）", async () => {
+      await setup();
+      const ancestor = document.querySelector("#ancestor") as HTMLElement;
+      ancestor.style.cssText = "display: flex; height: 400px;";
+      await focusInput();
+      expect(getSut().getBoundingClientRect().height).toBe(400);
+
+      const field = getSut().shadowRoot!.querySelector("search")!;
+      const gap =
+        getListbox()!.getBoundingClientRect().top -
+        field.getBoundingClientRect().bottom;
+
+      expect(gap).toBeGreaterThanOrEqual(0);
+      expect(gap).toBeLessThanOrEqual(8);
+    });
+
+    test("祖先に overflow: hidden があると、候補リストはその範囲で切れる（既知の制約）", async () => {
+      await setup();
+      const ancestor = document.querySelector("#ancestor") as HTMLElement;
+      ancestor.style.cssText = "overflow: hidden; height: 60px;";
+      await focusInput();
+      expectOpen();
+      const ancestorRect = ancestor.getBoundingClientRect();
+      const listboxRect = getListbox()!.getBoundingClientRect();
+      expect(listboxRect.bottom).toBeGreaterThan(ancestorRect.bottom);
+
+      // 祖先の範囲の外で、候補リストがあるはずの位置
+      const hit = document.elementFromPoint(
+        listboxRect.left + listboxRect.width / 2,
+        (ancestorRect.bottom + listboxRect.bottom) / 2,
+      );
+
+      expect(getSut().contains(hit)).toBe(false);
+    });
+  });
+
   describe("マウス操作", () => {
     test("候補をクリックすると選ばれて閉じ、フォーカスは入力欄に残る", async () => {
       await setup();

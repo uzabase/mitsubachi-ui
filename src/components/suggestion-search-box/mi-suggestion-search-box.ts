@@ -14,6 +14,7 @@ import { suggestionSearchBoxStyles } from "./suggestion-search-box.styles";
  *
  * 候補の絞り込みは行いません。利用側が `input` を受けて子要素を入れ替えてください。
  * 日本語入力の変換中は候補に何も影響を与えず、`input` も確定時に1回だけ発火します。
+ * 候補リストは入力欄の直下に重ねて表示するため、祖先要素に `overflow: hidden` などがあるとその範囲で切れます。
  *
  * @attr {string} variant - 見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。
  * @attr {string} value - 入力値の文字列。候補を選んでも変わりません。
