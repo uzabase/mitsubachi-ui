@@ -203,6 +203,31 @@ describe("mi-suggestion-search-box", () => {
         expect(item.getAttribute("role")).toBe("option");
       }
     });
+
+    test("required 属性を指定すると、入力欄に aria-required=true が付く（指定しなければ false）", async () => {
+      await setup();
+      expect(getInput().getAttribute("aria-required")).toBe("false");
+
+      getSut().setAttribute("required", "");
+      await settle();
+
+      expect(getInput().getAttribute("aria-required")).toBe("true");
+    });
+
+    test("description 属性は入力欄の説明（aria-describedby）として読み上げられ、画面には表示しない", async () => {
+      await setup();
+      expect(getInput().ariaDescribedByElements ?? []).toHaveLength(0);
+
+      getSut().setAttribute("description", "上場企業のみ検索できます");
+      await settle();
+
+      const [description] = getInput().ariaDescribedByElements ?? [];
+      expect(description?.textContent?.trim()).toBe("上場企業のみ検索できます");
+      expect(
+        description?.checkVisibility({ contentVisibilityAuto: true }),
+      ).toBe(true);
+      expect(description?.getBoundingClientRect().width).toBeLessThanOrEqual(1);
+    });
   });
 
   describe("開閉", () => {
@@ -216,6 +241,17 @@ describe("mi-suggestion-search-box", () => {
 
     test("フォーカスがなければ候補があっても開かない", async () => {
       await setup();
+
+      expectClosed();
+    });
+
+    test("開いているときに disabled にすると閉じる", async () => {
+      await setup();
+      await focusInput();
+      expectOpen();
+
+      getSut().disabled = true;
+      await settle();
 
       expectClosed();
     });
@@ -485,6 +521,43 @@ describe("mi-suggestion-search-box", () => {
     });
   });
 
+  describe("候補リストの表示位置", () => {
+    test("候補リストは入力欄の直下に表示される（ホストが flex で縦に引き伸ばされても）", async () => {
+      await setup();
+      const ancestor = document.querySelector("#ancestor") as HTMLElement;
+      ancestor.style.cssText = "display: flex; height: 400px;";
+      await focusInput();
+      expect(getSut().getBoundingClientRect().height).toBe(400);
+
+      const field = getSut().shadowRoot!.querySelector("search")!;
+      const gap =
+        getListbox()!.getBoundingClientRect().top -
+        field.getBoundingClientRect().bottom;
+
+      expect(gap).toBeGreaterThanOrEqual(0);
+      expect(gap).toBeLessThanOrEqual(8);
+    });
+
+    test("祖先に overflow: hidden があると、候補リストはその範囲で切れる（既知の制約）", async () => {
+      await setup();
+      const ancestor = document.querySelector("#ancestor") as HTMLElement;
+      ancestor.style.cssText = "overflow: hidden; height: 60px;";
+      await focusInput();
+      expectOpen();
+      const ancestorRect = ancestor.getBoundingClientRect();
+      const listboxRect = getListbox()!.getBoundingClientRect();
+      expect(listboxRect.bottom).toBeGreaterThan(ancestorRect.bottom);
+
+      // 祖先の範囲の外で、候補リストがあるはずの位置
+      const hit = document.elementFromPoint(
+        listboxRect.left + listboxRect.width / 2,
+        (ancestorRect.bottom + listboxRect.bottom) / 2,
+      );
+
+      expect(getSut().contains(hit)).toBe(false);
+    });
+  });
+
   describe("マウス操作", () => {
     test("候補をクリックすると選ばれて閉じ、フォーカスは入力欄に残る", async () => {
       await setup();
@@ -575,6 +648,15 @@ describe("mi-suggestion-search-box", () => {
       expect(isFocusInInput()).toBe(true);
     });
 
+    test("disabled のときはクリアボタンが表示されない（mi-search-box と同じ）", async () => {
+      await setup({ value: "トヨ" });
+
+      getSut().disabled = true;
+      await settle();
+
+      expect(getClearButton()).toBeNull();
+    });
+
     test("Tab でクリアボタンに移ると閉じる", async () => {
       await setup({ value: "トヨ" });
       await focusInput();
@@ -586,8 +668,87 @@ describe("mi-suggestion-search-box", () => {
     });
   });
 
-  describe("select イベント", () => {
-    test("detail.value に選んだ候補の value が入る", async () => {
+  describe("input / change イベント（内側の入力欄のものは Shadow DOM を越えないため、この要素から発火し直す）", () => {
+    test("フォーカスが外れると change が1回発火する。bubbles / composed は false で、祖先要素には届かない", async () => {
+      await setup({ items: [] });
+      const change = vi.fn();
+      getSut().addEventListener("change", change);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("change", onAncestor);
+      await focusInput();
+      await press("ト");
+
+      (document.querySelector("#outside") as HTMLButtonElement).focus();
+      await settle();
+
+      expect(change).toHaveBeenCalledTimes(1);
+      const event = change.mock.calls[0][0] as Event;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("日本語変換の確定時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup({ items: [] });
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+      await focusInput();
+
+      await imeCompose("とよ");
+      await imeCommit("トヨ");
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("クリア時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup({ value: "トヨ" });
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+
+      await userEvent.click(getClearButton()!);
+      await settle();
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("フォーム（mi-search-box から引き継ぐ）", () => {
+    test("name を指定すると、FormData に入力値が含まれる", async () => {
+      document.body.innerHTML = `
+        <form>
+          <mi-suggestion-search-box label="企業検索" name="q"></mi-suggestion-search-box>
+        </form>
+      `;
+      await customElements.whenDefined("mi-suggestion-search-box");
+      await focusInput();
+
+      await press("トヨタ");
+
+      const data = new FormData(document.querySelector("form")!);
+      expect(data.get("q")).toBe("トヨタ");
+    });
+  });
+
+  describe("select イベント（候補の選択を通知する。input / change は入力値の変化を表し、候補を選んでも値は変わらないため別のイベントにした）", () => {
+    test("detail.value に選んだ候補の value が入る（表示名ではなく識別子で受け取れるように）", async () => {
       await setup();
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -601,7 +762,7 @@ describe("mi-suggestion-search-box", () => {
       });
     });
 
-    test("bubbles / composed / cancelable はすべて false", async () => {
+    test("bubbles / composed / cancelable はすべて false（イベント設計方針: 外側に必要なものだけ届け、既定値は false）", async () => {
       await setup();
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -616,7 +777,7 @@ describe("mi-suggestion-search-box", () => {
       expect(event.cancelable).toBe(false);
     });
 
-    test("祖先要素には届かない", async () => {
+    test("祖先要素には届かない（bubbles: false のため。利用側はこの要素に直接登録する）", async () => {
       await setup();
       const onSelf = vi.fn();
       getSut().addEventListener("select", onSelf);
@@ -633,7 +794,7 @@ describe("mi-suggestion-search-box", () => {
       expect(onAncestor).not.toHaveBeenCalled();
     });
 
-    test("選んでも入力欄の値は変えない", async () => {
+    test("選んでも入力欄の値は変えない（選んだ後の処理は利用側が決めるため。例: 画面遷移する、入力欄に反映する）", async () => {
       await setup({ value: "トヨ" });
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -647,7 +808,7 @@ describe("mi-suggestion-search-box", () => {
       expect(getInput().value).toBe("トヨ");
     });
 
-    test("入力欄の文字列を範囲選択しても select は発火しない", async () => {
+    test("入力欄の文字列を範囲選択しても select は発火しない（ネイティブの select と名前が同じため、内部の入力欄のものは外に出さない）", async () => {
       await setup({ value: "トヨタ" });
       const select = vi.fn();
       getSut().addEventListener("select", select);

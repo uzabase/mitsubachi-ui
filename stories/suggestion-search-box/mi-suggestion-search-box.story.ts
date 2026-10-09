@@ -1,4 +1,3 @@
-import "../../src/components/label-unit";
 import "../../src/components/suggestion-search-box/mi-suggestion-search-box";
 import "../../src/components/suggestion-search-box/mi-suggestion-item";
 
@@ -110,6 +109,8 @@ const defaultSource = (args: Partial<MiSuggestionSearchBoxStory>) => {
       args.autocomplete !== "off" &&
       `autocomplete="${args.autocomplete}"`,
     args.autofocus && "autofocus",
+    args.required && "required",
+    args.description && `description="${args.description}"`,
   ].filter(Boolean);
 
   return toSource(
@@ -185,6 +186,11 @@ const meta = {
           "",
           "変換中は候補に何も影響を与えません。`input` も発火せず、確定した時点で1回だけ発火します。",
           "利用側は「`input` が来たら候補を入れ替える」だけで、変換中かどうかを気にする必要はありません。",
+          "",
+          "### 既知の制約",
+          "",
+          "候補リストは、入力欄の直下に重ねて表示します（`position: absolute`）。祖先要素に `overflow: hidden` / `overflow: auto` などが指定されていると、その範囲の外にはみ出した部分が切れて見えなくなります（例: ダイアログの本文やスクロール領域の中）。",
+          "候補リストが収まるよう下側に余白を確保するか、`overflow` が指定されていない場所に配置してください。",
         ].join("\n"),
       },
     },
@@ -212,6 +218,15 @@ const meta = {
       description: "ブラウザの自動補完。既定は `off`",
     },
     autofocus: { control: "boolean", description: "自動でフォーカスする" },
+    required: {
+      control: "boolean",
+      description: "入力欄に aria-required を付与します",
+    },
+    description: {
+      control: "text",
+      description:
+        "入力欄の説明としてスクリーンリーダーに読み上げるテキスト。画面には表示しません",
+    },
     onInput: {
       name: "input",
       description: [
@@ -265,6 +280,8 @@ const meta = {
     disabled: false,
     autocomplete: "off",
     autofocus: false,
+    required: false,
+    description: "",
     onInput: action("input"),
     onChange: action("change"),
     onSelect: action("select"),
@@ -287,6 +304,8 @@ export const Default: Story = {
         ?disabled=${args.disabled}
         autocomplete=${args.autocomplete}
         ?autofocus=${args.autofocus}
+        ?required=${args.required}
+        description=${args.description || nothing}
         @input=${(e: Event) => {
           const box = e.currentTarget as MiSuggestionSearchBox;
           updateSuggestions(box);
@@ -478,46 +497,6 @@ export const EventLog: Story = {
             "});",
           ],
         ),
-      },
-    },
-  },
-};
-
-/** LabelUnit と併用します。label 属性にも同じ文言を設定してください（入力欄にフォーカスすると開きます）。 */
-export const WithLabel: Story = {
-  render: () => html`
-    <div
-      style="width:320px;display:flex;flex-direction:column;gap:var(--spacing-medium, 8px);"
-    >
-      <mi-label-unit text="競合企業"></mi-label-unit>
-      <mi-suggestion-search-box
-        label="競合企業"
-        placeholder="企業を検索"
-        variant="secondary"
-      >
-        <mi-suggestion-item value="7203">トヨタ自動車</mi-suggestion-item>
-        <mi-suggestion-item value="6758">ソニーグループ</mi-suggestion-item>
-        <mi-suggestion-item value="7974">任天堂</mi-suggestion-item>
-      </mi-suggestion-search-box>
-    </div>
-  `,
-  decorators: [withListboxSpace],
-  parameters: {
-    docs: {
-      source: {
-        language: "html",
-        code: [
-          '<mi-label-unit text="競合企業"></mi-label-unit>',
-          "<mi-suggestion-search-box",
-          '  label="競合企業"',
-          '  placeholder="企業を検索"',
-          '  variant="secondary"',
-          ">",
-          '  <mi-suggestion-item value="7203">トヨタ自動車</mi-suggestion-item>',
-          '  <mi-suggestion-item value="6758">ソニーグループ</mi-suggestion-item>',
-          '  <mi-suggestion-item value="7974">任天堂</mi-suggestion-item>',
-          "</mi-suggestion-search-box>",
-        ].join("\n"),
       },
     },
   },

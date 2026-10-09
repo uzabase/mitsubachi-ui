@@ -1,7 +1,7 @@
 import "../icon";
 
 import { html, nothing } from "lit";
-import { query, state } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
 import { MiSearchBox } from "../search-box/mi-search-box";
@@ -14,6 +14,7 @@ import { suggestionSearchBoxStyles } from "./suggestion-search-box.styles";
  *
  * 候補の絞り込みは行いません。利用側が `input` を受けて子要素を入れ替えてください。
  * 日本語入力の変換中は候補に何も影響を与えず、`input` も確定時に1回だけ発火します。
+ * 候補リストは入力欄の直下に重ねて表示するため、祖先要素に `overflow: hidden` などがあるとその範囲で切れます。
  *
  * @attr {string} variant - 見た目のバリアント（`primary` | `secondary`）。デフォルトは `primary`。
  * @attr {string} value - 入力値の文字列。候補を選んでも変わりません。
@@ -23,6 +24,8 @@ import { suggestionSearchBoxStyles } from "./suggestion-search-box.styles";
  * @attr {boolean} disabled - 無効化するかどうか。
  * @attr {string} autocomplete - autocomplete 属性。
  * @attr {boolean} autofocus - 自動フォーカスするかどうか。
+ * @attr {boolean} required - 入力欄に `aria-required` を付与します。
+ * @attr {string} description - 入力欄の説明としてスクリーンリーダーに読み上げるテキスト。画面には表示しません。
  * @slot - 候補（mi-suggestion-item）
  * @fires input - 入力値が変わったとき。日本語入力の変換中は発火せず、確定時に1回だけ発火します。
  * @fires change - 値の確定（主にフォーカスが外れたとき）。mi-search-box と同じです。
@@ -30,6 +33,21 @@ import { suggestionSearchBoxStyles } from "./suggestion-search-box.styles";
  */
 export class MiSuggestionSearchBox extends MiSearchBox {
   static styles = [...MiSearchBox.styles, suggestionSearchBoxStyles];
+
+  /** 入力欄に `aria-required` を付与する */
+  @property({ type: Boolean, reflect: true })
+  required = false;
+
+  /**
+   * 入力欄の説明としてスクリーンリーダーに読み上げるテキスト。
+   *
+   * 視覚的には表示せず、`aria-describedby` から参照する。
+   * `mi-suggestion-search-box-unit` が、画面に見えている補足テキスト（`mi-label-unit` が描画）と
+   * 同じ文言をここに渡す。補足テキストは別の Shadow DOM 内にあり直接参照できないため、
+   * 読み上げ用のテキストをこちら側に持つ（`mi-text-area` と同じ）。
+   */
+  @property({ type: String, reflect: true })
+  description = "";
 
   @query("input")
   private suggestionInputEl!: HTMLInputElement;
@@ -82,7 +100,7 @@ export class MiSuggestionSearchBox extends MiSearchBox {
 
   #assignedItems() {
     const slot = this.shadowRoot?.querySelector("slot");
-    return (slot?.assignedElements() ?? []).filter(
+    return (slot?.assignedElements({ flatten: true }) ?? []).filter(
       (el): el is MiSuggestionItem => el.localName === "mi-suggestion-item",
     );
   }
@@ -284,6 +302,8 @@ export class MiSuggestionSearchBox extends MiSearchBox {
             aria-controls="listbox"
             aria-expanded="${open}"
             aria-label="${this.label || nothing}"
+            aria-required="${this.required ? "true" : "false"}"
+            aria-describedby="${this.description ? "description" : nothing}"
             name="${this.name || nothing}"
             placeholder="${this.placeholder || nothing}"
             autocomplete="${this.autocomplete}"
@@ -326,6 +346,11 @@ export class MiSuggestionSearchBox extends MiSearchBox {
           <slot @slotchange="${this.#handleSlotChange}"></slot>
         </div>
       </div>
+      ${this.description
+        ? html`<div id="description" class="visually-hidden">
+            ${this.description}
+          </div>`
+        : nothing}
       <div class="visually-hidden" role="status" aria-live="polite">
         ${open ? `${this.items.length}件の候補があります` : ""}
       </div>
