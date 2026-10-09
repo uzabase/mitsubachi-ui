@@ -82,7 +82,7 @@ export class MiSuggestionSearchBox extends MiSearchBox {
 
   #assignedItems() {
     const slot = this.shadowRoot?.querySelector("slot");
-    return (slot?.assignedElements() ?? []).filter(
+    return (slot?.assignedElements({ flatten: true }) ?? []).filter(
       (el): el is MiSuggestionItem => el.localName === "mi-suggestion-item",
     );
   }
