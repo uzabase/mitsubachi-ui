@@ -1,4 +1,3 @@
-import "../../src/components/label-unit";
 import "../../src/components/suggestion-search-box/mi-suggestion-search-box";
 import "../../src/components/suggestion-search-box/mi-suggestion-item";
 
@@ -498,46 +497,6 @@ export const EventLog: Story = {
             "});",
           ],
         ),
-      },
-    },
-  },
-};
-
-/** LabelUnit と併用します。label 属性にも同じ文言を設定してください（入力欄にフォーカスすると開きます）。 */
-export const WithLabel: Story = {
-  render: () => html`
-    <div
-      style="width:320px;display:flex;flex-direction:column;gap:var(--spacing-medium, 8px);"
-    >
-      <mi-label-unit text="競合企業"></mi-label-unit>
-      <mi-suggestion-search-box
-        label="競合企業"
-        placeholder="企業を検索"
-        variant="secondary"
-      >
-        <mi-suggestion-item value="7203">トヨタ自動車</mi-suggestion-item>
-        <mi-suggestion-item value="6758">ソニーグループ</mi-suggestion-item>
-        <mi-suggestion-item value="7974">任天堂</mi-suggestion-item>
-      </mi-suggestion-search-box>
-    </div>
-  `,
-  decorators: [withListboxSpace],
-  parameters: {
-    docs: {
-      source: {
-        language: "html",
-        code: [
-          '<mi-label-unit text="競合企業"></mi-label-unit>',
-          "<mi-suggestion-search-box",
-          '  label="競合企業"',
-          '  placeholder="企業を検索"',
-          '  variant="secondary"',
-          ">",
-          '  <mi-suggestion-item value="7203">トヨタ自動車</mi-suggestion-item>',
-          '  <mi-suggestion-item value="6758">ソニーグループ</mi-suggestion-item>',
-          '  <mi-suggestion-item value="7974">任天堂</mi-suggestion-item>',
-          "</mi-suggestion-search-box>",
-        ].join("\n"),
       },
     },
   },
