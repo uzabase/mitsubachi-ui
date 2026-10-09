@@ -586,8 +586,8 @@ describe("mi-suggestion-search-box", () => {
     });
   });
 
-  describe("select イベント", () => {
-    test("detail.value に選んだ候補の value が入る", async () => {
+  describe("select イベント（候補の選択を通知する。input / change は入力値の変化を表し、候補を選んでも値は変わらないため別のイベントにした）", () => {
+    test("detail.value に選んだ候補の value が入る（表示名ではなく識別子で受け取れるように）", async () => {
       await setup();
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -601,7 +601,7 @@ describe("mi-suggestion-search-box", () => {
       });
     });
 
-    test("bubbles / composed / cancelable はすべて false", async () => {
+    test("bubbles / composed / cancelable はすべて false（イベント設計方針: 外側に必要なものだけ届け、既定値は false）", async () => {
       await setup();
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -616,7 +616,7 @@ describe("mi-suggestion-search-box", () => {
       expect(event.cancelable).toBe(false);
     });
 
-    test("祖先要素には届かない", async () => {
+    test("祖先要素には届かない（bubbles: false のため。利用側はこの要素に直接登録する）", async () => {
       await setup();
       const onSelf = vi.fn();
       getSut().addEventListener("select", onSelf);
@@ -633,7 +633,7 @@ describe("mi-suggestion-search-box", () => {
       expect(onAncestor).not.toHaveBeenCalled();
     });
 
-    test("選んでも入力欄の値は変えない", async () => {
+    test("選んでも入力欄の値は変えない（選んだ後の処理は利用側が決めるため。例: 画面遷移する、入力欄に反映する）", async () => {
       await setup({ value: "トヨ" });
       const select = vi.fn();
       getSut().addEventListener("select", select);
@@ -647,7 +647,7 @@ describe("mi-suggestion-search-box", () => {
       expect(getInput().value).toBe("トヨ");
     });
 
-    test("入力欄の文字列を範囲選択しても select は発火しない", async () => {
+    test("入力欄の文字列を範囲選択しても select は発火しない（ネイティブの select と名前が同じため、内部の入力欄のものは外に出さない）", async () => {
       await setup({ value: "トヨタ" });
       const select = vi.fn();
       getSut().addEventListener("select", select);
