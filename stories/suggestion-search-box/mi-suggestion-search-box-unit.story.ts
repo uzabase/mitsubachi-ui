@@ -9,6 +9,7 @@ import type { MiSuggestionSearchBoxUnit } from "../../src/components/suggestion-
 
 /** Storybook Actions 用（コンポーネントの公開 API 外） */
 type MiSuggestionSearchBoxUnitStory = MiSuggestionSearchBoxUnit & {
+  "support-text"?: string;
   onInput?: (...args: unknown[]) => void;
   onChange?: (...args: unknown[]) => void;
   onSelect?: (...args: unknown[]) => void;
@@ -43,6 +44,16 @@ const meta = {
     text: {
       control: "text",
       description: "ラベルテキスト。入力欄と候補リストの読み上げ名にもなります",
+    },
+    "support-text": {
+      control: "text",
+      description:
+        "ラベルの下に表示する補足テキスト。入力欄の説明としても読み上げられます",
+    },
+    required: {
+      control: "boolean",
+      description:
+        "ラベルに「必須」バッジを表示し、入力欄に aria-required を付与します",
     },
     variant: {
       control: "select",
@@ -85,6 +96,8 @@ const meta = {
   },
   args: {
     text: "企業検索",
+    "support-text": "",
+    required: false,
     variant: "primary",
     placeholder: "企業名で検索",
     value: "",
@@ -99,6 +112,8 @@ const meta = {
   render: (args) => html`
     <mi-suggestion-search-box-unit
       text="${args.text}"
+      support-text="${args["support-text"]}"
+      ?required="${args.required}"
       variant="${args.variant}"
       placeholder="${args.placeholder}"
       .value="${args.value}"
@@ -132,6 +147,16 @@ export const Default: Story = {};
 /** 入力済み */
 export const WithValue: Story = {
   args: { value: "トヨタ" },
+};
+
+/** 補足テキストあり（入力欄の説明としても読み上げられます） */
+export const WithSupportText: Story = {
+  args: { "support-text": "上場企業のみ検索できます" },
+};
+
+/** 必須（ラベルに「必須」バッジを表示し、入力欄に aria-required を付与します） */
+export const Required: Story = {
+  args: { required: true },
 };
 
 /** Secondary バリアント */

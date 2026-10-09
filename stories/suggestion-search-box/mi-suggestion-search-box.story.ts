@@ -110,6 +110,8 @@ const defaultSource = (args: Partial<MiSuggestionSearchBoxStory>) => {
       args.autocomplete !== "off" &&
       `autocomplete="${args.autocomplete}"`,
     args.autofocus && "autofocus",
+    args.required && "required",
+    args.description && `description="${args.description}"`,
   ].filter(Boolean);
 
   return toSource(
@@ -217,6 +219,15 @@ const meta = {
       description: "ブラウザの自動補完。既定は `off`",
     },
     autofocus: { control: "boolean", description: "自動でフォーカスする" },
+    required: {
+      control: "boolean",
+      description: "入力欄に aria-required を付与します",
+    },
+    description: {
+      control: "text",
+      description:
+        "入力欄の説明としてスクリーンリーダーに読み上げるテキスト。画面には表示しません",
+    },
     onInput: {
       name: "input",
       description: [
@@ -270,6 +281,8 @@ const meta = {
     disabled: false,
     autocomplete: "off",
     autofocus: false,
+    required: false,
+    description: "",
     onInput: action("input"),
     onChange: action("change"),
     onSelect: action("select"),
@@ -292,6 +305,8 @@ export const Default: Story = {
         ?disabled=${args.disabled}
         autocomplete=${args.autocomplete}
         ?autofocus=${args.autofocus}
+        ?required=${args.required}
+        description=${args.description || nothing}
         @input=${(e: Event) => {
           const box = e.currentTarget as MiSuggestionSearchBox;
           updateSuggestions(box);

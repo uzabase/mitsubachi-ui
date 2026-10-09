@@ -27,6 +27,10 @@ import { suggestionSearchBoxUnitStyles } from "./suggestion-search-box-unit.styl
  *
  * @attr {string} text - 検索ボックスを説明するテキストです。検索ボックスの上に表示され、入力欄と候補リストの読み上げ名にもなります。
  *
+ * @attr {string} support-text - 検索ボックスを補足するテキストです。text の下、検索ボックスの上に表示され、入力欄の説明としても読み上げられます。
+ *
+ * @attr {boolean} required - ラベルに「必須」バッジを表示し、入力欄に `aria-required` を付与します。
+ *
  * @slot - 候補（mi-suggestion-item）
  *
  * @fires input - mi-suggestion-search-box と同じ。日本語入力の変換中は発火せず、確定時に1回だけ発火します。
@@ -51,6 +55,19 @@ export class MiSuggestionSearchBoxUnit extends MitsubachiElement {
   /** ラベルテキスト。入力欄と候補リストの読み上げ名にもなる */
   @property({ type: String, reflect: true })
   text = "";
+
+  /** ラベルに「必須」バッジを表示し、入力欄に `aria-required` を付与する */
+  @property({ type: Boolean, reflect: true })
+  required = false;
+
+  /**
+   * ラベルの下に表示する補足テキスト。
+   *
+   * 内側の `mi-suggestion-search-box` の `description` にも渡し、`aria-describedby` 経由で
+   * スクリーンリーダーにも「この欄の説明」として伝わるようにしている。
+   */
+  @property({ type: String, attribute: "support-text", reflect: true })
+  supportText = "";
 
   @property({ type: String, reflect: true })
   variant: SearchBoxVariant = "primary";
@@ -134,7 +151,8 @@ export class MiSuggestionSearchBoxUnit extends MitsubachiElement {
   #labelClasses() {
     return classMap({
       label: true,
-      none: !this.text,
+      // text が空でも support-text だけ表示したい場合があるため、両方空のときだけ隠す
+      none: !this.text && !this.supportText,
     });
   }
 
@@ -144,6 +162,8 @@ export class MiSuggestionSearchBoxUnit extends MitsubachiElement {
         <mi-label-unit
           class="${this.#labelClasses()}"
           text="${this.text}"
+          support-text="${this.supportText}"
+          ?required="${this.required}"
         ></mi-label-unit>
         <!--
           name は内側に渡さない。フォーム値はこのコンポーネントが ElementInternals で管理しており、
@@ -151,6 +171,8 @@ export class MiSuggestionSearchBoxUnit extends MitsubachiElement {
         -->
         <mi-suggestion-search-box
           label="${this.text}"
+          description="${this.supportText}"
+          ?required="${this.required}"
           variant="${this.variant}"
           placeholder="${this.placeholder}"
           autocomplete="${this.autocomplete}"
