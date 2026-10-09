@@ -317,6 +317,77 @@ describe("mi-suggestion-search-box-unit", () => {
       expect(event.cancelable).toBe(false);
       expect(onAncestor).not.toHaveBeenCalled();
     });
+
+    test("日本語変換の確定時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup('text="企業検索"', []);
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+      getInput().focus();
+      await settle();
+      const session = cdp();
+
+      await session.send("Input.imeSetComposition", {
+        text: "とよ",
+        selectionStart: 2,
+        selectionEnd: 2,
+      });
+      await settle();
+      await session.send("Input.insertText", { text: "トヨ" });
+      await settle();
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("クリア時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup('text="企業検索" value="トヨ"');
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+
+      const clear = getBox()!.shadowRoot!.querySelector(
+        ".clear-button",
+      ) as HTMLButtonElement;
+      await userEvent.click(clear);
+      await settle();
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("change の bubbles / composed は false で、祖先要素には届かない", async () => {
+      await setup('text="企業検索"', []);
+      const change = vi.fn();
+      getSut().addEventListener("change", change);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("change", onAncestor);
+      getInput().focus();
+      await userEvent.keyboard("ト");
+
+      (document.querySelector("#outside") as HTMLButtonElement).focus();
+      await settle();
+
+      expect(change).toHaveBeenCalledTimes(1);
+      const event = change.mock.calls[0][0] as Event;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
   });
 
   describe("フォーム", () => {

@@ -245,6 +245,17 @@ describe("mi-suggestion-search-box", () => {
       expectClosed();
     });
 
+    test("開いているときに disabled にすると閉じる", async () => {
+      await setup();
+      await focusInput();
+      expectOpen();
+
+      getSut().disabled = true;
+      await settle();
+
+      expectClosed();
+    });
+
     test("候補が0件になると閉じる", async () => {
       await setup();
       await focusInput();
@@ -637,6 +648,15 @@ describe("mi-suggestion-search-box", () => {
       expect(isFocusInInput()).toBe(true);
     });
 
+    test("disabled のときはクリアボタンが表示されない（mi-search-box と同じ）", async () => {
+      await setup({ value: "トヨ" });
+
+      getSut().disabled = true;
+      await settle();
+
+      expect(getClearButton()).toBeNull();
+    });
+
     test("Tab でクリアボタンに移ると閉じる", async () => {
       await setup({ value: "トヨ" });
       await focusInput();
@@ -645,6 +665,85 @@ describe("mi-suggestion-search-box", () => {
 
       expect(getSut().shadowRoot?.activeElement).toBe(getClearButton());
       expectClosed();
+    });
+  });
+
+  describe("input / change イベント（内側の入力欄のものは Shadow DOM を越えないため、この要素から発火し直す）", () => {
+    test("フォーカスが外れると change が1回発火する。bubbles / composed は false で、祖先要素には届かない", async () => {
+      await setup({ items: [] });
+      const change = vi.fn();
+      getSut().addEventListener("change", change);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("change", onAncestor);
+      await focusInput();
+      await press("ト");
+
+      (document.querySelector("#outside") as HTMLButtonElement).focus();
+      await settle();
+
+      expect(change).toHaveBeenCalledTimes(1);
+      const event = change.mock.calls[0][0] as Event;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("日本語変換の確定時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup({ items: [] });
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+      await focusInput();
+
+      await imeCompose("とよ");
+      await imeCommit("トヨ");
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+
+    test("クリア時の input は bubbles / composed が false で、祖先要素には届かない", async () => {
+      await setup({ value: "トヨ" });
+      const input = vi.fn();
+      getSut().addEventListener("input", input);
+      const onAncestor = vi.fn();
+      document
+        .querySelector("#ancestor")
+        ?.addEventListener("input", onAncestor);
+
+      await userEvent.click(getClearButton()!);
+      await settle();
+
+      expect(input).toHaveBeenCalledTimes(1);
+      const event = input.mock.calls[0][0] as InputEvent;
+      expect(event.bubbles).toBe(false);
+      expect(event.composed).toBe(false);
+      expect(onAncestor).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("フォーム（mi-search-box から引き継ぐ）", () => {
+    test("name を指定すると、FormData に入力値が含まれる", async () => {
+      document.body.innerHTML = `
+        <form>
+          <mi-suggestion-search-box label="企業検索" name="q"></mi-suggestion-search-box>
+        </form>
+      `;
+      await customElements.whenDefined("mi-suggestion-search-box");
+      await focusInput();
+
+      await press("トヨタ");
+
+      const data = new FormData(document.querySelector("form")!);
+      expect(data.get("q")).toBe("トヨタ");
     });
   });
 
