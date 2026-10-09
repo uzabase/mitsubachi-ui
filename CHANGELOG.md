@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.22.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.21.0...v2.22.0) (2026-10-09)
+
+
+### Features
+
+* mi-suggestion-search-box-unitを追加 ([#130](https://github.com/uzabase/mitsubachi-ui/issues/130)) ([5cd0302](https://github.com/uzabase/mitsubachi-ui/commit/5cd03023a46a6f7c987d83ee9b74090a963418f7))
+
 ## [2.21.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.20.0...v2.21.0) (2026-10-08)
 
 
