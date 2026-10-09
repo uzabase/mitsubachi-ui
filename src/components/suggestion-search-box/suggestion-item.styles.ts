@@ -9,7 +9,7 @@ export const suggestionItemStyles = css`
     display: flex;
     align-items: center;
     min-block-size: 32px;
-    padding-inline: var(--spacing-medium, 12px);
+    padding-inline: 12px;
     cursor: pointer;
 
     font-family: var(--typography-font-family, Arial, sans-serif);
