@@ -113,6 +113,43 @@ describe("mi-suggestion-search-box-unit", () => {
     });
   });
 
+  describe("ラベルまわりの属性（mi-text-field-unit と揃える）", () => {
+    test("required 属性を指定すると、ラベルに必須バッジが表示され、入力欄に aria-required=true が付く（見た目と読み上げを一致させるため）", async () => {
+      await setup('text="企業検索" required');
+
+      expect(getLabel().hasAttribute("required")).toBe(true);
+      expect(getInput().getAttribute("aria-required")).toBe("true");
+    });
+
+    test("required を指定しないと、必須バッジは表示されず aria-required=false になる", async () => {
+      await setup();
+
+      expect(getLabel().hasAttribute("required")).toBe(false);
+      expect(getInput().getAttribute("aria-required")).toBe("false");
+    });
+
+    test("support-text 属性がラベルの下に補足テキストとして表示される", async () => {
+      await setup('text="企業検索" support-text="上場企業のみ検索できます"');
+
+      expect(getLabel().getAttribute("support-text")).toBe(
+        "上場企業のみ検索できます",
+      );
+    });
+
+    test("support-text は入力欄の説明（aria-describedby）としても読み上げられる（見えている補足をスクリーンリーダーにも伝えるため）", async () => {
+      await setup('text="企業検索" support-text="上場企業のみ検索できます"');
+
+      const [description] = getInput().ariaDescribedByElements ?? [];
+      expect(description?.textContent?.trim()).toBe("上場企業のみ検索できます");
+    });
+
+    test("text が空でも support-text があればラベル領域を表示する", async () => {
+      await setup('support-text="上場企業のみ検索できます"');
+
+      expect(getLabel().checkVisibility()).toBe(true);
+    });
+  });
+
   describe("ラベルとフォーカス", () => {
     test("ラベルをクリックすると入力欄にフォーカスする（ネイティブの label と同じ操作性のため）", async () => {
       await setup();

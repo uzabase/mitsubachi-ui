@@ -203,6 +203,31 @@ describe("mi-suggestion-search-box", () => {
         expect(item.getAttribute("role")).toBe("option");
       }
     });
+
+    test("required 属性を指定すると、入力欄に aria-required=true が付く（指定しなければ false）", async () => {
+      await setup();
+      expect(getInput().getAttribute("aria-required")).toBe("false");
+
+      getSut().setAttribute("required", "");
+      await settle();
+
+      expect(getInput().getAttribute("aria-required")).toBe("true");
+    });
+
+    test("description 属性は入力欄の説明（aria-describedby）として読み上げられ、画面には表示しない", async () => {
+      await setup();
+      expect(getInput().ariaDescribedByElements ?? []).toHaveLength(0);
+
+      getSut().setAttribute("description", "上場企業のみ検索できます");
+      await settle();
+
+      const [description] = getInput().ariaDescribedByElements ?? [];
+      expect(description?.textContent?.trim()).toBe("上場企業のみ検索できます");
+      expect(
+        description?.checkVisibility({ contentVisibilityAuto: true }),
+      ).toBe(true);
+      expect(description?.getBoundingClientRect().width).toBeLessThanOrEqual(1);
+    });
   });
 
   describe("開閉", () => {
