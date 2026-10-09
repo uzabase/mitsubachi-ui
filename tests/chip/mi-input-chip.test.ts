@@ -96,6 +96,23 @@ describe("mi-input-chip", () => {
       expect(handler).toHaveBeenCalledTimes(1);
     });
 
+    // delegatesFocus が無いとホストがフォーカスを受け取れず、
+    // 削除後にフォーカスを戻す制御が利用側から書けなくなる。
+    test("chip.focus() で内部の削除ボタンへフォーカスが委譲される", async () => {
+      document.body.innerHTML = `<mi-input-chip label="Apple"></mi-input-chip>`;
+      await customElements.whenDefined("mi-input-chip");
+      await customElements.whenDefined("mi-icon-button");
+      const chip = getMiInputChip();
+      await chip.updateComplete;
+
+      chip.focus();
+
+      expect(document.activeElement).toBe(chip);
+      expect(chip.shadowRoot?.activeElement?.tagName.toLowerCase()).toBe(
+        "mi-icon-button",
+      );
+    });
+
     test("removeイベントがbubbles: falseとcomposed: falseを持つ", async () => {
       document.body.innerHTML = `<mi-input-chip label="Apple"></mi-input-chip>`;
       await customElements.whenDefined("mi-input-chip");
