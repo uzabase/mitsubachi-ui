@@ -10,8 +10,8 @@ function getTimeline() {
   return document.querySelector("mi-timeline") as MiTimeline;
 }
 
-function getContainer() {
-  return getTimeline().shadowRoot?.querySelector(".container") as HTMLElement;
+function getSlot() {
+  return getTimeline().shadowRoot?.querySelector("slot") as HTMLSlotElement;
 }
 
 function getItems() {
@@ -38,10 +38,12 @@ afterEach(() => {
 
 describe("mi-timeline", () => {
   describe("構造", () => {
-    test("コンテナがレンダリングされる", async () => {
+    test("ラッパー要素を描かず slot だけをレンダリングする", async () => {
       await render(`<mi-timeline></mi-timeline>`);
 
-      expect(getContainer()).toBeTruthy();
+      const children = [...(getTimeline().shadowRoot?.children ?? [])];
+
+      expect(children.map((el) => el.tagName.toLowerCase())).toEqual(["slot"]);
     });
 
     test("子の mi-timeline-item がスロットに割り当てられる", async () => {
@@ -52,8 +54,7 @@ describe("mi-timeline", () => {
         </mi-timeline>
       `);
 
-      const slot = getContainer().querySelector("slot") as HTMLSlotElement;
-      const assigned = slot
+      const assigned = getSlot()
         .assignedElements()
         .filter((el) => el.tagName.toLowerCase() === "mi-timeline-item");
 
@@ -62,34 +63,37 @@ describe("mi-timeline", () => {
   });
 
   describe("アクセシビリティ", () => {
-    test("コンテナに role=list が設定される", async () => {
+    test("ホストに role=list が設定される", async () => {
       await render(`
         <mi-timeline>
           <mi-timeline-item>1</mi-timeline-item>
         </mi-timeline>
       `);
 
-      expect(getContainer().getAttribute("role")).toBe("list");
+      expect(getTimeline().getAttribute("role")).toBe("list");
     });
 
-    test("ホストの aria-label がリストに転記される", async () => {
+    test("利用側が指定した role は上書きしない", async () => {
+      await render(`
+        <mi-timeline role="none">
+          <mi-timeline-item>1</mi-timeline-item>
+        </mi-timeline>
+      `);
+
+      expect(getTimeline().getAttribute("role")).toBe("none");
+    });
+
+    test("利用側が書いた aria-label がリスト（ホスト）に付く", async () => {
       await render(`
         <mi-timeline aria-label="沿革">
           <mi-timeline-item>1</mi-timeline-item>
         </mi-timeline>
       `);
 
-      expect(getContainer().getAttribute("aria-label")).toBe("沿革");
-    });
+      const timeline = getTimeline();
 
-    test("aria-label がないときはリストに aria-label を付けない", async () => {
-      await render(`
-        <mi-timeline>
-          <mi-timeline-item>1</mi-timeline-item>
-        </mi-timeline>
-      `);
-
-      expect(getContainer().hasAttribute("aria-label")).toBe(false);
+      expect(timeline.getAttribute("role")).toBe("list");
+      expect(timeline.getAttribute("aria-label")).toBe("沿革");
     });
   });
 

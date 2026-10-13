@@ -1,6 +1,5 @@
-// このファイルは mi-timeline だけを import する。
-// mi-timeline-item を一緒に import しないことで、
-// mi-timeline 側の副作用 import が効いていることを確かめる。
+// mi-timeline だけを import することで、mi-timeline.ts の副作用 import が効いて
+// いることを確かめる。他のテストと統合すると mi-timeline-item も import され意味を失う
 import "../../src/components/timeline/mi-timeline";
 
 import { describe, expect, test } from "vitest";

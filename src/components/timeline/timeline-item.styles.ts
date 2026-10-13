@@ -12,7 +12,6 @@ export default css`
     display: none;
   }
 
-  /* ドットと接続線を縦に並べる列。幅は Figma の 24px 固定 */
   .flow {
     display: flex;
     flex-direction: column;
@@ -51,8 +50,6 @@ export default css`
     flex-grow: 1;
     min-block-size: 1px;
     background-color: var(--border-semi-strong-default, rgba(0, 0, 0, 0.2));
-
-    /* 接続線は既定では出さない。親が位置を伝えてきたときだけ出す */
     display: none;
   }
 
