@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.1](https://github.com/uzabase/mitsubachi-ui/compare/v2.23.0...v2.23.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* typecheckエラーを修正 ([#134](https://github.com/uzabase/mitsubachi-ui/issues/134)) ([6c769a8](https://github.com/uzabase/mitsubachi-ui/commit/6c769a87bd93dd6fadac824f48df118f9bbb749f))
+
 ## [2.23.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.22.0...v2.23.0) (2026-10-19)
 
 
