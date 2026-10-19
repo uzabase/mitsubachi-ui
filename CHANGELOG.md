@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.22.0...v2.23.0) (2026-10-19)
+
+
+### Features
+
+* filter-chip と単一/複数選択グループを追加 ([#117](https://github.com/uzabase/mitsubachi-ui/issues/117)) ([2cfcc6e](https://github.com/uzabase/mitsubachi-ui/commit/2cfcc6e62740f7e62f205410fae692fd7a0fa41a))
+
 ## [2.22.0](https://github.com/uzabase/mitsubachi-ui/compare/v2.21.0...v2.22.0) (2026-10-09)
 
 
