@@ -16,6 +16,10 @@ export {
   MiCheckboxText,
   SpCheckboxText,
 } from "./components/checkbox/mi-checkbox-text";
+export type { FilterChipRole } from "./components/chip/mi-filter-chip";
+export { MiFilterChip } from "./components/chip/mi-filter-chip";
+export { MiFilterChipGroupMultiple } from "./components/chip/mi-filter-chip-group-multiple";
+export { MiFilterChipGroupSingle } from "./components/chip/mi-filter-chip-group-single";
 export { MiInputChip } from "./components/chip/mi-input-chip";
 export { MiInputChipGroup } from "./components/chip/mi-input-chip-group";
 export {
