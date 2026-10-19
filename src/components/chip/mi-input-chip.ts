@@ -27,7 +27,7 @@ export class MiInputChip extends MitsubachiElement {
    * といった制御が利用側から書けない。
    */
   static override shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...MitsubachiElement.shadowRootOptions,
     delegatesFocus: true,
   };
 
